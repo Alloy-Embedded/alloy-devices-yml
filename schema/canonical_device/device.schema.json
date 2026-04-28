@@ -29,7 +29,14 @@
       "properties": {
         "source_id":   {"type": "string"},
         "source_path": {"type": ["string", "null"]},
-        "patch_ids":   {"type": "array", "items": {"type": "string"}}
+        "patch_ids":   {"type": "array", "items": {"type": "string"}},
+        "field_provenance": {
+          "description": "Per-field provenance recorded by the cross-source merge engine (Phase 2.2).  Maps top-level field names to the source-id that supplied the merged value.  Optional for v1.2.x YAMLs; mandatory whenever the payload has been through merge_payloads(...).",
+          "type": "object",
+          "additionalProperties": {"type": "string"}
+        },
+        "merge_policy":          {"type": "string"},
+        "contributing_sources":  {"type": "array", "items": {"type": "string"}}
       },
       "additionalProperties": true
     },
