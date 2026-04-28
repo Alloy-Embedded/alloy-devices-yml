@@ -3029,73 +3029,7 @@ clock_nodes:
     patch_ids:
     - st-stm32g0-family-bootstrap-v1
     - st-stm32g0-stm32g071rb-bootstrap
-- node_id: hclk
-  kind: divider
-  parent: sysclk
-  selector: null
-  provenance:
-    source_id: modm-devices
-    source_path: null
-    patch_ids:
-    - modm-devices@unpinned
-- node_id: pclk
-  kind: divider
-  parent: hclk
-  selector: null
-  provenance:
-    source_id: modm-devices
-    source_path: null
-    patch_ids:
-    - modm-devices@unpinned
-- node_id: pll_in
-  kind: mux
-  parent: null
-  selector: selector:pll_in
-  provenance:
-    source_id: modm-devices
-    source_path: null
-    patch_ids:
-    - modm-devices@unpinned
-- node_id: pll_r
-  kind: multiplier
-  parent: pll_in
-  selector: null
-  provenance:
-    source_id: modm-devices
-    source_path: null
-    patch_ids:
-    - modm-devices@unpinned
-- node_id: sysclk
-  kind: mux
-  parent: null
-  selector: selector:sysclk
-  provenance:
-    source_id: modm-devices
-    source_path: null
-    patch_ids:
-    - modm-devices@unpinned
 clock_selectors:
-- selector_id: selector:pll_in
-  parent_options:
-  - hsi16
-  - hse
-  register_target: null
-  provenance:
-    source_id: modm-devices
-    source_path: null
-    patch_ids:
-    - modm-devices@unpinned
-- selector_id: selector:sysclk
-  parent_options:
-  - hsi16
-  - hse
-  - pll_r
-  register_target: null
-  provenance:
-    source_id: modm-devices
-    source_path: null
-    patch_ids:
-    - modm-devices@unpinned
 - selector_id: selector:usart1-kernel
   parent_options:
   - clock-node:rcc-apbenr2
@@ -3508,7 +3442,7 @@ dma_controllers:
 - controller: DMA1
   version: bdma_v1_0
   channel_count: 7
-  request_count: 9
+  request_count: 7
   provenance:
     source_id: bootstrap-patch
     source_path: patches/st/stm32g0/devices/stm32g071rb.json
@@ -3571,26 +3505,6 @@ dma_requests:
     - modm-devices@unpinned
   request_value: 51
 - controller: DMA1
-  request_line: DMAMUX_REQ_052
-  peripheral: USART2
-  signal: RX
-  provenance:
-    source_id: modm-devices
-    source_path: null
-    patch_ids:
-    - modm-devices@unpinned
-  request_value: 52
-- controller: DMA1
-  request_line: DMAMUX_REQ_053
-  peripheral: USART2
-  signal: TX
-  provenance:
-    source_id: modm-devices
-    source_path: null
-    patch_ids:
-    - modm-devices@unpinned
-  request_value: 53
-- controller: DMA1
   request_line: DMAMUX_REQ_016
   peripheral: SPI1
   signal: RX
@@ -3611,6 +3525,36 @@ dma_requests:
     - modm-devices@unpinned
   request_value: 17
 dma_bindings:
+- binding_id: dma-binding:usart1:rx:dma1:dma1-ch1
+  peripheral: USART1
+  signal: RX
+  controller: DMA1
+  request_line: DMA1_CH1
+  route_id: dma-route:dma1:dma1-ch1:usart1:rx
+  conflict_group: null
+  provenance:
+    source_id: bootstrap-patch
+    source_path: patches/st/stm32g0/devices/stm32g071rb.json
+    patch_ids:
+    - st-stm32g0-family-bootstrap-v1
+    - st-stm32g0-stm32g071rb-bootstrap
+  channel_index: 0
+  request_value: 50
+- binding_id: dma-binding:usart1:tx:dma1:dma1-ch2
+  peripheral: USART1
+  signal: TX
+  controller: DMA1
+  request_line: DMA1_CH2
+  route_id: dma-route:dma1:dma1-ch2:usart1:tx
+  conflict_group: null
+  provenance:
+    source_id: bootstrap-patch
+    source_path: patches/st/stm32g0/devices/stm32g071rb.json
+    patch_ids:
+    - st-stm32g0-family-bootstrap-v1
+    - st-stm32g0-stm32g071rb-bootstrap
+  channel_index: 1
+  request_value: 51
 - binding_id: dma-binding:adc1:none:dma1:dmamux-req-005
   peripheral: ADC1
   signal: null
@@ -3650,88 +3594,6 @@ dma_bindings:
     patch_ids:
     - modm-devices@unpinned
   request_value: 17
-- binding_id: dma-binding:usart1:rx:dma1:dma1-ch1
-  peripheral: USART1
-  signal: RX
-  controller: DMA1
-  request_line: DMA1_CH1
-  route_id: dma-route:dma1:dma1-ch1:usart1:rx
-  conflict_group: null
-  provenance:
-    source_id: bootstrap-patch
-    source_path: patches/st/stm32g0/devices/stm32g071rb.json
-    patch_ids:
-    - st-stm32g0-family-bootstrap-v1
-    - st-stm32g0-stm32g071rb-bootstrap
-  channel_index: 0
-  request_value: 50
-- binding_id: dma-binding:usart1:rx:dma1:dmamux-req-050
-  peripheral: USART1
-  signal: RX
-  controller: DMA1
-  request_line: DMAMUX_REQ_050
-  route_id: dma-route:dma1:dmamux-req-050:usart1:rx
-  conflict_group: null
-  provenance:
-    source_id: modm-devices
-    source_path: null
-    patch_ids:
-    - modm-devices@unpinned
-  request_value: 50
-- binding_id: dma-binding:usart1:tx:dma1:dma1-ch2
-  peripheral: USART1
-  signal: TX
-  controller: DMA1
-  request_line: DMA1_CH2
-  route_id: dma-route:dma1:dma1-ch2:usart1:tx
-  conflict_group: null
-  provenance:
-    source_id: bootstrap-patch
-    source_path: patches/st/stm32g0/devices/stm32g071rb.json
-    patch_ids:
-    - st-stm32g0-family-bootstrap-v1
-    - st-stm32g0-stm32g071rb-bootstrap
-  channel_index: 1
-  request_value: 51
-- binding_id: dma-binding:usart1:tx:dma1:dmamux-req-051
-  peripheral: USART1
-  signal: TX
-  controller: DMA1
-  request_line: DMAMUX_REQ_051
-  route_id: dma-route:dma1:dmamux-req-051:usart1:tx
-  conflict_group: null
-  provenance:
-    source_id: modm-devices
-    source_path: null
-    patch_ids:
-    - modm-devices@unpinned
-  request_value: 51
-- binding_id: dma-binding:usart2:rx:dma1:dmamux-req-052
-  peripheral: USART2
-  signal: RX
-  controller: DMA1
-  request_line: DMAMUX_REQ_052
-  route_id: dma-route:dma1:dmamux-req-052:usart2:rx
-  conflict_group: null
-  provenance:
-    source_id: modm-devices
-    source_path: null
-    patch_ids:
-    - modm-devices@unpinned
-  request_value: 52
-- binding_id: dma-binding:usart2:tx:dma1:dmamux-req-053
-  peripheral: USART2
-  signal: TX
-  controller: DMA1
-  request_line: DMAMUX_REQ_053
-  route_id: dma-route:dma1:dmamux-req-053:usart2:tx
-  conflict_group: null
-  provenance:
-    source_id: modm-devices
-    source_path: null
-    patch_ids:
-    - modm-devices@unpinned
-  request_value: 53
 dma_routes:
 - route_id: dma-route:dma1:dma1-ch1:usart1:rx
   controller: DMA1
@@ -3821,30 +3683,6 @@ dma_routes:
     patch_ids:
     - modm-devices@unpinned
   request_value: 51
-- route_id: dma-route:dma1:dmamux-req-052:usart2:rx
-  controller: DMA1
-  request_line: DMAMUX_REQ_052
-  peripheral: USART2
-  signal: RX
-  conflict_group: null
-  provenance:
-    source_id: modm-devices
-    source_path: null
-    patch_ids:
-    - modm-devices@unpinned
-  request_value: 52
-- route_id: dma-route:dma1:dmamux-req-053:usart2:tx
-  controller: DMA1
-  request_line: DMAMUX_REQ_053
-  peripheral: USART2
-  signal: TX
-  conflict_group: null
-  provenance:
-    source_id: modm-devices
-    source_path: null
-    patch_ids:
-    - modm-devices@unpinned
-  request_value: 53
 startup_descriptors:
 - descriptor_id: startup:vectors
   kind: vector-table
@@ -4325,8 +4163,6 @@ pwm_mode_flags:
   supports_combined_pwm: false
 peripheral_max_clock_hz:
 - peripheral: USART1
-  max_clock_hz: 64000000
-- peripheral: USART2
   max_clock_hz: 64000000
 - peripheral: SPI1
   max_clock_hz: 64000000
