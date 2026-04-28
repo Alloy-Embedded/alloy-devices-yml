@@ -1,0 +1,50 @@
+schema_version: 1.2.0
+identity:
+  vendor: atmel
+  family: sam
+  device: saml2x
+  package: ''
+  core: cortex-m4f
+  summary: Admitted via Zephyr DTS (saml2x.dtsi).
+provenance:
+  source_id: zephyr-dts
+  source_path: /Users/lgili/Documents/01 - Codes/01 - Github/zephyr/dts/arm/atmel/saml2x.dtsi
+  patch_ids: []
+memories:
+- name: flash0
+  base_address: 0
+  size_bytes: 262144
+  compatible: soc-nv-flash
+- name: sram0
+  base_address: 536870912
+  size_bytes: 32768
+  compatible: mmio-sram
+peripherals:
+- name: RTC
+  base_address: 1073750016
+  compatible: atmel,sam0-rtc
+  ip_name: rtc
+- name: PORTA
+  base_address: 1073752064
+  compatible: atmel,sam0-gpio
+  ip_name: gpio
+- name: PORTB
+  base_address: 1073752192
+  compatible: atmel,sam0-gpio
+  ip_name: gpio
+- name: DAC
+  base_address: 1107308544
+  compatible: atmel,sam0-dac
+  ip_name: dac
+- name: TC4
+  base_address: 1124075520
+  compatible: atmel,sam0-tc32
+  ip_name: timer
+- name: ADC
+  base_address: 1124076544
+  compatible: atmel,sam0-adc
+  ip_name: adc
+interrupts:
+- name: RTC_IRQ
+  line: 2
+  peripheral: RTC

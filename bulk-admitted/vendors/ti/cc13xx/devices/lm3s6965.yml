@@ -1,0 +1,48 @@
+schema_version: 1.2.0
+identity:
+  vendor: ti
+  family: cc13xx
+  device: lm3s6965
+  package: ''
+  core: cortex-m4f
+  summary: Admitted via Zephyr DTS (lm3s6965.dtsi).
+provenance:
+  source_id: zephyr-dts
+  source_path: /Users/lgili/Documents/01 - Codes/01 - Github/zephyr/dts/arm/ti/lm3s6965.dtsi
+  patch_ids: []
+memories:
+- name: flash0
+  base_address: 0
+  size_bytes: 262144
+  compatible: soc-nv-flash
+- name: sram0
+  base_address: 536870912
+  size_bytes: 65536
+  compatible: mmio-sram
+- name: flash-controller@400fd000
+  base_address: 1074778112
+  size_bytes: 4096
+  compatible: ti,stellaris-flash-controller
+peripherals:
+- name: UART0
+  base_address: 1073790976
+  compatible: ti,stellaris-uart
+  ip_name: uart
+- name: UART1
+  base_address: 1073795072
+  compatible: ti,stellaris-uart
+  ip_name: uart
+- name: UART2
+  base_address: 1073799168
+  compatible: ti,stellaris-uart
+  ip_name: uart
+interrupts:
+- name: UART0_IRQ
+  line: 5
+  peripheral: UART0
+- name: UART1_IRQ
+  line: 6
+  peripheral: UART1
+- name: UART2_IRQ
+  line: 33
+  peripheral: UART2

@@ -1,0 +1,63 @@
+schema_version: 1.2.0
+identity:
+  vendor: silabs
+  family: gecko
+  device: efm32hg
+  package: ''
+  core: cortex-m4f
+  summary: Admitted via Zephyr DTS (efm32hg.dtsi).
+provenance:
+  source_id: zephyr-dts
+  source_path: /Users/lgili/Documents/01 - Codes/01 - Github/zephyr/dts/arm/silabs/efm32hg.dtsi
+  patch_ids: []
+memories:
+- name: msc
+  base_address: 1074528256
+  size_bytes: 92
+  compatible: silabs,gecko-flash-controller
+peripherals:
+- name: GPIO@40006100
+  base_address: 1073766656
+  compatible: silabs,gecko-gpio
+  ip_name: gpio
+- name: I2C0
+  base_address: 1073782784
+  compatible: silabs,gecko-i2c
+  ip_name: i2c
+- name: USART0
+  base_address: 1073790976
+  compatible: silabs,gecko-usart
+  ip_name: uart
+- name: USART1
+  base_address: 1073792000
+  compatible: silabs,gecko-usart
+  ip_name: uart
+- name: LEUART0
+  base_address: 1074282496
+  compatible: silabs,gecko-leuart
+  ip_name: uart
+interrupts:
+- name: GPIO@40006100_IRQ
+  line: 1
+  peripheral: GPIO@40006100
+- name: I2C0_IRQ
+  line: 5
+  peripheral: I2C0
+- name: GPIO@40006100_IRQ
+  line: 6
+  peripheral: GPIO@40006100
+- name: USART1_IRQ
+  line: 8
+  peripheral: USART1
+- name: USART1_IRQ
+  line: 9
+  peripheral: USART1
+- name: LEUART0_IRQ
+  line: 10
+  peripheral: LEUART0
+- name: USART0_IRQ
+  line: 17
+  peripheral: USART0
+- name: USART0_IRQ
+  line: 18
+  peripheral: USART0
