@@ -1,0 +1,76 @@
+name: Index + Dashboard
+
+# `add-coverage-index-and-dashboard` (Phase 2.3 of the
+# alloy-data-extractor roadmap) gates that:
+#
+# 1. Every PR adds/removes/modifies a device YAML *and*
+#    keeps `index.yml` consistent with the YAML tree.
+# 2. The coverage dashboard rebuilds weekly from `index.yml`
+#    and is committed back so GitHub Pages can serve it.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Weekly dashboard refresh on Sundays 04:00 UTC.
+    - cron: "0 4 * * 0"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  validate-index:
+    name: index.yml is fresh
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install alloy-data-extractor
+        run: |
+          pip install \
+            'PyYAML>=6.0' 'jsonschema>=4.0' \
+            'cmsis-pack-manager>=0.5.0' 'devicetree>=0.0.2' \
+            'lxml>=5.0'
+          git clone --depth 1 https://github.com/Alloy-Embedded/alloy-data-extractor /tmp/alloy-data-extractor
+          pip install -e /tmp/alloy-data-extractor
+      - name: Check index.yml is fresh
+        run: |
+          alloy-data-extract index --check --output-root .
+
+  rebuild-dashboard:
+    name: rebuild coverage-dashboard.md (weekly)
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install alloy-data-extractor
+        run: |
+          pip install \
+            'PyYAML>=6.0' 'jsonschema>=4.0' \
+            'cmsis-pack-manager>=0.5.0' 'devicetree>=0.0.2' \
+            'lxml>=5.0'
+          git clone --depth 1 https://github.com/Alloy-Embedded/alloy-data-extractor /tmp/alloy-data-extractor
+          pip install -e /tmp/alloy-data-extractor
+      - name: Rebuild dashboard
+        run: alloy-data-extract dashboard --output-root .
+      - name: Commit if changed
+        run: |
+          if [[ -n $(git status --porcelain coverage-dashboard.md) ]]; then
+            git config user.name "alloy-bot"
+            git config user.email "noreply@anthropic.com"
+            git add coverage-dashboard.md
+            git commit -m "chore: weekly coverage-dashboard refresh"
+            git push
+          fi
