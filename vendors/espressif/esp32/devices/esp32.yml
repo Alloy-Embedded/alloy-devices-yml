@@ -24,11 +24,6 @@ memories:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  startup_roles:
-  - volatile-target
-  - copy-target
-  - zero-target
-  - stack-target
 - name: ROM
   kind: rom
   base_address: 1073741824
@@ -40,10 +35,6 @@ memories:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  startup_roles:
-  - nonvolatile
-  - copy-source
-  - vector-source
 - name: IRAM
   kind: sram
   base_address: 1074266112
@@ -55,11 +46,6 @@ memories:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  startup_roles:
-  - volatile-target
-  - copy-target
-  - zero-target
-  - stack-target
 packages:
 - name: qfn48
   pin_count: 48
@@ -137,128 +123,6 @@ pins:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-ip_blocks:
-- ip_name: dport
-  ip_version: esp32-dport-v1
-  peripheral_class: dport
-  register_profile: dport:esp32-dport-v1
-  signal_roles: []
-  capability_ids: []
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  backend_schema_id: alloy.dport.espressif-esp32-dport-v1
-- ip_name: gpio
-  ip_version: esp32-gpio-v1
-  peripheral_class: gpio
-  register_profile: gpio:esp32-gpio-v1
-  signal_roles: []
-  capability_ids: []
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  backend_schema_id: alloy.gpio.espressif-esp32-gpio-v1
-- ip_name: i2c
-  ip_version: esp32-i2c-v1
-  peripheral_class: i2c
-  register_profile: i2c:esp32-i2c-v1
-  signal_roles: []
-  capability_ids: []
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  backend_schema_id: alloy.i2c.espressif-esp32-i2c-v1
-- ip_name: ledc
-  ip_version: esp32-ledc-v1
-  peripheral_class: ledc
-  register_profile: ledc:esp32-ledc-v1
-  signal_roles: []
-  capability_ids: []
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  backend_schema_id: alloy.ledc.espressif-esp32-ledc-v1
-- ip_name: rmt
-  ip_version: esp32-rmt-v1
-  peripheral_class: rmt
-  register_profile: rmt:esp32-rmt-v1
-  signal_roles: []
-  capability_ids: []
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  backend_schema_id: alloy.rmt.espressif-esp32-rmt-v1
-- ip_name: sens
-  ip_version: esp32-sens-v1
-  peripheral_class: adc
-  register_profile: sens:esp32-sens-v1
-  signal_roles: []
-  capability_ids: []
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  backend_schema_id: alloy.adc.espressif-esp32-sens-v1
-- ip_name: spi
-  ip_version: esp32-spi-v1
-  peripheral_class: spi
-  register_profile: spi:esp32-spi-v1
-  signal_roles: []
-  capability_ids: []
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  backend_schema_id: alloy.spi.espressif-esp32-spi-v1
-- ip_name: timg
-  ip_version: esp32-timg-v1
-  peripheral_class: timg
-  register_profile: timg:esp32-timg-v1
-  signal_roles: []
-  capability_ids: []
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  backend_schema_id: alloy.timg.espressif-esp32-timg-v1
-- ip_name: uart
-  ip_version: esp32-uart-v1
-  peripheral_class: uart
-  register_profile: uart:esp32-uart-v1
-  signal_roles:
-  - rx
-  - tx
-  capability_ids:
-  - capability:uart:esp32-uart-v1:rx
-  - capability:uart:esp32-uart-v1:tx
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  backend_schema_id: alloy.uart.espressif-esp32-uart-v1
 peripherals:
 - name: AES
   ip_name: aes
@@ -273,7 +137,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.aes.espressif-aes
+  backend_schema_id: null
 - name: APB_CTRL
   ip_name: apb_ctrl
   ip_version: null
@@ -287,7 +151,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.apb_ctrl.espressif-apb-ctrl
+  backend_schema_id: null
 - name: BB
   ip_name: bb
   ip_version: null
@@ -301,7 +165,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.bb.espressif-bb
+  backend_schema_id: null
 - name: DPORT
   ip_name: dport
   ip_version: esp32-dport-v1
@@ -315,7 +179,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.dport.espressif-esp32-dport-v1
+  backend_schema_id: null
 - name: EFUSE
   ip_name: efuse
   ip_version: null
@@ -329,7 +193,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.efuse.espressif-efuse
+  backend_schema_id: null
 - name: EMAC_DMA
   ip_name: emac_dma
   ip_version: null
@@ -343,7 +207,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.emac_dma.espressif-emac-dma
+  backend_schema_id: null
 - name: EMAC_EXT
   ip_name: emac_ext
   ip_version: null
@@ -357,7 +221,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.emac_ext.espressif-emac-ext
+  backend_schema_id: null
 - name: EMAC_MAC
   ip_name: emac_mac
   ip_version: null
@@ -371,7 +235,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.emac_mac.espressif-emac-mac
+  backend_schema_id: null
 - name: FLASH_ENCRYPTION
   ip_name: flash_encryption
   ip_version: null
@@ -385,7 +249,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.flash_encryption.espressif-flash-encryption
+  backend_schema_id: null
 - name: FRC_TIMER
   ip_name: frc_timer
   ip_version: null
@@ -399,7 +263,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.frc_timer.espressif-frc-timer
+  backend_schema_id: null
 - name: GPIO
   ip_name: gpio
   ip_version: esp32-gpio-v1
@@ -413,7 +277,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.gpio.espressif-esp32-gpio-v1
+  backend_schema_id: null
 - name: GPIO_SD
   ip_name: gpio_sd
   ip_version: null
@@ -427,7 +291,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.gpio_sd.espressif-gpio-sd
+  backend_schema_id: null
 - name: HINF
   ip_name: hinf
   ip_version: null
@@ -441,7 +305,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.hinf.espressif-hinf
+  backend_schema_id: null
 - name: I2C0
   ip_name: i2c
   ip_version: esp32-i2c-v1
@@ -455,7 +319,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.i2c.espressif-esp32-i2c-v1
+  backend_schema_id: null
 - name: I2C1
   ip_name: i2c
   ip_version: null
@@ -469,7 +333,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.i2c.espressif-i2c
+  backend_schema_id: null
 - name: I2S0
   ip_name: i2s
   ip_version: null
@@ -483,7 +347,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.i2s.espressif-i2s
+  backend_schema_id: null
 - name: I2S1
   ip_name: i2s
   ip_version: null
@@ -497,7 +361,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.i2s.espressif-i2s
+  backend_schema_id: null
 - name: IO_MUX
   ip_name: io_mux
   ip_version: null
@@ -511,7 +375,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.io_mux.espressif-io-mux
+  backend_schema_id: null
 - name: LEDC
   ip_name: ledc
   ip_version: esp32-ledc-v1
@@ -525,7 +389,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.ledc.espressif-esp32-ledc-v1
+  backend_schema_id: null
 - name: MCPWM0
   ip_name: mcpwm
   ip_version: null
@@ -539,7 +403,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.mcpwm.espressif-mcpwm
+  backend_schema_id: null
 - name: MCPWM1
   ip_name: mcpwm
   ip_version: null
@@ -553,7 +417,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.mcpwm.espressif-mcpwm
+  backend_schema_id: null
 - name: NRX
   ip_name: nrx
   ip_version: null
@@ -567,7 +431,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.nrx.espressif-nrx
+  backend_schema_id: null
 - name: PCNT
   ip_name: pcnt
   ip_version: null
@@ -581,7 +445,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.pcnt.espressif-pcnt
+  backend_schema_id: null
 - name: RMT
   ip_name: rmt
   ip_version: esp32-rmt-v1
@@ -595,7 +459,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.rmt.espressif-esp32-rmt-v1
+  backend_schema_id: null
 - name: RNG
   ip_name: rng
   ip_version: null
@@ -609,7 +473,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.rng.espressif-rng
+  backend_schema_id: null
 - name: RSA
   ip_name: rsa
   ip_version: null
@@ -623,7 +487,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.rsa.espressif-rsa
+  backend_schema_id: null
 - name: RTC_CNTL
   ip_name: rtc_cntl
   ip_version: null
@@ -637,7 +501,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.rtc_cntl.espressif-rtc-cntl
+  backend_schema_id: null
 - name: RTC_IO
   ip_name: rtc_io
   ip_version: null
@@ -651,7 +515,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.rtc_io.espressif-rtc-io
+  backend_schema_id: null
 - name: RTC_I2C
   ip_name: rtc_i2c
   ip_version: null
@@ -665,7 +529,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.rtc_i2c.espressif-rtc-i2c
+  backend_schema_id: null
 - name: SDHOST
   ip_name: sdhost
   ip_version: null
@@ -679,7 +543,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.sdhost.espressif-sdhost
+  backend_schema_id: null
 - name: SENS
   ip_name: sens
   ip_version: esp32-sens-v1
@@ -693,7 +557,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.adc.espressif-esp32-sens-v1
+  backend_schema_id: null
 - name: SHA
   ip_name: sha
   ip_version: null
@@ -707,7 +571,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.sha.espressif-sha
+  backend_schema_id: null
 - name: SLC
   ip_name: slc
   ip_version: null
@@ -721,7 +585,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.slc.espressif-slc
+  backend_schema_id: null
 - name: SLCHOST
   ip_name: slchost
   ip_version: null
@@ -735,7 +599,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.slchost.espressif-slchost
+  backend_schema_id: null
 - name: SPI0
   ip_name: spi
   ip_version: esp32-spi-v1
@@ -749,7 +613,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.spi.espressif-esp32-spi-v1
+  backend_schema_id: null
 - name: SPI1
   ip_name: spi
   ip_version: null
@@ -763,7 +627,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.spi.espressif-spi
+  backend_schema_id: null
 - name: SPI2
   ip_name: spi
   ip_version: null
@@ -777,7 +641,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.spi.espressif-spi
+  backend_schema_id: null
 - name: SPI3
   ip_name: spi
   ip_version: null
@@ -791,7 +655,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.spi.espressif-spi
+  backend_schema_id: null
 - name: TIMG0
   ip_name: timg
   ip_version: esp32-timg-v1
@@ -805,7 +669,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.timg.espressif-esp32-timg-v1
+  backend_schema_id: null
 - name: TIMG1
   ip_name: timg
   ip_version: null
@@ -819,7 +683,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.timg.espressif-timg
+  backend_schema_id: null
 - name: TWAI0
   ip_name: twai
   ip_version: null
@@ -833,7 +697,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.twai.espressif-twai
+  backend_schema_id: null
 - name: UART0
   ip_name: uart
   ip_version: esp32-uart-v1
@@ -847,7 +711,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.uart.espressif-esp32-uart-v1
+  backend_schema_id: null
 - name: UART1
   ip_name: uart
   ip_version: null
@@ -861,7 +725,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.uart.espressif-uart
+  backend_schema_id: null
 - name: UART2
   ip_name: uart
   ip_version: null
@@ -875,7 +739,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.uart.espressif-uart
+  backend_schema_id: null
 - name: UHCI0
   ip_name: uhci
   ip_version: null
@@ -889,7 +753,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.uhci.espressif-uhci
+  backend_schema_id: null
 - name: UHCI1
   ip_name: uhci
   ip_version: null
@@ -903,7 +767,7 @@ peripherals:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  backend_schema_id: alloy.uhci.espressif-uhci
+  backend_schema_id: null
 interrupts:
 - name: WIFI_MAC
   line: 0
@@ -914,10 +778,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:dport
-  alias_names:
-  - DPORT
-  - WIFI_MAC_IRQHandler
+  shared_group: null
 - name: WIFI_NMI
   line: 1
   peripheral: DPORT
@@ -927,10 +788,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:dport
-  alias_names:
-  - DPORT
-  - WIFI_NMI_IRQHandler
+  shared_group: null
 - name: WIFI_BB
   line: 2
   peripheral: DPORT
@@ -940,10 +798,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:dport
-  alias_names:
-  - DPORT
-  - WIFI_BB_IRQHandler
+  shared_group: null
 - name: BT_MAC
   line: 3
   peripheral: DPORT
@@ -953,10 +808,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:dport
-  alias_names:
-  - DPORT
-  - BT_MAC_IRQHandler
+  shared_group: null
 - name: BT_BB
   line: 4
   peripheral: DPORT
@@ -966,10 +818,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:dport
-  alias_names:
-  - DPORT
-  - BT_BB_IRQHandler
+  shared_group: null
 - name: BT_BB_NMI
   line: 5
   peripheral: DPORT
@@ -979,10 +828,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:dport
-  alias_names:
-  - DPORT
-  - BT_BB_NMI_IRQHandler
+  shared_group: null
 - name: RWBT
   line: 6
   peripheral: DPORT
@@ -992,10 +838,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:dport
-  alias_names:
-  - DPORT
-  - RWBT_IRQHandler
+  shared_group: null
 - name: RWBLE
   line: 7
   peripheral: DPORT
@@ -1005,10 +848,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:dport
-  alias_names:
-  - DPORT
-  - RWBLE_IRQHandler
+  shared_group: null
 - name: RWBT_NMI
   line: 8
   peripheral: DPORT
@@ -1018,10 +858,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:dport
-  alias_names:
-  - DPORT
-  - RWBT_NMI_IRQHandler
+  shared_group: null
 - name: RWBLE_NMI
   line: 9
   peripheral: DPORT
@@ -1031,10 +868,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:dport
-  alias_names:
-  - DPORT
-  - RWBLE_NMI_IRQHandler
+  shared_group: null
 - name: FROM_CPU_INTR0
   line: 24
   peripheral: DPORT
@@ -1044,10 +878,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:dport
-  alias_names:
-  - DPORT
-  - FROM_CPU_INTR0_IRQHandler
+  shared_group: null
 - name: FROM_CPU_INTR1
   line: 25
   peripheral: DPORT
@@ -1057,10 +888,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:dport
-  alias_names:
-  - DPORT
-  - FROM_CPU_INTR1_IRQHandler
+  shared_group: null
 - name: FROM_CPU_INTR2
   line: 26
   peripheral: DPORT
@@ -1070,10 +898,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:dport
-  alias_names:
-  - DPORT
-  - FROM_CPU_INTR2_IRQHandler
+  shared_group: null
 - name: FROM_CPU_INTR3
   line: 27
   peripheral: DPORT
@@ -1083,10 +908,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:dport
-  alias_names:
-  - DPORT
-  - FROM_CPU_INTR3_IRQHandler
+  shared_group: null
 - name: SDIO_HOST
   line: 37
   peripheral: DPORT
@@ -1096,10 +918,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:dport
-  alias_names:
-  - DPORT
-  - SDIO_HOST_IRQHandler
+  shared_group: null
 - name: ETH_MAC
   line: 38
   peripheral: DPORT
@@ -1109,10 +928,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:dport
-  alias_names:
-  - DPORT
-  - ETH_MAC_IRQHandler
+  shared_group: null
 - name: WDT
   line: 55
   peripheral: DPORT
@@ -1122,10 +938,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:dport
-  alias_names:
-  - DPORT
-  - WDT_IRQHandler
+  shared_group: null
 - name: MMU_IA
   line: 66
   peripheral: DPORT
@@ -1135,10 +948,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:dport
-  alias_names:
-  - DPORT
-  - MMU_IA_IRQHandler
+  shared_group: null
 - name: MPU_IA
   line: 67
   peripheral: DPORT
@@ -1148,10 +958,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:dport
-  alias_names:
-  - DPORT
-  - MPU_IA_IRQHandler
+  shared_group: null
 - name: CACHE_IA
   line: 68
   peripheral: DPORT
@@ -1161,10 +968,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:dport
-  alias_names:
-  - DPORT
-  - CACHE_IA_IRQHandler
+  shared_group: null
 - name: EFUSE
   line: 44
   peripheral: EFUSE
@@ -1175,8 +979,6 @@ interrupts:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
   shared_group: null
-  alias_names:
-  - EFUSE_IRQHandler
 - name: GPIO
   line: 22
   peripheral: GPIO
@@ -1186,9 +988,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:gpio
-  alias_names:
-  - GPIO_IRQHandler
+  shared_group: null
 - name: GPIO_NMI
   line: 23
   peripheral: GPIO
@@ -1198,9 +998,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:gpio
-  alias_names:
-  - GPIO_NMI_IRQHandler
+  shared_group: null
 - name: I2C_EXT0
   line: 49
   peripheral: I2C0
@@ -1211,9 +1009,6 @@ interrupts:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
   shared_group: null
-  alias_names:
-  - I2C0
-  - I2C_EXT0_IRQHandler
 - name: I2C_EXT1
   line: 50
   peripheral: I2C1
@@ -1224,9 +1019,6 @@ interrupts:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
   shared_group: null
-  alias_names:
-  - I2C1
-  - I2C_EXT1_IRQHandler
 - name: I2S0
   line: 32
   peripheral: I2S0
@@ -1237,8 +1029,6 @@ interrupts:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
   shared_group: null
-  alias_names:
-  - I2S0_IRQHandler
 - name: I2S1
   line: 33
   peripheral: I2S1
@@ -1249,8 +1039,6 @@ interrupts:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
   shared_group: null
-  alias_names:
-  - I2S1_IRQHandler
 - name: LEDC
   line: 43
   peripheral: LEDC
@@ -1260,9 +1048,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:ledc
-  alias_names:
-  - LEDC_IRQHandler
+  shared_group: null
 - name: TIMER1
   line: 56
   peripheral: LEDC
@@ -1272,10 +1058,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:ledc
-  alias_names:
-  - LEDC
-  - TIMER1_IRQHandler
+  shared_group: null
 - name: TIMER2
   line: 57
   peripheral: LEDC
@@ -1285,10 +1068,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:ledc
-  alias_names:
-  - LEDC
-  - TIMER2_IRQHandler
+  shared_group: null
 - name: MCPWM0
   line: 39
   peripheral: MCPWM0
@@ -1298,9 +1078,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:mcpwm0
-  alias_names:
-  - MCPWM0_IRQHandler
+  shared_group: null
 - name: MCPWM1
   line: 40
   peripheral: MCPWM0
@@ -1310,10 +1088,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:mcpwm0
-  alias_names:
-  - MCPWM0
-  - MCPWM1_IRQHandler
+  shared_group: null
 - name: MCPWM2
   line: 41
   peripheral: MCPWM0
@@ -1323,10 +1098,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:mcpwm0
-  alias_names:
-  - MCPWM0
-  - MCPWM2_IRQHandler
+  shared_group: null
 - name: MCPWM3
   line: 42
   peripheral: MCPWM0
@@ -1336,10 +1108,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:mcpwm0
-  alias_names:
-  - MCPWM0
-  - MCPWM3_IRQHandler
+  shared_group: null
 - name: PCNT
   line: 48
   peripheral: PCNT
@@ -1350,8 +1119,6 @@ interrupts:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
   shared_group: null
-  alias_names:
-  - PCNT_IRQHandler
 - name: RMT
   line: 47
   peripheral: RMT
@@ -1362,8 +1129,6 @@ interrupts:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
   shared_group: null
-  alias_names:
-  - RMT_IRQHandler
 - name: RSA
   line: 51
   peripheral: RSA
@@ -1374,8 +1139,6 @@ interrupts:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
   shared_group: null
-  alias_names:
-  - RSA_IRQHandler
 - name: RTC_CORE
   line: 46
   peripheral: RTC_CNTL
@@ -1386,9 +1149,6 @@ interrupts:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
   shared_group: null
-  alias_names:
-  - RTC_CNTL
-  - RTC_CORE_IRQHandler
 - name: SPI0
   line: 28
   peripheral: SPI0
@@ -1399,8 +1159,6 @@ interrupts:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
   shared_group: null
-  alias_names:
-  - SPI0_IRQHandler
 - name: SPI1
   line: 29
   peripheral: SPI1
@@ -1410,9 +1168,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:spi1
-  alias_names:
-  - SPI1_IRQHandler
+  shared_group: null
 - name: SPI1_DMA
   line: 52
   peripheral: SPI1
@@ -1422,9 +1178,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:spi1
-  alias_names:
-  - SPI1_DMA_IRQHandler
+  shared_group: null
 - name: SPI2
   line: 30
   peripheral: SPI2
@@ -1434,9 +1188,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:spi2
-  alias_names:
-  - SPI2_IRQHandler
+  shared_group: null
 - name: SPI2_DMA
   line: 53
   peripheral: SPI2
@@ -1446,9 +1198,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:spi2
-  alias_names:
-  - SPI2_DMA_IRQHandler
+  shared_group: null
 - name: SPI3
   line: 31
   peripheral: SPI3
@@ -1458,9 +1208,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:spi3
-  alias_names:
-  - SPI3_IRQHandler
+  shared_group: null
 - name: SPI3_DMA
   line: 54
   peripheral: SPI3
@@ -1470,9 +1218,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:spi3
-  alias_names:
-  - SPI3_DMA_IRQHandler
+  shared_group: null
 - name: TG0_T0_LEVEL
   line: 14
   peripheral: TIMG0
@@ -1482,10 +1228,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:timg0
-  alias_names:
-  - TIMG0
-  - TG0_T0_LEVEL_IRQHandler
+  shared_group: null
 - name: TG0_T1_LEVEL
   line: 15
   peripheral: TIMG0
@@ -1495,10 +1238,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:timg0
-  alias_names:
-  - TIMG0
-  - TG0_T1_LEVEL_IRQHandler
+  shared_group: null
 - name: TG0_WDT_LEVEL
   line: 16
   peripheral: TIMG0
@@ -1508,10 +1248,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:timg0
-  alias_names:
-  - TIMG0
-  - TG0_WDT_LEVEL_IRQHandler
+  shared_group: null
 - name: TG0_LACT_LEVEL
   line: 17
   peripheral: TIMG0
@@ -1521,10 +1258,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:timg0
-  alias_names:
-  - TIMG0
-  - TG0_LACT_LEVEL_IRQHandler
+  shared_group: null
 - name: TG0_T0_EDGE
   line: 58
   peripheral: TIMG0
@@ -1534,10 +1268,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:timg0
-  alias_names:
-  - TIMG0
-  - TG0_T0_EDGE_IRQHandler
+  shared_group: null
 - name: TG0_T1_EDGE
   line: 59
   peripheral: TIMG0
@@ -1547,10 +1278,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:timg0
-  alias_names:
-  - TIMG0
-  - TG0_T1_EDGE_IRQHandler
+  shared_group: null
 - name: TG0_WDT_EDGE
   line: 60
   peripheral: TIMG0
@@ -1560,10 +1288,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:timg0
-  alias_names:
-  - TIMG0
-  - TG0_WDT_EDGE_IRQHandler
+  shared_group: null
 - name: TG0_LACT_EDGE
   line: 61
   peripheral: TIMG0
@@ -1573,10 +1298,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:timg0
-  alias_names:
-  - TIMG0
-  - TG0_LACT_EDGE_IRQHandler
+  shared_group: null
 - name: TG1_T0_LEVEL
   line: 18
   peripheral: TIMG1
@@ -1586,10 +1308,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:timg1
-  alias_names:
-  - TIMG1
-  - TG1_T0_LEVEL_IRQHandler
+  shared_group: null
 - name: TG1_T1_LEVEL
   line: 19
   peripheral: TIMG1
@@ -1599,10 +1318,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:timg1
-  alias_names:
-  - TIMG1
-  - TG1_T1_LEVEL_IRQHandler
+  shared_group: null
 - name: TG1_WDT_LEVEL
   line: 20
   peripheral: TIMG1
@@ -1612,10 +1328,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:timg1
-  alias_names:
-  - TIMG1
-  - TG1_WDT_LEVEL_IRQHandler
+  shared_group: null
 - name: TG1_LACT_LEVEL
   line: 21
   peripheral: TIMG1
@@ -1625,10 +1338,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:timg1
-  alias_names:
-  - TIMG1
-  - TG1_LACT_LEVEL_IRQHandler
+  shared_group: null
 - name: TG1_T0_EDGE
   line: 62
   peripheral: TIMG1
@@ -1638,10 +1348,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:timg1
-  alias_names:
-  - TIMG1
-  - TG1_T0_EDGE_IRQHandler
+  shared_group: null
 - name: TG1_T1_EDGE
   line: 63
   peripheral: TIMG1
@@ -1651,10 +1358,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:timg1
-  alias_names:
-  - TIMG1
-  - TG1_T1_EDGE_IRQHandler
+  shared_group: null
 - name: TG1_WDT_EDGE
   line: 64
   peripheral: TIMG1
@@ -1664,10 +1368,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:timg1
-  alias_names:
-  - TIMG1
-  - TG1_WDT_EDGE_IRQHandler
+  shared_group: null
 - name: TG1_LACT_EDGE
   line: 65
   peripheral: TIMG1
@@ -1677,10 +1378,7 @@ interrupts:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  shared_group: interrupt-group:timg1
-  alias_names:
-  - TIMG1
-  - TG1_LACT_EDGE_IRQHandler
+  shared_group: null
 - name: TWAI0
   line: 45
   peripheral: TWAI0
@@ -1691,8 +1389,6 @@ interrupts:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
   shared_group: null
-  alias_names:
-  - TWAI0_IRQHandler
 - name: UART0
   line: 34
   peripheral: UART0
@@ -1703,8 +1399,6 @@ interrupts:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
   shared_group: null
-  alias_names:
-  - UART0_IRQHandler
 - name: UART1
   line: 35
   peripheral: UART1
@@ -1715,8 +1409,6 @@ interrupts:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
   shared_group: null
-  alias_names:
-  - UART1_IRQHandler
 - name: UART2
   line: 36
   peripheral: UART2
@@ -1727,8 +1419,6 @@ interrupts:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
   shared_group: null
-  alias_names:
-  - UART2_IRQHandler
 - name: UHCI0
   line: 12
   peripheral: UHCI0
@@ -1739,8 +1429,6 @@ interrupts:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
   shared_group: null
-  alias_names:
-  - UHCI0_IRQHandler
 - name: UHCI1
   line: 13
   peripheral: UHCI1
@@ -1751,1739 +1439,6 @@ interrupts:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
   shared_group: null
-  alias_names:
-  - UHCI1_IRQHandler
-interrupt_bindings:
-- binding_id: interrupt-binding:dport:wifi-mac
-  peripheral: DPORT
-  interrupt: WIFI_MAC
-  line: 0
-  vector_slot: 16
-  symbol_name: WIFI_MAC_IRQHandler
-  shared_group: interrupt-group:dport
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - DPORT
-  - WIFI_MAC_IRQHandler
-- binding_id: interrupt-binding:dport:wifi-nmi
-  peripheral: DPORT
-  interrupt: WIFI_NMI
-  line: 1
-  vector_slot: 17
-  symbol_name: WIFI_NMI_IRQHandler
-  shared_group: interrupt-group:dport
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - DPORT
-  - WIFI_NMI_IRQHandler
-- binding_id: interrupt-binding:dport:wifi-bb
-  peripheral: DPORT
-  interrupt: WIFI_BB
-  line: 2
-  vector_slot: 18
-  symbol_name: WIFI_BB_IRQHandler
-  shared_group: interrupt-group:dport
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - DPORT
-  - WIFI_BB_IRQHandler
-- binding_id: interrupt-binding:dport:bt-mac
-  peripheral: DPORT
-  interrupt: BT_MAC
-  line: 3
-  vector_slot: 19
-  symbol_name: BT_MAC_IRQHandler
-  shared_group: interrupt-group:dport
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - DPORT
-  - BT_MAC_IRQHandler
-- binding_id: interrupt-binding:dport:bt-bb
-  peripheral: DPORT
-  interrupt: BT_BB
-  line: 4
-  vector_slot: 20
-  symbol_name: BT_BB_IRQHandler
-  shared_group: interrupt-group:dport
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - DPORT
-  - BT_BB_IRQHandler
-- binding_id: interrupt-binding:dport:bt-bb-nmi
-  peripheral: DPORT
-  interrupt: BT_BB_NMI
-  line: 5
-  vector_slot: 21
-  symbol_name: BT_BB_NMI_IRQHandler
-  shared_group: interrupt-group:dport
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - DPORT
-  - BT_BB_NMI_IRQHandler
-- binding_id: interrupt-binding:dport:rwbt
-  peripheral: DPORT
-  interrupt: RWBT
-  line: 6
-  vector_slot: 22
-  symbol_name: RWBT_IRQHandler
-  shared_group: interrupt-group:dport
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - DPORT
-  - RWBT_IRQHandler
-- binding_id: interrupt-binding:dport:rwble
-  peripheral: DPORT
-  interrupt: RWBLE
-  line: 7
-  vector_slot: 23
-  symbol_name: RWBLE_IRQHandler
-  shared_group: interrupt-group:dport
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - DPORT
-  - RWBLE_IRQHandler
-- binding_id: interrupt-binding:dport:rwbt-nmi
-  peripheral: DPORT
-  interrupt: RWBT_NMI
-  line: 8
-  vector_slot: 24
-  symbol_name: RWBT_NMI_IRQHandler
-  shared_group: interrupt-group:dport
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - DPORT
-  - RWBT_NMI_IRQHandler
-- binding_id: interrupt-binding:dport:rwble-nmi
-  peripheral: DPORT
-  interrupt: RWBLE_NMI
-  line: 9
-  vector_slot: 25
-  symbol_name: RWBLE_NMI_IRQHandler
-  shared_group: interrupt-group:dport
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - DPORT
-  - RWBLE_NMI_IRQHandler
-- binding_id: interrupt-binding:dport:from-cpu-intr0
-  peripheral: DPORT
-  interrupt: FROM_CPU_INTR0
-  line: 24
-  vector_slot: 40
-  symbol_name: FROM_CPU_INTR0_IRQHandler
-  shared_group: interrupt-group:dport
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - DPORT
-  - FROM_CPU_INTR0_IRQHandler
-- binding_id: interrupt-binding:dport:from-cpu-intr1
-  peripheral: DPORT
-  interrupt: FROM_CPU_INTR1
-  line: 25
-  vector_slot: 41
-  symbol_name: FROM_CPU_INTR1_IRQHandler
-  shared_group: interrupt-group:dport
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - DPORT
-  - FROM_CPU_INTR1_IRQHandler
-- binding_id: interrupt-binding:dport:from-cpu-intr2
-  peripheral: DPORT
-  interrupt: FROM_CPU_INTR2
-  line: 26
-  vector_slot: 42
-  symbol_name: FROM_CPU_INTR2_IRQHandler
-  shared_group: interrupt-group:dport
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - DPORT
-  - FROM_CPU_INTR2_IRQHandler
-- binding_id: interrupt-binding:dport:from-cpu-intr3
-  peripheral: DPORT
-  interrupt: FROM_CPU_INTR3
-  line: 27
-  vector_slot: 43
-  symbol_name: FROM_CPU_INTR3_IRQHandler
-  shared_group: interrupt-group:dport
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - DPORT
-  - FROM_CPU_INTR3_IRQHandler
-- binding_id: interrupt-binding:dport:sdio-host
-  peripheral: DPORT
-  interrupt: SDIO_HOST
-  line: 37
-  vector_slot: 53
-  symbol_name: SDIO_HOST_IRQHandler
-  shared_group: interrupt-group:dport
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - DPORT
-  - SDIO_HOST_IRQHandler
-- binding_id: interrupt-binding:dport:eth-mac
-  peripheral: DPORT
-  interrupt: ETH_MAC
-  line: 38
-  vector_slot: 54
-  symbol_name: ETH_MAC_IRQHandler
-  shared_group: interrupt-group:dport
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - DPORT
-  - ETH_MAC_IRQHandler
-- binding_id: interrupt-binding:dport:wdt
-  peripheral: DPORT
-  interrupt: WDT
-  line: 55
-  vector_slot: 71
-  symbol_name: WDT_IRQHandler
-  shared_group: interrupt-group:dport
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - DPORT
-  - WDT_IRQHandler
-- binding_id: interrupt-binding:dport:mmu-ia
-  peripheral: DPORT
-  interrupt: MMU_IA
-  line: 66
-  vector_slot: 82
-  symbol_name: MMU_IA_IRQHandler
-  shared_group: interrupt-group:dport
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - DPORT
-  - MMU_IA_IRQHandler
-- binding_id: interrupt-binding:dport:mpu-ia
-  peripheral: DPORT
-  interrupt: MPU_IA
-  line: 67
-  vector_slot: 83
-  symbol_name: MPU_IA_IRQHandler
-  shared_group: interrupt-group:dport
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - DPORT
-  - MPU_IA_IRQHandler
-- binding_id: interrupt-binding:dport:cache-ia
-  peripheral: DPORT
-  interrupt: CACHE_IA
-  line: 68
-  vector_slot: 84
-  symbol_name: CACHE_IA_IRQHandler
-  shared_group: interrupt-group:dport
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - DPORT
-  - CACHE_IA_IRQHandler
-- binding_id: interrupt-binding:efuse:efuse
-  peripheral: EFUSE
-  interrupt: EFUSE
-  line: 44
-  vector_slot: 60
-  symbol_name: EFUSE_IRQHandler
-  shared_group: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - EFUSE_IRQHandler
-- binding_id: interrupt-binding:gpio:gpio
-  peripheral: GPIO
-  interrupt: GPIO
-  line: 22
-  vector_slot: 38
-  symbol_name: GPIO_IRQHandler
-  shared_group: interrupt-group:gpio
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - GPIO_IRQHandler
-- binding_id: interrupt-binding:gpio:gpio-nmi
-  peripheral: GPIO
-  interrupt: GPIO_NMI
-  line: 23
-  vector_slot: 39
-  symbol_name: GPIO_NMI_IRQHandler
-  shared_group: interrupt-group:gpio
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - GPIO_NMI_IRQHandler
-- binding_id: interrupt-binding:i2c0:i2c-ext0
-  peripheral: I2C0
-  interrupt: I2C_EXT0
-  line: 49
-  vector_slot: 65
-  symbol_name: I2C_EXT0_IRQHandler
-  shared_group: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - I2C0
-  - I2C_EXT0_IRQHandler
-- binding_id: interrupt-binding:i2c1:i2c-ext1
-  peripheral: I2C1
-  interrupt: I2C_EXT1
-  line: 50
-  vector_slot: 66
-  symbol_name: I2C_EXT1_IRQHandler
-  shared_group: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - I2C1
-  - I2C_EXT1_IRQHandler
-- binding_id: interrupt-binding:i2s0:i2s0
-  peripheral: I2S0
-  interrupt: I2S0
-  line: 32
-  vector_slot: 48
-  symbol_name: I2S0_IRQHandler
-  shared_group: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - I2S0_IRQHandler
-- binding_id: interrupt-binding:i2s1:i2s1
-  peripheral: I2S1
-  interrupt: I2S1
-  line: 33
-  vector_slot: 49
-  symbol_name: I2S1_IRQHandler
-  shared_group: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - I2S1_IRQHandler
-- binding_id: interrupt-binding:ledc:ledc
-  peripheral: LEDC
-  interrupt: LEDC
-  line: 43
-  vector_slot: 59
-  symbol_name: LEDC_IRQHandler
-  shared_group: interrupt-group:ledc
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - LEDC_IRQHandler
-- binding_id: interrupt-binding:ledc:timer1
-  peripheral: LEDC
-  interrupt: TIMER1
-  line: 56
-  vector_slot: 72
-  symbol_name: TIMER1_IRQHandler
-  shared_group: interrupt-group:ledc
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - LEDC
-  - TIMER1_IRQHandler
-- binding_id: interrupt-binding:ledc:timer2
-  peripheral: LEDC
-  interrupt: TIMER2
-  line: 57
-  vector_slot: 73
-  symbol_name: TIMER2_IRQHandler
-  shared_group: interrupt-group:ledc
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - LEDC
-  - TIMER2_IRQHandler
-- binding_id: interrupt-binding:mcpwm0:mcpwm0
-  peripheral: MCPWM0
-  interrupt: MCPWM0
-  line: 39
-  vector_slot: 55
-  symbol_name: MCPWM0_IRQHandler
-  shared_group: interrupt-group:mcpwm0
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - MCPWM0_IRQHandler
-- binding_id: interrupt-binding:mcpwm0:mcpwm1
-  peripheral: MCPWM0
-  interrupt: MCPWM1
-  line: 40
-  vector_slot: 56
-  symbol_name: MCPWM1_IRQHandler
-  shared_group: interrupt-group:mcpwm0
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - MCPWM0
-  - MCPWM1_IRQHandler
-- binding_id: interrupt-binding:mcpwm0:mcpwm2
-  peripheral: MCPWM0
-  interrupt: MCPWM2
-  line: 41
-  vector_slot: 57
-  symbol_name: MCPWM2_IRQHandler
-  shared_group: interrupt-group:mcpwm0
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - MCPWM0
-  - MCPWM2_IRQHandler
-- binding_id: interrupt-binding:mcpwm0:mcpwm3
-  peripheral: MCPWM0
-  interrupt: MCPWM3
-  line: 42
-  vector_slot: 58
-  symbol_name: MCPWM3_IRQHandler
-  shared_group: interrupt-group:mcpwm0
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - MCPWM0
-  - MCPWM3_IRQHandler
-- binding_id: interrupt-binding:pcnt:pcnt
-  peripheral: PCNT
-  interrupt: PCNT
-  line: 48
-  vector_slot: 64
-  symbol_name: PCNT_IRQHandler
-  shared_group: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - PCNT_IRQHandler
-- binding_id: interrupt-binding:rmt:rmt
-  peripheral: RMT
-  interrupt: RMT
-  line: 47
-  vector_slot: 63
-  symbol_name: RMT_IRQHandler
-  shared_group: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - RMT_IRQHandler
-- binding_id: interrupt-binding:rsa:rsa
-  peripheral: RSA
-  interrupt: RSA
-  line: 51
-  vector_slot: 67
-  symbol_name: RSA_IRQHandler
-  shared_group: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - RSA_IRQHandler
-- binding_id: interrupt-binding:rtc-cntl:rtc-core
-  peripheral: RTC_CNTL
-  interrupt: RTC_CORE
-  line: 46
-  vector_slot: 62
-  symbol_name: RTC_CORE_IRQHandler
-  shared_group: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - RTC_CNTL
-  - RTC_CORE_IRQHandler
-- binding_id: interrupt-binding:spi0:spi0
-  peripheral: SPI0
-  interrupt: SPI0
-  line: 28
-  vector_slot: 44
-  symbol_name: SPI0_IRQHandler
-  shared_group: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - SPI0_IRQHandler
-- binding_id: interrupt-binding:spi1:spi1
-  peripheral: SPI1
-  interrupt: SPI1
-  line: 29
-  vector_slot: 45
-  symbol_name: SPI1_IRQHandler
-  shared_group: interrupt-group:spi1
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - SPI1_IRQHandler
-- binding_id: interrupt-binding:spi1:spi1-dma
-  peripheral: SPI1
-  interrupt: SPI1_DMA
-  line: 52
-  vector_slot: 68
-  symbol_name: SPI1_DMA_IRQHandler
-  shared_group: interrupt-group:spi1
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - SPI1_DMA_IRQHandler
-- binding_id: interrupt-binding:spi2:spi2
-  peripheral: SPI2
-  interrupt: SPI2
-  line: 30
-  vector_slot: 46
-  symbol_name: SPI2_IRQHandler
-  shared_group: interrupt-group:spi2
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - SPI2_IRQHandler
-- binding_id: interrupt-binding:spi2:spi2-dma
-  peripheral: SPI2
-  interrupt: SPI2_DMA
-  line: 53
-  vector_slot: 69
-  symbol_name: SPI2_DMA_IRQHandler
-  shared_group: interrupt-group:spi2
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - SPI2_DMA_IRQHandler
-- binding_id: interrupt-binding:spi3:spi3
-  peripheral: SPI3
-  interrupt: SPI3
-  line: 31
-  vector_slot: 47
-  symbol_name: SPI3_IRQHandler
-  shared_group: interrupt-group:spi3
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - SPI3_IRQHandler
-- binding_id: interrupt-binding:spi3:spi3-dma
-  peripheral: SPI3
-  interrupt: SPI3_DMA
-  line: 54
-  vector_slot: 70
-  symbol_name: SPI3_DMA_IRQHandler
-  shared_group: interrupt-group:spi3
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - SPI3_DMA_IRQHandler
-- binding_id: interrupt-binding:timg0:tg0-t0-level
-  peripheral: TIMG0
-  interrupt: TG0_T0_LEVEL
-  line: 14
-  vector_slot: 30
-  symbol_name: TG0_T0_LEVEL_IRQHandler
-  shared_group: interrupt-group:timg0
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - TIMG0
-  - TG0_T0_LEVEL_IRQHandler
-- binding_id: interrupt-binding:timg0:tg0-t1-level
-  peripheral: TIMG0
-  interrupt: TG0_T1_LEVEL
-  line: 15
-  vector_slot: 31
-  symbol_name: TG0_T1_LEVEL_IRQHandler
-  shared_group: interrupt-group:timg0
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - TIMG0
-  - TG0_T1_LEVEL_IRQHandler
-- binding_id: interrupt-binding:timg0:tg0-wdt-level
-  peripheral: TIMG0
-  interrupt: TG0_WDT_LEVEL
-  line: 16
-  vector_slot: 32
-  symbol_name: TG0_WDT_LEVEL_IRQHandler
-  shared_group: interrupt-group:timg0
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - TIMG0
-  - TG0_WDT_LEVEL_IRQHandler
-- binding_id: interrupt-binding:timg0:tg0-lact-level
-  peripheral: TIMG0
-  interrupt: TG0_LACT_LEVEL
-  line: 17
-  vector_slot: 33
-  symbol_name: TG0_LACT_LEVEL_IRQHandler
-  shared_group: interrupt-group:timg0
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - TIMG0
-  - TG0_LACT_LEVEL_IRQHandler
-- binding_id: interrupt-binding:timg0:tg0-t0-edge
-  peripheral: TIMG0
-  interrupt: TG0_T0_EDGE
-  line: 58
-  vector_slot: 74
-  symbol_name: TG0_T0_EDGE_IRQHandler
-  shared_group: interrupt-group:timg0
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - TIMG0
-  - TG0_T0_EDGE_IRQHandler
-- binding_id: interrupt-binding:timg0:tg0-t1-edge
-  peripheral: TIMG0
-  interrupt: TG0_T1_EDGE
-  line: 59
-  vector_slot: 75
-  symbol_name: TG0_T1_EDGE_IRQHandler
-  shared_group: interrupt-group:timg0
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - TIMG0
-  - TG0_T1_EDGE_IRQHandler
-- binding_id: interrupt-binding:timg0:tg0-wdt-edge
-  peripheral: TIMG0
-  interrupt: TG0_WDT_EDGE
-  line: 60
-  vector_slot: 76
-  symbol_name: TG0_WDT_EDGE_IRQHandler
-  shared_group: interrupt-group:timg0
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - TIMG0
-  - TG0_WDT_EDGE_IRQHandler
-- binding_id: interrupt-binding:timg0:tg0-lact-edge
-  peripheral: TIMG0
-  interrupt: TG0_LACT_EDGE
-  line: 61
-  vector_slot: 77
-  symbol_name: TG0_LACT_EDGE_IRQHandler
-  shared_group: interrupt-group:timg0
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - TIMG0
-  - TG0_LACT_EDGE_IRQHandler
-- binding_id: interrupt-binding:timg1:tg1-t0-level
-  peripheral: TIMG1
-  interrupt: TG1_T0_LEVEL
-  line: 18
-  vector_slot: 34
-  symbol_name: TG1_T0_LEVEL_IRQHandler
-  shared_group: interrupt-group:timg1
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - TIMG1
-  - TG1_T0_LEVEL_IRQHandler
-- binding_id: interrupt-binding:timg1:tg1-t1-level
-  peripheral: TIMG1
-  interrupt: TG1_T1_LEVEL
-  line: 19
-  vector_slot: 35
-  symbol_name: TG1_T1_LEVEL_IRQHandler
-  shared_group: interrupt-group:timg1
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - TIMG1
-  - TG1_T1_LEVEL_IRQHandler
-- binding_id: interrupt-binding:timg1:tg1-wdt-level
-  peripheral: TIMG1
-  interrupt: TG1_WDT_LEVEL
-  line: 20
-  vector_slot: 36
-  symbol_name: TG1_WDT_LEVEL_IRQHandler
-  shared_group: interrupt-group:timg1
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - TIMG1
-  - TG1_WDT_LEVEL_IRQHandler
-- binding_id: interrupt-binding:timg1:tg1-lact-level
-  peripheral: TIMG1
-  interrupt: TG1_LACT_LEVEL
-  line: 21
-  vector_slot: 37
-  symbol_name: TG1_LACT_LEVEL_IRQHandler
-  shared_group: interrupt-group:timg1
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - TIMG1
-  - TG1_LACT_LEVEL_IRQHandler
-- binding_id: interrupt-binding:timg1:tg1-t0-edge
-  peripheral: TIMG1
-  interrupt: TG1_T0_EDGE
-  line: 62
-  vector_slot: 78
-  symbol_name: TG1_T0_EDGE_IRQHandler
-  shared_group: interrupt-group:timg1
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - TIMG1
-  - TG1_T0_EDGE_IRQHandler
-- binding_id: interrupt-binding:timg1:tg1-t1-edge
-  peripheral: TIMG1
-  interrupt: TG1_T1_EDGE
-  line: 63
-  vector_slot: 79
-  symbol_name: TG1_T1_EDGE_IRQHandler
-  shared_group: interrupt-group:timg1
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - TIMG1
-  - TG1_T1_EDGE_IRQHandler
-- binding_id: interrupt-binding:timg1:tg1-wdt-edge
-  peripheral: TIMG1
-  interrupt: TG1_WDT_EDGE
-  line: 64
-  vector_slot: 80
-  symbol_name: TG1_WDT_EDGE_IRQHandler
-  shared_group: interrupt-group:timg1
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - TIMG1
-  - TG1_WDT_EDGE_IRQHandler
-- binding_id: interrupt-binding:timg1:tg1-lact-edge
-  peripheral: TIMG1
-  interrupt: TG1_LACT_EDGE
-  line: 65
-  vector_slot: 81
-  symbol_name: TG1_LACT_EDGE_IRQHandler
-  shared_group: interrupt-group:timg1
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - TIMG1
-  - TG1_LACT_EDGE_IRQHandler
-- binding_id: interrupt-binding:twai0:twai0
-  peripheral: TWAI0
-  interrupt: TWAI0
-  line: 45
-  vector_slot: 61
-  symbol_name: TWAI0_IRQHandler
-  shared_group: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - TWAI0_IRQHandler
-- binding_id: interrupt-binding:uart0:uart0
-  peripheral: UART0
-  interrupt: UART0
-  line: 34
-  vector_slot: 50
-  symbol_name: UART0_IRQHandler
-  shared_group: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - UART0_IRQHandler
-- binding_id: interrupt-binding:uart1:uart1
-  peripheral: UART1
-  interrupt: UART1
-  line: 35
-  vector_slot: 51
-  symbol_name: UART1_IRQHandler
-  shared_group: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - UART1_IRQHandler
-- binding_id: interrupt-binding:uart2:uart2
-  peripheral: UART2
-  interrupt: UART2
-  line: 36
-  vector_slot: 52
-  symbol_name: UART2_IRQHandler
-  shared_group: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - UART2_IRQHandler
-- binding_id: interrupt-binding:uhci0:uhci0
-  peripheral: UHCI0
-  interrupt: UHCI0
-  line: 12
-  vector_slot: 28
-  symbol_name: UHCI0_IRQHandler
-  shared_group: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - UHCI0_IRQHandler
-- binding_id: interrupt-binding:uhci1:uhci1
-  peripheral: UHCI1
-  interrupt: UHCI1
-  line: 13
-  vector_slot: 29
-  symbol_name: UHCI1_IRQHandler
-  shared_group: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  alias_names:
-  - UHCI1_IRQHandler
-vector_slots:
-- slot: 0
-  symbol_name: Reset_Handler
-  interrupt: null
-  kind: reset-handler
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 16
-  symbol_name: WIFI_MAC_IRQHandler
-  interrupt: WIFI_MAC
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 17
-  symbol_name: WIFI_NMI_IRQHandler
-  interrupt: WIFI_NMI
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 18
-  symbol_name: WIFI_BB_IRQHandler
-  interrupt: WIFI_BB
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 19
-  symbol_name: BT_MAC_IRQHandler
-  interrupt: BT_MAC
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 20
-  symbol_name: BT_BB_IRQHandler
-  interrupt: BT_BB
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 21
-  symbol_name: BT_BB_NMI_IRQHandler
-  interrupt: BT_BB_NMI
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 22
-  symbol_name: RWBT_IRQHandler
-  interrupt: RWBT
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 23
-  symbol_name: RWBLE_IRQHandler
-  interrupt: RWBLE
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 24
-  symbol_name: RWBT_NMI_IRQHandler
-  interrupt: RWBT_NMI
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 25
-  symbol_name: RWBLE_NMI_IRQHandler
-  interrupt: RWBLE_NMI
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 28
-  symbol_name: UHCI0_IRQHandler
-  interrupt: UHCI0
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 29
-  symbol_name: UHCI1_IRQHandler
-  interrupt: UHCI1
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 30
-  symbol_name: TG0_T0_LEVEL_IRQHandler
-  interrupt: TG0_T0_LEVEL
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 31
-  symbol_name: TG0_T1_LEVEL_IRQHandler
-  interrupt: TG0_T1_LEVEL
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 32
-  symbol_name: TG0_WDT_LEVEL_IRQHandler
-  interrupt: TG0_WDT_LEVEL
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 33
-  symbol_name: TG0_LACT_LEVEL_IRQHandler
-  interrupt: TG0_LACT_LEVEL
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 34
-  symbol_name: TG1_T0_LEVEL_IRQHandler
-  interrupt: TG1_T0_LEVEL
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 35
-  symbol_name: TG1_T1_LEVEL_IRQHandler
-  interrupt: TG1_T1_LEVEL
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 36
-  symbol_name: TG1_WDT_LEVEL_IRQHandler
-  interrupt: TG1_WDT_LEVEL
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 37
-  symbol_name: TG1_LACT_LEVEL_IRQHandler
-  interrupt: TG1_LACT_LEVEL
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 38
-  symbol_name: GPIO_IRQHandler
-  interrupt: GPIO
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 39
-  symbol_name: GPIO_NMI_IRQHandler
-  interrupt: GPIO_NMI
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 40
-  symbol_name: FROM_CPU_INTR0_IRQHandler
-  interrupt: FROM_CPU_INTR0
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 41
-  symbol_name: FROM_CPU_INTR1_IRQHandler
-  interrupt: FROM_CPU_INTR1
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 42
-  symbol_name: FROM_CPU_INTR2_IRQHandler
-  interrupt: FROM_CPU_INTR2
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 43
-  symbol_name: FROM_CPU_INTR3_IRQHandler
-  interrupt: FROM_CPU_INTR3
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 44
-  symbol_name: SPI0_IRQHandler
-  interrupt: SPI0
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 45
-  symbol_name: SPI1_IRQHandler
-  interrupt: SPI1
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 46
-  symbol_name: SPI2_IRQHandler
-  interrupt: SPI2
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 47
-  symbol_name: SPI3_IRQHandler
-  interrupt: SPI3
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 48
-  symbol_name: I2S0_IRQHandler
-  interrupt: I2S0
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 49
-  symbol_name: I2S1_IRQHandler
-  interrupt: I2S1
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 50
-  symbol_name: UART0_IRQHandler
-  interrupt: UART0
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 51
-  symbol_name: UART1_IRQHandler
-  interrupt: UART1
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 52
-  symbol_name: UART2_IRQHandler
-  interrupt: UART2
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 53
-  symbol_name: SDIO_HOST_IRQHandler
-  interrupt: SDIO_HOST
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 54
-  symbol_name: ETH_MAC_IRQHandler
-  interrupt: ETH_MAC
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 55
-  symbol_name: MCPWM0_IRQHandler
-  interrupt: MCPWM0
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 56
-  symbol_name: MCPWM1_IRQHandler
-  interrupt: MCPWM1
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 57
-  symbol_name: MCPWM2_IRQHandler
-  interrupt: MCPWM2
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 58
-  symbol_name: MCPWM3_IRQHandler
-  interrupt: MCPWM3
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 59
-  symbol_name: LEDC_IRQHandler
-  interrupt: LEDC
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 60
-  symbol_name: EFUSE_IRQHandler
-  interrupt: EFUSE
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 61
-  symbol_name: TWAI0_IRQHandler
-  interrupt: TWAI0
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 62
-  symbol_name: RTC_CORE_IRQHandler
-  interrupt: RTC_CORE
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 63
-  symbol_name: RMT_IRQHandler
-  interrupt: RMT
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 64
-  symbol_name: PCNT_IRQHandler
-  interrupt: PCNT
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 65
-  symbol_name: I2C_EXT0_IRQHandler
-  interrupt: I2C_EXT0
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 66
-  symbol_name: I2C_EXT1_IRQHandler
-  interrupt: I2C_EXT1
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 67
-  symbol_name: RSA_IRQHandler
-  interrupt: RSA
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 68
-  symbol_name: SPI1_DMA_IRQHandler
-  interrupt: SPI1_DMA
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 69
-  symbol_name: SPI2_DMA_IRQHandler
-  interrupt: SPI2_DMA
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 70
-  symbol_name: SPI3_DMA_IRQHandler
-  interrupt: SPI3_DMA
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 71
-  symbol_name: WDT_IRQHandler
-  interrupt: WDT
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 72
-  symbol_name: TIMER1_IRQHandler
-  interrupt: TIMER1
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 73
-  symbol_name: TIMER2_IRQHandler
-  interrupt: TIMER2
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 74
-  symbol_name: TG0_T0_EDGE_IRQHandler
-  interrupt: TG0_T0_EDGE
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 75
-  symbol_name: TG0_T1_EDGE_IRQHandler
-  interrupt: TG0_T1_EDGE
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 76
-  symbol_name: TG0_WDT_EDGE_IRQHandler
-  interrupt: TG0_WDT_EDGE
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 77
-  symbol_name: TG0_LACT_EDGE_IRQHandler
-  interrupt: TG0_LACT_EDGE
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 78
-  symbol_name: TG1_T0_EDGE_IRQHandler
-  interrupt: TG1_T0_EDGE
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 79
-  symbol_name: TG1_T1_EDGE_IRQHandler
-  interrupt: TG1_T1_EDGE
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 80
-  symbol_name: TG1_WDT_EDGE_IRQHandler
-  interrupt: TG1_WDT_EDGE
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 81
-  symbol_name: TG1_LACT_EDGE_IRQHandler
-  interrupt: TG1_LACT_EDGE
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 82
-  symbol_name: MMU_IA_IRQHandler
-  interrupt: MMU_IA
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 83
-  symbol_name: MPU_IA_IRQHandler
-  interrupt: MPU_IA
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- slot: 84
-  symbol_name: CACHE_IA_IRQHandler
-  interrupt: CACHE_IA
-  kind: external-interrupt
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
 registers:
 - register_id: register:aes:start
   peripheral: AES
@@ -3857,7 +1812,6 @@ registers:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-  role: secondary_core_release
 - register_id: register:dport:appcpu-ctrl-c
   peripheral: DPORT
   name: APPCPU_CTRL_C
@@ -129755,486 +127709,6 @@ register_fields:
     patch_ids:
     - espressif-esp32-family-bootstrap-v1
     - espressif-esp32-bootstrap
-capabilities:
-- capability_id: capability-instance:uart0:qfn48:rx
-  scope: instance-overlay
-  peripheral_class: uart
-  name: available-signal
-  value: rx
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  ip_name: uart
-  ip_version: esp32-uart-v1
-  peripheral: UART0
-  package: qfn48
-- capability_id: capability-instance:uart0:qfn48:tx
-  scope: instance-overlay
-  peripheral_class: uart
-  name: available-signal
-  value: tx
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  ip_name: uart
-  ip_version: esp32-uart-v1
-  peripheral: UART0
-  package: qfn48
-- capability_id: capability:uart:esp32-uart-v1:rx
-  scope: ip-block
-  peripheral_class: uart
-  name: signal-role
-  value: rx
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  ip_name: uart
-  ip_version: esp32-uart-v1
-  peripheral: null
-  package: null
-- capability_id: capability:uart:esp32-uart-v1:tx
-  scope: ip-block
-  peripheral_class: uart
-  name: signal-role
-  value: tx
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  ip_name: uart
-  ip_version: esp32-uart-v1
-  peripheral: null
-  package: null
-signal_endpoints:
-- endpoint_id: endpoint:uart:rx
-  peripheral_class: uart
-  signal: RX
-  direction: input
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- endpoint_id: endpoint:uart:tx
-  peripheral_class: uart
-  signal: TX
-  direction: output
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-route_requirements:
-- requirement_id: requirement:bonded-pin:qfn48:gpio1
-  kind: bonded-pin
-  target: GPIO1
-  value: qfn48
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  target_ref_kind: pin
-  target_ref_id: GPIO1
-  value_ref_kind: package
-  value_ref_id: qfn48
-- requirement_id: requirement:bonded-pin:qfn48:gpio3
-  kind: bonded-pin
-  target: GPIO3
-  value: qfn48
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  target_ref_kind: pin
-  target_ref_id: GPIO3
-  value_ref_kind: package
-  value_ref_id: qfn48
-- requirement_id: requirement:clock-enable:i2c0
-  kind: clock-enable
-  target: DPORT_PERIP_CLK_EN.I2C0_EXT0_CLK_EN
-  value: '1'
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  target_ref_kind: clock-gate
-  target_ref_id: gate:i2c0
-  value_ref_kind: int
-  value_int: 1
-- requirement_id: requirement:clock-enable:ledc
-  kind: clock-enable
-  target: DPORT_PERIP_CLK_EN.LEDC_CLK_EN
-  value: '1'
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  target_ref_kind: clock-gate
-  target_ref_id: gate:ledc
-  value_ref_kind: int
-  value_int: 1
-- requirement_id: requirement:clock-enable:rmt
-  kind: clock-enable
-  target: DPORT_PERIP_CLK_EN.RMT_CLK_EN
-  value: '1'
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  target_ref_kind: clock-gate
-  target_ref_id: gate:rmt
-  value_ref_kind: int
-  value_int: 1
-- requirement_id: requirement:clock-enable:spi0
-  kind: clock-enable
-  target: DPORT_PERIP_CLK_EN.SPI01_CLK_EN
-  value: '1'
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  target_ref_kind: clock-gate
-  target_ref_id: gate:spi0
-  value_ref_kind: int
-  value_int: 1
-- requirement_id: requirement:clock-enable:timg0
-  kind: clock-enable
-  target: DPORT_PERIP_CLK_EN.TIMERGROUP_CLK_EN
-  value: '1'
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  target_ref_kind: clock-gate
-  target_ref_id: gate:timg0
-  value_ref_kind: int
-  value_int: 1
-- requirement_id: requirement:clock-enable:uart0
-  kind: clock-enable
-  target: DPORT_PERIP_CLK_EN.UART_CLK_EN
-  value: '1'
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  target_ref_kind: clock-gate
-  target_ref_id: gate:uart0
-  value_ref_kind: int
-  value_int: 1
-- requirement_id: requirement:package:qfn48
-  kind: package
-  target: qfn48
-  value: selected
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  target_ref_kind: package
-  target_ref_id: qfn48
-  value_ref_kind: state
-  value_ref_id: selected
-- requirement_id: requirement:source-select:gpio1:uart0:tx
-  kind: source-select
-  target: pinmux.GPIO1
-  value: selector:14
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  target_ref_kind: pin
-  target_ref_id: GPIO1
-  value_ref_kind: selector
-  value_ref_id: selector:14
-  value_int: 14
-- requirement_id: requirement:source-select:gpio3:uart0:rx
-  kind: source-select
-  target: pinmux.GPIO3
-  value: selector:14
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  target_ref_kind: pin
-  target_ref_id: GPIO3
-  value_ref_kind: selector
-  value_ref_id: selector:14
-  value_int: 14
-route_operations:
-- operation_id: operation:clock-enable:i2c0
-  kind: set-bit
-  target: DPORT_PERIP_CLK_EN.I2C0_EXT0_CLK_EN
-  value: '1'
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  schema_id: alloy.clock.espressif-generic-clock-v1
-  subject_kind: peripheral
-  subject_id: I2C0
-  register_peripheral: DPORT
-  register_name: PERIP_CLK_EN
-  register_offset: 192
-  value_int: 1
-  register_id: register:dport:perip-clk-en
-  register_field_id: field:dport:perip-clk-en:i2c0-ext0-clk-en
-  target_ref_kind: clock-gate
-  target_ref_id: gate:i2c0
-  value_ref_kind: int
-- operation_id: operation:clock-enable:ledc
-  kind: set-bit
-  target: DPORT_PERIP_CLK_EN.LEDC_CLK_EN
-  value: '1'
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  schema_id: alloy.clock.espressif-generic-clock-v1
-  subject_kind: peripheral
-  subject_id: LEDC
-  register_peripheral: DPORT
-  register_name: PERIP_CLK_EN
-  register_offset: 192
-  value_int: 1
-  register_id: register:dport:perip-clk-en
-  register_field_id: field:dport:perip-clk-en:ledc-clk-en
-  target_ref_kind: clock-gate
-  target_ref_id: gate:ledc
-  value_ref_kind: int
-- operation_id: operation:clock-enable:rmt
-  kind: set-bit
-  target: DPORT_PERIP_CLK_EN.RMT_CLK_EN
-  value: '1'
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  schema_id: alloy.clock.espressif-generic-clock-v1
-  subject_kind: peripheral
-  subject_id: RMT
-  register_peripheral: DPORT
-  register_name: PERIP_CLK_EN
-  register_offset: 192
-  value_int: 1
-  register_id: register:dport:perip-clk-en
-  register_field_id: field:dport:perip-clk-en:rmt-clk-en
-  target_ref_kind: clock-gate
-  target_ref_id: gate:rmt
-  value_ref_kind: int
-- operation_id: operation:clock-enable:spi0
-  kind: set-bit
-  target: DPORT_PERIP_CLK_EN.SPI01_CLK_EN
-  value: '1'
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  schema_id: alloy.clock.espressif-generic-clock-v1
-  subject_kind: peripheral
-  subject_id: SPI0
-  register_peripheral: DPORT
-  register_name: PERIP_CLK_EN
-  register_offset: 192
-  value_int: 1
-  register_id: register:dport:perip-clk-en
-  register_field_id: field:dport:perip-clk-en:spi01-clk-en
-  target_ref_kind: clock-gate
-  target_ref_id: gate:spi0
-  value_ref_kind: int
-- operation_id: operation:clock-enable:timg0
-  kind: set-bit
-  target: DPORT_PERIP_CLK_EN.TIMERGROUP_CLK_EN
-  value: '1'
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  schema_id: alloy.clock.espressif-generic-clock-v1
-  subject_kind: peripheral
-  subject_id: TIMG0
-  register_peripheral: DPORT
-  register_name: PERIP_CLK_EN
-  register_offset: 192
-  value_int: 1
-  register_id: register:dport:perip-clk-en
-  register_field_id: field:dport:perip-clk-en:timergroup-clk-en
-  target_ref_kind: clock-gate
-  target_ref_id: gate:timg0
-  value_ref_kind: int
-- operation_id: operation:clock-enable:uart0
-  kind: set-bit
-  target: DPORT_PERIP_CLK_EN.UART_CLK_EN
-  value: '1'
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  schema_id: alloy.clock.espressif-generic-clock-v1
-  subject_kind: peripheral
-  subject_id: UART0
-  register_peripheral: DPORT
-  register_name: PERIP_CLK_EN
-  register_offset: 192
-  value_int: 1
-  register_id: register:dport:perip-clk-en
-  register_field_id: field:dport:perip-clk-en:uart-clk-en
-  target_ref_kind: clock-gate
-  target_ref_id: gate:uart0
-  value_ref_kind: int
-- operation_id: operation:route:gpio1:uart0:tx
-  kind: write-selector
-  target: pinmux.GPIO1
-  value: '14'
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  schema_id: alloy.pinmux.espressif-iomatrix-v1
-  subject_kind: pin
-  subject_id: GPIO1
-  register_peripheral: null
-  register_name: null
-  register_offset: null
-  value_int: 14
-  target_ref_kind: pin
-  target_ref_id: GPIO1
-  value_ref_kind: selector
-  value_ref_id: selector:14
-- operation_id: operation:route:gpio3:uart0:rx
-  kind: write-selector
-  target: pinmux.GPIO3
-  value: '14'
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  schema_id: alloy.pinmux.espressif-iomatrix-v1
-  subject_kind: pin
-  subject_id: GPIO3
-  register_peripheral: null
-  register_name: null
-  register_offset: null
-  value_int: 14
-  target_ref_kind: pin
-  target_ref_id: GPIO3
-  value_ref_kind: selector
-  value_ref_id: selector:14
-connection_candidates:
-- candidate_id: candidate:gpio1:uart0:tx
-  pin: GPIO1
-  peripheral: UART0
-  signal: tx
-  route_kind: mux
-  route_selector: selector:14
-  route_group_id: group:uart0:qfn48:tx-rx
-  requirement_ids:
-  - requirement:package:qfn48
-  - requirement:bonded-pin:qfn48:gpio1
-  - requirement:clock-enable:uart0
-  - requirement:source-select:gpio1:uart0:tx
-  operation_ids:
-  - operation:clock-enable:uart0
-  - operation:route:gpio1:uart0:tx
-  capability_ids:
-  - capability:uart:esp32-uart-v1:tx
-  - capability-instance:uart0:qfn48:tx
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- candidate_id: candidate:gpio3:uart0:rx
-  pin: GPIO3
-  peripheral: UART0
-  signal: rx
-  route_kind: mux
-  route_selector: selector:14
-  route_group_id: group:uart0:qfn48:tx-rx
-  requirement_ids:
-  - requirement:package:qfn48
-  - requirement:bonded-pin:qfn48:gpio3
-  - requirement:clock-enable:uart0
-  - requirement:source-select:gpio3:uart0:rx
-  operation_ids:
-  - operation:clock-enable:uart0
-  - operation:route:gpio3:uart0:rx
-  capability_ids:
-  - capability:uart:esp32-uart-v1:rx
-  - capability-instance:uart0:qfn48:rx
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-connection_groups:
-- group_id: group:uart0:qfn48:tx-rx
-  peripheral: UART0
-  signals:
-  - tx
-  - rx
-  candidate_ids:
-  - candidate:gpio1:uart0:tx
-  - candidate:gpio3:uart0:rx
-  package: qfn48
-  conflict_group: conflict:uart0:qfn48:tx-rx
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
 system_clock_profiles:
 - profile_id: safe-rc-fast-8mhz
   kind: safe
@@ -130266,610 +127740,7 @@ system_clock_profiles:
   pll_n: 12
   pll_r: 0
   flash_latency: 0
-clock_nodes:
-- node_id: clock-node:dport-perip-clk-en
-  kind: gate-domain
-  parent: clock-root
-  selector: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- node_id: clock-root
-  kind: root
-  parent: null
-  selector: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-clock_gates:
-- gate_id: gate:i2c0
-  peripheral: I2C0
-  enable_signal: DPORT_PERIP_CLK_EN.I2C0_EXT0_CLK_EN
-  parent_node: clock-node:dport-perip-clk-en
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  register_peripheral: DPORT
-  register_name: PERIP_CLK_EN
-  register_offset: 192
-  register_id: register:dport:perip-clk-en
-  register_field_id: field:dport:perip-clk-en:i2c0-ext0-clk-en
-- gate_id: gate:ledc
-  peripheral: LEDC
-  enable_signal: DPORT_PERIP_CLK_EN.LEDC_CLK_EN
-  parent_node: clock-node:dport-perip-clk-en
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  register_peripheral: DPORT
-  register_name: PERIP_CLK_EN
-  register_offset: 192
-  register_id: register:dport:perip-clk-en
-  register_field_id: field:dport:perip-clk-en:ledc-clk-en
-- gate_id: gate:rmt
-  peripheral: RMT
-  enable_signal: DPORT_PERIP_CLK_EN.RMT_CLK_EN
-  parent_node: clock-node:dport-perip-clk-en
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  register_peripheral: DPORT
-  register_name: PERIP_CLK_EN
-  register_offset: 192
-  register_id: register:dport:perip-clk-en
-  register_field_id: field:dport:perip-clk-en:rmt-clk-en
-- gate_id: gate:spi0
-  peripheral: SPI0
-  enable_signal: DPORT_PERIP_CLK_EN.SPI01_CLK_EN
-  parent_node: clock-node:dport-perip-clk-en
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  register_peripheral: DPORT
-  register_name: PERIP_CLK_EN
-  register_offset: 192
-  register_id: register:dport:perip-clk-en
-  register_field_id: field:dport:perip-clk-en:spi01-clk-en
-- gate_id: gate:timg0
-  peripheral: TIMG0
-  enable_signal: DPORT_PERIP_CLK_EN.TIMERGROUP_CLK_EN
-  parent_node: clock-node:dport-perip-clk-en
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  register_peripheral: DPORT
-  register_name: PERIP_CLK_EN
-  register_offset: 192
-  register_id: register:dport:perip-clk-en
-  register_field_id: field:dport:perip-clk-en:timergroup-clk-en
-- gate_id: gate:uart0
-  peripheral: UART0
-  enable_signal: DPORT_PERIP_CLK_EN.UART_CLK_EN
-  parent_node: clock-node:dport-perip-clk-en
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-  register_peripheral: DPORT
-  register_name: PERIP_CLK_EN
-  register_offset: 192
-  register_id: register:dport:perip-clk-en
-  register_field_id: field:dport:perip-clk-en:uart-clk-en
-peripheral_clock_bindings:
-- peripheral: I2C0
-  clock_gate_id: gate:i2c0
-  reset_id: null
-  selector_id: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- peripheral: LEDC
-  clock_gate_id: gate:ledc
-  reset_id: null
-  selector_id: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- peripheral: RMT
-  clock_gate_id: gate:rmt
-  reset_id: null
-  selector_id: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- peripheral: SPI0
-  clock_gate_id: gate:spi0
-  reset_id: null
-  selector_id: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- peripheral: TIMG0
-  clock_gate_id: gate:timg0
-  reset_id: null
-  selector_id: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- peripheral: UART0
-  clock_gate_id: gate:uart0
-  reset_id: null
-  selector_id: null
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
 dma_requests: []
-startup_descriptors:
-- descriptor_id: startup:vectors
-  kind: vector-table
-  source_region: null
-  target_region: null
-  symbol: _vectors
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- descriptor_id: startup:stack-top
-  kind: initial-stack-pointer
-  source_region: null
-  target_region: null
-  symbol: __stack_top
-  provenance:
-    source_id: espressif-svd
-    source_path: esp32.svd
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- descriptor_id: startup:copy-target:dram
-  kind: copy-target-region
-  source_region: null
-  target_region: DRAM
-  symbol: null
-  provenance:
-    source_id: bootstrap-patch
-    source_path: patches/espressif/esp32/devices/esp32.json
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- descriptor_id: startup:zero-target:dram
-  kind: zero-target-region
-  source_region: null
-  target_region: DRAM
-  symbol: null
-  provenance:
-    source_id: bootstrap-patch
-    source_path: patches/espressif/esp32/devices/esp32.json
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- descriptor_id: startup:vector-source:rom
-  kind: vector-source-region
-  source_region: ROM
-  target_region: null
-  symbol: null
-  provenance:
-    source_id: bootstrap-patch
-    source_path: patches/espressif/esp32/devices/esp32.json
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- descriptor_id: startup:copy-source:rom
-  kind: copy-source-region
-  source_region: ROM
-  target_region: null
-  symbol: null
-  provenance:
-    source_id: bootstrap-patch
-    source_path: patches/espressif/esp32/devices/esp32.json
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- descriptor_id: startup:copy-target:iram
-  kind: copy-target-region
-  source_region: null
-  target_region: IRAM
-  symbol: null
-  provenance:
-    source_id: bootstrap-patch
-    source_path: patches/espressif/esp32/devices/esp32.json
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-- descriptor_id: startup:zero-target:iram
-  kind: zero-target-region
-  source_region: null
-  target_region: IRAM
-  symbol: null
-  provenance:
-    source_id: bootstrap-patch
-    source_path: patches/espressif/esp32/devices/esp32.json
-    patch_ids:
-    - espressif-esp32-family-bootstrap-v1
-    - espressif-esp32-bootstrap
-adc_resolution_options:
-- peripheral: SENS
-  bits: 9
-  field_value: 0
-- peripheral: SENS
-  bits: 10
-  field_value: 1
-- peripheral: SENS
-  bits: 11
-  field_value: 2
-- peripheral: SENS
-  bits: 12
-  field_value: 3
-adc_max_clock_hz: 5000000
-uart_baud_clock_sources:
-- peripheral: UART0
-  source: apb
-  field_value: 0
-- peripheral: UART0
-  source: ref_tick
-  field_value: 1
-- peripheral: UART0
-  source: xtal
-  field_value: 2
-- peripheral: UART0
-  source: rc_fast
-  field_value: 3
-uart_baud_oversampling_options:
-- peripheral: UART0
-  ratio: 16
-  field_value: 0
-uart_data_bits_options:
-- peripheral: UART0
-  bits: 5
-  m0_value: 0
-  m1_value: 0
-- peripheral: UART0
-  bits: 6
-  m0_value: 1
-  m1_value: 0
-- peripheral: UART0
-  bits: 7
-  m0_value: 2
-  m1_value: 0
-- peripheral: UART0
-  bits: 8
-  m0_value: 3
-  m1_value: 0
-uart_parity_options:
-- peripheral: UART0
-  parity: none
-  pce_value: 0
-  ps_value: 0
-- peripheral: UART0
-  parity: even
-  pce_value: 1
-  ps_value: 0
-- peripheral: UART0
-  parity: odd
-  pce_value: 1
-  ps_value: 1
-uart_stop_bits_options:
-- peripheral: UART0
-  stop_bits_q8: 256
-  field_value: 1
-- peripheral: UART0
-  stop_bits_q8: 384
-  field_value: 2
-- peripheral: UART0
-  stop_bits_q8: 512
-  field_value: 3
-uart_mode_flags:
-- peripheral: UART0
-  supports_lin: false
-  supports_irda: true
-  supports_smartcard: false
-  supports_half_duplex: true
-  supports_synchronous: false
-  supports_auto_baud: true
-  supports_wake_from_stop: true
-uart_max_baud_hz: 5000000
-spi_baud_prescaler_options:
-- peripheral: SPI0
-  divisor: 2
-  field_value: 1
-- peripheral: SPI0
-  divisor: 4
-  field_value: 2
-- peripheral: SPI0
-  divisor: 8
-  field_value: 3
-- peripheral: SPI0
-  divisor: 16
-  field_value: 4
-- peripheral: SPI0
-  divisor: 32
-  field_value: 5
-- peripheral: SPI0
-  divisor: 64
-  field_value: 6
-- peripheral: SPI0
-  divisor: 128
-  field_value: 7
-- peripheral: SPI0
-  divisor: 256
-  field_value: 8
-spi_frame_size_options:
-- peripheral: SPI0
-  bits: 4
-  field_value: 3
-- peripheral: SPI0
-  bits: 8
-  field_value: 7
-- peripheral: SPI0
-  bits: 16
-  field_value: 15
-- peripheral: SPI0
-  bits: 32
-  field_value: 31
-spi_mode_flags:
-- peripheral: SPI0
-  supports_crc: false
-  supports_ti_frame: false
-  supports_motorola_frame: true
-  supports_i2s_submode: false
-  supports_bidirectional_3wire: true
-  supports_lsb_first: true
-  supports_nss_hw_management: true
-peripheral_max_clock_hz:
-- peripheral: UART0
-  max_clock_hz: 80000000
-- peripheral: SPI0
-  max_clock_hz: 80000000
-multicore_topology: xtensa_asymmetric_dual_core
-app_cpu_control_plane:
-  release_register: register:dport:appcpu-ctrl-b
-  operation: set-bit-0
-  start_vector_symbol: _vectors_cpu1
-  release_register_secondary: null
-uart_peripherals:
-- peripheral_id: UART0
-  base_address: 1072824320
-  fifo_depth: 128
-  tx_signal_idx: 14
-  rx_signal_idx: 14
-  supports_dma: true
-  valid_tx_pins: []
-  valid_rx_pins: []
-  valid_cts_pins: []
-  valid_rts_pins: []
-  dreq_tx: null
-  dreq_rx: null
-- peripheral_id: UART1
-  base_address: 1072889856
-  fifo_depth: 128
-  tx_signal_idx: 17
-  rx_signal_idx: 17
-  supports_dma: true
-  valid_tx_pins: []
-  valid_rx_pins: []
-  valid_cts_pins: []
-  valid_rts_pins: []
-  dreq_tx: null
-  dreq_rx: null
-- peripheral_id: UART2
-  base_address: 1073004544
-  fifo_depth: 128
-  tx_signal_idx: 198
-  rx_signal_idx: 198
-  supports_dma: true
-  valid_tx_pins: []
-  valid_rx_pins: []
-  valid_cts_pins: []
-  valid_rts_pins: []
-  dreq_tx: null
-  dreq_rx: null
-spi_peripherals:
-- peripheral_id: SPI2
-  base_address: 1073217536
-  max_clock_hz: 80000000
-  mosi_out_signal: 29
-  miso_in_signal: 29
-  clk_out_signal: 8
-  cs_out_signal: 11
-  has_iomux_fast_path: true
-  iomux_mosi_pin: 13
-  iomux_miso_pin: 12
-  iomux_clk_pin: 14
-  iomux_cs_pin: 15
-  supports_dma: true
-  valid_mosi_pins: []
-  valid_miso_pins: []
-  valid_clk_pins: []
-  valid_cs_pins: []
-  dreq_tx: null
-  dreq_rx: null
-- peripheral_id: SPI3
-  base_address: 1073221632
-  max_clock_hz: 80000000
-  mosi_out_signal: 32
-  miso_in_signal: 32
-  clk_out_signal: 31
-  cs_out_signal: 33
-  has_iomux_fast_path: false
-  iomux_mosi_pin: null
-  iomux_miso_pin: null
-  iomux_clk_pin: null
-  iomux_cs_pin: null
-  supports_dma: true
-  valid_mosi_pins: []
-  valid_miso_pins: []
-  valid_clk_pins: []
-  valid_cs_pins: []
-  dreq_tx: null
-  dreq_rx: null
-adc_units:
-- unit_id: ADC1
-  channel_count: 8
-  resolution_bits: 12
-  conflicts_with_wifi: false
-  channel_pins:
-  - 36
-  - 37
-  - 38
-  - 39
-  - 32
-  - 33
-  - 34
-  - 35
-  base_address: 0
-  supports_fifo: false
-  fifo_depth: 0
-  dreq: null
-- unit_id: ADC2
-  channel_count: 10
-  resolution_bits: 12
-  conflicts_with_wifi: true
-  channel_pins:
-  - 4
-  - 0
-  - 2
-  - 15
-  - 13
-  - 12
-  - 14
-  - 27
-  - 25
-  - 26
-  base_address: 0
-  supports_fifo: false
-  fifo_depth: 0
-  dreq: null
-timer_units:
-- timer_id: TIMG0_T0
-  group_idx: 0
-  timer_idx: 0
-  base_address: 1072955392
-  bits: 64
-  clock_sources:
-  - APB
-  - XTAL
-  alarm_count: 0
-  alarm_dreqs: []
-- timer_id: TIMG0_T1
-  group_idx: 0
-  timer_idx: 1
-  base_address: 1072955392
-  bits: 64
-  clock_sources:
-  - APB
-  - XTAL
-  alarm_count: 0
-  alarm_dreqs: []
-- timer_id: TIMG1_T0
-  group_idx: 1
-  timer_idx: 0
-  base_address: 1072959488
-  bits: 64
-  clock_sources:
-  - APB
-  - XTAL
-  alarm_count: 0
-  alarm_dreqs: []
-- timer_id: TIMG1_T1
-  group_idx: 1
-  timer_idx: 1
-  base_address: 1072959488
-  bits: 64
-  clock_sources:
-  - APB
-  - XTAL
-  alarm_count: 0
-  alarm_dreqs: []
-ledc:
-  base_address: 1072930816
-  channel_count: 16
-  resolution_bits: 20
-  clock_sources:
-  - APB
-  - REF_TICK
-  - XTAL
-  output_signals:
-  - 71
-  - 72
-  - 73
-  - 74
-  - 75
-  - 76
-  - 77
-  - 78
-  - 79
-  - 80
-  - 81
-  - 82
-  - 83
-  - 84
-  - 85
-  - 86
-dma_channels:
-- channel_id: SPI_DMA1
-  channel_index: 1
-  is_gdma: false
-  max_transfer_bytes: 4095
-  peripheral_requests:
-  - - SPI2
-    - 1
-  - - SPI3
-    - 2
-  base_address: 0
-  max_transfer_count: 0
-  supports_chaining: false
-  supports_byte_swap: false
-- channel_id: SPI_DMA2
-  channel_index: 2
-  is_gdma: false
-  max_transfer_bytes: 4095
-  peripheral_requests: []
-  base_address: 0
-  max_transfer_count: 0
-  supports_chaining: false
-  supports_byte_swap: false
 gpio_pins:
 - pin_id: GPIO1
   port: GPIO
