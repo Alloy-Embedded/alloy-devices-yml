@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://alloy-embedded.dev/schema/canonical_device/family.schema.json",
+  "title": "Canonical alloy family YAML",
+  "description": "Per-family catalog: shared packages, pin definitions, IP-version registry.",
+  "type": "object",
+  "required": ["schema_version", "vendor", "family"],
+  "properties": {
+    "schema_version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "vendor":         {"type": "string", "minLength": 1},
+    "family":         {"type": "string", "minLength": 1},
+    "packages":       {"type": "array", "items": {"type": "object"}},
+    "pins":           {"type": "array", "items": {"type": "object"}},
+    "pin_signals":    {"type": "array", "items": {"type": "object"}},
+    "peripherals":    {"type": "array", "items": {"type": "object"}}
+  },
+  "additionalProperties": true
+}

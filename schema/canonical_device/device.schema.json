@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://alloy-embedded.dev/schema/canonical_device/device.schema.json",
+  "title": "Canonical alloy device YAML",
+  "description": "Per-MCU canonical-IR text form, foundation of the alloy-devices-yml data repo split.  Added by define-canonical-device-yaml-schema.",
+  "type": "object",
+  "required": ["schema_version", "identity"],
+  "properties": {
+    "schema_version": {
+      "description": "IR schema version (matches alloy_codegen.bootstrap.IR_SCHEMA_VERSION).",
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "identity": {
+      "type": "object",
+      "required": ["vendor", "family", "device", "core"],
+      "properties": {
+        "vendor":  {"type": "string", "minLength": 1},
+        "family":  {"type": "string", "minLength": 1},
+        "device":  {"type": "string", "minLength": 1},
+        "package": {"type": "string"},
+        "core":    {"type": "string", "minLength": 1},
+        "summary": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "source_id":   {"type": "string"},
+        "source_path": {"type": ["string", "null"]},
+        "patch_ids":   {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "memories":               {"type": "array", "items": {"type": "object"}},
+    "packages":               {"type": "array", "items": {"type": "object"}},
+    "package_pads":           {"type": "array", "items": {"type": "object"}},
+    "pin_constraints":        {"type": "array", "items": {"type": "object"}},
+    "pins":                   {"type": "array", "items": {"type": "object"}},
+    "ip_blocks":              {"type": "array", "items": {"type": "object"}},
+    "peripherals":            {"type": "array", "items": {"type": "object"}},
+    "interrupts":             {"type": "array", "items": {"type": "object"}},
+    "interrupt_bindings":     {"type": "array", "items": {"type": "object"}},
+    "vector_slots":           {"type": "array", "items": {"type": "object"}},
+    "registers":              {"type": "array", "items": {"type": "object"}},
+    "register_fields":        {"type": "array", "items": {"type": "object"}},
+    "capabilities":           {"type": "array", "items": {"type": "object"}},
+    "signal_endpoints":       {"type": "array", "items": {"type": "object"}},
+    "route_requirements":     {"type": "array", "items": {"type": "object"}},
+    "route_operations":       {"type": "array", "items": {"type": "object"}},
+    "connection_candidates":  {"type": "array", "items": {"type": "object"}},
+    "connection_groups":      {"type": "array", "items": {"type": "object"}},
+    "system_clock_profiles":  {"type": "array", "items": {"type": "object"}},
+    "clock_nodes":            {"type": "array", "items": {"type": "object"}},
+    "clock_selectors":        {"type": "array", "items": {"type": "object"}},
+    "clock_gates":            {"type": "array", "items": {"type": "object"}},
+    "resets":                 {"type": "array", "items": {"type": "object"}},
+    "peripheral_clock_bindings": {"type": "array", "items": {"type": "object"}},
+    "dma_controllers":        {"type": "array", "items": {"type": "object"}},
+    "dma_requests":           {"type": "array", "items": {"type": "object"}},
+    "dma_bindings":           {"type": "array", "items": {"type": "object"}},
+    "dma_routes":             {"type": "array", "items": {"type": "object"}},
+    "startup_descriptors":    {"type": "array", "items": {"type": "object"}}
+  },
+  "additionalProperties": true
+}

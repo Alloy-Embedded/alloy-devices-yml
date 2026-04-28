@@ -1,0 +1,73 @@
+name: Schema validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Validate every device YAML against schema
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install jsonschema PyYAML
+
+      - name: Validate every YAML
+        run: |
+          python <<'PY'
+          import json, sys
+          from pathlib import Path
+          import yaml
+          from jsonschema import Draft202012Validator
+
+          repo = Path(".")
+          schemas = {
+              "device": json.loads((repo / "schema/canonical_device/device.schema.json").read_text()),
+              "family": json.loads((repo / "schema/canonical_device/family.schema.json").read_text()),
+              "vendor": json.loads((repo / "schema/canonical_device/vendor.schema.json").read_text()),
+          }
+          validators = {k: Draft202012Validator(v) for k, v in schemas.items()}
+
+          failed = False
+          for path in sorted(repo.glob("vendors/**/devices/*.yml")):
+              text = path.read_text(encoding="utf-8")
+              payload = yaml.safe_load(text)
+              errors = list(validators["device"].iter_errors(payload))
+              if errors:
+                  failed = True
+                  print(f"FAIL {path}")
+                  for e in errors[:5]:
+                      print(f"  {'/'.join(str(p) for p in e.absolute_path) or '<root>'}: {e.message}")
+              else:
+                  print(f"OK   {path}")
+          for path in sorted(repo.glob("vendors/**/family.yml")):
+              payload = yaml.safe_load(path.read_text(encoding="utf-8"))
+              errors = list(validators["family"].iter_errors(payload))
+              if errors:
+                  failed = True
+                  print(f"FAIL {path}")
+                  for e in errors[:5]:
+                      print(f"  {'/'.join(str(p) for p in e.absolute_path) or '<root>'}: {e.message}")
+              else:
+                  print(f"OK   {path}")
+          for path in sorted(repo.glob("vendors/*/vendor.yml")):
+              payload = yaml.safe_load(path.read_text(encoding="utf-8"))
+              errors = list(validators["vendor"].iter_errors(payload))
+              if errors:
+                  failed = True
+                  print(f"FAIL {path}")
+                  for e in errors[:5]:
+                      print(f"  {'/'.join(str(p) for p in e.absolute_path) or '<root>'}: {e.message}")
+              else:
+                  print(f"OK   {path}")
+          sys.exit(1 if failed else 0)
+          PY
