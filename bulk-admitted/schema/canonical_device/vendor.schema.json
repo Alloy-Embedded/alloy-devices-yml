@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://alloy-embedded.dev/schema/canonical_device/vendor.schema.json",
+  "title": "Canonical alloy vendor metadata YAML",
+  "type": "object",
+  "required": ["schema_version", "vendor"],
+  "properties": {
+    "schema_version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "vendor":      {"type": "string", "minLength": 1},
+    "long_name":   {"type": "string"},
+    "homepage":    {"type": "string", "format": "uri"},
+    "sources": {
+      "description": "Authoritative upstream source identifiers (e.g. cmsis-svd-data, microchip-dfp, zephyr-dts).",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source_id"],
+        "properties": {
+          "source_id":  {"type": "string"},
+          "origin_url": {"type": "string"},
+          "license":    {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}
