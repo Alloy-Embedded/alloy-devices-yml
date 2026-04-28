@@ -1,0 +1,69 @@
+schema_version: 1.2.0
+identity:
+  vendor: atmel
+  family: sam
+  device: samc21
+  package: ''
+  core: cortex-m4f
+  summary: Admitted via Zephyr DTS (samc21.dtsi).
+provenance:
+  source_id: zephyr-dts
+  source_path: /Users/lgili/Documents/01 - Codes/01 - Github/zephyr/dts/arm/atmel/samc21.dtsi
+  patch_ids: []
+memories: []
+peripherals:
+- name: RTC
+  base_address: 1073751040
+  compatible: atmel,sam0-rtc
+  ip_name: rtc
+- name: PORTA
+  base_address: 1090519040
+  compatible: atmel,sam0-gpio
+  ip_name: gpio
+- name: PORTB
+  base_address: 1090519168
+  compatible: atmel,sam0-gpio
+  ip_name: gpio
+- name: PORTC
+  base_address: 1090519296
+  compatible: atmel,sam0-gpio
+  ip_name: gpio
+- name: CAN0
+  base_address: 1107303424
+  compatible: atmel,sam0-can
+  ip_name: can
+- name: CAN1
+  base_address: 1107304448
+  compatible: atmel,sam0-can
+  ip_name: can
+- name: ADC0
+  base_address: 1107313664
+  compatible: atmel,sam0-adc
+  ip_name: adc
+- name: ADC1
+  base_address: 1107314688
+  compatible: atmel,sam0-adc
+  ip_name: adc
+- name: DAC
+  base_address: 1107317760
+  compatible: atmel,sam0-dac
+  ip_name: dac
+interrupts:
+- name: RTC_IRQ
+  line: 2
+  peripheral: RTC
+- name: CAN0_IRQ
+  line: 15
+  peripheral: CAN0
+- name: CAN1_IRQ
+  line: 16
+  peripheral: CAN1
+- name: ADC0_IRQ
+  line: 25
+  peripheral: ADC0
+- name: ADC1_IRQ
+  line: 26
+  peripheral: ADC1
+- name: DAC_IRQ
+  line: 28
+  peripheral: DAC

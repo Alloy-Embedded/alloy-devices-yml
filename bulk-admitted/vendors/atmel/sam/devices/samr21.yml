@@ -1,0 +1,62 @@
+schema_version: 1.2.0
+identity:
+  vendor: atmel
+  family: sam
+  device: samr21
+  package: ''
+  core: cortex-m4f
+  summary: Admitted via Zephyr DTS (samr21.dtsi).
+provenance:
+  source_id: zephyr-dts
+  source_path: /Users/lgili/Documents/01 - Codes/01 - Github/zephyr/dts/arm/atmel/samr21.dtsi
+  patch_ids: []
+memories: []
+peripherals:
+- name: RTC
+  base_address: 1073746944
+  compatible: atmel,sam0-rtc
+  ip_name: rtc
+- name: PORTA
+  base_address: 1090536448
+  compatible: atmel,sam0-gpio
+  ip_name: gpio
+- name: PORTB
+  base_address: 1090536576
+  compatible: atmel,sam0-gpio
+  ip_name: gpio
+- name: PORTC
+  base_address: 1090536704
+  compatible: atmel,sam0-gpio
+  ip_name: gpio
+- name: TC4
+  base_address: 1107308544
+  compatible: atmel,sam0-tc32
+  ip_name: timer
+- name: TC6
+  base_address: 1107310592
+  compatible: atmel,sam0-tc32
+  ip_name: timer
+- name: ADC
+  base_address: 1107312640
+  compatible: atmel,sam0-adc
+  ip_name: adc
+- name: DAC0
+  base_address: 1107314688
+  compatible: atmel,sam0-dac
+  ip_name: dac
+interrupts:
+- name: RTC_IRQ
+  line: 3
+  peripheral: RTC
+- name: TC4_IRQ
+  line: 19
+  peripheral: TC4
+- name: TC6_IRQ
+  line: 21
+  peripheral: TC6
+- name: ADC_IRQ
+  line: 23
+  peripheral: ADC
+- name: DAC0_IRQ
+  line: 25
+  peripheral: DAC0
