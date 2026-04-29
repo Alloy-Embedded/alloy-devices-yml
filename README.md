@@ -9,6 +9,26 @@ file per admitted MCU.  Code generators (alloy-codegen for C++,
 future siblings for Rust / Zig / docs) consume this catalog and
 emit language-specific artifacts.
 
+## Coverage at a glance
+
+| Tree | Devices | Notes |
+|---|---|---|
+| `vendors/` | 17 | Codegen-admitted (DEVICE_REGISTRY).  Every chip here passes the codegen parity gate. |
+| `bulk-admitted/` | 4,400+ | Pre-extracted via the data-extractor pipeline.  YAML ready, codegen admission per-chip. |
+
+Bulk-admitted breakdown (8 source families across 22 vendors):
+
+* **CMSIS-SVD** — 110 STM32 + 8 Espressif + 2 NXP iMXRT
+* **STM32 open-pin-data** + CMSIS-SVD merge — 503 chips with full pinmux
+* **Microchip ATDF** — 47 chips (AVR-DA, SAM E70/V71)
+* **Zephyr DTS** — 159 chips (Nordic / Atmel SAM / Ambiq Apollo / SiLabs Gecko / TI cc13xx)
+* **CMSIS-Pack catalog** — 3,650+ chips across SiLabs / Cypress / Infineon /
+  Nuvoton / TI / Renesas / Toshiba / 12 more vendors
+
+See `bulk-admitted/index.yml` for the per-chip catalog with
+provenance, and `bulk-admitted/README.md` for the
+promote-to-codegen workflow.
+
 ```
 alloy-data-extractor (Python ETL)
        │ generates YAML
