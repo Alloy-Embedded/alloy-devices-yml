@@ -3442,7 +3442,7 @@ dma_controllers:
 - controller: DMA1
   version: bdma_v1_0
   channel_count: 7
-  request_count: 7
+  request_count: 4
   provenance:
     source_id: bootstrap-patch
     source_path: patches/st/stm32g0/devices/stm32g071rb.json
@@ -3473,36 +3473,6 @@ dma_requests:
     - st-stm32g0-family-bootstrap-v1
     - st-stm32g0-stm32g071rb-bootstrap
   channel_index: 1
-  request_value: 51
-- controller: DMA1
-  request_line: DMAMUX_REQ_005
-  peripheral: ADC1
-  signal: null
-  provenance:
-    source_id: modm-devices
-    source_path: null
-    patch_ids:
-    - modm-devices@unpinned
-  request_value: 5
-- controller: DMA1
-  request_line: DMAMUX_REQ_050
-  peripheral: USART1
-  signal: RX
-  provenance:
-    source_id: modm-devices
-    source_path: null
-    patch_ids:
-    - modm-devices@unpinned
-  request_value: 50
-- controller: DMA1
-  request_line: DMAMUX_REQ_051
-  peripheral: USART1
-  signal: TX
-  provenance:
-    source_id: modm-devices
-    source_path: null
-    patch_ids:
-    - modm-devices@unpinned
   request_value: 51
 - controller: DMA1
   request_line: DMAMUX_REQ_016
@@ -3555,19 +3525,6 @@ dma_bindings:
     - st-stm32g0-stm32g071rb-bootstrap
   channel_index: 1
   request_value: 51
-- binding_id: dma-binding:adc1:none:dma1:dmamux-req-005
-  peripheral: ADC1
-  signal: null
-  controller: DMA1
-  request_line: DMAMUX_REQ_005
-  route_id: dma-route:dma1:dmamux-req-005:adc1:none
-  conflict_group: null
-  provenance:
-    source_id: modm-devices
-    source_path: null
-    patch_ids:
-    - modm-devices@unpinned
-  request_value: 5
 - binding_id: dma-binding:spi1:rx:dma1:dmamux-req-016
   peripheral: SPI1
   signal: RX
@@ -3623,18 +3580,6 @@ dma_routes:
     - st-stm32g0-stm32g071rb-bootstrap
   channel_index: 1
   request_value: 51
-- route_id: dma-route:dma1:dmamux-req-005:adc1:none
-  controller: DMA1
-  request_line: DMAMUX_REQ_005
-  peripheral: ADC1
-  signal: null
-  conflict_group: null
-  provenance:
-    source_id: modm-devices
-    source_path: null
-    patch_ids:
-    - modm-devices@unpinned
-  request_value: 5
 - route_id: dma-route:dma1:dmamux-req-016:spi1:rx
   controller: DMA1
   request_line: DMAMUX_REQ_016
@@ -3659,30 +3604,6 @@ dma_routes:
     patch_ids:
     - modm-devices@unpinned
   request_value: 17
-- route_id: dma-route:dma1:dmamux-req-050:usart1:rx
-  controller: DMA1
-  request_line: DMAMUX_REQ_050
-  peripheral: USART1
-  signal: RX
-  conflict_group: null
-  provenance:
-    source_id: modm-devices
-    source_path: null
-    patch_ids:
-    - modm-devices@unpinned
-  request_value: 50
-- route_id: dma-route:dma1:dmamux-req-051:usart1:tx
-  controller: DMA1
-  request_line: DMAMUX_REQ_051
-  peripheral: USART1
-  signal: TX
-  conflict_group: null
-  provenance:
-    source_id: modm-devices
-    source_path: null
-    patch_ids:
-    - modm-devices@unpinned
-  request_value: 51
 startup_descriptors:
 - descriptor_id: startup:vectors
   kind: vector-table
