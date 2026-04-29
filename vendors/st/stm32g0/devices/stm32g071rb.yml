@@ -70837,6 +70837,66 @@ clock_nodes:
     patch_ids:
     - st-stm32g0-family-bootstrap-v1
     - st-stm32g0-stm32g071rb-bootstrap
+- node_id: clock-node:rcc-ahbenr
+  kind: ahb-domain
+  parent: clock-root
+  selector: null
+  provenance:
+    source_id: cmsis-svd-data
+    source_path: STM32G071.svd
+    patch_ids:
+    - st-stm32g0-family-bootstrap-v1
+    - st-stm32g0-stm32g071rb-bootstrap
+- node_id: clock-node:rcc-apbenr1
+  kind: apb-domain
+  parent: clock-root
+  selector: null
+  provenance:
+    source_id: cmsis-svd-data
+    source_path: STM32G071.svd
+    patch_ids:
+    - st-stm32g0-family-bootstrap-v1
+    - st-stm32g0-stm32g071rb-bootstrap
+- node_id: clock-node:rcc-apbenr2
+  kind: apb-domain
+  parent: clock-root
+  selector: null
+  provenance:
+    source_id: cmsis-svd-data
+    source_path: STM32G071.svd
+    patch_ids:
+    - st-stm32g0-family-bootstrap-v1
+    - st-stm32g0-stm32g071rb-bootstrap
+- node_id: clock-node:rcc-iopenr
+  kind: gpio-domain
+  parent: clock-root
+  selector: null
+  provenance:
+    source_id: cmsis-svd-data
+    source_path: STM32G071.svd
+    patch_ids:
+    - st-stm32g0-family-bootstrap-v1
+    - st-stm32g0-stm32g071rb-bootstrap
+- node_id: clock-node:sysclk
+  kind: system-source
+  parent: clock-root
+  selector: null
+  provenance:
+    source_id: bootstrap-patch
+    source_path: patches/st/stm32g0/devices/stm32g071rb.json
+    patch_ids:
+    - st-stm32g0-family-bootstrap-v1
+    - st-stm32g0-stm32g071rb-bootstrap
+- node_id: clock-root
+  kind: root
+  parent: null
+  selector: null
+  provenance:
+    source_id: stm32-open-pin-data
+    source_path: STM32G071R(6-8-B)Tx.xml
+    patch_ids:
+    - st-stm32g0-family-bootstrap-v1
+    - st-stm32g0-stm32g071rb-bootstrap
 clock_selectors:
 - selector_id: selector:usart1-kernel
   parent_options:
@@ -70889,7 +70949,7 @@ dma_controllers:
 - controller: DMA1
   version: null
   channel_count: 7
-  request_count: null
+  request_count: 4
   provenance:
     source_id: bootstrap-patch
     source_path: patches/st/stm32g0/devices/stm32g071rb.json
@@ -70921,6 +70981,731 @@ dma_requests:
     - st-stm32g0-stm32g071rb-bootstrap
   channel_index: 1
   request_value: 51
+- controller: DMA1
+  request_line: DMAMUX_REQ_016
+  peripheral: SPI1
+  signal: RX
+  provenance:
+    source_id: modm-devices
+    source_path: null
+    patch_ids:
+    - modm-devices@unpinned
+  request_value: 16
+- controller: DMA1
+  request_line: DMAMUX_REQ_017
+  peripheral: SPI1
+  signal: TX
+  provenance:
+    source_id: modm-devices
+    source_path: null
+    patch_ids:
+    - modm-devices@unpinned
+  request_value: 17
+dma_bindings:
+- binding_id: dma-binding:usart1:rx:dma1:dma1-ch1
+  peripheral: USART1
+  signal: RX
+  controller: DMA1
+  request_line: DMA1_CH1
+  route_id: dma-route:dma1:dma1-ch1:usart1:rx
+  conflict_group: null
+  provenance:
+    source_id: bootstrap-patch
+    source_path: patches/st/stm32g0/devices/stm32g071rb.json
+    patch_ids:
+    - st-stm32g0-family-bootstrap-v1
+    - st-stm32g0-stm32g071rb-bootstrap
+  channel_index: 0
+  request_value: 50
+- binding_id: dma-binding:usart1:tx:dma1:dma1-ch2
+  peripheral: USART1
+  signal: TX
+  controller: DMA1
+  request_line: DMA1_CH2
+  route_id: dma-route:dma1:dma1-ch2:usart1:tx
+  conflict_group: null
+  provenance:
+    source_id: bootstrap-patch
+    source_path: patches/st/stm32g0/devices/stm32g071rb.json
+    patch_ids:
+    - st-stm32g0-family-bootstrap-v1
+    - st-stm32g0-stm32g071rb-bootstrap
+  channel_index: 1
+  request_value: 51
+- binding_id: dma-binding:spi1:rx:dma1:dmamux-req-016
+  peripheral: SPI1
+  signal: RX
+  controller: DMA1
+  request_line: DMAMUX_REQ_016
+  route_id: dma-route:dma1:dmamux-req-016:spi1:rx
+  conflict_group: null
+  provenance:
+    source_id: modm-devices
+    source_path: null
+    patch_ids:
+    - modm-devices@unpinned
+  request_value: 16
+- binding_id: dma-binding:spi1:tx:dma1:dmamux-req-017
+  peripheral: SPI1
+  signal: TX
+  controller: DMA1
+  request_line: DMAMUX_REQ_017
+  route_id: dma-route:dma1:dmamux-req-017:spi1:tx
+  conflict_group: null
+  provenance:
+    source_id: modm-devices
+    source_path: null
+    patch_ids:
+    - modm-devices@unpinned
+  request_value: 17
+dma_routes:
+- route_id: dma-route:dma1:dma1-ch1:usart1:rx
+  controller: DMA1
+  request_line: DMA1_CH1
+  peripheral: USART1
+  signal: RX
+  conflict_group: null
+  provenance:
+    source_id: bootstrap-patch
+    source_path: patches/st/stm32g0/devices/stm32g071rb.json
+    patch_ids:
+    - st-stm32g0-family-bootstrap-v1
+    - st-stm32g0-stm32g071rb-bootstrap
+  channel_index: 0
+  request_value: 50
+- route_id: dma-route:dma1:dma1-ch2:usart1:tx
+  controller: DMA1
+  request_line: DMA1_CH2
+  peripheral: USART1
+  signal: TX
+  conflict_group: null
+  provenance:
+    source_id: bootstrap-patch
+    source_path: patches/st/stm32g0/devices/stm32g071rb.json
+    patch_ids:
+    - st-stm32g0-family-bootstrap-v1
+    - st-stm32g0-stm32g071rb-bootstrap
+  channel_index: 1
+  request_value: 51
+- route_id: dma-route:dma1:dmamux-req-016:spi1:rx
+  controller: DMA1
+  request_line: DMAMUX_REQ_016
+  peripheral: SPI1
+  signal: RX
+  conflict_group: null
+  provenance:
+    source_id: modm-devices
+    source_path: null
+    patch_ids:
+    - modm-devices@unpinned
+  request_value: 16
+- route_id: dma-route:dma1:dmamux-req-017:spi1:tx
+  controller: DMA1
+  request_line: DMAMUX_REQ_017
+  peripheral: SPI1
+  signal: TX
+  conflict_group: null
+  provenance:
+    source_id: modm-devices
+    source_path: null
+    patch_ids:
+    - modm-devices@unpinned
+  request_value: 17
+startup_descriptors:
+- descriptor_id: startup:vectors
+  kind: vector-table
+  source_region: null
+  target_region: null
+  symbol: _vectors
+  provenance:
+    source_id: stm32-open-pin-data
+    source_path: STM32G071R(6-8-B)Tx.xml
+    patch_ids:
+    - st-stm32g0-family-bootstrap-v1
+    - st-stm32g0-stm32g071rb-bootstrap
+- descriptor_id: startup:stack-top
+  kind: initial-stack-pointer
+  source_region: null
+  target_region: null
+  symbol: __stack_top
+  provenance:
+    source_id: stm32-open-pin-data
+    source_path: STM32G071R(6-8-B)Tx.xml
+    patch_ids:
+    - st-stm32g0-family-bootstrap-v1
+    - st-stm32g0-stm32g071rb-bootstrap
+- descriptor_id: startup:vector-source:flash
+  kind: vector-source-region
+  source_region: flash
+  target_region: null
+  symbol: null
+  provenance:
+    source_id: bootstrap-patch
+    source_path: patches/st/stm32g0/devices/stm32g071rb.json
+    patch_ids:
+    - st-stm32g0-family-bootstrap-v1
+    - st-stm32g0-stm32g071rb-bootstrap
+- descriptor_id: startup:copy-source:flash
+  kind: copy-source-region
+  source_region: flash
+  target_region: null
+  symbol: null
+  provenance:
+    source_id: bootstrap-patch
+    source_path: patches/st/stm32g0/devices/stm32g071rb.json
+    patch_ids:
+    - st-stm32g0-family-bootstrap-v1
+    - st-stm32g0-stm32g071rb-bootstrap
+- descriptor_id: startup:copy-target:sram
+  kind: copy-target-region
+  source_region: null
+  target_region: sram
+  symbol: null
+  provenance:
+    source_id: bootstrap-patch
+    source_path: patches/st/stm32g0/devices/stm32g071rb.json
+    patch_ids:
+    - st-stm32g0-family-bootstrap-v1
+    - st-stm32g0-stm32g071rb-bootstrap
+- descriptor_id: startup:zero-target:sram
+  kind: zero-target-region
+  source_region: null
+  target_region: sram
+  symbol: null
+  provenance:
+    source_id: bootstrap-patch
+    source_path: patches/st/stm32g0/devices/stm32g071rb.json
+    patch_ids:
+    - st-stm32g0-family-bootstrap-v1
+    - st-stm32g0-stm32g071rb-bootstrap
+adc_internal_channels:
+- peripheral: ADC1
+  kind: temperature_sensor
+  channel_index: 12
+- peripheral: ADC1
+  kind: vrefint
+  channel_index: 13
+- peripheral: ADC1
+  kind: vbat
+  channel_index: 14
+adc_calibration_data_points:
+- peripheral: ADC1
+  kind: vrefint_cal
+  address: 536835498
+  size_bits: 16
+  semantic_constant: 3000
+- peripheral: ADC1
+  kind: ts_cal_low
+  address: 536835496
+  size_bits: 16
+  semantic_constant: 30
+- peripheral: ADC1
+  kind: ts_cal_high
+  address: 536835530
+  size_bits: 16
+  semantic_constant: 130
+adc_calibration_context:
+  peripheral: ADC1
+  cal_temp_low_celsius: 30
+  cal_temp_high_celsius: 130
+  cal_voltage_mv: 3000
+  vrefint_nominal_mv: 1212
+adc_resolution_options:
+- peripheral: ADC1
+  bits: 12
+  field_value: 0
+- peripheral: ADC1
+  bits: 10
+  field_value: 1
+- peripheral: ADC1
+  bits: 8
+  field_value: 2
+- peripheral: ADC1
+  bits: 6
+  field_value: 3
+adc_sample_time_options:
+- peripheral: ADC1
+  cycles_q8: 384
+  field_value: 0
+- peripheral: ADC1
+  cycles_q8: 896
+  field_value: 1
+- peripheral: ADC1
+  cycles_q8: 1920
+  field_value: 2
+- peripheral: ADC1
+  cycles_q8: 3200
+  field_value: 3
+- peripheral: ADC1
+  cycles_q8: 4992
+  field_value: 4
+- peripheral: ADC1
+  cycles_q8: 10112
+  field_value: 5
+- peripheral: ADC1
+  cycles_q8: 20352
+  field_value: 6
+- peripheral: ADC1
+  cycles_q8: 41088
+  field_value: 7
+adc_oversampling_options:
+- peripheral: ADC1
+  ratio: 2
+  field_value: 0
+- peripheral: ADC1
+  ratio: 4
+  field_value: 1
+- peripheral: ADC1
+  ratio: 8
+  field_value: 2
+- peripheral: ADC1
+  ratio: 16
+  field_value: 3
+- peripheral: ADC1
+  ratio: 32
+  field_value: 4
+- peripheral: ADC1
+  ratio: 64
+  field_value: 5
+- peripheral: ADC1
+  ratio: 128
+  field_value: 6
+- peripheral: ADC1
+  ratio: 256
+  field_value: 7
+adc_external_triggers:
+- peripheral: ADC1
+  source: tim1_trgo
+  extsel_value: 0
+  default_polarity: 1
+- peripheral: ADC1
+  source: tim1_cc4
+  extsel_value: 1
+  default_polarity: 1
+- peripheral: ADC1
+  source: tim2_trgo
+  extsel_value: 2
+  default_polarity: 1
+- peripheral: ADC1
+  source: tim3_trgo
+  extsel_value: 3
+  default_polarity: 1
+- peripheral: ADC1
+  source: tim6_trgo
+  extsel_value: 5
+  default_polarity: 1
+- peripheral: ADC1
+  source: tim15_trgo
+  extsel_value: 6
+  default_polarity: 1
+- peripheral: ADC1
+  source: exti11
+  extsel_value: 7
+  default_polarity: 1
+adc_max_clock_hz: 35000000
+uart_baud_clock_sources:
+- peripheral: USART1
+  source: pclk
+  field_value: 0
+- peripheral: USART1
+  source: sysclk
+  field_value: 1
+- peripheral: USART1
+  source: hsi16
+  field_value: 2
+- peripheral: USART1
+  source: lse
+  field_value: 3
+uart_baud_oversampling_options:
+- peripheral: USART1
+  ratio: 16
+  field_value: 0
+- peripheral: USART1
+  ratio: 8
+  field_value: 1
+uart_fifo_trigger_options:
+- peripheral: USART1
+  fraction_q8: 32
+  field_value: 0
+- peripheral: USART1
+  fraction_q8: 64
+  field_value: 1
+- peripheral: USART1
+  fraction_q8: 128
+  field_value: 2
+- peripheral: USART1
+  fraction_q8: 192
+  field_value: 3
+- peripheral: USART1
+  fraction_q8: 224
+  field_value: 4
+- peripheral: USART1
+  fraction_q8: 256
+  field_value: 5
+uart_data_bits_options:
+- peripheral: USART1
+  bits: 7
+  m0_value: 0
+  m1_value: 1
+- peripheral: USART1
+  bits: 8
+  m0_value: 0
+  m1_value: 0
+- peripheral: USART1
+  bits: 9
+  m0_value: 1
+  m1_value: 0
+uart_parity_options:
+- peripheral: USART1
+  parity: none
+  pce_value: 0
+  ps_value: 0
+- peripheral: USART1
+  parity: even
+  pce_value: 1
+  ps_value: 0
+- peripheral: USART1
+  parity: odd
+  pce_value: 1
+  ps_value: 1
+uart_stop_bits_options:
+- peripheral: USART1
+  stop_bits_q8: 128
+  field_value: 1
+- peripheral: USART1
+  stop_bits_q8: 256
+  field_value: 0
+- peripheral: USART1
+  stop_bits_q8: 384
+  field_value: 3
+- peripheral: USART1
+  stop_bits_q8: 512
+  field_value: 2
+uart_mode_flags:
+- peripheral: USART1
+  supports_lin: true
+  supports_irda: true
+  supports_smartcard: true
+  supports_half_duplex: true
+  supports_synchronous: true
+  supports_auto_baud: true
+  supports_wake_from_stop: true
+uart_max_baud_hz: 4000000
+spi_baud_prescaler_options:
+- peripheral: SPI1
+  divisor: 2
+  field_value: 0
+- peripheral: SPI1
+  divisor: 4
+  field_value: 1
+- peripheral: SPI1
+  divisor: 8
+  field_value: 2
+- peripheral: SPI1
+  divisor: 16
+  field_value: 3
+- peripheral: SPI1
+  divisor: 32
+  field_value: 4
+- peripheral: SPI1
+  divisor: 64
+  field_value: 5
+- peripheral: SPI1
+  divisor: 128
+  field_value: 6
+- peripheral: SPI1
+  divisor: 256
+  field_value: 7
+spi_frame_size_options:
+- peripheral: SPI1
+  bits: 4
+  field_value: 3
+- peripheral: SPI1
+  bits: 5
+  field_value: 4
+- peripheral: SPI1
+  bits: 6
+  field_value: 5
+- peripheral: SPI1
+  bits: 7
+  field_value: 6
+- peripheral: SPI1
+  bits: 8
+  field_value: 7
+- peripheral: SPI1
+  bits: 9
+  field_value: 8
+- peripheral: SPI1
+  bits: 10
+  field_value: 9
+- peripheral: SPI1
+  bits: 11
+  field_value: 10
+- peripheral: SPI1
+  bits: 12
+  field_value: 11
+- peripheral: SPI1
+  bits: 13
+  field_value: 12
+- peripheral: SPI1
+  bits: 14
+  field_value: 13
+- peripheral: SPI1
+  bits: 15
+  field_value: 14
+- peripheral: SPI1
+  bits: 16
+  field_value: 15
+spi_fifo_threshold_options:
+- peripheral: SPI1
+  threshold_bits: 16
+  field_value: 0
+- peripheral: SPI1
+  threshold_bits: 8
+  field_value: 1
+spi_mode_flags:
+- peripheral: SPI1
+  supports_crc: true
+  supports_ti_frame: true
+  supports_motorola_frame: true
+  supports_i2s_submode: false
+  supports_bidirectional_3wire: true
+  supports_lsb_first: true
+  supports_nss_hw_management: true
+timer_prescaler_options:
+- peripheral: TIM1
+  max_prescaler: 65535
+  max_auto_reload: 65535
+- peripheral: TIM14
+  max_prescaler: 65535
+  max_auto_reload: 65535
+timer_trigger_sources:
+- peripheral: TIM1
+  source: itr0
+  field_value: 0
+- peripheral: TIM1
+  source: itr1
+  field_value: 1
+- peripheral: TIM1
+  source: itr2
+  field_value: 2
+- peripheral: TIM1
+  source: itr3
+  field_value: 3
+- peripheral: TIM1
+  source: ti1f_ed
+  field_value: 4
+- peripheral: TIM1
+  source: ti1fp1
+  field_value: 5
+- peripheral: TIM1
+  source: ti2fp2
+  field_value: 6
+- peripheral: TIM1
+  source: etrf
+  field_value: 7
+timer_master_outputs:
+- peripheral: TIM1
+  source: reset
+  field_value: 0
+- peripheral: TIM1
+  source: enable
+  field_value: 1
+- peripheral: TIM1
+  source: update
+  field_value: 2
+- peripheral: TIM1
+  source: compare_pulse
+  field_value: 3
+- peripheral: TIM1
+  source: oc1ref
+  field_value: 4
+- peripheral: TIM1
+  source: oc2ref
+  field_value: 5
+- peripheral: TIM1
+  source: oc3ref
+  field_value: 6
+- peripheral: TIM1
+  source: oc4ref
+  field_value: 7
+timer_mode_flags:
+- peripheral: TIM1
+  supports_dma_burst: true
+  supports_repetition_counter: true
+  supports_xor_input: true
+- peripheral: TIM14
+  supports_dma_burst: false
+  supports_repetition_counter: false
+  supports_xor_input: false
+pwm_deadtime_options:
+- peripheral: TIM1
+  prescaler_field_value: 0
+  count_bits: 8
+  max_ns: 2550
+- peripheral: TIM1
+  prescaler_field_value: 1
+  count_bits: 8
+  max_ns: 5100
+- peripheral: TIM1
+  prescaler_field_value: 2
+  count_bits: 8
+  max_ns: 10200
+- peripheral: TIM1
+  prescaler_field_value: 3
+  count_bits: 8
+  max_ns: 20400
+pwm_alignment_options:
+- peripheral: TIM1
+  alignment: edge
+  field_value: 0
+- peripheral: TIM1
+  alignment: center_down
+  field_value: 1
+- peripheral: TIM1
+  alignment: center_up
+  field_value: 2
+- peripheral: TIM1
+  alignment: center_up_down
+  field_value: 3
+- peripheral: TIM14
+  alignment: edge
+  field_value: 0
+pwm_break_inputs:
+- peripheral: TIM1
+  input_id: bkin
+  polarity_field_value: 0
+  enable_field_value: 1
+pwm_mode_flags:
+- peripheral: TIM1
+  supports_deadtime: true
+  supports_break_input: true
+  supports_complementary_outputs: true
+  supports_asymmetric_pwm: true
+  supports_combined_pwm: true
+- peripheral: TIM14
+  supports_deadtime: false
+  supports_break_input: false
+  supports_complementary_outputs: false
+  supports_asymmetric_pwm: false
+  supports_combined_pwm: false
+peripheral_max_clock_hz:
+- peripheral: USART1
+  max_clock_hz: 64000000
+- peripheral: SPI1
+  max_clock_hz: 64000000
+- peripheral: I2C1
+  max_clock_hz: 64000000
+- peripheral: I2C2
+  max_clock_hz: 64000000
+boards:
+- board_id: nucleo-g071rb
+  device: stm32g071rb
+  package: lqfp64
+  summary: ST Nucleo-64 board with STM32G071RB.
+  named_pins:
+  - name: LED_GREEN
+    pin: PA5
+    polarity: active_high
+    peripheral: null
+    signal: null
+  - name: BUTTON_USER
+    pin: PB7
+    polarity: active_low
+    peripheral: null
+    signal: null
+  - name: UART_DBG_TX
+    pin: PA2
+    polarity: active_high
+    peripheral: USART2
+    signal: TX
+  - name: UART_DBG_RX
+    pin: PA3
+    polarity: active_high
+    peripheral: USART2
+    signal: RX
+  default_clock_profile: performance-pll-64mhz
+  external_oscillators:
+  - kind: hse
+    frequency_hz: 8000000
+    source: st-link-mco
+i2c_speed_options:
+- peripheral: I2C1
+  speed_hz: 100000
+  mode: standard
+- peripheral: I2C1
+  speed_hz: 400000
+  mode: fast
+- peripheral: I2C1
+  speed_hz: 1000000
+  mode: fast_plus
+- peripheral: I2C2
+  speed_hz: 100000
+  mode: standard
+- peripheral: I2C2
+  speed_hz: 400000
+  mode: fast
+- peripheral: I2C2
+  speed_hz: 1000000
+  mode: fast_plus
+i2c_timing_presets:
+- peripheral: I2C1
+  speed_hz: 100000
+  source_clock_hz: 64000000
+  timingr_value: 275807931
+- peripheral: I2C1
+  speed_hz: 400000
+  source_clock_hz: 64000000
+  timingr_value: 6300019
+- peripheral: I2C1
+  speed_hz: 1000000
+  source_clock_hz: 64000000
+  timingr_value: 3147289
+- peripheral: I2C2
+  speed_hz: 100000
+  source_clock_hz: 64000000
+  timingr_value: 275807931
+- peripheral: I2C2
+  speed_hz: 400000
+  source_clock_hz: 64000000
+  timingr_value: 6300019
+- peripheral: I2C2
+  speed_hz: 1000000
+  source_clock_hz: 64000000
+  timingr_value: 3147289
+i2c_mode_flags:
+- peripheral: I2C1
+  supports_smbus: true
+  supports_pmbus: false
+  supports_dma: true
+  supports_slave: true
+  supports_dual_address: true
+  supports_general_call: true
+  supports_7bit_addressing: true
+  supports_10bit_addressing: true
+- peripheral: I2C2
+  supports_smbus: true
+  supports_pmbus: false
+  supports_dma: true
+  supports_slave: true
+  supports_dual_address: true
+  supports_general_call: true
+  supports_7bit_addressing: true
+  supports_10bit_addressing: true
+usb_controllers:
+- controller_id: USB
+  base_address: 1073765376
+  endpoint_count: 8
+  supports_high_speed: false
+  supports_host_mode: false
+  supports_dma: false
+  crystalless: true
+  dpram_base_address: 1073766400
+  dpram_size_bytes: 1024
+  dma_channel_count: 0
+  dm_pin: null
+  dp_pin: null
+  clock_source: hsi48-with-crs
 gpio_pins:
 - pin_id: PC11
   port: GPIOC
