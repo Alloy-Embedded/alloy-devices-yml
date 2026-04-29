@@ -14,16 +14,20 @@ emit language-specific artifacts.
 | Tree | Devices | Notes |
 |---|---|---|
 | `vendors/` | 17 | Codegen-admitted (DEVICE_REGISTRY).  Every chip here passes the codegen parity gate. |
-| `bulk-admitted/` | 4,400+ | Pre-extracted via the data-extractor pipeline.  YAML ready, codegen admission per-chip. |
+| `bulk-admitted/` | **8,500+** | Pre-extracted via the data-extractor pipeline across **22 vendors / 1,180+ families**.  YAML ready, codegen admission is per-chip. |
 
-Bulk-admitted breakdown (8 source families across 22 vendors):
+Bulk-admitted breakdown (8 source families):
 
-* **CMSIS-SVD** — 110 STM32 + 8 Espressif + 2 NXP iMXRT
-* **STM32 open-pin-data** + CMSIS-SVD merge — 503 chips with full pinmux
-* **Microchip ATDF** — 47 chips (AVR-DA, SAM E70/V71)
-* **Zephyr DTS** — 159 chips (Nordic / Atmel SAM / Ambiq Apollo / SiLabs Gecko / TI cc13xx)
-* **CMSIS-Pack catalog** — 3,650+ chips across SiLabs / Cypress / Infineon /
-  Nuvoton / TI / Renesas / Toshiba / 12 more vendors
+* **CMSIS-Pack catalog** — 7,700+ chips across 16 vendors (SiLabs,
+  Nuvoton, Infineon, Cypress, TI, Renesas, Toshiba, Ambiq, ARM,
+  + 7 community vendors).  Vendor packs auto-downloaded;
+  per-chip provenance recorded.
+* **STM32 cross-source merge** — 503 chips (CMSIS-SVD ⊕ STM32
+  open-pin-data) with full pinmux + AF tables at schema 1.3.0.
+* **Zephyr DTS** — 159 chips across nordic / atmel / ambiq /
+  silabs / ti families.
+* **Microchip ATDF** — 47 AVR-DA + SAM E70/V71.
+* **CMSIS-SVD direct** — 110 STM32 + 8 Espressif + 2 NXP iMXRT.
 
 See `bulk-admitted/index.yml` for the per-chip catalog with
 provenance, and `bulk-admitted/README.md` for the
