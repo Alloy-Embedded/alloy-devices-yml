@@ -12,7 +12,7 @@ provenance:
   patch_ids: []
   field_provenance:
     identity: stm32
-    memories: stm32
+    memories: stm32-overlay
     packages: stm32-cubemx
     pins: stm32-cubemx
     peripherals: stm32
@@ -58,7 +58,40 @@ provenance:
   - stm32-cubemx
   - stm32-overlay
   - stm32-tier
-memories: []
+memories:
+- name: FLASH
+  kind: flash
+  base_address: 134217728
+  size_bytes: 1048576
+  access: rx
+  address_space: code
+  provenance:
+    source_id: stm32-overlay
+    source_path: data/vendors/st/stm32f4/family.toml
+    patch_ids:
+    - stm32-overlay@bulk-tier-reemit
+- name: SRAM
+  kind: sram
+  base_address: 536870912
+  size_bytes: 196608
+  access: rwx
+  address_space: data
+  provenance:
+    source_id: stm32-overlay
+    source_path: data/vendors/st/stm32f4/family.toml
+    patch_ids:
+    - stm32-overlay@bulk-tier-reemit
+- name: CCMRAM
+  kind: sram
+  base_address: 268435456
+  size_bytes: 65536
+  access: rwx
+  address_space: data
+  provenance:
+    source_id: stm32-overlay
+    source_path: data/vendors/st/stm32f4/family.toml
+    patch_ids:
+    - stm32-overlay@bulk-tier-reemit
 packages:
 - name: lqfp64
   pin_count: 64
