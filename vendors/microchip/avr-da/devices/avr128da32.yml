@@ -1,4 +1,4 @@
-schema_version: 1.2.0
+schema_version: 1.5.0
 identity:
   vendor: microchip
   family: avr-da
@@ -12,52 +12,83 @@ provenance:
   patch_ids:
   - microchip-avr-da-family-bootstrap-v1
   - microchip-avr128da32-bootstrap
+provenance_defaults:
+  memories:
+    source_id: bootstrap-patch
+    source_path: patches/microchip/avr-da/devices/avr128da32.json
+    patch_ids:
+    - microchip-avr-da-family-bootstrap-v1
+    - microchip-avr128da32-bootstrap
+  packages:
+    source_id: bootstrap-patch
+    source_path: patches/microchip/avr-da/devices/avr128da32.json
+    patch_ids:
+    - microchip-avr-da-family-bootstrap-v1
+    - microchip-avr128da32-bootstrap
+  package_pads:
+    source_id: microchip-dfp-extract
+    source_path: atdf/AVR128DA32.atdf
+    patch_ids:
+    - microchip-avr-da-family-bootstrap-v1
+    - microchip-avr128da32-bootstrap
+  pins:
+    source_id: microchip-dfp-extract
+    source_path: atdf/AVR128DA32.atdf
+    patch_ids:
+    - microchip-avr-da-family-bootstrap-v1
+    - microchip-avr128da32-bootstrap
+  peripherals:
+    source_id: microchip-dfp-extract
+    source_path: atdf/AVR128DA32.atdf
+    patch_ids:
+    - microchip-avr-da-family-bootstrap-v1
+    - microchip-avr128da32-bootstrap
+  interrupts:
+    source_id: microchip-dfp-extract
+    source_path: atdf/AVR128DA32.atdf
+    patch_ids:
+    - microchip-avr-da-family-bootstrap-v1
+    - microchip-avr128da32-bootstrap
+  registers:
+    source_id: microchip-dfp-extract
+    source_path: atdf/AVR128DA32.atdf
+    patch_ids:
+    - microchip-avr-da-family-bootstrap-v1
+    - microchip-avr128da32-bootstrap
+  register_fields:
+    source_id: microchip-dfp-extract
+    source_path: atdf/AVR128DA32.atdf
+    patch_ids:
+    - microchip-avr-da-family-bootstrap-v1
+    - microchip-avr128da32-bootstrap
+  system_clock_profiles:
+    source_id: bootstrap-patch
+    source_path: patches/microchip/avr-da/devices/avr128da32.json
+    patch_ids:
+    - microchip-avr-da-family-bootstrap-v1
+    - microchip-avr128da32-bootstrap
 memories:
 - name: APP_SECTION
   kind: flash
   base_address: 0
   size_bytes: 131072
   access: rx
-  provenance:
-    source_id: bootstrap-patch
-    source_path: patches/microchip/avr-da/devices/avr128da32.json
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   address_space: prog
 - name: INTERNAL_SRAM
   kind: sram
   base_address: 16384
   size_bytes: 16384
   access: rwx
-  provenance:
-    source_id: bootstrap-patch
-    source_path: patches/microchip/avr-da/devices/avr128da32.json
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   address_space: data
 - name: EEPROM
   kind: eeprom
   base_address: 5120
   size_bytes: 512
   access: rw
-  provenance:
-    source_id: bootstrap-patch
-    source_path: patches/microchip/avr-da/devices/avr128da32.json
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   address_space: eeprom
 packages:
 - name: tqfp32
   pin_count: 32
-  provenance:
-    source_id: bootstrap-patch
-    source_path: patches/microchip/avr-da/devices/avr128da32.json
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 package_pads:
 - pad_id: PA0
   package: tqfp32
@@ -65,12 +96,6 @@ package_pads:
   physical_index: null
   pad_kind: io
   bonded_pin: PA0
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   bonding_state: bonded
 - pad_id: PC0
   package: tqfp32
@@ -78,12 +103,6 @@ package_pads:
   physical_index: null
   pad_kind: io
   bonded_pin: PC0
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   bonding_state: bonded
 - pad_id: PA1
   package: tqfp32
@@ -91,12 +110,6 @@ package_pads:
   physical_index: null
   pad_kind: io
   bonded_pin: PA1
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   bonding_state: bonded
 - pad_id: PC1
   package: tqfp32
@@ -104,12 +117,6 @@ package_pads:
   physical_index: null
   pad_kind: io
   bonded_pin: PC1
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   bonding_state: bonded
 - pad_id: PA2
   package: tqfp32
@@ -117,12 +124,6 @@ package_pads:
   physical_index: null
   pad_kind: io
   bonded_pin: PA2
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   bonding_state: bonded
 - pad_id: PA3
   package: tqfp32
@@ -130,12 +131,6 @@ package_pads:
   physical_index: null
   pad_kind: io
   bonded_pin: PA3
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   bonding_state: bonded
 - pad_id: PA4
   package: tqfp32
@@ -143,12 +138,6 @@ package_pads:
   physical_index: null
   pad_kind: io
   bonded_pin: PA4
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   bonding_state: bonded
 - pad_id: PA5
   package: tqfp32
@@ -156,12 +145,6 @@ package_pads:
   physical_index: null
   pad_kind: io
   bonded_pin: PA5
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   bonding_state: bonded
 - pad_id: PA6
   package: tqfp32
@@ -169,12 +152,6 @@ package_pads:
   physical_index: null
   pad_kind: io
   bonded_pin: PA6
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   bonding_state: bonded
 - pad_id: PA7
   package: tqfp32
@@ -182,12 +159,6 @@ package_pads:
   physical_index: null
   pad_kind: io
   bonded_pin: PA7
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   bonding_state: bonded
 pins:
 - name: PA0
@@ -204,12 +175,6 @@ pins:
       patch_ids:
       - microchip-avr-da-family-bootstrap-v1
       - microchip-avr128da32-bootstrap
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - name: PC0
   port: C
   number: 0
@@ -224,12 +189,6 @@ pins:
       patch_ids:
       - microchip-avr-da-family-bootstrap-v1
       - microchip-avr128da32-bootstrap
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - name: PA1
   port: A
   number: 1
@@ -244,12 +203,6 @@ pins:
       patch_ids:
       - microchip-avr-da-family-bootstrap-v1
       - microchip-avr128da32-bootstrap
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - name: PC1
   port: C
   number: 1
@@ -264,12 +217,6 @@ pins:
       patch_ids:
       - microchip-avr-da-family-bootstrap-v1
       - microchip-avr128da32-bootstrap
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - name: PA2
   port: A
   number: 2
@@ -284,12 +231,6 @@ pins:
       patch_ids:
       - microchip-avr-da-family-bootstrap-v1
       - microchip-avr128da32-bootstrap
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - name: PA3
   port: A
   number: 3
@@ -304,12 +245,6 @@ pins:
       patch_ids:
       - microchip-avr-da-family-bootstrap-v1
       - microchip-avr128da32-bootstrap
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - name: PA4
   port: A
   number: 4
@@ -324,12 +259,6 @@ pins:
       patch_ids:
       - microchip-avr-da-family-bootstrap-v1
       - microchip-avr128da32-bootstrap
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - name: PA5
   port: A
   number: 5
@@ -344,12 +273,6 @@ pins:
       patch_ids:
       - microchip-avr-da-family-bootstrap-v1
       - microchip-avr128da32-bootstrap
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - name: PA6
   port: A
   number: 6
@@ -364,12 +287,6 @@ pins:
       patch_ids:
       - microchip-avr-da-family-bootstrap-v1
       - microchip-avr128da32-bootstrap
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - name: PA7
   port: A
   number: 7
@@ -384,12 +301,6 @@ pins:
       patch_ids:
       - microchip-avr-da-family-bootstrap-v1
       - microchip-avr128da32-bootstrap
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 peripherals:
 - name: PORTA
   ip_name: porta
@@ -398,12 +309,6 @@ peripherals:
   base_address: 1024
   rcc_enable_signal: null
   rcc_reset_signal: null
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   backend_schema_id: null
 - name: PORTC
   ip_name: portc
@@ -412,12 +317,6 @@ peripherals:
   base_address: 1088
   rcc_enable_signal: null
   rcc_reset_signal: null
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   backend_schema_id: null
 - name: USART0
   ip_name: usart
@@ -426,12 +325,6 @@ peripherals:
   base_address: 2048
   rcc_enable_signal: null
   rcc_reset_signal: null
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   backend_schema_id: null
 - name: USART1
   ip_name: usart
@@ -440,12 +333,6 @@ peripherals:
   base_address: 2080
   rcc_enable_signal: null
   rcc_reset_signal: null
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   backend_schema_id: null
 - name: TWI0
   ip_name: twi
@@ -454,12 +341,6 @@ peripherals:
   base_address: 2304
   rcc_enable_signal: null
   rcc_reset_signal: null
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   backend_schema_id: null
 - name: SPI0
   ip_name: spi
@@ -468,12 +349,6 @@ peripherals:
   base_address: 2368
   rcc_enable_signal: null
   rcc_reset_signal: null
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   backend_schema_id: null
 - name: TCA0
   ip_name: tca
@@ -482,12 +357,6 @@ peripherals:
   base_address: 2560
   rcc_enable_signal: null
   rcc_reset_signal: null
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   backend_schema_id: null
 - name: CLKCTRL
   ip_name: clkctrl
@@ -496,12 +365,6 @@ peripherals:
   base_address: 96
   rcc_enable_signal: null
   rcc_reset_signal: null
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   backend_schema_id: null
 - name: PORTMUX
   ip_name: portmux
@@ -510,12 +373,6 @@ peripherals:
   base_address: 1504
   rcc_enable_signal: null
   rcc_reset_signal: null
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   backend_schema_id: null
 - name: ADC0
   ip_name: adc
@@ -524,291 +381,123 @@ peripherals:
   base_address: 1536
   rcc_enable_signal: null
   rcc_reset_signal: null
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   backend_schema_id: null
 interrupts:
 - name: NMI
   line: 1
   peripheral: null
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
 - name: BOD_VLM
   line: 2
   peripheral: null
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
 - name: RTC_CNT
   line: 3
   peripheral: null
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
 - name: RTC_PIT
   line: 4
   peripheral: null
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
 - name: CCL
   line: 5
   peripheral: null
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
 - name: PORTA_PORT
   line: 6
   peripheral: null
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
 - name: TCA0_LUNF
   line: 7
   peripheral: TCA0
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
   alias_names:
   - TCA0_OVF
 - name: TCA0_HUNF
   line: 8
   peripheral: TCA0
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
 - name: TCA0_CMP0
   line: 9
   peripheral: TCA0
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
   alias_names:
   - TCA0_LCMP0
 - name: TCA0_CMP1
   line: 10
   peripheral: TCA0
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
   alias_names:
   - TCA0_LCMP1
 - name: TCA0_CMP2
   line: 11
   peripheral: TCA0
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
   alias_names:
   - TCA0_LCMP2
 - name: TWI0_TWIS
   line: 16
   peripheral: TWI0
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
 - name: TWI0_TWIM
   line: 17
   peripheral: TWI0
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
 - name: SPI0_INT
   line: 18
   peripheral: SPI0
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
 - name: USART0_RXC
   line: 19
   peripheral: USART0
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
 - name: USART0_DRE
   line: 20
   peripheral: USART0
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
 - name: USART0_TXC
   line: 21
   peripheral: USART0
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
 - name: PORTD_PORT
   line: 22
   peripheral: null
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
 - name: ADC0_RESRDY
   line: 24
   peripheral: ADC0
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
 - name: ADC0_WCMP
   line: 25
   peripheral: ADC0
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
 - name: PTC
   line: 27
   peripheral: null
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
 - name: PORTC_PORT
   line: 29
   peripheral: null
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
 - name: USART1_RXC
   line: 31
   peripheral: USART1
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
 - name: USART1_DRE
   line: 32
   peripheral: USART1
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
 - name: USART1_TXC
   line: 33
   peripheral: USART1
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
 - name: PORTF_PORT
   line: 34
   peripheral: null
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
 - name: NVMCTRL_EE
   line: 35
   peripheral: null
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   shared_group: null
 registers:
 - register_id: register:adc0:ctrla
@@ -817,1884 +506,942 @@ registers:
   offset_bytes: 0
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:adc0:ctrlb
   peripheral: ADC0
   name: CTRLB
   offset_bytes: 1
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:adc0:ctrlc
   peripheral: ADC0
   name: CTRLC
   offset_bytes: 2
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:adc0:ctrld
   peripheral: ADC0
   name: CTRLD
   offset_bytes: 3
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:adc0:ctrle
   peripheral: ADC0
   name: CTRLE
   offset_bytes: 4
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:adc0:sampctrl
   peripheral: ADC0
   name: SAMPCTRL
   offset_bytes: 5
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:adc0:muxpos
   peripheral: ADC0
   name: MUXPOS
   offset_bytes: 8
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:adc0:muxneg
   peripheral: ADC0
   name: MUXNEG
   offset_bytes: 9
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:adc0:command
   peripheral: ADC0
   name: COMMAND
   offset_bytes: 10
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:adc0:evctrl
   peripheral: ADC0
   name: EVCTRL
   offset_bytes: 11
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:adc0:intctrl
   peripheral: ADC0
   name: INTCTRL
   offset_bytes: 12
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:adc0:intflags
   peripheral: ADC0
   name: INTFLAGS
   offset_bytes: 13
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:adc0:dbgctrl
   peripheral: ADC0
   name: DBGCTRL
   offset_bytes: 14
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:adc0:temp
   peripheral: ADC0
   name: TEMP
   offset_bytes: 15
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:adc0:res
   peripheral: ADC0
   name: RES
   offset_bytes: 16
   access: r
   size_bits: 16
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:adc0:winlt
   peripheral: ADC0
   name: WINLT
   offset_bytes: 18
   access: rw
   size_bits: 16
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:adc0:winht
   peripheral: ADC0
   name: WINHT
   offset_bytes: 20
   access: rw
   size_bits: 16
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:clkctrl:mclkctrla
   peripheral: CLKCTRL
   name: MCLKCTRLA
   offset_bytes: 0
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:clkctrl:mclkctrlb
   peripheral: CLKCTRL
   name: MCLKCTRLB
   offset_bytes: 1
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:clkctrl:mclklock
   peripheral: CLKCTRL
   name: MCLKLOCK
   offset_bytes: 2
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:clkctrl:mclkstatus
   peripheral: CLKCTRL
   name: MCLKSTATUS
   offset_bytes: 3
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:clkctrl:oschfctrla
   peripheral: CLKCTRL
   name: OSCHFCTRLA
   offset_bytes: 8
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:clkctrl:oschftune
   peripheral: CLKCTRL
   name: OSCHFTUNE
   offset_bytes: 9
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:clkctrl:pllctrla
   peripheral: CLKCTRL
   name: PLLCTRLA
   offset_bytes: 16
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:clkctrl:osc32kctrla
   peripheral: CLKCTRL
   name: OSC32KCTRLA
   offset_bytes: 24
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:clkctrl:xosc32kctrla
   peripheral: CLKCTRL
   name: XOSC32KCTRLA
   offset_bytes: 28
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:porta:dir
   peripheral: PORTA
   name: DIR
   offset_bytes: 0
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:porta:dirset
   peripheral: PORTA
   name: DIRSET
   offset_bytes: 1
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:porta:dirclr
   peripheral: PORTA
   name: DIRCLR
   offset_bytes: 2
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:porta:dirtgl
   peripheral: PORTA
   name: DIRTGL
   offset_bytes: 3
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:porta:out
   peripheral: PORTA
   name: OUT
   offset_bytes: 4
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:porta:outset
   peripheral: PORTA
   name: OUTSET
   offset_bytes: 5
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:porta:outclr
   peripheral: PORTA
   name: OUTCLR
   offset_bytes: 6
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:porta:outtgl
   peripheral: PORTA
   name: OUTTGL
   offset_bytes: 7
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:porta:in
   peripheral: PORTA
   name: IN
   offset_bytes: 8
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:porta:intflags
   peripheral: PORTA
   name: INTFLAGS
   offset_bytes: 9
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:porta:portctrl
   peripheral: PORTA
   name: PORTCTRL
   offset_bytes: 10
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:porta:pinconfig
   peripheral: PORTA
   name: PINCONFIG
   offset_bytes: 11
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:porta:pinctrlupd
   peripheral: PORTA
   name: PINCTRLUPD
   offset_bytes: 12
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:porta:pinctrlset
   peripheral: PORTA
   name: PINCTRLSET
   offset_bytes: 13
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:porta:pinctrlclr
   peripheral: PORTA
   name: PINCTRLCLR
   offset_bytes: 14
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:porta:pin0ctrl
   peripheral: PORTA
   name: PIN0CTRL
   offset_bytes: 16
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:porta:pin1ctrl
   peripheral: PORTA
   name: PIN1CTRL
   offset_bytes: 17
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:porta:pin2ctrl
   peripheral: PORTA
   name: PIN2CTRL
   offset_bytes: 18
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:porta:pin3ctrl
   peripheral: PORTA
   name: PIN3CTRL
   offset_bytes: 19
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:porta:pin4ctrl
   peripheral: PORTA
   name: PIN4CTRL
   offset_bytes: 20
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:porta:pin5ctrl
   peripheral: PORTA
   name: PIN5CTRL
   offset_bytes: 21
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:porta:pin6ctrl
   peripheral: PORTA
   name: PIN6CTRL
   offset_bytes: 22
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:porta:pin7ctrl
   peripheral: PORTA
   name: PIN7CTRL
   offset_bytes: 23
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portc:dir
   peripheral: PORTC
   name: DIR
   offset_bytes: 0
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portc:dirset
   peripheral: PORTC
   name: DIRSET
   offset_bytes: 1
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portc:dirclr
   peripheral: PORTC
   name: DIRCLR
   offset_bytes: 2
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portc:dirtgl
   peripheral: PORTC
   name: DIRTGL
   offset_bytes: 3
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portc:out
   peripheral: PORTC
   name: OUT
   offset_bytes: 4
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portc:outset
   peripheral: PORTC
   name: OUTSET
   offset_bytes: 5
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portc:outclr
   peripheral: PORTC
   name: OUTCLR
   offset_bytes: 6
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portc:outtgl
   peripheral: PORTC
   name: OUTTGL
   offset_bytes: 7
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portc:in
   peripheral: PORTC
   name: IN
   offset_bytes: 8
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portc:intflags
   peripheral: PORTC
   name: INTFLAGS
   offset_bytes: 9
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portc:portctrl
   peripheral: PORTC
   name: PORTCTRL
   offset_bytes: 10
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portc:pinconfig
   peripheral: PORTC
   name: PINCONFIG
   offset_bytes: 11
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portc:pinctrlupd
   peripheral: PORTC
   name: PINCTRLUPD
   offset_bytes: 12
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portc:pinctrlset
   peripheral: PORTC
   name: PINCTRLSET
   offset_bytes: 13
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portc:pinctrlclr
   peripheral: PORTC
   name: PINCTRLCLR
   offset_bytes: 14
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portc:pin0ctrl
   peripheral: PORTC
   name: PIN0CTRL
   offset_bytes: 16
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portc:pin1ctrl
   peripheral: PORTC
   name: PIN1CTRL
   offset_bytes: 17
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portc:pin2ctrl
   peripheral: PORTC
   name: PIN2CTRL
   offset_bytes: 18
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portc:pin3ctrl
   peripheral: PORTC
   name: PIN3CTRL
   offset_bytes: 19
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portc:pin4ctrl
   peripheral: PORTC
   name: PIN4CTRL
   offset_bytes: 20
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portc:pin5ctrl
   peripheral: PORTC
   name: PIN5CTRL
   offset_bytes: 21
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portc:pin6ctrl
   peripheral: PORTC
   name: PIN6CTRL
   offset_bytes: 22
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portc:pin7ctrl
   peripheral: PORTC
   name: PIN7CTRL
   offset_bytes: 23
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portmux:evsysroutea
   peripheral: PORTMUX
   name: EVSYSROUTEA
   offset_bytes: 0
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portmux:cclroutea
   peripheral: PORTMUX
   name: CCLROUTEA
   offset_bytes: 1
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portmux:usartroutea
   peripheral: PORTMUX
   name: USARTROUTEA
   offset_bytes: 2
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portmux:spiroutea
   peripheral: PORTMUX
   name: SPIROUTEA
   offset_bytes: 4
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portmux:twiroutea
   peripheral: PORTMUX
   name: TWIROUTEA
   offset_bytes: 5
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portmux:tcaroutea
   peripheral: PORTMUX
   name: TCAROUTEA
   offset_bytes: 6
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portmux:tcbroutea
   peripheral: PORTMUX
   name: TCBROUTEA
   offset_bytes: 7
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portmux:tcdroutea
   peripheral: PORTMUX
   name: TCDROUTEA
   offset_bytes: 8
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portmux:acroutea
   peripheral: PORTMUX
   name: ACROUTEA
   offset_bytes: 9
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:portmux:zcdroutea
   peripheral: PORTMUX
   name: ZCDROUTEA
   offset_bytes: 10
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:spi0:ctrla
   peripheral: SPI0
   name: CTRLA
   offset_bytes: 0
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:spi0:ctrlb
   peripheral: SPI0
   name: CTRLB
   offset_bytes: 1
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:spi0:intctrl
   peripheral: SPI0
   name: INTCTRL
   offset_bytes: 2
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:spi0:intflags
   peripheral: SPI0
   name: INTFLAGS
   offset_bytes: 3
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:spi0:data
   peripheral: SPI0
   name: DATA
   offset_bytes: 4
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:ctrla
   peripheral: TCA0
   name: CTRLA
   offset_bytes: 0
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:ctrlb
   peripheral: TCA0
   name: CTRLB
   offset_bytes: 1
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:ctrlc
   peripheral: TCA0
   name: CTRLC
   offset_bytes: 2
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:ctrld
   peripheral: TCA0
   name: CTRLD
   offset_bytes: 3
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:ctrleclr
   peripheral: TCA0
   name: CTRLECLR
   offset_bytes: 4
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:ctrleset
   peripheral: TCA0
   name: CTRLESET
   offset_bytes: 5
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:ctrlfclr
   peripheral: TCA0
   name: CTRLFCLR
   offset_bytes: 6
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:ctrlfset
   peripheral: TCA0
   name: CTRLFSET
   offset_bytes: 7
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:evctrl
   peripheral: TCA0
   name: EVCTRL
   offset_bytes: 9
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:intctrl
   peripheral: TCA0
   name: INTCTRL
   offset_bytes: 10
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:intflags
   peripheral: TCA0
   name: INTFLAGS
   offset_bytes: 11
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:dbgctrl
   peripheral: TCA0
   name: DBGCTRL
   offset_bytes: 14
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:temp
   peripheral: TCA0
   name: TEMP
   offset_bytes: 15
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:cnt
   peripheral: TCA0
   name: CNT
   offset_bytes: 32
   access: rw
   size_bits: 16
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:hcnt
   peripheral: TCA0
   name: HCNT
   offset_bytes: 33
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:lper
   peripheral: TCA0
   name: LPER
   offset_bytes: 38
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:hper
   peripheral: TCA0
   name: HPER
   offset_bytes: 39
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:cmp0
   peripheral: TCA0
   name: CMP0
   offset_bytes: 40
   access: rw
   size_bits: 16
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:hcmp0
   peripheral: TCA0
   name: HCMP0
   offset_bytes: 41
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:cmp1
   peripheral: TCA0
   name: CMP1
   offset_bytes: 42
   access: rw
   size_bits: 16
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:hcmp1
   peripheral: TCA0
   name: HCMP1
   offset_bytes: 43
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:cmp2
   peripheral: TCA0
   name: CMP2
   offset_bytes: 44
   access: rw
   size_bits: 16
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:hcmp2
   peripheral: TCA0
   name: HCMP2
   offset_bytes: 45
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:perbuf
   peripheral: TCA0
   name: PERBUF
   offset_bytes: 54
   access: rw
   size_bits: 16
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:cmp0buf
   peripheral: TCA0
   name: CMP0BUF
   offset_bytes: 56
   access: rw
   size_bits: 16
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:cmp1buf
   peripheral: TCA0
   name: CMP1BUF
   offset_bytes: 58
   access: rw
   size_bits: 16
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:tca0:cmp2buf
   peripheral: TCA0
   name: CMP2BUF
   offset_bytes: 60
   access: rw
   size_bits: 16
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:twi0:ctrla
   peripheral: TWI0
   name: CTRLA
   offset_bytes: 0
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:twi0:dualctrl
   peripheral: TWI0
   name: DUALCTRL
   offset_bytes: 1
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:twi0:dbgctrl
   peripheral: TWI0
   name: DBGCTRL
   offset_bytes: 2
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:twi0:mctrla
   peripheral: TWI0
   name: MCTRLA
   offset_bytes: 3
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:twi0:mctrlb
   peripheral: TWI0
   name: MCTRLB
   offset_bytes: 4
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:twi0:mstatus
   peripheral: TWI0
   name: MSTATUS
   offset_bytes: 5
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:twi0:mbaud
   peripheral: TWI0
   name: MBAUD
   offset_bytes: 6
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:twi0:maddr
   peripheral: TWI0
   name: MADDR
   offset_bytes: 7
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:twi0:mdata
   peripheral: TWI0
   name: MDATA
   offset_bytes: 8
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:twi0:sctrla
   peripheral: TWI0
   name: SCTRLA
   offset_bytes: 9
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:twi0:sctrlb
   peripheral: TWI0
   name: SCTRLB
   offset_bytes: 10
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:twi0:sstatus
   peripheral: TWI0
   name: SSTATUS
   offset_bytes: 11
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:twi0:saddr
   peripheral: TWI0
   name: SADDR
   offset_bytes: 12
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:twi0:sdata
   peripheral: TWI0
   name: SDATA
   offset_bytes: 13
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:twi0:saddrmask
   peripheral: TWI0
   name: SADDRMASK
   offset_bytes: 14
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart0:rxdatal
   peripheral: USART0
   name: RXDATAL
   offset_bytes: 0
   access: r
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart0:rxdatah
   peripheral: USART0
   name: RXDATAH
   offset_bytes: 1
   access: r
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart0:txdatal
   peripheral: USART0
   name: TXDATAL
   offset_bytes: 2
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart0:txdatah
   peripheral: USART0
   name: TXDATAH
   offset_bytes: 3
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart0:status
   peripheral: USART0
   name: STATUS
   offset_bytes: 4
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart0:ctrla
   peripheral: USART0
   name: CTRLA
   offset_bytes: 5
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart0:ctrlb
   peripheral: USART0
   name: CTRLB
   offset_bytes: 6
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart0:ctrlc
   peripheral: USART0
   name: CTRLC
   offset_bytes: 7
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart0:baud
   peripheral: USART0
   name: BAUD
   offset_bytes: 8
   access: rw
   size_bits: 16
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart0:ctrld
   peripheral: USART0
   name: CTRLD
   offset_bytes: 10
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart0:dbgctrl
   peripheral: USART0
   name: DBGCTRL
   offset_bytes: 11
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart0:evctrl
   peripheral: USART0
   name: EVCTRL
   offset_bytes: 12
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart0:txplctrl
   peripheral: USART0
   name: TXPLCTRL
   offset_bytes: 13
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart0:rxplctrl
   peripheral: USART0
   name: RXPLCTRL
   offset_bytes: 14
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart1:rxdatal
   peripheral: USART1
   name: RXDATAL
   offset_bytes: 0
   access: r
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart1:rxdatah
   peripheral: USART1
   name: RXDATAH
   offset_bytes: 1
   access: r
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart1:txdatal
   peripheral: USART1
   name: TXDATAL
   offset_bytes: 2
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart1:txdatah
   peripheral: USART1
   name: TXDATAH
   offset_bytes: 3
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart1:status
   peripheral: USART1
   name: STATUS
   offset_bytes: 4
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart1:ctrla
   peripheral: USART1
   name: CTRLA
   offset_bytes: 5
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart1:ctrlb
   peripheral: USART1
   name: CTRLB
   offset_bytes: 6
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart1:ctrlc
   peripheral: USART1
   name: CTRLC
   offset_bytes: 7
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart1:baud
   peripheral: USART1
   name: BAUD
   offset_bytes: 8
   access: rw
   size_bits: 16
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart1:ctrld
   peripheral: USART1
   name: CTRLD
   offset_bytes: 10
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart1:dbgctrl
   peripheral: USART1
   name: DBGCTRL
   offset_bytes: 11
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart1:evctrl
   peripheral: USART1
   name: EVCTRL
   offset_bytes: 12
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart1:txplctrl
   peripheral: USART1
   name: TXPLCTRL
   offset_bytes: 13
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - register_id: register:usart1:rxplctrl
   peripheral: USART1
   name: RXPLCTRL
   offset_bytes: 14
   access: rw
   size_bits: 8
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 register_fields:
 - field_id: field:adc0:ctrla:enable
   register_id: register:adc0:ctrla
@@ -2704,12 +1451,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:adc0:ctrla:freerun
   register_id: register:adc0:ctrla
   peripheral: ADC0
@@ -2718,12 +1459,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:adc0:ctrla:ressel
   register_id: register:adc0:ctrla
   peripheral: ADC0
@@ -2732,12 +1467,6 @@ register_fields:
   bit_offset: 2
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:adc0:ctrla:leftadj
   register_id: register:adc0:ctrla
   peripheral: ADC0
@@ -2746,12 +1475,6 @@ register_fields:
   bit_offset: 4
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:adc0:ctrla:convmode
   register_id: register:adc0:ctrla
   peripheral: ADC0
@@ -2760,12 +1483,6 @@ register_fields:
   bit_offset: 5
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:adc0:ctrla:runstby
   register_id: register:adc0:ctrla
   peripheral: ADC0
@@ -2774,12 +1491,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:adc0:ctrlb:sampnum
   register_id: register:adc0:ctrlb
   peripheral: ADC0
@@ -2788,12 +1499,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:adc0:ctrlc:presc
   register_id: register:adc0:ctrlc
   peripheral: ADC0
@@ -2802,12 +1507,6 @@ register_fields:
   bit_offset: 0
   bit_width: 4
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:adc0:ctrld:sampdly
   register_id: register:adc0:ctrld
   peripheral: ADC0
@@ -2816,12 +1515,6 @@ register_fields:
   bit_offset: 0
   bit_width: 4
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:adc0:ctrld:initdly
   register_id: register:adc0:ctrld
   peripheral: ADC0
@@ -2830,12 +1523,6 @@ register_fields:
   bit_offset: 5
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:adc0:ctrle:wincm
   register_id: register:adc0:ctrle
   peripheral: ADC0
@@ -2844,12 +1531,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:adc0:sampctrl:samplen
   register_id: register:adc0:sampctrl
   peripheral: ADC0
@@ -2858,12 +1539,6 @@ register_fields:
   bit_offset: 0
   bit_width: 8
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:adc0:muxpos:muxpos
   register_id: register:adc0:muxpos
   peripheral: ADC0
@@ -2872,12 +1547,6 @@ register_fields:
   bit_offset: 0
   bit_width: 7
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:adc0:muxneg:muxneg
   register_id: register:adc0:muxneg
   peripheral: ADC0
@@ -2886,12 +1555,6 @@ register_fields:
   bit_offset: 0
   bit_width: 7
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:adc0:command:stconv
   register_id: register:adc0:command
   peripheral: ADC0
@@ -2900,12 +1563,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:adc0:command:spconv
   register_id: register:adc0:command
   peripheral: ADC0
@@ -2914,12 +1571,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:adc0:evctrl:startei
   register_id: register:adc0:evctrl
   peripheral: ADC0
@@ -2928,12 +1579,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:adc0:intctrl:resrdy
   register_id: register:adc0:intctrl
   peripheral: ADC0
@@ -2942,12 +1587,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:adc0:intctrl:wcmp
   register_id: register:adc0:intctrl
   peripheral: ADC0
@@ -2956,12 +1595,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:adc0:intflags:resrdy
   register_id: register:adc0:intflags
   peripheral: ADC0
@@ -2970,12 +1603,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:adc0:intflags:wcmp
   register_id: register:adc0:intflags
   peripheral: ADC0
@@ -2984,12 +1611,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:adc0:dbgctrl:dbgrun
   register_id: register:adc0:dbgctrl
   peripheral: ADC0
@@ -2998,12 +1619,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:adc0:temp:temp
   register_id: register:adc0:temp
   peripheral: ADC0
@@ -3012,12 +1627,6 @@ register_fields:
   bit_offset: 0
   bit_width: 8
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:mclkctrla:clksel
   register_id: register:clkctrl:mclkctrla
   peripheral: CLKCTRL
@@ -3026,12 +1635,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:mclkctrla:clkout
   register_id: register:clkctrl:mclkctrla
   peripheral: CLKCTRL
@@ -3040,12 +1643,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:mclkctrlb:pen
   register_id: register:clkctrl:mclkctrlb
   peripheral: CLKCTRL
@@ -3054,12 +1651,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:mclkctrlb:pdiv
   register_id: register:clkctrl:mclkctrlb
   peripheral: CLKCTRL
@@ -3068,12 +1659,6 @@ register_fields:
   bit_offset: 1
   bit_width: 4
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:mclklock:locken
   register_id: register:clkctrl:mclklock
   peripheral: CLKCTRL
@@ -3082,12 +1667,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:mclkstatus:sosc
   register_id: register:clkctrl:mclkstatus
   peripheral: CLKCTRL
@@ -3096,12 +1675,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:mclkstatus:oschfs
   register_id: register:clkctrl:mclkstatus
   peripheral: CLKCTRL
@@ -3110,12 +1683,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:mclkstatus:osc32ks
   register_id: register:clkctrl:mclkstatus
   peripheral: CLKCTRL
@@ -3124,12 +1691,6 @@ register_fields:
   bit_offset: 2
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:mclkstatus:xosc32ks
   register_id: register:clkctrl:mclkstatus
   peripheral: CLKCTRL
@@ -3138,12 +1699,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:mclkstatus:exts
   register_id: register:clkctrl:mclkstatus
   peripheral: CLKCTRL
@@ -3152,12 +1707,6 @@ register_fields:
   bit_offset: 4
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:mclkstatus:plls
   register_id: register:clkctrl:mclkstatus
   peripheral: CLKCTRL
@@ -3166,12 +1715,6 @@ register_fields:
   bit_offset: 5
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:oschfctrla:autotune
   register_id: register:clkctrl:oschfctrla
   peripheral: CLKCTRL
@@ -3180,12 +1723,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:oschfctrla:frqsel
   register_id: register:clkctrl:oschfctrla
   peripheral: CLKCTRL
@@ -3194,12 +1731,6 @@ register_fields:
   bit_offset: 2
   bit_width: 4
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:oschfctrla:runstdby
   register_id: register:clkctrl:oschfctrla
   peripheral: CLKCTRL
@@ -3208,12 +1739,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:oschftune:tune
   register_id: register:clkctrl:oschftune
   peripheral: CLKCTRL
@@ -3222,12 +1747,6 @@ register_fields:
   bit_offset: 0
   bit_width: 8
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:pllctrla:mulfac
   register_id: register:clkctrl:pllctrla
   peripheral: CLKCTRL
@@ -3236,12 +1755,6 @@ register_fields:
   bit_offset: 0
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:pllctrla:source
   register_id: register:clkctrl:pllctrla
   peripheral: CLKCTRL
@@ -3250,12 +1763,6 @@ register_fields:
   bit_offset: 6
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:pllctrla:runstdby
   register_id: register:clkctrl:pllctrla
   peripheral: CLKCTRL
@@ -3264,12 +1771,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:osc32kctrla:runstdby
   register_id: register:clkctrl:osc32kctrla
   peripheral: CLKCTRL
@@ -3278,12 +1779,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:xosc32kctrla:enable
   register_id: register:clkctrl:xosc32kctrla
   peripheral: CLKCTRL
@@ -3292,12 +1787,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:xosc32kctrla:lpmode
   register_id: register:clkctrl:xosc32kctrla
   peripheral: CLKCTRL
@@ -3306,12 +1795,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:xosc32kctrla:sel
   register_id: register:clkctrl:xosc32kctrla
   peripheral: CLKCTRL
@@ -3320,12 +1803,6 @@ register_fields:
   bit_offset: 2
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:xosc32kctrla:csut
   register_id: register:clkctrl:xosc32kctrla
   peripheral: CLKCTRL
@@ -3334,12 +1811,6 @@ register_fields:
   bit_offset: 4
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:clkctrl:xosc32kctrla:runstdby
   register_id: register:clkctrl:xosc32kctrla
   peripheral: CLKCTRL
@@ -3348,12 +1819,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:intflags:int
   register_id: register:porta:intflags
   peripheral: PORTA
@@ -3362,12 +1827,6 @@ register_fields:
   bit_offset: 0
   bit_width: 8
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:portctrl:srl
   register_id: register:porta:portctrl
   peripheral: PORTA
@@ -3376,12 +1835,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pinconfig:isc
   register_id: register:porta:pinconfig
   peripheral: PORTA
@@ -3390,12 +1843,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pinconfig:pullupen
   register_id: register:porta:pinconfig
   peripheral: PORTA
@@ -3404,12 +1851,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pinconfig:inven
   register_id: register:porta:pinconfig
   peripheral: PORTA
@@ -3418,12 +1859,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pinctrlupd:pinctrlupd
   register_id: register:porta:pinctrlupd
   peripheral: PORTA
@@ -3432,12 +1867,6 @@ register_fields:
   bit_offset: 0
   bit_width: 8
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pinctrlset:pinctrlset
   register_id: register:porta:pinctrlset
   peripheral: PORTA
@@ -3446,12 +1875,6 @@ register_fields:
   bit_offset: 0
   bit_width: 8
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pinctrlclr:pinctrlclr
   register_id: register:porta:pinctrlclr
   peripheral: PORTA
@@ -3460,12 +1883,6 @@ register_fields:
   bit_offset: 0
   bit_width: 8
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin0ctrl:isc
   register_id: register:porta:pin0ctrl
   peripheral: PORTA
@@ -3474,12 +1891,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin0ctrl:pullupen
   register_id: register:porta:pin0ctrl
   peripheral: PORTA
@@ -3488,12 +1899,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin0ctrl:inven
   register_id: register:porta:pin0ctrl
   peripheral: PORTA
@@ -3502,12 +1907,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin1ctrl:isc
   register_id: register:porta:pin1ctrl
   peripheral: PORTA
@@ -3516,12 +1915,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin1ctrl:pullupen
   register_id: register:porta:pin1ctrl
   peripheral: PORTA
@@ -3530,12 +1923,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin1ctrl:inven
   register_id: register:porta:pin1ctrl
   peripheral: PORTA
@@ -3544,12 +1931,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin2ctrl:isc
   register_id: register:porta:pin2ctrl
   peripheral: PORTA
@@ -3558,12 +1939,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin2ctrl:pullupen
   register_id: register:porta:pin2ctrl
   peripheral: PORTA
@@ -3572,12 +1947,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin2ctrl:inven
   register_id: register:porta:pin2ctrl
   peripheral: PORTA
@@ -3586,12 +1955,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin3ctrl:isc
   register_id: register:porta:pin3ctrl
   peripheral: PORTA
@@ -3600,12 +1963,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin3ctrl:pullupen
   register_id: register:porta:pin3ctrl
   peripheral: PORTA
@@ -3614,12 +1971,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin3ctrl:inven
   register_id: register:porta:pin3ctrl
   peripheral: PORTA
@@ -3628,12 +1979,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin4ctrl:isc
   register_id: register:porta:pin4ctrl
   peripheral: PORTA
@@ -3642,12 +1987,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin4ctrl:pullupen
   register_id: register:porta:pin4ctrl
   peripheral: PORTA
@@ -3656,12 +1995,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin4ctrl:inven
   register_id: register:porta:pin4ctrl
   peripheral: PORTA
@@ -3670,12 +2003,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin5ctrl:isc
   register_id: register:porta:pin5ctrl
   peripheral: PORTA
@@ -3684,12 +2011,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin5ctrl:pullupen
   register_id: register:porta:pin5ctrl
   peripheral: PORTA
@@ -3698,12 +2019,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin5ctrl:inven
   register_id: register:porta:pin5ctrl
   peripheral: PORTA
@@ -3712,12 +2027,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin6ctrl:isc
   register_id: register:porta:pin6ctrl
   peripheral: PORTA
@@ -3726,12 +2035,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin6ctrl:pullupen
   register_id: register:porta:pin6ctrl
   peripheral: PORTA
@@ -3740,12 +2043,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin6ctrl:inven
   register_id: register:porta:pin6ctrl
   peripheral: PORTA
@@ -3754,12 +2051,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin7ctrl:isc
   register_id: register:porta:pin7ctrl
   peripheral: PORTA
@@ -3768,12 +2059,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin7ctrl:pullupen
   register_id: register:porta:pin7ctrl
   peripheral: PORTA
@@ -3782,12 +2067,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:porta:pin7ctrl:inven
   register_id: register:porta:pin7ctrl
   peripheral: PORTA
@@ -3796,12 +2075,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:intflags:int
   register_id: register:portc:intflags
   peripheral: PORTC
@@ -3810,12 +2083,6 @@ register_fields:
   bit_offset: 0
   bit_width: 8
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:portctrl:srl
   register_id: register:portc:portctrl
   peripheral: PORTC
@@ -3824,12 +2091,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pinconfig:isc
   register_id: register:portc:pinconfig
   peripheral: PORTC
@@ -3838,12 +2099,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pinconfig:pullupen
   register_id: register:portc:pinconfig
   peripheral: PORTC
@@ -3852,12 +2107,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pinconfig:inven
   register_id: register:portc:pinconfig
   peripheral: PORTC
@@ -3866,12 +2115,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pinctrlupd:pinctrlupd
   register_id: register:portc:pinctrlupd
   peripheral: PORTC
@@ -3880,12 +2123,6 @@ register_fields:
   bit_offset: 0
   bit_width: 8
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pinctrlset:pinctrlset
   register_id: register:portc:pinctrlset
   peripheral: PORTC
@@ -3894,12 +2131,6 @@ register_fields:
   bit_offset: 0
   bit_width: 8
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pinctrlclr:pinctrlclr
   register_id: register:portc:pinctrlclr
   peripheral: PORTC
@@ -3908,12 +2139,6 @@ register_fields:
   bit_offset: 0
   bit_width: 8
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin0ctrl:isc
   register_id: register:portc:pin0ctrl
   peripheral: PORTC
@@ -3922,12 +2147,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin0ctrl:pullupen
   register_id: register:portc:pin0ctrl
   peripheral: PORTC
@@ -3936,12 +2155,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin0ctrl:inven
   register_id: register:portc:pin0ctrl
   peripheral: PORTC
@@ -3950,12 +2163,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin1ctrl:isc
   register_id: register:portc:pin1ctrl
   peripheral: PORTC
@@ -3964,12 +2171,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin1ctrl:pullupen
   register_id: register:portc:pin1ctrl
   peripheral: PORTC
@@ -3978,12 +2179,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin1ctrl:inven
   register_id: register:portc:pin1ctrl
   peripheral: PORTC
@@ -3992,12 +2187,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin2ctrl:isc
   register_id: register:portc:pin2ctrl
   peripheral: PORTC
@@ -4006,12 +2195,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin2ctrl:pullupen
   register_id: register:portc:pin2ctrl
   peripheral: PORTC
@@ -4020,12 +2203,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin2ctrl:inven
   register_id: register:portc:pin2ctrl
   peripheral: PORTC
@@ -4034,12 +2211,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin3ctrl:isc
   register_id: register:portc:pin3ctrl
   peripheral: PORTC
@@ -4048,12 +2219,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin3ctrl:pullupen
   register_id: register:portc:pin3ctrl
   peripheral: PORTC
@@ -4062,12 +2227,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin3ctrl:inven
   register_id: register:portc:pin3ctrl
   peripheral: PORTC
@@ -4076,12 +2235,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin4ctrl:isc
   register_id: register:portc:pin4ctrl
   peripheral: PORTC
@@ -4090,12 +2243,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin4ctrl:pullupen
   register_id: register:portc:pin4ctrl
   peripheral: PORTC
@@ -4104,12 +2251,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin4ctrl:inven
   register_id: register:portc:pin4ctrl
   peripheral: PORTC
@@ -4118,12 +2259,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin5ctrl:isc
   register_id: register:portc:pin5ctrl
   peripheral: PORTC
@@ -4132,12 +2267,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin5ctrl:pullupen
   register_id: register:portc:pin5ctrl
   peripheral: PORTC
@@ -4146,12 +2275,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin5ctrl:inven
   register_id: register:portc:pin5ctrl
   peripheral: PORTC
@@ -4160,12 +2283,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin6ctrl:isc
   register_id: register:portc:pin6ctrl
   peripheral: PORTC
@@ -4174,12 +2291,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin6ctrl:pullupen
   register_id: register:portc:pin6ctrl
   peripheral: PORTC
@@ -4188,12 +2299,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin6ctrl:inven
   register_id: register:portc:pin6ctrl
   peripheral: PORTC
@@ -4202,12 +2307,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin7ctrl:isc
   register_id: register:portc:pin7ctrl
   peripheral: PORTC
@@ -4216,12 +2315,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin7ctrl:pullupen
   register_id: register:portc:pin7ctrl
   peripheral: PORTC
@@ -4230,12 +2323,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portc:pin7ctrl:inven
   register_id: register:portc:pin7ctrl
   peripheral: PORTC
@@ -4244,12 +2331,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:evsysroutea:evouta
   register_id: register:portmux:evsysroutea
   peripheral: PORTMUX
@@ -4258,12 +2339,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:evsysroutea:evoutc
   register_id: register:portmux:evsysroutea
   peripheral: PORTMUX
@@ -4272,12 +2347,6 @@ register_fields:
   bit_offset: 2
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:evsysroutea:evoutd
   register_id: register:portmux:evsysroutea
   peripheral: PORTMUX
@@ -4286,12 +2355,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:evsysroutea:evoutf
   register_id: register:portmux:evsysroutea
   peripheral: PORTMUX
@@ -4300,12 +2363,6 @@ register_fields:
   bit_offset: 5
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:cclroutea:lut0
   register_id: register:portmux:cclroutea
   peripheral: PORTMUX
@@ -4314,12 +2371,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:cclroutea:lut1
   register_id: register:portmux:cclroutea
   peripheral: PORTMUX
@@ -4328,12 +2379,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:cclroutea:lut2
   register_id: register:portmux:cclroutea
   peripheral: PORTMUX
@@ -4342,12 +2387,6 @@ register_fields:
   bit_offset: 2
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:cclroutea:lut3
   register_id: register:portmux:cclroutea
   peripheral: PORTMUX
@@ -4356,12 +2395,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:usartroutea:usart0
   register_id: register:portmux:usartroutea
   peripheral: PORTMUX
@@ -4370,12 +2403,6 @@ register_fields:
   bit_offset: 0
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:usartroutea:usart1
   register_id: register:portmux:usartroutea
   peripheral: PORTMUX
@@ -4384,12 +2411,6 @@ register_fields:
   bit_offset: 2
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:usartroutea:usart2
   register_id: register:portmux:usartroutea
   peripheral: PORTMUX
@@ -4398,12 +2419,6 @@ register_fields:
   bit_offset: 4
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:spiroutea:spi0
   register_id: register:portmux:spiroutea
   peripheral: PORTMUX
@@ -4412,12 +2427,6 @@ register_fields:
   bit_offset: 0
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:spiroutea:spi1
   register_id: register:portmux:spiroutea
   peripheral: PORTMUX
@@ -4426,12 +2435,6 @@ register_fields:
   bit_offset: 2
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:twiroutea:twi0
   register_id: register:portmux:twiroutea
   peripheral: PORTMUX
@@ -4440,12 +2443,6 @@ register_fields:
   bit_offset: 0
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:twiroutea:twi1
   register_id: register:portmux:twiroutea
   peripheral: PORTMUX
@@ -4454,12 +2451,6 @@ register_fields:
   bit_offset: 2
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:tcaroutea:tca0
   register_id: register:portmux:tcaroutea
   peripheral: PORTMUX
@@ -4468,12 +2459,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:tcbroutea:tcb0
   register_id: register:portmux:tcbroutea
   peripheral: PORTMUX
@@ -4482,12 +2467,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:tcbroutea:tcb1
   register_id: register:portmux:tcbroutea
   peripheral: PORTMUX
@@ -4496,12 +2475,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:tcbroutea:tcb2
   register_id: register:portmux:tcbroutea
   peripheral: PORTMUX
@@ -4510,12 +2483,6 @@ register_fields:
   bit_offset: 2
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:tcdroutea:tcd0
   register_id: register:portmux:tcdroutea
   peripheral: PORTMUX
@@ -4524,12 +2491,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:acroutea:ac0
   register_id: register:portmux:acroutea
   peripheral: PORTMUX
@@ -4538,12 +2499,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:acroutea:ac1
   register_id: register:portmux:acroutea
   peripheral: PORTMUX
@@ -4552,12 +2507,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:acroutea:ac2
   register_id: register:portmux:acroutea
   peripheral: PORTMUX
@@ -4566,12 +2515,6 @@ register_fields:
   bit_offset: 2
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:portmux:zcdroutea:zcd0
   register_id: register:portmux:zcdroutea
   peripheral: PORTMUX
@@ -4580,12 +2523,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:spi0:ctrla:enable
   register_id: register:spi0:ctrla
   peripheral: SPI0
@@ -4594,12 +2531,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:spi0:ctrla:presc
   register_id: register:spi0:ctrla
   peripheral: SPI0
@@ -4608,12 +2539,6 @@ register_fields:
   bit_offset: 1
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:spi0:ctrla:clk2x
   register_id: register:spi0:ctrla
   peripheral: SPI0
@@ -4622,12 +2547,6 @@ register_fields:
   bit_offset: 4
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:spi0:ctrla:master
   register_id: register:spi0:ctrla
   peripheral: SPI0
@@ -4636,12 +2555,6 @@ register_fields:
   bit_offset: 5
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:spi0:ctrla:dord
   register_id: register:spi0:ctrla
   peripheral: SPI0
@@ -4650,12 +2563,6 @@ register_fields:
   bit_offset: 6
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:spi0:ctrlb:mode
   register_id: register:spi0:ctrlb
   peripheral: SPI0
@@ -4664,12 +2571,6 @@ register_fields:
   bit_offset: 0
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:spi0:ctrlb:ssd
   register_id: register:spi0:ctrlb
   peripheral: SPI0
@@ -4678,12 +2579,6 @@ register_fields:
   bit_offset: 2
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:spi0:ctrlb:bufwr
   register_id: register:spi0:ctrlb
   peripheral: SPI0
@@ -4692,12 +2587,6 @@ register_fields:
   bit_offset: 6
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:spi0:ctrlb:bufen
   register_id: register:spi0:ctrlb
   peripheral: SPI0
@@ -4706,12 +2595,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:spi0:intctrl:ie
   register_id: register:spi0:intctrl
   peripheral: SPI0
@@ -4720,12 +2603,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:spi0:intctrl:ssie
   register_id: register:spi0:intctrl
   peripheral: SPI0
@@ -4734,12 +2611,6 @@ register_fields:
   bit_offset: 4
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:spi0:intctrl:dreie
   register_id: register:spi0:intctrl
   peripheral: SPI0
@@ -4748,12 +2619,6 @@ register_fields:
   bit_offset: 5
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:spi0:intctrl:txcie
   register_id: register:spi0:intctrl
   peripheral: SPI0
@@ -4762,12 +2627,6 @@ register_fields:
   bit_offset: 6
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:spi0:intctrl:rxcie
   register_id: register:spi0:intctrl
   peripheral: SPI0
@@ -4776,12 +2635,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:spi0:intflags:bufovf
   register_id: register:spi0:intflags
   peripheral: SPI0
@@ -4790,12 +2643,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:spi0:intflags:ssif
   register_id: register:spi0:intflags
   peripheral: SPI0
@@ -4804,12 +2651,6 @@ register_fields:
   bit_offset: 4
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:spi0:intflags:dreif
   register_id: register:spi0:intflags
   peripheral: SPI0
@@ -4818,12 +2659,6 @@ register_fields:
   bit_offset: 5
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:spi0:intflags:txcif
   register_id: register:spi0:intflags
   peripheral: SPI0
@@ -4832,12 +2667,6 @@ register_fields:
   bit_offset: 6
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:spi0:intflags:wrcol
   register_id: register:spi0:intflags
   peripheral: SPI0
@@ -4846,12 +2675,6 @@ register_fields:
   bit_offset: 6
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:spi0:intflags:if
   register_id: register:spi0:intflags
   peripheral: SPI0
@@ -4860,12 +2683,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:spi0:intflags:rxcif
   register_id: register:spi0:intflags
   peripheral: SPI0
@@ -4874,12 +2691,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrla:enable
   register_id: register:tca0:ctrla
   peripheral: TCA0
@@ -4888,12 +2699,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrla:clksel
   register_id: register:tca0:ctrla
   peripheral: TCA0
@@ -4902,12 +2707,6 @@ register_fields:
   bit_offset: 1
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrla:runstdby
   register_id: register:tca0:ctrla
   peripheral: TCA0
@@ -4916,12 +2715,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrlb:wgmode
   register_id: register:tca0:ctrlb
   peripheral: TCA0
@@ -4930,12 +2723,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrlb:alupd
   register_id: register:tca0:ctrlb
   peripheral: TCA0
@@ -4944,12 +2731,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrlb:cmp0en
   register_id: register:tca0:ctrlb
   peripheral: TCA0
@@ -4958,12 +2739,6 @@ register_fields:
   bit_offset: 4
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrlb:cmp1en
   register_id: register:tca0:ctrlb
   peripheral: TCA0
@@ -4972,12 +2747,6 @@ register_fields:
   bit_offset: 5
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrlb:cmp2en
   register_id: register:tca0:ctrlb
   peripheral: TCA0
@@ -4986,12 +2755,6 @@ register_fields:
   bit_offset: 6
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrlc:cmp0ov
   register_id: register:tca0:ctrlc
   peripheral: TCA0
@@ -5000,12 +2763,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrlc:cmp1ov
   register_id: register:tca0:ctrlc
   peripheral: TCA0
@@ -5014,12 +2771,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrlc:cmp2ov
   register_id: register:tca0:ctrlc
   peripheral: TCA0
@@ -5028,12 +2779,6 @@ register_fields:
   bit_offset: 2
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrld:splitm
   register_id: register:tca0:ctrld
   peripheral: TCA0
@@ -5042,12 +2787,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrleclr:dir
   register_id: register:tca0:ctrleclr
   peripheral: TCA0
@@ -5056,12 +2795,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrleclr:lupd
   register_id: register:tca0:ctrleclr
   peripheral: TCA0
@@ -5070,12 +2803,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrleclr:cmd
   register_id: register:tca0:ctrleclr
   peripheral: TCA0
@@ -5084,12 +2811,6 @@ register_fields:
   bit_offset: 2
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrleset:dir
   register_id: register:tca0:ctrleset
   peripheral: TCA0
@@ -5098,12 +2819,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrleset:lupd
   register_id: register:tca0:ctrleset
   peripheral: TCA0
@@ -5112,12 +2827,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrleset:cmd
   register_id: register:tca0:ctrleset
   peripheral: TCA0
@@ -5126,12 +2835,6 @@ register_fields:
   bit_offset: 2
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrlfclr:perbv
   register_id: register:tca0:ctrlfclr
   peripheral: TCA0
@@ -5140,12 +2843,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrlfclr:cmp0bv
   register_id: register:tca0:ctrlfclr
   peripheral: TCA0
@@ -5154,12 +2851,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrlfclr:cmp1bv
   register_id: register:tca0:ctrlfclr
   peripheral: TCA0
@@ -5168,12 +2859,6 @@ register_fields:
   bit_offset: 2
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrlfclr:cmp2bv
   register_id: register:tca0:ctrlfclr
   peripheral: TCA0
@@ -5182,12 +2867,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrlfset:perbv
   register_id: register:tca0:ctrlfset
   peripheral: TCA0
@@ -5196,12 +2875,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrlfset:cmp0bv
   register_id: register:tca0:ctrlfset
   peripheral: TCA0
@@ -5210,12 +2883,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrlfset:cmp1bv
   register_id: register:tca0:ctrlfset
   peripheral: TCA0
@@ -5224,12 +2891,6 @@ register_fields:
   bit_offset: 2
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:ctrlfset:cmp2bv
   register_id: register:tca0:ctrlfset
   peripheral: TCA0
@@ -5238,12 +2899,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:evctrl:cntaei
   register_id: register:tca0:evctrl
   peripheral: TCA0
@@ -5252,12 +2907,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:evctrl:evacta
   register_id: register:tca0:evctrl
   peripheral: TCA0
@@ -5266,12 +2915,6 @@ register_fields:
   bit_offset: 1
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:evctrl:cntbei
   register_id: register:tca0:evctrl
   peripheral: TCA0
@@ -5280,12 +2923,6 @@ register_fields:
   bit_offset: 4
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:evctrl:evactb
   register_id: register:tca0:evctrl
   peripheral: TCA0
@@ -5294,12 +2931,6 @@ register_fields:
   bit_offset: 5
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:intctrl:ovf
   register_id: register:tca0:intctrl
   peripheral: TCA0
@@ -5308,12 +2939,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:intctrl:cmp0
   register_id: register:tca0:intctrl
   peripheral: TCA0
@@ -5322,12 +2947,6 @@ register_fields:
   bit_offset: 4
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:intctrl:cmp1
   register_id: register:tca0:intctrl
   peripheral: TCA0
@@ -5336,12 +2955,6 @@ register_fields:
   bit_offset: 5
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:intctrl:cmp2
   register_id: register:tca0:intctrl
   peripheral: TCA0
@@ -5350,12 +2963,6 @@ register_fields:
   bit_offset: 6
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:intflags:ovf
   register_id: register:tca0:intflags
   peripheral: TCA0
@@ -5364,12 +2971,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:intflags:cmp0
   register_id: register:tca0:intflags
   peripheral: TCA0
@@ -5378,12 +2979,6 @@ register_fields:
   bit_offset: 4
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:intflags:cmp1
   register_id: register:tca0:intflags
   peripheral: TCA0
@@ -5392,12 +2987,6 @@ register_fields:
   bit_offset: 5
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:intflags:cmp2
   register_id: register:tca0:intflags
   peripheral: TCA0
@@ -5406,12 +2995,6 @@ register_fields:
   bit_offset: 6
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:tca0:dbgctrl:dbgrun
   register_id: register:tca0:dbgctrl
   peripheral: TCA0
@@ -5420,12 +3003,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:ctrla:fmpen
   register_id: register:twi0:ctrla
   peripheral: TWI0
@@ -5434,12 +3011,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:ctrla:sdahold
   register_id: register:twi0:ctrla
   peripheral: TWI0
@@ -5448,12 +3019,6 @@ register_fields:
   bit_offset: 2
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:ctrla:sdasetup
   register_id: register:twi0:ctrla
   peripheral: TWI0
@@ -5462,12 +3027,6 @@ register_fields:
   bit_offset: 4
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:ctrla:inputlvl
   register_id: register:twi0:ctrla
   peripheral: TWI0
@@ -5476,12 +3035,6 @@ register_fields:
   bit_offset: 6
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:dualctrl:enable
   register_id: register:twi0:dualctrl
   peripheral: TWI0
@@ -5490,12 +3043,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:dualctrl:fmpen
   register_id: register:twi0:dualctrl
   peripheral: TWI0
@@ -5504,12 +3051,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:dualctrl:sdahold
   register_id: register:twi0:dualctrl
   peripheral: TWI0
@@ -5518,12 +3059,6 @@ register_fields:
   bit_offset: 2
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:dualctrl:inputlvl
   register_id: register:twi0:dualctrl
   peripheral: TWI0
@@ -5532,12 +3067,6 @@ register_fields:
   bit_offset: 6
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:dbgctrl:dbgrun
   register_id: register:twi0:dbgctrl
   peripheral: TWI0
@@ -5546,12 +3075,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:mctrla:enable
   register_id: register:twi0:mctrla
   peripheral: TWI0
@@ -5560,12 +3083,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:mctrla:smen
   register_id: register:twi0:mctrla
   peripheral: TWI0
@@ -5574,12 +3091,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:mctrla:timeout
   register_id: register:twi0:mctrla
   peripheral: TWI0
@@ -5588,12 +3099,6 @@ register_fields:
   bit_offset: 2
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:mctrla:qcen
   register_id: register:twi0:mctrla
   peripheral: TWI0
@@ -5602,12 +3107,6 @@ register_fields:
   bit_offset: 4
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:mctrla:wien
   register_id: register:twi0:mctrla
   peripheral: TWI0
@@ -5616,12 +3115,6 @@ register_fields:
   bit_offset: 6
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:mctrla:rien
   register_id: register:twi0:mctrla
   peripheral: TWI0
@@ -5630,12 +3123,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:mctrlb:mcmd
   register_id: register:twi0:mctrlb
   peripheral: TWI0
@@ -5644,12 +3131,6 @@ register_fields:
   bit_offset: 0
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:mctrlb:ackact
   register_id: register:twi0:mctrlb
   peripheral: TWI0
@@ -5658,12 +3139,6 @@ register_fields:
   bit_offset: 2
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:mctrlb:flush
   register_id: register:twi0:mctrlb
   peripheral: TWI0
@@ -5672,12 +3147,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:mstatus:busstate
   register_id: register:twi0:mstatus
   peripheral: TWI0
@@ -5686,12 +3155,6 @@ register_fields:
   bit_offset: 0
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:mstatus:buserr
   register_id: register:twi0:mstatus
   peripheral: TWI0
@@ -5700,12 +3163,6 @@ register_fields:
   bit_offset: 2
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:mstatus:arblost
   register_id: register:twi0:mstatus
   peripheral: TWI0
@@ -5714,12 +3171,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:mstatus:rxack
   register_id: register:twi0:mstatus
   peripheral: TWI0
@@ -5728,12 +3179,6 @@ register_fields:
   bit_offset: 4
   bit_width: 1
   access: r
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:mstatus:clkhold
   register_id: register:twi0:mstatus
   peripheral: TWI0
@@ -5742,12 +3187,6 @@ register_fields:
   bit_offset: 5
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:mstatus:wif
   register_id: register:twi0:mstatus
   peripheral: TWI0
@@ -5756,12 +3195,6 @@ register_fields:
   bit_offset: 6
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:mstatus:rif
   register_id: register:twi0:mstatus
   peripheral: TWI0
@@ -5770,12 +3203,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:sctrla:enable
   register_id: register:twi0:sctrla
   peripheral: TWI0
@@ -5784,12 +3211,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:sctrla:smen
   register_id: register:twi0:sctrla
   peripheral: TWI0
@@ -5798,12 +3219,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:sctrla:pmen
   register_id: register:twi0:sctrla
   peripheral: TWI0
@@ -5812,12 +3227,6 @@ register_fields:
   bit_offset: 2
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:sctrla:pien
   register_id: register:twi0:sctrla
   peripheral: TWI0
@@ -5826,12 +3235,6 @@ register_fields:
   bit_offset: 5
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:sctrla:apien
   register_id: register:twi0:sctrla
   peripheral: TWI0
@@ -5840,12 +3243,6 @@ register_fields:
   bit_offset: 6
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:sctrla:dien
   register_id: register:twi0:sctrla
   peripheral: TWI0
@@ -5854,12 +3251,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:sctrlb:scmd
   register_id: register:twi0:sctrlb
   peripheral: TWI0
@@ -5868,12 +3259,6 @@ register_fields:
   bit_offset: 0
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:sctrlb:ackact
   register_id: register:twi0:sctrlb
   peripheral: TWI0
@@ -5882,12 +3267,6 @@ register_fields:
   bit_offset: 2
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:sstatus:ap
   register_id: register:twi0:sstatus
   peripheral: TWI0
@@ -5896,12 +3275,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: r
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:sstatus:dir
   register_id: register:twi0:sstatus
   peripheral: TWI0
@@ -5910,12 +3283,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: r
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:sstatus:buserr
   register_id: register:twi0:sstatus
   peripheral: TWI0
@@ -5924,12 +3291,6 @@ register_fields:
   bit_offset: 2
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:sstatus:coll
   register_id: register:twi0:sstatus
   peripheral: TWI0
@@ -5938,12 +3299,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:sstatus:rxack
   register_id: register:twi0:sstatus
   peripheral: TWI0
@@ -5952,12 +3307,6 @@ register_fields:
   bit_offset: 4
   bit_width: 1
   access: r
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:sstatus:clkhold
   register_id: register:twi0:sstatus
   peripheral: TWI0
@@ -5966,12 +3315,6 @@ register_fields:
   bit_offset: 5
   bit_width: 1
   access: r
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:sstatus:apif
   register_id: register:twi0:sstatus
   peripheral: TWI0
@@ -5980,12 +3323,6 @@ register_fields:
   bit_offset: 6
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:sstatus:dif
   register_id: register:twi0:sstatus
   peripheral: TWI0
@@ -5994,12 +3331,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:saddrmask:addren
   register_id: register:twi0:saddrmask
   peripheral: TWI0
@@ -6008,12 +3339,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:twi0:saddrmask:addrmask
   register_id: register:twi0:saddrmask
   peripheral: TWI0
@@ -6022,12 +3347,6 @@ register_fields:
   bit_offset: 1
   bit_width: 7
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:rxdatal:data
   register_id: register:usart0:rxdatal
   peripheral: USART0
@@ -6036,12 +3355,6 @@ register_fields:
   bit_offset: 0
   bit_width: 8
   access: r
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:rxdatah:data8
   register_id: register:usart0:rxdatah
   peripheral: USART0
@@ -6050,12 +3363,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: r
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:rxdatah:perr
   register_id: register:usart0:rxdatah
   peripheral: USART0
@@ -6064,12 +3371,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: r
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:rxdatah:ferr
   register_id: register:usart0:rxdatah
   peripheral: USART0
@@ -6078,12 +3379,6 @@ register_fields:
   bit_offset: 2
   bit_width: 1
   access: r
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:rxdatah:bufovf
   register_id: register:usart0:rxdatah
   peripheral: USART0
@@ -6092,12 +3387,6 @@ register_fields:
   bit_offset: 6
   bit_width: 1
   access: r
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:rxdatah:rxcif
   register_id: register:usart0:rxdatah
   peripheral: USART0
@@ -6106,12 +3395,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: r
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:txdatal:data
   register_id: register:usart0:txdatal
   peripheral: USART0
@@ -6120,12 +3403,6 @@ register_fields:
   bit_offset: 0
   bit_width: 8
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:txdatah:data8
   register_id: register:usart0:txdatah
   peripheral: USART0
@@ -6134,12 +3411,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:status:wfb
   register_id: register:usart0:status
   peripheral: USART0
@@ -6148,12 +3419,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:status:bdf
   register_id: register:usart0:status
   peripheral: USART0
@@ -6162,12 +3427,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:status:isfif
   register_id: register:usart0:status
   peripheral: USART0
@@ -6176,12 +3435,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:status:rxsif
   register_id: register:usart0:status
   peripheral: USART0
@@ -6190,12 +3443,6 @@ register_fields:
   bit_offset: 4
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:status:dreif
   register_id: register:usart0:status
   peripheral: USART0
@@ -6204,12 +3451,6 @@ register_fields:
   bit_offset: 5
   bit_width: 1
   access: r
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:status:txcif
   register_id: register:usart0:status
   peripheral: USART0
@@ -6218,12 +3459,6 @@ register_fields:
   bit_offset: 6
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:status:rxcif
   register_id: register:usart0:status
   peripheral: USART0
@@ -6232,12 +3467,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: r
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:ctrla:rs485
   register_id: register:usart0:ctrla
   peripheral: USART0
@@ -6246,12 +3475,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:ctrla:abeie
   register_id: register:usart0:ctrla
   peripheral: USART0
@@ -6260,12 +3483,6 @@ register_fields:
   bit_offset: 2
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:ctrla:lbme
   register_id: register:usart0:ctrla
   peripheral: USART0
@@ -6274,12 +3491,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:ctrla:rxsie
   register_id: register:usart0:ctrla
   peripheral: USART0
@@ -6288,12 +3499,6 @@ register_fields:
   bit_offset: 4
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:ctrla:dreie
   register_id: register:usart0:ctrla
   peripheral: USART0
@@ -6302,12 +3507,6 @@ register_fields:
   bit_offset: 5
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:ctrla:txcie
   register_id: register:usart0:ctrla
   peripheral: USART0
@@ -6316,12 +3515,6 @@ register_fields:
   bit_offset: 6
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:ctrla:rxcie
   register_id: register:usart0:ctrla
   peripheral: USART0
@@ -6330,12 +3523,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:ctrlb:mpcm
   register_id: register:usart0:ctrlb
   peripheral: USART0
@@ -6344,12 +3531,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:ctrlb:rxmode
   register_id: register:usart0:ctrlb
   peripheral: USART0
@@ -6358,12 +3539,6 @@ register_fields:
   bit_offset: 1
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:ctrlb:odme
   register_id: register:usart0:ctrlb
   peripheral: USART0
@@ -6372,12 +3547,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:ctrlb:sfden
   register_id: register:usart0:ctrlb
   peripheral: USART0
@@ -6386,12 +3555,6 @@ register_fields:
   bit_offset: 4
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:ctrlb:txen
   register_id: register:usart0:ctrlb
   peripheral: USART0
@@ -6400,12 +3563,6 @@ register_fields:
   bit_offset: 6
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:ctrlb:rxen
   register_id: register:usart0:ctrlb
   peripheral: USART0
@@ -6414,12 +3571,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:ctrlc:chsize
   register_id: register:usart0:ctrlc
   peripheral: USART0
@@ -6428,12 +3579,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:ctrlc:ucpha
   register_id: register:usart0:ctrlc
   peripheral: USART0
@@ -6442,12 +3587,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:ctrlc:udord
   register_id: register:usart0:ctrlc
   peripheral: USART0
@@ -6456,12 +3595,6 @@ register_fields:
   bit_offset: 2
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:ctrlc:sbmode
   register_id: register:usart0:ctrlc
   peripheral: USART0
@@ -6470,12 +3603,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:ctrlc:pmode
   register_id: register:usart0:ctrlc
   peripheral: USART0
@@ -6484,12 +3611,6 @@ register_fields:
   bit_offset: 4
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:ctrlc:cmode
   register_id: register:usart0:ctrlc
   peripheral: USART0
@@ -6498,12 +3619,6 @@ register_fields:
   bit_offset: 6
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:ctrld:abw
   register_id: register:usart0:ctrld
   peripheral: USART0
@@ -6512,12 +3627,6 @@ register_fields:
   bit_offset: 6
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:dbgctrl:dbgrun
   register_id: register:usart0:dbgctrl
   peripheral: USART0
@@ -6526,12 +3635,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:evctrl:irei
   register_id: register:usart0:evctrl
   peripheral: USART0
@@ -6540,12 +3643,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:txplctrl:txpl
   register_id: register:usart0:txplctrl
   peripheral: USART0
@@ -6554,12 +3651,6 @@ register_fields:
   bit_offset: 0
   bit_width: 8
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart0:rxplctrl:rxpl
   register_id: register:usart0:rxplctrl
   peripheral: USART0
@@ -6568,12 +3659,6 @@ register_fields:
   bit_offset: 0
   bit_width: 7
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:rxdatal:data
   register_id: register:usart1:rxdatal
   peripheral: USART1
@@ -6582,12 +3667,6 @@ register_fields:
   bit_offset: 0
   bit_width: 8
   access: r
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:rxdatah:data8
   register_id: register:usart1:rxdatah
   peripheral: USART1
@@ -6596,12 +3675,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: r
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:rxdatah:perr
   register_id: register:usart1:rxdatah
   peripheral: USART1
@@ -6610,12 +3683,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: r
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:rxdatah:ferr
   register_id: register:usart1:rxdatah
   peripheral: USART1
@@ -6624,12 +3691,6 @@ register_fields:
   bit_offset: 2
   bit_width: 1
   access: r
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:rxdatah:bufovf
   register_id: register:usart1:rxdatah
   peripheral: USART1
@@ -6638,12 +3699,6 @@ register_fields:
   bit_offset: 6
   bit_width: 1
   access: r
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:rxdatah:rxcif
   register_id: register:usart1:rxdatah
   peripheral: USART1
@@ -6652,12 +3707,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: r
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:txdatal:data
   register_id: register:usart1:txdatal
   peripheral: USART1
@@ -6666,12 +3715,6 @@ register_fields:
   bit_offset: 0
   bit_width: 8
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:txdatah:data8
   register_id: register:usart1:txdatah
   peripheral: USART1
@@ -6680,12 +3723,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:status:wfb
   register_id: register:usart1:status
   peripheral: USART1
@@ -6694,12 +3731,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:status:bdf
   register_id: register:usart1:status
   peripheral: USART1
@@ -6708,12 +3739,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:status:isfif
   register_id: register:usart1:status
   peripheral: USART1
@@ -6722,12 +3747,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:status:rxsif
   register_id: register:usart1:status
   peripheral: USART1
@@ -6736,12 +3755,6 @@ register_fields:
   bit_offset: 4
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:status:dreif
   register_id: register:usart1:status
   peripheral: USART1
@@ -6750,12 +3763,6 @@ register_fields:
   bit_offset: 5
   bit_width: 1
   access: r
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:status:txcif
   register_id: register:usart1:status
   peripheral: USART1
@@ -6764,12 +3771,6 @@ register_fields:
   bit_offset: 6
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:status:rxcif
   register_id: register:usart1:status
   peripheral: USART1
@@ -6778,12 +3779,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: r
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:ctrla:rs485
   register_id: register:usart1:ctrla
   peripheral: USART1
@@ -6792,12 +3787,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:ctrla:abeie
   register_id: register:usart1:ctrla
   peripheral: USART1
@@ -6806,12 +3795,6 @@ register_fields:
   bit_offset: 2
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:ctrla:lbme
   register_id: register:usart1:ctrla
   peripheral: USART1
@@ -6820,12 +3803,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:ctrla:rxsie
   register_id: register:usart1:ctrla
   peripheral: USART1
@@ -6834,12 +3811,6 @@ register_fields:
   bit_offset: 4
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:ctrla:dreie
   register_id: register:usart1:ctrla
   peripheral: USART1
@@ -6848,12 +3819,6 @@ register_fields:
   bit_offset: 5
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:ctrla:txcie
   register_id: register:usart1:ctrla
   peripheral: USART1
@@ -6862,12 +3827,6 @@ register_fields:
   bit_offset: 6
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:ctrla:rxcie
   register_id: register:usart1:ctrla
   peripheral: USART1
@@ -6876,12 +3835,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:ctrlb:mpcm
   register_id: register:usart1:ctrlb
   peripheral: USART1
@@ -6890,12 +3843,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:ctrlb:rxmode
   register_id: register:usart1:ctrlb
   peripheral: USART1
@@ -6904,12 +3851,6 @@ register_fields:
   bit_offset: 1
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:ctrlb:odme
   register_id: register:usart1:ctrlb
   peripheral: USART1
@@ -6918,12 +3859,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:ctrlb:sfden
   register_id: register:usart1:ctrlb
   peripheral: USART1
@@ -6932,12 +3867,6 @@ register_fields:
   bit_offset: 4
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:ctrlb:txen
   register_id: register:usart1:ctrlb
   peripheral: USART1
@@ -6946,12 +3875,6 @@ register_fields:
   bit_offset: 6
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:ctrlb:rxen
   register_id: register:usart1:ctrlb
   peripheral: USART1
@@ -6960,12 +3883,6 @@ register_fields:
   bit_offset: 7
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:ctrlc:chsize
   register_id: register:usart1:ctrlc
   peripheral: USART1
@@ -6974,12 +3891,6 @@ register_fields:
   bit_offset: 0
   bit_width: 3
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:ctrlc:ucpha
   register_id: register:usart1:ctrlc
   peripheral: USART1
@@ -6988,12 +3899,6 @@ register_fields:
   bit_offset: 1
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:ctrlc:udord
   register_id: register:usart1:ctrlc
   peripheral: USART1
@@ -7002,12 +3907,6 @@ register_fields:
   bit_offset: 2
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:ctrlc:sbmode
   register_id: register:usart1:ctrlc
   peripheral: USART1
@@ -7016,12 +3915,6 @@ register_fields:
   bit_offset: 3
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:ctrlc:pmode
   register_id: register:usart1:ctrlc
   peripheral: USART1
@@ -7030,12 +3923,6 @@ register_fields:
   bit_offset: 4
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:ctrlc:cmode
   register_id: register:usart1:ctrlc
   peripheral: USART1
@@ -7044,12 +3931,6 @@ register_fields:
   bit_offset: 6
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:ctrld:abw
   register_id: register:usart1:ctrld
   peripheral: USART1
@@ -7058,12 +3939,6 @@ register_fields:
   bit_offset: 6
   bit_width: 2
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:dbgctrl:dbgrun
   register_id: register:usart1:dbgctrl
   peripheral: USART1
@@ -7072,12 +3947,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:evctrl:irei
   register_id: register:usart1:evctrl
   peripheral: USART1
@@ -7086,12 +3955,6 @@ register_fields:
   bit_offset: 0
   bit_width: 1
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:txplctrl:txpl
   register_id: register:usart1:txplctrl
   peripheral: USART1
@@ -7100,12 +3963,6 @@ register_fields:
   bit_offset: 0
   bit_width: 8
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 - field_id: field:usart1:rxplctrl:rxpl
   register_id: register:usart1:rxplctrl
   peripheral: USART1
@@ -7114,23 +3971,11 @@ register_fields:
   bit_offset: 0
   bit_width: 7
   access: rw
-  provenance:
-    source_id: microchip-dfp-extract
-    source_path: atdf/AVR128DA32.atdf
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
 system_clock_profiles:
 - profile_id: safe-osc20m-20mhz
   kind: safe
   source_kind: internal-oscillator
   sysclk_hz: 20000000
-  provenance:
-    source_id: bootstrap-patch
-    source_path: patches/microchip/avr-da/devices/avr128da32.json
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   hclk_hz: 20000000
   pclk_hz: 20000000
   source_hz: 20000000
@@ -7138,12 +3983,6 @@ system_clock_profiles:
   kind: default
   source_kind: internal-oscillator
   sysclk_hz: 24000000
-  provenance:
-    source_id: bootstrap-patch
-    source_path: patches/microchip/avr-da/devices/avr128da32.json
-    patch_ids:
-    - microchip-avr-da-family-bootstrap-v1
-    - microchip-avr128da32-bootstrap
   hclk_hz: 24000000
   pclk_hz: 24000000
   source_hz: 24000000
