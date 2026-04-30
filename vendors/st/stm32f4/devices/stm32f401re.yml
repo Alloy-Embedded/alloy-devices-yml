@@ -58,7 +58,29 @@ provenance:
   - stm32-cubemx
   - stm32-overlay
   - stm32-tier
-memories: []
+memories:
+- name: flash
+  kind: flash
+  base_address: 134217728
+  size_bytes: 524288
+  access: rx
+  provenance:
+    source_id: bootstrap-patch
+    source_path: patches/st/stm32f4/devices/stm32f401re.json
+    patch_ids:
+    - st-stm32f4-family-bootstrap-v1
+    - st-stm32f4-stm32f401re-bootstrap
+- name: sram
+  kind: sram
+  base_address: 536870912
+  size_bytes: 98304
+  access: rwx
+  provenance:
+    source_id: bootstrap-patch
+    source_path: patches/st/stm32f4/devices/stm32f401re.json
+    patch_ids:
+    - st-stm32f4-family-bootstrap-v1
+    - st-stm32f4-stm32f401re-bootstrap
 packages:
 - name: lqfp64
   pin_count: 64
