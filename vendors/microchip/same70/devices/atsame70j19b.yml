@@ -2,16 +2,16 @@ schema: alloy.device.v2.1
 identity:
   vendor: microchip
   family: same70
-  device: atsame70q21b
+  device: atsame70j19b
   core:
     isa: armv7e-m
     name: cortex-m7f
     bits: 32
     fpu: true
     mpu: true
-  package: lfbga144
+  package: lqfp64
 provenance:
-  primary: microchip-atdf:ATSAME70Q21B.atdf
+  primary: microchip-atdf:ATSAME70J19B.atdf
   authored: auto
   notes: ATDF-extracted skeleton — pinout requires enrichment.
   secondary:
@@ -2696,651 +2696,6 @@ templates:
         bits:
         - 0
         - 31
-  hsmci:
-    registers:
-      hsmci_cr:
-        offset: 0
-        access: wo
-      hsmci_mr:
-        offset: 4
-        access: rw
-      hsmci_dtor:
-        offset: 8
-        access: rw
-      hsmci_sdcr:
-        offset: 12
-        access: rw
-      hsmci_argr:
-        offset: 16
-        access: rw
-      hsmci_cmdr:
-        offset: 20
-        access: wo
-      hsmci_blkr:
-        offset: 24
-        access: rw
-      hsmci_cstor:
-        offset: 28
-        access: rw
-      hsmci_rspr:
-        offset: 32
-        access: ro
-      hsmci_rdr:
-        offset: 48
-        access: ro
-      hsmci_tdr:
-        offset: 52
-        access: wo
-      hsmci_sr:
-        offset: 64
-        access: ro
-      hsmci_ier:
-        offset: 68
-        access: wo
-      hsmci_idr:
-        offset: 72
-        access: wo
-      hsmci_imr:
-        offset: 76
-        access: ro
-      hsmci_dma:
-        offset: 80
-        access: rw
-      hsmci_cfg:
-        offset: 84
-        access: rw
-      hsmci_wpmr:
-        offset: 228
-        access: rw
-      hsmci_wpsr:
-        offset: 232
-        access: ro
-      hsmci_fifo:
-        offset: '0x200'
-        access: rw
-    fields:
-      hsmci_cr.mcien:
-        bit: 0
-      hsmci_cr.mcidis:
-        bit: 1
-      hsmci_cr.pwsen:
-        bit: 2
-      hsmci_cr.pwsdis:
-        bit: 3
-      hsmci_cr.swrst:
-        bit: 7
-      hsmci_mr.clkdiv:
-        bits:
-        - 0
-        - 7
-      hsmci_mr.pwsdiv:
-        bits:
-        - 8
-        - 10
-      hsmci_mr.rdproof:
-        bit: 11
-      hsmci_mr.wrproof:
-        bit: 12
-      hsmci_mr.fbyte:
-        bit: 13
-      hsmci_mr.padv:
-        bit: 14
-      hsmci_mr.clkodd:
-        bit: 16
-      hsmci_dtor.dtocyc:
-        bits:
-        - 0
-        - 3
-      hsmci_dtor.dtomul:
-        bits:
-        - 4
-        - 6
-        enum:
-          _1: 0
-          _16: 1
-          _128: 2
-          _256: 3
-          _1024: 4
-          _4096: 5
-          _65536: 6
-          _1048576: 7
-      hsmci_sdcr.sdcsel:
-        bits:
-        - 0
-        - 1
-        enum:
-          slota: 0
-      hsmci_sdcr.sdcbus:
-        bits:
-        - 6
-        - 7
-        enum:
-          _1: 0
-          _4: 2
-          _8: 3
-      hsmci_argr.arg:
-        bits:
-        - 0
-        - 31
-      hsmci_cmdr.cmdnb:
-        bits:
-        - 0
-        - 5
-      hsmci_cmdr.rsptyp:
-        bits:
-        - 6
-        - 7
-        enum:
-          noresp: 0
-          _48_bit: 1
-          _136_bit: 2
-          r1b: 3
-      hsmci_cmdr.spcmd:
-        bits:
-        - 8
-        - 10
-        enum:
-          std: 0
-          init: 1
-          sync: 2
-          ce_ata: 3
-          it_cmd: 4
-          it_resp: 5
-          bor: 6
-          ebo: 7
-      hsmci_cmdr.opdcmd:
-        bit: 11
-        enum:
-          pushpull: 0
-          opendrain: 1
-      hsmci_cmdr.maxlat:
-        bit: 12
-        enum:
-          _5: 0
-          _64: 1
-      hsmci_cmdr.trcmd:
-        bits:
-        - 16
-        - 17
-        enum:
-          no_data: 0
-          start_data: 1
-          stop_data: 2
-      hsmci_cmdr.trdir:
-        bit: 18
-        enum:
-          write: 0
-          read: 1
-      hsmci_cmdr.trtyp:
-        bits:
-        - 19
-        - 21
-        enum:
-          single: 0
-          multiple: 1
-          stream: 2
-          byte: 4
-          block: 5
-      hsmci_cmdr.iospcmd:
-        bits:
-        - 24
-        - 25
-        enum:
-          std: 0
-          suspend: 1
-          resume: 2
-      hsmci_cmdr.atacs:
-        bit: 26
-        enum:
-          normal: 0
-          completion: 1
-      hsmci_cmdr.boot_ack:
-        bit: 27
-      hsmci_blkr.bcnt:
-        bits:
-        - 0
-        - 15
-      hsmci_blkr.blklen:
-        bits:
-        - 16
-        - 31
-      hsmci_cstor.cstocyc:
-        bits:
-        - 0
-        - 3
-      hsmci_cstor.cstomul:
-        bits:
-        - 4
-        - 6
-        enum:
-          _1: 0
-          _16: 1
-          _128: 2
-          _256: 3
-          _1024: 4
-          _4096: 5
-          _65536: 6
-          _1048576: 7
-      hsmci_rspr.rsp:
-        bits:
-        - 0
-        - 31
-      hsmci_rdr.data:
-        bits:
-        - 0
-        - 31
-      hsmci_tdr.data:
-        bits:
-        - 0
-        - 31
-      hsmci_sr.cmdrdy:
-        bit: 0
-      hsmci_sr.rxrdy:
-        bit: 1
-      hsmci_sr.txrdy:
-        bit: 2
-      hsmci_sr.blke:
-        bit: 3
-      hsmci_sr.dtip:
-        bit: 4
-      hsmci_sr.notbusy:
-        bit: 5
-      hsmci_sr.sdioirqa:
-        bit: 8
-      hsmci_sr.sdiowait:
-        bit: 12
-      hsmci_sr.csrcv:
-        bit: 13
-      hsmci_sr.rinde:
-        bit: 16
-      hsmci_sr.rdire:
-        bit: 17
-      hsmci_sr.rcrce:
-        bit: 18
-      hsmci_sr.rende:
-        bit: 19
-      hsmci_sr.rtoe:
-        bit: 20
-      hsmci_sr.dcrce:
-        bit: 21
-      hsmci_sr.dtoe:
-        bit: 22
-      hsmci_sr.cstoe:
-        bit: 23
-      hsmci_sr.blkovre:
-        bit: 24
-      hsmci_sr.fifoempty:
-        bit: 26
-      hsmci_sr.xfrdone:
-        bit: 27
-      hsmci_sr.ackrcv:
-        bit: 28
-      hsmci_sr.ackrcve:
-        bit: 29
-      hsmci_sr.ovre:
-        bit: 30
-      hsmci_sr.unre:
-        bit: 31
-      hsmci_ier.cmdrdy:
-        bit: 0
-      hsmci_ier.rxrdy:
-        bit: 1
-      hsmci_ier.txrdy:
-        bit: 2
-      hsmci_ier.blke:
-        bit: 3
-      hsmci_ier.dtip:
-        bit: 4
-      hsmci_ier.notbusy:
-        bit: 5
-      hsmci_ier.sdioirqa:
-        bit: 8
-      hsmci_ier.sdiowait:
-        bit: 12
-      hsmci_ier.csrcv:
-        bit: 13
-      hsmci_ier.rinde:
-        bit: 16
-      hsmci_ier.rdire:
-        bit: 17
-      hsmci_ier.rcrce:
-        bit: 18
-      hsmci_ier.rende:
-        bit: 19
-      hsmci_ier.rtoe:
-        bit: 20
-      hsmci_ier.dcrce:
-        bit: 21
-      hsmci_ier.dtoe:
-        bit: 22
-      hsmci_ier.cstoe:
-        bit: 23
-      hsmci_ier.blkovre:
-        bit: 24
-      hsmci_ier.fifoempty:
-        bit: 26
-      hsmci_ier.xfrdone:
-        bit: 27
-      hsmci_ier.ackrcv:
-        bit: 28
-      hsmci_ier.ackrcve:
-        bit: 29
-      hsmci_ier.ovre:
-        bit: 30
-      hsmci_ier.unre:
-        bit: 31
-      hsmci_idr.cmdrdy:
-        bit: 0
-      hsmci_idr.rxrdy:
-        bit: 1
-      hsmci_idr.txrdy:
-        bit: 2
-      hsmci_idr.blke:
-        bit: 3
-      hsmci_idr.dtip:
-        bit: 4
-      hsmci_idr.notbusy:
-        bit: 5
-      hsmci_idr.sdioirqa:
-        bit: 8
-      hsmci_idr.sdiowait:
-        bit: 12
-      hsmci_idr.csrcv:
-        bit: 13
-      hsmci_idr.rinde:
-        bit: 16
-      hsmci_idr.rdire:
-        bit: 17
-      hsmci_idr.rcrce:
-        bit: 18
-      hsmci_idr.rende:
-        bit: 19
-      hsmci_idr.rtoe:
-        bit: 20
-      hsmci_idr.dcrce:
-        bit: 21
-      hsmci_idr.dtoe:
-        bit: 22
-      hsmci_idr.cstoe:
-        bit: 23
-      hsmci_idr.blkovre:
-        bit: 24
-      hsmci_idr.fifoempty:
-        bit: 26
-      hsmci_idr.xfrdone:
-        bit: 27
-      hsmci_idr.ackrcv:
-        bit: 28
-      hsmci_idr.ackrcve:
-        bit: 29
-      hsmci_idr.ovre:
-        bit: 30
-      hsmci_idr.unre:
-        bit: 31
-      hsmci_imr.cmdrdy:
-        bit: 0
-      hsmci_imr.rxrdy:
-        bit: 1
-      hsmci_imr.txrdy:
-        bit: 2
-      hsmci_imr.blke:
-        bit: 3
-      hsmci_imr.dtip:
-        bit: 4
-      hsmci_imr.notbusy:
-        bit: 5
-      hsmci_imr.sdioirqa:
-        bit: 8
-      hsmci_imr.sdiowait:
-        bit: 12
-      hsmci_imr.csrcv:
-        bit: 13
-      hsmci_imr.rinde:
-        bit: 16
-      hsmci_imr.rdire:
-        bit: 17
-      hsmci_imr.rcrce:
-        bit: 18
-      hsmci_imr.rende:
-        bit: 19
-      hsmci_imr.rtoe:
-        bit: 20
-      hsmci_imr.dcrce:
-        bit: 21
-      hsmci_imr.dtoe:
-        bit: 22
-      hsmci_imr.cstoe:
-        bit: 23
-      hsmci_imr.blkovre:
-        bit: 24
-      hsmci_imr.fifoempty:
-        bit: 26
-      hsmci_imr.xfrdone:
-        bit: 27
-      hsmci_imr.ackrcv:
-        bit: 28
-      hsmci_imr.ackrcve:
-        bit: 29
-      hsmci_imr.ovre:
-        bit: 30
-      hsmci_imr.unre:
-        bit: 31
-      hsmci_dma.chksize:
-        bits:
-        - 4
-        - 6
-        enum:
-          _1: 0
-          _2: 1
-          _4: 2
-          _8: 3
-          _16: 4
-      hsmci_dma.dmaen:
-        bit: 8
-      hsmci_cfg.fifomode:
-        bit: 0
-      hsmci_cfg.ferrctrl:
-        bit: 4
-      hsmci_cfg.hsmode:
-        bit: 8
-      hsmci_cfg.lsync:
-        bit: 12
-      hsmci_wpmr.wpen:
-        bit: 0
-      hsmci_wpmr.wpkey:
-        bits:
-        - 8
-        - 31
-        enum:
-          passwd: 5063497
-      hsmci_wpsr.wpvs:
-        bit: 0
-      hsmci_wpsr.wpvsrc:
-        bits:
-        - 8
-        - 23
-      hsmci_fifo.data:
-        bits:
-        - 0
-        - 31
-  i2sc:
-    registers:
-      i2sc_cr:
-        offset: 0
-        access: wo
-      i2sc_mr:
-        offset: 4
-        access: rw
-      i2sc_sr:
-        offset: 8
-        access: ro
-      i2sc_scr:
-        offset: 12
-        access: wo
-      i2sc_ssr:
-        offset: 16
-        access: wo
-      i2sc_ier:
-        offset: 20
-        access: wo
-      i2sc_idr:
-        offset: 24
-        access: wo
-      i2sc_imr:
-        offset: 28
-        access: ro
-      i2sc_rhr:
-        offset: 32
-        access: ro
-      i2sc_thr:
-        offset: 36
-        access: wo
-    fields:
-      i2sc_cr.rxen:
-        bit: 0
-      i2sc_cr.rxdis:
-        bit: 1
-      i2sc_cr.cken:
-        bit: 2
-      i2sc_cr.ckdis:
-        bit: 3
-      i2sc_cr.txen:
-        bit: 4
-      i2sc_cr.txdis:
-        bit: 5
-      i2sc_cr.swrst:
-        bit: 7
-      i2sc_mr.mode:
-        bit: 0
-        enum:
-          slave: 0
-          master: 1
-      i2sc_mr.datalength:
-        bits:
-        - 2
-        - 4
-        enum:
-          _32_bits: 0
-          _24_bits: 1
-          _20_bits: 2
-          _18_bits: 3
-          _16_bits: 4
-          _16_bits_compact: 5
-          _8_bits: 6
-          _8_bits_compact: 7
-      i2sc_mr.rxmono:
-        bit: 8
-      i2sc_mr.rxdma:
-        bit: 9
-      i2sc_mr.rxloop:
-        bit: 10
-      i2sc_mr.txmono:
-        bit: 12
-      i2sc_mr.txdma:
-        bit: 13
-      i2sc_mr.txsame:
-        bit: 14
-      i2sc_mr.imckdiv:
-        bits:
-        - 16
-        - 21
-      i2sc_mr.imckfs:
-        bits:
-        - 24
-        - 29
-        enum:
-          m2sf32: 0
-          m2sf64: 1
-          m2sf96: 2
-          m2sf128: 3
-          m2sf192: 5
-          m2sf256: 7
-          m2sf384: 11
-          m2sf512: 15
-          m2sf768: 23
-          m2sf1024: 31
-          m2sf1536: 47
-          m2sf2048: 63
-      i2sc_mr.imckmode:
-        bit: 30
-      i2sc_mr.iws:
-        bit: 31
-      i2sc_sr.rxen:
-        bit: 0
-      i2sc_sr.rxrdy:
-        bit: 1
-      i2sc_sr.rxor:
-        bit: 2
-      i2sc_sr.txen:
-        bit: 4
-      i2sc_sr.txrdy:
-        bit: 5
-      i2sc_sr.txur:
-        bit: 6
-      i2sc_sr.rxorch:
-        bits:
-        - 8
-        - 9
-      i2sc_sr.txurch:
-        bits:
-        - 20
-        - 21
-      i2sc_scr.rxor:
-        bit: 2
-      i2sc_scr.txur:
-        bit: 6
-      i2sc_scr.rxorch:
-        bits:
-        - 8
-        - 9
-      i2sc_scr.txurch:
-        bits:
-        - 20
-        - 21
-      i2sc_ssr.rxor:
-        bit: 2
-      i2sc_ssr.txur:
-        bit: 6
-      i2sc_ssr.rxorch:
-        bits:
-        - 8
-        - 9
-      i2sc_ssr.txurch:
-        bits:
-        - 20
-        - 21
-      i2sc_ier.rxrdy:
-        bit: 1
-      i2sc_ier.rxor:
-        bit: 2
-      i2sc_ier.txrdy:
-        bit: 5
-      i2sc_ier.txur:
-        bit: 6
-      i2sc_idr.rxrdy:
-        bit: 1
-      i2sc_idr.rxor:
-        bit: 2
-      i2sc_idr.txrdy:
-        bit: 5
-      i2sc_idr.txur:
-        bit: 6
-      i2sc_imr.rxrdy:
-        bit: 1
-      i2sc_imr.rxor:
-        bit: 2
-      i2sc_imr.txrdy:
-        bit: 5
-      i2sc_imr.txur:
-        bit: 6
-      i2sc_rhr.rhr:
-        bits:
-        - 0
-        - 31
-      i2sc_thr.thr:
-        bits:
-        - 0
-        - 31
   icm:
     registers:
       icm_cfg:
@@ -4067,10 +3422,6 @@ templates:
         bit: 7
       ccfg_sysio.sysio12:
         bit: 12
-      ccfg_sysio.can1dmaba:
-        bits:
-        - 16
-        - 31
       ccfg_pccr.tc0cc:
         bit: 20
       ccfg_pccr.i2sc0cc:
@@ -8886,32 +8237,20 @@ templates:
         bit: 7
       pmc_pcer0.pid8:
         bit: 8
-      pmc_pcer0.pid9:
-        bit: 9
       pmc_pcer0.pid10:
         bit: 10
       pmc_pcer0.pid11:
         bit: 11
-      pmc_pcer0.pid12:
-        bit: 12
       pmc_pcer0.pid13:
         bit: 13
       pmc_pcer0.pid14:
         bit: 14
-      pmc_pcer0.pid15:
-        bit: 15
       pmc_pcer0.pid16:
         bit: 16
-      pmc_pcer0.pid17:
-        bit: 17
-      pmc_pcer0.pid18:
-        bit: 18
       pmc_pcer0.pid19:
         bit: 19
       pmc_pcer0.pid20:
         bit: 20
-      pmc_pcer0.pid21:
-        bit: 21
       pmc_pcer0.pid22:
         bit: 22
       pmc_pcer0.pid23:
@@ -8936,32 +8275,20 @@ templates:
         bit: 7
       pmc_pcdr0.pid8:
         bit: 8
-      pmc_pcdr0.pid9:
-        bit: 9
       pmc_pcdr0.pid10:
         bit: 10
       pmc_pcdr0.pid11:
         bit: 11
-      pmc_pcdr0.pid12:
-        bit: 12
       pmc_pcdr0.pid13:
         bit: 13
       pmc_pcdr0.pid14:
         bit: 14
-      pmc_pcdr0.pid15:
-        bit: 15
       pmc_pcdr0.pid16:
         bit: 16
-      pmc_pcdr0.pid17:
-        bit: 17
-      pmc_pcdr0.pid18:
-        bit: 18
       pmc_pcdr0.pid19:
         bit: 19
       pmc_pcdr0.pid20:
         bit: 20
-      pmc_pcdr0.pid21:
-        bit: 21
       pmc_pcdr0.pid22:
         bit: 22
       pmc_pcdr0.pid23:
@@ -8986,32 +8313,20 @@ templates:
         bit: 7
       pmc_pcsr0.pid8:
         bit: 8
-      pmc_pcsr0.pid9:
-        bit: 9
       pmc_pcsr0.pid10:
         bit: 10
       pmc_pcsr0.pid11:
         bit: 11
-      pmc_pcsr0.pid12:
-        bit: 12
       pmc_pcsr0.pid13:
         bit: 13
       pmc_pcsr0.pid14:
         bit: 14
-      pmc_pcsr0.pid15:
-        bit: 15
       pmc_pcsr0.pid16:
         bit: 16
-      pmc_pcsr0.pid17:
-        bit: 17
-      pmc_pcsr0.pid18:
-        bit: 18
       pmc_pcsr0.pid19:
         bit: 19
       pmc_pcsr0.pid20:
         bit: 20
-      pmc_pcsr0.pid21:
-        bit: 21
       pmc_pcsr0.pid22:
         bit: 22
       pmc_pcsr0.pid23:
@@ -9390,16 +8705,10 @@ templates:
         bit: 2
       pmc_pcer1.pid35:
         bit: 3
-      pmc_pcer1.pid37:
-        bit: 5
       pmc_pcer1.pid39:
         bit: 7
       pmc_pcer1.pid40:
         bit: 8
-      pmc_pcer1.pid41:
-        bit: 9
-      pmc_pcer1.pid42:
-        bit: 10
       pmc_pcer1.pid43:
         bit: 11
       pmc_pcer1.pid44:
@@ -9438,16 +8747,10 @@ templates:
         bit: 2
       pmc_pcdr1.pid35:
         bit: 3
-      pmc_pcdr1.pid37:
-        bit: 5
       pmc_pcdr1.pid39:
         bit: 7
       pmc_pcdr1.pid40:
         bit: 8
-      pmc_pcdr1.pid41:
-        bit: 9
-      pmc_pcdr1.pid42:
-        bit: 10
       pmc_pcdr1.pid43:
         bit: 11
       pmc_pcdr1.pid44:
@@ -9486,16 +8789,10 @@ templates:
         bit: 2
       pmc_pcsr1.pid35:
         bit: 3
-      pmc_pcsr1.pid37:
-        bit: 5
       pmc_pcsr1.pid39:
         bit: 7
       pmc_pcsr1.pid40:
         bit: 8
-      pmc_pcsr1.pid41:
-        bit: 9
-      pmc_pcsr1.pid42:
-        bit: 10
       pmc_pcsr1.pid43:
         bit: 11
       pmc_pcsr1.pid44:
@@ -9572,32 +8869,20 @@ templates:
         bit: 7
       pmc_slpwk_er0.pid8:
         bit: 8
-      pmc_slpwk_er0.pid9:
-        bit: 9
       pmc_slpwk_er0.pid10:
         bit: 10
       pmc_slpwk_er0.pid11:
         bit: 11
-      pmc_slpwk_er0.pid12:
-        bit: 12
       pmc_slpwk_er0.pid13:
         bit: 13
       pmc_slpwk_er0.pid14:
         bit: 14
-      pmc_slpwk_er0.pid15:
-        bit: 15
       pmc_slpwk_er0.pid16:
         bit: 16
-      pmc_slpwk_er0.pid17:
-        bit: 17
-      pmc_slpwk_er0.pid18:
-        bit: 18
       pmc_slpwk_er0.pid19:
         bit: 19
       pmc_slpwk_er0.pid20:
         bit: 20
-      pmc_slpwk_er0.pid21:
-        bit: 21
       pmc_slpwk_er0.pid22:
         bit: 22
       pmc_slpwk_er0.pid23:
@@ -9622,32 +8907,20 @@ templates:
         bit: 7
       pmc_slpwk_dr0.pid8:
         bit: 8
-      pmc_slpwk_dr0.pid9:
-        bit: 9
       pmc_slpwk_dr0.pid10:
         bit: 10
       pmc_slpwk_dr0.pid11:
         bit: 11
-      pmc_slpwk_dr0.pid12:
-        bit: 12
       pmc_slpwk_dr0.pid13:
         bit: 13
       pmc_slpwk_dr0.pid14:
         bit: 14
-      pmc_slpwk_dr0.pid15:
-        bit: 15
       pmc_slpwk_dr0.pid16:
         bit: 16
-      pmc_slpwk_dr0.pid17:
-        bit: 17
-      pmc_slpwk_dr0.pid18:
-        bit: 18
       pmc_slpwk_dr0.pid19:
         bit: 19
       pmc_slpwk_dr0.pid20:
         bit: 20
-      pmc_slpwk_dr0.pid21:
-        bit: 21
       pmc_slpwk_dr0.pid22:
         bit: 22
       pmc_slpwk_dr0.pid23:
@@ -9672,32 +8945,20 @@ templates:
         bit: 7
       pmc_slpwk_sr0.pid8:
         bit: 8
-      pmc_slpwk_sr0.pid9:
-        bit: 9
       pmc_slpwk_sr0.pid10:
         bit: 10
       pmc_slpwk_sr0.pid11:
         bit: 11
-      pmc_slpwk_sr0.pid12:
-        bit: 12
       pmc_slpwk_sr0.pid13:
         bit: 13
       pmc_slpwk_sr0.pid14:
         bit: 14
-      pmc_slpwk_sr0.pid15:
-        bit: 15
       pmc_slpwk_sr0.pid16:
         bit: 16
-      pmc_slpwk_sr0.pid17:
-        bit: 17
-      pmc_slpwk_sr0.pid18:
-        bit: 18
       pmc_slpwk_sr0.pid19:
         bit: 19
       pmc_slpwk_sr0.pid20:
         bit: 20
-      pmc_slpwk_sr0.pid21:
-        bit: 21
       pmc_slpwk_sr0.pid22:
         bit: 22
       pmc_slpwk_sr0.pid23:
@@ -9722,32 +8983,20 @@ templates:
         bit: 7
       pmc_slpwk_asr0.pid8:
         bit: 8
-      pmc_slpwk_asr0.pid9:
-        bit: 9
       pmc_slpwk_asr0.pid10:
         bit: 10
       pmc_slpwk_asr0.pid11:
         bit: 11
-      pmc_slpwk_asr0.pid12:
-        bit: 12
       pmc_slpwk_asr0.pid13:
         bit: 13
       pmc_slpwk_asr0.pid14:
         bit: 14
-      pmc_slpwk_asr0.pid15:
-        bit: 15
       pmc_slpwk_asr0.pid16:
         bit: 16
-      pmc_slpwk_asr0.pid17:
-        bit: 17
-      pmc_slpwk_asr0.pid18:
-        bit: 18
       pmc_slpwk_asr0.pid19:
         bit: 19
       pmc_slpwk_asr0.pid20:
         bit: 20
-      pmc_slpwk_asr0.pid21:
-        bit: 21
       pmc_slpwk_asr0.pid22:
         bit: 22
       pmc_slpwk_asr0.pid23:
@@ -9780,16 +9029,10 @@ templates:
         bit: 2
       pmc_slpwk_er1.pid35:
         bit: 3
-      pmc_slpwk_er1.pid37:
-        bit: 5
       pmc_slpwk_er1.pid39:
         bit: 7
       pmc_slpwk_er1.pid40:
         bit: 8
-      pmc_slpwk_er1.pid41:
-        bit: 9
-      pmc_slpwk_er1.pid42:
-        bit: 10
       pmc_slpwk_er1.pid43:
         bit: 11
       pmc_slpwk_er1.pid44:
@@ -9828,16 +9071,10 @@ templates:
         bit: 2
       pmc_slpwk_dr1.pid35:
         bit: 3
-      pmc_slpwk_dr1.pid37:
-        bit: 5
       pmc_slpwk_dr1.pid39:
         bit: 7
       pmc_slpwk_dr1.pid40:
         bit: 8
-      pmc_slpwk_dr1.pid41:
-        bit: 9
-      pmc_slpwk_dr1.pid42:
-        bit: 10
       pmc_slpwk_dr1.pid43:
         bit: 11
       pmc_slpwk_dr1.pid44:
@@ -9876,16 +9113,10 @@ templates:
         bit: 2
       pmc_slpwk_sr1.pid35:
         bit: 3
-      pmc_slpwk_sr1.pid37:
-        bit: 5
       pmc_slpwk_sr1.pid39:
         bit: 7
       pmc_slpwk_sr1.pid40:
         bit: 8
-      pmc_slpwk_sr1.pid41:
-        bit: 9
-      pmc_slpwk_sr1.pid42:
-        bit: 10
       pmc_slpwk_sr1.pid43:
         bit: 11
       pmc_slpwk_sr1.pid44:
@@ -9924,16 +9155,10 @@ templates:
         bit: 2
       pmc_slpwk_asr1.pid35:
         bit: 3
-      pmc_slpwk_asr1.pid37:
-        bit: 5
       pmc_slpwk_asr1.pid39:
         bit: 7
       pmc_slpwk_asr1.pid40:
         bit: 8
-      pmc_slpwk_asr1.pid41:
-        bit: 9
-      pmc_slpwk_asr1.pid42:
-        bit: 10
       pmc_slpwk_asr1.pid43:
         bit: 11
       pmc_slpwk_asr1.pid44:
@@ -11383,357 +10608,6 @@ templates:
         bit: 0
       rtt_sr.rttinc:
         bit: 1
-  smc:
-    registers:
-      smc_setup:
-        offset: 0
-        access: rw
-      smc_pulse:
-        offset: 4
-        access: rw
-      smc_cycle:
-        offset: 8
-        access: rw
-      smc_mode:
-        offset: 12
-        access: rw
-      smc_ocms:
-        offset: 128
-        access: rw
-      smc_key1:
-        offset: 132
-        access: wo
-      smc_key2:
-        offset: 136
-        access: wo
-      smc_wpmr:
-        offset: 228
-        access: rw
-      smc_wpsr:
-        offset: 232
-        access: ro
-    fields:
-      smc_setup.nwe_setup:
-        bits:
-        - 0
-        - 5
-      smc_setup.ncs_wr_setup:
-        bits:
-        - 8
-        - 13
-      smc_setup.nrd_setup:
-        bits:
-        - 16
-        - 21
-      smc_setup.ncs_rd_setup:
-        bits:
-        - 24
-        - 29
-      smc_pulse.nwe_pulse:
-        bits:
-        - 0
-        - 6
-      smc_pulse.ncs_wr_pulse:
-        bits:
-        - 8
-        - 14
-      smc_pulse.nrd_pulse:
-        bits:
-        - 16
-        - 22
-      smc_pulse.ncs_rd_pulse:
-        bits:
-        - 24
-        - 30
-      smc_cycle.nwe_cycle:
-        bits:
-        - 0
-        - 8
-      smc_cycle.nrd_cycle:
-        bits:
-        - 16
-        - 24
-      smc_mode.read_mode:
-        bit: 0
-      smc_mode.write_mode:
-        bit: 1
-      smc_mode.exnw_mode:
-        bits:
-        - 4
-        - 5
-        enum:
-          disabled: 0
-          frozen: 2
-          ready: 3
-      smc_mode.bat:
-        bit: 8
-        enum:
-          byte_select: 0
-          byte_write: 1
-      smc_mode.dbw:
-        bit: 12
-        enum:
-          _8_bit: 0
-          _16_bit: 1
-      smc_mode.tdf_cycles:
-        bits:
-        - 16
-        - 19
-      smc_mode.tdf_mode:
-        bit: 20
-      smc_mode.pmen:
-        bit: 24
-      smc_mode.ps:
-        bits:
-        - 28
-        - 29
-        enum:
-          _4_byte: 0
-          _8_byte: 1
-          _16_byte: 2
-          _32_byte: 3
-      smc_ocms.smse:
-        bit: 0
-      smc_ocms.cs0se:
-        bit: 8
-      smc_ocms.cs1se:
-        bit: 9
-      smc_ocms.cs2se:
-        bit: 10
-      smc_ocms.cs3se:
-        bit: 11
-      smc_key1.key1:
-        bits:
-        - 0
-        - 31
-      smc_key2.key2:
-        bits:
-        - 0
-        - 31
-      smc_wpmr.wpen:
-        bit: 0
-      smc_wpmr.wpkey:
-        bits:
-        - 8
-        - 31
-        enum:
-          passwd: 5459267
-      smc_wpsr.wpvs:
-        bit: 0
-      smc_wpsr.wpvsrc:
-        bits:
-        - 8
-        - 23
-  spi:
-    registers:
-      spi_cr:
-        offset: 0
-        access: wo
-      spi_mr:
-        offset: 4
-        access: rw
-      spi_rdr:
-        offset: 8
-        access: ro
-      spi_tdr:
-        offset: 12
-        access: wo
-      spi_sr:
-        offset: 16
-        access: ro
-      spi_ier:
-        offset: 20
-        access: wo
-      spi_idr:
-        offset: 24
-        access: wo
-      spi_imr:
-        offset: 28
-        access: ro
-      spi_csr:
-        offset: 48
-        access: rw
-      spi_wpmr:
-        offset: 228
-        access: rw
-      spi_wpsr:
-        offset: 232
-        access: ro
-    fields:
-      spi_cr.spien:
-        bit: 0
-      spi_cr.spidis:
-        bit: 1
-      spi_cr.swrst:
-        bit: 7
-      spi_cr.reqclr:
-        bit: 12
-      spi_cr.lastxfer:
-        bit: 24
-      spi_mr.mstr:
-        bit: 0
-        enum:
-          master: 1
-          slave: 0
-      spi_mr.ps:
-        bit: 1
-      spi_mr.pcsdec:
-        bit: 2
-      spi_mr.modfdis:
-        bit: 4
-      spi_mr.wdrbt:
-        bit: 5
-      spi_mr.llb:
-        bit: 7
-      spi_mr.pcs:
-        bits:
-        - 16
-        - 19
-        enum:
-          npcs0: 14
-          npcs1: 13
-          npcs2: 11
-          npcs3: 7
-      spi_mr.dlybcs:
-        bits:
-        - 24
-        - 31
-      spi_rdr.rd:
-        bits:
-        - 0
-        - 15
-      spi_rdr.pcs:
-        bits:
-        - 16
-        - 19
-      spi_tdr.td:
-        bits:
-        - 0
-        - 15
-      spi_tdr.pcs:
-        bits:
-        - 16
-        - 19
-        enum:
-          npcs0: 14
-          npcs1: 13
-          npcs2: 11
-          npcs3: 7
-      spi_tdr.lastxfer:
-        bit: 24
-      spi_sr.rdrf:
-        bit: 0
-      spi_sr.tdre:
-        bit: 1
-      spi_sr.modf:
-        bit: 2
-      spi_sr.ovres:
-        bit: 3
-      spi_sr.nssr:
-        bit: 8
-      spi_sr.txempty:
-        bit: 9
-      spi_sr.undes:
-        bit: 10
-      spi_sr.spiens:
-        bit: 16
-      spi_ier.rdrf:
-        bit: 0
-      spi_ier.tdre:
-        bit: 1
-      spi_ier.modf:
-        bit: 2
-      spi_ier.ovres:
-        bit: 3
-      spi_ier.nssr:
-        bit: 8
-      spi_ier.txempty:
-        bit: 9
-      spi_ier.undes:
-        bit: 10
-      spi_idr.rdrf:
-        bit: 0
-      spi_idr.tdre:
-        bit: 1
-      spi_idr.modf:
-        bit: 2
-      spi_idr.ovres:
-        bit: 3
-      spi_idr.nssr:
-        bit: 8
-      spi_idr.txempty:
-        bit: 9
-      spi_idr.undes:
-        bit: 10
-      spi_imr.rdrf:
-        bit: 0
-      spi_imr.tdre:
-        bit: 1
-      spi_imr.modf:
-        bit: 2
-      spi_imr.ovres:
-        bit: 3
-      spi_imr.nssr:
-        bit: 8
-      spi_imr.txempty:
-        bit: 9
-      spi_imr.undes:
-        bit: 10
-      spi_csr.cpol:
-        bit: 0
-        enum:
-          idle_low: 0
-          idle_high: 1
-      spi_csr.ncpha:
-        bit: 1
-        enum:
-          valid_leading_edge: 1
-          valid_trailing_edge: 0
-      spi_csr.csnaat:
-        bit: 2
-      spi_csr.csaat:
-        bit: 3
-      spi_csr.bits:
-        bits:
-        - 4
-        - 7
-        enum:
-          _8_bit: 0
-          _9_bit: 1
-          _10_bit: 2
-          _11_bit: 3
-          _12_bit: 4
-          _13_bit: 5
-          _14_bit: 6
-          _15_bit: 7
-          _16_bit: 8
-      spi_csr.scbr:
-        bits:
-        - 8
-        - 15
-      spi_csr.dlybs:
-        bits:
-        - 16
-        - 23
-      spi_csr.dlybct:
-        bits:
-        - 24
-        - 31
-      spi_wpmr.wpen:
-        bit: 0
-      spi_wpmr.wpkey:
-        bits:
-        - 8
-        - 31
-        enum:
-          passwd: 5460041
-      spi_wpsr.wpvs:
-        bit: 0
-      spi_wpsr.wpvsrc:
-        bits:
-        - 8
-        - 15
-    max_clock: 75MHz
   ssc:
     registers:
       ssc_cr:
@@ -15831,38 +14705,24 @@ templates:
         - 24
         - 30
         enum:
-          hsmci: 0
-          spi0_tx: 1
-          spi0_rx: 2
-          spi1_tx: 3
-          spi1_rx: 4
           qspi_tx: 5
           qspi_rx: 6
           usart0_tx: 7
           usart0_rx: 8
           usart1_tx: 9
           usart1_rx: 10
-          usart2_tx: 11
-          usart2_rx: 12
           pwm0: 13
           twihs0_tx: 14
           twihs0_rx: 15
           twihs1_tx: 16
           twihs1_rx: 17
-          twihs2_tx: 18
-          twihs2_rx: 19
           uart0_tx: 20
           uart0_rx: 21
           uart1_tx: 22
           uart1_rx: 23
           uart2_tx: 24
           uart2_rx: 25
-          uart3_tx: 26
-          uart3_rx: 27
-          uart4_tx: 28
-          uart4_rx: 29
           dacc0: 30
-          dacc1: 31
           ssc_tx: 32
           ssc_rx: 33
           pioa: 34
@@ -15875,14 +14735,6 @@ templates:
           tc3: 41
           tc6: 42
           tc9: 43
-          i2sc0_tx_left: 44
-          i2sc0_rx_left: 45
-          i2sc1_tx_left: 46
-          i2sc1_rx_left: 47
-          i2sc0_tx_right: 48
-          i2sc0_rx_right: 49
-          i2sc1_tx_right: 50
-          i2sc1_rx_right: 51
       xdmac_cds_msp.sds_msp:
         bits:
         - 0
@@ -16063,15 +14915,6 @@ templates:
       lockbit_word0:
         offset: 0
         access: rw
-      lockbit_word1:
-        offset: 4
-        access: rw
-      lockbit_word2:
-        offset: 8
-        access: rw
-      lockbit_word3:
-        offset: 12
-        access: rw
     fields:
       lockbit_word0.lock_region_0:
         bit: 0
@@ -16136,198 +14979,6 @@ templates:
       lockbit_word0.lock_region_30:
         bit: 30
       lockbit_word0.lock_region_31:
-        bit: 31
-      lockbit_word1.lock_region_32:
-        bit: 0
-      lockbit_word1.lock_region_33:
-        bit: 1
-      lockbit_word1.lock_region_34:
-        bit: 2
-      lockbit_word1.lock_region_35:
-        bit: 3
-      lockbit_word1.lock_region_36:
-        bit: 4
-      lockbit_word1.lock_region_37:
-        bit: 5
-      lockbit_word1.lock_region_38:
-        bit: 6
-      lockbit_word1.lock_region_39:
-        bit: 7
-      lockbit_word1.lock_region_40:
-        bit: 8
-      lockbit_word1.lock_region_41:
-        bit: 9
-      lockbit_word1.lock_region_42:
-        bit: 10
-      lockbit_word1.lock_region_43:
-        bit: 11
-      lockbit_word1.lock_region_44:
-        bit: 12
-      lockbit_word1.lock_region_45:
-        bit: 13
-      lockbit_word1.lock_region_46:
-        bit: 14
-      lockbit_word1.lock_region_47:
-        bit: 15
-      lockbit_word1.lock_region_48:
-        bit: 16
-      lockbit_word1.lock_region_49:
-        bit: 17
-      lockbit_word1.lock_region_50:
-        bit: 18
-      lockbit_word1.lock_region_51:
-        bit: 19
-      lockbit_word1.lock_region_52:
-        bit: 20
-      lockbit_word1.lock_region_53:
-        bit: 21
-      lockbit_word1.lock_region_54:
-        bit: 22
-      lockbit_word1.lock_region_55:
-        bit: 23
-      lockbit_word1.lock_region_56:
-        bit: 24
-      lockbit_word1.lock_region_57:
-        bit: 25
-      lockbit_word1.lock_region_58:
-        bit: 26
-      lockbit_word1.lock_region_59:
-        bit: 27
-      lockbit_word1.lock_region_60:
-        bit: 28
-      lockbit_word1.lock_region_61:
-        bit: 29
-      lockbit_word1.lock_region_62:
-        bit: 30
-      lockbit_word1.lock_region_63:
-        bit: 31
-      lockbit_word2.lock_region_64:
-        bit: 0
-      lockbit_word2.lock_region_65:
-        bit: 1
-      lockbit_word2.lock_region_66:
-        bit: 2
-      lockbit_word2.lock_region_67:
-        bit: 3
-      lockbit_word2.lock_region_68:
-        bit: 4
-      lockbit_word2.lock_region_69:
-        bit: 5
-      lockbit_word2.lock_region_70:
-        bit: 6
-      lockbit_word2.lock_region_71:
-        bit: 7
-      lockbit_word2.lock_region_72:
-        bit: 8
-      lockbit_word2.lock_region_73:
-        bit: 9
-      lockbit_word2.lock_region_74:
-        bit: 10
-      lockbit_word2.lock_region_75:
-        bit: 11
-      lockbit_word2.lock_region_76:
-        bit: 12
-      lockbit_word2.lock_region_77:
-        bit: 13
-      lockbit_word2.lock_region_78:
-        bit: 14
-      lockbit_word2.lock_region_79:
-        bit: 15
-      lockbit_word2.lock_region_80:
-        bit: 16
-      lockbit_word2.lock_region_81:
-        bit: 17
-      lockbit_word2.lock_region_82:
-        bit: 18
-      lockbit_word2.lock_region_83:
-        bit: 19
-      lockbit_word2.lock_region_84:
-        bit: 20
-      lockbit_word2.lock_region_85:
-        bit: 21
-      lockbit_word2.lock_region_86:
-        bit: 22
-      lockbit_word2.lock_region_87:
-        bit: 23
-      lockbit_word2.lock_region_88:
-        bit: 24
-      lockbit_word2.lock_region_89:
-        bit: 25
-      lockbit_word2.lock_region_90:
-        bit: 26
-      lockbit_word2.lock_region_91:
-        bit: 27
-      lockbit_word2.lock_region_92:
-        bit: 28
-      lockbit_word2.lock_region_93:
-        bit: 29
-      lockbit_word2.lock_region_94:
-        bit: 30
-      lockbit_word2.lock_region_95:
-        bit: 31
-      lockbit_word3.lock_region_96:
-        bit: 0
-      lockbit_word3.lock_region_97:
-        bit: 1
-      lockbit_word3.lock_region_98:
-        bit: 2
-      lockbit_word3.lock_region_99:
-        bit: 3
-      lockbit_word3.lock_region_100:
-        bit: 4
-      lockbit_word3.lock_region_101:
-        bit: 5
-      lockbit_word3.lock_region_102:
-        bit: 6
-      lockbit_word3.lock_region_103:
-        bit: 7
-      lockbit_word3.lock_region_104:
-        bit: 8
-      lockbit_word3.lock_region_105:
-        bit: 9
-      lockbit_word3.lock_region_106:
-        bit: 10
-      lockbit_word3.lock_region_107:
-        bit: 11
-      lockbit_word3.lock_region_108:
-        bit: 12
-      lockbit_word3.lock_region_109:
-        bit: 13
-      lockbit_word3.lock_region_110:
-        bit: 14
-      lockbit_word3.lock_region_111:
-        bit: 15
-      lockbit_word3.lock_region_112:
-        bit: 16
-      lockbit_word3.lock_region_113:
-        bit: 17
-      lockbit_word3.lock_region_114:
-        bit: 18
-      lockbit_word3.lock_region_115:
-        bit: 19
-      lockbit_word3.lock_region_116:
-        bit: 20
-      lockbit_word3.lock_region_117:
-        bit: 21
-      lockbit_word3.lock_region_118:
-        bit: 22
-      lockbit_word3.lock_region_119:
-        bit: 23
-      lockbit_word3.lock_region_120:
-        bit: 24
-      lockbit_word3.lock_region_121:
-        bit: 25
-      lockbit_word3.lock_region_122:
-        bit: 26
-      lockbit_word3.lock_region_123:
-        bit: 27
-      lockbit_word3.lock_region_124:
-        bit: 28
-      lockbit_word3.lock_region_125:
-        bit: 29
-      lockbit_word3.lock_region_126:
-        bit: 30
-      lockbit_word3.lock_region_127:
         bit: 31
   scnscb:
     registers:
@@ -18145,6 +16796,8 @@ templates:
         bit: 2
   adc:
     max_clock: 16MHz
+  spi:
+    max_clock: 75MHz
   twi:
     max_clock: 1MHz
   i2c:
@@ -18153,25 +16806,25 @@ peripherals:
 - id: acc
   template: acc
   base: '0x40044000'
-  irq: &id033
+  irq: &id028
     num: 33
     name: ACC_ACC_vect
 - id: aes
   template: aes
   base: '0x4006C000'
-  irq: &id053
+  irq: &id042
     num: 56
     name: AES_AES_vect
 - id: afec0
   template: afec
   base: '0x4003C000'
-  irq: &id029
+  irq: &id024
     num: 29
     name: AFEC0_AFEC0_vect
 - id: afec1
   template: afec
   base: '0x40064000'
-  irq: &id040
+  irq: &id033
     num: 40
     name: AFEC1_AFEC1_vect
 - id: chipid
@@ -18180,11 +16833,9 @@ peripherals:
 - id: dacc
   template: dacc
   base: '0x40040000'
-  irq: &id030
+  irq: &id025
     num: 30
     name: DACC_DACC_vect
-- id: ebi
-  template: ebi
 - id: efc
   template: efc
   base: '0x400E0C00'
@@ -18195,55 +16846,37 @@ peripherals:
   template: gmac
   base: '0x40050000'
   irq:
-  - &id039
+  - &id032
     num: 39
     name: GMAC_GMAC_vect
-  - &id062
+  - &id051
     num: 66
     name: GMAC_GMAC_Q1_vect
-  - &id063
+  - &id052
     num: 67
     name: GMAC_GMAC_Q2_vect
-  - &id067
+  - &id054
     num: 71
     name: GMAC_GMAC_Q3_vect
-  - &id068
+  - &id055
     num: 72
     name: GMAC_GMAC_Q4_vect
-  - &id069
+  - &id056
     num: 73
     name: GMAC_GMAC_Q5_vect
 - id: gpbr
   template: gpbr
   base: '0x400E1890'
-- id: hsmci
-  template: hsmci
-  base: '0x40000000'
-  irq: &id018
-    num: 18
-    name: HSMCI_HSMCI_vect
-- id: i2sc0
-  template: i2sc
-  base: '0x4008C000'
-  irq: &id065
-    num: 69
-    name: I2SC0_I2SC0_vect
-- id: i2sc1
-  template: i2sc
-  base: '0x40090000'
-  irq: &id066
-    num: 70
-    name: I2SC1_I2SC1_vect
 - id: icm
   template: icm
   base: '0x40048000'
-  irq: &id032
+  irq: &id027
     num: 32
     name: ICM_ICM_vect
 - id: isi
   template: isi
   base: '0x4004C000'
-  irq: &id056
+  irq: &id045
     num: 59
     name: ISI_ISI_vect
 - id: matrix
@@ -18253,22 +16886,12 @@ peripherals:
   template: mcan
   base: '0x40030000'
   irq:
-  - &id035
+  - &id030
     num: 35
     name: MCAN0_MCAN0_INT0_vect
-  - &id036
+  - &id031
     num: 36
     name: MCAN0_MCAN0_INT1_vect
-- id: mcan1
-  template: mcan
-  base: '0x40034000'
-  irq:
-  - &id037
-    num: 37
-    name: MCAN1_MCAN1_INT0_vect
-  - &id038
-    num: 38
-    name: MCAN1_MCAN1_INT1_vect
 - id: pioa
   template: pio
   base: '0x400E0E00'
@@ -18281,24 +16904,12 @@ peripherals:
   irq: &id011
     num: 11
     name: PIOB_PIOB_vect
-- id: pioc
-  template: pio
-  base: '0x400E1200'
-  irq: &id012
-    num: 12
-    name: PIOC_PIOC_vect
 - id: piod
   template: pio
   base: '0x400E1400'
-  irq: &id016
+  irq: &id014
     num: 16
     name: PIOD_PIOD_vect
-- id: pioe
-  template: pio
-  base: '0x400E1600'
-  irq: &id017
-    num: 17
-    name: PIOE_PIOE_vect
 - id: pmc
   template: pmc
   base: '0x400E0600'
@@ -18308,19 +16919,19 @@ peripherals:
 - id: pwm0
   template: pwm
   base: '0x40020000'
-  irq: &id031
+  irq: &id026
     num: 31
     name: PWM0_PWM0_vect
 - id: pwm1
   template: pwm
   base: '0x4005C000'
-  irq: &id057
+  irq: &id046
     num: 60
     name: PWM1_PWM1_vect
 - id: qspi
   template: qspi
   base: '0x4007C000'
-  irq: &id043
+  irq: &id034
     num: 43
     name: QSPI_QSPI_vect
 - id: rstc
@@ -18332,7 +16943,7 @@ peripherals:
 - id: rswdt
   template: rswdt
   base: '0x400E1900'
-  irq: &id059
+  irq: &id048
     num: 63
     name: RSWDT_RSWDT_vect
 - id: rtc
@@ -18347,25 +16958,10 @@ peripherals:
   irq: &id004
     num: 3
     name: RTT_RTT_vect
-- id: smc
-  template: smc
-  base: '0x40080000'
-- id: spi0
-  template: spi
-  base: '0x40008000'
-  irq: &id021
-    num: 21
-    name: SPI0_SPI0_vect
-- id: spi1
-  template: spi
-  base: '0x40058000'
-  irq: &id042
-    num: 42
-    name: SPI1_SPI1_vect
 - id: ssc
   template: ssc
   base: '0x40004000'
-  irq: &id022
+  irq: &id017
     num: 22
     name: SSC_SSC_vect
 - id: supc
@@ -18378,78 +16974,72 @@ peripherals:
   template: tc
   base: '0x4000C000'
   irq:
-  - &id023
+  - &id018
     num: 23
     name: TC0_TC0_vect
-  - &id024
+  - &id019
     num: 24
     name: TC0_TC1_vect
-  - &id025
+  - &id020
     num: 25
     name: TC0_TC2_vect
 - id: tc1
   template: tc
   base: '0x40010000'
   irq:
-  - &id026
+  - &id021
     num: 26
     name: TC1_TC3_vect
-  - &id027
+  - &id022
     num: 27
     name: TC1_TC4_vect
-  - &id028
+  - &id023
     num: 28
     name: TC1_TC5_vect
 - id: tc2
   template: tc
   base: '0x40014000'
   irq:
-  - &id047
+  - &id036
     num: 47
     name: TC2_TC6_vect
-  - &id048
+  - &id037
     num: 48
     name: TC2_TC7_vect
-  - &id049
+  - &id038
     num: 49
     name: TC2_TC8_vect
 - id: tc3
   template: tc
   base: '0x40054000'
   irq:
-  - &id050
+  - &id039
     num: 50
     name: TC3_TC9_vect
-  - &id051
+  - &id040
     num: 51
     name: TC3_TC10_vect
-  - &id052
+  - &id041
     num: 52
     name: TC3_TC11_vect
 - id: trng
   template: trng
   base: '0x40070000'
-  irq: &id054
+  irq: &id043
     num: 57
     name: TRNG_TRNG_vect
 - id: twihs0
   template: twihs
   base: '0x40018000'
-  irq: &id019
+  irq: &id015
     num: 19
     name: TWIHS0_TWIHS0_vect
 - id: twihs1
   template: twihs
   base: '0x4001C000'
-  irq: &id020
+  irq: &id016
     num: 20
     name: TWIHS1_TWIHS1_vect
-- id: twihs2
-  template: twihs
-  base: '0x40060000'
-  irq: &id041
-    num: 41
-    name: TWIHS2_TWIHS2_vect
 - id: uart0
   template: uart
   base: '0x400E0800'
@@ -18465,43 +17055,25 @@ peripherals:
 - id: uart2
   template: uart
   base: '0x400E1A00'
-  irq: &id044
+  irq: &id035
     num: 44
     name: UART2_UART2_vect
-- id: uart3
-  template: uart
-  base: '0x400E1C00'
-  irq: &id045
-    num: 45
-    name: UART3_UART3_vect
-- id: uart4
-  template: uart
-  base: '0x400E1E00'
-  irq: &id046
-    num: 46
-    name: UART4_UART4_vect
 - id: usart0
   template: usart
   base: '0x40024000'
-  irq: &id013
+  irq: &id012
     num: 13
     name: USART0_USART0_vect
 - id: usart1
   template: usart
   base: '0x40028000'
-  irq: &id014
+  irq: &id013
     num: 14
     name: USART1_USART1_vect
-- id: usart2
-  template: usart
-  base: '0x4002C000'
-  irq: &id015
-    num: 15
-    name: USART2_USART2_vect
 - id: usbhs
   template: usbhs
   base: '0x40038000'
-  irq: &id034
+  irq: &id029
     num: 34
     name: USBHS_USBHS_vect
 - id: utmi
@@ -18516,7 +17088,7 @@ peripherals:
 - id: xdmac
   template: xdmac
   base: '0x40078000'
-  irq: &id055
+  irq: &id044
     num: 58
     name: XDMAC_XDMAC_vect
 - id: fuses
@@ -18532,10 +17104,10 @@ peripherals:
   template: scb
   base: '0xE000ED00'
   irq:
-  - &id060
+  - &id049
     num: 64
     name: SCB_CCW_vect
-  - &id061
+  - &id050
     num: 65
     name: SCB_CCF_vect
 - id: systick
@@ -18551,10 +17123,10 @@ peripherals:
   template: fpu
   base: '0xE000EF30'
   irq:
-  - &id058
+  - &id047
     num: 61
     name: FPU_FPU_vect
-  - &id064
+  - &id053
     num: 68
     name: FPU_IXC_vect
 - id: itm
@@ -18578,194 +17150,160 @@ peripherals:
   template: tpiu
   base: '0xE0040000'
 pinout:
-- signal: PE1
-- signal: PB9
-- signal: PB8
-- signal: HSDP
-- signal: PD2
-- signal: PA29
-- signal: PC21
-- signal: PD6
-- signal: PC20
-- signal: PA30
-- signal: PD15
+- signal: PA3
+  pin: 40
+- signal: PA4
+  pin: 34
+- signal: PA5
+  pin: 32
+- signal: PA7
+  pin: 15
+- signal: PA8
+  pin: 16
+- signal: PA9
+  pin: 33
+- signal: PA10
+  pin: 28
+- signal: PA11
+  pin: 27
+- signal: PA12
+  pin: 29
+- signal: PA13
+  pin: 18
+- signal: PA14
+  pin: 19
+- signal: PA21
+  pin: 12
+- signal: PA22
+  pin: 17
+- signal: PA24
+  pin: 23
+- signal: PA27
+  pin: 30
+- signal: PB0
+  pin: 8
+- signal: PB1
+  pin: 7
+- signal: PB2
+  pin: 9
+- signal: PB3
+  pin: 11
 - signal: PB4
-- signal: PE2
-- signal: PB13
-- signal: VDDUTMIC
-  constraints:
-  - power
-- signal: HSDM
-- signal: PD1
-- signal: PC24
-- signal: PD3
-- signal: PD7
-- signal: PA6
-- signal: PC18
-- signal: JTAGSEL
-- signal: PC17
-- signal: VDDIN
-  constraints:
-  - power
-- signal: PE0
-- signal: VDDOUT
-  constraints:
-  - power
-- signal: VBG
-- signal: PC25
-- signal: PC23
-- signal: PC22
-- signal: PA31
-- signal: PA28
+  pin: 46
 - signal: PB5
-- signal: PA0
-- signal: PD10
-- signal: ADVREFP
-- signal: ADVREFN
-- signal: PD31
+  pin: 47
+- signal: PB6
+  pin: 35
+- signal: PB7
+  pin: 39
+- signal: PB8
+  pin: 62
+- signal: PB9
+  pin: 63
+- signal: PB12
+  pin: 38
 - signal: PD0
-- signal: GNDANA
-  constraints:
-  - power
+  pin: 1
+- signal: PD1
+  pin: 57
+- signal: PD2
+  pin: 56
+- signal: PD3
+  pin: 55
 - signal: PD4
+  pin: 54
 - signal: PD5
-- signal: PC19
+  pin: 53
+- signal: PD6
+  pin: 51
+- signal: PD7
+  pin: 50
+- signal: PD8
+  pin: 49
 - signal: PD9
-- signal: PD29
-- signal: PC16
-- signal: PA1
-- signal: PC31
-- signal: PC27
-- signal: PE3
-- signal: PC0
-- signal: GNDUTMI
+  pin: 48
+- signal: PD10
+  pin: 44
+- signal: PD11
+  pin: 43
+- signal: PD12
+  pin: 41
+- signal: PD21
+  pin: 26
+- signal: PD22
+  pin: 25
+- signal: PD24
+  pin: 22
+- signal: PD25
+  pin: 20
+- signal: PD26
+  pin: 21
+- signal: PD31
+  pin: 2
+- signal: VDDOUT
+  pin: 3
   constraints:
   - power
-- signal: GNDPLLUSB
+- signal: VDDIN
+  pin: 4
   constraints:
   - power
-- signal: VDDUTMII
+- signal: VREFP
+  pin: 5
+- signal: NRST
+  pin: 36
+- signal: TST
+  pin: 37
+- signal: VDDIO
+  pin: 10
+  constraints:
+  - power
+- signal: VDDIO
+  pin: 42
+  constraints:
+  - power
+- signal: VDDIO
+  pin: 58
+  constraints:
+  - power
+- signal: JTAGSEL
+  pin: 45
+- signal: VDDCORE
+  pin: 13
   constraints:
   - power
 - signal: VDDCORE
+  pin: 24
   constraints:
   - power
-- signal: PD8
-- signal: PC14
-- signal: PD11
-- signal: PA2
-- signal: PC30
-- signal: PC26
-- signal: PC29
-- signal: PC12
+- signal: VDDCORE
+  pin: 61
+  constraints:
+  - power
+- signal: VDDPLL
+  pin: 52
+  constraints:
+  - power
+- signal: DM
+  pin: 59
+- signal: DP
+  pin: 60
 - signal: GND
+  pin: 6
   constraints:
   - power
 - signal: GND
+  pin: 14
   constraints:
   - power
-- signal: GNDPLL
+- signal: GND
+  pin: 31
   constraints:
   - power
 - signal: VDDPLLUSB
+  pin: 64
   constraints:
   - power
-- signal: PB7
-- signal: PC10
-- signal: PC11
-- signal: PA3
-- signal: PC15
-- signal: PC13
-- signal: PB1
-- signal: GND
-  constraints:
-  - power
-- signal: GND
-  constraints:
-  - power
-- signal: GND
-  constraints:
-  - power
-- signal: GND
-  constraints:
-  - power
-- signal: VDDIO
-  constraints:
-  - power
-- signal: PD13
-- signal: PD12
-- signal: PC9
-- signal: PB12
-- signal: PA19
-- signal: PA18
-- signal: PA20
-- signal: PB0
-- signal: VDDCORE
-  constraints:
-  - power
-- signal: VDDIO
-  constraints:
-  - power
-- signal: VDDIO
-  constraints:
-  - power
-- signal: VDDCORE
-  constraints:
-  - power
-- signal: PD21
-- signal: PD14
-- signal: TST
-- signal: NRST
-- signal: PA17
-- signal: PB2
-- signal: PB3
-- signal: PC1
-- signal: PC4
-- signal: PD27
-- signal: VDDPLL
-  constraints:
-  - power
-- signal: PA26
-- signal: PA11
-- signal: PA27
-- signal: PB6
-- signal: PC8
-- signal: PE4
-- signal: PA21
-- signal: PA22
-- signal: PC2
-- signal: PA16
-- signal: PA14
-- signal: PC6
-- signal: PA25
-- signal: PD20
-- signal: PD28
-- signal: PD16
-- signal: PA4
-- signal: PE5
-- signal: PA7
-- signal: PC3
-- signal: PA23
-- signal: PA15
-- signal: PD26
-- signal: PA24
-- signal: PC5
-- signal: PA10
-- signal: PA12
-- signal: PD17
-- signal: PC28
-- signal: PD30
-- signal: PA8
-- signal: PA13
-- signal: PC7
-- signal: PD25
-- signal: PD24
-- signal: PD23
-- signal: PD22
-- signal: PD19
-- signal: PD18
-- signal: PA5
-- signal: PA9
 interrupts:
 - *id001
 - *id002
@@ -18823,16 +17361,3 @@ interrupts:
 - *id054
 - *id055
 - *id056
-- *id057
-- *id058
-- *id059
-- *id060
-- *id061
-- *id062
-- *id063
-- *id064
-- *id065
-- *id066
-- *id067
-- *id068
-- *id069
