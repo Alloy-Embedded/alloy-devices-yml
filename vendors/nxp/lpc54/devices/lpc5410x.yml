@@ -1,0 +1,7059 @@
+schema: alloy.device.v2.1
+identity:
+  vendor: nxp
+  family: lpc54
+  device: lpc5410x
+  core:
+    isa: armv7e-m
+    name: cm4
+    bits: 32
+    mpu: true
+    nvic_priority_bits: 3
+  description: LPC5410x Cortex-M4 MCU; Cortex-M0+ coprocessor
+provenance:
+  primary: cmsis-svd:LPC5410x_v0.4.svd
+  authored: auto
+  notes: SVD-extracted skeleton — memory + pinout require enrichment.
+memory:
+- id: flash
+  base: '0x00000000'
+  size: 1B
+  access: rx
+  role: extractor-placeholder
+clock:
+  oscillators:
+    unknown:
+      freq: 0Hz
+      kind: rc-internal
+  domains:
+  - id: sysclk
+    sources:
+    - unknown
+templates:
+  adc0:
+    registers:
+      calib:
+        offset: 112
+        access: rw
+      chan_thrsel:
+        offset: 96
+        access: rw
+      ctrl:
+        offset: 0
+        access: rw
+      dat%s:
+        offset: 32
+        access: ro
+      flags:
+        offset: 104
+        access: ro
+      inten:
+        offset: 100
+        access: rw
+      seqa_ctrl:
+        offset: 8
+        access: rw
+      seqa_gdat:
+        offset: 16
+        access: ro
+      seqb_ctrl:
+        offset: 12
+        access: rw
+      seqb_gdat:
+        offset: 20
+        access: ro
+      startup:
+        offset: 108
+        access: rw
+      thr0_high:
+        offset: 88
+        access: rw
+      thr0_low:
+        offset: 80
+        access: rw
+      thr1_high:
+        offset: 92
+        access: rw
+      thr1_low:
+        offset: 84
+        access: rw
+    fields:
+      calib.calib:
+        bit: 0
+      calib.calreqd:
+        bit: 1
+      calib.calvalue:
+        bits:
+        - 2
+        - 8
+      calib.reserved:
+        bits:
+        - 9
+        - 31
+      chan_thrsel.ch0_thrsel:
+        bit: 0
+        enum:
+          THRESHOLD0: 0
+          THRESHOLD1: 1
+      chan_thrsel.ch10_thrsel:
+        bit: 10
+      chan_thrsel.ch11_thrsel:
+        bit: 11
+      chan_thrsel.ch1_thrsel:
+        bit: 1
+      chan_thrsel.ch2_thrsel:
+        bit: 2
+      chan_thrsel.ch3_thrsel:
+        bit: 3
+      chan_thrsel.ch4_thrsel:
+        bit: 4
+      chan_thrsel.ch5_thrsel:
+        bit: 5
+      chan_thrsel.ch6_thrsel:
+        bit: 6
+      chan_thrsel.ch7_thrsel:
+        bit: 7
+      chan_thrsel.ch8_thrsel:
+        bit: 8
+      chan_thrsel.ch9_thrsel:
+        bit: 9
+      chan_thrsel.reserved:
+        bits:
+        - 12
+        - 31
+      ctrl.asynmode:
+        bit: 8
+        enum:
+          SYNCHRONOUS_MODE: 0
+          ASYNCHRONOUS_MODE: 1
+      ctrl.bypasscal:
+        bit: 11
+        enum:
+          CALIBRATE: 0
+          BYPASS_CALIBRATION: 1
+      ctrl.clkdiv:
+        bits:
+        - 0
+        - 7
+      ctrl.resol:
+        bits:
+        - 9
+        - 10
+        enum:
+          6_BIT_RESOLUTION: 0
+          8_BIT_RESOLUTION: 1
+          10_BIT_RESOLUTION: 2
+          12_BIT_RESOLUTION: 3
+      ctrl.tsamp:
+        bits:
+        - 12
+        - 14
+      dat%s.channel:
+        bits:
+        - 26
+        - 29
+      dat%s.datavalid:
+        bit: 31
+      dat%s.overrun:
+        bit: 30
+      dat%s.reserved:
+        bits:
+        - 0
+        - 3
+      dat%s.result:
+        bits:
+        - 4
+        - 15
+      dat%s.thcmpcross:
+        bits:
+        - 18
+        - 19
+      dat%s.thcmprange:
+        bits:
+        - 16
+        - 17
+      flags.overrun0:
+        bit: 12
+      flags.overrun1:
+        bit: 13
+      flags.overrun10:
+        bit: 22
+      flags.overrun11:
+        bit: 23
+      flags.overrun2:
+        bit: 14
+      flags.overrun3:
+        bit: 15
+      flags.overrun4:
+        bit: 16
+      flags.overrun5:
+        bit: 17
+      flags.overrun6:
+        bit: 18
+      flags.overrun7:
+        bit: 19
+      flags.overrun8:
+        bit: 20
+      flags.overrun9:
+        bit: 21
+      flags.ovr_int:
+        bit: 31
+      flags.reserved:
+        bits:
+        - 26
+        - 27
+      flags.seqa_int:
+        bit: 28
+      flags.seqa_ovr:
+        bit: 24
+      flags.seqb_int:
+        bit: 29
+      flags.seqb_ovr:
+        bit: 25
+      flags.thcmp0:
+        bit: 0
+      flags.thcmp1:
+        bit: 1
+      flags.thcmp10:
+        bit: 10
+      flags.thcmp11:
+        bit: 11
+      flags.thcmp2:
+        bit: 2
+      flags.thcmp3:
+        bit: 3
+      flags.thcmp4:
+        bit: 4
+      flags.thcmp5:
+        bit: 5
+      flags.thcmp6:
+        bit: 6
+      flags.thcmp7:
+        bit: 7
+      flags.thcmp8:
+        bit: 8
+      flags.thcmp9:
+        bit: 9
+      flags.thcmp_int:
+        bit: 30
+      inten.adcmpinten0:
+        bits:
+        - 3
+        - 4
+        enum:
+          DISABLED: 0
+          OUTSIDE_THRESHOLD: 1
+          CROSSING_THRESHOLD: 2
+          RESERVED: 3
+      inten.adcmpinten1:
+        bits:
+        - 5
+        - 6
+      inten.adcmpinten10:
+        bits:
+        - 23
+        - 24
+      inten.adcmpinten11:
+        bits:
+        - 25
+        - 26
+      inten.adcmpinten2:
+        bits:
+        - 7
+        - 8
+      inten.adcmpinten3:
+        bits:
+        - 9
+        - 10
+      inten.adcmpinten4:
+        bits:
+        - 11
+        - 12
+      inten.adcmpinten5:
+        bits:
+        - 13
+        - 14
+      inten.adcmpinten6:
+        bits:
+        - 15
+        - 16
+      inten.adcmpinten7:
+        bits:
+        - 17
+        - 18
+      inten.adcmpinten8:
+        bits:
+        - 19
+        - 20
+      inten.adcmpinten9:
+        bits:
+        - 21
+        - 22
+      inten.ovr_inten:
+        bit: 2
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      inten.reserved:
+        bits:
+        - 27
+        - 31
+      inten.seqa_inten:
+        bit: 0
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      inten.seqb_inten:
+        bit: 1
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      seqa_ctrl.burst:
+        bit: 27
+      seqa_ctrl.channels:
+        bits:
+        - 0
+        - 11
+      seqa_ctrl.lowprio:
+        bit: 29
+        enum:
+          LOW_PRIORITY: 0
+          HIGH_PRIORITY: 1
+      seqa_ctrl.mode:
+        bit: 30
+        enum:
+          END_OF_CONVERSION: 0
+          END_OF_SEQUENCE: 1
+      seqa_ctrl.reserved:
+        bits:
+        - 20
+        - 25
+      seqa_ctrl.seqa_ena:
+        bit: 31
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      seqa_ctrl.singlestep:
+        bit: 28
+      seqa_ctrl.start:
+        bit: 26
+      seqa_ctrl.syncbypass:
+        bit: 19
+        enum:
+          ENABLE_TRIGGER_SYNCH: 0
+          BYPASS_TRIGGER_SYNCH: 1
+      seqa_ctrl.trigger:
+        bits:
+        - 12
+        - 17
+      seqa_ctrl.trigpol:
+        bit: 18
+        enum:
+          NEGATIVE_EDGE: 0
+          POSITIVE_EDGE: 1
+      seqa_gdat.chn:
+        bits:
+        - 26
+        - 29
+      seqa_gdat.datavalid:
+        bit: 31
+      seqa_gdat.overrun:
+        bit: 30
+      seqa_gdat.reserved:
+        bits:
+        - 0
+        - 3
+      seqa_gdat.result:
+        bits:
+        - 4
+        - 15
+      seqa_gdat.thcmpcross:
+        bits:
+        - 18
+        - 19
+      seqa_gdat.thcmprange:
+        bits:
+        - 16
+        - 17
+      seqb_ctrl.burst:
+        bit: 27
+      seqb_ctrl.channels:
+        bits:
+        - 0
+        - 11
+      seqb_ctrl.mode:
+        bit: 30
+        enum:
+          END_OF_CONVERSION: 0
+          END_OF_SEQUENCE: 1
+      seqb_ctrl.reserved:
+        bits:
+        - 20
+        - 25
+      seqb_ctrl.seqb_ena:
+        bit: 31
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      seqb_ctrl.singlestep:
+        bit: 28
+      seqb_ctrl.start:
+        bit: 26
+      seqb_ctrl.syncbypass:
+        bit: 19
+        enum:
+          ENABLE_SYNCHRONIZATI: 0
+          BYPASS_SYNCHRONIZATI: 1
+      seqb_ctrl.trigger:
+        bits:
+        - 12
+        - 17
+      seqb_ctrl.trigpol:
+        bit: 18
+        enum:
+          NEGATIVE_EDGE: 0
+          POSITIVE_EDGE: 1
+      seqb_gdat.chn:
+        bits:
+        - 26
+        - 29
+      seqb_gdat.datavalid:
+        bit: 31
+      seqb_gdat.overrun:
+        bit: 30
+      seqb_gdat.reserved:
+        bits:
+        - 0
+        - 3
+      seqb_gdat.result:
+        bits:
+        - 4
+        - 15
+      seqb_gdat.thcmpcross:
+        bits:
+        - 18
+        - 19
+      seqb_gdat.thcmprange:
+        bits:
+        - 16
+        - 17
+      startup.adc_ena:
+        bit: 0
+      startup.adc_int:
+        bit: 1
+      startup.reserved:
+        bits:
+        - 2
+        - 31
+      thr0_high.reserved:
+        bits:
+        - 0
+        - 3
+      thr0_high.thrhigh:
+        bits:
+        - 4
+        - 15
+      thr0_low.reserved:
+        bits:
+        - 0
+        - 3
+      thr0_low.thrlow:
+        bits:
+        - 4
+        - 15
+      thr1_high.reserved:
+        bits:
+        - 0
+        - 3
+      thr1_high.thrhigh:
+        bits:
+        - 4
+        - 15
+      thr1_low.reserved:
+        bits:
+        - 0
+        - 3
+      thr1_low.thrlow:
+        bits:
+        - 4
+        - 15
+  advsyscon:
+    registers:
+      bodctrl:
+        offset: 68
+        access: rw
+    fields:
+      bodctrl.bodintval:
+        bits:
+        - 2
+        - 3
+        enum:
+          LEVEL_0_2: 0
+          LEVEL_1_2: 1
+          LEVEL_2_2: 2
+          LEVEL_3_3: 3
+      bodctrl.bodrstena:
+        bit: 4
+        enum:
+          DISABLE_RESET_FUNCTI: 0
+          ENABLE_RESET_FUNCTIO: 1
+      bodctrl.bodrstlev:
+        bits:
+        - 0
+        - 1
+        enum:
+          LEVEL_0_1: 0
+          LEVEL_1_1: 1
+          LEVEL_2_2: 2
+          LEVEL_3_2: 3
+      bodctrl.reserved:
+        bits:
+        - 5
+        - 31
+  asyncsyscon:
+    registers:
+      asyncapbclkctrl:
+        offset: 16
+        access: rw
+      asyncapbclkctrlclr:
+        offset: 24
+        access: wo
+      asyncapbclkctrlset:
+        offset: 20
+        access: wo
+      asyncapbclksela:
+        offset: 32
+        access: rw
+      asyncapbclkselb:
+        offset: 36
+        access: rw
+      asyncclkdiv:
+        offset: 40
+        access: rw
+      aysncpresetctrl:
+        offset: 0
+        access: rw
+      aysncpresetctrlclr:
+        offset: 8
+        access: wo
+      aysncpresetctrlset:
+        offset: 4
+        access: wo
+      bodctrl:
+        offset: 68
+        access: rw
+      frgctrl:
+        offset: 48
+        access: rw
+    fields:
+      asyncapbclkctrl.frg0:
+        bit: 15
+      asyncapbclkctrl.i2c0:
+        bit: 5
+      asyncapbclkctrl.i2c1:
+        bit: 6
+      asyncapbclkctrl.i2c2:
+        bit: 7
+      asyncapbclkctrl.reserved:
+        bit: 0
+      asyncapbclkctrl.spi0:
+        bit: 9
+      asyncapbclkctrl.spi1:
+        bit: 10
+      asyncapbclkctrl.timer0:
+        bit: 13
+      asyncapbclkctrl.timer1:
+        bit: 14
+      asyncapbclkctrl.usart0:
+        bit: 1
+      asyncapbclkctrl.usart1:
+        bit: 2
+      asyncapbclkctrl.usart2:
+        bit: 3
+      asyncapbclkctrl.usart3:
+        bit: 4
+      asyncapbclkctrlclr.aclk_clr:
+        bits:
+        - 0
+        - 31
+      asyncapbclkctrlset.aclk_set:
+        bits:
+        - 0
+        - 31
+      asyncapbclksela.reserved:
+        bits:
+        - 2
+        - 31
+      asyncapbclksela.sel:
+        bits:
+        - 0
+        - 1
+        enum:
+          IRC_OSCILLATOR: 0
+          WATCHDOG_OSCILLATOR: 1
+          RESERVED: 3
+      asyncapbclkselb.reserved:
+        bits:
+        - 2
+        - 31
+      asyncapbclkselb.sel:
+        bits:
+        - 0
+        - 1
+        enum:
+          MAIN_CLOCK: 0
+          CLKIN: 1
+          SYSTEM_PLL_OUTPUT: 2
+          ASYNCAPBCLKSELA: 3
+      asyncclkdiv.div:
+        bits:
+        - 0
+        - 7
+      asyncclkdiv.reserved:
+        bits:
+        - 8
+        - 31
+      aysncpresetctrl.frg0:
+        bit: 15
+      aysncpresetctrl.i2c0:
+        bit: 5
+      aysncpresetctrl.i2c1:
+        bit: 6
+      aysncpresetctrl.i2c2:
+        bit: 7
+      aysncpresetctrl.reserved:
+        bit: 0
+      aysncpresetctrl.spi0:
+        bit: 9
+      aysncpresetctrl.spi1:
+        bit: 10
+      aysncpresetctrl.timer0:
+        bit: 13
+      aysncpresetctrl.timer1:
+        bit: 14
+      aysncpresetctrl.usart0:
+        bit: 1
+      aysncpresetctrl.usart1:
+        bit: 2
+      aysncpresetctrl.usart2:
+        bit: 3
+      aysncpresetctrl.usart3:
+        bit: 4
+      aysncpresetctrlclr.arst_clr:
+        bits:
+        - 0
+        - 31
+      aysncpresetctrlset.arst_set:
+        bits:
+        - 0
+        - 31
+      bodctrl.bodintval:
+        bits:
+        - 2
+        - 3
+        enum:
+          LEVEL_0_2: 0
+          LEVEL_1_2: 1
+          LEVEL_2_2: 2
+          LEVEL_3_3: 3
+      bodctrl.bodrstena:
+        bit: 4
+        enum:
+          DISABLE_RESET_FUNCTI: 0
+          ENABLE_RESET_FUNCTIO: 1
+      bodctrl.bodrstlev:
+        bits:
+        - 0
+        - 1
+        enum:
+          LEVEL_0_1: 0
+          LEVEL_1_1: 1
+          LEVEL_2_2: 2
+          LEVEL_3_2: 3
+      bodctrl.reserved:
+        bits:
+        - 5
+        - 31
+      frgctrl.div:
+        bits:
+        - 0
+        - 7
+      frgctrl.mult:
+        bits:
+        - 8
+        - 15
+      frgctrl.reserved:
+        bits:
+        - 16
+        - 31
+  crc:
+    registers:
+      mode:
+        offset: 0
+        access: rw
+      seed:
+        offset: 4
+        access: rw
+      sum:
+        offset: 8
+        access: ro
+    fields:
+      mode.bit_rvs_sum:
+        bit: 4
+      mode.bit_rvs_wr:
+        bit: 2
+      mode.cmpl_sum:
+        bit: 5
+      mode.cmpl_wr:
+        bit: 3
+      mode.crc_poly:
+        bits:
+        - 0
+        - 1
+      mode.reserved:
+        bits:
+        - 6
+        - 31
+      seed.crc_seed:
+        bits:
+        - 0
+        - 31
+      sum.crc_sum:
+        bits:
+        - 0
+        - 31
+  ct32b:
+    registers:
+      ccr:
+        offset: 40
+        access: rw
+      cr%s:
+        offset: 44
+        access: ro
+      ctcr:
+        offset: 112
+        access: rw
+      emr:
+        offset: 60
+        access: rw
+      ir:
+        offset: 0
+        access: rw
+      mcr:
+        offset: 20
+        access: rw
+      mr%s:
+        offset: 24
+        access: rw
+      pc:
+        offset: 16
+        access: rw
+      pr:
+        offset: 12
+        access: rw
+      pwmc:
+        offset: 116
+        access: rw
+      tc:
+        offset: 8
+        access: rw
+      tcr:
+        offset: 4
+        access: rw
+    fields:
+      ccr.cap0fe:
+        bit: 1
+      ccr.cap0i:
+        bit: 2
+      ccr.cap0re:
+        bit: 0
+      ccr.cap1fe:
+        bit: 4
+      ccr.cap1i:
+        bit: 5
+      ccr.cap1re:
+        bit: 3
+      ccr.cap2fe:
+        bit: 7
+      ccr.cap2i:
+        bit: 8
+      ccr.cap2re:
+        bit: 6
+      ccr.cap3fe:
+        bit: 10
+      ccr.cap3i:
+        bit: 11
+      ccr.cap3re:
+        bit: 9
+      ccr.reserved:
+        bits:
+        - 12
+        - 31
+      cr%s.cap:
+        bits:
+        - 0
+        - 31
+      ctcr.cinsel:
+        bits:
+        - 2
+        - 3
+        enum:
+          CHANNEL_0: 0
+          CHANNEL_1: 1
+          CHANNEL_2: 2
+          CHANNEL_3: 3
+      ctcr.ctmode:
+        bits:
+        - 0
+        - 1
+        enum:
+          TIMER_MODE: 0
+          COUNTER_MODE_RISING: 1
+          COUNTER_MODE_FALLING: 2
+          COUNTER_MODE_DUAL_ED: 3
+      ctcr.encc:
+        bit: 4
+      ctcr.reserved:
+        bits:
+        - 8
+        - 31
+      ctcr.selcc:
+        bits:
+        - 5
+        - 7
+        enum:
+          CHANNEL_0_RISING_EDG: 0
+          CHANNEL_0_FALLING_ED: 1
+          CHANNEL_1_RISING_EDG: 2
+          CHANNEL_1_FALLING_ED: 3
+          CHANNEL_2_RISING_EDG: 4
+          CHANNEL_2_FALLING_ED: 5
+      emr.em0:
+        bit: 0
+      emr.em1:
+        bit: 1
+      emr.em2:
+        bit: 2
+      emr.em3:
+        bit: 3
+      emr.emc0:
+        bits:
+        - 4
+        - 5
+        enum:
+          DO_NOTHING: 0
+          CLEAR: 1
+          SET: 2
+          TOGGLE: 3
+      emr.emc1:
+        bits:
+        - 6
+        - 7
+        enum:
+          DO_NOTHING: 0
+          CLEAR: 1
+          SET: 2
+          TOGGLE: 3
+      emr.emc2:
+        bits:
+        - 8
+        - 9
+        enum:
+          DO_NOTHING: 0
+          CLEAR: 1
+          SET: 2
+          TOGGLE: 3
+      emr.emc3:
+        bits:
+        - 10
+        - 11
+        enum:
+          DO_NOTHING: 0
+          CLEAR: 1
+          SET: 2
+          TOGGLE: 3
+      emr.reserved:
+        bits:
+        - 12
+        - 31
+      ir.cr0int:
+        bit: 4
+      ir.cr1int:
+        bit: 5
+      ir.cr2int:
+        bit: 6
+      ir.cr3int:
+        bit: 7
+      ir.mr0int:
+        bit: 0
+      ir.mr1int:
+        bit: 1
+      ir.mr2int:
+        bit: 2
+      ir.mr3int:
+        bit: 3
+      ir.reserved:
+        bits:
+        - 6
+        - 31
+      mcr.mr0i:
+        bit: 0
+      mcr.mr0r:
+        bit: 1
+      mcr.mr0s:
+        bit: 2
+      mcr.mr1i:
+        bit: 3
+      mcr.mr1r:
+        bit: 4
+      mcr.mr1s:
+        bit: 5
+      mcr.mr2i:
+        bit: 6
+      mcr.mr2r:
+        bit: 7
+      mcr.mr2s:
+        bit: 8
+      mcr.mr3i:
+        bit: 9
+      mcr.mr3r:
+        bit: 10
+      mcr.mr3s:
+        bit: 11
+      mcr.reserved:
+        bits:
+        - 12
+        - 31
+      mr%s.match:
+        bits:
+        - 0
+        - 31
+      pc.pcval:
+        bits:
+        - 0
+        - 31
+      pr.prval:
+        bits:
+        - 0
+        - 31
+      pwmc.pwmen0:
+        bit: 0
+        enum:
+          MATCH: 0
+          PWM: 1
+      pwmc.pwmen1:
+        bit: 1
+        enum:
+          MATCH: 0
+          PWM: 1
+      pwmc.pwmen2:
+        bit: 2
+        enum:
+          MATCH: 0
+          PWM: 1
+      pwmc.pwmen3:
+        bit: 3
+        enum:
+          MATCH: 0
+          PWM: 1
+      pwmc.reserved:
+        bits:
+        - 4
+        - 31
+      tc.tcval:
+        bits:
+        - 0
+        - 31
+      tcr.cen:
+        bit: 0
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      tcr.crst:
+        bit: 1
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      tcr.reserved:
+        bits:
+        - 2
+        - 31
+  ct32b0:
+    registers:
+      ccr:
+        offset: 40
+        access: rw
+      cr%s:
+        offset: 44
+        access: ro
+      ctcr:
+        offset: 112
+        access: rw
+      emr:
+        offset: 60
+        access: rw
+      ir:
+        offset: 0
+        access: rw
+      mcr:
+        offset: 20
+        access: rw
+      mr%s:
+        offset: 24
+        access: rw
+      pc:
+        offset: 16
+        access: rw
+      pr:
+        offset: 12
+        access: rw
+      pwmc:
+        offset: 116
+        access: rw
+      tc:
+        offset: 8
+        access: rw
+      tcr:
+        offset: 4
+        access: rw
+    fields:
+      ccr.cap0fe:
+        bit: 1
+      ccr.cap0i:
+        bit: 2
+      ccr.cap0re:
+        bit: 0
+      ccr.cap1fe:
+        bit: 4
+      ccr.cap1i:
+        bit: 5
+      ccr.cap1re:
+        bit: 3
+      ccr.cap2fe:
+        bit: 7
+      ccr.cap2i:
+        bit: 8
+      ccr.cap2re:
+        bit: 6
+      ccr.cap3fe:
+        bit: 10
+      ccr.cap3i:
+        bit: 11
+      ccr.cap3re:
+        bit: 9
+      ccr.reserved:
+        bits:
+        - 12
+        - 31
+      cr%s.cap:
+        bits:
+        - 0
+        - 31
+      ctcr.cinsel:
+        bits:
+        - 2
+        - 3
+        enum:
+          CHANNEL_0: 0
+          CHANNEL_1: 1
+          CHANNEL_2: 2
+          CHANNEL_3: 3
+      ctcr.ctmode:
+        bits:
+        - 0
+        - 1
+        enum:
+          TIMER_MODE: 0
+          COUNTER_MODE_RISING: 1
+          COUNTER_MODE_FALLING: 2
+          COUNTER_MODE_DUAL_ED: 3
+      ctcr.encc:
+        bit: 4
+      ctcr.reserved:
+        bits:
+        - 8
+        - 31
+      ctcr.selcc:
+        bits:
+        - 5
+        - 7
+        enum:
+          CHANNEL_0_RISING_EDG: 0
+          CHANNEL_0_FALLING_ED: 1
+          CHANNEL_1_RISING_EDG: 2
+          CHANNEL_1_FALLING_ED: 3
+          CHANNEL_2_RISING_EDG: 4
+          CHANNEL_2_FALLING_ED: 5
+      emr.em0:
+        bit: 0
+      emr.em1:
+        bit: 1
+      emr.em2:
+        bit: 2
+      emr.em3:
+        bit: 3
+      emr.emc0:
+        bits:
+        - 4
+        - 5
+        enum:
+          DO_NOTHING: 0
+          CLEAR: 1
+          SET: 2
+          TOGGLE: 3
+      emr.emc1:
+        bits:
+        - 6
+        - 7
+        enum:
+          DO_NOTHING: 0
+          CLEAR: 1
+          SET: 2
+          TOGGLE: 3
+      emr.emc2:
+        bits:
+        - 8
+        - 9
+        enum:
+          DO_NOTHING: 0
+          CLEAR: 1
+          SET: 2
+          TOGGLE: 3
+      emr.emc3:
+        bits:
+        - 10
+        - 11
+        enum:
+          DO_NOTHING: 0
+          CLEAR: 1
+          SET: 2
+          TOGGLE: 3
+      emr.reserved:
+        bits:
+        - 12
+        - 31
+      ir.cr0int:
+        bit: 4
+      ir.cr1int:
+        bit: 5
+      ir.cr2int:
+        bit: 6
+      ir.cr3int:
+        bit: 7
+      ir.mr0int:
+        bit: 0
+      ir.mr1int:
+        bit: 1
+      ir.mr2int:
+        bit: 2
+      ir.mr3int:
+        bit: 3
+      ir.reserved:
+        bits:
+        - 6
+        - 31
+      mcr.mr0i:
+        bit: 0
+      mcr.mr0r:
+        bit: 1
+      mcr.mr0s:
+        bit: 2
+      mcr.mr1i:
+        bit: 3
+      mcr.mr1r:
+        bit: 4
+      mcr.mr1s:
+        bit: 5
+      mcr.mr2i:
+        bit: 6
+      mcr.mr2r:
+        bit: 7
+      mcr.mr2s:
+        bit: 8
+      mcr.mr3i:
+        bit: 9
+      mcr.mr3r:
+        bit: 10
+      mcr.mr3s:
+        bit: 11
+      mcr.reserved:
+        bits:
+        - 12
+        - 31
+      mr%s.match:
+        bits:
+        - 0
+        - 31
+      pc.pcval:
+        bits:
+        - 0
+        - 31
+      pr.prval:
+        bits:
+        - 0
+        - 31
+      pwmc.pwmen0:
+        bit: 0
+        enum:
+          MATCH: 0
+          PWM: 1
+      pwmc.pwmen1:
+        bit: 1
+        enum:
+          MATCH: 0
+          PWM: 1
+      pwmc.pwmen2:
+        bit: 2
+        enum:
+          MATCH: 0
+          PWM: 1
+      pwmc.pwmen3:
+        bit: 3
+        enum:
+          MATCH: 0
+          PWM: 1
+      pwmc.reserved:
+        bits:
+        - 4
+        - 31
+      tc.tcval:
+        bits:
+        - 0
+        - 31
+      tcr.cen:
+        bit: 0
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      tcr.crst:
+        bit: 1
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      tcr.reserved:
+        bits:
+        - 2
+        - 31
+  dma:
+    registers:
+      abort0:
+        offset: 120
+        access: wo
+      active0:
+        offset: 48
+        access: ro
+      busy0:
+        offset: 56
+        access: ro
+      cfg%s:
+        offset: '0x0400'
+        access: rw
+      ctlstat%s:
+        offset: '0x0404'
+        access: ro
+      ctrl:
+        offset: 0
+        access: rw
+      enableclr0:
+        offset: 40
+        access: wo
+      enableset0:
+        offset: 32
+        access: rw
+      errint0:
+        offset: 64
+        access: rw
+      inta0:
+        offset: 88
+        access: rw
+      intb0:
+        offset: 96
+        access: rw
+      intenclr0:
+        offset: 80
+        access: wo
+      intenset0:
+        offset: 72
+        access: rw
+      intstat:
+        offset: 4
+        access: ro
+      settrig0:
+        offset: 112
+        access: wo
+      setvalid0:
+        offset: 104
+        access: wo
+      srambase:
+        offset: 8
+        access: rw
+      xfercfg%s:
+        offset: '0x0408'
+        access: rw
+    fields:
+      abort0.abortctrl:
+        bits:
+        - 0
+        - 21
+      abort0.reserved:
+        bits:
+        - 22
+        - 31
+      active0.act:
+        bits:
+        - 0
+        - 21
+      active0.reserved:
+        bits:
+        - 22
+        - 31
+      busy0.bsy:
+        bits:
+        - 0
+        - 21
+      busy0.reserved:
+        bits:
+        - 22
+        - 31
+      cfg%s.burstpower:
+        bits:
+        - 8
+        - 11
+      cfg%s.chpriority:
+        bits:
+        - 16
+        - 18
+      cfg%s.dstburstwrap:
+        bit: 15
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg%s.hwtrigen:
+        bit: 1
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg%s.periphreqen:
+        bit: 0
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg%s.reserved:
+        bits:
+        - 2
+        - 3
+      cfg%s.srcburstwrap:
+        bit: 14
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg%s.trigburst:
+        bit: 6
+        enum:
+          SINGLE_TRANSFER: 0
+          BURST_TRANSFER: 1
+      cfg%s.trigpol:
+        bit: 4
+        enum:
+          ACTIVE_LOW__FALLING: 0
+          ACTIVE_HIGH__RISING: 1
+      cfg%s.trigtype:
+        bit: 5
+        enum:
+          EDGE: 0
+          LEVEL: 1
+      ctlstat%s.reserved:
+        bit: 1
+      ctlstat%s.trig:
+        bit: 2
+        enum:
+          NOT_TRIGGERED: 0
+          TRIGGERED: 1
+      ctlstat%s.validpending:
+        bit: 0
+        enum:
+          NO_EFFECT: 0
+          VALID_PENDING: 1
+      ctrl.enable:
+        bit: 0
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      ctrl.reserved:
+        bits:
+        - 1
+        - 31
+      enableclr0.clr:
+        bits:
+        - 0
+        - 21
+      enableclr0.reserved:
+        bits:
+        - 22
+        - 31
+      enableset0.ena:
+        bits:
+        - 0
+        - 21
+      enableset0.reserved:
+        bits:
+        - 22
+        - 31
+      errint0.err:
+        bits:
+        - 0
+        - 21
+      errint0.reserved:
+        bits:
+        - 22
+        - 31
+      inta0.ia:
+        bits:
+        - 0
+        - 21
+      inta0.reserved:
+        bits:
+        - 22
+        - 31
+      intb0.ib:
+        bits:
+        - 0
+        - 21
+      intb0.reserved:
+        bits:
+        - 22
+        - 31
+      intenclr0.clr:
+        bits:
+        - 0
+        - 21
+      intenclr0.reserved:
+        bits:
+        - 22
+        - 31
+      intenset0.inten:
+        bits:
+        - 0
+        - 21
+      intenset0.reserved:
+        bits:
+        - 22
+        - 31
+      intstat.activeerrint:
+        bit: 2
+        enum:
+          NOT_PENDING: 0
+          PENDING: 1
+      intstat.activeint:
+        bit: 1
+        enum:
+          NOT_PENDING: 0
+          PENDING: 1
+      intstat.reserved:
+        bit: 0
+      settrig0.reserved:
+        bits:
+        - 22
+        - 31
+      settrig0.trig:
+        bits:
+        - 0
+        - 21
+      setvalid0.reserved:
+        bits:
+        - 22
+        - 31
+      setvalid0.sv:
+        bits:
+        - 0
+        - 21
+      srambase.offset:
+        bits:
+        - 9
+        - 31
+      srambase.reserved:
+        bits:
+        - 0
+        - 8
+      xfercfg%s.cfgvalid:
+        bit: 0
+        enum:
+          NOT_VALID: 0
+          VALID: 1
+      xfercfg%s.clrtrig:
+        bit: 3
+        enum:
+          NOT_CLEARED: 0
+          CLEARED: 1
+      xfercfg%s.dstinc:
+        bits:
+        - 14
+        - 15
+        enum:
+          NO_INCREMENT: 0
+          1_X_WIDTH: 1
+          2_X_WIDTH: 2
+          4_X_WIDTH: 3
+      xfercfg%s.reload:
+        bit: 1
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      xfercfg%s.reserved:
+        bits:
+        - 6
+        - 7
+      xfercfg%s.setinta:
+        bit: 4
+        enum:
+          NO_EFFECT: 0
+          SET: 1
+      xfercfg%s.setintb:
+        bit: 5
+        enum:
+          NO_EFFECT: 0
+          SET: 1
+      xfercfg%s.srcinc:
+        bits:
+        - 12
+        - 13
+        enum:
+          NO_INCREMENT: 0
+          1_X_WIDTH: 1
+          2_X_WIDTH: 2
+          4_X_WIDTH: 3
+      xfercfg%s.swtrig:
+        bit: 2
+        enum:
+          NOT_SET: 0
+          SET: 1
+      xfercfg%s.width:
+        bits:
+        - 8
+        - 9
+        enum:
+          8_BIT: 0
+          16_BIT: 1
+          32_BIT: 2
+          RESERVED: 3
+      xfercfg%s.xfercount:
+        bits:
+        - 16
+        - 25
+  gint:
+    registers:
+      ctrl:
+        offset: 0
+        access: rw
+      port_ena%s:
+        offset: 64
+        access: rw
+      port_pol%s:
+        offset: 32
+        access: rw
+    fields:
+      ctrl.comb:
+        bit: 1
+        enum:
+          OR: 0
+          AND: 1
+      ctrl.int:
+        bit: 0
+        enum:
+          NO_REQUEST: 0
+          REQUEST_ACTIVE: 1
+      ctrl.reserved:
+        bits:
+        - 3
+        - 31
+      ctrl.trig:
+        bit: 2
+        enum:
+          EDGE_TRIGGERED: 0
+          LEVEL_TRIGGERED: 1
+      port_ena%s.ena:
+        bits:
+        - 0
+        - 31
+      port_pol%s.pol:
+        bits:
+        - 0
+        - 31
+  gint0:
+    registers:
+      ctrl:
+        offset: 0
+        access: rw
+      port_ena%s:
+        offset: 64
+        access: rw
+      port_pol%s:
+        offset: 32
+        access: rw
+    fields:
+      ctrl.comb:
+        bit: 1
+        enum:
+          OR: 0
+          AND: 1
+      ctrl.int:
+        bit: 0
+        enum:
+          NO_REQUEST: 0
+          REQUEST_ACTIVE: 1
+      ctrl.reserved:
+        bits:
+        - 3
+        - 31
+      ctrl.trig:
+        bit: 2
+        enum:
+          EDGE_TRIGGERED: 0
+          LEVEL_TRIGGERED: 1
+      port_ena%s.ena:
+        bits:
+        - 0
+        - 31
+      port_pol%s.pol:
+        bits:
+        - 0
+        - 31
+  gpio:
+    registers:
+      b%s:
+        offset: 0
+        access: rw
+      clr%s:
+        offset: '0x2280'
+        access: wo
+      dir%s:
+        offset: '0x2000'
+        access: rw
+      mask%s:
+        offset: '0x2080'
+        access: rw
+      mpin%s:
+        offset: '0x2180'
+        access: rw
+      not%s:
+        offset: '0x2300'
+        access: wo
+      pin%s:
+        offset: '0x2100'
+        access: rw
+      set%s:
+        offset: '0x2200'
+        access: rw
+      w%s:
+        offset: '0x1000'
+        access: rw
+    fields:
+      b%s.pbyte:
+        bit: 0
+      clr%s.clrp:
+        bits:
+        - 0
+        - 31
+      dir%s.dirp:
+        bits:
+        - 0
+        - 31
+      mask%s.maskp:
+        bits:
+        - 0
+        - 31
+      mpin%s.mportp:
+        bits:
+        - 0
+        - 31
+      not%s.notp:
+        bits:
+        - 0
+        - 31
+      pin%s.port:
+        bits:
+        - 0
+        - 31
+      set%s.setp:
+        bits:
+        - 0
+        - 31
+      w%s.pword:
+        bits:
+        - 0
+        - 31
+  i2c:
+    registers:
+      cfg:
+        offset: 0
+        access: rw
+      clkdiv:
+        offset: 20
+        access: rw
+      intenclr:
+        offset: 12
+        access: wo
+      intenset:
+        offset: 8
+        access: rw
+      intstat:
+        offset: 24
+        access: ro
+      monrxdat:
+        offset: 128
+        access: ro
+      mstctl:
+        offset: 32
+        access: rw
+      mstdat:
+        offset: 40
+        access: rw
+      msttime:
+        offset: 36
+        access: rw
+      slvadr%s:
+        offset: 72
+        access: rw
+      slvctl:
+        offset: 64
+        access: rw
+      slvdat:
+        offset: 68
+        access: rw
+      slvqual0:
+        offset: 88
+        access: rw
+      stat:
+        offset: 4
+        access: rw
+      timeout:
+        offset: 16
+        access: rw
+    fields:
+      cfg.hscapable:
+        bit: 5
+        enum:
+          FAST_MODE_PLUS: 0
+          HIGH_SPEED: 1
+      cfg.monclkstr:
+        bit: 4
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg.monen:
+        bit: 2
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg.msten:
+        bit: 0
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg.reserved:
+        bits:
+        - 6
+        - 31
+      cfg.slven:
+        bit: 1
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg.timeouten:
+        bit: 3
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      clkdiv.divval:
+        bits:
+        - 0
+        - 15
+      clkdiv.reserved:
+        bits:
+        - 16
+        - 31
+      intenclr.eventtimeoutclr:
+        bit: 24
+      intenclr.monidleclr:
+        bit: 19
+      intenclr.monovclr:
+        bit: 17
+      intenclr.monrdyclr:
+        bit: 16
+      intenclr.mstarblossclr:
+        bit: 4
+      intenclr.mstpendingclr:
+        bit: 0
+      intenclr.mstststperrclr:
+        bit: 6
+      intenclr.reserved:
+        bits:
+        - 1
+        - 3
+      intenclr.scltimeoutclr:
+        bit: 25
+      intenclr.slvdeselclr:
+        bit: 15
+      intenclr.slvnotstrclr:
+        bit: 11
+      intenclr.slvpendingclr:
+        bit: 8
+      intenset.eventtimeouten:
+        bit: 24
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.monidleen:
+        bit: 19
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.monoven:
+        bit: 17
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.monrdyen:
+        bit: 16
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.mstarblossen:
+        bit: 4
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.mstpendingen:
+        bit: 0
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.mstststperren:
+        bit: 6
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.reserved:
+        bits:
+        - 1
+        - 3
+      intenset.scltimeouten:
+        bit: 25
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.slvdeselen:
+        bit: 15
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.slvnotstren:
+        bit: 11
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.slvpendingen:
+        bit: 8
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intstat.eventtimeout:
+        bit: 24
+      intstat.monidle:
+        bit: 19
+      intstat.monov:
+        bit: 17
+      intstat.monrdy:
+        bit: 16
+      intstat.mstarbloss:
+        bit: 4
+      intstat.mstpending:
+        bit: 0
+      intstat.mstststperr:
+        bit: 6
+      intstat.reserved:
+        bits:
+        - 1
+        - 3
+      intstat.scltimeout:
+        bit: 25
+      intstat.slvdesel:
+        bit: 15
+      intstat.slvnotstr:
+        bit: 11
+      intstat.slvpending:
+        bit: 8
+      monrxdat.monnack:
+        bit: 10
+        enum:
+          ACKNOWLEDGED: 0
+          NOT_ACKNOWLEDGED: 1
+      monrxdat.monrestart:
+        bit: 9
+        enum:
+          NO_REPEATED_START_DE: 0
+          REPEATED_START_DETEC: 1
+      monrxdat.monrxdat:
+        bits:
+        - 0
+        - 7
+      monrxdat.monstart:
+        bit: 8
+        enum:
+          NO_START_DETECTED: 0
+          START_DETECTED: 1
+      monrxdat.reserved:
+        bits:
+        - 11
+        - 31
+      mstctl.mstcontinue:
+        bit: 0
+        enum:
+          NO_EFFECT: 0
+          CONTINUE: 1
+      mstctl.mstdma:
+        bit: 3
+        enum:
+          DISABLE: 0
+          ENABLE: 1
+      mstctl.mststart:
+        bit: 1
+        enum:
+          NO_EFFECT: 0
+          START: 1
+      mstctl.mststop:
+        bit: 2
+        enum:
+          NO_EFFECT: 0
+          STOP: 1
+      mstctl.reserved:
+        bits:
+        - 4
+        - 31
+      mstdat.data:
+        bits:
+        - 0
+        - 7
+      mstdat.reserved:
+        bits:
+        - 8
+        - 31
+      msttime.mstsclhigh:
+        bits:
+        - 4
+        - 6
+        enum:
+          2_CLOCKS: 0
+          3_CLOCKS: 1
+          4_CLOCKS: 2
+          5_CLOCKS: 3
+          6_CLOCKS: 4
+          7_CLOCKS: 5
+          8_CLOCKS: 6
+          9_CLOCKS: 7
+      msttime.mstscllow:
+        bits:
+        - 0
+        - 2
+        enum:
+          2_CLOCKS: 0
+          3_CLOCKS: 1
+          4_CLOCKS: 2
+          5_CLOCKS: 3
+          6_CLOCKS: 4
+          7_CLOCKS: 5
+          8_CLOCKS: 6
+          9_CLOCKS: 7
+      msttime.reserved:
+        bit: 3
+      slvadr%s.reserved:
+        bits:
+        - 8
+        - 31
+      slvadr%s.sadisable:
+        bit: 0
+        enum:
+          ENABLED: 0
+          IGNORED_SLAVE_ADDRES: 1
+      slvadr%s.slvadr:
+        bits:
+        - 1
+        - 7
+      slvctl.reserved:
+        bits:
+        - 4
+        - 31
+      slvctl.slvcontinue:
+        bit: 0
+        enum:
+          NO_EFFECT: 0
+          CONTINUE: 1
+      slvctl.slvdma:
+        bit: 3
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      slvctl.slvnack:
+        bit: 1
+        enum:
+          NO_EFFECT: 0
+          NACK: 1
+      slvdat.data:
+        bits:
+        - 0
+        - 7
+      slvdat.reserved:
+        bits:
+        - 8
+        - 31
+      slvqual0.qualmode0:
+        bit: 0
+        enum:
+          MASK: 0
+          EXTEND: 1
+      slvqual0.reserved:
+        bits:
+        - 8
+        - 31
+      slvqual0.slvqual0:
+        bits:
+        - 1
+        - 7
+      stat.eventtimeout:
+        bit: 24
+        enum:
+          NO_TIME_OUT: 0
+          EVENT_TIME_OUT: 1
+      stat.monactive:
+        bit: 18
+        enum:
+          INACTIVE: 0
+          ACTIVE: 1
+      stat.monidle:
+        bit: 19
+        enum:
+          NOT_IDLE: 0
+          IDLE: 1
+      stat.monov:
+        bit: 17
+        enum:
+          NO_OVERRUN: 0
+          OVERRUN: 1
+      stat.monrdy:
+        bit: 16
+        enum:
+          NO_DATA: 0
+          DATA_WAITING: 1
+      stat.mstarbloss:
+        bit: 4
+        enum:
+          NO_ARBITRATION_LOSS: 0
+          ARBITRATION_LOSS: 1
+      stat.mstpending:
+        bit: 0
+        enum:
+          IN_PROGRESS: 0
+          PENDING: 1
+      stat.mststate:
+        bits:
+        - 1
+        - 3
+        enum:
+          IDLE: 0
+          RECEIVE_READY: 1
+          TRANSMIT_READY: 2
+          NACK_ADDRESS: 3
+          NACK_DATA: 4
+      stat.mstststperr:
+        bit: 6
+        enum:
+          NO_STARTSTOP_ERROR: 0
+          THE_MASTER_FUNCTION: 1
+      stat.reserved:
+        bit: 5
+      stat.scltimeout:
+        bit: 25
+        enum:
+          NO_TIME_OUT: 0
+          TIME_OUT: 1
+      stat.slvdesel:
+        bit: 15
+        enum:
+          NOT_DESELECTED: 0
+          DESELECTED: 1
+      stat.slvidx:
+        bits:
+        - 12
+        - 13
+        enum:
+          ADDRESS_0: 0
+          ADDRESS_1: 1
+          ADDRESS_2: 2
+          ADDRESS_3: 3
+      stat.slvnotstr:
+        bit: 11
+        enum:
+          STRETCHING: 0
+          NOT_STRETCHING: 1
+      stat.slvpending:
+        bit: 8
+        enum:
+          IN_PROGRESS: 0
+          PENDING: 1
+      stat.slvsel:
+        bit: 14
+        enum:
+          NOT_SELECTED: 0
+          SELECTED: 1
+      stat.slvstate:
+        bits:
+        - 9
+        - 10
+        enum:
+          SLAVE_ADDRESS: 0
+          SLAVE_RECEIVE: 1
+          SLAVE_TRANSMIT: 2
+      timeout.reserved:
+        bits:
+        - 16
+        - 31
+      timeout.to:
+        bits:
+        - 4
+        - 15
+      timeout.tomin:
+        bits:
+        - 0
+        - 3
+  i2c0:
+    registers:
+      cfg:
+        offset: 0
+        access: rw
+      clkdiv:
+        offset: 20
+        access: rw
+      intenclr:
+        offset: 12
+        access: wo
+      intenset:
+        offset: 8
+        access: rw
+      intstat:
+        offset: 24
+        access: ro
+      monrxdat:
+        offset: 128
+        access: ro
+      mstctl:
+        offset: 32
+        access: rw
+      mstdat:
+        offset: 40
+        access: rw
+      msttime:
+        offset: 36
+        access: rw
+      slvadr%s:
+        offset: 72
+        access: rw
+      slvctl:
+        offset: 64
+        access: rw
+      slvdat:
+        offset: 68
+        access: rw
+      slvqual0:
+        offset: 88
+        access: rw
+      stat:
+        offset: 4
+        access: rw
+      timeout:
+        offset: 16
+        access: rw
+    fields:
+      cfg.hscapable:
+        bit: 5
+        enum:
+          FAST_MODE_PLUS: 0
+          HIGH_SPEED: 1
+      cfg.monclkstr:
+        bit: 4
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg.monen:
+        bit: 2
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg.msten:
+        bit: 0
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg.reserved:
+        bits:
+        - 6
+        - 31
+      cfg.slven:
+        bit: 1
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg.timeouten:
+        bit: 3
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      clkdiv.divval:
+        bits:
+        - 0
+        - 15
+      clkdiv.reserved:
+        bits:
+        - 16
+        - 31
+      intenclr.eventtimeoutclr:
+        bit: 24
+      intenclr.monidleclr:
+        bit: 19
+      intenclr.monovclr:
+        bit: 17
+      intenclr.monrdyclr:
+        bit: 16
+      intenclr.mstarblossclr:
+        bit: 4
+      intenclr.mstpendingclr:
+        bit: 0
+      intenclr.mstststperrclr:
+        bit: 6
+      intenclr.reserved:
+        bits:
+        - 1
+        - 3
+      intenclr.scltimeoutclr:
+        bit: 25
+      intenclr.slvdeselclr:
+        bit: 15
+      intenclr.slvnotstrclr:
+        bit: 11
+      intenclr.slvpendingclr:
+        bit: 8
+      intenset.eventtimeouten:
+        bit: 24
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.monidleen:
+        bit: 19
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.monoven:
+        bit: 17
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.monrdyen:
+        bit: 16
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.mstarblossen:
+        bit: 4
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.mstpendingen:
+        bit: 0
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.mstststperren:
+        bit: 6
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.reserved:
+        bits:
+        - 1
+        - 3
+      intenset.scltimeouten:
+        bit: 25
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.slvdeselen:
+        bit: 15
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.slvnotstren:
+        bit: 11
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.slvpendingen:
+        bit: 8
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intstat.eventtimeout:
+        bit: 24
+      intstat.monidle:
+        bit: 19
+      intstat.monov:
+        bit: 17
+      intstat.monrdy:
+        bit: 16
+      intstat.mstarbloss:
+        bit: 4
+      intstat.mstpending:
+        bit: 0
+      intstat.mstststperr:
+        bit: 6
+      intstat.reserved:
+        bits:
+        - 1
+        - 3
+      intstat.scltimeout:
+        bit: 25
+      intstat.slvdesel:
+        bit: 15
+      intstat.slvnotstr:
+        bit: 11
+      intstat.slvpending:
+        bit: 8
+      monrxdat.monnack:
+        bit: 10
+        enum:
+          ACKNOWLEDGED: 0
+          NOT_ACKNOWLEDGED: 1
+      monrxdat.monrestart:
+        bit: 9
+        enum:
+          NO_REPEATED_START_DE: 0
+          REPEATED_START_DETEC: 1
+      monrxdat.monrxdat:
+        bits:
+        - 0
+        - 7
+      monrxdat.monstart:
+        bit: 8
+        enum:
+          NO_START_DETECTED: 0
+          START_DETECTED: 1
+      monrxdat.reserved:
+        bits:
+        - 11
+        - 31
+      mstctl.mstcontinue:
+        bit: 0
+        enum:
+          NO_EFFECT: 0
+          CONTINUE: 1
+      mstctl.mstdma:
+        bit: 3
+        enum:
+          DISABLE: 0
+          ENABLE: 1
+      mstctl.mststart:
+        bit: 1
+        enum:
+          NO_EFFECT: 0
+          START: 1
+      mstctl.mststop:
+        bit: 2
+        enum:
+          NO_EFFECT: 0
+          STOP: 1
+      mstctl.reserved:
+        bits:
+        - 4
+        - 31
+      mstdat.data:
+        bits:
+        - 0
+        - 7
+      mstdat.reserved:
+        bits:
+        - 8
+        - 31
+      msttime.mstsclhigh:
+        bits:
+        - 4
+        - 6
+        enum:
+          2_CLOCKS: 0
+          3_CLOCKS: 1
+          4_CLOCKS: 2
+          5_CLOCKS: 3
+          6_CLOCKS: 4
+          7_CLOCKS: 5
+          8_CLOCKS: 6
+          9_CLOCKS: 7
+      msttime.mstscllow:
+        bits:
+        - 0
+        - 2
+        enum:
+          2_CLOCKS: 0
+          3_CLOCKS: 1
+          4_CLOCKS: 2
+          5_CLOCKS: 3
+          6_CLOCKS: 4
+          7_CLOCKS: 5
+          8_CLOCKS: 6
+          9_CLOCKS: 7
+      msttime.reserved:
+        bit: 3
+      slvadr%s.reserved:
+        bits:
+        - 8
+        - 31
+      slvadr%s.sadisable:
+        bit: 0
+        enum:
+          ENABLED: 0
+          IGNORED_SLAVE_ADDRES: 1
+      slvadr%s.slvadr:
+        bits:
+        - 1
+        - 7
+      slvctl.reserved:
+        bits:
+        - 4
+        - 31
+      slvctl.slvcontinue:
+        bit: 0
+        enum:
+          NO_EFFECT: 0
+          CONTINUE: 1
+      slvctl.slvdma:
+        bit: 3
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      slvctl.slvnack:
+        bit: 1
+        enum:
+          NO_EFFECT: 0
+          NACK: 1
+      slvdat.data:
+        bits:
+        - 0
+        - 7
+      slvdat.reserved:
+        bits:
+        - 8
+        - 31
+      slvqual0.qualmode0:
+        bit: 0
+        enum:
+          MASK: 0
+          EXTEND: 1
+      slvqual0.reserved:
+        bits:
+        - 8
+        - 31
+      slvqual0.slvqual0:
+        bits:
+        - 1
+        - 7
+      stat.eventtimeout:
+        bit: 24
+        enum:
+          NO_TIME_OUT: 0
+          EVENT_TIME_OUT: 1
+      stat.monactive:
+        bit: 18
+        enum:
+          INACTIVE: 0
+          ACTIVE: 1
+      stat.monidle:
+        bit: 19
+        enum:
+          NOT_IDLE: 0
+          IDLE: 1
+      stat.monov:
+        bit: 17
+        enum:
+          NO_OVERRUN: 0
+          OVERRUN: 1
+      stat.monrdy:
+        bit: 16
+        enum:
+          NO_DATA: 0
+          DATA_WAITING: 1
+      stat.mstarbloss:
+        bit: 4
+        enum:
+          NO_ARBITRATION_LOSS: 0
+          ARBITRATION_LOSS: 1
+      stat.mstpending:
+        bit: 0
+        enum:
+          IN_PROGRESS: 0
+          PENDING: 1
+      stat.mststate:
+        bits:
+        - 1
+        - 3
+        enum:
+          IDLE: 0
+          RECEIVE_READY: 1
+          TRANSMIT_READY: 2
+          NACK_ADDRESS: 3
+          NACK_DATA: 4
+      stat.mstststperr:
+        bit: 6
+        enum:
+          NO_STARTSTOP_ERROR: 0
+          THE_MASTER_FUNCTION: 1
+      stat.reserved:
+        bit: 5
+      stat.scltimeout:
+        bit: 25
+        enum:
+          NO_TIME_OUT: 0
+          TIME_OUT: 1
+      stat.slvdesel:
+        bit: 15
+        enum:
+          NOT_DESELECTED: 0
+          DESELECTED: 1
+      stat.slvidx:
+        bits:
+        - 12
+        - 13
+        enum:
+          ADDRESS_0: 0
+          ADDRESS_1: 1
+          ADDRESS_2: 2
+          ADDRESS_3: 3
+      stat.slvnotstr:
+        bit: 11
+        enum:
+          STRETCHING: 0
+          NOT_STRETCHING: 1
+      stat.slvpending:
+        bit: 8
+        enum:
+          IN_PROGRESS: 0
+          PENDING: 1
+      stat.slvsel:
+        bit: 14
+        enum:
+          NOT_SELECTED: 0
+          SELECTED: 1
+      stat.slvstate:
+        bits:
+        - 9
+        - 10
+        enum:
+          SLAVE_ADDRESS: 0
+          SLAVE_RECEIVE: 1
+          SLAVE_TRANSMIT: 2
+      timeout.reserved:
+        bits:
+        - 16
+        - 31
+      timeout.to:
+        bits:
+        - 4
+        - 15
+      timeout.tomin:
+        bits:
+        - 0
+        - 3
+  inputmux:
+    registers:
+      dma_itrig_inmux%s:
+        offset: 224
+        access: rw
+      dma_otrig_inmux%s:
+        offset: '0x0140'
+        access: rw
+      freqmeas_ref:
+        offset: '0x0160'
+        access: rw
+      freqmeas_target:
+        offset: '0x0164'
+        access: rw
+      pintsel%s:
+        offset: 192
+        access: rw
+    fields:
+      dma_itrig_inmux%s.inp:
+        bits:
+        - 0
+        - 4
+      dma_itrig_inmux%s.reserved:
+        bits:
+        - 5
+        - 31
+      dma_otrig_inmux%s.inp:
+        bits:
+        - 0
+        - 4
+      dma_otrig_inmux%s.reserved:
+        bits:
+        - 5
+        - 31
+      freqmeas_ref.clkin:
+        bits:
+        - 0
+        - 4
+      freqmeas_ref.reserved:
+        bits:
+        - 5
+        - 31
+      freqmeas_target.clkin:
+        bits:
+        - 0
+        - 4
+      freqmeas_target.reserved:
+        bits:
+        - 5
+        - 31
+      pintsel%s.intpin:
+        bits:
+        - 0
+        - 7
+      pintsel%s.reserved:
+        bits:
+        - 8
+        - 31
+  iocon:
+    registers:
+      pio0_%s:
+        offset: 0
+        access: rw
+      pio1_%s:
+        offset: 128
+        access: rw
+    fields:
+      pio0_%s.digimode:
+        bit: 7
+        enum:
+          ANALOG_MODE: 0
+          DIGITAL_MODE: 1
+      pio0_%s.filteroff:
+        bit: 8
+        enum:
+          FILTER_ENABLED: 0
+          FILTER_DISABLED: 1
+      pio0_%s.func:
+        bits:
+        - 0
+        - 2
+      pio0_%s.i2cdrive:
+        bit: 9
+        enum:
+          LOW_DRIVE: 0
+          HIGH_DRIVE: 1
+      pio0_%s.i2cfilter:
+        bit: 10
+        enum:
+          ENABLED: 0
+          DISABLED: 1
+      pio0_%s.i2cslew:
+        bit: 5
+        enum:
+          I2C_MODE: 0
+          GPIO_MODE: 1
+      pio0_%s.invert:
+        bit: 6
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      pio0_%s.mode:
+        bits:
+        - 3
+        - 4
+        enum:
+          INACTIVE: 0
+          PULL_DOWN: 1
+          PULL_UP: 2
+          REPEATER: 3
+      pio0_%s.od:
+        bit: 10
+        enum:
+          NORMAL: 0
+          OPEN_DRAIN: 1
+      pio0_%s.reserved:
+        bit: 5
+      pio0_%s.slew:
+        bit: 9
+        enum:
+          STANDARD_MODE: 0
+          FAST_MODE: 1
+      pio1_%s.digimode:
+        bit: 7
+        enum:
+          ANALOG_MODE: 0
+          DIGITAL_MODE: 1
+      pio1_%s.filteroff:
+        bit: 8
+        enum:
+          FILTER_ENABLED: 0
+          FILTER_DISABLED: 1
+      pio1_%s.func:
+        bits:
+        - 0
+        - 2
+      pio1_%s.invert:
+        bit: 6
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      pio1_%s.mode:
+        bits:
+        - 3
+        - 4
+        enum:
+          INACTIVE: 0
+          PULL_DOWN: 1
+          PULL_UP: 2
+          REPEATER: 3
+      pio1_%s.od:
+        bit: 10
+        enum:
+          NORMAL: 0
+          OPEN_DRAIN: 1
+      pio1_%s.reserved:
+        bit: 5
+      pio1_%s.slew:
+        bit: 9
+        enum:
+          STANDARD_MODE: 0
+          FAST_MODE: 1
+  mailbox:
+    registers:
+      irq0:
+        offset: 0
+        access: rw
+      irq0clr:
+        offset: 8
+        access: wo
+      irq0set:
+        offset: 4
+        access: wo
+      irq1:
+        offset: 16
+        access: rw
+      irq1clr:
+        offset: 24
+        access: wo
+      irq1set:
+        offset: 20
+        access: wo
+      mutex:
+        offset: 248
+        access: rw
+    fields:
+      irq0.intreq:
+        bits:
+        - 0
+        - 31
+      irq0clr.intreqclr:
+        bits:
+        - 0
+        - 31
+      irq0set.intreqset:
+        bits:
+        - 0
+        - 31
+      irq1.intreq:
+        bits:
+        - 0
+        - 31
+      irq1clr.intreqclr:
+        bits:
+        - 0
+        - 31
+      irq1set.intreqset:
+        bits:
+        - 0
+        - 31
+      mutex.ex:
+        bit: 0
+      mutex.reserved:
+        bits:
+        - 1
+        - 31
+  mrt:
+    registers:
+      ctrl%s:
+        offset: 8
+        access: rw
+      idle_ch:
+        offset: 244
+        access: ro
+      intval%s:
+        offset: 0
+        access: rw
+      irq_flag:
+        offset: 248
+        access: rw
+      modcfg:
+        offset: 240
+        access: rw
+      stat%s:
+        offset: 12
+        access: rw
+      timer%s:
+        offset: 4
+        access: ro
+    fields:
+      ctrl%s.inten:
+        bit: 0
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      ctrl%s.mode:
+        bits:
+        - 1
+        - 2
+        enum:
+          REPEAT_INTERRUPT_MOD: 0
+          ONE_SHOT_INTERRUPT_M: 1
+          ONE_SHOT_STALL_MODE: 2
+          RESERVED: 3
+      ctrl%s.reserved:
+        bits:
+        - 3
+        - 31
+      idle_ch.chan:
+        bits:
+        - 4
+        - 7
+      idle_ch.reserved:
+        bits:
+        - 0
+        - 3
+      intval%s.ivalue:
+        bits:
+        - 0
+        - 23
+      intval%s.load:
+        bit: 31
+        enum:
+          NO_FORCE_LOAD: 0
+          FORCE_LOAD: 1
+      intval%s.reserved:
+        bits:
+        - 24
+        - 30
+      irq_flag.gflag0:
+        bit: 0
+        enum:
+          NO_PENDING_INTERRUPT: 0
+          PENDING_INTERRUPT: 1
+      irq_flag.gflag1:
+        bit: 1
+      irq_flag.gflag2:
+        bit: 2
+      irq_flag.gflag3:
+        bit: 3
+      irq_flag.reserved:
+        bits:
+        - 4
+        - 31
+      modcfg.multitask:
+        bit: 31
+        enum:
+          HARDWARE_STATUS_MODE: 0
+          MULTI_TASK_MODE: 1
+      modcfg.nob:
+        bits:
+        - 4
+        - 8
+      modcfg.noc:
+        bits:
+        - 0
+        - 3
+      modcfg.reserved:
+        bits:
+        - 9
+        - 30
+      stat%s.intflag:
+        bit: 0
+        enum:
+          NO_PENDING_INTERRUPT: 0
+          PENDING_INTERRUPT: 1
+      stat%s.inuse:
+        bit: 2
+        enum:
+          'NO': 0
+          'YES': 1
+      stat%s.reserved:
+        bits:
+        - 2
+        - 31
+      stat%s.run:
+        bit: 1
+        enum:
+          IDLE_STATE: 0
+          RUNNING: 1
+      timer%s.reserved:
+        bits:
+        - 24
+        - 31
+      timer%s.value:
+        bits:
+        - 0
+        - 23
+  pint:
+    registers:
+      cienf:
+        offset: 24
+        access: wo
+      cienr:
+        offset: 12
+        access: wo
+      fall:
+        offset: 32
+        access: rw
+      ienf:
+        offset: 16
+        access: rw
+      ienr:
+        offset: 4
+        access: rw
+      isel:
+        offset: 0
+        access: rw
+      ist:
+        offset: 36
+        access: rw
+      pmcfg:
+        offset: 48
+        access: rw
+      pmctrl:
+        offset: 40
+        access: rw
+      pmsrc:
+        offset: 44
+        access: rw
+      rise:
+        offset: 28
+        access: rw
+      sienf:
+        offset: 20
+        access: wo
+      sienr:
+        offset: 8
+        access: wo
+    fields:
+      cienf.cenaf:
+        bits:
+        - 0
+        - 7
+      cienf.reserved:
+        bits:
+        - 8
+        - 31
+      cienr.cenrl:
+        bits:
+        - 0
+        - 7
+      cienr.reserved:
+        bits:
+        - 8
+        - 31
+      fall.fdet:
+        bits:
+        - 0
+        - 7
+      fall.reserved:
+        bits:
+        - 8
+        - 31
+      ienf.enaf:
+        bits:
+        - 0
+        - 7
+      ienf.reserved:
+        bits:
+        - 8
+        - 31
+      ienr.enrl:
+        bits:
+        - 0
+        - 7
+      ienr.reserved:
+        bits:
+        - 8
+        - 31
+      isel.pmode:
+        bits:
+        - 0
+        - 7
+      isel.reserved:
+        bits:
+        - 8
+        - 31
+      ist.pstat:
+        bits:
+        - 0
+        - 7
+      ist.reserved:
+        bits:
+        - 8
+        - 31
+      pmcfg.cfg0:
+        bits:
+        - 8
+        - 10
+        enum:
+          CONSTANT_HIGH: 0
+          STICKY_RISING_EDGE: 1
+          STICKY_FALLING_EDGE: 2
+          STICKY_RISING_OR_FAL: 3
+          HIGH_LEVEL: 4
+          LOW_LEVEL: 5
+          CONSTANT_0: 6
+          EVENT: 7
+      pmcfg.cfg1:
+        bits:
+        - 11
+        - 13
+        enum:
+          CONSTANT_HIGH: 0
+          STICKY_RISING_EDGE: 1
+          STICKY_FALLING_EDGE: 2
+          STICKY_RISING_OR_FAL: 3
+          HIGH_LEVEL: 4
+          LOW_LEVEL: 5
+          CONSTANT_0: 6
+          EVENT: 7
+      pmcfg.cfg2:
+        bits:
+        - 14
+        - 16
+        enum:
+          CONSTANT_HIGH: 0
+          STICKY_RISING_EDGE: 1
+          STICKY_FALLING_EDGE: 2
+          STICKY_RISING_OR_FAL: 3
+          HIGH_LEVEL: 4
+          LOW_LEVEL: 5
+          CONSTANT_0: 6
+          EVENT: 7
+      pmcfg.cfg3:
+        bits:
+        - 17
+        - 19
+        enum:
+          CONSTANT_HIGH: 0
+          STICKY_RISING_EDGE: 1
+          STICKY_FALLING_EDGE: 2
+          STICKY_RISING_OR_FAL: 3
+          HIGH_LEVEL: 4
+          LOW_LEVEL: 5
+          CONSTANT_0: 6
+          EVENT: 7
+      pmcfg.cfg4:
+        bits:
+        - 20
+        - 22
+        enum:
+          CONSTANT_HIGH: 0
+          STICKY_RISING_EDGE: 1
+          STICKY_FALLING_EDGE: 2
+          STICKY_RISING_OR_FAL: 3
+          HIGH_LEVEL: 4
+          LOW_LEVEL: 5
+          CONSTANT_0: 6
+          EVENT: 7
+      pmcfg.cfg5:
+        bits:
+        - 23
+        - 25
+        enum:
+          CONSTANT_HIGH: 0
+          STICKY_RISING_EDGE: 1
+          STICKY_FALLING_EDGE: 2
+          STICKY_RISING_OR_FAL: 3
+          HIGH_LEVEL: 4
+          LOW_LEVEL: 5
+          CONSTANT_0: 6
+          EVENT: 7
+      pmcfg.cfg6:
+        bits:
+        - 26
+        - 28
+        enum:
+          CONSTANT_HIGH: 0
+          STICKY_RISING_EDGE: 1
+          STICKY_FALLING_EDGE: 2
+          STICKY_RISING_OR_FAL: 3
+          HIGH_LEVEL: 4
+          LOW_LEVEL: 5
+          CONSTANT_0: 6
+          EVENT: 7
+      pmcfg.cfg7:
+        bits:
+        - 29
+        - 31
+        enum:
+          CONSTANT_HIGH: 0
+          STICKY_RISING_EDGE: 1
+          STICKY_FALLING_EDGE: 2
+          STICKY_RISING_OR_FAL: 3
+          HIGH_LEVEL: 4
+          LOW_LEVEL: 5
+          CONSTANT_0: 6
+          EVENT: 7
+      pmcfg.prod_endpts0:
+        bit: 0
+        enum:
+          NO_EFFECT: 0
+          ENDPOINT: 1
+      pmcfg.prod_endpts1:
+        bit: 1
+        enum:
+          NO_EFFECT: 0
+          ENDPOINT: 1
+      pmcfg.prod_endpts2:
+        bit: 2
+        enum:
+          NO_EFFECT: 0
+          ENDPOINT: 1
+      pmcfg.prod_endpts3:
+        bit: 3
+        enum:
+          NO_EFFECT: 0
+          ENDPOINT: 1
+      pmcfg.prod_endpts4:
+        bit: 4
+        enum:
+          NO_EFFECT: 0
+          ENDPOINT: 1
+      pmcfg.prod_endpts5:
+        bit: 5
+        enum:
+          NO_EFFECT: 0
+          ENDPOINT: 1
+      pmcfg.prod_endpts6:
+        bit: 6
+        enum:
+          NO_EFFECT: 0
+          ENDPOINT: 1
+      pmcfg.reserved:
+        bit: 7
+      pmctrl.ena_rxev:
+        bit: 1
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      pmctrl.pmat:
+        bits:
+        - 24
+        - 31
+      pmctrl.reserved:
+        bits:
+        - 2
+        - 23
+      pmctrl.sel_pmatch:
+        bit: 0
+        enum:
+          PIN_INTERRUPT: 0
+          PATTERN_MATCH: 1
+      pmsrc.reserved:
+        bits:
+        - 0
+        - 7
+      pmsrc.src0:
+        bits:
+        - 8
+        - 10
+        enum:
+          INPUT_0: 0
+          INPUT_1: 1
+          INPUT_2: 2
+          INPUT_3: 3
+          INPUT_4: 4
+          INPUT_5: 5
+          INPUT_6: 6
+          INPUT_7: 7
+      pmsrc.src1:
+        bits:
+        - 11
+        - 13
+        enum:
+          INPUT_0: 0
+          INPUT_1: 1
+          INPUT_2: 2
+          INPUT_3: 3
+          INPUT_4: 4
+          INPUT_5: 5
+          INPUT_6: 6
+          INPUT_7: 7
+      pmsrc.src2:
+        bits:
+        - 14
+        - 16
+        enum:
+          INPUT_0: 0
+          INPUT_1: 1
+          INPUT_2: 2
+          INPUT_3: 3
+          INPUT_4: 4
+          INPUT_5: 5
+          INPUT_6: 6
+          INPUT_7: 7
+      pmsrc.src3:
+        bits:
+        - 17
+        - 19
+        enum:
+          INPUT_0: 0
+          INPUT_1: 1
+          INPUT_2: 2
+          INPUT_3: 3
+          INPUT_4: 4
+          INPUT_5: 5
+          INPUT_6: 6
+          INPUT_7: 7
+      pmsrc.src4:
+        bits:
+        - 20
+        - 22
+        enum:
+          INPUT_0: 0
+          INPUT_1: 1
+          INPUT_2: 2
+          INPUT_3: 3
+          INPUT_4: 4
+          INPUT_5: 5
+          INPUT_6: 6
+          INPUT_7: 7
+      pmsrc.src5:
+        bits:
+        - 23
+        - 25
+        enum:
+          INPUT_0: 0
+          INPUT_1: 1
+          INPUT_2: 2
+          INPUT_3: 3
+          INPUT_4: 4
+          INPUT_5: 5
+          INPUT_6: 6
+          INPUT_7: 7
+      pmsrc.src6:
+        bits:
+        - 26
+        - 28
+        enum:
+          INPUT_0: 0
+          INPUT_1: 1
+          INPUT_2: 2
+          INPUT_3: 3
+          INPUT_4: 4
+          INPUT_5: 5
+          INPUT_6: 6
+          INPUT_7: 7
+      pmsrc.src7:
+        bits:
+        - 29
+        - 31
+        enum:
+          INPUT_0: 0
+          INPUT_1: 1
+          INPUT_2: 2
+          INPUT_3: 3
+          INPUT_4: 4
+          INPUT_5: 5
+          INPUT_6: 6
+          INPUT_7: 7
+      rise.rdet:
+        bits:
+        - 0
+        - 7
+      rise.reserved:
+        bits:
+        - 8
+        - 31
+      sienf.reserved:
+        bits:
+        - 8
+        - 31
+      sienf.setenaf:
+        bits:
+        - 0
+        - 7
+      sienr.reserved:
+        bits:
+        - 8
+        - 31
+      sienr.setenrl:
+        bits:
+        - 0
+        - 7
+  rit:
+    registers:
+      compval:
+        offset: 0
+        access: rw
+      compval_h:
+        offset: 16
+        access: rw
+      counter:
+        offset: 12
+        access: rw
+      counter_h:
+        offset: 28
+        access: rw
+      ctrl:
+        offset: 8
+        access: rw
+      mask:
+        offset: 4
+        access: rw
+      mask_h:
+        offset: 20
+        access: rw
+    fields:
+      compval.ricomp:
+        bits:
+        - 0
+        - 31
+      compval_h.reserved:
+        bits:
+        - 16
+        - 31
+      compval_h.ricomp:
+        bits:
+        - 0
+        - 15
+      counter.ricounter:
+        bits:
+        - 0
+        - 31
+      counter_h.reserved:
+        bits:
+        - 16
+        - 31
+      counter_h.ricounter:
+        bits:
+        - 0
+        - 15
+      ctrl.reserved:
+        bits:
+        - 4
+        - 31
+      ctrl.riten:
+        bit: 3
+        enum:
+          TIMER_ENABLED: 1
+          TIMER_DISABLED: 0
+      ctrl.ritenbr:
+        bit: 2
+        enum:
+          HALT: 1
+          DEBUG: 0
+      ctrl.ritenclr:
+        bit: 1
+        enum:
+          CLEAR: 1
+          NOCLEAR: 0
+      ctrl.ritint:
+        bit: 0
+        enum:
+          MATCH: 1
+          NOMTCH: 0
+      mask.rimask:
+        bits:
+        - 0
+        - 31
+      mask_h.reserved:
+        bits:
+        - 16
+        - 31
+      mask_h.rimask:
+        bits:
+        - 0
+        - 15
+  rtc:
+    registers:
+      count:
+        offset: 8
+        access: rw
+      ctrl:
+        offset: 0
+        access: rw
+      match:
+        offset: 4
+        access: rw
+      wake:
+        offset: 12
+        access: rw
+    fields:
+      count.val:
+        bits:
+        - 0
+        - 31
+      ctrl.alarm1hz:
+        bit: 2
+        enum:
+          NO_MATCH: 0
+          MATCH: 1
+      ctrl.alarmdpd_en:
+        bit: 4
+        enum:
+          DISABLE: 0
+          ENABLE: 1
+      ctrl.ofd:
+        bit: 1
+        enum:
+          RUN: 0
+          FAIL: 1
+      ctrl.reserved:
+        bits:
+        - 8
+        - 31
+      ctrl.rtc1khz_en:
+        bit: 6
+        enum:
+          DISABLE: 0
+          ENABLE: 1
+      ctrl.rtc_en:
+        bit: 7
+        enum:
+          DISABLE: 0
+          ENABLE: 1
+      ctrl.swreset:
+        bit: 0
+        enum:
+          NOT_IN_RESET: 0
+          IN_RESET: 1
+      ctrl.wake1khz:
+        bit: 3
+        enum:
+          RUN: 0
+          TIME_OUT: 1
+      ctrl.wakedpd_en:
+        bit: 5
+        enum:
+          DISABLE: 0
+          ENABLE: 1
+      match.matval:
+        bits:
+        - 0
+        - 31
+      wake.reserved:
+        bits:
+        - 16
+        - 31
+      wake.val:
+        bits:
+        - 0
+        - 15
+  sct0:
+    registers:
+      conen:
+        offset: 248
+        access: rw
+      config:
+        offset: 0
+        access: rw
+      conflag:
+        offset: 252
+        access: rw
+      count:
+        offset: 64
+        access: rw
+      ctrl:
+        offset: 4
+        access: rw
+      dmareq0:
+        offset: 92
+        access: rw
+      dmareq1:
+        offset: 96
+        access: rw
+      ev%s_ctrl:
+        offset: '0x0304'
+        access: rw
+      ev%s_state:
+        offset: '0x0300'
+        access: rw
+      even:
+        offset: 240
+        access: rw
+      evflag:
+        offset: 244
+        access: rw
+      halt:
+        offset: 12
+        access: rw
+      input:
+        offset: 72
+        access: ro
+      limit:
+        offset: 8
+        access: rw
+      match%s:
+        offset: '0x0100'
+        access: rw
+      matchrel%s:
+        offset: '0x0200'
+        access: rw
+      out%s_clr:
+        offset: '0x0504'
+        access: rw
+      out%s_set:
+        offset: '0x0500'
+        access: rw
+      output:
+        offset: 80
+        access: rw
+      outputdirctrl:
+        offset: 84
+        access: rw
+      regmode:
+        offset: 76
+        access: rw
+      res:
+        offset: 88
+        access: rw
+      start:
+        offset: 20
+        access: rw
+      state:
+        offset: 68
+        access: rw
+      stop:
+        offset: 16
+        access: rw
+    fields:
+      conen.ncen:
+        bits:
+        - 0
+        - 7
+      conen.reserved:
+        bits:
+        - 10
+        - 31
+      config.autolimit_h:
+        bit: 18
+      config.autolimit_l:
+        bit: 17
+      config.cksel:
+        bits:
+        - 3
+        - 6
+        enum:
+          INPUT_0_RISING_EDGES: 0
+          INPUT_0_FALLING_EDGE: 1
+          INPUT_1_RISING_EDGES: 2
+          INPUT_1_FALLING_EDGE: 3
+          INPUT_2_RISING_EDGES: 4
+          INPUT_2_FALLING_EDGE: 5
+          INPUT_3_RISING_EDGES: 6
+          INPUT_3_FALLING_EDGE: 7
+          INPUT_4_RISING_EDGES: 8
+          INPUT_4_FALLING_EDGE: 9
+          INPUT_5_RISING_EDGES: 10
+          INPUT_5_FALLING_EDGE: 11
+          INPUT_6_RISING_EDGES: 12
+          INPUT_6_FALLING_EDGE: 13
+          INPUT_7_RISING_EDGES: 14
+          INPUT_7_FALLING_EDGE: 15
+      config.clkmode:
+        bits:
+        - 1
+        - 2
+        enum:
+          SYSTEM_CLOCK: 0
+          PRESCALED_SYSTEM_CLO: 1
+          SCT_INPUT: 2
+          PRESCALED_SCT_INPUT: 3
+      config.insync:
+        bits:
+        - 9
+        - 14
+      config.noreload_h:
+        bit: 8
+      config.noreload_l:
+        bit: 7
+      config.reserved:
+        bits:
+        - 15
+        - 16
+      config.unify:
+        bit: 0
+        enum:
+          DUAL_COUNTER: 0
+          UNIFIED_COUNTER: 1
+      conflag.buserrh:
+        bit: 31
+      conflag.buserrl:
+        bit: 30
+      conflag.ncflag:
+        bits:
+        - 0
+        - 7
+      conflag.reserved:
+        bits:
+        - 10
+        - 29
+      count.ctr_h:
+        bits:
+        - 16
+        - 31
+      count.ctr_l:
+        bits:
+        - 0
+        - 15
+      ctrl.bidir_h:
+        bit: 20
+        enum:
+          UNIDIRECTIONAL: 0
+          BIDIRECTIONAL: 1
+      ctrl.bidir_l:
+        bit: 4
+        enum:
+          UNIDIRECTIONAL: 0
+          BIDIRECTIONAL: 1
+      ctrl.clrctr_h:
+        bit: 19
+      ctrl.clrctr_l:
+        bit: 3
+      ctrl.down_h:
+        bit: 16
+      ctrl.down_l:
+        bit: 0
+      ctrl.halt_h:
+        bit: 18
+      ctrl.halt_l:
+        bit: 2
+      ctrl.pre_h:
+        bits:
+        - 21
+        - 28
+      ctrl.pre_l:
+        bits:
+        - 5
+        - 12
+      ctrl.reserved:
+        bits:
+        - 13
+        - 15
+      ctrl.stop_h:
+        bit: 17
+      ctrl.stop_l:
+        bit: 1
+      dmareq0.dev_0:
+        bits:
+        - 0
+        - 15
+      dmareq0.drl0:
+        bit: 30
+      dmareq0.drq0:
+        bit: 31
+      dmareq0.reserved:
+        bits:
+        - 16
+        - 29
+      dmareq1.dev_1:
+        bits:
+        - 0
+        - 15
+      dmareq1.drl1:
+        bit: 30
+      dmareq1.drq1:
+        bit: 31
+      dmareq1.reserved:
+        bits:
+        - 16
+        - 29
+      ev%s_ctrl.combmode:
+        bits:
+        - 12
+        - 13
+        enum:
+          OR: 0
+          MATCH: 1
+          IO: 2
+          AND: 3
+      ev%s_ctrl.direction:
+        bits:
+        - 21
+        - 22
+        enum:
+          DIRECTION_INDEPENDEN: 0
+          COUNTING_UP: 1
+          COUNTING_DOWN: 2
+      ev%s_ctrl.hevent:
+        bit: 4
+        enum:
+          L_COUNTER: 0
+          H_COUNTER: 1
+      ev%s_ctrl.iocond:
+        bits:
+        - 10
+        - 11
+        enum:
+          LOW: 0
+          RISE: 1
+          FALL: 2
+          HIGH: 3
+      ev%s_ctrl.iosel:
+        bits:
+        - 6
+        - 9
+      ev%s_ctrl.matchmem:
+        bit: 20
+      ev%s_ctrl.matchsel:
+        bits:
+        - 0
+        - 3
+      ev%s_ctrl.outsel:
+        bit: 5
+        enum:
+          INPUT: 0
+          OUTPUT: 1
+      ev%s_ctrl.reserved:
+        bits:
+        - 23
+        - 31
+      ev%s_ctrl.stateld:
+        bit: 14
+        enum:
+          ADD: 0
+          LOAD: 1
+      ev%s_ctrl.statev:
+        bits:
+        - 15
+        - 19
+      ev%s_state.statemskn:
+        bits:
+        - 0
+        - 12
+      even.ien:
+        bits:
+        - 0
+        - 15
+      even.reserved:
+        bits:
+        - 16
+        - 31
+      evflag.flag:
+        bits:
+        - 0
+        - 15
+      evflag.reserved:
+        bits:
+        - 16
+        - 31
+      halt.haltmsk_h:
+        bits:
+        - 16
+        - 31
+      halt.haltmsk_l:
+        bits:
+        - 0
+        - 15
+      input.ain0:
+        bit: 0
+      input.ain1:
+        bit: 1
+      input.ain2:
+        bit: 2
+      input.ain3:
+        bit: 3
+      input.ain4:
+        bit: 4
+      input.ain5:
+        bit: 5
+      input.reserved:
+        bits:
+        - 6
+        - 15
+      input.sin0:
+        bit: 16
+      input.sin1:
+        bit: 17
+      input.sin2:
+        bit: 18
+      input.sin3:
+        bit: 19
+      input.sin4:
+        bit: 20
+      input.sin5:
+        bit: 21
+      limit.limmsk_h:
+        bits:
+        - 16
+        - 31
+      limit.limmsk_l:
+        bits:
+        - 0
+        - 15
+      match%s.matchn_h:
+        bits:
+        - 16
+        - 31
+      match%s.matchn_l:
+        bits:
+        - 0
+        - 15
+      matchrel%s.reloadn_h:
+        bits:
+        - 16
+        - 31
+      matchrel%s.reloadn_l:
+        bits:
+        - 0
+        - 15
+      out%s_clr.clr:
+        bits:
+        - 0
+        - 15
+      out%s_clr.reserved:
+        bits:
+        - 16
+        - 31
+      out%s_set.reserved:
+        bits:
+        - 16
+        - 31
+      out%s_set.set:
+        bits:
+        - 0
+        - 15
+      output.out:
+        bits:
+        - 0
+        - 7
+      output.reserved:
+        bits:
+        - 8
+        - 31
+      outputdirctrl.reserved:
+        bits:
+        - 26
+        - 31
+      outputdirctrl.setclr0:
+        bits:
+        - 0
+        - 1
+        enum:
+          INDEPENDENT: 0
+          L_REVERSED: 1
+          H_REVERSED: 2
+      outputdirctrl.setclr1:
+        bits:
+        - 2
+        - 3
+      outputdirctrl.setclr2:
+        bits:
+        - 4
+        - 5
+      outputdirctrl.setclr3:
+        bits:
+        - 6
+        - 7
+      outputdirctrl.setclr4:
+        bits:
+        - 8
+        - 9
+      outputdirctrl.setclr5:
+        bits:
+        - 10
+        - 11
+      outputdirctrl.setclr6:
+        bits:
+        - 12
+        - 13
+      outputdirctrl.setclr7:
+        bits:
+        - 14
+        - 15
+      regmode.regmod_h:
+        bits:
+        - 16
+        - 31
+      regmode.regmod_l:
+        bits:
+        - 0
+        - 15
+      res.o0res:
+        bits:
+        - 0
+        - 1
+        enum:
+          NO_CHANGE: 0
+          SET: 1
+          CLEAR: 2
+          TOGGLE_OUTPUT: 3
+      res.o1res:
+        bits:
+        - 2
+        - 3
+        enum:
+          NO_CHANGE: 0
+          SET: 1
+          CLEAR: 2
+          TOGGLE_OUTPUT: 3
+      res.o2res:
+        bits:
+        - 4
+        - 5
+        enum:
+          NO_CHANGE: 0
+          SET: 1
+          CLEAR: 2
+          TOGGLE_OUTPUT: 3
+      res.o3res:
+        bits:
+        - 6
+        - 7
+        enum:
+          NO_CHANGE: 0
+          SET: 1
+          CLEAR: 2
+          TOGGLE_OUTPUT: 3
+      res.o4res:
+        bits:
+        - 8
+        - 9
+        enum:
+          NO_CHANGE: 0
+          SET: 1
+          CLEAR: 2
+          TOGGLE_OUTPUT: 3
+      res.o5res:
+        bits:
+        - 10
+        - 11
+        enum:
+          NO_CHANGE: 0
+          SET: 1
+          CLEAR: 2
+          TOGGLE_OUTPUT: 3
+      res.o6res:
+        bits:
+        - 12
+        - 13
+        enum:
+          NO_CHANGE: 0
+          SET: 1
+          CLEAR: 2
+          TOGGLE_OUTPUT: 3
+      res.o7res:
+        bits:
+        - 14
+        - 15
+        enum:
+          NO_CHANGE: 0
+          SET: 1
+          CLEAR: 2
+          TOGGLE_OUTPUT: 3
+      res.reserved:
+        bits:
+        - 16
+        - 31
+      start.startmsk_h:
+        bits:
+        - 16
+        - 31
+      start.startmsk_l:
+        bits:
+        - 0
+        - 15
+      state.reserved:
+        bits:
+        - 5
+        - 15
+      state.state_h:
+        bits:
+        - 16
+        - 20
+      state.state_l:
+        bits:
+        - 0
+        - 4
+      stop.stopmsk_h:
+        bits:
+        - 16
+        - 31
+      stop.stopmsk_l:
+        bits:
+        - 0
+        - 15
+  spi:
+    registers:
+      cfg:
+        offset: 0
+        access: rw
+      div:
+        offset: 36
+        access: rw
+      dly:
+        offset: 4
+        access: rw
+      intenclr:
+        offset: 16
+        access: wo
+      intenset:
+        offset: 12
+        access: rw
+      intstat:
+        offset: 40
+        access: ro
+      rxdat:
+        offset: 20
+        access: ro
+      stat:
+        offset: 8
+        access: rw
+      txctl:
+        offset: 32
+        access: rw
+      txdat:
+        offset: 28
+        access: rw
+      txdatctl:
+        offset: 24
+        access: rw
+    fields:
+      cfg.cpha:
+        bit: 4
+        enum:
+          CHANGE: 0
+          CAPTURE: 1
+      cfg.cpol:
+        bit: 5
+        enum:
+          LOW: 0
+          HIGH: 1
+      cfg.enable:
+        bit: 0
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg.loop:
+        bit: 7
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg.lsbf:
+        bit: 3
+        enum:
+          STANDARD: 0
+          REVERSE: 1
+      cfg.master:
+        bit: 2
+        enum:
+          SLAVE_MODE: 0
+          MASTER_MODE: 1
+      cfg.reserved:
+        bit: 1
+      cfg.spol0:
+        bit: 8
+        enum:
+          LOW: 0
+          HIGH: 1
+      cfg.spol1:
+        bit: 9
+        enum:
+          LOW: 0
+          HIGH: 1
+      cfg.spol2:
+        bit: 10
+        enum:
+          LOW: 0
+          HIGH: 1
+      cfg.spol3:
+        bit: 11
+        enum:
+          LOW: 0
+          HIGH: 1
+      div.divval:
+        bits:
+        - 0
+        - 15
+      div.reserved:
+        bits:
+        - 16
+        - 31
+      dly.frame_delay:
+        bits:
+        - 8
+        - 11
+      dly.post_delay:
+        bits:
+        - 4
+        - 7
+      dly.pre_delay:
+        bits:
+        - 0
+        - 3
+      dly.reserved:
+        bits:
+        - 16
+        - 31
+      dly.transfer_delay:
+        bits:
+        - 12
+        - 15
+      intenclr.mstidle:
+        bit: 8
+      intenclr.reserved:
+        bits:
+        - 6
+        - 7
+      intenclr.rxoven:
+        bit: 2
+      intenclr.rxrdyen:
+        bit: 0
+      intenclr.ssaen:
+        bit: 4
+      intenclr.ssden:
+        bit: 5
+      intenclr.txrdyen:
+        bit: 1
+      intenclr.txuren:
+        bit: 3
+      intenset.mstidleen:
+        bit: 8
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.reserved:
+        bits:
+        - 6
+        - 7
+      intenset.rxoven:
+        bit: 2
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.rxrdyen:
+        bit: 0
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.ssaen:
+        bit: 4
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.ssden:
+        bit: 5
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.txrdyen:
+        bit: 1
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.txuren:
+        bit: 3
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intstat.mstidle:
+        bit: 8
+      intstat.reserved:
+        bits:
+        - 6
+        - 7
+      intstat.rxov:
+        bit: 2
+      intstat.rxrdy:
+        bit: 0
+      intstat.ssa:
+        bit: 4
+      intstat.ssd:
+        bit: 5
+      intstat.txrdy:
+        bit: 1
+      intstat.txur:
+        bit: 3
+      rxdat.reserved:
+        bits:
+        - 21
+        - 31
+      rxdat.rxdat:
+        bits:
+        - 0
+        - 15
+      rxdat.rxssel0_n:
+        bit: 16
+      rxdat.rxssel1_n:
+        bit: 17
+      rxdat.rxssel2_n:
+        bit: 18
+      rxdat.rxssel3_n:
+        bit: 19
+      rxdat.sot:
+        bit: 20
+      stat.endtransfer:
+        bit: 7
+      stat.mstidle:
+        bit: 8
+      stat.reserved:
+        bits:
+        - 9
+        - 31
+      stat.rxov:
+        bit: 2
+      stat.rxrdy:
+        bit: 0
+      stat.ssa:
+        bit: 4
+      stat.ssd:
+        bit: 5
+      stat.stalled:
+        bit: 6
+      stat.txrdy:
+        bit: 1
+      stat.txur:
+        bit: 3
+      txctl.eof:
+        bit: 21
+      txctl.eot:
+        bit: 20
+      txctl.len:
+        bits:
+        - 24
+        - 27
+      txctl.reserved:
+        bits:
+        - 0
+        - 15
+      txctl.rxignore:
+        bit: 22
+      txctl.txssel0_n:
+        bit: 16
+      txctl.txssel1_n:
+        bit: 17
+      txctl.txssel2_n:
+        bit: 18
+      txctl.txssel3_n:
+        bit: 19
+      txdat.data:
+        bits:
+        - 0
+        - 15
+      txdat.reserved:
+        bits:
+        - 16
+        - 31
+      txdatctl.eof:
+        bit: 21
+        enum:
+          DATA_NOT_EOF: 0
+          DATA_EOF: 1
+      txdatctl.eot:
+        bit: 20
+        enum:
+          SSEL_NOT_DEASSERTED: 0
+          SSEL_DEASSERTED: 1
+      txdatctl.len:
+        bits:
+        - 24
+        - 27
+      txdatctl.reserved:
+        bit: 23
+      txdatctl.rxignore:
+        bit: 22
+        enum:
+          READ_RECEIVED_DATA: 0
+          IGNORE_RECEIVED_DATA: 1
+      txdatctl.txdat:
+        bits:
+        - 0
+        - 15
+      txdatctl.txssel0_n:
+        bit: 16
+        enum:
+          SSEL0_ASSERTED: 0
+          SSEL0_NOT_ASSERTED: 1
+      txdatctl.txssel1_n:
+        bit: 17
+        enum:
+          SSEL1_ASSERTED: 0
+          SSEL1_NOT_ASSERTED: 1
+      txdatctl.txssel2_n:
+        bit: 18
+        enum:
+          SSEL2_ASSERTED: 0
+          SSEL2_NOT_ASSERTED: 1
+      txdatctl.txssel3_n:
+        bit: 19
+        enum:
+          SSEL3_ASSERTED: 0
+          SSEL3_NOT_ASSERTED: 1
+  spi0:
+    registers:
+      cfg:
+        offset: 0
+        access: rw
+      div:
+        offset: 36
+        access: rw
+      dly:
+        offset: 4
+        access: rw
+      intenclr:
+        offset: 16
+        access: wo
+      intenset:
+        offset: 12
+        access: rw
+      intstat:
+        offset: 40
+        access: ro
+      rxdat:
+        offset: 20
+        access: ro
+      stat:
+        offset: 8
+        access: rw
+      txctl:
+        offset: 32
+        access: rw
+      txdat:
+        offset: 28
+        access: rw
+      txdatctl:
+        offset: 24
+        access: rw
+    fields:
+      cfg.cpha:
+        bit: 4
+        enum:
+          CHANGE: 0
+          CAPTURE: 1
+      cfg.cpol:
+        bit: 5
+        enum:
+          LOW: 0
+          HIGH: 1
+      cfg.enable:
+        bit: 0
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg.loop:
+        bit: 7
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg.lsbf:
+        bit: 3
+        enum:
+          STANDARD: 0
+          REVERSE: 1
+      cfg.master:
+        bit: 2
+        enum:
+          SLAVE_MODE: 0
+          MASTER_MODE: 1
+      cfg.reserved:
+        bit: 1
+      cfg.spol0:
+        bit: 8
+        enum:
+          LOW: 0
+          HIGH: 1
+      cfg.spol1:
+        bit: 9
+        enum:
+          LOW: 0
+          HIGH: 1
+      cfg.spol2:
+        bit: 10
+        enum:
+          LOW: 0
+          HIGH: 1
+      cfg.spol3:
+        bit: 11
+        enum:
+          LOW: 0
+          HIGH: 1
+      div.divval:
+        bits:
+        - 0
+        - 15
+      div.reserved:
+        bits:
+        - 16
+        - 31
+      dly.frame_delay:
+        bits:
+        - 8
+        - 11
+      dly.post_delay:
+        bits:
+        - 4
+        - 7
+      dly.pre_delay:
+        bits:
+        - 0
+        - 3
+      dly.reserved:
+        bits:
+        - 16
+        - 31
+      dly.transfer_delay:
+        bits:
+        - 12
+        - 15
+      intenclr.mstidle:
+        bit: 8
+      intenclr.reserved:
+        bits:
+        - 6
+        - 7
+      intenclr.rxoven:
+        bit: 2
+      intenclr.rxrdyen:
+        bit: 0
+      intenclr.ssaen:
+        bit: 4
+      intenclr.ssden:
+        bit: 5
+      intenclr.txrdyen:
+        bit: 1
+      intenclr.txuren:
+        bit: 3
+      intenset.mstidleen:
+        bit: 8
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.reserved:
+        bits:
+        - 6
+        - 7
+      intenset.rxoven:
+        bit: 2
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.rxrdyen:
+        bit: 0
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.ssaen:
+        bit: 4
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.ssden:
+        bit: 5
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.txrdyen:
+        bit: 1
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intenset.txuren:
+        bit: 3
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      intstat.mstidle:
+        bit: 8
+      intstat.reserved:
+        bits:
+        - 6
+        - 7
+      intstat.rxov:
+        bit: 2
+      intstat.rxrdy:
+        bit: 0
+      intstat.ssa:
+        bit: 4
+      intstat.ssd:
+        bit: 5
+      intstat.txrdy:
+        bit: 1
+      intstat.txur:
+        bit: 3
+      rxdat.reserved:
+        bits:
+        - 21
+        - 31
+      rxdat.rxdat:
+        bits:
+        - 0
+        - 15
+      rxdat.rxssel0_n:
+        bit: 16
+      rxdat.rxssel1_n:
+        bit: 17
+      rxdat.rxssel2_n:
+        bit: 18
+      rxdat.rxssel3_n:
+        bit: 19
+      rxdat.sot:
+        bit: 20
+      stat.endtransfer:
+        bit: 7
+      stat.mstidle:
+        bit: 8
+      stat.reserved:
+        bits:
+        - 9
+        - 31
+      stat.rxov:
+        bit: 2
+      stat.rxrdy:
+        bit: 0
+      stat.ssa:
+        bit: 4
+      stat.ssd:
+        bit: 5
+      stat.stalled:
+        bit: 6
+      stat.txrdy:
+        bit: 1
+      stat.txur:
+        bit: 3
+      txctl.eof:
+        bit: 21
+      txctl.eot:
+        bit: 20
+      txctl.len:
+        bits:
+        - 24
+        - 27
+      txctl.reserved:
+        bits:
+        - 0
+        - 15
+      txctl.rxignore:
+        bit: 22
+      txctl.txssel0_n:
+        bit: 16
+      txctl.txssel1_n:
+        bit: 17
+      txctl.txssel2_n:
+        bit: 18
+      txctl.txssel3_n:
+        bit: 19
+      txdat.data:
+        bits:
+        - 0
+        - 15
+      txdat.reserved:
+        bits:
+        - 16
+        - 31
+      txdatctl.eof:
+        bit: 21
+        enum:
+          DATA_NOT_EOF: 0
+          DATA_EOF: 1
+      txdatctl.eot:
+        bit: 20
+        enum:
+          SSEL_NOT_DEASSERTED: 0
+          SSEL_DEASSERTED: 1
+      txdatctl.len:
+        bits:
+        - 24
+        - 27
+      txdatctl.reserved:
+        bit: 23
+      txdatctl.rxignore:
+        bit: 22
+        enum:
+          READ_RECEIVED_DATA: 0
+          IGNORE_RECEIVED_DATA: 1
+      txdatctl.txdat:
+        bits:
+        - 0
+        - 15
+      txdatctl.txssel0_n:
+        bit: 16
+        enum:
+          SSEL0_ASSERTED: 0
+          SSEL0_NOT_ASSERTED: 1
+      txdatctl.txssel1_n:
+        bit: 17
+        enum:
+          SSEL1_ASSERTED: 0
+          SSEL1_NOT_ASSERTED: 1
+      txdatctl.txssel2_n:
+        bit: 18
+        enum:
+          SSEL2_ASSERTED: 0
+          SSEL2_NOT_ASSERTED: 1
+      txdatctl.txssel3_n:
+        bit: 19
+        enum:
+          SSEL3_ASSERTED: 0
+          SSEL3_NOT_ASSERTED: 1
+  syscon:
+    registers:
+      adcclkdiv:
+        offset: '0x0108'
+        access: rw
+      adcclksel:
+        offset: 140
+        access: rw
+      ahbclkctrl0:
+        offset: 192
+        access: rw
+      ahbclkctrl1:
+        offset: 196
+        access: rw
+      ahbclkctrlclr0:
+        offset: 208
+        access: wo
+      ahbclkctrlclr1:
+        offset: 212
+        access: wo
+      ahbclkctrlset0:
+        offset: 200
+        access: wo
+      ahbclkctrlset1:
+        offset: 204
+        access: wo
+      ahbclkdiv:
+        offset: '0x0100'
+        access: rw
+      ahbmatprio:
+        offset: 4
+        access: rw
+      asyncapbctrl:
+        offset: 32
+        access: rw
+      clkoutdiv:
+        offset: '0x010C'
+        access: rw
+      clkoutsela:
+        offset: 148
+        access: rw
+      clkoutselb:
+        offset: 152
+        access: rw
+      cpboot:
+        offset: '0x0304'
+        access: rw
+      cpstack:
+        offset: '0x0308'
+        access: rw
+      cpuctrl:
+        offset: '0x0300'
+        access: rw
+      device_id0:
+        offset: '0x03F8'
+        access: ro
+      device_id1:
+        offset: '0x03FC'
+        access: ro
+      fifoctrl:
+        offset: '0x0148'
+        access: rw
+      flashcfg:
+        offset: '0x0124'
+        access: rw
+      freqmectrl:
+        offset: '0x0120'
+        access: rw
+      ircctrl:
+        offset: '0x0184'
+        access: rw
+      jtagidcode:
+        offset: '0x03F4'
+        access: ro
+      mainclksela:
+        offset: 128
+        access: rw
+      mainclkselb:
+        offset: 132
+        access: rw
+      nmisrc:
+        offset: 28
+        access: rw
+      pdruncfg:
+        offset: '0x0210'
+        access: rw
+      pdruncfgclr:
+        offset: '0x0218'
+        access: wo
+      pdruncfgset:
+        offset: '0x0214'
+        access: wo
+      pioporcap0:
+        offset: 92
+        access: ro
+      pioporcap1:
+        offset: 96
+        access: ro
+      piorescap0:
+        offset: 104
+        access: ro
+      piorescap1:
+        offset: 108
+        access: ro
+      presetctrl0:
+        offset: 68
+        access: rw
+      presetctrl1:
+        offset: 72
+        access: rw
+      presetctrlclr0:
+        offset: 84
+        access: wo
+      presetctrlclr1:
+        offset: 88
+        access: wo
+      presetctrlset0:
+        offset: 76
+        access: wo
+      presetctrlset1:
+        offset: 80
+        access: wo
+      rtcoscctrl:
+        offset: '0x0190'
+        access: rw
+      starterp0:
+        offset: '0x0240'
+        access: rw
+      starterp1:
+        offset: '0x0244'
+        access: rw
+      starterpclr0:
+        offset: '0x0250'
+        access: wo
+      starterpclr1:
+        offset: '0x0254'
+        access: wo
+      starterpset0:
+        offset: '0x0248'
+        access: wo
+      starterpset1:
+        offset: '0x024C'
+        access: wo
+      sysmemremap:
+        offset: 0
+        access: rw
+      syspllclksel:
+        offset: 160
+        access: rw
+      syspllctrl:
+        offset: '0x01B0'
+        access: rw
+      syspllndec:
+        offset: '0x01B8'
+        access: rw
+      syspllpdec:
+        offset: '0x01BC'
+        access: rw
+      syspllssctrl0:
+        offset: '0x01C0'
+        access: rw
+      syspllssctrl1:
+        offset: '0x01C4'
+        access: rw
+      syspllstat:
+        offset: '0x01B4'
+        access: ro
+      sysrststat:
+        offset: 64
+        access: rw
+      systckcal:
+        offset: 20
+        access: rw
+      systickclkdiv:
+        offset: 224
+        access: rw
+    fields:
+      adcclkdiv.div:
+        bits:
+        - 0
+        - 7
+      adcclkdiv.reserved:
+        bits:
+        - 8
+        - 31
+      adcclksel.reserved:
+        bits:
+        - 2
+        - 31
+      adcclksel.sel:
+        bits:
+        - 0
+        - 1
+        enum:
+          MAIN_CLOCK: 0
+          SYSTEM_PLL_OUTPUT: 1
+          IRC_OSCILLATOR: 2
+          RESERVED: 3
+      ahbclkctrl0.adc0:
+        bit: 27
+      ahbclkctrl0.crc:
+        bit: 21
+      ahbclkctrl0.dma:
+        bit: 20
+      ahbclkctrl0.flash:
+        bit: 7
+      ahbclkctrl0.fmc:
+        bit: 8
+      ahbclkctrl0.gint:
+        bit: 19
+      ahbclkctrl0.gpio0:
+        bit: 14
+      ahbclkctrl0.gpio1:
+        bit: 15
+      ahbclkctrl0.inputmux:
+        bit: 11
+      ahbclkctrl0.iocon:
+        bit: 13
+      ahbclkctrl0.mailbox:
+        bit: 26
+      ahbclkctrl0.pint:
+        bit: 18
+      ahbclkctrl0.reserved:
+        bit: 0
+      ahbclkctrl0.rom:
+        bit: 1
+      ahbclkctrl0.rtc:
+        bit: 23
+      ahbclkctrl0.sram1:
+        bit: 3
+      ahbclkctrl0.sram2:
+        bit: 4
+      ahbclkctrl0.wwdt:
+        bit: 22
+      ahbclkctrl1.fifo:
+        bit: 9
+      ahbclkctrl1.mrt:
+        bit: 0
+      ahbclkctrl1.reserved:
+        bits:
+        - 3
+        - 8
+      ahbclkctrl1.rit:
+        bit: 1
+      ahbclkctrl1.sct0:
+        bit: 2
+      ahbclkctrl1.timer2:
+        bit: 22
+      ahbclkctrl1.timer3:
+        bit: 26
+      ahbclkctrl1.timer4:
+        bit: 27
+      ahbclkctrl1.utick:
+        bit: 10
+      ahbclkctrlclr0.clk_clr0:
+        bits:
+        - 0
+        - 31
+      ahbclkctrlclr1.clk_clr1:
+        bits:
+        - 0
+        - 31
+      ahbclkctrlset0.clk_set0:
+        bits:
+        - 0
+        - 31
+      ahbclkctrlset1.clk_set1:
+        bits:
+        - 0
+        - 31
+      ahbclkdiv.div:
+        bits:
+        - 0
+        - 7
+      ahbclkdiv.reserved:
+        bits:
+        - 8
+        - 31
+      ahbmatprio.pri_dcode:
+        bits:
+        - 2
+        - 3
+      ahbmatprio.pri_dma:
+        bits:
+        - 8
+        - 9
+      ahbmatprio.pri_fifo:
+        bits:
+        - 14
+        - 15
+      ahbmatprio.pri_icode:
+        bits:
+        - 0
+        - 1
+      ahbmatprio.pri_m0:
+        bits:
+        - 16
+        - 17
+      ahbmatprio.pri_sys:
+        bits:
+        - 4
+        - 5
+      ahbmatprio.reserved:
+        bits:
+        - 6
+        - 7
+      asyncapbctrl.enable:
+        bit: 0
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      asyncapbctrl.reserved:
+        bits:
+        - 1
+        - 31
+      clkoutdiv.div:
+        bits:
+        - 0
+        - 7
+      clkoutdiv.reserved:
+        bits:
+        - 8
+        - 31
+      clkoutsela.reserved:
+        bits:
+        - 2
+        - 31
+      clkoutsela.sel:
+        bits:
+        - 0
+        - 1
+        enum:
+          MAIN_CLOCK: 0
+          CLKIN: 1
+          WATCHDOG_OSCILLATOR: 2
+          IRC_OSCILLATOR: 3
+      clkoutselb.reserved:
+        bits:
+        - 2
+        - 31
+      clkoutselb.sel:
+        bits:
+        - 0
+        - 1
+        enum:
+          CLKOUTSELA: 0
+          RESERVED: 2
+          RTC_32_KHZ_CLOCK: 3
+      cpboot.bootaddr:
+        bits:
+        - 0
+        - 31
+      cpstack.stackaddr:
+        bits:
+        - 0
+        - 31
+      cpuctrl.cm0clken:
+        bit: 3
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cpuctrl.cm0rsten:
+        bit: 5
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cpuctrl.cm4clken:
+        bit: 2
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cpuctrl.cm4rsten:
+        bit: 4
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cpuctrl.mastercpu:
+        bit: 0
+        enum:
+          M0P: 0
+          M4: 1
+      cpuctrl.powercpu:
+        bit: 6
+        enum:
+          M0P: 0
+          M4: 1
+      cpuctrl.reserved:
+        bit: 1
+      device_id0.partid:
+        bits:
+        - 0
+        - 31
+      device_id1.revid:
+        bits:
+        - 0
+        - 31
+      fifoctrl.reserved:
+        bit: 6
+      fifoctrl.spi0rxfifoen:
+        bit: 12
+      fifoctrl.spi0txfifoen:
+        bit: 4
+      fifoctrl.spi1rxfifoen:
+        bit: 13
+      fifoctrl.spi1txfifoen:
+        bit: 5
+      fifoctrl.u0rxfifoen:
+        bit: 8
+      fifoctrl.u0txfifoen:
+        bit: 0
+      fifoctrl.u1rxfifoen:
+        bit: 9
+      fifoctrl.u1txfifoen:
+        bit: 1
+      fifoctrl.u2rxfifoen:
+        bit: 10
+      fifoctrl.u2txfifoen:
+        bit: 2
+      fifoctrl.u3rxfifoen:
+        bit: 11
+      fifoctrl.u3txfifoen:
+        bit: 3
+      flashcfg.flashtim:
+        bits:
+        - 12
+        - 14
+        enum:
+          1_CLOCK_CYCLE: 0
+          2_CLOCK_CYCLES: 1
+          3_CLOCK_CYCLES: 2
+          4_CLOCK_CYCLES: 3
+          5_CLOCK_CYCLES: 4
+          6_CLOCK_CYCLES: 5
+          7_CLOCK_CYCLES: 6
+          8_CLOCK_CYCLES: 7
+      flashcfg.reserved:
+        bits:
+        - 0
+        - 11
+      freqmectrl.capval:
+        bits:
+        - 0
+        - 13
+      freqmectrl.prog:
+        bit: 31
+      freqmectrl.reserved:
+        bits:
+        - 14
+        - 30
+      ircctrl.reserved:
+        bits:
+        - 8
+        - 31
+      ircctrl.trim:
+        bits:
+        - 0
+        - 7
+      jtagidcode.jtagid:
+        bits:
+        - 0
+        - 31
+      mainclksela.reserved:
+        bits:
+        - 2
+        - 31
+      mainclksela.sel:
+        bits:
+        - 0
+        - 1
+        enum:
+          IRC_OSCILLATOR: 0
+          CLKIN: 1
+          WATCHDOG_OSCILLATOR: 2
+          RESERVED: 3
+      mainclkselb.reserved:
+        bits:
+        - 2
+        - 31
+      mainclkselb.sel:
+        bits:
+        - 0
+        - 1
+        enum:
+          MAINCLKSELA: 0
+          SYSTEM_PLL_INPUT: 1
+          SYSTEM_PLL_OUTPUT: 2
+          RTC_OSC_OUTPUT: 3
+      nmisrc.irqm0:
+        bits:
+        - 8
+        - 13
+      nmisrc.irqm4:
+        bits:
+        - 0
+        - 5
+      nmisrc.nmienm0:
+        bit: 30
+      nmisrc.nmienm4:
+        bit: 31
+      nmisrc.reserved:
+        bits:
+        - 6
+        - 7
+      pdruncfg.pden_32k_osc:
+        bit: 24
+      pdruncfg.pden_adc0:
+        bit: 10
+      pdruncfg.pden_bod_intr:
+        bit: 8
+      pdruncfg.pden_bod_rst:
+        bit: 7
+      pdruncfg.pden_flash:
+        bit: 5
+      pdruncfg.pden_irc:
+        bit: 4
+      pdruncfg.pden_irc_osc:
+        bit: 3
+      pdruncfg.pden_rom:
+        bit: 17
+      pdruncfg.pden_sram0a:
+        bit: 13
+      pdruncfg.pden_sram0b:
+        bit: 14
+      pdruncfg.pden_sram1:
+        bit: 15
+      pdruncfg.pden_sram2:
+        bit: 16
+      pdruncfg.pden_sys_pll:
+        bit: 22
+      pdruncfg.pden_vdda:
+        bit: 19
+      pdruncfg.pden_vrefp:
+        bit: 23
+      pdruncfg.pden_wdt_osc:
+        bit: 20
+      pdruncfg.reserved:
+        bits:
+        - 0
+        - 2
+      pdruncfgclr.pd_clr:
+        bits:
+        - 0
+        - 31
+      pdruncfgset.pd_set:
+        bits:
+        - 0
+        - 31
+      pioporcap0.pioporstat:
+        bits:
+        - 0
+        - 31
+      pioporcap1.pioporstat:
+        bits:
+        - 0
+        - 31
+      piorescap0.pioresstat:
+        bits:
+        - 0
+        - 31
+      piorescap1.pioresstat:
+        bits:
+        - 0
+        - 31
+      presetctrl0.adc0_rst:
+        bit: 27
+      presetctrl0.crc_rst:
+        bit: 21
+      presetctrl0.dma_rst:
+        bit: 20
+      presetctrl0.flash_rst:
+        bit: 7
+      presetctrl0.fmc_rst:
+        bit: 8
+      presetctrl0.gint_rst:
+        bit: 19
+      presetctrl0.gpio0_rst:
+        bit: 14
+      presetctrl0.gpio1_rst:
+        bit: 15
+      presetctrl0.iocon_rst:
+        bit: 13
+      presetctrl0.mailbox_rst:
+        bit: 26
+      presetctrl0.mux_rst:
+        bit: 11
+      presetctrl0.pint_rst:
+        bit: 18
+      presetctrl0.reserved:
+        bits:
+        - 0
+        - 6
+      presetctrl0.rtc_rst:
+        bit: 23
+      presetctrl0.wwdt_rst:
+        bit: 22
+      presetctrl1.fifo_rst:
+        bit: 9
+      presetctrl1.mrt_rst:
+        bit: 0
+      presetctrl1.reserved:
+        bits:
+        - 3
+        - 8
+      presetctrl1.rit_rst:
+        bit: 1
+      presetctrl1.sct0_rst:
+        bit: 2
+      presetctrl1.timer2_rst:
+        bit: 22
+      presetctrl1.timer3_rst:
+        bit: 26
+      presetctrl1.timer4_rst:
+        bit: 27
+      presetctrl1.utick_rst:
+        bit: 10
+      presetctrlclr0.rst_clr0:
+        bits:
+        - 0
+        - 31
+      presetctrlclr1.rst_clr1:
+        bits:
+        - 0
+        - 31
+      presetctrlset0.rst_set0:
+        bits:
+        - 0
+        - 31
+      presetctrlset1.rst_set1:
+        bits:
+        - 0
+        - 31
+      rtcoscctrl.en:
+        bit: 0
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      rtcoscctrl.reserved:
+        bits:
+        - 1
+        - 31
+      starterp0.adc0_seqa:
+        bit: 26
+      starterp0.adc0_seqb:
+        bit: 27
+      starterp0.adc0_thcmp:
+        bit: 28
+      starterp0.bod:
+        bit: 1
+      starterp0.dma:
+        bit: 3
+      starterp0.gint0:
+        bit: 4
+      starterp0.i2c0:
+        bit: 21
+      starterp0.i2c1:
+        bit: 22
+      starterp0.i2c2:
+        bit: 23
+      starterp0.mailbox:
+        bit: 31
+      starterp0.mrt:
+        bit: 10
+      starterp0.pint0:
+        bit: 5
+      starterp0.pint1:
+        bit: 6
+      starterp0.pint2:
+        bit: 7
+      starterp0.pint3:
+        bit: 8
+      starterp0.reserved:
+        bit: 2
+      starterp0.rtc:
+        bit: 29
+      starterp0.sct0:
+        bit: 16
+      starterp0.spi0:
+        bit: 24
+      starterp0.spi1:
+        bit: 25
+      starterp0.timer0:
+        bit: 11
+      starterp0.timer1:
+        bit: 12
+      starterp0.timer2:
+        bit: 13
+      starterp0.timer3:
+        bit: 14
+      starterp0.timer4:
+        bit: 15
+      starterp0.usart0:
+        bit: 17
+      starterp0.usart1:
+        bit: 18
+      starterp0.usart2:
+        bit: 19
+      starterp0.usart3:
+        bit: 20
+      starterp0.utick:
+        bit: 9
+      starterp0.wwdt:
+        bit: 0
+      starterp1.gint1:
+        bit: 0
+      starterp1.pint4:
+        bit: 1
+      starterp1.pint5:
+        bit: 2
+      starterp1.pint6:
+        bit: 3
+      starterp1.pint7:
+        bit: 4
+      starterp1.reserved:
+        bits:
+        - 5
+        - 7
+      starterp1.rit:
+        bit: 8
+      starterpclr0.start_clr0:
+        bits:
+        - 0
+        - 31
+      starterpclr1.start_clr1:
+        bits:
+        - 0
+        - 31
+      starterpset0.start_set0:
+        bits:
+        - 0
+        - 31
+      starterpset1.start_set1:
+        bits:
+        - 0
+        - 31
+      sysmemremap.map:
+        bits:
+        - 0
+        - 1
+        enum:
+          BOOT_LOADER_MODE: 0
+          USER_RAM_MODE: 1
+          USER_FLASH_MODE: 2
+      sysmemremap.reserved:
+        bits:
+        - 2
+        - 31
+      syspllclksel.reserved:
+        bits:
+        - 2
+        - 31
+      syspllclksel.sel:
+        bits:
+        - 0
+        - 1
+        enum:
+          IRC_OSCILLATOR: 0
+          CLKIN: 1
+          WATCHDOG_OSCILLATOR: 2
+          RTC_32_KHZ_CLOCK: 3
+      syspllctrl.bandsel:
+        bit: 18
+        enum:
+          SSCG_CONTROL: 0
+          MDEC_CONTROL: 1
+      syspllctrl.bypass:
+        bit: 15
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      syspllctrl.bypassccodiv2:
+        bit: 16
+        enum:
+          DIVIDE_BY_2: 0
+          BYPASS: 1
+      syspllctrl.directi:
+        bit: 19
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      syspllctrl.directo:
+        bit: 20
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      syspllctrl.reserved:
+        bits:
+        - 21
+        - 31
+      syspllctrl.seli:
+        bits:
+        - 4
+        - 9
+      syspllctrl.selp:
+        bits:
+        - 10
+        - 14
+      syspllctrl.selr:
+        bits:
+        - 0
+        - 3
+      syspllctrl.uplimoff:
+        bit: 17
+        enum:
+          NORMAL_MODE: 0
+          SSGC_MODE: 1
+      syspllndec.ndec:
+        bits:
+        - 0
+        - 9
+      syspllndec.nreq:
+        bit: 10
+      syspllndec.reserved:
+        bits:
+        - 11
+        - 31
+      syspllpdec.pdec:
+        bits:
+        - 0
+        - 6
+      syspllpdec.preq:
+        bit: 7
+      syspllpdec.reserved:
+        bits:
+        - 8
+        - 31
+      syspllssctrl0.mdec:
+        bits:
+        - 0
+        - 16
+      syspllssctrl0.mreq:
+        bit: 17
+      syspllssctrl0.reserved:
+        bits:
+        - 19
+        - 31
+      syspllssctrl0.sel_ext:
+        bit: 18
+        enum:
+          SPREAD_SPECTRUM_MODE: 0
+          MDEC_ENABLED: 1
+      syspllssctrl1.dither:
+        bit: 29
+        enum:
+          FIXED: 0
+          DITHER: 1
+      syspllssctrl1.mc:
+        bits:
+        - 26
+        - 27
+      syspllssctrl1.md:
+        bits:
+        - 0
+        - 18
+      syspllssctrl1.mdreq:
+        bit: 19
+      syspllssctrl1.mf:
+        bits:
+        - 20
+        - 22
+      syspllssctrl1.mr:
+        bits:
+        - 23
+        - 25
+      syspllssctrl1.pd:
+        bit: 28
+        enum:
+          ENABLED: 0
+          DISABLED: 1
+      syspllssctrl1.reserved:
+        bits:
+        - 30
+        - 31
+      syspllstat.lock:
+        bit: 0
+      syspllstat.reserved:
+        bits:
+        - 1
+        - 31
+      sysrststat.bod:
+        bit: 3
+        enum:
+          NO_BOD_RESET_DETECTE: 0
+          BOD_RESET_DETECTED: 1
+      sysrststat.extrst:
+        bit: 1
+        enum:
+          NO_RESET_EVENT_DETEC: 0
+          RESET_DETECTED: 1
+      sysrststat.por:
+        bit: 0
+        enum:
+          NO_POR_DETECTED: 0
+          POR_DETECTED: 1
+      sysrststat.reserved:
+        bits:
+        - 5
+        - 31
+      sysrststat.sysrst:
+        bit: 4
+        enum:
+          NO_SYSTEM_RESET_DETE: 0
+          SYSTEM_RESET_DETECTE: 1
+      sysrststat.wdt:
+        bit: 2
+        enum:
+          NO_WDT_RESET_DETECTE: 0
+          WDT_RESET_DETECTED: 1
+      systckcal.cal:
+        bits:
+        - 0
+        - 23
+      systckcal.noref:
+        bit: 25
+      systckcal.reserved:
+        bits:
+        - 26
+        - 31
+      systckcal.skew:
+        bit: 24
+      systickclkdiv.div:
+        bits:
+        - 0
+        - 7
+      systickclkdiv.reserved:
+        bits:
+        - 8
+        - 31
+  usart:
+    registers:
+      addr:
+        offset: 44
+        access: rw
+      brg:
+        offset: 32
+        access: rw
+      cfg:
+        offset: 0
+        access: rw
+      ctl:
+        offset: 4
+        access: rw
+      intenclr:
+        offset: 16
+        access: wo
+      intenset:
+        offset: 12
+        access: rw
+      intstat:
+        offset: 36
+        access: ro
+      osr:
+        offset: 40
+        access: rw
+      rxdat:
+        offset: 20
+        access: ro
+      rxdatstat:
+        offset: 24
+        access: ro
+      stat:
+        offset: 8
+        access: rw
+      txdat:
+        offset: 28
+        access: rw
+    fields:
+      addr.address:
+        bits:
+        - 0
+        - 7
+      addr.reserved:
+        bits:
+        - 8
+        - 31
+      brg.brgval:
+        bits:
+        - 0
+        - 15
+      brg.reserved:
+        bits:
+        - 16
+        - 31
+      cfg.autoaddr:
+        bit: 19
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg.clkpol:
+        bit: 12
+        enum:
+          FALLING_EDGE: 0
+          RISING_EDGE: 1
+      cfg.ctsen:
+        bit: 9
+        enum:
+          NO_FLOW_CONTROL: 0
+          FLOW_CONTROL_ENABLED: 1
+      cfg.datalen:
+        bits:
+        - 2
+        - 3
+        enum:
+          7_BIT_DATA_LENGTH: 0
+          8_BIT_DATA_LENGTH: 1
+          9_BIT_DATA_LENGTH: 2
+          RESERVED: 3
+      cfg.enable:
+        bit: 0
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg.iomode:
+        bit: 16
+        enum:
+          STANDARD: 0
+          IRDA: 1
+      cfg.linmode:
+        bit: 8
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg.loop:
+        bit: 15
+        enum:
+          NORMAL_OPERATION: 0
+          LOOPBACK_MODE: 1
+      cfg.mode32k:
+        bit: 7
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg.oepol:
+        bit: 21
+        enum:
+          LOW: 0
+          HIGH: 1
+      cfg.oesel:
+        bit: 20
+        enum:
+          STANDARD: 0
+          RS_485: 1
+      cfg.oeta:
+        bit: 18
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg.paritysel:
+        bits:
+        - 4
+        - 5
+        enum:
+          NO_PARITY: 0
+          RESERVED: 1
+          EVEN_PARITY: 2
+          ODD_PARITY: 3
+      cfg.reserved:
+        bit: 1
+      cfg.rxpol:
+        bit: 22
+        enum:
+          STANDARD: 0
+          INVERTED: 1
+      cfg.stoplen:
+        bit: 6
+        enum:
+          1_STOP_BIT: 0
+          2_STOP_BITS: 1
+      cfg.syncen:
+        bit: 11
+        enum:
+          ASYNCHRONOUS_MODE: 0
+          SYNCHRONOUS_MODE: 1
+      cfg.syncmst:
+        bit: 14
+        enum:
+          SLAVE: 0
+          MASTER: 1
+      cfg.txpol:
+        bit: 23
+        enum:
+          STANDARD: 0
+          INVERTED: 1
+      ctl.addrdet:
+        bit: 2
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      ctl.autobaud:
+        bit: 16
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      ctl.cc:
+        bit: 8
+        enum:
+          CLOCK_ON_CHARACTER: 0
+          CONTINUOUS_CLOCK: 1
+      ctl.clrcconrx:
+        bit: 9
+        enum:
+          NO_EFFECT: 0
+          AUTO_CLEAR: 1
+      ctl.reserved:
+        bit: 0
+      ctl.txbrken:
+        bit: 1
+        enum:
+          NORMAL_OPERATION: 0
+          CONTINUOUS_BREAK: 1
+      ctl.txdis:
+        bit: 6
+        enum:
+          NOT_DISABLED: 0
+          DISABLED: 1
+      intenclr.aberrclr:
+        bit: 16
+      intenclr.deltactsclr:
+        bit: 5
+      intenclr.deltarxbrkclr:
+        bit: 11
+      intenclr.framerrclr:
+        bit: 13
+      intenclr.overrunclr:
+        bit: 8
+      intenclr.parityerrclr:
+        bit: 14
+      intenclr.reserved:
+        bit: 1
+      intenclr.rxnoiseclr:
+        bit: 15
+      intenclr.rxrdyclr:
+        bit: 0
+      intenclr.startclr:
+        bit: 12
+      intenclr.txdisclr:
+        bit: 6
+      intenclr.txidleclr:
+        bit: 3
+      intenclr.txrdyclr:
+        bit: 2
+      intenset.aberren:
+        bit: 16
+      intenset.deltactsen:
+        bit: 5
+      intenset.deltarxbrken:
+        bit: 11
+      intenset.framerren:
+        bit: 13
+      intenset.overrunen:
+        bit: 8
+      intenset.parityerren:
+        bit: 14
+      intenset.reserved:
+        bit: 1
+      intenset.rxnoiseen:
+        bit: 15
+      intenset.rxrdyen:
+        bit: 0
+      intenset.starten:
+        bit: 12
+      intenset.txdisen:
+        bit: 6
+      intenset.txidleen:
+        bit: 3
+      intenset.txrdyen:
+        bit: 2
+      intstat.aberrint:
+        bit: 16
+      intstat.deltacts:
+        bit: 5
+      intstat.deltarxbrk:
+        bit: 11
+      intstat.framerrint:
+        bit: 13
+      intstat.overrunint:
+        bit: 8
+      intstat.parityerrint:
+        bit: 14
+      intstat.reserved:
+        bit: 1
+      intstat.rxnoiseint:
+        bit: 15
+      intstat.rxrdy:
+        bit: 0
+      intstat.start:
+        bit: 12
+      intstat.txdisint:
+        bit: 6
+      intstat.txidle:
+        bit: 3
+      intstat.txrdy:
+        bit: 2
+      osr.osrval:
+        bits:
+        - 0
+        - 3
+      osr.reserved:
+        bits:
+        - 4
+        - 31
+      rxdat.data:
+        bits:
+        - 0
+        - 8
+      rxdat.reserved:
+        bits:
+        - 9
+        - 31
+      rxdatstat.framerr:
+        bit: 13
+      rxdatstat.parityerr:
+        bit: 14
+      rxdatstat.reserved:
+        bits:
+        - 9
+        - 12
+      rxdatstat.rxdata:
+        bits:
+        - 0
+        - 8
+      rxdatstat.rxnoise:
+        bit: 15
+      stat.aberr:
+        bit: 16
+      stat.cts:
+        bit: 4
+      stat.deltacts:
+        bit: 5
+      stat.deltarxbrk:
+        bit: 11
+      stat.framerrint:
+        bit: 13
+      stat.overrunint:
+        bit: 8
+      stat.parityerrint:
+        bit: 14
+      stat.reserved:
+        bit: 7
+      stat.rxbrk:
+        bit: 10
+      stat.rxidle:
+        bit: 1
+      stat.rxnoiseint:
+        bit: 15
+      stat.rxrdy:
+        bit: 0
+      stat.start:
+        bit: 12
+      stat.txdisstat:
+        bit: 6
+      stat.txidle:
+        bit: 3
+      stat.txrdy:
+        bit: 2
+      txdat.reserved:
+        bits:
+        - 9
+        - 31
+      txdat.txdata:
+        bits:
+        - 0
+        - 8
+  usart0:
+    registers:
+      addr:
+        offset: 44
+        access: rw
+      brg:
+        offset: 32
+        access: rw
+      cfg:
+        offset: 0
+        access: rw
+      ctl:
+        offset: 4
+        access: rw
+      intenclr:
+        offset: 16
+        access: wo
+      intenset:
+        offset: 12
+        access: rw
+      intstat:
+        offset: 36
+        access: ro
+      osr:
+        offset: 40
+        access: rw
+      rxdat:
+        offset: 20
+        access: ro
+      rxdatstat:
+        offset: 24
+        access: ro
+      stat:
+        offset: 8
+        access: rw
+      txdat:
+        offset: 28
+        access: rw
+    fields:
+      addr.address:
+        bits:
+        - 0
+        - 7
+      addr.reserved:
+        bits:
+        - 8
+        - 31
+      brg.brgval:
+        bits:
+        - 0
+        - 15
+      brg.reserved:
+        bits:
+        - 16
+        - 31
+      cfg.autoaddr:
+        bit: 19
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg.clkpol:
+        bit: 12
+        enum:
+          FALLING_EDGE: 0
+          RISING_EDGE: 1
+      cfg.ctsen:
+        bit: 9
+        enum:
+          NO_FLOW_CONTROL: 0
+          FLOW_CONTROL_ENABLED: 1
+      cfg.datalen:
+        bits:
+        - 2
+        - 3
+        enum:
+          7_BIT_DATA_LENGTH: 0
+          8_BIT_DATA_LENGTH: 1
+          9_BIT_DATA_LENGTH: 2
+          RESERVED: 3
+      cfg.enable:
+        bit: 0
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg.iomode:
+        bit: 16
+        enum:
+          STANDARD: 0
+          IRDA: 1
+      cfg.linmode:
+        bit: 8
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg.loop:
+        bit: 15
+        enum:
+          NORMAL_OPERATION: 0
+          LOOPBACK_MODE: 1
+      cfg.mode32k:
+        bit: 7
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg.oepol:
+        bit: 21
+        enum:
+          LOW: 0
+          HIGH: 1
+      cfg.oesel:
+        bit: 20
+        enum:
+          STANDARD: 0
+          RS_485: 1
+      cfg.oeta:
+        bit: 18
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      cfg.paritysel:
+        bits:
+        - 4
+        - 5
+        enum:
+          NO_PARITY: 0
+          RESERVED: 1
+          EVEN_PARITY: 2
+          ODD_PARITY: 3
+      cfg.reserved:
+        bit: 1
+      cfg.rxpol:
+        bit: 22
+        enum:
+          STANDARD: 0
+          INVERTED: 1
+      cfg.stoplen:
+        bit: 6
+        enum:
+          1_STOP_BIT: 0
+          2_STOP_BITS: 1
+      cfg.syncen:
+        bit: 11
+        enum:
+          ASYNCHRONOUS_MODE: 0
+          SYNCHRONOUS_MODE: 1
+      cfg.syncmst:
+        bit: 14
+        enum:
+          SLAVE: 0
+          MASTER: 1
+      cfg.txpol:
+        bit: 23
+        enum:
+          STANDARD: 0
+          INVERTED: 1
+      ctl.addrdet:
+        bit: 2
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      ctl.autobaud:
+        bit: 16
+        enum:
+          DISABLED: 0
+          ENABLED: 1
+      ctl.cc:
+        bit: 8
+        enum:
+          CLOCK_ON_CHARACTER: 0
+          CONTINUOUS_CLOCK: 1
+      ctl.clrcconrx:
+        bit: 9
+        enum:
+          NO_EFFECT: 0
+          AUTO_CLEAR: 1
+      ctl.reserved:
+        bit: 0
+      ctl.txbrken:
+        bit: 1
+        enum:
+          NORMAL_OPERATION: 0
+          CONTINUOUS_BREAK: 1
+      ctl.txdis:
+        bit: 6
+        enum:
+          NOT_DISABLED: 0
+          DISABLED: 1
+      intenclr.aberrclr:
+        bit: 16
+      intenclr.deltactsclr:
+        bit: 5
+      intenclr.deltarxbrkclr:
+        bit: 11
+      intenclr.framerrclr:
+        bit: 13
+      intenclr.overrunclr:
+        bit: 8
+      intenclr.parityerrclr:
+        bit: 14
+      intenclr.reserved:
+        bit: 1
+      intenclr.rxnoiseclr:
+        bit: 15
+      intenclr.rxrdyclr:
+        bit: 0
+      intenclr.startclr:
+        bit: 12
+      intenclr.txdisclr:
+        bit: 6
+      intenclr.txidleclr:
+        bit: 3
+      intenclr.txrdyclr:
+        bit: 2
+      intenset.aberren:
+        bit: 16
+      intenset.deltactsen:
+        bit: 5
+      intenset.deltarxbrken:
+        bit: 11
+      intenset.framerren:
+        bit: 13
+      intenset.overrunen:
+        bit: 8
+      intenset.parityerren:
+        bit: 14
+      intenset.reserved:
+        bit: 1
+      intenset.rxnoiseen:
+        bit: 15
+      intenset.rxrdyen:
+        bit: 0
+      intenset.starten:
+        bit: 12
+      intenset.txdisen:
+        bit: 6
+      intenset.txidleen:
+        bit: 3
+      intenset.txrdyen:
+        bit: 2
+      intstat.aberrint:
+        bit: 16
+      intstat.deltacts:
+        bit: 5
+      intstat.deltarxbrk:
+        bit: 11
+      intstat.framerrint:
+        bit: 13
+      intstat.overrunint:
+        bit: 8
+      intstat.parityerrint:
+        bit: 14
+      intstat.reserved:
+        bit: 1
+      intstat.rxnoiseint:
+        bit: 15
+      intstat.rxrdy:
+        bit: 0
+      intstat.start:
+        bit: 12
+      intstat.txdisint:
+        bit: 6
+      intstat.txidle:
+        bit: 3
+      intstat.txrdy:
+        bit: 2
+      osr.osrval:
+        bits:
+        - 0
+        - 3
+      osr.reserved:
+        bits:
+        - 4
+        - 31
+      rxdat.data:
+        bits:
+        - 0
+        - 8
+      rxdat.reserved:
+        bits:
+        - 9
+        - 31
+      rxdatstat.framerr:
+        bit: 13
+      rxdatstat.parityerr:
+        bit: 14
+      rxdatstat.reserved:
+        bits:
+        - 9
+        - 12
+      rxdatstat.rxdata:
+        bits:
+        - 0
+        - 8
+      rxdatstat.rxnoise:
+        bit: 15
+      stat.aberr:
+        bit: 16
+      stat.cts:
+        bit: 4
+      stat.deltacts:
+        bit: 5
+      stat.deltarxbrk:
+        bit: 11
+      stat.framerrint:
+        bit: 13
+      stat.overrunint:
+        bit: 8
+      stat.parityerrint:
+        bit: 14
+      stat.reserved:
+        bit: 7
+      stat.rxbrk:
+        bit: 10
+      stat.rxidle:
+        bit: 1
+      stat.rxnoiseint:
+        bit: 15
+      stat.rxrdy:
+        bit: 0
+      stat.start:
+        bit: 12
+      stat.txdisstat:
+        bit: 6
+      stat.txidle:
+        bit: 3
+      stat.txrdy:
+        bit: 2
+      txdat.reserved:
+        bits:
+        - 9
+        - 31
+      txdat.txdata:
+        bits:
+        - 0
+        - 8
+  utick:
+    registers:
+      ctrl:
+        offset: 0
+        access: rw
+      stat:
+        offset: 4
+        access: rw
+    fields:
+      ctrl.delayval:
+        bits:
+        - 0
+        - 30
+      ctrl.repeat:
+        bit: 31
+      stat.active:
+        bit: 1
+      stat.intr:
+        bit: 0
+      stat.reserved:
+        bits:
+        - 2
+        - 31
+  vfifo:
+    registers:
+      cfgspi%s:
+        offset: '0x2000'
+        access: rw
+      cfgusart%s:
+        offset: '0x1000'
+        access: rw
+      ctlclrspi%s:
+        offset: '0x2010'
+        access: wo
+      ctlclrusart%s:
+        offset: '0x1010'
+        access: wo
+      ctlsetspi%s:
+        offset: '0x200C'
+        access: rw
+      ctlsetusart%s:
+        offset: '0x100C'
+        access: rw
+      fifocfgspi%s:
+        offset: '0x0210'
+        access: rw
+      fifocfgusart%s:
+        offset: '0x0110'
+        access: rw
+      fifoctlspi:
+        offset: '0x0200'
+        access: rw
+      fifoctlusart:
+        offset: '0x0100'
+        access: rw
+      fifoupdatespi:
+        offset: '0x0204'
+        access: wo
+      fifoupdateusart:
+        offset: '0x0104'
+        access: wo
+      intstatspi%s:
+        offset: '0x2008'
+        access: ro
+      intstatusart%s:
+        offset: '0x1008'
+        access: ro
+      rxdatspi%s:
+        offset: '0x2014'
+        access: ro
+      rxdatstatusart%s:
+        offset: '0x1018'
+        access: ro
+      rxdatusart%s:
+        offset: '0x1014'
+        access: ro
+      statspi%s:
+        offset: '0x2004'
+        access: rw
+      statusart%s:
+        offset: '0x1004'
+        access: rw
+      txdatspi%s:
+        offset: '0x2018'
+        access: wo
+      txdatusart%s:
+        offset: '0x101C'
+        access: wo
+    fields:
+      cfgspi%s.reserved:
+        bits:
+        - 0
+        - 3
+      cfgspi%s.rxthreshold:
+        bits:
+        - 16
+        - 23
+      cfgspi%s.timeoutbase:
+        bits:
+        - 8
+        - 11
+      cfgspi%s.timeoutcontonempty:
+        bit: 5
+      cfgspi%s.timeoutcontonwrite:
+        bit: 4
+      cfgspi%s.timeoutvalue:
+        bits:
+        - 12
+        - 15
+      cfgspi%s.txthreshold:
+        bits:
+        - 24
+        - 31
+      cfgusart%s.reserved:
+        bits:
+        - 0
+        - 3
+      cfgusart%s.rxthreshold:
+        bits:
+        - 16
+        - 23
+      cfgusart%s.timeoutbase:
+        bits:
+        - 8
+        - 11
+      cfgusart%s.timeoutcontonempty:
+        bit: 5
+      cfgusart%s.timeoutcontonwrite:
+        bit: 4
+      cfgusart%s.timeoutvalue:
+        bits:
+        - 12
+        - 15
+      cfgusart%s.txthreshold:
+        bits:
+        - 24
+        - 31
+      ctlclrspi%s.reserved:
+        bits:
+        - 0
+        - 31
+      ctlclrspi%s.rxflushclr:
+        bit: 8
+      ctlclrspi%s.rxthintclr:
+        bit: 0
+      ctlclrspi%s.rxtimeoutintclr:
+        bit: 4
+      ctlclrspi%s.txflushclr:
+        bit: 9
+      ctlclrspi%s.txthintclr:
+        bit: 1
+      ctlclrusart%s.reserved:
+        bits:
+        - 2
+        - 3
+      ctlclrusart%s.rxflushclr:
+        bit: 8
+      ctlclrusart%s.rxthintclr:
+        bit: 0
+      ctlclrusart%s.rxtimeoutintclr:
+        bit: 4
+      ctlclrusart%s.txflushclr:
+        bit: 9
+      ctlclrusart%s.txthintclr:
+        bit: 1
+      ctlsetspi%s.reserved:
+        bits:
+        - 2
+        - 3
+      ctlsetspi%s.rxflush:
+        bit: 8
+      ctlsetspi%s.rxthinten:
+        bit: 0
+      ctlsetspi%s.rxtimeoutinten:
+        bit: 4
+      ctlsetspi%s.txflush:
+        bit: 9
+      ctlsetspi%s.txthinten:
+        bit: 1
+      ctlsetusart%s.reserved:
+        bits:
+        - 2
+        - 3
+      ctlsetusart%s.rxflush:
+        bit: 8
+      ctlsetusart%s.rxthinten:
+        bit: 0
+      ctlsetusart%s.rxtimeoutinten:
+        bit: 4
+      ctlsetusart%s.txflush:
+        bit: 9
+      ctlsetusart%s.txthinten:
+        bit: 1
+      fifocfgspi%s.reserved:
+        bits:
+        - 16
+        - 31
+      fifocfgspi%s.rxsize:
+        bits:
+        - 0
+        - 7
+      fifocfgspi%s.txsize:
+        bits:
+        - 8
+        - 15
+      fifocfgusart%s.reserved:
+        bits:
+        - 16
+        - 31
+      fifocfgusart%s.rxsize:
+        bits:
+        - 0
+        - 7
+      fifocfgusart%s.txsize:
+        bits:
+        - 8
+        - 15
+      fifoctlspi.reserved:
+        bits:
+        - 3
+        - 7
+      fifoctlspi.rxempty:
+        bit: 2
+      fifoctlspi.rxfifototal:
+        bits:
+        - 16
+        - 23
+      fifoctlspi.rxpause:
+        bit: 0
+      fifoctlspi.rxpaused:
+        bit: 1
+      fifoctlspi.txempty:
+        bit: 10
+      fifoctlspi.txfifototal:
+        bits:
+        - 24
+        - 31
+      fifoctlspi.txpause:
+        bit: 8
+      fifoctlspi.txpaused:
+        bit: 9
+      fifoctlusart.reserved:
+        bits:
+        - 3
+        - 7
+      fifoctlusart.rxempty:
+        bit: 2
+      fifoctlusart.rxfifototal:
+        bits:
+        - 16
+        - 23
+      fifoctlusart.rxpause:
+        bit: 0
+      fifoctlusart.rxpaused:
+        bit: 1
+      fifoctlusart.txempty:
+        bit: 10
+      fifoctlusart.txfifototal:
+        bits:
+        - 24
+        - 31
+      fifoctlusart.txpause:
+        bit: 8
+      fifoctlusart.txpaused:
+        bit: 9
+      fifoupdatespi.reserved:
+        bits:
+        - 3
+        - 15
+      fifoupdatespi.spi0rxupdatesize:
+        bit: 0
+      fifoupdatespi.spi0txupdatesize:
+        bit: 16
+      fifoupdatespi.spi1rxupdatesize:
+        bit: 1
+      fifoupdatespi.spi1txupdatesize:
+        bit: 17
+      fifoupdateusart.reserved:
+        bits:
+        - 4
+        - 15
+      fifoupdateusart.usart0rxupdatesize:
+        bit: 0
+      fifoupdateusart.usart0txupdatesize:
+        bit: 16
+      fifoupdateusart.usart1rxupdatesize:
+        bit: 1
+      fifoupdateusart.usart1txupdatesize:
+        bit: 17
+      fifoupdateusart.usart2rxupdatesize:
+        bit: 2
+      fifoupdateusart.usart2txupdatesize:
+        bit: 18
+      fifoupdateusart.usart3rxupdatesize:
+        bit: 3
+      fifoupdateusart.usart3txupdatesize:
+        bit: 19
+      intstatspi%s.buserr:
+        bit: 7
+      intstatspi%s.reserved:
+        bits:
+        - 2
+        - 3
+      intstatspi%s.rxcount:
+        bits:
+        - 16
+        - 23
+      intstatspi%s.rxempty:
+        bit: 8
+      intstatspi%s.rxth:
+        bit: 0
+      intstatspi%s.rxtimeout:
+        bit: 4
+      intstatspi%s.txcount:
+        bits:
+        - 24
+        - 31
+      intstatspi%s.txempty:
+        bit: 9
+      intstatspi%s.txth:
+        bit: 1
+      intstatusart%s.buserr:
+        bit: 7
+      intstatusart%s.reserved:
+        bits:
+        - 2
+        - 3
+      intstatusart%s.rxcount:
+        bits:
+        - 16
+        - 23
+      intstatusart%s.rxempty:
+        bit: 8
+      intstatusart%s.rxth:
+        bit: 0
+      intstatusart%s.rxtimeout:
+        bit: 4
+      intstatusart%s.txcount:
+        bits:
+        - 24
+        - 31
+      intstatusart%s.txempty:
+        bit: 9
+      intstatusart%s.txth:
+        bit: 1
+      rxdatspi%s.reserved:
+        bits:
+        - 21
+        - 31
+      rxdatspi%s.rxdat:
+        bits:
+        - 0
+        - 15
+      rxdatspi%s.rxssel0_n:
+        bit: 16
+      rxdatspi%s.rxssel1_n:
+        bit: 17
+      rxdatspi%s.rxssel2_n:
+        bit: 18
+      rxdatspi%s.rxssel3_n:
+        bit: 19
+      rxdatspi%s.sot:
+        bit: 20
+      rxdatstatusart%s.framerr:
+        bit: 13
+      rxdatstatusart%s.parityerr:
+        bit: 14
+      rxdatstatusart%s.reserved:
+        bits:
+        - 9
+        - 12
+      rxdatstatusart%s.rxdat:
+        bits:
+        - 0
+        - 8
+      rxdatstatusart%s.rxnoise:
+        bit: 15
+      rxdatusart%s.reserved:
+        bits:
+        - 9
+        - 31
+      rxdatusart%s.rxdat:
+        bits:
+        - 0
+        - 8
+      statspi%s.buserr:
+        bit: 7
+      statspi%s.reserved:
+        bits:
+        - 2
+        - 3
+      statspi%s.rxcount:
+        bits:
+        - 16
+        - 23
+      statspi%s.rxempty:
+        bit: 8
+      statspi%s.rxth:
+        bit: 0
+      statspi%s.rxtimeout:
+        bit: 4
+      statspi%s.txcount:
+        bits:
+        - 24
+        - 31
+      statspi%s.txempty:
+        bit: 9
+      statspi%s.txth:
+        bit: 1
+      statusart%s.buserr:
+        bit: 7
+      statusart%s.reserved:
+        bits:
+        - 2
+        - 3
+      statusart%s.rxcount:
+        bits:
+        - 16
+        - 23
+      statusart%s.rxempty:
+        bit: 8
+      statusart%s.rxth:
+        bit: 0
+      statusart%s.rxtimeout:
+        bit: 4
+      statusart%s.txcount:
+        bits:
+        - 24
+        - 31
+      statusart%s.txempty:
+        bit: 9
+      statusart%s.txth:
+        bit: 1
+      txdatspi%s.eof:
+        bit: 21
+        enum:
+          DATA_NOT_EOF: 0
+          DATA_EOF: 1
+      txdatspi%s.eot:
+        bit: 20
+        enum:
+          NOT_DEASSERTED: 0
+          DEASSERTED: 1
+      txdatspi%s.len:
+        bits:
+        - 24
+        - 27
+      txdatspi%s.reserved:
+        bit: 23
+      txdatspi%s.rxignore:
+        bit: 22
+        enum:
+          READ_RECEIVED_DATA: 0
+          IGNORE_RECEIVED_DATA: 1
+      txdatspi%s.txdat:
+        bits:
+        - 0
+        - 15
+      txdatspi%s.txssel0_n:
+        bit: 16
+        enum:
+          ASSERTED: 0
+          NOT_ASSERTED: 1
+      txdatspi%s.txssel1_n:
+        bit: 17
+        enum:
+          ASSERTED: 0
+          NOT_ASSERTED: 1
+      txdatspi%s.txssel2_n:
+        bit: 18
+        enum:
+          ASSERTED: 0
+          NOT_ASSERTED: 1
+      txdatspi%s.txssel3_n:
+        bit: 19
+        enum:
+          ASSERTED: 0
+          NOT_ASSERTED: 1
+      txdatusart%s.reserved:
+        bits:
+        - 9
+        - 31
+      txdatusart%s.txdat:
+        bits:
+        - 0
+        - 8
+  wwdt:
+    registers:
+      feed:
+        offset: 8
+        access: wo
+      mod:
+        offset: 0
+        access: rw
+      tc:
+        offset: 4
+        access: rw
+      tv:
+        offset: 12
+        access: ro
+      warnint:
+        offset: 20
+        access: rw
+      window:
+        offset: 24
+        access: rw
+    fields:
+      feed.feed:
+        bits:
+        - 0
+        - 7
+      feed.reserved:
+        bits:
+        - 8
+        - 31
+      mod.lock:
+        bit: 5
+      mod.reserved:
+        bits:
+        - 6
+        - 31
+      mod.wden:
+        bit: 0
+        enum:
+          STOP: 0
+          RUN: 1
+      mod.wdint:
+        bit: 3
+      mod.wdprotect:
+        bit: 4
+        enum:
+          FLEXIBLE: 0
+          THRESHOLD: 1
+      mod.wdreset:
+        bit: 1
+        enum:
+          INTERRUPT: 0
+          RESET: 1
+      mod.wdtof:
+        bit: 2
+      tc.count:
+        bits:
+        - 0
+        - 23
+      tc.reserved:
+        bits:
+        - 24
+        - 31
+      tv.count:
+        bits:
+        - 0
+        - 23
+      tv.reserved:
+        bits:
+        - 24
+        - 31
+      warnint.reserved:
+        bits:
+        - 10
+        - 31
+      warnint.warnint:
+        bits:
+        - 0
+        - 9
+      window.reserved:
+        bits:
+        - 24
+        - 31
+      window.window:
+        bits:
+        - 0
+        - 23
+peripherals:
+- id: gpio
+  template: gpio
+  base: '0x1C000000'
+- id: dma
+  template: dma
+  base: '0x1C004000'
+  irq:
+    num: 3
+    name: DMA_IRQHandler
+- id: crc
+  template: crc
+  base: '0x1C010000'
+- id: sct0
+  template: sct0
+  base: '0x1C018000'
+  irq:
+    num: 16
+    name: SCT0_IRQHandler
+- id: mailbox
+  template: mailbox
+  base: '0x1C02C000'
+  irq:
+    num: 31
+    name: MAILBOX_IRQHandler
+- id: adc0
+  template: adc0
+  base: '0x1C034000'
+  irq:
+  - num: 26
+    name: ADC_SEQA_IRQHandler
+  - num: 27
+    name: ADC_SEQB_IRQHandler
+  - num: 28
+    name: ADC_THCMP_IRQHandler
+- id: vfifo
+  template: vfifo
+  base: '0x1C038000'
+- id: syscon
+  template: syscon
+  base: '0x40000000'
+- id: ct32b2
+  template: ct32b
+  base: '0x40004000'
+  irq:
+    num: 13
+    name: CT32B2_IRQHandler
+- id: ct32b3
+  template: ct32b
+  base: '0x40008000'
+  ip_version: CT32B2
+  irq:
+    num: 14
+    name: CT32B3_IRQHandler
+- id: ct32b4
+  template: ct32b
+  base: '0x4000C000'
+  ip_version: CT32B2
+  irq:
+    num: 15
+    name: CT32B4_IRQHandler
+- id: gint0
+  template: gint0
+  base: '0x40010000'
+  irq:
+    num: 4
+    name: GINT0_IRQHandler
+- id: gint1
+  template: gint
+  base: '0x40014000'
+  ip_version: GINT0
+  irq:
+    num: 32
+    name: GINT1_IRQHandler
+- id: pint
+  template: pint
+  base: '0x40018000'
+  irq:
+  - num: 5
+    name: PIN_INT0_IRQHandler
+  - num: 6
+    name: PIN_INT1_IRQHandler
+  - num: 7
+    name: PIN_INT2_IRQHandler
+  - num: 8
+    name: PIN_INT3_IRQHandler
+  - num: 33
+    name: PIN_INT4_IRQHandler
+  - num: 34
+    name: PIN_INT5_IRQHandler
+  - num: 35
+    name: PIN_INT6_IRQHandler
+  - num: 36
+    name: PIN_INT7_IRQHandler
+- id: iocon
+  template: iocon
+  base: '0x4001C000'
+- id: utick
+  template: utick
+  base: '0x40020000'
+  irq:
+    num: 9
+    name: UTICK_IRQHandler
+- id: advsyscon
+  template: advsyscon
+  base: '0x4002C000'
+  irq:
+    num: 1
+    name: BOD_IRQHandler
+- id: wwdt
+  template: wwdt
+  base: '0x40038000'
+  irq:
+    num: 0
+    name: WDT_IRQHandler
+- id: rtc
+  template: rtc
+  base: '0x4003C000'
+  irq:
+    num: 29
+    name: RTC_IRQHandler
+- id: inputmux
+  template: inputmux
+  base: '0x40050000'
+- id: rit
+  template: rit
+  base: '0x40070000'
+  irq:
+    num: 40
+    name: RIT_IRQHandler
+- id: mrt
+  template: mrt
+  base: '0x40074000'
+  irq:
+    num: 10
+    name: MRT_IRQHandler
+- id: asyncsyscon
+  template: asyncsyscon
+  base: '0x40080000'
+- id: usart0
+  template: usart0
+  base: '0x40084000'
+  irq:
+    num: 17
+    name: UART0_IRQHandler
+- id: usart1
+  template: usart
+  base: '0x40088000'
+  ip_version: USART0
+  irq:
+    num: 18
+    name: UART1_IRQHandler
+- id: usart2
+  template: usart
+  base: '0x4008C000'
+  ip_version: USART0
+  irq:
+    num: 19
+    name: UART2_IRQHandler
+- id: usart3
+  template: usart
+  base: '0x40090000'
+  ip_version: USART0
+  irq:
+    num: 20
+    name: UART3_IRQHandler
+- id: i2c0
+  template: i2c0
+  base: '0x40094000'
+  irq:
+    num: 21
+    name: I2C0_IRQHandler
+- id: i2c1
+  template: i2c
+  base: '0x40098000'
+  ip_version: I2C0
+  irq:
+    num: 22
+    name: I2C1_IRQHandler
+- id: i2c2
+  template: i2c
+  base: '0x4009C000'
+  ip_version: I2C0
+  irq:
+    num: 23
+    name: I2C2_IRQHandler
+- id: spi0
+  template: spi0
+  base: '0x400A4000'
+  irq:
+    num: 24
+    name: SPI0_IRQHandler
+- id: spi1
+  template: spi
+  base: '0x400A8000'
+  ip_version: SPI0
+  irq:
+    num: 25
+    name: SPI1_IRQHandler
+- id: ct32b0
+  template: ct32b0
+  base: '0x400B4000'
+  ip_version: CT32B2
+  irq:
+    num: 11
+    name: CT32B0_IRQHandler
+- id: ct32b1
+  template: ct32b
+  base: '0x400B8000'
+  ip_version: CT32B2
+  irq:
+    num: 12
+    name: CT32B1_IRQHandler
+pinout:
+- signal: RESET
+interrupts:
+- num: 0
+  name: WDT_IRQHandler
+- num: 1
+  name: BOD_IRQHandler
+- num: 3
+  name: DMA_IRQHandler
+- num: 4
+  name: GINT0_IRQHandler
+- num: 5
+  name: PIN_INT0_IRQHandler
+- num: 6
+  name: PIN_INT1_IRQHandler
+- num: 7
+  name: PIN_INT2_IRQHandler
+- num: 8
+  name: PIN_INT3_IRQHandler
+- num: 9
+  name: UTICK_IRQHandler
+- num: 10
+  name: MRT_IRQHandler
+- num: 11
+  name: CT32B0_IRQHandler
+- num: 12
+  name: CT32B1_IRQHandler
+- num: 13
+  name: CT32B2_IRQHandler
+- num: 14
+  name: CT32B3_IRQHandler
+- num: 15
+  name: CT32B4_IRQHandler
+- num: 16
+  name: SCT0_IRQHandler
+- num: 17
+  name: UART0_IRQHandler
+- num: 18
+  name: UART1_IRQHandler
+- num: 19
+  name: UART2_IRQHandler
+- num: 20
+  name: UART3_IRQHandler
+- num: 21
+  name: I2C0_IRQHandler
+- num: 22
+  name: I2C1_IRQHandler
+- num: 23
+  name: I2C2_IRQHandler
+- num: 24
+  name: SPI0_IRQHandler
+- num: 25
+  name: SPI1_IRQHandler
+- num: 26
+  name: ADC_SEQA_IRQHandler
+- num: 27
+  name: ADC_SEQB_IRQHandler
+- num: 28
+  name: ADC_THCMP_IRQHandler
+- num: 29
+  name: RTC_IRQHandler
+- num: 31
+  name: MAILBOX_IRQHandler
+- num: 32
+  name: GINT1_IRQHandler
+- num: 33
+  name: PIN_INT4_IRQHandler
+- num: 34
+  name: PIN_INT5_IRQHandler
+- num: 35
+  name: PIN_INT6_IRQHandler
+- num: 36
+  name: PIN_INT7_IRQHandler
+- num: 40
+  name: RIT_IRQHandler
