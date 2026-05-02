@@ -2,14 +2,14 @@ schema: alloy.device.v2.1
 identity:
   vendor: microchip
   family: avr-da
-  device: avr128da32
+  device: avr128da28
   core:
     isa: avr
     name: avr-avr
     bits: 8
-  package: qfn32
+  package: soic28
 provenance:
-  primary: microchip-atdf:AVR128DA32.atdf
+  primary: microchip-atdf:AVR128DA28.atdf
   authored: auto
   notes: ATDF-extracted skeleton — pinout requires enrichment.
 memory:
@@ -381,10 +381,6 @@ templates:
           ain7: 7
           ain16: 16
           ain17: 17
-          ain18: 18
-          ain19: 19
-          ain20: 20
-          ain21: 21
           gnd: 64
           tempsense: 66
           dac0: 72
@@ -1700,10 +1696,6 @@ templates:
           zcd0: 48
           portf_pin0: 72
           portf_pin1: 73
-          portf_pin2: 74
-          portf_pin3: 75
-          portf_pin4: 76
-          portf_pin5: 77
           portf_pin6: 78
           usart0_xck: 96
           usart1_xck: 97
@@ -1751,10 +1743,6 @@ templates:
           zcd0: 48
           portf_pin0: 72
           portf_pin1: 73
-          portf_pin2: 74
-          portf_pin3: 75
-          portf_pin4: 76
-          portf_pin5: 77
           portf_pin6: 78
           usart0_xck: 96
           usart1_xck: 97
@@ -2842,11 +2830,6 @@ templates:
         enum:
           default: 0
           alt1: 1
-      evsysroutea.evoutf:
-        bit: 5
-        access: rw
-        enum:
-          default: 0
       cclroutea.lut0:
         bit: 0
         access: rw
@@ -2893,7 +2876,6 @@ templates:
         access: rw
         enum:
           default: 0
-          alt1: 1
           none: 3
       spiroutea.spi0:
         bits:
@@ -2919,13 +2901,6 @@ templates:
         enum:
           default: 0
           alt2: 2
-      twiroutea.twi1:
-        bits:
-        - 2
-        - 3
-        access: rw
-        enum:
-          default: 0
       tcaroutea.tca0:
         bits:
         - 0
@@ -2941,13 +2916,11 @@ templates:
         access: rw
         enum:
           default: 0
-          alt1: 1
       tcbroutea.tcb1:
         bit: 1
         access: rw
         enum:
           default: 0
-          alt1: 1
       tcbroutea.tcb2:
         bit: 2
         access: rw
@@ -5044,16 +5017,6 @@ peripherals:
   - &id021
     num: 17
     name: TWI0_TWIM_vect
-- id: twi1
-  template: twi
-  base: '0x920'
-  irq:
-  - &id045
-    num: 42
-    name: TWI1_TWIS_vect
-  - &id046
-    num: 43
-    name: TWI1_TWIM_vect
 - id: usart0
   template: usart
   base: '0x800'
@@ -5167,5 +5130,3 @@ interrupts:
 - *id042
 - *id043
 - *id044
-- *id045
-- *id046

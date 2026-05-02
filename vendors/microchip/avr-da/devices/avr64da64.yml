@@ -2,14 +2,14 @@ schema: alloy.device.v2.1
 identity:
   vendor: microchip
   family: avr-da
-  device: avr128da32
+  device: avr64da64
   core:
     isa: avr
     name: avr-avr
     bits: 8
-  package: qfn32
+  package: qfn64
 provenance:
-  primary: microchip-atdf:AVR128DA32.atdf
+  primary: microchip-atdf:AVR64DA64.atdf
   authored: auto
   notes: ATDF-extracted skeleton — pinout requires enrichment.
 memory:
@@ -49,8 +49,8 @@ memory:
   access: rw
   address_space: eeprom
 - id: internal_sram
-  base: '0x4000'
-  size: 16KB
+  base: '0x6000'
+  size: 8KB
   access: rw
   address_space: data
 - id: mapped_progmem
@@ -60,7 +60,7 @@ memory:
   address_space: data
 - id: progmem
   base: 0
-  size: 128KB
+  size: 64KB
   access: rwx
   address_space: program
 clock:
@@ -379,6 +379,14 @@ templates:
           ain5: 5
           ain6: 6
           ain7: 7
+          ain8: 8
+          ain9: 9
+          ain10: 10
+          ain11: 11
+          ain12: 12
+          ain13: 13
+          ain14: 14
+          ain15: 15
           ain16: 16
           ain17: 17
           ain18: 18
@@ -405,6 +413,14 @@ templates:
           ain5: 5
           ain6: 6
           ain7: 7
+          ain8: 8
+          ain9: 9
+          ain10: 10
+          ain11: 11
+          ain12: 12
+          ain13: 13
+          ain14: 14
+          ain15: 15
           gnd: 64
           dac0: 72
       command.stconv:
@@ -534,8 +550,14 @@ templates:
       seqctrl1:
         offset: 2
         access: rw
+      seqctrl2:
+        offset: 3
+        access: rw
       intctrl0:
         offset: 5
+        access: rw
+      intctrl1:
+        offset: 6
         access: rw
       intflags:
         offset: 7
@@ -588,6 +610,30 @@ templates:
       truth3:
         offset: 23
         access: rw
+      lut4ctrla:
+        offset: 24
+        access: rw
+      lut4ctrlb:
+        offset: 25
+        access: rw
+      lut4ctrlc:
+        offset: 26
+        access: rw
+      truth4:
+        offset: 27
+        access: rw
+      lut5ctrla:
+        offset: 28
+        access: rw
+      lut5ctrlb:
+        offset: 29
+        access: rw
+      lut5ctrlc:
+        offset: 30
+        access: rw
+      truth5:
+        offset: 31
+        access: rw
     fields:
       ctrla.enable:
         bit: 0
@@ -607,6 +653,17 @@ templates:
           latch: 3
           rs: 4
       seqctrl1.seqsel:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          disable: 0
+          dff: 1
+          jk: 2
+          latch: 3
+          rs: 4
+      seqctrl2.seqsel:
         bits:
         - 0
         - 2
@@ -657,10 +714,30 @@ templates:
           rising: 1
           falling: 2
           both: 3
+      intctrl1.intmode4:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          intdisable: 0
+          rising: 1
+          falling: 2
+          both: 3
+      intctrl1.intmode5:
+        bits:
+        - 2
+        - 3
+        access: rw
+        enum:
+          intdisable: 0
+          rising: 1
+          falling: 2
+          both: 3
       intflags.int:
         bits:
         - 0
-        - 3
+        - 5
         access: rw
       lut0ctrla.enable:
         bit: 0
@@ -711,6 +788,7 @@ templates:
           usart0: 8
           spi0: 9
           tca0: 10
+          tca1: 11
           tcb0: 12
           tcd0: 13
       lut0ctrlb.insel1:
@@ -726,9 +804,11 @@ templates:
           eventb: 4
           in1: 5
           ac1: 6
+          zcd1: 7
           usart1: 8
           spi0: 9
           tca0: 10
+          tca1: 11
           tcb1: 12
           tcd0: 13
       lut0ctrlc.insel2:
@@ -744,9 +824,11 @@ templates:
           eventb: 4
           in2: 5
           ac2: 6
+          zcd2: 7
           usart2: 8
           spi0: 9
           tca0: 10
+          tca1: 11
           tcb2: 12
           tcd0: 13
       truth0.truth:
@@ -803,6 +885,7 @@ templates:
           usart0: 8
           spi0: 9
           tca0: 10
+          tca1: 11
           tcb0: 12
           tcd0: 13
       lut1ctrlb.insel1:
@@ -818,9 +901,11 @@ templates:
           eventb: 4
           in1: 5
           ac1: 6
+          zcd1: 7
           usart1: 8
           spi0: 9
           tca0: 10
+          tca1: 11
           tcb1: 12
           tcd0: 13
       lut1ctrlc.insel2:
@@ -836,9 +921,11 @@ templates:
           eventb: 4
           in2: 5
           ac2: 6
+          zcd2: 7
           usart2: 8
           spi0: 9
           tca0: 10
+          tca1: 11
           tcb2: 12
           tcd0: 13
       truth1.truth:
@@ -895,6 +982,7 @@ templates:
           usart0: 8
           spi0: 9
           tca0: 10
+          tca1: 11
           tcb0: 12
           tcd0: 13
       lut2ctrlb.insel1:
@@ -910,9 +998,11 @@ templates:
           eventb: 4
           in1: 5
           ac1: 6
+          zcd1: 7
           usart1: 8
           spi0: 9
           tca0: 10
+          tca1: 11
           tcb1: 12
           tcd0: 13
       lut2ctrlc.insel2:
@@ -928,9 +1018,11 @@ templates:
           eventb: 4
           in2: 5
           ac2: 6
+          zcd2: 7
           usart2: 8
           spi0: 9
           tca0: 10
+          tca1: 11
           tcb2: 12
           tcd0: 13
       truth2.truth:
@@ -987,6 +1079,7 @@ templates:
           usart0: 8
           spi0: 9
           tca0: 10
+          tca1: 11
           tcb0: 12
           tcd0: 13
       lut3ctrlb.insel1:
@@ -1002,9 +1095,11 @@ templates:
           eventb: 4
           in1: 5
           ac1: 6
+          zcd1: 7
           usart1: 8
           spi0: 9
           tca0: 10
+          tca1: 11
           tcb1: 12
           tcd0: 13
       lut3ctrlc.insel2:
@@ -1020,12 +1115,208 @@ templates:
           eventb: 4
           in2: 5
           ac2: 6
+          zcd2: 7
           usart2: 8
           spi0: 9
           tca0: 10
+          tca1: 11
           tcb2: 12
           tcd0: 13
       truth3.truth:
+        bits:
+        - 0
+        - 7
+        access: rw
+      lut4ctrla.enable:
+        bit: 0
+        access: rw
+      lut4ctrla.clksrc:
+        bits:
+        - 1
+        - 3
+        access: rw
+        enum:
+          clkper: 0
+          in2: 1
+          oschf: 4
+          osc32k: 5
+          osc1k: 6
+      lut4ctrla.filtsel:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          disable: 0
+          synch: 1
+          filter: 2
+      lut4ctrla.outen:
+        bit: 6
+        access: rw
+      lut4ctrla.edgedet:
+        bit: 7
+        access: rw
+        enum:
+          dis: 0
+          en: 1
+      lut4ctrlb.insel0:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          mask: 0
+          feedback: 1
+          link: 2
+          eventa: 3
+          eventb: 4
+          in0: 5
+          ac0: 6
+          zcd0: 7
+          usart0: 8
+          spi0: 9
+          tca0: 10
+          tca1: 11
+          tcb0: 12
+          tcd0: 13
+      lut4ctrlb.insel1:
+        bits:
+        - 4
+        - 7
+        access: rw
+        enum:
+          mask: 0
+          feedback: 1
+          link: 2
+          eventa: 3
+          eventb: 4
+          in1: 5
+          ac1: 6
+          zcd1: 7
+          usart1: 8
+          spi0: 9
+          tca0: 10
+          tca1: 11
+          tcb1: 12
+          tcd0: 13
+      lut4ctrlc.insel2:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          mask: 0
+          feedback: 1
+          link: 2
+          eventa: 3
+          eventb: 4
+          in2: 5
+          ac2: 6
+          zcd2: 7
+          usart2: 8
+          spi0: 9
+          tca0: 10
+          tca1: 11
+          tcb2: 12
+          tcd0: 13
+      truth4.truth:
+        bits:
+        - 0
+        - 7
+        access: rw
+      lut5ctrla.enable:
+        bit: 0
+        access: rw
+      lut5ctrla.clksrc:
+        bits:
+        - 1
+        - 3
+        access: rw
+        enum:
+          clkper: 0
+          in2: 1
+          oschf: 4
+          osc32k: 5
+          osc1k: 6
+      lut5ctrla.filtsel:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          disable: 0
+          synch: 1
+          filter: 2
+      lut5ctrla.outen:
+        bit: 6
+        access: rw
+      lut5ctrla.edgedet:
+        bit: 7
+        access: rw
+        enum:
+          dis: 0
+          en: 1
+      lut5ctrlb.insel0:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          mask: 0
+          feedback: 1
+          link: 2
+          eventa: 3
+          eventb: 4
+          in0: 5
+          ac0: 6
+          zcd0: 7
+          usart0: 8
+          spi0: 9
+          tca0: 10
+          tca1: 11
+          tcb0: 12
+          tcd0: 13
+      lut5ctrlb.insel1:
+        bits:
+        - 4
+        - 7
+        access: rw
+        enum:
+          mask: 0
+          feedback: 1
+          link: 2
+          eventa: 3
+          eventb: 4
+          in1: 5
+          ac1: 6
+          zcd1: 7
+          usart1: 8
+          spi0: 9
+          tca0: 10
+          tca1: 11
+          tcb1: 12
+          tcd0: 13
+      lut5ctrlc.insel2:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          mask: 0
+          feedback: 1
+          link: 2
+          eventa: 3
+          eventb: 4
+          in2: 5
+          ac2: 6
+          zcd2: 7
+          usart2: 8
+          spi0: 9
+          tca0: 10
+          tca1: 11
+          tcb2: 12
+          tcd0: 13
+      truth5.truth:
         bits:
         - 0
         - 7
@@ -1203,9 +1494,6 @@ templates:
         enum:
           spm: 157
           ioreg: 216
-      rampz.rampz:
-        bit: 0
-        access: rw
       sreg.c:
         bit: 0
         access: rw
@@ -1337,6 +1625,9 @@ templates:
       sweventa:
         offset: 0
         access: rw
+      sweventb:
+        offset: 1
+        access: rw
       channel0:
         offset: 16
         access: rw
@@ -1360,6 +1651,12 @@ templates:
         access: rw
       channel7:
         offset: 23
+        access: rw
+      channel8:
+        offset: 24
+        access: rw
+      channel9:
+        offset: 25
         access: rw
       userccllut0a:
         offset: 32
@@ -1385,6 +1682,18 @@ templates:
       userccllut3b:
         offset: 39
         access: rw
+      userccllut4a:
+        offset: 40
+        access: rw
+      userccllut4b:
+        offset: 41
+        access: rw
+      userccllut5a:
+        offset: 42
+        access: rw
+      userccllut5b:
+        offset: 43
+        access: rw
       useradc0start:
         offset: 44
         access: rw
@@ -1394,14 +1703,23 @@ templates:
       userevsysevouta:
         offset: 46
         access: rw
+      userevsysevoutb:
+        offset: 47
+        access: rw
       userevsysevoutc:
         offset: 48
         access: rw
       userevsysevoutd:
         offset: 49
         access: rw
+      userevsysevoute:
+        offset: 50
+        access: rw
       userevsysevoutf:
         offset: 51
+        access: rw
+      userevsysevoutg:
+        offset: 52
         access: rw
       userusart0irda:
         offset: 53
@@ -1412,11 +1730,26 @@ templates:
       userusart2irda:
         offset: 55
         access: rw
+      userusart3irda:
+        offset: 56
+        access: rw
+      userusart4irda:
+        offset: 57
+        access: rw
+      userusart5irda:
+        offset: 58
+        access: rw
       usertca0cnta:
         offset: 59
         access: rw
       usertca0cntb:
         offset: 60
+        access: rw
+      usertca1cnta:
+        offset: 61
+        access: rw
+      usertca1cntb:
+        offset: 62
         access: rw
       usertcb0capt:
         offset: 63
@@ -1435,6 +1768,18 @@ templates:
         access: rw
       usertcb2count:
         offset: 68
+        access: rw
+      usertcb3capt:
+        offset: 69
+        access: rw
+      usertcb3count:
+        offset: 70
+        access: rw
+      usertcb4capt:
+        offset: 71
+        access: rw
+      usertcb4count:
+        offset: 72
         access: rw
       usertcd0inputa:
         offset: 73
@@ -1457,6 +1802,14 @@ templates:
           ch5: 32
           ch6: 64
           ch7: 128
+      sweventb.sweventb:
+        bits:
+        - 0
+        - 1
+        access: wo
+        enum:
+          ch8: 1
+          ch9: 2
       channel0.channel0:
         bits:
         - 0
@@ -1475,12 +1828,16 @@ templates:
           ccl_lut1: 17
           ccl_lut2: 18
           ccl_lut3: 19
+          ccl_lut4: 20
+          ccl_lut5: 21
           ac0_out: 32
           ac1_out: 33
           ac2_out: 34
           adc0_resrdy: 36
           ptc_resrdy: 40
           zcd0: 48
+          zcd1: 49
+          zcd2: 50
           porta_pin0: 64
           porta_pin1: 65
           porta_pin2: 66
@@ -1489,9 +1846,20 @@ templates:
           porta_pin5: 69
           porta_pin6: 70
           porta_pin7: 71
+          portb_pin0: 72
+          portb_pin1: 73
+          portb_pin2: 74
+          portb_pin3: 75
+          portb_pin4: 76
+          portb_pin5: 77
+          portb_pin6: 78
+          portb_pin7: 79
           usart0_xck: 96
           usart1_xck: 97
           usart2_xck: 98
+          usart3_xck: 99
+          usart4_xck: 100
+          usart5_xck: 101
           spi0_sck: 104
           spi1_sck: 105
           tca0_ovf_lunf: 128
@@ -1500,12 +1868,20 @@ templates:
           tca0_cmp1_lcmp1: 133
           tca0_cmp2_lcmp2: 134
           tca1_ovf_lunf: 136
+          tca1_hunf: 137
+          tca1_cmp0_lcmp0: 140
+          tca1_cmp1_lcmp1: 141
+          tca1_cmp2_lcmp2: 142
           tcb0_capt: 160
           tcb0_ovf: 161
           tcb1_capt: 162
           tcb1_ovf: 163
           tcb2_capt: 164
           tcb2_ovf: 165
+          tcb3_capt: 166
+          tcb3_ovf: 167
+          tcb4_capt: 168
+          tcb4_ovf: 169
           tcd0_cmpbclr: 176
           tcd0_cmpaset: 177
           tcd0_cmpbset: 178
@@ -1528,12 +1904,16 @@ templates:
           ccl_lut1: 17
           ccl_lut2: 18
           ccl_lut3: 19
+          ccl_lut4: 20
+          ccl_lut5: 21
           ac0_out: 32
           ac1_out: 33
           ac2_out: 34
           adc0_resrdy: 36
           ptc_resrdy: 40
           zcd0: 48
+          zcd1: 49
+          zcd2: 50
           porta_pin0: 64
           porta_pin1: 65
           porta_pin2: 66
@@ -1542,9 +1922,20 @@ templates:
           porta_pin5: 69
           porta_pin6: 70
           porta_pin7: 71
+          portb_pin0: 72
+          portb_pin1: 73
+          portb_pin2: 74
+          portb_pin3: 75
+          portb_pin4: 76
+          portb_pin5: 77
+          portb_pin6: 78
+          portb_pin7: 79
           usart0_xck: 96
           usart1_xck: 97
           usart2_xck: 98
+          usart3_xck: 99
+          usart4_xck: 100
+          usart5_xck: 101
           spi0_sck: 104
           spi1_sck: 105
           tca0_ovf_lunf: 128
@@ -1552,12 +1943,21 @@ templates:
           tca0_cmp0_lcmp0: 132
           tca0_cmp1_lcmp1: 133
           tca0_cmp2_lcmp2: 134
+          tca1_ovf_lunf: 136
+          tca1_hunf: 137
+          tca1_cmp0_lcmp0: 140
+          tca1_cmp1_lcmp1: 141
+          tca1_cmp2_lcmp2: 142
           tcb0_capt: 160
           tcb0_ovf: 161
           tcb1_capt: 162
           tcb1_ovf: 163
           tcb2_capt: 164
           tcb2_ovf: 165
+          tcb3_capt: 166
+          tcb3_ovf: 167
+          tcb4_capt: 168
+          tcb4_ovf: 169
           tcd0_cmpbclr: 176
           tcd0_cmpaset: 177
           tcd0_cmpbset: 178
@@ -1580,16 +1980,24 @@ templates:
           ccl_lut1: 17
           ccl_lut2: 18
           ccl_lut3: 19
+          ccl_lut4: 20
+          ccl_lut5: 21
           ac0_out: 32
           ac1_out: 33
           ac2_out: 34
           adc0_resrdy: 36
           ptc_resrdy: 40
           zcd0: 48
+          zcd1: 49
+          zcd2: 50
           portc_pin0: 64
           portc_pin1: 65
           portc_pin2: 66
           portc_pin3: 67
+          portc_pin4: 68
+          portc_pin5: 69
+          portc_pin6: 70
+          portc_pin7: 71
           portd_pin0: 72
           portd_pin1: 73
           portd_pin2: 74
@@ -1601,6 +2009,9 @@ templates:
           usart0_xck: 96
           usart1_xck: 97
           usart2_xck: 98
+          usart3_xck: 99
+          usart4_xck: 100
+          usart5_xck: 101
           spi0_sck: 104
           spi1_sck: 105
           tca0_ovf_lunf: 128
@@ -1608,12 +2019,21 @@ templates:
           tca0_cmp0_lcmp0: 132
           tca0_cmp1_lcmp1: 133
           tca0_cmp2_lcmp2: 134
+          tca1_ovf_lunf: 136
+          tca1_hunf: 137
+          tca1_cmp0_lcmp0: 140
+          tca1_cmp1_lcmp1: 141
+          tca1_cmp2_lcmp2: 142
           tcb0_capt: 160
           tcb0_ovf: 161
           tcb1_capt: 162
           tcb1_ovf: 163
           tcb2_capt: 164
           tcb2_ovf: 165
+          tcb3_capt: 166
+          tcb3_ovf: 167
+          tcb4_capt: 168
+          tcb4_ovf: 169
           tcd0_cmpbclr: 176
           tcd0_cmpaset: 177
           tcd0_cmpbset: 178
@@ -1636,16 +2056,24 @@ templates:
           ccl_lut1: 17
           ccl_lut2: 18
           ccl_lut3: 19
+          ccl_lut4: 20
+          ccl_lut5: 21
           ac0_out: 32
           ac1_out: 33
           ac2_out: 34
           adc0_resrdy: 36
           ptc_resrdy: 40
           zcd0: 48
+          zcd1: 49
+          zcd2: 50
           portc_pin0: 64
           portc_pin1: 65
           portc_pin2: 66
           portc_pin3: 67
+          portc_pin4: 68
+          portc_pin5: 69
+          portc_pin6: 70
+          portc_pin7: 71
           portd_pin0: 72
           portd_pin1: 73
           portd_pin2: 74
@@ -1657,6 +2085,9 @@ templates:
           usart0_xck: 96
           usart1_xck: 97
           usart2_xck: 98
+          usart3_xck: 99
+          usart4_xck: 100
+          usart5_xck: 101
           spi0_sck: 104
           spi1_sck: 105
           tca0_ovf_lunf: 128
@@ -1664,12 +2095,21 @@ templates:
           tca0_cmp0_lcmp0: 132
           tca0_cmp1_lcmp1: 133
           tca0_cmp2_lcmp2: 134
+          tca1_ovf_lunf: 136
+          tca1_hunf: 137
+          tca1_cmp0_lcmp0: 140
+          tca1_cmp1_lcmp1: 141
+          tca1_cmp2_lcmp2: 142
           tcb0_capt: 160
           tcb0_ovf: 161
           tcb1_capt: 162
           tcb1_ovf: 163
           tcb2_capt: 164
           tcb2_ovf: 165
+          tcb3_capt: 166
+          tcb3_ovf: 167
+          tcb4_capt: 168
+          tcb4_ovf: 169
           tcd0_cmpbclr: 176
           tcd0_cmpaset: 177
           tcd0_cmpbset: 178
@@ -1692,12 +2132,24 @@ templates:
           ccl_lut1: 17
           ccl_lut2: 18
           ccl_lut3: 19
+          ccl_lut4: 20
+          ccl_lut5: 21
           ac0_out: 32
           ac1_out: 33
           ac2_out: 34
           adc0_resrdy: 36
           ptc_resrdy: 40
           zcd0: 48
+          zcd1: 49
+          zcd2: 50
+          porte_pin0: 64
+          porte_pin1: 65
+          porte_pin2: 66
+          porte_pin3: 67
+          porte_pin4: 68
+          porte_pin5: 69
+          porte_pin6: 70
+          porte_pin7: 71
           portf_pin0: 72
           portf_pin1: 73
           portf_pin2: 74
@@ -1708,6 +2160,9 @@ templates:
           usart0_xck: 96
           usart1_xck: 97
           usart2_xck: 98
+          usart3_xck: 99
+          usart4_xck: 100
+          usart5_xck: 101
           spi0_sck: 104
           spi1_sck: 105
           tca0_ovf_lunf: 128
@@ -1715,12 +2170,21 @@ templates:
           tca0_cmp0_lcmp0: 132
           tca0_cmp1_lcmp1: 133
           tca0_cmp2_lcmp2: 134
+          tca1_ovf_lunf: 136
+          tca1_hunf: 137
+          tca1_cmp0_lcmp0: 140
+          tca1_cmp1_lcmp1: 141
+          tca1_cmp2_lcmp2: 142
           tcb0_capt: 160
           tcb0_ovf: 161
           tcb1_capt: 162
           tcb1_ovf: 163
           tcb2_capt: 164
           tcb2_ovf: 165
+          tcb3_capt: 166
+          tcb3_ovf: 167
+          tcb4_capt: 168
+          tcb4_ovf: 169
           tcd0_cmpbclr: 176
           tcd0_cmpaset: 177
           tcd0_cmpbset: 178
@@ -1743,12 +2207,24 @@ templates:
           ccl_lut1: 17
           ccl_lut2: 18
           ccl_lut3: 19
+          ccl_lut4: 20
+          ccl_lut5: 21
           ac0_out: 32
           ac1_out: 33
           ac2_out: 34
           adc0_resrdy: 36
           ptc_resrdy: 40
           zcd0: 48
+          zcd1: 49
+          zcd2: 50
+          porte_pin0: 64
+          porte_pin1: 65
+          porte_pin2: 66
+          porte_pin3: 67
+          porte_pin4: 68
+          porte_pin5: 69
+          porte_pin6: 70
+          porte_pin7: 71
           portf_pin0: 72
           portf_pin1: 73
           portf_pin2: 74
@@ -1759,6 +2235,9 @@ templates:
           usart0_xck: 96
           usart1_xck: 97
           usart2_xck: 98
+          usart3_xck: 99
+          usart4_xck: 100
+          usart5_xck: 101
           spi0_sck: 104
           spi1_sck: 105
           tca0_ovf_lunf: 128
@@ -1766,12 +2245,21 @@ templates:
           tca0_cmp0_lcmp0: 132
           tca0_cmp1_lcmp1: 133
           tca0_cmp2_lcmp2: 134
+          tca1_ovf_lunf: 136
+          tca1_hunf: 137
+          tca1_cmp0_lcmp0: 140
+          tca1_cmp1_lcmp1: 141
+          tca1_cmp2_lcmp2: 142
           tcb0_capt: 160
           tcb0_ovf: 161
           tcb1_capt: 162
           tcb1_ovf: 163
           tcb2_capt: 164
           tcb2_ovf: 165
+          tcb3_capt: 166
+          tcb3_ovf: 167
+          tcb4_capt: 168
+          tcb4_ovf: 169
           tcd0_cmpbclr: 176
           tcd0_cmpaset: 177
           tcd0_cmpbset: 178
@@ -1794,15 +2282,30 @@ templates:
           ccl_lut1: 17
           ccl_lut2: 18
           ccl_lut3: 19
+          ccl_lut4: 20
+          ccl_lut5: 21
           ac0_out: 32
           ac1_out: 33
           ac2_out: 34
           adc0_resrdy: 36
           ptc_resrdy: 40
           zcd0: 48
+          zcd1: 49
+          zcd2: 50
+          portg_pin0: 64
+          portg_pin1: 65
+          portg_pin2: 66
+          portg_pin3: 67
+          portg_pin4: 68
+          portg_pin5: 69
+          portg_pin6: 70
+          portg_pin7: 71
           usart0_xck: 96
           usart1_xck: 97
           usart2_xck: 98
+          usart3_xck: 99
+          usart4_xck: 100
+          usart5_xck: 101
           spi0_sck: 104
           spi1_sck: 105
           tca0_ovf_lunf: 128
@@ -1810,12 +2313,21 @@ templates:
           tca0_cmp0_lcmp0: 132
           tca0_cmp1_lcmp1: 133
           tca0_cmp2_lcmp2: 134
+          tca1_ovf_lunf: 136
+          tca1_hunf: 137
+          tca1_cmp0_lcmp0: 140
+          tca1_cmp1_lcmp1: 141
+          tca1_cmp2_lcmp2: 142
           tcb0_capt: 160
           tcb0_ovf: 161
           tcb1_capt: 162
           tcb1_ovf: 163
           tcb2_capt: 164
           tcb2_ovf: 165
+          tcb3_capt: 166
+          tcb3_ovf: 167
+          tcb4_capt: 168
+          tcb4_ovf: 169
           tcd0_cmpbclr: 176
           tcd0_cmpaset: 177
           tcd0_cmpbset: 178
@@ -1838,15 +2350,30 @@ templates:
           ccl_lut1: 17
           ccl_lut2: 18
           ccl_lut3: 19
+          ccl_lut4: 20
+          ccl_lut5: 21
           ac0_out: 32
           ac1_out: 33
           ac2_out: 34
           adc0_resrdy: 36
           ptc_resrdy: 40
           zcd0: 48
+          zcd1: 49
+          zcd2: 50
+          portg_pin0: 64
+          portg_pin1: 65
+          portg_pin2: 66
+          portg_pin3: 67
+          portg_pin4: 68
+          portg_pin5: 69
+          portg_pin6: 70
+          portg_pin7: 71
           usart0_xck: 96
           usart1_xck: 97
           usart2_xck: 98
+          usart3_xck: 99
+          usart4_xck: 100
+          usart5_xck: 101
           spi0_sck: 104
           spi1_sck: 105
           tca0_ovf_lunf: 128
@@ -1854,12 +2381,141 @@ templates:
           tca0_cmp0_lcmp0: 132
           tca0_cmp1_lcmp1: 133
           tca0_cmp2_lcmp2: 134
+          tca1_ovf_lunf: 136
+          tca1_hunf: 137
+          tca1_cmp0_lcmp0: 140
+          tca1_cmp1_lcmp1: 141
+          tca1_cmp2_lcmp2: 142
           tcb0_capt: 160
           tcb0_ovf: 161
           tcb1_capt: 162
           tcb1_ovf: 163
           tcb2_capt: 164
           tcb2_ovf: 165
+          tcb3_capt: 166
+          tcb3_ovf: 167
+          tcb4_capt: 168
+          tcb4_ovf: 169
+          tcd0_cmpbclr: 176
+          tcd0_cmpaset: 177
+          tcd0_cmpbset: 178
+          tcd0_progev: 179
+      channel8.channel8:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          updi_synch: 1
+          rtc_ovf: 6
+          rtc_cmp: 7
+          rtc_pit_div8192: 8
+          rtc_pit_div4096: 9
+          rtc_pit_div2048: 10
+          rtc_pit_div1024: 11
+          ccl_lut0: 16
+          ccl_lut1: 17
+          ccl_lut2: 18
+          ccl_lut3: 19
+          ccl_lut4: 20
+          ccl_lut5: 21
+          ac0_out: 32
+          ac1_out: 33
+          ac2_out: 34
+          adc0_resrdy: 36
+          ptc_resrdy: 40
+          zcd0: 48
+          zcd1: 49
+          zcd2: 50
+          usart0_xck: 96
+          usart1_xck: 97
+          usart2_xck: 98
+          usart3_xck: 99
+          usart4_xck: 100
+          usart5_xck: 101
+          spi0_sck: 104
+          spi1_sck: 105
+          tca0_ovf_lunf: 128
+          tca0_hunf: 129
+          tca0_cmp0_lcmp0: 132
+          tca0_cmp1_lcmp1: 133
+          tca0_cmp2_lcmp2: 134
+          tca1_ovf_lunf: 136
+          tca1_hunf: 137
+          tca1_cmp0_lcmp0: 140
+          tca1_cmp1_lcmp1: 141
+          tca1_cmp2_lcmp2: 142
+          tcb0_capt: 160
+          tcb0_ovf: 161
+          tcb1_capt: 162
+          tcb1_ovf: 163
+          tcb2_capt: 164
+          tcb2_ovf: 165
+          tcb3_capt: 166
+          tcb3_ovf: 167
+          tcb4_capt: 168
+          tcb4_ovf: 169
+          tcd0_cmpbclr: 176
+          tcd0_cmpaset: 177
+          tcd0_cmpbset: 178
+          tcd0_progev: 179
+      channel9.channel9:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          updi_synch: 1
+          rtc_ovf: 6
+          rtc_cmp: 7
+          rtc_pit_div512: 8
+          rtc_pit_div256: 9
+          rtc_pit_div128: 10
+          rtc_pit_div64: 11
+          ccl_lut0: 16
+          ccl_lut1: 17
+          ccl_lut2: 18
+          ccl_lut3: 19
+          ccl_lut4: 20
+          ccl_lut5: 21
+          ac0_out: 32
+          ac1_out: 33
+          ac2_out: 34
+          adc0_resrdy: 36
+          ptc_resrdy: 40
+          zcd0: 48
+          zcd1: 49
+          zcd2: 50
+          usart0_xck: 96
+          usart1_xck: 97
+          usart2_xck: 98
+          usart3_xck: 99
+          usart4_xck: 100
+          usart5_xck: 101
+          spi0_sck: 104
+          spi1_sck: 105
+          tca0_ovf_lunf: 128
+          tca0_hunf: 129
+          tca0_cmp0_lcmp0: 132
+          tca0_cmp1_lcmp1: 133
+          tca0_cmp2_lcmp2: 134
+          tca1_ovf_lunf: 136
+          tca1_hunf: 137
+          tca1_cmp0_lcmp0: 140
+          tca1_cmp1_lcmp1: 141
+          tca1_cmp2_lcmp2: 142
+          tcb0_capt: 160
+          tcb0_ovf: 161
+          tcb1_capt: 162
+          tcb1_ovf: 163
+          tcb2_capt: 164
+          tcb2_ovf: 165
+          tcb3_capt: 166
+          tcb3_ovf: 167
+          tcb4_capt: 168
+          tcb4_ovf: 169
           tcd0_cmpbclr: 176
           tcd0_cmpaset: 177
           tcd0_cmpbset: 178
@@ -1879,6 +2535,8 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
       userccllut0b.user:
         bits:
         - 0
@@ -1894,6 +2552,8 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
       userccllut1a.user:
         bits:
         - 0
@@ -1909,6 +2569,8 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
       userccllut1b.user:
         bits:
         - 0
@@ -1924,6 +2586,8 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
       userccllut2a.user:
         bits:
         - 0
@@ -1939,6 +2603,8 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
       userccllut2b.user:
         bits:
         - 0
@@ -1954,6 +2620,8 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
       userccllut3a.user:
         bits:
         - 0
@@ -1969,6 +2637,8 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
       userccllut3b.user:
         bits:
         - 0
@@ -1984,6 +2654,76 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
+      userccllut4a.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+          channel6: 7
+          channel7: 8
+          channel8: 9
+          channel9: 10
+      userccllut4b.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+          channel6: 7
+          channel7: 8
+          channel8: 9
+          channel9: 10
+      userccllut5a.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+          channel6: 7
+          channel7: 8
+          channel8: 9
+          channel9: 10
+      userccllut5b.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+          channel6: 7
+          channel7: 8
+          channel8: 9
+          channel9: 10
       useradc0start.user:
         bits:
         - 0
@@ -1999,6 +2739,8 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
       userptcstart.user:
         bits:
         - 0
@@ -2014,6 +2756,8 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
       userevsysevouta.user:
         bits:
         - 0
@@ -2029,6 +2773,25 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
+      userevsysevoutb.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+          channel6: 7
+          channel7: 8
+          channel8: 9
+          channel9: 10
       userevsysevoutc.user:
         bits:
         - 0
@@ -2044,6 +2807,8 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
       userevsysevoutd.user:
         bits:
         - 0
@@ -2059,6 +2824,25 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
+      userevsysevoute.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+          channel6: 7
+          channel7: 8
+          channel8: 9
+          channel9: 10
       userevsysevoutf.user:
         bits:
         - 0
@@ -2074,6 +2858,25 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
+      userevsysevoutg.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+          channel6: 7
+          channel7: 8
+          channel8: 9
+          channel9: 10
       userusart0irda.user:
         bits:
         - 0
@@ -2089,6 +2892,8 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
       userusart1irda.user:
         bits:
         - 0
@@ -2104,6 +2909,8 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
       userusart2irda.user:
         bits:
         - 0
@@ -2119,6 +2926,59 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
+      userusart3irda.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+          channel6: 7
+          channel7: 8
+          channel8: 9
+          channel9: 10
+      userusart4irda.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+          channel6: 7
+          channel7: 8
+          channel8: 9
+          channel9: 10
+      userusart5irda.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+          channel6: 7
+          channel7: 8
+          channel8: 9
+          channel9: 10
       usertca0cnta.user:
         bits:
         - 0
@@ -2134,6 +2994,8 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
       usertca0cntb.user:
         bits:
         - 0
@@ -2149,6 +3011,42 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
+      usertca1cnta.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+          channel6: 7
+          channel7: 8
+          channel8: 9
+          channel9: 10
+      usertca1cntb.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+          channel6: 7
+          channel7: 8
+          channel8: 9
+          channel9: 10
       usertcb0capt.user:
         bits:
         - 0
@@ -2164,6 +3062,8 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
       usertcb0count.user:
         bits:
         - 0
@@ -2179,6 +3079,8 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
       usertcb1capt.user:
         bits:
         - 0
@@ -2194,6 +3096,8 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
       usertcb1count.user:
         bits:
         - 0
@@ -2209,6 +3113,8 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
       usertcb2capt.user:
         bits:
         - 0
@@ -2224,6 +3130,8 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
       usertcb2count.user:
         bits:
         - 0
@@ -2239,6 +3147,76 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
+      usertcb3capt.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+          channel6: 7
+          channel7: 8
+          channel8: 9
+          channel9: 10
+      usertcb3count.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+          channel6: 7
+          channel7: 8
+          channel8: 9
+          channel9: 10
+      usertcb4capt.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+          channel6: 7
+          channel7: 8
+          channel8: 9
+          channel9: 10
+      usertcb4count.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+          channel6: 7
+          channel7: 8
+          channel8: 9
+          channel9: 10
       usertcd0inputa.user:
         bits:
         - 0
@@ -2254,6 +3232,8 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
       usertcd0inputb.user:
         bits:
         - 0
@@ -2269,6 +3249,8 @@ templates:
           channel5: 6
           channel6: 7
           channel7: 8
+          channel8: 9
+          channel9: 10
   fuse:
     registers:
       wdtcfg:
@@ -2803,6 +3785,9 @@ templates:
       usartroutea:
         offset: 2
         access: rw
+      usartrouteb:
+        offset: 3
+        access: rw
       spiroutea:
         offset: 4
         access: rw
@@ -2831,13 +3816,26 @@ templates:
         enum:
           default: 0
           alt1: 1
+      evsysroutea.evoutb:
+        bit: 1
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
       evsysroutea.evoutc:
         bit: 2
         access: rw
         enum:
           default: 0
+          alt1: 1
       evsysroutea.evoutd:
         bit: 3
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
+      evsysroutea.evoute:
+        bit: 4
         access: rw
         enum:
           default: 0
@@ -2847,6 +3845,12 @@ templates:
         access: rw
         enum:
           default: 0
+      evsysroutea.evoutg:
+        bit: 6
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
       cclroutea.lut0:
         bit: 0
         access: rw
@@ -2858,6 +3862,7 @@ templates:
         access: rw
         enum:
           default: 0
+          alt1: 1
       cclroutea.lut2:
         bit: 2
         access: rw
@@ -2869,6 +3874,18 @@ templates:
         access: rw
         enum:
           default: 0
+      cclroutea.lut4:
+        bit: 4
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
+      cclroutea.lut5:
+        bit: 5
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
       usartroutea.usart0:
         bits:
         - 0
@@ -2885,11 +3902,39 @@ templates:
         access: rw
         enum:
           default: 0
+          alt1: 1
           none: 3
       usartroutea.usart2:
         bits:
         - 4
         - 5
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
+          none: 3
+      usartroutea.usart3:
+        bits:
+        - 6
+        - 7
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
+          none: 3
+      usartrouteb.usart4:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
+          none: 3
+      usartrouteb.usart5:
+        bits:
+        - 2
+        - 3
         access: rw
         enum:
           default: 0
@@ -2902,6 +3947,8 @@ templates:
         access: rw
         enum:
           default: 0
+          alt1: 1
+          alt2: 2
           none: 3
       spiroutea.spi1:
         bits:
@@ -2910,6 +3957,8 @@ templates:
         access: rw
         enum:
           default: 0
+          alt1: 1
+          alt2: 2
           none: 3
       twiroutea.twi0:
         bits:
@@ -2918,6 +3967,7 @@ templates:
         access: rw
         enum:
           default: 0
+          alt1: 1
           alt2: 2
       twiroutea.twi1:
         bits:
@@ -2926,6 +3976,8 @@ templates:
         access: rw
         enum:
           default: 0
+          alt1: 1
+          alt2: 2
       tcaroutea.tca0:
         bits:
         - 0
@@ -2933,9 +3985,22 @@ templates:
         access: rw
         enum:
           porta: 0
+          portb: 1
           portc: 2
           portd: 3
+          porte: 4
           portf: 5
+          portg: 6
+      tcaroutea.tca1:
+        bits:
+        - 3
+        - 5
+        access: rw
+        enum:
+          portb: 0
+          portc: 1
+          porte: 2
+          portg: 3
       tcbroutea.tcb0:
         bit: 0
         access: rw
@@ -2953,6 +4018,19 @@ templates:
         access: rw
         enum:
           default: 0
+          alt1: 1
+      tcbroutea.tcb3:
+        bit: 3
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
+      tcbroutea.tcb4:
+        bit: 4
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
       tcdroutea.tcd0:
         bits:
         - 0
@@ -2960,27 +4038,45 @@ templates:
         access: rw
         enum:
           default: 0
+          alt1: 1
           alt2: 2
+          alt3: 3
       acroutea.ac0:
         bit: 0
         access: rw
         enum:
           default: 0
+          alt1: 1
       acroutea.ac1:
         bit: 1
         access: rw
         enum:
           default: 0
+          alt1: 1
       acroutea.ac2:
         bit: 2
         access: rw
         enum:
           default: 0
+          alt1: 1
       zcdroutea.zcd0:
         bit: 0
         access: rw
         enum:
           default: 0
+          alt1: 1
+      zcdroutea.zcd1:
+        bit: 1
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
+      zcdroutea.zcd2:
+        bit: 2
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
   rstctrl:
     registers:
       rstfr:
@@ -3693,6 +4789,7 @@ templates:
           div1: 0
           div2: 1
           tca0: 2
+          tca1: 3
           event: 7
       ctrla.syncupd:
         bit: 4
@@ -4915,6 +6012,12 @@ peripherals:
   irq: &id006
     num: 6
     name: PORTA_PORT_vect
+- id: portb
+  template: port
+  base: '0x420'
+  irq: &id048
+    num: 44
+    name: PORTB_PORT_vect
 - id: portc
   template: port
   base: '0x440'
@@ -4927,12 +6030,24 @@ peripherals:
   irq: &id026
     num: 22
     name: PORTD_PORT_vect
+- id: porte
+  template: port
+  base: '0x480'
+  irq: &id049
+    num: 45
+    name: PORTE_PORT_vect
 - id: portf
   template: port
   base: '0x4A0'
   irq: &id038
     num: 34
     name: PORTF_PORT_vect
+- id: portg
+  template: port
+  base: '0x4C0'
+  irq: &id066
+    num: 58
+    name: PORTG_PORT_vect
 - id: portmux
   template: portmux
   base: '0x5E0'
@@ -5006,6 +6121,37 @@ peripherals:
   - &id015
     num: 11
     name: TCA0_LCMP2_vect
+- id: tca1
+  template: tca
+  base: '0xA40'
+  irq:
+  - &id050
+    num: 46
+    name: TCA1_LUNF_vect
+  - &id051
+    num: 46
+    name: TCA1_OVF_vect
+  - &id052
+    num: 47
+    name: TCA1_HUNF_vect
+  - &id053
+    num: 48
+    name: TCA1_CMP0_vect
+  - &id054
+    num: 48
+    name: TCA1_LCMP0_vect
+  - &id055
+    num: 49
+    name: TCA1_CMP1_vect
+  - &id056
+    num: 49
+    name: TCA1_LCMP1_vect
+  - &id057
+    num: 50
+    name: TCA1_CMP2_vect
+  - &id058
+    num: 50
+    name: TCA1_LCMP2_vect
 - id: tcb0
   template: tcb
   base: '0xB00'
@@ -5024,6 +6170,18 @@ peripherals:
   irq: &id034
     num: 30
     name: TCB2_INT_vect
+- id: tcb3
+  template: tcb
+  base: '0xB30'
+  irq: &id045
+    num: 41
+    name: TCB3_INT_vect
+- id: tcb4
+  template: tcb
+  base: '0xB40'
+  irq: &id068
+    num: 60
+    name: TCB4_INT_vect
 - id: tcd0
   template: tcd
   base: '0xB80'
@@ -5048,10 +6206,10 @@ peripherals:
   template: twi
   base: '0x920'
   irq:
-  - &id045
+  - &id046
     num: 42
     name: TWI1_TWIS_vect
-  - &id046
+  - &id047
     num: 43
     name: TWI1_TWIM_vect
 - id: usart0
@@ -5093,21 +6251,69 @@ peripherals:
   - &id043
     num: 39
     name: USART2_TXC_vect
+- id: usart3
+  template: usart
+  base: '0x860'
+  irq:
+  - &id060
+    num: 52
+    name: USART3_RXC_vect
+  - &id061
+    num: 53
+    name: USART3_DRE_vect
+  - &id062
+    num: 54
+    name: USART3_TXC_vect
+- id: usart4
+  template: usart
+  base: '0x880'
+  irq:
+  - &id063
+    num: 55
+    name: USART4_RXC_vect
+  - &id064
+    num: 56
+    name: USART4_DRE_vect
+  - &id065
+    num: 57
+    name: USART4_TXC_vect
+- id: usart5
+  template: usart
+  base: '0x8A0'
+  irq:
+  - &id069
+    num: 61
+    name: USART5_RXC_vect
+  - &id070
+    num: 62
+    name: USART5_DRE_vect
+  - &id071
+    num: 63
+    name: USART5_TXC_vect
 - id: userrow
   template: userrow
   base: '0x1080'
 - id: vporta
   template: vport
   base: 0
+- id: vportb
+  template: vport
+  base: 4
 - id: vportc
   template: vport
   base: 8
 - id: vportd
   template: vport
   base: 12
+- id: vporte
+  template: vport
+  base: 16
 - id: vportf
   template: vport
   base: 20
+- id: vportg
+  template: vport
+  base: 24
 - id: vref
   template: vref
   base: 160
@@ -5120,6 +6326,18 @@ peripherals:
   irq: &id030
     num: 26
     name: ZCD0_ZCD_vect
+- id: zcd1
+  template: zcd
+  base: '0x6C8'
+  irq: &id059
+    num: 51
+    name: ZCD1_ZCD_vect
+- id: zcd2
+  template: zcd
+  base: '0x6D0'
+  irq: &id067
+    num: 59
+    name: ZCD2_ZCD_vect
 pinout:
 - signal: RESET
 interrupts:
@@ -5169,3 +6387,28 @@ interrupts:
 - *id044
 - *id045
 - *id046
+- *id047
+- *id048
+- *id049
+- *id050
+- *id051
+- *id052
+- *id053
+- *id054
+- *id055
+- *id056
+- *id057
+- *id058
+- *id059
+- *id060
+- *id061
+- *id062
+- *id063
+- *id064
+- *id065
+- *id066
+- *id067
+- *id068
+- *id069
+- *id070
+- *id071
