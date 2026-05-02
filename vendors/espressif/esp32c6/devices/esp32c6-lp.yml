@@ -1,0 +1,2820 @@
+schema: alloy.device.v2.1
+identity:
+  vendor: espressif
+  family: esp32c6
+  device: esp32c6-lp
+  core:
+    isa: unknown
+    name: rv32imac
+    bits: 32
+    nvic_priority_bits: 0
+  description: 32-bit RISC-V MCU
+provenance:
+  primary: cmsis-svd:esp32c6-lp.svd
+  authored: auto
+  notes: SVD-extracted skeleton — memory + pinout require enrichment.
+memory:
+- id: flash
+  base: '0x00000000'
+  size: 1B
+  access: rx
+  role: extractor-placeholder
+clock:
+  oscillators:
+    unknown:
+      freq: 0Hz
+      kind: rc-internal
+  domains:
+  - id: sysclk
+    sources:
+    - unknown
+templates:
+  i2c:
+    registers:
+      clk_conf:
+        offset: 84
+      comd0:
+        offset: 88
+      comd1:
+        offset: 92
+      comd2:
+        offset: 96
+      comd3:
+        offset: 100
+      comd4:
+        offset: 104
+      comd5:
+        offset: 108
+      comd6:
+        offset: 112
+      comd7:
+        offset: 116
+      ctr:
+        offset: 4
+      data:
+        offset: 28
+      date:
+        offset: 248
+      fifo_conf:
+        offset: 24
+      fifo_st:
+        offset: 20
+      filter_cfg:
+        offset: 80
+      int_clr:
+        offset: 36
+      int_ena:
+        offset: 40
+      int_raw:
+        offset: 32
+      int_status:
+        offset: 44
+      rxfifo_start_addr:
+        offset: '0x0180'
+      scl_high_period:
+        offset: 56
+      scl_low_period:
+        offset: 0
+      scl_main_st_time_out:
+        offset: 124
+      scl_rstart_setup:
+        offset: 68
+      scl_sp_conf:
+        offset: 128
+      scl_st_time_out:
+        offset: 120
+      scl_start_hold:
+        offset: 64
+      scl_stop_hold:
+        offset: 72
+      scl_stop_setup:
+        offset: 76
+      sda_hold:
+        offset: 48
+      sda_sample:
+        offset: 52
+      sr:
+        offset: 8
+      to:
+        offset: 12
+      txfifo_start_addr:
+        offset: '0x0100'
+    fields:
+      clk_conf.sclk_active:
+        bit: 21
+        access: rw
+      clk_conf.sclk_div_a:
+        bits:
+        - 8
+        - 13
+        access: rw
+      clk_conf.sclk_div_b:
+        bits:
+        - 14
+        - 19
+        access: rw
+      clk_conf.sclk_div_num:
+        bits:
+        - 0
+        - 7
+        access: rw
+      clk_conf.sclk_sel:
+        bit: 20
+        access: rw
+      comd0.command0:
+        bits:
+        - 0
+        - 13
+        access: rw
+      comd0.command0_done:
+        bit: 31
+        access: rw
+      comd1.command1:
+        bits:
+        - 0
+        - 13
+        access: rw
+      comd1.command1_done:
+        bit: 31
+        access: rw
+      comd2.command2:
+        bits:
+        - 0
+        - 13
+        access: rw
+      comd2.command2_done:
+        bit: 31
+        access: rw
+      comd3.command3:
+        bits:
+        - 0
+        - 13
+        access: rw
+      comd3.command3_done:
+        bit: 31
+        access: rw
+      comd4.command4:
+        bits:
+        - 0
+        - 13
+        access: rw
+      comd4.command4_done:
+        bit: 31
+        access: rw
+      comd5.command5:
+        bits:
+        - 0
+        - 13
+        access: rw
+      comd5.command5_done:
+        bit: 31
+        access: rw
+      comd6.command6:
+        bits:
+        - 0
+        - 13
+        access: rw
+      comd6.command6_done:
+        bit: 31
+        access: rw
+      comd7.command7:
+        bits:
+        - 0
+        - 13
+        access: rw
+      comd7.command7_done:
+        bit: 31
+        access: rw
+      ctr.arbitration_en:
+        bit: 9
+        access: rw
+      ctr.clk_en:
+        bit: 8
+        access: rw
+      ctr.conf_upgate:
+        bit: 11
+        access: wo
+      ctr.fsm_rst:
+        bit: 10
+        access: wo
+      ctr.rx_full_ack_level:
+        bit: 3
+        access: rw
+      ctr.rx_lsb_first:
+        bit: 7
+        access: rw
+      ctr.sample_scl_level:
+        bit: 2
+        access: rw
+      ctr.scl_force_out:
+        bit: 1
+        access: rw
+      ctr.sda_force_out:
+        bit: 0
+        access: rw
+      ctr.trans_start:
+        bit: 5
+        access: wo
+      ctr.tx_lsb_first:
+        bit: 6
+        access: rw
+      data.fifo_rdata:
+        bits:
+        - 0
+        - 7
+        access: ro
+      date.date:
+        bits:
+        - 0
+        - 31
+        access: rw
+      fifo_conf.fifo_prt_en:
+        bit: 14
+        access: rw
+      fifo_conf.nonfifo_en:
+        bit: 10
+        access: rw
+      fifo_conf.rx_fifo_rst:
+        bit: 12
+        access: rw
+      fifo_conf.rxfifo_wm_thrhd:
+        bits:
+        - 0
+        - 3
+        access: rw
+      fifo_conf.tx_fifo_rst:
+        bit: 13
+        access: rw
+      fifo_conf.txfifo_wm_thrhd:
+        bits:
+        - 5
+        - 8
+        access: rw
+      fifo_st.rxfifo_raddr:
+        bits:
+        - 0
+        - 3
+        access: ro
+      fifo_st.rxfifo_waddr:
+        bits:
+        - 5
+        - 8
+        access: ro
+      fifo_st.txfifo_raddr:
+        bits:
+        - 10
+        - 13
+        access: ro
+      fifo_st.txfifo_waddr:
+        bits:
+        - 15
+        - 18
+        access: ro
+      filter_cfg.scl_filter_en:
+        bit: 8
+        access: rw
+      filter_cfg.scl_filter_thres:
+        bits:
+        - 0
+        - 3
+        access: rw
+      filter_cfg.sda_filter_en:
+        bit: 9
+        access: rw
+      filter_cfg.sda_filter_thres:
+        bits:
+        - 4
+        - 7
+        access: rw
+      int_clr.arbitration_lost_int_clr:
+        bit: 5
+        access: wo
+      int_clr.byte_trans_done_int_clr:
+        bit: 4
+        access: wo
+      int_clr.det_start_int_clr:
+        bit: 15
+        access: wo
+      int_clr.end_detect_int_clr:
+        bit: 3
+        access: wo
+      int_clr.mst_txfifo_udf_int_clr:
+        bit: 6
+        access: wo
+      int_clr.nack_int_clr:
+        bit: 10
+        access: wo
+      int_clr.rxfifo_ovf_int_clr:
+        bit: 2
+        access: wo
+      int_clr.rxfifo_udf_int_clr:
+        bit: 12
+        access: wo
+      int_clr.rxfifo_wm_int_clr:
+        bit: 0
+        access: wo
+      int_clr.scl_main_st_to_int_clr:
+        bit: 14
+        access: wo
+      int_clr.scl_st_to_int_clr:
+        bit: 13
+        access: wo
+      int_clr.time_out_int_clr:
+        bit: 8
+        access: wo
+      int_clr.trans_complete_int_clr:
+        bit: 7
+        access: wo
+      int_clr.trans_start_int_clr:
+        bit: 9
+        access: wo
+      int_clr.txfifo_ovf_int_clr:
+        bit: 11
+        access: wo
+      int_clr.txfifo_wm_int_clr:
+        bit: 1
+        access: wo
+      int_ena.arbitration_lost_int_ena:
+        bit: 5
+        access: rw
+      int_ena.byte_trans_done_int_ena:
+        bit: 4
+        access: rw
+      int_ena.det_start_int_ena:
+        bit: 15
+        access: rw
+      int_ena.end_detect_int_ena:
+        bit: 3
+        access: rw
+      int_ena.mst_txfifo_udf_int_ena:
+        bit: 6
+        access: rw
+      int_ena.nack_int_ena:
+        bit: 10
+        access: rw
+      int_ena.rxfifo_ovf_int_ena:
+        bit: 2
+        access: rw
+      int_ena.rxfifo_udf_int_ena:
+        bit: 12
+        access: rw
+      int_ena.rxfifo_wm_int_ena:
+        bit: 0
+        access: rw
+      int_ena.scl_main_st_to_int_ena:
+        bit: 14
+        access: rw
+      int_ena.scl_st_to_int_ena:
+        bit: 13
+        access: rw
+      int_ena.time_out_int_ena:
+        bit: 8
+        access: rw
+      int_ena.trans_complete_int_ena:
+        bit: 7
+        access: rw
+      int_ena.trans_start_int_ena:
+        bit: 9
+        access: rw
+      int_ena.txfifo_ovf_int_ena:
+        bit: 11
+        access: rw
+      int_ena.txfifo_wm_int_ena:
+        bit: 1
+        access: rw
+      int_raw.arbitration_lost_int_raw:
+        bit: 5
+        access: ro
+      int_raw.byte_trans_done_int_raw:
+        bit: 4
+        access: ro
+      int_raw.det_start_int_raw:
+        bit: 15
+        access: ro
+      int_raw.end_detect_int_raw:
+        bit: 3
+        access: ro
+      int_raw.mst_txfifo_udf_int_raw:
+        bit: 6
+        access: ro
+      int_raw.nack_int_raw:
+        bit: 10
+        access: ro
+      int_raw.rxfifo_ovf_int_raw:
+        bit: 2
+        access: ro
+      int_raw.rxfifo_udf_int_raw:
+        bit: 12
+        access: ro
+      int_raw.rxfifo_wm_int_raw:
+        bit: 0
+        access: ro
+      int_raw.scl_main_st_to_int_raw:
+        bit: 14
+        access: ro
+      int_raw.scl_st_to_int_raw:
+        bit: 13
+        access: ro
+      int_raw.time_out_int_raw:
+        bit: 8
+        access: ro
+      int_raw.trans_complete_int_raw:
+        bit: 7
+        access: ro
+      int_raw.trans_start_int_raw:
+        bit: 9
+        access: ro
+      int_raw.txfifo_ovf_int_raw:
+        bit: 11
+        access: ro
+      int_raw.txfifo_wm_int_raw:
+        bit: 1
+        access: ro
+      int_status.arbitration_lost_int_st:
+        bit: 5
+        access: ro
+      int_status.byte_trans_done_int_st:
+        bit: 4
+        access: ro
+      int_status.det_start_int_st:
+        bit: 15
+        access: ro
+      int_status.end_detect_int_st:
+        bit: 3
+        access: ro
+      int_status.mst_txfifo_udf_int_st:
+        bit: 6
+        access: ro
+      int_status.nack_int_st:
+        bit: 10
+        access: ro
+      int_status.rxfifo_ovf_int_st:
+        bit: 2
+        access: ro
+      int_status.rxfifo_udf_int_st:
+        bit: 12
+        access: ro
+      int_status.rxfifo_wm_int_st:
+        bit: 0
+        access: ro
+      int_status.scl_main_st_to_int_st:
+        bit: 14
+        access: ro
+      int_status.scl_st_to_int_st:
+        bit: 13
+        access: ro
+      int_status.time_out_int_st:
+        bit: 8
+        access: ro
+      int_status.trans_complete_int_st:
+        bit: 7
+        access: ro
+      int_status.trans_start_int_st:
+        bit: 9
+        access: ro
+      int_status.txfifo_ovf_int_st:
+        bit: 11
+        access: ro
+      int_status.txfifo_wm_int_st:
+        bit: 1
+        access: ro
+      rxfifo_start_addr.rxfifo_start_addr:
+        bits:
+        - 0
+        - 31
+        access: ro
+      scl_high_period.scl_high_period:
+        bits:
+        - 0
+        - 8
+        access: rw
+      scl_high_period.scl_wait_high_period:
+        bits:
+        - 9
+        - 15
+        access: rw
+      scl_low_period.scl_low_period:
+        bits:
+        - 0
+        - 8
+        access: rw
+      scl_main_st_time_out.scl_main_st_to_i2c:
+        bits:
+        - 0
+        - 4
+        access: rw
+      scl_rstart_setup.time:
+        bits:
+        - 0
+        - 8
+        access: rw
+      scl_sp_conf.scl_pd_en:
+        bit: 6
+        access: rw
+      scl_sp_conf.scl_rst_slv_en:
+        bit: 0
+        access: rw
+      scl_sp_conf.scl_rst_slv_num:
+        bits:
+        - 1
+        - 5
+        access: rw
+      scl_sp_conf.sda_pd_en:
+        bit: 7
+        access: rw
+      scl_st_time_out.scl_st_to_i2c:
+        bits:
+        - 0
+        - 4
+        access: rw
+      scl_start_hold.time:
+        bits:
+        - 0
+        - 8
+        access: rw
+      scl_stop_hold.time:
+        bits:
+        - 0
+        - 8
+        access: rw
+      scl_stop_setup.time:
+        bits:
+        - 0
+        - 8
+        access: rw
+      sda_hold.time:
+        bits:
+        - 0
+        - 8
+        access: rw
+      sda_sample.time:
+        bits:
+        - 0
+        - 8
+        access: rw
+      sr.arb_lost:
+        bit: 3
+        access: ro
+      sr.bus_busy:
+        bit: 4
+        access: ro
+      sr.resp_rec:
+        bit: 0
+        access: ro
+      sr.rxfifo_cnt:
+        bits:
+        - 8
+        - 12
+        access: ro
+      sr.scl_main_state_last:
+        bits:
+        - 24
+        - 26
+        access: ro
+      sr.scl_state_last:
+        bits:
+        - 28
+        - 30
+        access: ro
+      sr.txfifo_cnt:
+        bits:
+        - 18
+        - 22
+        access: ro
+      to.time_out_en:
+        bit: 5
+        access: rw
+      to.time_out_value:
+        bits:
+        - 0
+        - 4
+        access: rw
+      txfifo_start_addr.txfifo_start_addr:
+        bits:
+        - 0
+        - 31
+        access: ro
+  lp_ana:
+    registers:
+      bod_mode0_cntl:
+        offset: 0
+      bod_mode1_cntl:
+        offset: 4
+      ck_glitch_cntl:
+        offset: 8
+      date:
+        offset: '0x03FC'
+      fib_enable:
+        offset: 12
+      int_clr:
+        offset: 28
+      int_ena:
+        offset: 24
+      int_raw:
+        offset: 16
+      int_st:
+        offset: 20
+      lp_int_clr:
+        offset: 44
+      lp_int_ena:
+        offset: 40
+      lp_int_raw:
+        offset: 32
+      lp_int_st:
+        offset: 36
+    fields:
+      bod_mode0_cntl.bod_mode0_close_flash_ena:
+        bit: 6
+        access: rw
+      bod_mode0_cntl.bod_mode0_cnt_clr:
+        bit: 28
+        access: rw
+      bod_mode0_cntl.bod_mode0_intr_ena:
+        bit: 29
+        access: rw
+      bod_mode0_cntl.bod_mode0_intr_wait:
+        bits:
+        - 8
+        - 17
+        access: rw
+      bod_mode0_cntl.bod_mode0_pd_rf_ena:
+        bit: 7
+        access: rw
+      bod_mode0_cntl.bod_mode0_reset_ena:
+        bit: 31
+        access: rw
+      bod_mode0_cntl.bod_mode0_reset_sel:
+        bit: 30
+        access: rw
+      bod_mode0_cntl.bod_mode0_reset_wait:
+        bits:
+        - 18
+        - 27
+        access: rw
+      bod_mode1_cntl.bod_mode1_reset_ena:
+        bit: 31
+        access: rw
+      ck_glitch_cntl.ck_glitch_reset_ena:
+        bit: 31
+        access: rw
+      date.clk_en:
+        bit: 31
+        access: rw
+      date.lp_ana_date:
+        bits:
+        - 0
+        - 30
+        access: rw
+      fib_enable.ana_fib_ena:
+        bits:
+        - 0
+        - 31
+        access: rw
+      int_clr.bod_mode0_int_clr:
+        bit: 31
+        access: wo
+      int_ena.bod_mode0_int_ena:
+        bit: 31
+        access: rw
+      int_raw.bod_mode0_int_raw:
+        bit: 31
+        access: rw
+      int_st.bod_mode0_int_st:
+        bit: 31
+        access: ro
+      lp_int_clr.bod_mode0_lp_int_clr:
+        bit: 31
+        access: wo
+      lp_int_ena.bod_mode0_lp_int_ena:
+        bit: 31
+        access: rw
+      lp_int_raw.bod_mode0_lp_int_raw:
+        bit: 31
+        access: rw
+      lp_int_st.bod_mode0_lp_int_st:
+        bit: 31
+        access: ro
+  lp_aon:
+    registers:
+      cpucore0_cfg:
+        offset: 56
+      date:
+        offset: '0x03FC'
+      ext_wakeup_cntl:
+        offset: 64
+      gpio_hold0:
+        offset: 44
+      gpio_hold1:
+        offset: 48
+      gpio_mux:
+        offset: 40
+      io_mux:
+        offset: 60
+      lpbus:
+        offset: 72
+      lpcore:
+        offset: 80
+      sar_cct:
+        offset: 84
+      sdio_active:
+        offset: 76
+      store0:
+        offset: 0
+      store1:
+        offset: 4
+      store2:
+        offset: 8
+      store3:
+        offset: 12
+      store4:
+        offset: 16
+      store5:
+        offset: 20
+      store6:
+        offset: 24
+      store7:
+        offset: 28
+      store8:
+        offset: 32
+      store9:
+        offset: 36
+      sys_cfg:
+        offset: 52
+      usb:
+        offset: 68
+    fields:
+      cpucore0_cfg.cpu_core0_dreset_mask:
+        bit: 31
+        access: rw
+      cpucore0_cfg.cpu_core0_ocd_halt_on_reset:
+        bit: 29
+        access: rw
+      cpucore0_cfg.cpu_core0_stat_vector_sel:
+        bit: 30
+        access: rw
+      cpucore0_cfg.cpu_core0_sw_reset:
+        bit: 28
+        access: wo
+      cpucore0_cfg.cpu_core0_sw_stall:
+        bits:
+        - 0
+        - 7
+        access: rw
+      date.clk_en:
+        bit: 31
+        access: rw
+      date.date:
+        bits:
+        - 0
+        - 30
+        access: rw
+      ext_wakeup_cntl.ext_wakeup_filter:
+        bit: 31
+        access: rw
+      ext_wakeup_cntl.ext_wakeup_lv:
+        bits:
+        - 23
+        - 30
+        access: rw
+      ext_wakeup_cntl.ext_wakeup_sel:
+        bits:
+        - 15
+        - 22
+        access: rw
+      ext_wakeup_cntl.ext_wakeup_status:
+        bits:
+        - 0
+        - 7
+        access: ro
+      ext_wakeup_cntl.ext_wakeup_status_clr:
+        bit: 14
+        access: wo
+      gpio_hold0.gpio_hold0:
+        bits:
+        - 0
+        - 31
+        access: rw
+      gpio_hold1.gpio_hold1:
+        bits:
+        - 0
+        - 31
+        access: rw
+      gpio_mux.sel:
+        bits:
+        - 0
+        - 7
+        access: rw
+      io_mux.reset_disable:
+        bit: 31
+        access: rw
+      lpbus.fast_mem_mux_fsm_idle:
+        bit: 28
+        access: ro
+      lpbus.fast_mem_mux_sel:
+        bit: 31
+        access: rw
+      lpbus.fast_mem_mux_sel_status:
+        bit: 29
+        access: ro
+      lpbus.fast_mem_mux_sel_update:
+        bit: 30
+        access: wo
+      lpbus.fast_mem_ra:
+        bits:
+        - 22
+        - 23
+        access: rw
+      lpbus.fast_mem_wa:
+        bits:
+        - 19
+        - 21
+        access: rw
+      lpbus.fast_mem_wpulse:
+        bits:
+        - 16
+        - 18
+        access: rw
+      lpcore.disable:
+        bit: 31
+        access: rw
+      lpcore.etm_wakeup_flag:
+        bit: 1
+        access: rw
+      lpcore.etm_wakeup_flag_clr:
+        bit: 0
+        access: wo
+      sar_cct.sar2_pwdet_cct:
+        bits:
+        - 29
+        - 31
+        access: rw
+      sdio_active.sdio_act_dnum:
+        bits:
+        - 22
+        - 31
+        access: rw
+      store0.lp_aon_store0:
+        bits:
+        - 0
+        - 31
+        access: rw
+      store1.lp_aon_store1:
+        bits:
+        - 0
+        - 31
+        access: rw
+      store2.lp_aon_store2:
+        bits:
+        - 0
+        - 31
+        access: rw
+      store3.lp_aon_store3:
+        bits:
+        - 0
+        - 31
+        access: rw
+      store4.lp_aon_store4:
+        bits:
+        - 0
+        - 31
+        access: rw
+      store5.lp_aon_store5:
+        bits:
+        - 0
+        - 31
+        access: rw
+      store6.lp_aon_store6:
+        bits:
+        - 0
+        - 31
+        access: rw
+      store7.lp_aon_store7:
+        bits:
+        - 0
+        - 31
+        access: rw
+      store8.lp_aon_store8:
+        bits:
+        - 0
+        - 31
+        access: rw
+      store9.lp_aon_store9:
+        bits:
+        - 0
+        - 31
+        access: rw
+      sys_cfg.force_download_boot:
+        bit: 30
+        access: rw
+      sys_cfg.hpsys_sw_reset:
+        bit: 31
+        access: wo
+      usb.reset_disable:
+        bit: 31
+        access: rw
+  lp_apm:
+    registers:
+      clock_gate:
+        offset: 236
+      date:
+        offset: 252
+      func_ctrl:
+        offset: 196
+      int_en:
+        offset: 232
+      m0_exception_info0:
+        offset: 208
+      m0_exception_info1:
+        offset: 212
+      m0_status:
+        offset: 200
+      m0_status_clr:
+        offset: 204
+      m1_exception_info0:
+        offset: 224
+      m1_exception_info1:
+        offset: 228
+      m1_status:
+        offset: 216
+      m1_status_clr:
+        offset: 220
+      region0_addr_end:
+        offset: 8
+      region0_addr_start:
+        offset: 4
+      region0_pms_attr:
+        offset: 12
+      region1_addr_end:
+        offset: 20
+      region1_addr_start:
+        offset: 16
+      region1_pms_attr:
+        offset: 24
+      region2_addr_end:
+        offset: 32
+      region2_addr_start:
+        offset: 28
+      region2_pms_attr:
+        offset: 36
+      region3_addr_end:
+        offset: 44
+      region3_addr_start:
+        offset: 40
+      region3_pms_attr:
+        offset: 48
+      region_filter_en:
+        offset: 0
+    fields:
+      clock_gate.clk_en:
+        bit: 0
+        access: rw
+      date.date:
+        bits:
+        - 0
+        - 27
+        access: rw
+      func_ctrl.m0_pms_func_en:
+        bit: 0
+        access: rw
+      func_ctrl.m1_pms_func_en:
+        bit: 1
+        access: rw
+      int_en.m0_apm_int_en:
+        bit: 0
+        access: rw
+      int_en.m1_apm_int_en:
+        bit: 1
+        access: rw
+      m0_exception_info0.m0_exception_id:
+        bits:
+        - 18
+        - 22
+        access: ro
+      m0_exception_info0.m0_exception_mode:
+        bits:
+        - 16
+        - 17
+        access: ro
+      m0_exception_info0.m0_exception_region:
+        bits:
+        - 0
+        - 3
+        access: ro
+      m0_exception_info1.m0_exception_addr:
+        bits:
+        - 0
+        - 31
+        access: ro
+      m0_status.m0_exception_status:
+        bits:
+        - 0
+        - 1
+        access: ro
+      m0_status_clr.m0_region_status_clr:
+        bit: 0
+        access: wo
+      m1_exception_info0.m1_exception_id:
+        bits:
+        - 18
+        - 22
+        access: ro
+      m1_exception_info0.m1_exception_mode:
+        bits:
+        - 16
+        - 17
+        access: ro
+      m1_exception_info0.m1_exception_region:
+        bits:
+        - 0
+        - 3
+        access: ro
+      m1_exception_info1.m1_exception_addr:
+        bits:
+        - 0
+        - 31
+        access: ro
+      m1_status.m1_exception_status:
+        bits:
+        - 0
+        - 1
+        access: ro
+      m1_status_clr.m1_region_status_clr:
+        bit: 0
+        access: wo
+      region0_addr_end.region0_addr_end:
+        bits:
+        - 0
+        - 31
+        access: rw
+      region0_addr_start.region0_addr_start:
+        bits:
+        - 0
+        - 31
+        access: rw
+      region0_pms_attr.region0_r0_pms_r:
+        bit: 2
+        access: rw
+      region0_pms_attr.region0_r0_pms_w:
+        bit: 1
+        access: rw
+      region0_pms_attr.region0_r0_pms_x:
+        bit: 0
+        access: rw
+      region0_pms_attr.region0_r1_pms_r:
+        bit: 6
+        access: rw
+      region0_pms_attr.region0_r1_pms_w:
+        bit: 5
+        access: rw
+      region0_pms_attr.region0_r1_pms_x:
+        bit: 4
+        access: rw
+      region0_pms_attr.region0_r2_pms_r:
+        bit: 10
+        access: rw
+      region0_pms_attr.region0_r2_pms_w:
+        bit: 9
+        access: rw
+      region0_pms_attr.region0_r2_pms_x:
+        bit: 8
+        access: rw
+      region1_addr_end.region1_addr_end:
+        bits:
+        - 0
+        - 31
+        access: rw
+      region1_addr_start.region1_addr_start:
+        bits:
+        - 0
+        - 31
+        access: rw
+      region1_pms_attr.region1_r0_pms_r:
+        bit: 2
+        access: rw
+      region1_pms_attr.region1_r0_pms_w:
+        bit: 1
+        access: rw
+      region1_pms_attr.region1_r0_pms_x:
+        bit: 0
+        access: rw
+      region1_pms_attr.region1_r1_pms_r:
+        bit: 6
+        access: rw
+      region1_pms_attr.region1_r1_pms_w:
+        bit: 5
+        access: rw
+      region1_pms_attr.region1_r1_pms_x:
+        bit: 4
+        access: rw
+      region1_pms_attr.region1_r2_pms_r:
+        bit: 10
+        access: rw
+      region1_pms_attr.region1_r2_pms_w:
+        bit: 9
+        access: rw
+      region1_pms_attr.region1_r2_pms_x:
+        bit: 8
+        access: rw
+      region2_addr_end.region2_addr_end:
+        bits:
+        - 0
+        - 31
+        access: rw
+      region2_addr_start.region2_addr_start:
+        bits:
+        - 0
+        - 31
+        access: rw
+      region2_pms_attr.region2_r0_pms_r:
+        bit: 2
+        access: rw
+      region2_pms_attr.region2_r0_pms_w:
+        bit: 1
+        access: rw
+      region2_pms_attr.region2_r0_pms_x:
+        bit: 0
+        access: rw
+      region2_pms_attr.region2_r1_pms_r:
+        bit: 6
+        access: rw
+      region2_pms_attr.region2_r1_pms_w:
+        bit: 5
+        access: rw
+      region2_pms_attr.region2_r1_pms_x:
+        bit: 4
+        access: rw
+      region2_pms_attr.region2_r2_pms_r:
+        bit: 10
+        access: rw
+      region2_pms_attr.region2_r2_pms_w:
+        bit: 9
+        access: rw
+      region2_pms_attr.region2_r2_pms_x:
+        bit: 8
+        access: rw
+      region3_addr_end.region3_addr_end:
+        bits:
+        - 0
+        - 31
+        access: rw
+      region3_addr_start.region3_addr_start:
+        bits:
+        - 0
+        - 31
+        access: rw
+      region3_pms_attr.region3_r0_pms_r:
+        bit: 2
+        access: rw
+      region3_pms_attr.region3_r0_pms_w:
+        bit: 1
+        access: rw
+      region3_pms_attr.region3_r0_pms_x:
+        bit: 0
+        access: rw
+      region3_pms_attr.region3_r1_pms_r:
+        bit: 6
+        access: rw
+      region3_pms_attr.region3_r1_pms_w:
+        bit: 5
+        access: rw
+      region3_pms_attr.region3_r1_pms_x:
+        bit: 4
+        access: rw
+      region3_pms_attr.region3_r2_pms_r:
+        bit: 10
+        access: rw
+      region3_pms_attr.region3_r2_pms_w:
+        bit: 9
+        access: rw
+      region3_pms_attr.region3_r2_pms_x:
+        bit: 8
+        access: rw
+      region_filter_en.region_filter_en:
+        bits:
+        - 0
+        - 3
+        access: rw
+  lp_clkrst:
+    registers:
+      clk_to_hp:
+        offset: 32
+      cpu_reset:
+        offset: 20
+      date:
+        offset: '0x03FC'
+      fosc_cntl:
+        offset: 24
+      lp_clk_conf:
+        offset: 0
+      lp_clk_en:
+        offset: 8
+      lp_clk_po_en:
+        offset: 4
+      lp_rst_en:
+        offset: 12
+      lpmem_force:
+        offset: 36
+      lpperi:
+        offset: 40
+      rc32k_cntl:
+        offset: 28
+      reset_cause:
+        offset: 16
+      xtal32k:
+        offset: 44
+    fields:
+      clk_to_hp.icg_hp_fosc:
+        bit: 31
+        access: rw
+      clk_to_hp.icg_hp_osc32k:
+        bit: 30
+        access: rw
+      clk_to_hp.icg_hp_sosc:
+        bit: 29
+        access: rw
+      clk_to_hp.icg_hp_xtal32k:
+        bit: 28
+        access: rw
+      cpu_reset.cpu_stall_en:
+        bit: 31
+        access: rw
+      cpu_reset.cpu_stall_wait:
+        bits:
+        - 26
+        - 30
+        access: rw
+      cpu_reset.rtc_wdt_cpu_reset_en:
+        bit: 25
+        access: rw
+      cpu_reset.rtc_wdt_cpu_reset_length:
+        bits:
+        - 22
+        - 24
+        access: rw
+      date.clk_en:
+        bit: 31
+        access: rw
+      date.clkrst_date:
+        bits:
+        - 0
+        - 30
+        access: rw
+      fosc_cntl.fosc_dfreq:
+        bits:
+        - 22
+        - 31
+        access: rw
+      lp_clk_conf.fast_clk_sel:
+        bit: 2
+        access: rw
+      lp_clk_conf.lp_peri_div_num:
+        bits:
+        - 3
+        - 10
+        access: rw
+      lp_clk_conf.slow_clk_sel:
+        bits:
+        - 0
+        - 1
+        access: rw
+      lp_clk_en.fast_ori_gate:
+        bit: 31
+        access: rw
+      lp_clk_po_en.aon_fast_oen:
+        bit: 1
+        access: rw
+      lp_clk_po_en.aon_slow_oen:
+        bit: 0
+        access: rw
+      lp_clk_po_en.core_efuse_oen:
+        bit: 6
+        access: rw
+      lp_clk_po_en.fast_oen:
+        bit: 8
+        access: rw
+      lp_clk_po_en.fosc_oen:
+        bit: 3
+        access: rw
+      lp_clk_po_en.lpbus_oen:
+        bit: 10
+        access: rw
+      lp_clk_po_en.osc32k_oen:
+        bit: 4
+        access: rw
+      lp_clk_po_en.rng_oen:
+        bit: 9
+        access: rw
+      lp_clk_po_en.slow_oen:
+        bit: 7
+        access: rw
+      lp_clk_po_en.sosc_oen:
+        bit: 2
+        access: rw
+      lp_clk_po_en.xtal32k_oen:
+        bit: 5
+        access: rw
+      lp_rst_en.ana_peri_reset_en:
+        bit: 31
+        access: rw
+      lp_rst_en.aon_efuse_core_reset_en:
+        bit: 28
+        access: rw
+      lp_rst_en.lp_timer_reset_en:
+        bit: 29
+        access: rw
+      lp_rst_en.wdt_reset_en:
+        bit: 30
+        access: rw
+      lpmem_force.lpmem_clk_force_on:
+        bit: 31
+        access: rw
+      lpperi.lp_i2c_clk_sel:
+        bit: 30
+        access: rw
+      lpperi.lp_uart_clk_sel:
+        bit: 31
+        access: rw
+      rc32k_cntl.rc32k_dfreq:
+        bits:
+        - 22
+        - 31
+        access: rw
+      reset_cause.core0_reset_cause_clr:
+        bit: 29
+        access: wo
+      reset_cause.core0_reset_flag:
+        bit: 5
+        access: ro
+      reset_cause.core0_reset_flag_clr:
+        bit: 31
+        access: wo
+      reset_cause.core0_reset_flag_set:
+        bit: 30
+        access: wo
+      reset_cause.reset_cause:
+        bits:
+        - 0
+        - 4
+        access: ro
+      xtal32k.dac_xtal32k:
+        bits:
+        - 29
+        - 31
+        access: rw
+      xtal32k.dbuf_xtal32k:
+        bit: 28
+        access: rw
+      xtal32k.dgm_xtal32k:
+        bits:
+        - 25
+        - 27
+        access: rw
+      xtal32k.dres_xtal32k:
+        bits:
+        - 22
+        - 24
+        access: rw
+  lp_i2c_ana_mst:
+    registers:
+      ana_conf1:
+        offset: 12
+      date:
+        offset: '0x03FC'
+      device_en:
+        offset: 20
+      i2c0_conf:
+        offset: 4
+      i2c0_ctrl:
+        offset: 0
+      i2c0_data:
+        offset: 8
+      nouse:
+        offset: 16
+    fields:
+      ana_conf1.lp_i2c_ana_mast_ana_conf1:
+        bits:
+        - 0
+        - 23
+        access: rw
+      date.lp_i2c_ana_mast_i2c_mat_clk_en:
+        bit: 28
+        access: rw
+      date.lp_i2c_ana_mast_i2c_mat_date:
+        bits:
+        - 0
+        - 27
+        access: rw
+      device_en.lp_i2c_ana_mast_i2c_device_en:
+        bits:
+        - 0
+        - 11
+        access: rw
+      i2c0_conf.lp_i2c_ana_mast_i2c0_conf:
+        bits:
+        - 0
+        - 23
+        access: rw
+      i2c0_conf.lp_i2c_ana_mast_i2c0_status:
+        bits:
+        - 24
+        - 31
+        access: ro
+      i2c0_ctrl.lp_i2c_ana_mast_i2c0_busy:
+        bit: 25
+        access: ro
+      i2c0_ctrl.lp_i2c_ana_mast_i2c0_ctrl:
+        bits:
+        - 0
+        - 24
+        access: rw
+      i2c0_data.lp_i2c_ana_mast_i2c0_clk_sel:
+        bits:
+        - 8
+        - 10
+        access: rw
+      i2c0_data.lp_i2c_ana_mast_i2c0_rdata:
+        bits:
+        - 0
+        - 7
+        access: ro
+      i2c0_data.lp_i2c_ana_mast_i2c_mst_sel:
+        bit: 11
+        access: rw
+      nouse.lp_i2c_ana_mast_i2c_mst_nouse:
+        bits:
+        - 0
+        - 31
+        access: rw
+  lp_io:
+    registers:
+      date:
+        offset: '0x03FC'
+      enable:
+        offset: 12
+      enable_w1tc:
+        offset: 20
+      enable_w1ts:
+        offset: 16
+      gpio%s:
+        offset: 72
+      in:
+        offset: 36
+      out:
+        offset: 0
+      out_w1tc:
+        offset: 8
+      out_w1ts:
+        offset: 4
+      pin%s:
+        offset: 40
+      status:
+        offset: 24
+      status_int:
+        offset: 104
+      status_w1tc:
+        offset: 32
+      status_w1ts:
+        offset: 28
+    fields:
+      date.clk_en:
+        bit: 31
+        access: rw
+      date.lp_io_date:
+        bits:
+        - 0
+        - 30
+        access: rw
+      enable.enable:
+        bits:
+        - 0
+        - 7
+        access: rw
+      enable_w1tc.enable_w1tc:
+        bits:
+        - 0
+        - 7
+        access: wo
+      enable_w1ts.enable_w1ts:
+        bits:
+        - 0
+        - 7
+        access: wo
+      gpio%s.fun_drv:
+        bits:
+        - 10
+        - 11
+        access: rw
+      gpio%s.fun_ie:
+        bit: 9
+        access: rw
+      gpio%s.fun_sel:
+        bits:
+        - 12
+        - 14
+        access: rw
+      gpio%s.fun_wpd:
+        bit: 7
+        access: rw
+      gpio%s.fun_wpu:
+        bit: 8
+        access: rw
+      gpio%s.mcu_drv:
+        bits:
+        - 5
+        - 6
+        access: rw
+      gpio%s.mcu_ie:
+        bit: 4
+        access: rw
+      gpio%s.mcu_oe:
+        bit: 0
+        access: rw
+      gpio%s.mcu_wpd:
+        bit: 2
+        access: rw
+      gpio%s.mcu_wpu:
+        bit: 3
+        access: rw
+      gpio%s.slp_sel:
+        bit: 1
+        access: rw
+      in.data_next:
+        bits:
+        - 0
+        - 7
+        access: ro
+      out.out_data:
+        bits:
+        - 0
+        - 7
+        access: rw
+      out_w1tc.out_data_w1tc:
+        bits:
+        - 0
+        - 7
+        access: wo
+      out_w1ts.out_data_w1ts:
+        bits:
+        - 0
+        - 7
+        access: wo
+      pin%s.edge_wakeup_clr:
+        bit: 3
+        access: wo
+      pin%s.filter_en:
+        bit: 11
+        access: rw
+      pin%s.int_type:
+        bits:
+        - 7
+        - 9
+        access: rw
+      pin%s.pad_driver:
+        bit: 2
+        access: rw
+      pin%s.sync_bypass:
+        bits:
+        - 0
+        - 1
+        access: rw
+      pin%s.wakeup_enable:
+        bit: 10
+        access: rw
+      status.interrupt:
+        bits:
+        - 0
+        - 7
+        access: rw
+      status_int.next:
+        bits:
+        - 0
+        - 7
+        access: ro
+      status_w1tc.status_w1tc:
+        bits:
+        - 0
+        - 7
+        access: wo
+      status_w1ts.status_w1ts:
+        bits:
+        - 0
+        - 7
+        access: wo
+  lp_tee:
+    registers:
+      clock_gate:
+        offset: 4
+      date:
+        offset: 252
+      force_acc_hp:
+        offset: 144
+      m0_mode_ctrl:
+        offset: 0
+    fields:
+      clock_gate.clk_en:
+        bit: 0
+        access: rw
+      date.date:
+        bits:
+        - 0
+        - 27
+        access: rw
+      force_acc_hp.lp_aon_force_acc_hpmem_en:
+        bit: 0
+        access: rw
+      m0_mode_ctrl.m0_mode:
+        bits:
+        - 0
+        - 1
+        access: rw
+  lp_timer:
+    registers:
+      date:
+        offset: '0x03FC'
+      int_clr:
+        offset: 52
+      int_ena:
+        offset: 48
+      int_raw:
+        offset: 40
+      int_st:
+        offset: 44
+      lp_int_clr:
+        offset: 68
+      lp_int_ena:
+        offset: 64
+      lp_int_raw:
+        offset: 56
+      lp_int_st:
+        offset: 60
+      main_buf0_high:
+        offset: 24
+      main_buf0_low:
+        offset: 20
+      main_buf1_high:
+        offset: 32
+      main_buf1_low:
+        offset: 28
+      main_overflow:
+        offset: 36
+      tar0_high:
+        offset: 4
+      tar0_low:
+        offset: 0
+      tar1_high:
+        offset: 12
+      tar1_low:
+        offset: 8
+      update:
+        offset: 16
+    fields:
+      date.clk_en:
+        bit: 31
+        access: rw
+      date.date:
+        bits:
+        - 0
+        - 30
+        access: rw
+      int_clr.overflow_clr:
+        bit: 30
+        access: wo
+      int_clr.soc_wakeup_int_clr:
+        bit: 31
+        access: wo
+      int_ena.overflow_ena:
+        bit: 30
+        access: rw
+      int_ena.soc_wakeup_int_ena:
+        bit: 31
+        access: rw
+      int_raw.overflow_raw:
+        bit: 30
+        access: rw
+      int_raw.soc_wakeup_int_raw:
+        bit: 31
+        access: rw
+      int_st.overflow_st:
+        bit: 30
+        access: ro
+      int_st.soc_wakeup_int_st:
+        bit: 31
+        access: ro
+      lp_int_clr.main_timer_lp_int_clr:
+        bit: 31
+        access: wo
+      lp_int_clr.main_timer_overflow_lp_int_clr:
+        bit: 30
+        access: wo
+      lp_int_ena.main_timer_lp_int_ena:
+        bit: 31
+        access: rw
+      lp_int_ena.main_timer_overflow_lp_int_ena:
+        bit: 30
+        access: rw
+      lp_int_raw.main_timer_lp_int_raw:
+        bit: 31
+        access: rw
+      lp_int_raw.main_timer_overflow_lp_int_raw:
+        bit: 30
+        access: rw
+      lp_int_st.main_timer_lp_int_st:
+        bit: 31
+        access: ro
+      lp_int_st.main_timer_overflow_lp_int_st:
+        bit: 30
+        access: ro
+      main_buf0_high.main_timer_buf0_high:
+        bits:
+        - 0
+        - 15
+        access: ro
+      main_buf0_low.main_timer_buf0_low:
+        bits:
+        - 0
+        - 31
+        access: ro
+      main_buf1_high.main_timer_buf1_high:
+        bits:
+        - 0
+        - 15
+        access: ro
+      main_buf1_low.main_timer_buf1_low:
+        bits:
+        - 0
+        - 31
+        access: ro
+      main_overflow.main_timer_alarm_load:
+        bit: 31
+        access: wo
+      tar0_high.main_timer_tar_en0:
+        bit: 31
+        access: wo
+      tar0_high.main_timer_tar_high0:
+        bits:
+        - 0
+        - 15
+        access: rw
+      tar0_low.main_timer_tar_low0:
+        bits:
+        - 0
+        - 31
+        access: rw
+      tar1_high.main_timer_tar_en1:
+        bit: 31
+        access: wo
+      tar1_high.main_timer_tar_high1:
+        bits:
+        - 0
+        - 15
+        access: rw
+      tar1_low.main_timer_tar_low1:
+        bits:
+        - 0
+        - 31
+        access: rw
+      update.main_timer_sys_rst:
+        bit: 31
+        access: rw
+      update.main_timer_sys_stall:
+        bit: 30
+        access: rw
+      update.main_timer_update:
+        bit: 28
+        access: wo
+      update.main_timer_xtal_off:
+        bit: 29
+        access: rw
+  lp_uart:
+    registers:
+      afifo_status:
+        offset: 144
+      at_cmd_char_sync:
+        offset: 92
+      at_cmd_gaptout_sync:
+        offset: 88
+      at_cmd_postcnt_sync:
+        offset: 84
+      at_cmd_precnt_sync:
+        offset: 80
+      clk_conf:
+        offset: 136
+      clkdiv_sync:
+        offset: 20
+      conf0_sync:
+        offset: 32
+      conf1:
+        offset: 36
+      date:
+        offset: 140
+      fifo:
+        offset: 0
+      fsm_status:
+        offset: 112
+      hwfc_conf_sync:
+        offset: 44
+      id:
+        offset: 156
+      idle_conf_sync:
+        offset: 72
+      int_clr:
+        offset: 16
+      int_ena:
+        offset: 12
+      int_raw:
+        offset: 4
+      int_st:
+        offset: 8
+      mem_conf:
+        offset: 96
+      mem_rx_status:
+        offset: 108
+      mem_tx_status:
+        offset: 104
+      reg_update:
+        offset: 152
+      rs485_conf_sync:
+        offset: 76
+      rx_filt:
+        offset: 24
+      sleep_conf0:
+        offset: 48
+      sleep_conf1:
+        offset: 52
+      sleep_conf2:
+        offset: 56
+      status:
+        offset: 28
+      swfc_conf0_sync:
+        offset: 60
+      swfc_conf1:
+        offset: 64
+      tout_conf_sync:
+        offset: 100
+      txbrk_conf_sync:
+        offset: 68
+    fields:
+      afifo_status.rx_afifo_empty:
+        bit: 3
+        access: ro
+      afifo_status.rx_afifo_full:
+        bit: 2
+        access: ro
+      afifo_status.tx_afifo_empty:
+        bit: 1
+        access: ro
+      afifo_status.tx_afifo_full:
+        bit: 0
+        access: ro
+      at_cmd_char_sync.at_cmd_char:
+        bits:
+        - 0
+        - 7
+        access: rw
+      at_cmd_char_sync.char_num:
+        bits:
+        - 8
+        - 15
+        access: rw
+      at_cmd_gaptout_sync.rx_gap_tout:
+        bits:
+        - 0
+        - 15
+        access: rw
+      at_cmd_postcnt_sync.post_idle_num:
+        bits:
+        - 0
+        - 15
+        access: rw
+      at_cmd_precnt_sync.pre_idle_num:
+        bits:
+        - 0
+        - 15
+        access: rw
+      clk_conf.rst_core:
+        bit: 23
+        access: rw
+      clk_conf.rx_rst_core:
+        bit: 27
+        access: rw
+      clk_conf.rx_sclk_en:
+        bit: 25
+        access: rw
+      clk_conf.sclk_div_a:
+        bits:
+        - 6
+        - 11
+        access: rw
+      clk_conf.sclk_div_b:
+        bits:
+        - 0
+        - 5
+        access: rw
+      clk_conf.sclk_div_num:
+        bits:
+        - 12
+        - 19
+        access: rw
+      clk_conf.sclk_en:
+        bit: 22
+        access: rw
+      clk_conf.sclk_sel:
+        bits:
+        - 20
+        - 21
+        access: rw
+      clk_conf.tx_rst_core:
+        bit: 26
+        access: rw
+      clk_conf.tx_sclk_en:
+        bit: 24
+        access: rw
+      clkdiv_sync.clkdiv:
+        bits:
+        - 0
+        - 11
+        access: rw
+      clkdiv_sync.clkdiv_frag:
+        bits:
+        - 20
+        - 23
+        access: rw
+      conf0_sync.bit_num:
+        bits:
+        - 2
+        - 3
+        access: rw
+      conf0_sync.dis_rx_dat_ovf:
+        bit: 17
+        access: rw
+      conf0_sync.err_wr_mask:
+        bit: 18
+        access: rw
+      conf0_sync.loopback:
+        bit: 12
+        access: rw
+      conf0_sync.mem_clk_en:
+        bit: 20
+        access: rw
+      conf0_sync.parity:
+        bit: 0
+        access: rw
+      conf0_sync.parity_en:
+        bit: 1
+        access: rw
+      conf0_sync.rxd_inv:
+        bit: 15
+        access: rw
+      conf0_sync.rxfifo_rst:
+        bit: 22
+        access: rw
+      conf0_sync.stop_bit_num:
+        bits:
+        - 4
+        - 5
+        access: rw
+      conf0_sync.sw_rts:
+        bit: 21
+        access: rw
+      conf0_sync.tx_flow_en:
+        bit: 13
+        access: rw
+      conf0_sync.txd_brk:
+        bit: 6
+        access: rw
+      conf0_sync.txd_inv:
+        bit: 16
+        access: rw
+      conf0_sync.txfifo_rst:
+        bit: 23
+        access: rw
+      conf1.clk_en:
+        bit: 21
+        access: rw
+      conf1.cts_inv:
+        bit: 16
+        access: rw
+      conf1.dsr_inv:
+        bit: 17
+        access: rw
+      conf1.dtr_inv:
+        bit: 19
+        access: rw
+      conf1.rts_inv:
+        bit: 18
+        access: rw
+      conf1.rxfifo_full_thrhd:
+        bits:
+        - 3
+        - 7
+        access: rw
+      conf1.sw_dtr:
+        bit: 20
+        access: rw
+      conf1.txfifo_empty_thrhd:
+        bits:
+        - 11
+        - 15
+        access: rw
+      date.date:
+        bits:
+        - 0
+        - 31
+        access: rw
+      fifo.rxfifo_rd_byte:
+        bits:
+        - 0
+        - 7
+        access: rw
+      fsm_status.st_urx_out:
+        bits:
+        - 0
+        - 3
+        access: ro
+      fsm_status.st_utx_out:
+        bits:
+        - 4
+        - 7
+        access: ro
+      hwfc_conf_sync.rx_flow_en:
+        bit: 8
+        access: rw
+      hwfc_conf_sync.rx_flow_thrhd:
+        bits:
+        - 3
+        - 7
+        access: rw
+      id.id:
+        bits:
+        - 0
+        - 31
+        access: rw
+      idle_conf_sync.rx_idle_thrhd:
+        bits:
+        - 0
+        - 9
+        access: rw
+      idle_conf_sync.tx_idle_num:
+        bits:
+        - 10
+        - 19
+        access: rw
+      int_clr.at_cmd_char_det_int_clr:
+        bit: 18
+        access: wo
+      int_clr.brk_det_int_clr:
+        bit: 7
+        access: wo
+      int_clr.cts_chg_int_clr:
+        bit: 6
+        access: wo
+      int_clr.dsr_chg_int_clr:
+        bit: 5
+        access: wo
+      int_clr.frm_err_int_clr:
+        bit: 3
+        access: wo
+      int_clr.glitch_det_int_clr:
+        bit: 11
+        access: wo
+      int_clr.parity_err_int_clr:
+        bit: 2
+        access: wo
+      int_clr.rxfifo_full_int_clr:
+        bit: 0
+        access: wo
+      int_clr.rxfifo_ovf_int_clr:
+        bit: 4
+        access: wo
+      int_clr.rxfifo_tout_int_clr:
+        bit: 8
+        access: wo
+      int_clr.sw_xoff_int_clr:
+        bit: 10
+        access: wo
+      int_clr.sw_xon_int_clr:
+        bit: 9
+        access: wo
+      int_clr.tx_brk_done_int_clr:
+        bit: 12
+        access: wo
+      int_clr.tx_brk_idle_done_int_clr:
+        bit: 13
+        access: wo
+      int_clr.tx_done_int_clr:
+        bit: 14
+        access: wo
+      int_clr.txfifo_empty_int_clr:
+        bit: 1
+        access: wo
+      int_clr.wakeup_int_clr:
+        bit: 19
+        access: wo
+      int_ena.at_cmd_char_det_int_ena:
+        bit: 18
+        access: rw
+      int_ena.brk_det_int_ena:
+        bit: 7
+        access: rw
+      int_ena.cts_chg_int_ena:
+        bit: 6
+        access: rw
+      int_ena.dsr_chg_int_ena:
+        bit: 5
+        access: rw
+      int_ena.frm_err_int_ena:
+        bit: 3
+        access: rw
+      int_ena.glitch_det_int_ena:
+        bit: 11
+        access: rw
+      int_ena.parity_err_int_ena:
+        bit: 2
+        access: rw
+      int_ena.rxfifo_full_int_ena:
+        bit: 0
+        access: rw
+      int_ena.rxfifo_ovf_int_ena:
+        bit: 4
+        access: rw
+      int_ena.rxfifo_tout_int_ena:
+        bit: 8
+        access: rw
+      int_ena.sw_xoff_int_ena:
+        bit: 10
+        access: rw
+      int_ena.sw_xon_int_ena:
+        bit: 9
+        access: rw
+      int_ena.tx_brk_done_int_ena:
+        bit: 12
+        access: rw
+      int_ena.tx_brk_idle_done_int_ena:
+        bit: 13
+        access: rw
+      int_ena.tx_done_int_ena:
+        bit: 14
+        access: rw
+      int_ena.txfifo_empty_int_ena:
+        bit: 1
+        access: rw
+      int_ena.wakeup_int_ena:
+        bit: 19
+        access: rw
+      int_raw.at_cmd_char_det_int_raw:
+        bit: 18
+        access: rw
+      int_raw.brk_det_int_raw:
+        bit: 7
+        access: rw
+      int_raw.cts_chg_int_raw:
+        bit: 6
+        access: rw
+      int_raw.dsr_chg_int_raw:
+        bit: 5
+        access: rw
+      int_raw.frm_err_int_raw:
+        bit: 3
+        access: rw
+      int_raw.glitch_det_int_raw:
+        bit: 11
+        access: rw
+      int_raw.parity_err_int_raw:
+        bit: 2
+        access: rw
+      int_raw.rxfifo_full_int_raw:
+        bit: 0
+        access: rw
+      int_raw.rxfifo_ovf_int_raw:
+        bit: 4
+        access: rw
+      int_raw.rxfifo_tout_int_raw:
+        bit: 8
+        access: rw
+      int_raw.sw_xoff_int_raw:
+        bit: 10
+        access: rw
+      int_raw.sw_xon_int_raw:
+        bit: 9
+        access: rw
+      int_raw.tx_brk_done_int_raw:
+        bit: 12
+        access: rw
+      int_raw.tx_brk_idle_done_int_raw:
+        bit: 13
+        access: rw
+      int_raw.tx_done_int_raw:
+        bit: 14
+        access: rw
+      int_raw.txfifo_empty_int_raw:
+        bit: 1
+        access: rw
+      int_raw.wakeup_int_raw:
+        bit: 19
+        access: rw
+      int_st.at_cmd_char_det_int_st:
+        bit: 18
+        access: ro
+      int_st.brk_det_int_st:
+        bit: 7
+        access: ro
+      int_st.cts_chg_int_st:
+        bit: 6
+        access: ro
+      int_st.dsr_chg_int_st:
+        bit: 5
+        access: ro
+      int_st.frm_err_int_st:
+        bit: 3
+        access: ro
+      int_st.glitch_det_int_st:
+        bit: 11
+        access: ro
+      int_st.parity_err_int_st:
+        bit: 2
+        access: ro
+      int_st.rxfifo_full_int_st:
+        bit: 0
+        access: ro
+      int_st.rxfifo_ovf_int_st:
+        bit: 4
+        access: ro
+      int_st.rxfifo_tout_int_st:
+        bit: 8
+        access: ro
+      int_st.sw_xoff_int_st:
+        bit: 10
+        access: ro
+      int_st.sw_xon_int_st:
+        bit: 9
+        access: ro
+      int_st.tx_brk_done_int_st:
+        bit: 12
+        access: ro
+      int_st.tx_brk_idle_done_int_st:
+        bit: 13
+        access: ro
+      int_st.tx_done_int_st:
+        bit: 14
+        access: ro
+      int_st.txfifo_empty_int_st:
+        bit: 1
+        access: ro
+      int_st.wakeup_int_st:
+        bit: 19
+        access: ro
+      mem_conf.mem_force_pd:
+        bit: 25
+        access: rw
+      mem_conf.mem_force_pu:
+        bit: 26
+        access: rw
+      mem_rx_status.rx_sram_raddr:
+        bits:
+        - 3
+        - 7
+        access: ro
+      mem_rx_status.rx_sram_waddr:
+        bits:
+        - 12
+        - 16
+        access: ro
+      mem_tx_status.tx_sram_raddr:
+        bits:
+        - 12
+        - 16
+        access: ro
+      mem_tx_status.tx_sram_waddr:
+        bits:
+        - 3
+        - 7
+        access: ro
+      reg_update.reg_update:
+        bit: 0
+        access: rw
+      rs485_conf_sync.dl0_en:
+        bit: 1
+        access: rw
+      rs485_conf_sync.dl1_en:
+        bit: 2
+        access: rw
+      rx_filt.glitch_filt:
+        bits:
+        - 0
+        - 7
+        access: rw
+      rx_filt.glitch_filt_en:
+        bit: 8
+        access: rw
+      sleep_conf0.wk_char1:
+        bits:
+        - 0
+        - 7
+        access: rw
+      sleep_conf0.wk_char2:
+        bits:
+        - 8
+        - 15
+        access: rw
+      sleep_conf0.wk_char3:
+        bits:
+        - 16
+        - 23
+        access: rw
+      sleep_conf0.wk_char4:
+        bits:
+        - 24
+        - 31
+        access: rw
+      sleep_conf1.wk_char0:
+        bits:
+        - 0
+        - 7
+        access: rw
+      sleep_conf2.active_threshold:
+        bits:
+        - 0
+        - 9
+        access: rw
+      sleep_conf2.rx_wake_up_thrhd:
+        bits:
+        - 13
+        - 17
+        access: rw
+      sleep_conf2.wk_char_mask:
+        bits:
+        - 21
+        - 25
+        access: rw
+      sleep_conf2.wk_char_num:
+        bits:
+        - 18
+        - 20
+        access: rw
+      sleep_conf2.wk_mode_sel:
+        bits:
+        - 26
+        - 27
+        access: rw
+      status.ctsn:
+        bit: 14
+        access: ro
+      status.dsrn:
+        bit: 13
+        access: ro
+      status.dtrn:
+        bit: 29
+        access: ro
+      status.rtsn:
+        bit: 30
+        access: ro
+      status.rxd:
+        bit: 15
+        access: ro
+      status.rxfifo_cnt:
+        bits:
+        - 3
+        - 7
+        access: ro
+      status.txd:
+        bit: 31
+        access: ro
+      status.txfifo_cnt:
+        bits:
+        - 19
+        - 23
+        access: ro
+      swfc_conf0_sync.force_xoff:
+        bit: 20
+        access: rw
+      swfc_conf0_sync.force_xon:
+        bit: 19
+        access: rw
+      swfc_conf0_sync.send_xoff:
+        bit: 22
+        access: rw
+      swfc_conf0_sync.send_xon:
+        bit: 21
+        access: rw
+      swfc_conf0_sync.sw_flow_con_en:
+        bit: 17
+        access: rw
+      swfc_conf0_sync.xoff_char:
+        bits:
+        - 8
+        - 15
+        access: rw
+      swfc_conf0_sync.xon_char:
+        bits:
+        - 0
+        - 7
+        access: rw
+      swfc_conf0_sync.xon_xoff_still_send:
+        bit: 16
+        access: rw
+      swfc_conf0_sync.xonoff_del:
+        bit: 18
+        access: rw
+      swfc_conf1.xoff_threshold:
+        bits:
+        - 11
+        - 15
+        access: rw
+      swfc_conf1.xon_threshold:
+        bits:
+        - 3
+        - 7
+        access: rw
+      tout_conf_sync.rx_tout_en:
+        bit: 0
+        access: rw
+      tout_conf_sync.rx_tout_flow_dis:
+        bit: 1
+        access: rw
+      tout_conf_sync.rx_tout_thrhd:
+        bits:
+        - 2
+        - 11
+        access: rw
+      txbrk_conf_sync.tx_brk_num:
+        bits:
+        - 0
+        - 7
+        access: rw
+  lp_wdt:
+    registers:
+      config0:
+        offset: 0
+      config1:
+        offset: 4
+      config2:
+        offset: 8
+      config3:
+        offset: 12
+      config4:
+        offset: 16
+      date:
+        offset: '0x03FC'
+      feed:
+        offset: 20
+      int_clr:
+        offset: 48
+      int_ena:
+        offset: 44
+      int_raw:
+        offset: 36
+      int_st:
+        offset: 40
+      swd_config:
+        offset: 28
+      swd_wprotect:
+        offset: 32
+      wprotect:
+        offset: 24
+    fields:
+      config0.wdt_appcpu_reset_en:
+        bit: 10
+        access: rw
+      config0.wdt_chip_reset_en:
+        bit: 8
+        access: rw
+      config0.wdt_chip_reset_width:
+        bits:
+        - 0
+        - 7
+        access: rw
+      config0.wdt_cpu_reset_length:
+        bits:
+        - 16
+        - 18
+        access: rw
+      config0.wdt_en:
+        bit: 31
+        access: rw
+      config0.wdt_flashboot_mod_en:
+        bit: 12
+        access: rw
+      config0.wdt_pause_in_slp:
+        bit: 9
+        access: rw
+      config0.wdt_procpu_reset_en:
+        bit: 11
+        access: rw
+      config0.wdt_stg0:
+        bits:
+        - 28
+        - 30
+        access: rw
+      config0.wdt_stg1:
+        bits:
+        - 25
+        - 27
+        access: rw
+      config0.wdt_stg2:
+        bits:
+        - 22
+        - 24
+        access: rw
+      config0.wdt_stg3:
+        bits:
+        - 19
+        - 21
+        access: rw
+      config0.wdt_sys_reset_length:
+        bits:
+        - 13
+        - 15
+        access: rw
+      config1.wdt_stg0_hold:
+        bits:
+        - 0
+        - 31
+        access: rw
+      config2.wdt_stg1_hold:
+        bits:
+        - 0
+        - 31
+        access: rw
+      config3.wdt_stg2_hold:
+        bits:
+        - 0
+        - 31
+        access: rw
+      config4.wdt_stg3_hold:
+        bits:
+        - 0
+        - 31
+        access: rw
+      date.clk_en:
+        bit: 31
+        access: rw
+      date.lp_wdt_date:
+        bits:
+        - 0
+        - 30
+        access: rw
+      feed.rtc_wdt_feed:
+        bit: 31
+        access: wo
+      int_clr.lp_wdt_int_clr:
+        bit: 31
+        access: wo
+      int_clr.super_wdt_int_clr:
+        bit: 30
+        access: wo
+      int_ena.lp_wdt_int_ena:
+        bit: 31
+        access: rw
+      int_ena.super_wdt_int_ena:
+        bit: 30
+        access: rw
+      int_raw.lp_wdt_int_raw:
+        bit: 31
+        access: rw
+      int_raw.super_wdt_int_raw:
+        bit: 30
+        access: rw
+      int_st.lp_wdt_int_st:
+        bit: 31
+        access: ro
+      int_st.super_wdt_int_st:
+        bit: 30
+        access: ro
+      swd_config.swd_auto_feed_en:
+        bit: 18
+        access: rw
+      swd_config.swd_disable:
+        bit: 30
+        access: rw
+      swd_config.swd_feed:
+        bit: 31
+        access: wo
+      swd_config.swd_reset_flag:
+        bit: 0
+        access: ro
+      swd_config.swd_rst_flag_clr:
+        bit: 19
+        access: wo
+      swd_config.swd_signal_width:
+        bits:
+        - 20
+        - 29
+        access: rw
+      swd_wprotect.swd_wkey:
+        bits:
+        - 0
+        - 31
+        access: rw
+      wprotect.wdt_wkey:
+        bits:
+        - 0
+        - 31
+        access: rw
+  lpperi:
+    registers:
+      bus_timeout:
+        offset: 16
+      bus_timeout_addr:
+        offset: 20
+      bus_timeout_uid:
+        offset: 24
+      clk_en:
+        offset: 0
+      cpu:
+        offset: 12
+      date:
+        offset: '0x03FC'
+      interrupt_source:
+        offset: 32
+      mem_ctrl:
+        offset: 28
+      reset_en:
+        offset: 4
+      rng_data:
+        offset: 8
+    fields:
+      bus_timeout.lp_peri_timeout_int_clear:
+        bit: 30
+        access: wo
+      bus_timeout.lp_peri_timeout_protect_en:
+        bit: 31
+        access: rw
+      bus_timeout.lp_peri_timeout_thres:
+        bits:
+        - 14
+        - 29
+        access: rw
+      bus_timeout_addr.lp_peri_timeout_addr:
+        bits:
+        - 0
+        - 31
+        access: ro
+      bus_timeout_uid.lp_peri_timeout_uid:
+        bits:
+        - 0
+        - 6
+        access: ro
+      clk_en.efuse_ck_en:
+        bit: 30
+        access: rw
+      clk_en.lp_ana_i2c_ck_en:
+        bit: 29
+        access: rw
+      clk_en.lp_cpu_ck_en:
+        bit: 31
+        access: rw
+      clk_en.lp_ext_i2c_ck_en:
+        bit: 28
+        access: rw
+      clk_en.lp_io_ck_en:
+        bit: 27
+        access: rw
+      clk_en.lp_touch_ck_en:
+        bit: 23
+        access: rw
+      clk_en.lp_uart_ck_en:
+        bit: 26
+        access: rw
+      clk_en.otp_dbg_ck_en:
+        bit: 25
+        access: rw
+      clk_en.rng_ck_en:
+        bit: 24
+        access: rw
+      cpu.lpcore_dbgm_unavaliable:
+        bit: 31
+        access: rw
+      date.clk_en:
+        bit: 31
+        access: rw
+      date.lpperi_date:
+        bits:
+        - 0
+        - 30
+        access: rw
+      interrupt_source.lp_interrupt_source:
+        bits:
+        - 0
+        - 5
+        access: ro
+      mem_ctrl.uart_mem_force_pd:
+        bit: 30
+        access: rw
+      mem_ctrl.uart_mem_force_pu:
+        bit: 31
+        access: rw
+      mem_ctrl.uart_wakeup_en:
+        bit: 29
+        access: rw
+      mem_ctrl.uart_wakeup_flag:
+        bit: 1
+        access: rw
+      mem_ctrl.uart_wakeup_flag_clr:
+        bit: 0
+        access: wo
+      reset_en.bus_reset_en:
+        bit: 23
+        access: wo
+      reset_en.efuse_reset_en:
+        bit: 30
+        access: rw
+      reset_en.lp_ana_i2c_reset_en:
+        bit: 29
+        access: rw
+      reset_en.lp_cpu_reset_en:
+        bit: 31
+        access: wo
+      reset_en.lp_ext_i2c_reset_en:
+        bit: 28
+        access: rw
+      reset_en.lp_io_reset_en:
+        bit: 27
+        access: rw
+      reset_en.lp_touch_reset_en:
+        bit: 24
+        access: rw
+      reset_en.lp_uart_reset_en:
+        bit: 26
+        access: rw
+      reset_en.otp_dbg_reset_en:
+        bit: 25
+        access: rw
+      rng_data.rnd_data:
+        bits:
+        - 0
+        - 31
+        access: ro
+peripherals:
+- id: lp_i2c0
+  template: i2c
+  base: '0x600B1800'
+  irq:
+    num: 17
+    name: LP_I2C_IRQHandler
+- id: lp_peri
+  template: lpperi
+  base: '0x600B2800'
+  irq:
+    num: 19
+    name: LP_PERI_TIMEOUT_IRQHandler
+- id: lp_ana_peri
+  template: lp_ana
+  base: '0x600B2C00'
+- id: lp_aon
+  template: lp_aon
+  base: '0x600B1000'
+- id: lp_apm
+  template: lp_apm
+  base: '0x600B3800'
+  irq:
+  - num: 20
+    name: LP_APM_M0_IRQHandler
+  - num: 21
+    name: LP_APM_M1_IRQHandler
+- id: lp_clkrst
+  template: lp_clkrst
+  base: '0x600B0400'
+- id: lp_i2c_ana_mst
+  template: lp_i2c_ana_mst
+  base: '0x600B2400'
+- id: lp_io
+  template: lp_io
+  base: '0x600B2000'
+- id: lp_tee
+  template: lp_tee
+  base: '0x600B3400'
+- id: lp_timer
+  template: lp_timer
+  base: '0x600B0C00'
+  irq:
+    num: 7
+    name: LP_TIMER_IRQHandler
+- id: lp_uart
+  template: lp_uart
+  base: '0x600B1400'
+  irq:
+    num: 16
+    name: LP_UART_IRQHandler
+- id: lp_wdt
+  template: lp_wdt
+  base: '0x600B1C00'
+  irq:
+    num: 18
+    name: LP_WDT_IRQHandler
+pinout:
+- signal: RESET
+interrupts:
+- num: 7
+  name: LP_TIMER_IRQHandler
+- num: 16
+  name: LP_UART_IRQHandler
+- num: 17
+  name: LP_I2C_IRQHandler
+- num: 18
+  name: LP_WDT_IRQHandler
+- num: 19
+  name: LP_PERI_TIMEOUT_IRQHandler
+- num: 20
+  name: LP_APM_M0_IRQHandler
+- num: 21
+  name: LP_APM_M1_IRQHandler

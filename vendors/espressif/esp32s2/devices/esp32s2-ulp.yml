@@ -1,0 +1,1247 @@
+schema: alloy.device.v2.1
+identity:
+  vendor: espressif
+  family: esp32s2
+  device: esp32s2-ulp
+  core:
+    isa: unknown
+    name: rv32imc
+    bits: 32
+    nvic_priority_bits: 4
+  description: 32-bit RISC-V MCU
+provenance:
+  primary: cmsis-svd:esp32s2-ulp.svd
+  authored: auto
+  notes: SVD-extracted skeleton — memory + pinout require enrichment.
+memory:
+- id: flash
+  base: '0x00000000'
+  size: 1B
+  access: rx
+  role: extractor-placeholder
+clock:
+  oscillators:
+    unknown:
+      freq: 0Hz
+      kind: rc-internal
+  domains:
+  - id: sysclk
+    sources:
+    - unknown
+templates:
+  rtc_cntl:
+    registers:
+      cocpu_ctrl:
+        offset: '0x0100'
+      ulp_cp_ctrl:
+        offset: 252
+      ulp_cp_timer:
+        offset: 248
+      ulp_cp_timer_1:
+        offset: '0x0130'
+    fields:
+      cocpu_ctrl.cocpu_clk_fo:
+        bit: 0
+        access: rw
+      cocpu_ctrl.cocpu_done:
+        bit: 25
+        access: rw
+      cocpu_ctrl.cocpu_done_force:
+        bit: 24
+        access: rw
+      cocpu_ctrl.cocpu_sel:
+        bit: 23
+        access: rw
+      cocpu_ctrl.cocpu_shut:
+        bit: 13
+        access: rw
+      cocpu_ctrl.cocpu_shut_2_clk_dis:
+        bits:
+        - 14
+        - 21
+        access: rw
+      cocpu_ctrl.cocpu_shut_reset_en:
+        bit: 22
+        access: rw
+      cocpu_ctrl.cocpu_start_2_intr_en:
+        bits:
+        - 7
+        - 12
+        access: rw
+      cocpu_ctrl.cocpu_start_2_reset_dis:
+        bits:
+        - 1
+        - 6
+        access: rw
+      cocpu_ctrl.cocpu_sw_int_trigger:
+        bit: 26
+        access: wo
+      ulp_cp_ctrl.ulp_cp_clk_fo:
+        bit: 28
+        access: rw
+      ulp_cp_ctrl.ulp_cp_force_start_top:
+        bit: 30
+        access: rw
+      ulp_cp_ctrl.ulp_cp_mem_addr_init:
+        bits:
+        - 0
+        - 10
+        access: rw
+      ulp_cp_ctrl.ulp_cp_mem_addr_size:
+        bits:
+        - 11
+        - 21
+        access: rw
+      ulp_cp_ctrl.ulp_cp_mem_offset_clr:
+        bit: 22
+        access: wo
+      ulp_cp_ctrl.ulp_cp_reset:
+        bit: 29
+        access: rw
+      ulp_cp_ctrl.ulp_cp_start_top:
+        bit: 31
+        access: rw
+      ulp_cp_timer.ulp_cp_gpio_wakeup_clr:
+        bit: 30
+        access: wo
+      ulp_cp_timer.ulp_cp_gpio_wakeup_ena:
+        bit: 29
+        access: rw
+      ulp_cp_timer.ulp_cp_pc_init:
+        bits:
+        - 0
+        - 10
+        access: rw
+      ulp_cp_timer.ulp_cp_slp_timer_en:
+        bit: 31
+        access: rw
+      ulp_cp_timer_1.ulp_cp_timer_slp_cycle:
+        bits:
+        - 8
+        - 31
+        access: rw
+  rtc_i2c:
+    registers:
+      cmd0:
+        offset: 56
+      cmd1:
+        offset: 60
+      cmd10:
+        offset: 96
+      cmd11:
+        offset: 100
+      cmd12:
+        offset: 104
+      cmd13:
+        offset: 108
+      cmd14:
+        offset: 112
+      cmd15:
+        offset: 116
+      cmd2:
+        offset: 64
+      cmd3:
+        offset: 68
+      cmd4:
+        offset: 72
+      cmd5:
+        offset: 76
+      cmd6:
+        offset: 80
+      cmd7:
+        offset: 84
+      cmd8:
+        offset: 88
+      cmd9:
+        offset: 92
+      ctrl:
+        offset: 4
+      data:
+        offset: 52
+      date:
+        offset: 252
+      int_clr:
+        offset: 36
+      int_ena:
+        offset: 48
+      int_raw:
+        offset: 40
+      int_st:
+        offset: 44
+      scl_high:
+        offset: 20
+      scl_low:
+        offset: 0
+      scl_start_period:
+        offset: 28
+      scl_stop_period:
+        offset: 32
+      sda_duty:
+        offset: 24
+      slave_addr:
+        offset: 16
+      status:
+        offset: 8
+      to:
+        offset: 12
+    fields:
+      cmd0.command0:
+        bits:
+        - 0
+        - 13
+        access: rw
+      cmd0.command0_done:
+        bit: 31
+        access: ro
+      cmd1.command1:
+        bits:
+        - 0
+        - 13
+        access: rw
+      cmd1.command1_done:
+        bit: 31
+        access: ro
+      cmd10.command10:
+        bits:
+        - 0
+        - 13
+        access: rw
+      cmd10.command10_done:
+        bit: 31
+        access: ro
+      cmd11.command11:
+        bits:
+        - 0
+        - 13
+        access: rw
+      cmd11.command11_done:
+        bit: 31
+        access: ro
+      cmd12.command12:
+        bits:
+        - 0
+        - 13
+        access: rw
+      cmd12.command12_done:
+        bit: 31
+        access: ro
+      cmd13.command13:
+        bits:
+        - 0
+        - 13
+        access: rw
+      cmd13.command13_done:
+        bit: 31
+        access: ro
+      cmd14.command14:
+        bits:
+        - 0
+        - 13
+        access: rw
+      cmd14.command14_done:
+        bit: 31
+        access: ro
+      cmd15.command15:
+        bits:
+        - 0
+        - 13
+        access: rw
+      cmd15.command15_done:
+        bit: 31
+        access: ro
+      cmd2.command2:
+        bits:
+        - 0
+        - 13
+        access: rw
+      cmd2.command2_done:
+        bit: 31
+        access: ro
+      cmd3.command3:
+        bits:
+        - 0
+        - 13
+        access: rw
+      cmd3.command3_done:
+        bit: 31
+        access: ro
+      cmd4.command4:
+        bits:
+        - 0
+        - 13
+        access: rw
+      cmd4.command4_done:
+        bit: 31
+        access: ro
+      cmd5.command5:
+        bits:
+        - 0
+        - 13
+        access: rw
+      cmd5.command5_done:
+        bit: 31
+        access: ro
+      cmd6.command6:
+        bits:
+        - 0
+        - 13
+        access: rw
+      cmd6.command6_done:
+        bit: 31
+        access: ro
+      cmd7.command7:
+        bits:
+        - 0
+        - 13
+        access: rw
+      cmd7.command7_done:
+        bit: 31
+        access: ro
+      cmd8.command8:
+        bits:
+        - 0
+        - 13
+        access: rw
+      cmd8.command8_done:
+        bit: 31
+        access: ro
+      cmd9.command9:
+        bits:
+        - 0
+        - 13
+        access: rw
+      cmd9.command9_done:
+        bit: 31
+        access: ro
+      ctrl.clk_en:
+        bit: 31
+        access: rw
+      ctrl.clk_gate_en:
+        bit: 29
+        access: rw
+      ctrl.ms_mode:
+        bit: 2
+        access: rw
+      ctrl.reset:
+        bit: 30
+        access: rw
+      ctrl.rx_lsb_first:
+        bit: 5
+        access: rw
+      ctrl.scl_force_out:
+        bit: 1
+        access: rw
+      ctrl.sda_force_out:
+        bit: 0
+        access: rw
+      ctrl.trans_start:
+        bit: 3
+        access: rw
+      ctrl.tx_lsb_first:
+        bit: 4
+        access: rw
+      data.done:
+        bit: 31
+        access: ro
+      data.rdata:
+        bits:
+        - 0
+        - 7
+        access: ro
+      data.slave_tx_data:
+        bits:
+        - 8
+        - 15
+        access: rw
+      date.date:
+        bits:
+        - 0
+        - 27
+        access: rw
+      int_clr.ack_err_int_clr:
+        bit: 5
+        access: wo
+      int_clr.arbitration_lost_int_clr:
+        bit: 1
+        access: wo
+      int_clr.detect_start_int_clr:
+        bit: 8
+        access: wo
+      int_clr.master_tran_comp_int_clr:
+        bit: 2
+        access: wo
+      int_clr.rx_data_int_clr:
+        bit: 6
+        access: wo
+      int_clr.slave_tran_comp_int_clr:
+        bit: 0
+        access: wo
+      int_clr.time_out_int_clr:
+        bit: 4
+        access: wo
+      int_clr.trans_complete_int_clr:
+        bit: 3
+        access: wo
+      int_clr.tx_data_int_clr:
+        bit: 7
+        access: wo
+      int_ena.ack_err_int_ena:
+        bit: 5
+        access: rw
+      int_ena.arbitration_lost_int_ena:
+        bit: 1
+        access: rw
+      int_ena.detect_start_int_ena:
+        bit: 8
+        access: rw
+      int_ena.master_tran_comp_int_ena:
+        bit: 2
+        access: rw
+      int_ena.rx_data_int_ena:
+        bit: 6
+        access: rw
+      int_ena.slave_tran_comp_int_ena:
+        bit: 0
+        access: rw
+      int_ena.time_out_int_ena:
+        bit: 4
+        access: rw
+      int_ena.trans_complete_int_ena:
+        bit: 3
+        access: rw
+      int_ena.tx_data_int_ena:
+        bit: 7
+        access: rw
+      int_raw.ack_err_int_raw:
+        bit: 5
+        access: ro
+      int_raw.arbitration_lost_int_raw:
+        bit: 1
+        access: ro
+      int_raw.detect_start_int_raw:
+        bit: 8
+        access: ro
+      int_raw.master_tran_comp_int_raw:
+        bit: 2
+        access: ro
+      int_raw.rx_data_int_raw:
+        bit: 6
+        access: ro
+      int_raw.slave_tran_comp_int_raw:
+        bit: 0
+        access: ro
+      int_raw.time_out_int_raw:
+        bit: 4
+        access: ro
+      int_raw.trans_complete_int_raw:
+        bit: 3
+        access: ro
+      int_raw.tx_data_int_raw:
+        bit: 7
+        access: ro
+      int_st.ack_err_int_st:
+        bit: 5
+        access: ro
+      int_st.arbitration_lost_int_st:
+        bit: 1
+        access: ro
+      int_st.detect_start_int_st:
+        bit: 8
+        access: ro
+      int_st.master_tran_comp_int_st:
+        bit: 2
+        access: ro
+      int_st.rx_data_int_st:
+        bit: 6
+        access: ro
+      int_st.slave_tran_comp_int_st:
+        bit: 0
+        access: ro
+      int_st.time_out_int_st:
+        bit: 4
+        access: ro
+      int_st.trans_complete_int_st:
+        bit: 3
+        access: ro
+      int_st.tx_data_int_st:
+        bit: 7
+        access: ro
+      scl_high.period:
+        bits:
+        - 0
+        - 19
+        access: rw
+      scl_low.period:
+        bits:
+        - 0
+        - 19
+        access: rw
+      scl_start_period.scl_start_period:
+        bits:
+        - 0
+        - 19
+        access: rw
+      scl_stop_period.scl_stop_period:
+        bits:
+        - 0
+        - 19
+        access: rw
+      sda_duty.num:
+        bits:
+        - 0
+        - 19
+        access: rw
+      slave_addr.addr_10bit_en:
+        bit: 31
+        access: rw
+      slave_addr.slave_addr:
+        bits:
+        - 0
+        - 14
+        access: rw
+      status.ack_rec:
+        bit: 0
+        access: ro
+      status.arb_lost:
+        bit: 2
+        access: ro
+      status.bus_busy:
+        bit: 3
+        access: ro
+      status.byte_trans:
+        bit: 5
+        access: ro
+      status.op_cnt:
+        bits:
+        - 6
+        - 7
+        access: ro
+      status.scl_main_state_last:
+        bits:
+        - 24
+        - 26
+        access: ro
+      status.scl_state_last:
+        bits:
+        - 28
+        - 30
+        access: ro
+      status.shift:
+        bits:
+        - 16
+        - 23
+        access: ro
+      status.slave_addressed:
+        bit: 4
+        access: ro
+      status.slave_rw:
+        bit: 1
+        access: ro
+      to.time_out:
+        bits:
+        - 0
+        - 19
+        access: rw
+  rtcio:
+    registers:
+      ext_wakeup0:
+        offset: 220
+      pad_dac1:
+        offset: 200
+      pad_dac2:
+        offset: 204
+      rtc_debug_sel:
+        offset: 128
+      rtc_gpio_enable:
+        offset: 12
+      rtc_gpio_enable_w1tc:
+        offset: 20
+      rtc_gpio_enable_w1ts:
+        offset: 16
+      rtc_gpio_in:
+        offset: 36
+      rtc_gpio_out:
+        offset: 0
+      rtc_gpio_out_w1tc:
+        offset: 8
+      rtc_gpio_out_w1ts:
+        offset: 4
+      rtc_gpio_pin%s:
+        offset: 40
+      rtc_gpio_status:
+        offset: 24
+      rtc_gpio_status_w1tc:
+        offset: 32
+      rtc_gpio_status_w1ts:
+        offset: 28
+      rtc_io_date:
+        offset: '0x01FC'
+      rtc_io_touch_ctrl:
+        offset: 232
+      rtc_pad19:
+        offset: 208
+      rtc_pad20:
+        offset: 212
+      rtc_pad21:
+        offset: 216
+      sar_i2c_io:
+        offset: 228
+      touch_pad%s:
+        offset: 132
+      xtal_32n_pad:
+        offset: 196
+      xtal_32p_pad:
+        offset: 192
+      xtl_ext_ctr:
+        offset: 224
+    fields:
+      ext_wakeup0.sel:
+        bits:
+        - 27
+        - 31
+        access: rw
+      pad_dac1.pdac1_dac:
+        bits:
+        - 3
+        - 10
+        access: rw
+      pad_dac1.pdac1_dac_xpd_force:
+        bit: 12
+        access: rw
+      pad_dac1.pdac1_drv:
+        bits:
+        - 29
+        - 30
+        access: rw
+      pad_dac1.pdac1_fun_ie:
+        bit: 13
+        access: rw
+      pad_dac1.pdac1_fun_sel:
+        bits:
+        - 17
+        - 18
+        access: rw
+      pad_dac1.pdac1_mux_sel:
+        bit: 19
+        access: rw
+      pad_dac1.pdac1_rde:
+        bit: 28
+        access: rw
+      pad_dac1.pdac1_rue:
+        bit: 27
+        access: rw
+      pad_dac1.pdac1_slp_ie:
+        bit: 15
+        access: rw
+      pad_dac1.pdac1_slp_oe:
+        bit: 14
+        access: rw
+      pad_dac1.pdac1_slp_sel:
+        bit: 16
+        access: rw
+      pad_dac1.pdac1_xpd_dac:
+        bit: 11
+        access: rw
+      pad_dac2.pdac2_dac:
+        bits:
+        - 3
+        - 10
+        access: rw
+      pad_dac2.pdac2_dac_xpd_force:
+        bit: 12
+        access: rw
+      pad_dac2.pdac2_drv:
+        bits:
+        - 29
+        - 30
+        access: rw
+      pad_dac2.pdac2_fun_ie:
+        bit: 13
+        access: rw
+      pad_dac2.pdac2_fun_sel:
+        bits:
+        - 17
+        - 18
+        access: rw
+      pad_dac2.pdac2_mux_sel:
+        bit: 19
+        access: rw
+      pad_dac2.pdac2_rde:
+        bit: 28
+        access: rw
+      pad_dac2.pdac2_rue:
+        bit: 27
+        access: rw
+      pad_dac2.pdac2_slp_ie:
+        bit: 15
+        access: rw
+      pad_dac2.pdac2_slp_oe:
+        bit: 14
+        access: rw
+      pad_dac2.pdac2_slp_sel:
+        bit: 16
+        access: rw
+      pad_dac2.pdac2_xpd_dac:
+        bit: 11
+        access: rw
+      rtc_debug_sel.rtc_debug_12m_no_gating:
+        bit: 25
+        access: rw
+      rtc_debug_sel.rtc_debug_sel0:
+        bits:
+        - 0
+        - 4
+        access: rw
+      rtc_debug_sel.rtc_debug_sel1:
+        bits:
+        - 5
+        - 9
+        access: rw
+      rtc_debug_sel.rtc_debug_sel2:
+        bits:
+        - 10
+        - 14
+        access: rw
+      rtc_debug_sel.rtc_debug_sel3:
+        bits:
+        - 15
+        - 19
+        access: rw
+      rtc_debug_sel.rtc_debug_sel4:
+        bits:
+        - 20
+        - 24
+        access: rw
+      rtc_gpio_enable.reg_rtcio_reg_gpio_enable:
+        bits:
+        - 10
+        - 31
+        access: rw
+      rtc_gpio_enable_w1tc.reg_rtcio_reg_gpio_enable_w1tc:
+        bits:
+        - 10
+        - 31
+        access: wo
+      rtc_gpio_enable_w1ts.reg_rtcio_reg_gpio_enable_w1ts:
+        bits:
+        - 10
+        - 31
+        access: wo
+      rtc_gpio_in.gpio_in_next:
+        bits:
+        - 10
+        - 31
+        access: ro
+      rtc_gpio_out.gpio_out_data:
+        bits:
+        - 10
+        - 31
+        access: rw
+      rtc_gpio_out_w1tc.gpio_out_data_w1tc:
+        bits:
+        - 10
+        - 31
+        access: wo
+      rtc_gpio_out_w1ts.gpio_out_data_w1ts:
+        bits:
+        - 10
+        - 31
+        access: wo
+      rtc_gpio_pin%s.gpio_pin_int_type:
+        bits:
+        - 7
+        - 9
+        access: rw
+      rtc_gpio_pin%s.gpio_pin_pad_driver:
+        bit: 2
+        access: rw
+      rtc_gpio_pin%s.gpio_pin_wakeup_enable:
+        bit: 10
+        access: rw
+      rtc_gpio_status.gpio_status_int:
+        bits:
+        - 10
+        - 31
+        access: rw
+      rtc_gpio_status_w1tc.gpio_status_int_w1tc:
+        bits:
+        - 10
+        - 31
+        access: wo
+      rtc_gpio_status_w1ts.gpio_status_int_w1ts:
+        bits:
+        - 10
+        - 31
+        access: wo
+      rtc_io_date.io_date:
+        bits:
+        - 0
+        - 27
+        access: rw
+      rtc_io_touch_ctrl.io_touch_bufmode:
+        bit: 4
+        access: rw
+      rtc_io_touch_ctrl.io_touch_bufsel:
+        bits:
+        - 0
+        - 3
+        access: rw
+      rtc_pad19.drv:
+        bits:
+        - 29
+        - 30
+        access: rw
+      rtc_pad19.fun_ie:
+        bit: 13
+        access: rw
+      rtc_pad19.fun_sel:
+        bits:
+        - 17
+        - 18
+        access: rw
+      rtc_pad19.mux_sel:
+        bit: 19
+        access: rw
+      rtc_pad19.rde:
+        bit: 28
+        access: rw
+      rtc_pad19.rue:
+        bit: 27
+        access: rw
+      rtc_pad19.slp_ie:
+        bit: 15
+        access: rw
+      rtc_pad19.slp_oe:
+        bit: 14
+        access: rw
+      rtc_pad19.slp_sel:
+        bit: 16
+        access: rw
+      rtc_pad20.drv:
+        bits:
+        - 29
+        - 30
+        access: rw
+      rtc_pad20.fun_ie:
+        bit: 13
+        access: rw
+      rtc_pad20.fun_sel:
+        bits:
+        - 17
+        - 18
+        access: rw
+      rtc_pad20.mux_sel:
+        bit: 19
+        access: rw
+      rtc_pad20.rde:
+        bit: 28
+        access: rw
+      rtc_pad20.rue:
+        bit: 27
+        access: rw
+      rtc_pad20.slp_ie:
+        bit: 15
+        access: rw
+      rtc_pad20.slp_oe:
+        bit: 14
+        access: rw
+      rtc_pad20.slp_sel:
+        bit: 16
+        access: rw
+      rtc_pad21.drv:
+        bits:
+        - 29
+        - 30
+        access: rw
+      rtc_pad21.fun_ie:
+        bit: 13
+        access: rw
+      rtc_pad21.fun_sel:
+        bits:
+        - 17
+        - 18
+        access: rw
+      rtc_pad21.mux_sel:
+        bit: 19
+        access: rw
+      rtc_pad21.rde:
+        bit: 28
+        access: rw
+      rtc_pad21.rue:
+        bit: 27
+        access: rw
+      rtc_pad21.slp_ie:
+        bit: 15
+        access: rw
+      rtc_pad21.slp_oe:
+        bit: 14
+        access: rw
+      rtc_pad21.slp_sel:
+        bit: 16
+        access: rw
+      sar_i2c_io.sar_debug_bit_sel:
+        bits:
+        - 23
+        - 27
+        access: rw
+      sar_i2c_io.sar_i2c_scl_sel:
+        bits:
+        - 28
+        - 29
+        access: rw
+      sar_i2c_io.sar_i2c_sda_sel:
+        bits:
+        - 30
+        - 31
+        access: rw
+      touch_pad%s.dac:
+        bits:
+        - 23
+        - 25
+        access: rw
+      touch_pad%s.drv:
+        bits:
+        - 29
+        - 30
+        access: rw
+      touch_pad%s.fun_ie:
+        bit: 13
+        access: rw
+      touch_pad%s.fun_sel:
+        bits:
+        - 17
+        - 18
+        access: rw
+      touch_pad%s.mux_sel:
+        bit: 19
+        access: rw
+      touch_pad%s.rde:
+        bit: 28
+        access: rw
+      touch_pad%s.rue:
+        bit: 27
+        access: rw
+      touch_pad%s.slp_ie:
+        bit: 15
+        access: rw
+      touch_pad%s.slp_oe:
+        bit: 14
+        access: rw
+      touch_pad%s.slp_sel:
+        bit: 16
+        access: rw
+      touch_pad%s.start:
+        bit: 22
+        access: rw
+      touch_pad%s.tie_opt:
+        bit: 21
+        access: rw
+      touch_pad%s.xpd:
+        bit: 20
+        access: rw
+      xtal_32n_pad.x32n_drv:
+        bits:
+        - 29
+        - 30
+        access: rw
+      xtal_32n_pad.x32n_fun_ie:
+        bit: 13
+        access: rw
+      xtal_32n_pad.x32n_fun_sel:
+        bits:
+        - 17
+        - 18
+        access: rw
+      xtal_32n_pad.x32n_mux_sel:
+        bit: 19
+        access: rw
+      xtal_32n_pad.x32n_rde:
+        bit: 28
+        access: rw
+      xtal_32n_pad.x32n_rue:
+        bit: 27
+        access: rw
+      xtal_32n_pad.x32n_slp_ie:
+        bit: 15
+        access: rw
+      xtal_32n_pad.x32n_slp_oe:
+        bit: 14
+        access: rw
+      xtal_32n_pad.x32n_slp_sel:
+        bit: 16
+        access: rw
+      xtal_32p_pad.x32p_drv:
+        bits:
+        - 29
+        - 30
+        access: rw
+      xtal_32p_pad.x32p_fun_ie:
+        bit: 13
+        access: rw
+      xtal_32p_pad.x32p_fun_sel:
+        bits:
+        - 17
+        - 18
+        access: rw
+      xtal_32p_pad.x32p_mux_sel:
+        bit: 19
+        access: rw
+      xtal_32p_pad.x32p_rde:
+        bit: 28
+        access: rw
+      xtal_32p_pad.x32p_rue:
+        bit: 27
+        access: rw
+      xtal_32p_pad.x32p_slp_ie:
+        bit: 15
+        access: rw
+      xtal_32p_pad.x32p_slp_oe:
+        bit: 14
+        access: rw
+      xtal_32p_pad.x32p_slp_sel:
+        bit: 16
+        access: rw
+      xtl_ext_ctr.sel:
+        bits:
+        - 27
+        - 31
+        access: rw
+  sens:
+    registers:
+      sar_cocpu_int_clr:
+        offset: '0x0134'
+      sar_cocpu_int_ena:
+        offset: '0x012C'
+      sar_cocpu_int_raw:
+        offset: '0x0128'
+      sar_cocpu_int_st:
+        offset: '0x0130'
+      sar_i2c_ctrl:
+        offset: 88
+      sar_slave_addr1:
+        offset: 64
+      sar_slave_addr2:
+        offset: 68
+      sar_slave_addr3:
+        offset: 72
+      sar_slave_addr4:
+        offset: 76
+    fields:
+      sar_cocpu_int_clr.cocpu_saradc1_int_clr:
+        bit: 3
+        access: wo
+      sar_cocpu_int_clr.cocpu_saradc2_int_clr:
+        bit: 4
+        access: wo
+      sar_cocpu_int_clr.cocpu_start_int_clr:
+        bit: 6
+        access: wo
+      sar_cocpu_int_clr.cocpu_sw_int_clr:
+        bit: 7
+        access: wo
+      sar_cocpu_int_clr.cocpu_swd_int_clr:
+        bit: 8
+        access: wo
+      sar_cocpu_int_clr.cocpu_touch_active_int_clr:
+        bit: 2
+        access: wo
+      sar_cocpu_int_clr.cocpu_touch_done_int_clr:
+        bit: 0
+        access: wo
+      sar_cocpu_int_clr.cocpu_touch_inactive_int_clr:
+        bit: 1
+        access: wo
+      sar_cocpu_int_clr.cocpu_tsens_int_clr:
+        bit: 5
+        access: wo
+      sar_cocpu_int_ena.cocpu_saradc1_int_ena:
+        bit: 3
+        access: rw
+      sar_cocpu_int_ena.cocpu_saradc2_int_ena:
+        bit: 4
+        access: rw
+      sar_cocpu_int_ena.cocpu_start_int_ena:
+        bit: 6
+        access: rw
+      sar_cocpu_int_ena.cocpu_sw_int_ena:
+        bit: 7
+        access: rw
+      sar_cocpu_int_ena.cocpu_swd_int_ena:
+        bit: 8
+        access: rw
+      sar_cocpu_int_ena.cocpu_touch_active_int_ena:
+        bit: 2
+        access: rw
+      sar_cocpu_int_ena.cocpu_touch_done_int_ena:
+        bit: 0
+        access: rw
+      sar_cocpu_int_ena.cocpu_touch_inactive_int_ena:
+        bit: 1
+        access: rw
+      sar_cocpu_int_ena.cocpu_tsens_int_ena:
+        bit: 5
+        access: rw
+      sar_cocpu_int_raw.cocpu_saradc1_int_raw:
+        bit: 3
+        access: ro
+      sar_cocpu_int_raw.cocpu_saradc2_int_raw:
+        bit: 4
+        access: ro
+      sar_cocpu_int_raw.cocpu_start_int_raw:
+        bit: 6
+        access: ro
+      sar_cocpu_int_raw.cocpu_sw_int_raw:
+        bit: 7
+        access: ro
+      sar_cocpu_int_raw.cocpu_swd_int_raw:
+        bit: 8
+        access: ro
+      sar_cocpu_int_raw.cocpu_touch_active_int_raw:
+        bit: 2
+        access: ro
+      sar_cocpu_int_raw.cocpu_touch_done_int_raw:
+        bit: 0
+        access: ro
+      sar_cocpu_int_raw.cocpu_touch_inactive_int_raw:
+        bit: 1
+        access: ro
+      sar_cocpu_int_raw.cocpu_tsens_int_raw:
+        bit: 5
+        access: ro
+      sar_cocpu_int_st.cocpu_saradc1_int_st:
+        bit: 3
+        access: ro
+      sar_cocpu_int_st.cocpu_saradc2_int_st:
+        bit: 4
+        access: ro
+      sar_cocpu_int_st.cocpu_start_int_st:
+        bit: 6
+        access: ro
+      sar_cocpu_int_st.cocpu_sw_int_st:
+        bit: 7
+        access: ro
+      sar_cocpu_int_st.cocpu_swd_int_st:
+        bit: 8
+        access: ro
+      sar_cocpu_int_st.cocpu_touch_active_int_st:
+        bit: 2
+        access: ro
+      sar_cocpu_int_st.cocpu_touch_done_int_st:
+        bit: 0
+        access: ro
+      sar_cocpu_int_st.cocpu_touch_inactive_int_st:
+        bit: 1
+        access: ro
+      sar_cocpu_int_st.cocpu_tsens_int_st:
+        bit: 5
+        access: ro
+      sar_i2c_ctrl.sar_i2c_ctrl:
+        bits:
+        - 0
+        - 27
+        access: rw
+      sar_i2c_ctrl.sar_i2c_start:
+        bit: 28
+        access: rw
+      sar_i2c_ctrl.sar_i2c_start_force:
+        bit: 29
+        access: rw
+      sar_slave_addr1.i2c_slave_addr0:
+        bits:
+        - 11
+        - 21
+        access: rw
+      sar_slave_addr1.i2c_slave_addr1:
+        bits:
+        - 0
+        - 10
+        access: rw
+      sar_slave_addr1.meas_status:
+        bits:
+        - 22
+        - 29
+        access: ro
+      sar_slave_addr2.i2c_slave_addr2:
+        bits:
+        - 11
+        - 21
+        access: rw
+      sar_slave_addr2.i2c_slave_addr3:
+        bits:
+        - 0
+        - 10
+        access: rw
+      sar_slave_addr3.i2c_slave_addr4:
+        bits:
+        - 11
+        - 21
+        access: rw
+      sar_slave_addr3.i2c_slave_addr5:
+        bits:
+        - 0
+        - 10
+        access: rw
+      sar_slave_addr4.i2c_slave_addr6:
+        bits:
+        - 11
+        - 21
+        access: rw
+      sar_slave_addr4.i2c_slave_addr7:
+        bits:
+        - 0
+        - 10
+        access: rw
+peripherals:
+- id: rtc_io
+  template: rtcio
+  base: '0xA400'
+- id: rtc_cntl
+  template: rtc_cntl
+  base: '0x8000'
+  irq:
+  - num: 6
+    name: RISCV_START_INT_IRQHandler
+  - num: 7
+    name: SW_INT_IRQHandler
+  - num: 8
+    name: SWD_INT_IRQHandler
+- id: rtc_i2c
+  template: rtc_i2c
+  base: '0xEC00'
+- id: sens
+  template: sens
+  base: '0xC800'
+  irq:
+  - num: 0
+    name: TOUCH_DONE_INT_IRQHandler
+  - num: 1
+    name: TOUCH_INACTIVE_INT_IRQHandler
+  - num: 2
+    name: TOUCH_ACTIVE_INT_IRQHandler
+  - num: 3
+    name: SARADC1_DONE_INT_IRQHandler
+  - num: 4
+    name: SARADC2_DONE_INT_IRQHandler
+  - num: 5
+    name: TSENS_DONE_INT_IRQHandler
+pinout:
+- signal: RESET
+interrupts:
+- num: 0
+  name: TOUCH_DONE_INT_IRQHandler
+- num: 1
+  name: TOUCH_INACTIVE_INT_IRQHandler
+- num: 2
+  name: TOUCH_ACTIVE_INT_IRQHandler
+- num: 3
+  name: SARADC1_DONE_INT_IRQHandler
+- num: 4
+  name: SARADC2_DONE_INT_IRQHandler
+- num: 5
+  name: TSENS_DONE_INT_IRQHandler
+- num: 6
+  name: RISCV_START_INT_IRQHandler
+- num: 7
+  name: SW_INT_IRQHandler
+- num: 8
+  name: SWD_INT_IRQHandler
