@@ -16,6 +16,7 @@ provenance:
   notes: ATDF-extracted skeleton — pinout requires enrichment.
   secondary:
   - microchip-overlay:same70
+  - microchip-csp:peripheral/clk_sam_e70/config/clk.py
 memory:
 - id: itcm
   base: 0
@@ -94,11 +95,42 @@ clock:
       kind: crystal-external
       optional: true
   domains:
-  - id: clk_per
+  - id: slck
+    select_register:
+      reg: SUPC.SUPC_CR
+      field: XTALSEL
+      encoding:
+        no_effect: 0
+        crystal_sel: 1
     sources:
-    - oschf
-    - osc32k
-    - extclk
+    - no_effect
+    - crystal_sel
+  - id: mck
+    select_register:
+      reg: PMC.PMC_MCKR
+      field: CSS
+      encoding:
+        slow_clk: 0
+        main_clk: 1
+        plla_clk: 2
+        upll_clk: 3
+    sources:
+    - slow_clk
+    - main_clk
+    - plla_clk
+    - upll_clk
+    prescaler_register:
+      reg: PMC.PMC_MCKR
+      field: PRES
+      encoding:
+        clk_1: 0
+        clk_2: 1
+        clk_4: 2
+        clk_8: 3
+        clk_16: 4
+        clk_32: 5
+        clk_64: 6
+        clk_3: 7
   profiles:
   - id: factory-mainck-rc-4mhz
     kind: post-reset
@@ -17739,10 +17771,10 @@ templates:
         bit: 1
       lsr.byteacc:
         bit: 2
-  twi:
-    max_clock: 1MHz
   adc:
     max_clock: 16MHz
+  twi:
+    max_clock: 1MHz
   i2c:
     max_clock: 1MHz
 peripherals:
