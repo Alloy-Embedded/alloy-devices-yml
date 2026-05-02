@@ -2,23 +2,23 @@ schema: alloy.device.v2.1
 identity:
   vendor: st
   family: stm32f4
-  device: stm32f405rg
+  device: stm32f407iehx
   core:
     isa: armv7e-m
     name: cm4
     bits: 32
     nvic_priority_bits: 3
-  description: STM32F405
-  package: lqfp64
+  description: STM32F407
+  package: ufbga176
 provenance:
-  primary: cmsis-svd:STM32F405.svd
+  primary: cmsis-svd:STM32F407.svd
   authored: auto
   notes: SVD-extracted skeleton — memory + pinout require enrichment.
   secondary:
-  - stm32-open-pin-data:STM32F405RGTx.xml
+  - stm32-open-pin-data:STM32F407I(E-G)Hx.xml
   - stm32-overlay:stm32f4
-  - stm32-tier:stm32f405rg
-  - stm32-cubemx:STM32F405RGTx.xml
+  - stm32-tier:stm32f407iehx
+  - stm32-cubemx:STM32F407I(E-G)Hx.xml
 memory:
 - id: flash
   base: '0x8000000'
@@ -20905,12 +20905,236 @@ peripherals:
   irq:
     num: 78
     name: DCMI_IRQHandler
+  ip_version: cci_v1_0_Cube
+  pin_options:
+    d0:
+    - pin: PA9
+    - pin: PC6
+    - pin: PH9
+    d1:
+    - pin: PA10
+    - pin: PC7
+    - pin: PH10
+    d10:
+    - pin: PB5
+    - pin: PI3
+    d11:
+    - pin: PD2
+    - pin: PH15
+    d12:
+    - pin: PF11
+    d13:
+    - pin: PG15
+    - pin: PI0
+    d2:
+    - pin: PE0
+    - pin: PC8
+    - pin: PH11
+    d3:
+    - pin: PE1
+    - pin: PC9
+    - pin: PH12
+    d4:
+    - pin: PE4
+    - pin: PC11
+    - pin: PH14
+    d5:
+    - pin: PB6
+    - pin: PI4
+    d6:
+    - pin: PB8
+    - pin: PE5
+    - pin: PI6
+    d7:
+    - pin: PE6
+    - pin: PB9
+    - pin: PI7
+    d8:
+    - pin: PC10
+    - pin: PI1
+    d9:
+    - pin: PC12
+    - pin: PI2
+    hsync:
+    - pin: PH8
+    - pin: PA4
+    pixclk:
+    - pin: PA6
+    vsync:
+    - pin: PB7
+    - pin: PI5
 - id: fsmc
   template: fsmc
   base: '0xA0000000'
   irq:
     num: 48
     name: FSMC_IRQHandler
+  ip_version: f4_fsmc7_v4_0
+  pin_options:
+    a0:
+    - pin: PF0
+    a1:
+    - pin: PF1
+    a10:
+    - pin: PG0
+    a11:
+    - pin: PG1
+    a12:
+    - pin: PG2
+    a13:
+    - pin: PG3
+    a14:
+    - pin: PG4
+    a15:
+    - pin: PG5
+    a16:
+    - pin: PD11
+    a17:
+    - pin: PD12
+    a18:
+    - pin: PD13
+    a19:
+    - pin: PE3
+    a2:
+    - pin: PF2
+    a20:
+    - pin: PE4
+    a21:
+    - pin: PE5
+    a22:
+    - pin: PE6
+    a23:
+    - pin: PE2
+    a24:
+    - pin: PG13
+    a25:
+    - pin: PG14
+    a3:
+    - pin: PF3
+    a4:
+    - pin: PF4
+    a5:
+    - pin: PF5
+    a6:
+    - pin: PF12
+    a7:
+    - pin: PF13
+    a8:
+    - pin: PF14
+    a9:
+    - pin: PF15
+    ale:
+    - pin: PD12
+    cd:
+    - pin: PF9
+    cle:
+    - pin: PD11
+    clk:
+    - pin: PD3
+    d0:
+    - pin: PD14
+    d1:
+    - pin: PD15
+    d10:
+    - pin: PE13
+    d11:
+    - pin: PE14
+    d12:
+    - pin: PE15
+    d13:
+    - pin: PD8
+    d14:
+    - pin: PD9
+    d15:
+    - pin: PD10
+    d2:
+    - pin: PD0
+    d3:
+    - pin: PD1
+    d4:
+    - pin: PE7
+    d5:
+    - pin: PE8
+    d6:
+    - pin: PE9
+    d7:
+    - pin: PE10
+    d8:
+    - pin: PE11
+    d9:
+    - pin: PE12
+    da0:
+    - pin: PD14
+    da1:
+    - pin: PD15
+    da10:
+    - pin: PE13
+    da11:
+    - pin: PE14
+    da12:
+    - pin: PE15
+    da13:
+    - pin: PD8
+    da14:
+    - pin: PD9
+    da15:
+    - pin: PD10
+    da2:
+    - pin: PD0
+    da3:
+    - pin: PD1
+    da4:
+    - pin: PE7
+    da5:
+    - pin: PE8
+    da6:
+    - pin: PE9
+    da7:
+    - pin: PE10
+    da8:
+    - pin: PE11
+    da9:
+    - pin: PE12
+    int2:
+    - pin: PG6
+    int3:
+    - pin: PG7
+    intr:
+    - pin: PF10
+    nbl0:
+    - pin: PE0
+    nbl1:
+    - pin: PE1
+    nce2:
+    - pin: PD7
+    nce3:
+    - pin: PG9
+    nce4_1:
+    - pin: PG10
+    nce4_2:
+    - pin: PG11
+    ne1:
+    - pin: PD7
+    ne2:
+    - pin: PG9
+    ne3:
+    - pin: PG10
+    ne4:
+    - pin: PG12
+    niord:
+    - pin: PF6
+    niowr:
+    - pin: PF8
+    nl:
+    - pin: PB7
+    noe:
+    - pin: PD4
+    nreg:
+    - pin: PF7
+    nwait:
+    - pin: PD6
+    nwe:
+    - pin: PD5
 - id: dbg
   template: dbg
   base: '0xE0042000'
@@ -21028,17 +21252,17 @@ peripherals:
   ip_version: spi2s1_v2_2_Cube
   pin_options:
     miso:
-    - pin: PA6
     - pin: PB4
+    - pin: PA6
     mosi:
-    - pin: PA7
     - pin: PB5
+    - pin: PA7
     nss:
-    - pin: PA4
     - pin: PA15
+    - pin: PA4
     sck:
-    - pin: PA5
     - pin: PB3
+    - pin: PA5
 - id: spi2
   template: spi
   base: '0x40003800'
@@ -21048,17 +21272,21 @@ peripherals:
     name: SPI2_IRQHandler
   pin_options:
     miso:
+    - pin: PI2
     - pin: PC2
     - pin: PB14
     mosi:
+    - pin: PI3
     - pin: PC3
     - pin: PB15
     nss:
-    - pin: PB12
     - pin: PB9
+    - pin: PI0
+    - pin: PB12
     sck:
-    - pin: PB10
+    - pin: PI1
     - pin: PB13
+    - pin: PB10
 - id: spi3
   template: spi
   base: '0x40003C00'
@@ -21068,17 +21296,17 @@ peripherals:
     name: SPI3_IRQHandler
   pin_options:
     miso:
-    - pin: PC11
     - pin: PB4
+    - pin: PC11
     mosi:
-    - pin: PC12
     - pin: PB5
+    - pin: PC12
     nss:
-    - pin: PA4
     - pin: PA15
+    - pin: PA4
     sck:
-    - pin: PC10
     - pin: PB3
+    - pin: PC10
 - id: i2s2ext
   template: spi
   base: '0x40003400'
@@ -21145,13 +21373,24 @@ peripherals:
   ip_version: aditf2_v1_1_Cube
   pin_options:
     exti11:
-    - pin: PB11
-    - pin: PA11
+    - pin: PG11
     - pin: PC11
+    - pin: PA11
+    - pin: PI11
+    - pin: PH11
+    - pin: PD11
+    - pin: PE11
+    - pin: PF11
+    - pin: PB11
     exti15:
-    - pin: PC15-OSC32_OUT
-    - pin: PB15
     - pin: PA15
+    - pin: PG15
+    - pin: PH15
+    - pin: PC15-OSC32_OUT
+    - pin: PD15
+    - pin: PF15
+    - pin: PE15
+    - pin: PB15
     in0:
     - pin: PA0-WKUP
     in1:
@@ -21263,13 +21502,24 @@ peripherals:
     name: ADC_IRQHandler
   pin_options:
     exti11:
-    - pin: PB11
-    - pin: PA11
+    - pin: PG11
     - pin: PC11
+    - pin: PA11
+    - pin: PI11
+    - pin: PH11
+    - pin: PD11
+    - pin: PE11
+    - pin: PF11
+    - pin: PB11
     exti15:
-    - pin: PC15-OSC32_OUT
-    - pin: PB15
     - pin: PA15
+    - pin: PG15
+    - pin: PH15
+    - pin: PC15-OSC32_OUT
+    - pin: PD15
+    - pin: PF15
+    - pin: PE15
+    - pin: PB15
     in0:
     - pin: PA0-WKUP
     in1:
@@ -21361,13 +21611,24 @@ peripherals:
     name: ADC_IRQHandler
   pin_options:
     exti11:
-    - pin: PB11
-    - pin: PA11
+    - pin: PG11
     - pin: PC11
+    - pin: PA11
+    - pin: PI11
+    - pin: PH11
+    - pin: PD11
+    - pin: PE11
+    - pin: PF11
+    - pin: PB11
     exti15:
-    - pin: PC15-OSC32_OUT
-    - pin: PB15
     - pin: PA15
+    - pin: PG15
+    - pin: PH15
+    - pin: PC15-OSC32_OUT
+    - pin: PD15
+    - pin: PF15
+    - pin: PE15
+    - pin: PB15
     in0:
     - pin: PA0-WKUP
     in1:
@@ -21380,10 +21641,26 @@ peripherals:
     - pin: PC2
     in13:
     - pin: PC3
+    in14:
+    - pin: PF4
+    in15:
+    - pin: PF5
     in2:
     - pin: PA2
     in3:
     - pin: PA3
+    in4:
+    - pin: PF6
+    in5:
+    - pin: PF7
+    in6:
+    - pin: PF8
+    in7:
+    - pin: PF9
+    in8:
+    - pin: PF10
+    in9:
+    - pin: PF3
   external_triggers:
     regular:
     - source: tim1_cc1
@@ -21444,9 +21721,18 @@ peripherals:
   pin_options:
     ck:
     - pin: PC8
+    - pin: PG7
+    cts:
+    - pin: PG13
+    - pin: PG15
+    rts:
+    - pin: PG12
+    - pin: PG8
     rx:
+    - pin: PG9
     - pin: PC7
     tx:
+    - pin: PG14
     - pin: PC6
 - id: usart1
   template: usart
@@ -21463,11 +21749,11 @@ peripherals:
     rts:
     - pin: PA12
     rx:
-    - pin: PA10
     - pin: PB7
+    - pin: PA10
     tx:
-    - pin: PA9
     - pin: PB6
+    - pin: PA9
 - id: usart2
   template: usart
   base: '0x40004400'
@@ -21477,14 +21763,19 @@ peripherals:
     name: USART2_IRQHandler
   pin_options:
     ck:
+    - pin: PD7
     - pin: PA4
     cts:
+    - pin: PD3
     - pin: PA0-WKUP
     rts:
+    - pin: PD4
     - pin: PA1
     rx:
+    - pin: PD6
     - pin: PA3
     tx:
+    - pin: PD5
     - pin: PA2
 - id: usart3
   template: usart
@@ -21495,18 +21786,23 @@ peripherals:
     name: USART3_IRQHandler
   pin_options:
     ck:
-    - pin: PB12
     - pin: PC12
+    - pin: PD10
+    - pin: PB12
     cts:
+    - pin: PD11
     - pin: PB13
     rts:
+    - pin: PD12
     - pin: PB14
     rx:
-    - pin: PB11
     - pin: PC11
+    - pin: PD9
+    - pin: PB11
     tx:
-    - pin: PB10
     - pin: PC10
+    - pin: PD8
+    - pin: PB10
 - id: dac
   template: dac
   base: '0x40007400'
@@ -21516,9 +21812,15 @@ peripherals:
   ip_version: dacif_v1_1_Cube
   pin_options:
     exti9:
-    - pin: PC9
-    - pin: PA9
     - pin: PB9
+    - pin: PG9
+    - pin: PI9
+    - pin: PA9
+    - pin: PC9
+    - pin: PF9
+    - pin: PH9
+    - pin: PE9
+    - pin: PD9
     out1:
     - pin: PA4
     out2:
@@ -21541,10 +21843,13 @@ peripherals:
   pin_options:
     scl:
     - pin: PA8
+    - pin: PH7
     sda:
     - pin: PC9
+    - pin: PH8
     smba:
     - pin: PA9
+    - pin: PH9
 - id: i2c2
   template: i2c
   base: '0x40005800'
@@ -21556,10 +21861,16 @@ peripherals:
     name: I2C2_ER_IRQHandler
   pin_options:
     scl:
+    - pin: PF1
+    - pin: PH4
     - pin: PB10
     sda:
+    - pin: PF0
+    - pin: PH5
     - pin: PB11
     smba:
+    - pin: PF2
+    - pin: PH6
     - pin: PB12
 - id: i2c1
   template: i2c
@@ -21572,11 +21883,11 @@ peripherals:
     name: I2C1_ER_IRQHandler
   pin_options:
     scl:
-    - pin: PB6
     - pin: PB8
+    - pin: PB6
     sda:
-    - pin: PB7
     - pin: PB9
+    - pin: PB7
     smba:
     - pin: PB5
 - id: iwdg
@@ -21602,6 +21913,8 @@ peripherals:
   pin_options:
     af1:
     - pin: PC13-ANTI_TAMP
+    af2:
+    - pin: PI8- ANTI TAMP2
     refin:
     - pin: PB15
 - id: uart4
@@ -21613,11 +21926,11 @@ peripherals:
   ip_version: sci2_v1_2_F4_Cube
   pin_options:
     rx:
-    - pin: PA1
     - pin: PC11
+    - pin: PA1
     tx:
-    - pin: PA0-WKUP
     - pin: PC10
+    - pin: PA0-WKUP
 - id: uart5
   template: uart
   base: '0x40005000'
@@ -21664,25 +21977,34 @@ peripherals:
     bkin:
     - pin: PA6
     - pin: PB12
+    - pin: PE15
     ch1:
     - pin: PA8
+    - pin: PE9
     ch1n:
-    - pin: PA7
+    - pin: PE8
     - pin: PB13
+    - pin: PA7
     ch2:
     - pin: PA9
+    - pin: PE11
     ch2n:
     - pin: PB0
+    - pin: PE10
     - pin: PB14
     ch3:
     - pin: PA10
+    - pin: PE13
     ch3n:
     - pin: PB1
+    - pin: PE12
     - pin: PB15
     ch4:
     - pin: PA11
+    - pin: PE14
     etr:
     - pin: PA12
+    - pin: PE7
 - id: tim8
   template: tim
   base: '0x40010400'
@@ -21698,25 +22020,34 @@ peripherals:
     name: TIM8_CC_IRQHandler
   pin_options:
     bkin:
+    - pin: PI4
     - pin: PA6
     ch1:
+    - pin: PI5
     - pin: PC6
     ch1n:
+    - pin: PH13
     - pin: PA5
     - pin: PA7
     ch2:
+    - pin: PI6
     - pin: PC7
     ch2n:
+    - pin: PH14
     - pin: PB0
     - pin: PB14
     ch3:
+    - pin: PI7
     - pin: PC8
     ch3n:
+    - pin: PH15
     - pin: PB1
     - pin: PB15
     ch4:
+    - pin: PI2
     - pin: PC9
     etr:
+    - pin: PI3
     - pin: PA0-WKUP
 - id: tim2
   template: tim
@@ -21727,12 +22058,12 @@ peripherals:
   ip_version: gptimer2_v2_x_Cube
   pin_options:
     ch1:
+    - pin: PA15
     - pin: PA0-WKUP
     - pin: PA5
-    - pin: PA15
     ch2:
-    - pin: PA1
     - pin: PB3
+    - pin: PA1
     ch3:
     - pin: PA2
     - pin: PB10
@@ -21740,9 +22071,9 @@ peripherals:
     - pin: PA3
     - pin: PB11
     etr:
+    - pin: PA15
     - pin: PA0-WKUP
     - pin: PA5
-    - pin: PA15
 - id: tim3
   template: tim
   base: '0x40000400'
@@ -21752,19 +22083,19 @@ peripherals:
   ip_version: gptimer2_v2_x_Cube
   pin_options:
     ch1:
-    - pin: PA6
-    - pin: PC6
     - pin: PB4
+    - pin: PC6
+    - pin: PA6
     ch2:
-    - pin: PA7
-    - pin: PC7
     - pin: PB5
+    - pin: PC7
+    - pin: PA7
     ch3:
-    - pin: PB0
     - pin: PC8
+    - pin: PB0
     ch4:
-    - pin: PB1
     - pin: PC9
+    - pin: PB1
     etr:
     - pin: PD2
 - id: tim4
@@ -21777,12 +22108,18 @@ peripherals:
   pin_options:
     ch1:
     - pin: PB6
+    - pin: PD12
     ch2:
     - pin: PB7
+    - pin: PD13
     ch3:
     - pin: PB8
+    - pin: PD14
     ch4:
     - pin: PB9
+    - pin: PD15
+    etr:
+    - pin: PE0
 - id: tim5
   template: tim
   base: '0x40000C00'
@@ -21792,12 +22129,16 @@ peripherals:
   ip_version: gptimer2_v2_x_Cube
   pin_options:
     ch1:
+    - pin: PH10
     - pin: PA0-WKUP
     ch2:
+    - pin: PH11
     - pin: PA1
     ch3:
+    - pin: PH12
     - pin: PA2
     ch4:
+    - pin: PI0
     - pin: PA3
 - id: tim9
   template: tim
@@ -21808,8 +22149,10 @@ peripherals:
   ip_version: gptimer2_v2_x_Cube
   pin_options:
     ch1:
+    - pin: PE5
     - pin: PA2
     ch2:
+    - pin: PE6
     - pin: PA3
 - id: tim12
   template: tim
@@ -21820,8 +22163,10 @@ peripherals:
     name: TIM8_BRK_TIM12_IRQHandler
   pin_options:
     ch1:
+    - pin: PH6
     - pin: PB14
     ch2:
+    - pin: PH9
     - pin: PB15
 - id: tim10
   template: tim
@@ -21833,6 +22178,7 @@ peripherals:
   pin_options:
     ch1:
     - pin: PB8
+    - pin: PF6
 - id: tim13
   template: tim
   base: '0x40001C00'
@@ -21842,6 +22188,7 @@ peripherals:
     name: TIM8_UP_TIM13_IRQHandler
   pin_options:
     ch1:
+    - pin: PF8
     - pin: PA6
 - id: tim14
   template: tim
@@ -21852,6 +22199,7 @@ peripherals:
     name: TIM8_TRG_COM_TIM14_IRQHandler
   pin_options:
     ch1:
+    - pin: PF9
     - pin: PA7
 - id: tim11
   template: tim
@@ -21863,6 +22211,7 @@ peripherals:
   pin_options:
     ch1:
     - pin: PB9
+    - pin: PF7
 - id: tim6
   template: tim
   base: '0x40001000'
@@ -21930,11 +22279,15 @@ peripherals:
   ip_version: bxcan1_v1_1_Cube
   pin_options:
     rx:
-    - pin: PA11
     - pin: PB8
+    - pin: PD0
+    - pin: PA11
+    - pin: PI9
     tx:
-    - pin: PA12
     - pin: PB9
+    - pin: PA12
+    - pin: PD1
+    - pin: PH13
 - id: can2
   template: can
   base: '0x40006800'
@@ -21950,11 +22303,11 @@ peripherals:
     name: CAN2_SCE_IRQHandler
   pin_options:
     rx:
-    - pin: PB12
     - pin: PB5
+    - pin: PB12
     tx:
-    - pin: PB13
     - pin: PB6
+    - pin: PB13
 - id: flash
   template: flash
   base: '0x40023C00'
@@ -22055,160 +22408,325 @@ peripherals:
   template: scb
   base: '0xE000E008'
 pinout:
-- signal: VBAT
-  pin: 1
-  constraints:
-  - power
-- signal: PC13-ANTI_TAMP
-  pin: 2
-- signal: PC14-OSC32_IN
-  pin: 3
-- signal: PC15-OSC32_OUT
-  pin: 4
-- signal: PH0-OSC_IN
-  pin: 5
-- signal: PH1-OSC_OUT
-  pin: 6
-- signal: NRST
-  pin: 7
-  constraints:
-  - reset
-- signal: PC0
-  pin: 8
-- signal: PC1
-  pin: 9
-- signal: PC2
-  pin: 10
-- signal: PC3
-  pin: 11
-- signal: VSSA
-  pin: 12
-  constraints:
-  - power
-- signal: VDDA
-  pin: 13
-  constraints:
-  - power
-- signal: PA0-WKUP
-  pin: 14
-- signal: PA1
-  pin: 15
-- signal: PA2
-  pin: 16
-- signal: PA3
-  pin: 17
-- signal: VSS
-  pin: 18
-  constraints:
-  - power
-- signal: VDD
-  pin: 19
-  constraints:
-  - power
-- signal: PA4
-  pin: 20
-- signal: PA5
-  pin: 21
-- signal: PA6
-  pin: 22
-- signal: PA7
-  pin: 23
-- signal: PC4
-  pin: 24
-- signal: PC5
-  pin: 25
-- signal: PB0
-  pin: 26
-- signal: PB1
-  pin: 27
-- signal: PB2
-  pin: 28
-- signal: PB10
-  pin: 29
-- signal: PB11
-  pin: 30
-- signal: VCAP_1
-  pin: 31
-  constraints:
-  - power
-- signal: VDD
-  pin: 32
-  constraints:
-  - power
-- signal: PB12
-  pin: 33
-- signal: PB13
-  pin: 34
-- signal: PB14
-  pin: 35
-- signal: PB15
-  pin: 36
-- signal: PC6
-  pin: 37
-- signal: PC7
-  pin: 38
-- signal: PC8
-  pin: 39
-- signal: PC9
-  pin: 40
-- signal: PA8
-  pin: 41
-- signal: PA9
-  pin: 42
-- signal: PA10
-  pin: 43
-- signal: PA11
-  pin: 44
-- signal: PA12
-  pin: 45
-- signal: PA13
-  pin: 46
-- signal: VCAP_2
-  pin: 47
-  constraints:
-  - power
-- signal: VDD
-  pin: 48
-  constraints:
-  - power
-- signal: PA14
-  pin: 49
-- signal: PA15
-  pin: 50
-- signal: PC10
-  pin: 51
-- signal: PC11
-  pin: 52
-- signal: PC12
-  pin: 53
-- signal: PD2
-  pin: 54
-- signal: PB3
-  pin: 55
-- signal: PB4
-  pin: 56
+- signal: PE3
+- signal: PE2
+- signal: PE1
+- signal: PE0
+- signal: PB8
 - signal: PB5
-  pin: 57
-- signal: PB6
-  pin: 58
+- signal: PG14
+- signal: PG13
+- signal: PB4
+- signal: PB3
+- signal: PD7
+- signal: PC12
+- signal: PA15
+- signal: PA14
+- signal: PA13
+- signal: PE4
+- signal: PE5
+- signal: PE6
+- signal: PB9
 - signal: PB7
-  pin: 59
+- signal: PB6
+- signal: PG15
+- signal: PG12
+- signal: PG11
+- signal: PG10
+- signal: PD6
+- signal: PD0
+- signal: PC11
+- signal: PC10
+- signal: PA12
+- signal: VBAT
+  constraints:
+  - power
+- signal: PI7
+- signal: PI6
+- signal: PI5
+- signal: VDD
+  constraints:
+  - power
+- signal: PDR_ON
+- signal: VDD
+  constraints:
+  - power
+- signal: VDD
+  constraints:
+  - power
+- signal: VDD
+  constraints:
+  - power
+- signal: PG9
+- signal: PD5
+- signal: PD1
+- signal: PI3
+- signal: PI2
+- signal: PA11
+- signal: PC13-ANTI_TAMP
+- signal: PI8- ANTI TAMP2
+- signal: PI9
+- signal: PI4
+- signal: VSS
+  constraints:
+  - power
 - signal: BOOT0
-  pin: 60
   constraints:
   - boot
-- signal: PB8
-  pin: 61
-- signal: PB9
-  pin: 62
 - signal: VSS
-  pin: 63
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: PD4
+- signal: PD3
+- signal: PD2
+- signal: PH15
+- signal: PI1
+- signal: PA10
+- signal: PC14-OSC32_IN
+- signal: PF0
+- signal: PI10
+- signal: PI11
+- signal: PH13
+- signal: PH14
+- signal: PI0
+- signal: PA9
+- signal: PC15-OSC32_OUT
+- signal: VSS
   constraints:
   - power
 - signal: VDD
-  pin: 64
   constraints:
   - power
+- signal: PH2
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VCAP_2
+  constraints:
+  - power
+- signal: PC9
+- signal: PA8
+- signal: PH0-OSC_IN
+- signal: VSS
+  constraints:
+  - power
+- signal: VDD
+  constraints:
+  - power
+- signal: PH3
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VDD
+  constraints:
+  - power
+- signal: PC8
+- signal: PC7
+- signal: PH1-OSC_OUT
+- signal: PF2
+- signal: PF1
+- signal: PH4
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VDD
+  constraints:
+  - power
+- signal: PG8
+- signal: PC6
+- signal: NRST
+  constraints:
+  - reset
+- signal: PF3
+- signal: PF4
+- signal: PH5
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VDD
+  constraints:
+  - power
+- signal: VDD
+  constraints:
+  - power
+- signal: PG7
+- signal: PG6
+- signal: PF7
+- signal: PF6
+- signal: PF5
+- signal: VDD
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: PH12
+- signal: PG5
+- signal: PG4
+- signal: PG3
+- signal: PF10
+- signal: PF9
+- signal: PF8
+- signal: BYPASS_REG
+- signal: PH11
+- signal: PH10
+- signal: PD15
+- signal: PG2
+- signal: VSSA
+  constraints:
+  - power
+- signal: PC0
+- signal: PC1
+- signal: PC2
+- signal: PC3
+- signal: PB2
+- signal: PG1
+- signal: VSS
+  constraints:
+  - power
+- signal: VSS
+  constraints:
+  - power
+- signal: VCAP_1
+  constraints:
+  - power
+- signal: PH6
+- signal: PH8
+- signal: PH9
+- signal: PD14
+- signal: PD13
+- signal: VREF-
+  constraints:
+  - power
+- signal: PA1
+- signal: PA0-WKUP
+- signal: PA4
+- signal: PC4
+- signal: PF13
+- signal: PG0
+- signal: VDD
+  constraints:
+  - power
+- signal: VDD
+  constraints:
+  - power
+- signal: VDD
+  constraints:
+  - power
+- signal: PE13
+- signal: PH7
+- signal: PD12
+- signal: PD11
+- signal: PD10
+- signal: VREF+
+  constraints:
+  - power
+- signal: PA2
+- signal: PA6
+- signal: PA5
+- signal: PC5
+- signal: PF12
+- signal: PF15
+- signal: PE8
+- signal: PE9
+- signal: PE11
+- signal: PE14
+- signal: PB12
+- signal: PB13
+- signal: PD9
+- signal: PD8
+- signal: VDDA
+  constraints:
+  - power
+- signal: PA3
+- signal: PA7
+- signal: PB1
+- signal: PB0
+- signal: PF11
+- signal: PF14
+- signal: PE7
+- signal: PE10
+- signal: PE12
+- signal: PE15
+- signal: PB10
+- signal: PB11
+- signal: PB14
+- signal: PB15
 interrupts:
 - num: 0
   name: WWDG_IRQHandler
