@@ -1,0 +1,3286 @@
+schema: alloy.device.v2.1
+identity:
+  vendor: microchip
+  family: atautomotive
+  device: ata5700m322
+  core:
+    isa: avr
+    name: avr-megaavr
+    bits: 8
+provenance:
+  primary: microchip-atdf:ATA5700M322.atdf
+  authored: auto
+  notes: ATDF-extracted skeleton — pinout requires enrichment.
+  secondary:
+  - microchip-overlay:atautomotive
+memory:
+- id: rom
+  base: 0
+  size: 32KB
+  access: rx
+  alias: code
+  address_space: program
+- id: flash
+  base: '0x8000'
+  size: 32KB
+  access: rwx
+  alias: code
+  address_space: program
+- id: signatures
+  base: 0
+  size: 3B
+  access: ro
+- id: fuses
+  base: 0
+  size: 1B
+  access: rw
+- id: lockbits
+  base: 0
+  size: 1B
+  access: rw
+- id: registers
+  base: 0
+  size: 32B
+  access: ro
+- id: mapped_io
+  base: 32
+  size: 480B
+  access: ro
+- id: iram
+  base: '0x200'
+  size: 1KB
+  access: ro
+- id: eeprom
+  base: 0
+  size: 2176B
+  access: rw
+clock:
+  oscillators:
+    oschf:
+      freq: 24MHz
+      kind: rc-internal
+    osc32k:
+      freq: 32kHz
+      kind: rc-internal
+    extclk:
+      freq: 0Hz
+      kind: crystal-external
+      optional: true
+  domains:
+  - id: clk_per
+    sources:
+    - oschf
+    - osc32k
+    - extclk
+  profiles:
+  - id: factory-default
+    kind: post-reset
+    sysclk: 1MHz
+    sysclk_source: internal-rc
+    hclk_hz: 1000000
+    pclk_hz: 1000000
+  - id: avr8-max
+    kind: recommended
+    sysclk: 48MHz
+    sysclk_source: pll
+    hclk_hz: 48000000
+    pclk_hz: 48000000
+templates:
+  aes:
+    registers:
+      aescr:
+        offset: 61
+      aesdpr:
+        offset: '0x17F'
+      aesdr:
+        offset: '0x181'
+      aeskr:
+        offset: '0x180'
+      aessr:
+        offset: 62
+    fields:
+      aescr.aese:
+        bit: 7
+      aescr.aeslkm:
+        bit: 6
+      aescr.aesres:
+        bit: 5
+      aescr.aesxor:
+        bit: 4
+      aescr.aesd:
+        bit: 3
+      aescr.aesim:
+        bit: 2
+      aescr.aeswd:
+        bit: 1
+      aescr.aeswk:
+        bit: 0
+      aessr.aeserf:
+        bit: 7
+      aessr.aesrf:
+        bit: 0
+  clk:
+    registers:
+      clkocr:
+        offset: '0x116'
+      clkod:
+        offset: '0x115'
+      cmocr:
+        offset: 202
+      cmsr:
+        offset: 201
+      frccal:
+        offset: 199
+      mrccal:
+        offset: 198
+      prr0:
+        offset: 58
+      prr1:
+        offset: 33
+      prr2:
+        offset: 34
+      xfuse:
+        offset: 197
+    fields:
+      clkocr.clkoen:
+        bit: 2
+      clkocr.clkos:
+        bits:
+        - 0
+        - 1
+        enum:
+          clk_src: 0
+          clk_frc: 1
+          clk_mrc: 2
+          clk_xto: 3
+      cmocr.frcact:
+        bit: 2
+      cmocr.mrcao:
+        bit: 1
+      cmocr.frcao:
+        bit: 0
+      cmsr.ecf:
+        bit: 0
+      prr0.prtwi1:
+        bit: 7
+      prr0.prcu:
+        bit: 6
+      prr0.prco:
+        bit: 5
+      prr0.prvm:
+        bit: 4
+      prr0.prcrc:
+        bit: 3
+      prr0.prtxdc:
+        bit: 2
+      prr0.prlfrs:
+        bit: 1
+      prr0.prspi:
+        bit: 0
+      prr1.prlfph:
+        bit: 7
+      prr1.prlftp:
+        bit: 6
+      prr1.prlfr:
+        bit: 5
+      prr1.prt5:
+        bit: 4
+      prr1.prt4:
+        bit: 3
+      prr1.prt3:
+        bit: 2
+      prr1.prt2:
+        bit: 1
+      prr1.prt1:
+        bit: 0
+      prr2.prssm:
+        bit: 7
+      prr2.prtm:
+        bit: 6
+      prr2.vxtsdi:
+        bit: 4
+      prr2.prdf:
+        bit: 3
+      prr2.prsf:
+        bit: 2
+      prr2.prtwi2:
+        bit: 1
+      prr2.prspi2:
+        bit: 0
+  cpu:
+    registers:
+      clpr:
+        offset: '0x1E5'
+      cmcr:
+        offset: '0x1E3'
+      cmimr:
+        offset: '0x1E4'
+      dwdr:
+        offset: 81
+      mcucr:
+        offset: 46
+      mcusr:
+        offset: 75
+      smcr:
+        offset: 88
+      sp:
+        offset: 93
+      spmcsr:
+        offset: 87
+      sreg:
+        offset: 95
+    fields:
+      clpr.clpce:
+        bit: 7
+      clpr.cltps:
+        bits:
+        - 3
+        - 5
+        enum:
+          disabled: 0
+          '1': 1
+          '2': 2
+          '4': 3
+          '8': 4
+          '16': 5
+          '32': 6
+          '64': 7
+      clpr.clkps:
+        bits:
+        - 0
+        - 2
+        enum:
+          '1': 0
+          '2': 1
+          '4': 2
+          '8': 3
+          '16': 4
+          '32': 5
+          '64': 6
+          '128': 7
+      cmcr.cmcce:
+        bit: 7
+      cmcr.cmonen:
+        bit: 6
+      cmcr.ccs:
+        bit: 3
+      cmcr.cmm:
+        bits:
+        - 0
+        - 2
+      cmimr.ecie:
+        bit: 0
+      mcucr.ivsel:
+        bit: 7
+      mcucr.trcen:
+        bit: 6
+      mcucr.trcce:
+        bit: 5
+      mcucr.pud:
+        bit: 4
+      mcucr.enps:
+        bit: 3
+      mcucr.spiio:
+        bit: 2
+      mcucr.ivl:
+        bits:
+        - 0
+        - 1
+        enum:
+          '0x3600': 0
+          '0x4000': 1
+          '0x7000': 2
+          '0x8000': 3
+      mcusr.tprf:
+        bit: 5
+      mcusr.dwrf:
+        bit: 4
+      mcusr.wdrf:
+        bit: 3
+      mcusr.extrf:
+        bit: 1
+      mcusr.porf:
+        bit: 0
+      smcr.sm:
+        bits:
+        - 1
+        - 3
+        enum:
+          idle: 0
+          psave: 1
+          epsave: 2
+          pdown: 3
+          epdown: 4
+          poff: 5
+      smcr.se:
+        bit: 0
+      spmcsr.spmie:
+        bit: 7
+      spmcsr.rwwsb:
+        bit: 6
+      spmcsr.flsel:
+        bits:
+        - 3
+        - 5
+        enum:
+          rom_flash: 0
+          lockbits: 8
+          security_fuses: 24
+          eeprom_protection_fuse_low: 40
+          valr_0x07: 56
+      spmcsr.pgwrt:
+        bit: 2
+      spmcsr.pgers:
+        bit: 1
+      spmcsr.selfprgen:
+        bit: 0
+      sreg.i:
+        bit: 7
+      sreg.t:
+        bit: 6
+      sreg.h:
+        bit: 5
+      sreg.s:
+        bit: 4
+      sreg.v:
+        bit: 3
+      sreg.n:
+        bit: 2
+      sreg.z:
+        bit: 1
+      sreg.c:
+        bit: 0
+  crc:
+    registers:
+      crccr:
+        offset: '0x145'
+      crcdir:
+        offset: '0x1E0'
+      crcdor:
+        offset: '0x146'
+    fields:
+      crccr.reflo:
+        bit: 2
+      crccr.refli:
+        bit: 1
+      crccr.crcrs:
+        bit: 0
+  debounce:
+    registers:
+      dbcr:
+        offset: '0x152'
+      dbenb:
+        offset: '0x154'
+      dbenc:
+        offset: '0x155'
+      dbend:
+        offset: '0x164'
+      dbtc:
+        offset: '0x153'
+    fields:
+      dbcr.dbha:
+        bit: 3
+      dbcr.dbtms:
+        bit: 2
+      dbcr.dbcs:
+        bit: 1
+      dbcr.dbmd:
+        bit: 0
+  debug:
+    registers:
+      dbgsw:
+        offset: '0x156'
+      dbondr:
+        offset: '0x1E7'
+      trcdr:
+        offset: 255
+      trcid:
+        offset: 252
+    fields:
+      dbgsw.atest:
+        bit: 7
+      dbgsw.cpbf:
+        bit: 6
+      dbgsw.cpbfos:
+        bits:
+        - 4
+        - 5
+        enum:
+          disabled: 0
+          pb0: 1
+          pb3: 2
+          pc1: 3
+      dbgsw.dbggs:
+        bits:
+        - 0
+        - 3
+      dbondr.btest6:
+        bit: 6
+      dbondr.btest5:
+        bit: 5
+      dbondr.btest4:
+        bit: 4
+      dbondr.agnd_lf:
+        bit: 3
+      dbondr.iso_gnd:
+        bit: 2
+      dbondr.agnd_bb:
+        bit: 1
+      dbondr.bbesd:
+        bit: 0
+  dfifo:
+    registers:
+      dfc:
+        offset: 218
+      dfd:
+        offset: 216
+      dfi:
+        offset: 217
+      dfl:
+        offset: 213
+      dfrp:
+        offset: 215
+      dfs:
+        offset: 210
+      dfwp:
+        offset: 214
+    fields:
+      dfc.dfdra:
+        bit: 7
+      dfc.dfflc:
+        bits:
+        - 0
+        - 5
+      dfi.dferim:
+        bit: 1
+      dfi.dfflim:
+        bit: 0
+      dfl.dfclr:
+        bit: 7
+      dfl.dffls:
+        bits:
+        - 0
+        - 5
+      dfs.dfofl:
+        bit: 2
+      dfs.dfufl:
+        bit: 1
+      dfs.dfflrf:
+        bit: 0
+  eeprom:
+    registers:
+      eear:
+        offset: 65
+      eecr:
+        offset: 63
+      eecr2:
+        offset: 54
+      eedr:
+        offset: 64
+      eepr:
+        offset: 67
+      eepr1:
+        offset: '0x13B'
+      eepr2:
+        offset: '0x13C'
+      eepr3:
+        offset: '0x13D'
+    fields:
+      eecr.nvmbsy:
+        bit: 7
+      eecr.eepage:
+        bit: 6
+      eecr.eepm:
+        bits:
+        - 4
+        - 5
+        enum:
+          erase_and_write_in_one_operation: 0
+          erase_only: 1
+          write_only: 2
+      eecr.eerie:
+        bit: 3
+      eecr.eemwe:
+        bit: 2
+      eecr.eewe:
+        bit: 1
+      eecr.eere:
+        bit: 0
+      eecr2.e2cf:
+        bit: 7
+      eecr2.e2ff:
+        bit: 6
+      eecr2.e2avf:
+        bit: 5
+      eecr2.e2cim:
+        bit: 1
+      eecr2.eebre:
+        bit: 0
+      eepr.eeap:
+        bits:
+        - 0
+        - 3
+      eepr1.eeps7rd:
+        bit: 7
+      eepr1.eeps7wd:
+        bit: 6
+      eepr1.eeps6rd:
+        bit: 5
+      eepr1.eeps6wd:
+        bit: 4
+      eepr1.eeps5rd:
+        bit: 3
+      eepr1.eeps5wd:
+        bit: 2
+      eepr1.eeps4rd:
+        bit: 1
+      eepr1.eeps4wd:
+        bit: 0
+      eepr2.eeps11rd:
+        bit: 7
+      eepr2.eeps11wd:
+        bit: 6
+      eepr2.eeps10rd:
+        bit: 5
+      eepr2.eeps10wd:
+        bit: 4
+      eepr2.eeps9rd:
+        bit: 3
+      eepr2.eeps9wd:
+        bit: 2
+      eepr2.eeps8rd:
+        bit: 1
+      eepr2.eeps8wd:
+        bit: 0
+      eepr3.eeps12rd:
+        bit: 1
+      eepr3.eeps12wd:
+        bit: 0
+  gpioregs_dvcc:
+    registers:
+      gpior0:
+        offset: 32
+      gpior1:
+        offset: 68
+      gpior2:
+        offset: 69
+  gpioregs_lfvcc:
+    registers:
+      gpior3:
+        offset: '0x182'
+      gpior4:
+        offset: '0x183'
+      gpior5:
+        offset: '0x184'
+      gpior6:
+        offset: '0x185'
+      gpior7:
+        offset: '0x186'
+      gpior8:
+        offset: '0x187'
+  int:
+    registers:
+      eicra:
+        offset: 107
+      eifr:
+        offset: 72
+      eimsk:
+        offset: 71
+      pcicr:
+        offset: 70
+      pcifr:
+        offset: '0x161'
+      pcmsk0:
+        offset: 108
+      pcmsk1:
+        offset: 109
+    fields:
+      eicra.isc1:
+        bits:
+        - 2
+        - 3
+        enum:
+          low_level_of_intx: 0
+          logical_change_of_intx: 1
+          falling_edge_of_intx: 2
+          rising_edge_of_intx: 3
+      eicra.isc0:
+        bits:
+        - 0
+        - 1
+        enum:
+          low_level_of_intx: 0
+          logical_change_of_intx: 1
+          falling_edge_of_intx: 2
+          rising_edge_of_intx: 3
+      eifr.intf1:
+        bit: 1
+      eifr.intf0:
+        bit: 0
+      eimsk.int1:
+        bit: 1
+      eimsk.int0:
+        bit: 0
+      pcicr.pcie1:
+        bit: 1
+      pcicr.pcie0:
+        bit: 0
+      pcifr.pcif1:
+        bit: 1
+      pcifr.pcif0:
+        bit: 0
+      pcmsk0.pcint7:
+        bit: 7
+      pcmsk0.pcint6:
+        bit: 6
+      pcmsk0.pcint5:
+        bit: 5
+      pcmsk0.pcint4:
+        bit: 4
+      pcmsk0.pcint3:
+        bit: 3
+      pcmsk0.pcint2:
+        bit: 2
+      pcmsk0.pcint1:
+        bit: 1
+      pcmsk0.pcint0:
+        bit: 0
+      pcmsk1.pcint15:
+        bit: 7
+      pcmsk1.pcint14:
+        bit: 6
+      pcmsk1.pcint13:
+        bit: 5
+      pcmsk1.pcint12:
+        bit: 4
+      pcmsk1.pcint11:
+        bit: 3
+      pcmsk1.pcint10:
+        bit: 2
+      pcmsk1.pcint9:
+        bit: 1
+      pcmsk1.pcint8:
+        bit: 0
+  led:
+    registers:
+      pdscr:
+        offset: '0x1EF'
+    fields:
+      pdscr.atbsel:
+        bit: 7
+      pdscr.rssisel:
+        bit: 6
+      pdscr.stbtest:
+        bit: 5
+      pdscr.pdsc:
+        bits:
+        - 0
+        - 4
+  lf_fifo:
+    registers:
+      ldfc:
+        offset: '0x1D7'
+      ldfcksw:
+        offset: 73
+      ldfd:
+        offset: 57
+      ldffl:
+        offset: 56
+      ldfim:
+        offset: '0x1D6'
+      ldfrp:
+        offset: '0x1D4'
+      ldfs:
+        offset: '0x1D1'
+      ldfwp:
+        offset: '0x1D3'
+    fields:
+      ldfc.ldfmsb:
+        bit: 6
+      ldfc.ldfflc:
+        bits:
+        - 0
+        - 5
+      ldfcksw.ldfscks:
+        bit: 1
+      ldfcksw.ldfscsw:
+        bit: 0
+      ldffl.ldfclr:
+        bit: 7
+      ldffl.ldffl:
+        bits:
+        - 0
+        - 5
+      ldfim.ldfeim:
+        bit: 1
+      ldfim.ldfflim:
+        bit: 0
+      ldfrp.ldfrp:
+        bits:
+        - 0
+        - 5
+      ldfs.ldfof:
+        bit: 2
+      ldfs.ldfuf:
+        bit: 1
+      ldfs.ldfflr:
+        bit: 0
+      ldfwp.ldfwp:
+        bits:
+        - 0
+        - 5
+  lf_protocol_handler:
+    registers:
+      phbcrr:
+        offset: '0x188'
+      phcrcr:
+        offset: '0x1D9'
+      phcrp:
+        offset: '0x1DC'
+      phcsr:
+        offset: '0x1DE'
+      phcst:
+        offset: '0x1DA'
+      phdfr:
+        offset: '0x1A5'
+      phfr:
+        offset: 59
+      phid0:
+        offset: '0x190'
+      phid0l:
+        offset: '0x194'
+      phid1:
+        offset: '0x195'
+      phid1l:
+        offset: '0x199'
+      phidfr:
+        offset: '0x19A'
+      phimr:
+        offset: '0x1D8'
+      phtblr:
+        offset: '0x1A4'
+      phtcr:
+        offset: 55
+    fields:
+      phcrcr.crcen:
+        bit: 7
+      phcrcr.crcse1:
+        bit: 5
+      phcrcr.crcse0:
+        bit: 4
+      phcrcr.crcfr:
+        bit: 2
+      phfr.phid1f:
+        bit: 5
+      phfr.phid0f:
+        bit: 4
+      phfr.phidff:
+        bit: 3
+      phfr.phdff:
+        bit: 2
+      phfr.phtblf:
+        bit: 1
+      phfr.crcef:
+        bit: 0
+      phimr.phid1im:
+        bit: 5
+      phimr.phid0im:
+        bit: 4
+      phimr.phidfim:
+        bit: 3
+      phimr.phdfim:
+        bit: 2
+      phimr.phtblim:
+        bit: 1
+      phtcr.csm:
+        bit: 7
+      phtcr.cpm:
+        bit: 6
+      phtcr.frfifo:
+        bit: 5
+  lf_receiver:
+    registers:
+      lfcr0:
+        offset: 79
+      lfcr1:
+        offset: 80
+      lfcr2:
+        offset: 90
+      lfcr3:
+        offset: 91
+      lfdsr1:
+        offset: '0x130'
+      lfdsr10:
+        offset: '0x139'
+      lfdsr11:
+        offset: '0x13A'
+      lfdsr2:
+        offset: '0x131'
+      lfdsr3:
+        offset: '0x132'
+      lfdsr4:
+        offset: '0x133'
+      lfdsr5:
+        offset: '0x134'
+      lfdsr6:
+        offset: '0x135'
+      lfdsr7:
+        offset: '0x136'
+      lfdsr8:
+        offset: '0x137'
+      lfdsr9:
+        offset: '0x138'
+      lffr:
+        offset: 60
+      lfimr:
+        offset: '0x18F'
+      lfqc1:
+        offset: '0x1A9'
+      lfqc2:
+        offset: '0x1A8'
+      lfqc3:
+        offset: '0x1A7'
+      lfsrctl:
+        offset: '0x15C'
+      lfsrctm:
+        offset: '0x151'
+      lfstop:
+        offset: '0x1A0'
+      lfsyle:
+        offset: '0x19F'
+      lfsysy:
+        offset: '0x19B'
+    fields:
+      lfcr0.lfrrt:
+        bits:
+        - 6
+        - 7
+        enum:
+          128_us: 0
+          160_us: 1
+          192_us: 2
+          224_us: 3
+      lfcr0.lfmg:
+        bit: 5
+      lfcr0.lfbr:
+        bits:
+        - 3
+        - 4
+        enum:
+          1_95_kbit_s: 0
+          3_90_kbit_s: 1
+          7_81_kbit_s: 2
+      lfcr0.lfce3:
+        bit: 2
+      lfcr0.lfce2:
+        bit: 1
+      lfcr0.lfce1:
+        bit: 0
+      lfcr1.lfre:
+        bit: 7
+      lfcr1.lfpeen:
+        bit: 6
+      lfcr1.adthen:
+        bit: 5
+      lfcr1.fllen:
+        bit: 4
+      lfcr1.armde:
+        bit: 3
+      lfcr1.lffm1:
+        bit: 2
+      lfcr1.rsst:
+        bits:
+        - 0
+        - 1
+        enum:
+          256_us: 0
+          384_us: 1
+          512_us: 2
+          640_us: 3
+      lfcr2.lfvc:
+        bits:
+        - 5
+        - 7
+      lfcr2.lfdamp:
+        bit: 2
+      lfcr2.lfsen:
+        bits:
+        - 0
+        - 1
+        enum:
+          high_sensitivity: 0
+          medium_sensitivity: 1
+          low_sensitivity: 2
+      lfcr3.lfsben:
+        bit: 7
+      lfcr3.lfts:
+        bits:
+        - 4
+        - 6
+        enum:
+          _384_us: 0
+          _768_us: 1
+          1152_us: 2
+          1536_us: 3
+          2304_us: 4
+          3072_us: 5
+          4608_us: 6
+          6144_us: 7
+      lfcr3.lfton:
+        bit: 3
+      lfcr3.lfrcpm:
+        bit: 2
+      lfcr3.lfrcpcen:
+        bit: 1
+      lfcr3.lfrcten:
+        bit: 0
+      lfdsr1.cttha:
+        bits:
+        - 4
+        - 5
+      lfdsr1.hitha:
+        bits:
+        - 2
+        - 3
+      lfdsr1.lotha:
+        bits:
+        - 0
+        - 1
+      lfdsr10.stbth:
+        bits:
+        - 6
+        - 7
+      lfdsr10.fcl:
+        bits:
+        - 0
+        - 5
+      lfdsr11.tinitb:
+        bits:
+        - 4
+        - 7
+      lfdsr11.tinita:
+        bits:
+        - 0
+        - 3
+      lfdsr2.ctthb:
+        bits:
+        - 4
+        - 5
+      lfdsr2.hithb:
+        bits:
+        - 2
+        - 3
+      lfdsr2.lothb:
+        bits:
+        - 0
+        - 1
+      lfdsr3.qcth:
+        bits:
+        - 3
+        - 5
+      lfdsr3.pbdth:
+        bits:
+        - 0
+        - 1
+      lfdsr4.srstc:
+        bits:
+        - 6
+        - 7
+      lfdsr4.sctha:
+        bits:
+        - 3
+        - 5
+      lfdsr4.sdtha:
+        bits:
+        - 0
+        - 2
+      lfdsr5.ssutb:
+        bit: 7
+      lfdsr5.ssuta:
+        bit: 6
+      lfdsr5.scthb:
+        bits:
+        - 3
+        - 5
+      lfdsr5.sdthb:
+        bits:
+        - 0
+        - 2
+      lfdsr6.tods:
+        bits:
+        - 3
+        - 5
+      lfdsr6.todu:
+        bits:
+        - 0
+        - 2
+      lfdsr7.mdg:
+        bits:
+        - 6
+        - 7
+      lfdsr7.mdsp:
+        bits:
+        - 4
+        - 5
+      lfdsr7.pbg:
+        bits:
+        - 2
+        - 3
+      lfdsr7.pbsp:
+        bits:
+        - 0
+        - 1
+      lfdsr8.aswth:
+        bits:
+        - 4
+        - 6
+      lfdsr8.lgfe:
+        bit: 3
+      lfdsr8.cld:
+        bits:
+        - 0
+        - 2
+      lfdsr9.stw:
+        bits:
+        - 0
+        - 4
+      lffr.lfes:
+        bit: 7
+      lffr.lfsd:
+        bit: 6
+      lffr.lftof:
+        bit: 3
+      lffr.lfeof:
+        bit: 2
+      lffr.lfdef:
+        bit: 1
+      lffr.lfsydf:
+        bit: 0
+      lfimr.lfeoim:
+        bit: 2
+      lfimr.lfdeim:
+        bit: 1
+      lfimr.lfsydim:
+        bit: 0
+      lfqc1.lfcs1:
+        bits:
+        - 4
+        - 7
+      lfqc1.lfqs1:
+        bits:
+        - 0
+        - 3
+      lfqc2.lfcs2:
+        bits:
+        - 4
+        - 7
+      lfqc2.lfqs2:
+        bits:
+        - 0
+        - 3
+      lfqc3.lfcs3:
+        bits:
+        - 4
+        - 7
+      lfqc3.lfqs3:
+        bits:
+        - 0
+        - 3
+      lfsrctl.lfsrct0:
+        bit: 0
+      lfsrctm.lfsrct8:
+        bit: 7
+      lfsrctm.lfsrct7:
+        bit: 6
+      lfsrctm.lfsrct6:
+        bit: 5
+      lfsrctm.lfsrct5:
+        bit: 4
+      lfsrctm.lfsrct4:
+        bit: 3
+      lfsrctm.lfsrct3:
+        bit: 2
+      lfsrctm.lfsrct2:
+        bit: 1
+      lfsrctm.lfsrct1:
+        bit: 0
+      lfstop.lfstl:
+        bits:
+        - 4
+        - 6
+      lfstop.lfstsy:
+        bits:
+        - 0
+        - 3
+      lfsyle.lfsyle:
+        bits:
+        - 0
+        - 5
+  lf_rssi:
+    registers:
+      rscalib:
+        offset: '0x1B6'
+      rscr:
+        offset: '0x1B0'
+      rsdbgr:
+        offset: '0x1C5'
+      rsdlyr:
+        offset: '0x1B7'
+      rsfr:
+        offset: '0x1B4'
+      rsms1r:
+        offset: '0x1B2'
+      rsms2r:
+        offset: '0x1B3'
+      rsres1h:
+        offset: '0x1B9'
+      rsres1l:
+        offset: '0x1B8'
+      rsres2h:
+        offset: '0x1BB'
+      rsres2l:
+        offset: '0x1BA'
+      rsres3h:
+        offset: '0x1BD'
+      rsres3l:
+        offset: '0x1BC'
+      rsres4h:
+        offset: '0x1BF'
+      rsres4l:
+        offset: '0x1BE'
+      rssr:
+        offset: '0x1B1'
+      rssrcr:
+        offset: '0x1C0'
+      sd12rr:
+        offset: '0x1C1'
+      sd13rr:
+        offset: '0x1C2'
+      sd23rr:
+        offset: '0x1C3'
+      sd360r:
+        offset: '0x1C4'
+    fields:
+      rscalib.rscalib7:
+        bit: 7
+      rscalib.rscalib6:
+        bit: 6
+      rscalib.rscalib5:
+        bit: 5
+      rscalib.rscalib4:
+        bit: 4
+      rscalib.rscalib3:
+        bit: 3
+      rscalib.rscalib2:
+        bit: 2
+      rscalib.rscalib1:
+        bit: 1
+      rscalib.rscalib0:
+        bit: 0
+      rscr.rsres:
+        bit: 7
+      rscr.rsmode1:
+        bit: 5
+      rscr.rsmode0:
+        bit: 4
+      rscr.rsofm:
+        bit: 3
+      rscr.rseor:
+        bit: 2
+      rscr.rsos:
+        bit: 1
+      rscr.rssden:
+        bit: 0
+      rsdbgr.rsdbgen:
+        bit: 7
+      rsdbgr.rsdbgs1:
+        bit: 6
+      rsdbgr.rsdbgs0:
+        bit: 5
+      rsdbgr.rshome:
+        bit: 4
+      rsdbgr.rsfpd:
+        bit: 3
+      rsdbgr.rsinfm:
+        bit: 2
+      rsdbgr.rssana:
+        bit: 0
+      rsdlyr.rsrd1:
+        bit: 7
+      rsdlyr.rsrd0:
+        bit: 6
+      rsdlyr.rstrd5:
+        bit: 5
+      rsdlyr.rstrd4:
+        bit: 4
+      rsdlyr.rstrd3:
+        bit: 3
+      rsdlyr.rstrd2:
+        bit: 2
+      rsdlyr.rstrd1:
+        bit: 1
+      rsdlyr.rstrd0:
+        bit: 0
+      rsfr.rsaoor3:
+        bit: 7
+      rsfr.rsaoor2:
+        bit: 6
+      rsfr.rsaoor1:
+        bit: 5
+      rsfr.rsoff:
+        bit: 3
+      rsfr.rsoor3:
+        bit: 2
+      rsfr.rsoor2:
+        bit: 1
+      rsfr.rsoor1:
+        bit: 0
+      rsms1r.rsscal:
+        bit: 7
+      rsms1r.rsssv:
+        bit: 6
+      rsms1r.rscms:
+        bit: 5
+      rsms1r.rsstim:
+        bit: 4
+      rsms1r.rsintm:
+        bit: 3
+      rsms1r.rsch3e:
+        bit: 2
+      rsms1r.rsch2e:
+        bit: 1
+      rsms1r.rsch1e:
+        bit: 0
+      rsms2r.rsavgs3:
+        bit: 7
+      rsms2r.rsavgs2:
+        bit: 6
+      rsms2r.rsavgs1:
+        bit: 5
+      rsms2r.rsavgs0:
+        bit: 4
+      rsms2r.rssadr3:
+        bit: 3
+      rsms2r.rssadr2:
+        bit: 2
+      rsms2r.rssadr1:
+        bit: 1
+      rsms2r.rssadr0:
+        bit: 0
+      rsres1h.rsres1h7:
+        bit: 7
+      rsres1h.rsres1h6:
+        bit: 6
+      rsres1h.rsres1h5:
+        bit: 5
+      rsres1h.rsres1h4:
+        bit: 4
+      rsres1h.rsres1h3:
+        bit: 3
+      rsres1h.rsres1h2:
+        bit: 2
+      rsres1h.rsres1h1:
+        bit: 1
+      rsres1h.rsres1h0:
+        bit: 0
+      rsres1l.rsres1l7:
+        bit: 7
+      rsres1l.rsres1l6:
+        bit: 6
+      rsres1l.rsres1l5:
+        bit: 5
+      rsres1l.rsres1l4:
+        bit: 4
+      rsres1l.rsres1l3:
+        bit: 3
+      rsres1l.rsres1l2:
+        bit: 2
+      rsres1l.rsres1l1:
+        bit: 1
+      rsres1l.rsres1l0:
+        bit: 0
+      rsres2h.rsres2h7:
+        bit: 7
+      rsres2h.rsres2h6:
+        bit: 6
+      rsres2h.rsres2h5:
+        bit: 5
+      rsres2h.rsres2h4:
+        bit: 4
+      rsres2h.rsres2h3:
+        bit: 3
+      rsres2h.rsres2h2:
+        bit: 2
+      rsres2h.rsres2h1:
+        bit: 1
+      rsres2h.rsres2h0:
+        bit: 0
+      rsres2l.rsres2l7:
+        bit: 7
+      rsres2l.rsres2l6:
+        bit: 6
+      rsres2l.rsres2l5:
+        bit: 5
+      rsres2l.rsres2l4:
+        bit: 4
+      rsres2l.rsres2l3:
+        bit: 3
+      rsres2l.rsres2l2:
+        bit: 2
+      rsres2l.rsres2l1:
+        bit: 1
+      rsres2l.rsres2l0:
+        bit: 0
+      rsres3h.rsres3h7:
+        bit: 7
+      rsres3h.rsres3h6:
+        bit: 6
+      rsres3h.rsres3h5:
+        bit: 5
+      rsres3h.rsres3h4:
+        bit: 4
+      rsres3h.rsres3h3:
+        bit: 3
+      rsres3h.rsres3h2:
+        bit: 2
+      rsres3h.rsres3h1:
+        bit: 1
+      rsres3h.rsres3h0:
+        bit: 0
+      rsres3l.rsres3l7:
+        bit: 7
+      rsres3l.rsres3l6:
+        bit: 6
+      rsres3l.rsres3l5:
+        bit: 5
+      rsres3l.rsres3l4:
+        bit: 4
+      rsres3l.rsres3l3:
+        bit: 3
+      rsres3l.rsres3l2:
+        bit: 2
+      rsres3l.rsres3l1:
+        bit: 1
+      rsres3l.rsres3l0:
+        bit: 0
+      rsres4h.rsres4h7:
+        bit: 7
+      rsres4h.rsres4h6:
+        bit: 6
+      rsres4h.rsres4h5:
+        bit: 5
+      rsres4h.rsres4h4:
+        bit: 4
+      rsres4h.rsres4h3:
+        bit: 3
+      rsres4h.rsres4h2:
+        bit: 2
+      rsres4h.rsres4h1:
+        bit: 1
+      rsres4h.rsres4h0:
+        bit: 0
+      rsres4l.rsres4l7:
+        bit: 7
+      rsres4l.rsres4l6:
+        bit: 6
+      rsres4l.rsres4l5:
+        bit: 5
+      rsres4l.rsres4l4:
+        bit: 4
+      rsres4l.rsres4l3:
+        bit: 3
+      rsres4l.rsres4l2:
+        bit: 2
+      rsres4l.rsres4l1:
+        bit: 1
+      rsres4l.rsres4l0:
+        bit: 0
+      rssr.rssvld:
+        bit: 1
+      rssr.rsrdy:
+        bit: 0
+      rssrcr.srcstep1:
+        bit: 7
+      rssrcr.srcstep0:
+        bit: 6
+      rssrcr.srcclr:
+        bit: 4
+      rssrcr.srcmin1:
+        bit: 3
+      rssrcr.srcmin0:
+        bit: 2
+      rssrcr.srcmode1:
+        bit: 1
+      rssrcr.srcmode0:
+        bit: 0
+      sd12rr.sd12rr7:
+        bit: 7
+      sd12rr.sd12rr6:
+        bit: 6
+      sd12rr.sd12rr5:
+        bit: 5
+      sd12rr.sd12rr4:
+        bit: 4
+      sd12rr.sd12rr3:
+        bit: 3
+      sd12rr.sd12rr2:
+        bit: 2
+      sd12rr.sd12rr1:
+        bit: 1
+      sd12rr.sd12rr0:
+        bit: 0
+      sd13rr.sd13rr7:
+        bit: 7
+      sd13rr.sd13rr6:
+        bit: 6
+      sd13rr.sd13rr5:
+        bit: 5
+      sd13rr.sd13rr4:
+        bit: 4
+      sd13rr.sd13rr3:
+        bit: 3
+      sd13rr.sd13rr2:
+        bit: 2
+      sd13rr.sd13rr1:
+        bit: 1
+      sd13rr.sd13rr0:
+        bit: 0
+      sd23rr.sd23rr7:
+        bit: 7
+      sd23rr.sd23rr6:
+        bit: 6
+      sd23rr.sd23rr5:
+        bit: 5
+      sd23rr.sd23rr4:
+        bit: 4
+      sd23rr.sd23rr3:
+        bit: 3
+      sd23rr.sd23rr2:
+        bit: 2
+      sd23rr.sd23rr1:
+        bit: 1
+      sd23rr.sd23rr0:
+        bit: 0
+      sd360r.sd360r7:
+        bit: 7
+      sd360r.sd360r6:
+        bit: 6
+      sd360r.sd360r5:
+        bit: 5
+      sd360r.sd360r4:
+        bit: 4
+      sd360r.sd360r3:
+        bit: 3
+      sd360r.sd360r2:
+        bit: 2
+      sd360r.sd360r1:
+        bit: 1
+      sd360r.sd360r0:
+        bit: 0
+  lf_timer:
+    registers:
+      ltcmr:
+        offset: 53
+      ltcor:
+        offset: '0x1A1'
+      ltemr:
+        offset: '0x1A6'
+    fields:
+      ltcmr.ltena:
+        bit: 7
+      ltcmr.ltsm:
+        bit: 6
+      ltcmr.ltcm:
+        bit: 5
+      ltcmr.ltcim:
+        bit: 4
+      ltcmr.ltcrm:
+        bit: 3
+      ltcmr.ltps2:
+        bit: 2
+      ltcmr.ltps1:
+        bit: 1
+      ltcmr.ltps0:
+        bit: 0
+      ltemr.ltcof:
+        bit: 7
+      ltemr.eofem:
+        bit: 6
+      ltemr.flem:
+        bit: 5
+      ltemr.tblem:
+        bit: 4
+      ltemr.dfem:
+        bit: 3
+      ltemr.idfem:
+        bit: 2
+      ltemr.id1em:
+        bit: 1
+      ltemr.id0em:
+        bit: 0
+  lf_transponder:
+    registers:
+      tpcr1:
+        offset: '0x165'
+      tpcr2:
+        offset: 44
+      tpcr3:
+        offset: '0x171'
+      tpcr4:
+        offset: '0x172'
+      tpcr5:
+        offset: '0x173'
+      tpdcr1:
+        offset: '0x167'
+      tpdcr2:
+        offset: '0x168'
+      tpdcr3:
+        offset: '0x169'
+      tpdcr4:
+        offset: '0x16A'
+      tpdcr5:
+        offset: '0x16B'
+      tpecmr:
+        offset: '0x170'
+      tpecr1:
+        offset: '0x16C'
+      tpecr2:
+        offset: '0x16D'
+      tpecr3:
+        offset: '0x16E'
+      tpecr4:
+        offset: '0x16F'
+      tpfr:
+        offset: 45
+      tpimr:
+        offset: '0x166'
+      tpsr:
+        offset: 89
+    fields:
+      tpcr1.tpmode:
+        bit: 7
+      tpcr1.tpdfcp:
+        bits:
+        - 5
+        - 6
+        enum:
+          field_clock_1: 1
+          field_clock_2: 2
+          field_clock_4: 3
+      tpcr1.tpbr:
+        bit: 4
+      tpcr1.tpqplm:
+        bit: 2
+      tpcr2.tpwdlv:
+        bits:
+        - 5
+        - 6
+        enum:
+          1_024_ms: 0
+          2_048_ms: 1
+          3_072_ms: 2
+          4_096_ms: 3
+      tpcr2.tpnfto:
+        bit: 4
+      tpcr2.tpd:
+        bit: 3
+      tpcr2.tppsd:
+        bit: 2
+      tpcr2.tpmod:
+        bit: 1
+      tpcr2.tpma:
+        bit: 0
+      tpcr3.tprcd:
+        bit: 5
+      tpcr3.tptliw:
+        bit: 2
+      tpcr3.tprd:
+        bit: 1
+      tpcr3.tptd:
+        bit: 0
+      tpcr4.tpbcm:
+        bit: 4
+      tpcr4.tpbccs:
+        bits:
+        - 0
+        - 3
+      tpcr5.tpmd:
+        bits:
+        - 4
+        - 6
+      tpcr5.tpmud:
+        bits:
+        - 0
+        - 2
+        enum:
+          5_0_v: 0
+          5_4_v: 1
+          5_8_v: 2
+          6_2_v: 3
+          6_6_v: 4
+          7_0_v: 5
+          up_to_ovp: 7
+      tpdcr1.tpdcl1:
+        bits:
+        - 0
+        - 5
+      tpdcr2.tpdcl2:
+        bits:
+        - 0
+        - 5
+      tpdcr3.tpdcl3:
+        bits:
+        - 0
+        - 5
+      tpdcr4.tpdcl4:
+        bits:
+        - 0
+        - 5
+      tpdcr5.tpdcl5:
+        bits:
+        - 0
+        - 5
+      tpecmr.tpecm4:
+        bits:
+        - 6
+        - 7
+        enum:
+          manchester: 3
+          biphase: 1
+          nrz: 2
+      tpecmr.tpecm3:
+        bits:
+        - 4
+        - 5
+        enum:
+          manchester: 3
+          biphase: 1
+          nrz: 2
+      tpecmr.tpecm2:
+        bits:
+        - 2
+        - 3
+        enum:
+          manchester: 3
+          biphase: 1
+          nrz: 2
+      tpecmr.tpecm1:
+        bits:
+        - 0
+        - 1
+        enum:
+          manchester: 3
+          biphase: 1
+          nrz: 2
+      tpecr1.tpecl1:
+        bits:
+        - 0
+        - 7
+      tpecr2.tpecl2:
+        bits:
+        - 0
+        - 7
+      tpecr3.tpecl3:
+        bits:
+        - 0
+        - 7
+      tpecr4.tpecl4:
+        bits:
+        - 0
+        - 7
+      tpfr.tpberf:
+        bit: 3
+      tpfr.tpnftf:
+        bit: 2
+      tpfr.tpftf:
+        bit: 1
+      tpfr.tpf:
+        bit: 0
+      tpimr.tpberim:
+        bit: 3
+      tpimr.tpnftim:
+        bit: 2
+      tpimr.tpftim:
+        bit: 1
+      tpimr.tpim:
+        bit: 0
+      tpsr.tpbcok:
+        bit: 3
+      tpsr.tppsw:
+        bit: 2
+      tpsr.tpgap:
+        bit: 1
+      tpsr.tpa:
+        bit: 0
+  mem:
+    registers:
+      eest:
+        offset: '0x15B'
+      pgmst:
+        offset: '0x15A'
+    fields:
+      eest.eesyn:
+        bits:
+        - 0
+        - 3
+      pgmst.pgmsyn:
+        bits:
+        - 0
+        - 4
+  portb:
+    registers:
+      ddrb:
+        offset: 36
+      pinb:
+        offset: 35
+      portb:
+        offset: 37
+  portc:
+    registers:
+      ddrc:
+        offset: 39
+      pinc:
+        offset: 38
+      portc:
+        offset: 40
+  portd:
+    registers:
+      ddrd:
+        offset: 42
+      pind:
+        offset: 41
+      portd:
+        offset: 43
+  sfifo:
+    registers:
+      sfc:
+        offset: 225
+      sfd:
+        offset: 223
+      sfi:
+        offset: 224
+      sfl:
+        offset: 220
+      sfrp:
+        offset: 222
+      sfs:
+        offset: 219
+      sfwp:
+        offset: 221
+    fields:
+      sfc.sfdra:
+        bit: 7
+      sfc.sfflc:
+        bits:
+        - 0
+        - 4
+      sfi.sferim:
+        bit: 1
+      sfi.sfflim:
+        bit: 0
+      sfl.sfclr:
+        bit: 7
+      sfl.sffls:
+        bits:
+        - 0
+        - 4
+      sfs.sfofl:
+        bit: 2
+      sfs.sfufl:
+        bit: 1
+      sfs.sfflrf:
+        bit: 0
+  spi:
+    registers:
+      sffr:
+        offset: '0x157'
+      sfir:
+        offset: '0x158'
+      spcr:
+        offset: 76
+      spdr:
+        offset: 78
+      spsr:
+        offset: 77
+      sp2cr:
+        offset: 247
+      sp2dr:
+        offset: 248
+      sp2sr:
+        offset: 249
+    fields:
+      sffr.tfc:
+        bit: 7
+      sffr.tfl:
+        bits:
+        - 4
+        - 6
+      sffr.rfc:
+        bit: 3
+      sffr.rfl:
+        bits:
+        - 0
+        - 2
+      sfir.stie:
+        bit: 7
+      sfir.til:
+        bits:
+        - 4
+        - 6
+      sfir.srie:
+        bit: 3
+      sfir.ril:
+        bits:
+        - 0
+        - 2
+      spcr.spie:
+        bit: 7
+      spcr.spe:
+        bit: 6
+      spcr.dord:
+        bit: 5
+      spcr.mstr:
+        bit: 4
+      spcr.cpol:
+        bit: 3
+      spcr.cpha:
+        bit: 2
+      spcr.spr:
+        bits:
+        - 0
+        - 1
+        enum:
+          clkio_4: 0
+          clkio_16: 1
+          clkio_64: 2
+          clkio_128: 3
+      spsr.spif:
+        bit: 7
+      spsr.txif:
+        bit: 5
+      spsr.rxif:
+        bit: 4
+      spsr.spi2x:
+        bit: 0
+      sp2cr.sp2ie:
+        bit: 7
+      sp2cr.sp2e:
+        bit: 6
+      sp2cr.dord2:
+        bit: 5
+      sp2cr.mstr2:
+        bit: 4
+      sp2cr.cpol2:
+        bit: 3
+      sp2cr.cpha2:
+        bit: 2
+      sp2cr.sp2r:
+        bits:
+        - 0
+        - 1
+        enum:
+          clkio_4: 0
+          clkio_16: 1
+          clkio_64: 2
+          clkio_128: 3
+      sp2sr.sp2if:
+        bit: 7
+      sp2sr.wcol2:
+        bit: 6
+      sp2sr.spi22x:
+        bit: 0
+    max_clock: 24MHz
+  ssm:
+    registers:
+      msmcr1:
+        offset: 236
+      msmcr2:
+        offset: 237
+      msmcr3:
+        offset: 238
+      msmcr4:
+        offset: 239
+      msmstr:
+        offset: 233
+      ssmcr:
+        offset: 226
+      ssmfbr:
+        offset: 228
+      ssmifr:
+        offset: 231
+      ssmimr:
+        offset: 232
+      ssmrr:
+        offset: 229
+      ssmsr:
+        offset: 230
+      ssmstr:
+        offset: 234
+    fields:
+      msmcr1.msmsm0:
+        bits:
+        - 0
+        - 3
+        enum:
+          none_stop: 0
+          pll_en: 1
+          pll_lock: 2
+          tx_dsp_enable: 3
+          tx_dsp_disable: 4
+          send_telegram: 5
+          shut_down: 6
+          vco_tuning: 7
+          antenna_tuning: 8
+      msmcr1.msmsm1:
+        bits:
+        - 4
+        - 7
+        enum:
+          none_stop: 0
+          pll_en: 1
+          pll_lock: 2
+          tx_dsp_enable: 3
+          tx_dsp_disable: 4
+          send_telegram: 5
+          shut_down: 6
+          vco_tuning: 7
+          antenna_tuning: 8
+      msmcr2.msmsm2:
+        bits:
+        - 0
+        - 3
+        enum:
+          none_stop: 0
+          pll_en: 1
+          pll_lock: 2
+          tx_dsp_enable: 3
+          tx_dsp_disable: 4
+          send_telegram: 5
+          shut_down: 6
+          vco_tuning: 7
+          antenna_tuning: 8
+      msmcr2.msmsm3:
+        bits:
+        - 4
+        - 7
+        enum:
+          none_stop: 0
+          pll_en: 1
+          pll_lock: 2
+          tx_dsp_enable: 3
+          tx_dsp_disable: 4
+          send_telegram: 5
+          shut_down: 6
+          vco_tuning: 7
+          antenna_tuning: 8
+      msmcr3.msmsm4:
+        bits:
+        - 0
+        - 3
+        enum:
+          none_stop: 0
+          pll_en: 1
+          pll_lock: 2
+          tx_dsp_enable: 3
+          tx_dsp_disable: 4
+          send_telegram: 5
+          shut_down: 6
+          vco_tuning: 7
+          antenna_tuning: 8
+      msmcr3.msmsm5:
+        bits:
+        - 4
+        - 7
+        enum:
+          none_stop: 0
+          pll_en: 1
+          pll_lock: 2
+          tx_dsp_enable: 3
+          tx_dsp_disable: 4
+          send_telegram: 5
+          shut_down: 6
+          vco_tuning: 7
+          antenna_tuning: 8
+      msmcr4.msmsm6:
+        bits:
+        - 0
+        - 3
+        enum:
+          none_stop: 0
+          pll_en: 1
+          pll_lock: 2
+          tx_dsp_enable: 3
+          tx_dsp_disable: 4
+          send_telegram: 5
+          shut_down: 6
+          vco_tuning: 7
+          antenna_tuning: 8
+      msmcr4.msmsm7:
+        bits:
+        - 4
+        - 7
+        enum:
+          none_stop: 0
+          pll_en: 1
+          pll_lock: 2
+          tx_dsp_enable: 3
+          tx_dsp_disable: 4
+          send_telegram: 5
+          shut_down: 6
+          vco_tuning: 7
+          antenna_tuning: 8
+      msmstr.ssmmst:
+        bits:
+        - 0
+        - 4
+      ssmcr.ssmtae:
+        bit: 5
+      ssmcr.ssmpve:
+        bit: 4
+      ssmcr.ssmtpe:
+        bit: 3
+      ssmcr.ssmtge:
+        bit: 2
+      ssmfbr.ssmpldt:
+        bit: 5
+      ssmifr.ssmif:
+        bit: 0
+      ssmimr.ssmim:
+        bit: 0
+      ssmrr.ssmst:
+        bit: 1
+      ssmrr.ssmr:
+        bit: 0
+      ssmsr.ssmerr:
+        bit: 7
+      ssmsr.ssmesm:
+        bits:
+        - 0
+        - 3
+      ssmstr.ssmsta:
+        bits:
+        - 0
+        - 5
+  sup:
+    registers:
+      calrdy:
+        offset: 209
+      calrdylf:
+        offset: '0x1E8'
+      pmter:
+        offset: '0x1FE'
+      rctcal:
+        offset: 200
+      supca1:
+        offset: 205
+      supca10:
+        offset: '0x1F8'
+      supca2:
+        offset: 206
+      supca3:
+        offset: 207
+      supca4:
+        offset: 208
+      supca5:
+        offset: '0x1F3'
+      supca6:
+        offset: '0x1F4'
+      supca7:
+        offset: '0x1F5'
+      supca8:
+        offset: '0x1F6'
+      supca9:
+        offset: '0x1F7'
+      supcr:
+        offset: 204
+      supfr:
+        offset: 203
+      vmcr:
+        offset: '0x1E6'
+      vmscr:
+        offset: 74
+    fields:
+      rctcal.di_mrcbg:
+        bit: 4
+      rctcal.mrctc:
+        bits:
+        - 1
+        - 3
+      rctcal.frctc:
+        bit: 0
+      supca1.pvcal:
+        bits:
+        - 4
+        - 7
+      supca1.pvdic:
+        bit: 3
+      supca1.pv22:
+        bit: 2
+      supca2.bgcal:
+        bits:
+        - 0
+        - 3
+      supca3.acal:
+        bits:
+        - 0
+        - 7
+      supca4.iconst:
+        bits:
+        - 0
+        - 5
+      supca5.iptat:
+        bits:
+        - 0
+        - 5
+      supca6.vbgtr:
+        bits:
+        - 0
+        - 7
+      supca7.lfvccbd:
+        bits:
+        - 3
+        - 5
+      supca7.vcccal:
+        bits:
+        - 0
+        - 2
+      supca8.dvccbd:
+        bits:
+        - 3
+        - 5
+      supca8.vswbd:
+        bits:
+        - 0
+        - 2
+      supca9.vmem:
+        bits:
+        - 0
+        - 7
+      supcr.vmemen:
+        bit: 7
+      supcr.vmresm:
+        bit: 6
+      supcr.dvhen:
+        bit: 5
+      supcr.aven:
+        bit: 4
+      supcr.avdic:
+        bit: 3
+      supcr.pven:
+        bit: 2
+      supcr.avcclm:
+        bit: 1
+      supcr.avccrm:
+        bit: 0
+      supfr.avcclf:
+        bit: 1
+      supfr.avccrf:
+        bit: 0
+      vmcr.vmrs:
+        bit: 7
+      vmcr.vmps:
+        bits:
+        - 5
+        - 6
+      vmcr.vmim:
+        bit: 4
+      vmcr.vmls:
+        bits:
+        - 0
+        - 3
+      vmscr.vmdih:
+        bit: 1
+      vmscr.vmf:
+        bit: 0
+  timer0_wdt:
+    registers:
+      t0cr:
+        offset: '0x162'
+      t0ifr:
+        offset: 82
+      wdtcr:
+        offset: 110
+    fields:
+      t0cr.t0pr:
+        bit: 4
+      t0cr.t0ie:
+        bit: 3
+      t0cr.t0ps:
+        bits:
+        - 0
+        - 2
+        enum:
+          0_256ms_typ: 0
+          1ms_typ: 1
+          8ms_typ: 2
+          0_5s_typ: 3
+          1s_typ: 4
+          8s_typ: 5
+          67s_typ: 6
+          134s_typ: 7
+      t0ifr.t0f:
+        bit: 0
+      wdtcr.wdce:
+        bit: 4
+      wdtcr.wde:
+        bit: 3
+      wdtcr.wdps:
+        bits:
+        - 0
+        - 2
+        enum:
+          1ms_typ_0_85ms_min: 0
+          4ms_typ_3_4ms_min: 1
+          32ms_typ_27ms_min: 2
+          2_1s_typ_1_75s_min: 3
+          4_2s_typ_3_5s_min: 4
+          16_8s_typ_14s_min: 5
+          134s_typ_110s_min: 6
+          268s_typ_220s_min: 7
+  timer:
+    registers:
+      t1cnt:
+        offset: 111
+      t1cor:
+        offset: 112
+      t1cr:
+        offset: 49
+      t1ifr:
+        offset: '0x1A2'
+      t1imr:
+        offset: 114
+      t1mr:
+        offset: 113
+      t2cnt:
+        offset: 115
+      t2cor:
+        offset: 116
+      t2cr:
+        offset: 50
+      t2ifr:
+        offset: '0x159'
+      t2imr:
+        offset: 118
+      t2mr:
+        offset: 117
+      t3cnt:
+        offset: 119
+      t3cor:
+        offset: 121
+      t3cr:
+        offset: 51
+      t3icr:
+        offset: 123
+      t3ifr:
+        offset: '0x1E1'
+      t3imr:
+        offset: 127
+      t3mra:
+        offset: 125
+      t3mrb:
+        offset: 126
+      t4cnt:
+        offset: 128
+      t4cor:
+        offset: 130
+      t4cr:
+        offset: 52
+      t4icr:
+        offset: 132
+      t4ifr:
+        offset: '0x1D2'
+      t4imr:
+        offset: 136
+      t4mra:
+        offset: 134
+      t4mrb:
+        offset: 135
+      gtccr:
+        offset: 227
+      t5ccr:
+        offset: 140
+      t5cnt:
+        offset: 141
+      t5ifr:
+        offset: '0x1D5'
+      t5imr:
+        offset: 143
+      t5ocr:
+        offset: 138
+      t5temp:
+        offset: 137
+    fields:
+      t1cr.t1ena:
+        bit: 7
+      t1cr.t1tos:
+        bit: 6
+      t1cr.t1res:
+        bit: 5
+      t1cr.t1top:
+        bit: 4
+      t1cr.t1crm:
+        bit: 2
+      t1cr.t1ctm:
+        bit: 1
+      t1cr.t1otm:
+        bit: 0
+      t1ifr.t1cof:
+        bit: 1
+      t1ifr.t1off:
+        bit: 0
+      t1imr.t1cim:
+        bit: 1
+      t1imr.t1oim:
+        bit: 0
+      t1mr.t1dc:
+        bits:
+        - 6
+        - 7
+        enum:
+          bypass: 0
+          duty_cycle_1_1_div_2: 1
+          duty_cycle_1_2_div_3: 2
+          duty_cycle_1_3_div_4: 3
+      t1mr.t1ps:
+        bits:
+        - 2
+        - 5
+      t1mr.t1cs:
+        bits:
+        - 0
+        - 1
+        enum:
+          clk_src: 0
+          clk_frc: 1
+          clk_t: 2
+          clk_mrc: 3
+      t2cr.t2ena:
+        bit: 7
+      t2cr.t2tos:
+        bit: 6
+      t2cr.t2res:
+        bit: 5
+      t2cr.t2top:
+        bit: 4
+      t2cr.t2crm:
+        bit: 2
+      t2cr.t2ctm:
+        bit: 1
+      t2cr.t2otm:
+        bit: 0
+      t2ifr.t2cof:
+        bit: 1
+      t2ifr.t2off:
+        bit: 0
+      t2imr.t2cim:
+        bit: 1
+      t2imr.t2oim:
+        bit: 0
+      t2mr.t2dc:
+        bits:
+        - 6
+        - 7
+        enum:
+          bypass: 0
+          duty_cycle_1_1_div_2: 1
+          duty_cycle_1_2_div_3: 2
+          duty_cycle_1_3_div_4: 3
+      t2mr.t2ps:
+        bits:
+        - 2
+        - 5
+      t2mr.t2cs:
+        bits:
+        - 0
+        - 1
+        enum:
+          clk_src: 0
+          clk_mrc: 1
+          clk_t: 2
+          clk_xto4: 3
+      t3cr.t3ena:
+        bit: 7
+      t3cr.t3tos:
+        bit: 6
+      t3cr.t3res:
+        bit: 5
+      t3cr.t3top:
+        bit: 4
+      t3cr.t3cprm:
+        bit: 3
+      t3cr.t3crm:
+        bit: 2
+      t3cr.t3ctm:
+        bit: 1
+      t3cr.t3otm:
+        bit: 0
+      t3ifr.t3icf:
+        bit: 2
+      t3ifr.t3cof:
+        bit: 1
+      t3ifr.t3off:
+        bit: 0
+      t3imr.t3cpim:
+        bit: 2
+      t3imr.t3cim:
+        bit: 1
+      t3imr.t3oim:
+        bit: 0
+      t3mra.t3ps:
+        bits:
+        - 2
+        - 4
+      t3mra.t3cs:
+        bits:
+        - 0
+        - 1
+        enum:
+          clk_frc: 0
+          clk_t: 1
+          clk_xto4: 2
+          clk_tei: 3
+      t3mrb.t3ics:
+        bits:
+        - 5
+        - 7
+        enum:
+          clk_t2: 0
+          clk_t1: 1
+          clk_t4: 2
+          ticp: 3
+          lfes: 4
+          clk_src: 5
+          tpgap: 6
+      t3mrb.t3ce:
+        bits:
+        - 3
+        - 4
+        enum:
+          disable: 0
+          rising_edge: 1
+          falling_edge: 2
+          both_edges: 3
+      t3mrb.t3cnc:
+        bit: 2
+      t3mrb.t3sce:
+        bit: 1
+      t4cr.t4ena:
+        bit: 7
+      t4cr.t4tos:
+        bit: 6
+      t4cr.t4res:
+        bit: 5
+      t4cr.t4top:
+        bit: 4
+      t4cr.t4cprm:
+        bit: 3
+      t4cr.t4crm:
+        bit: 2
+      t4cr.t4ctm:
+        bit: 1
+      t4cr.t4otm:
+        bit: 0
+      t4ifr.t4icf:
+        bit: 2
+      t4ifr.t4cof:
+        bit: 1
+      t4ifr.t4off:
+        bit: 0
+      t4imr.t4cpim:
+        bit: 2
+      t4imr.t4cim:
+        bit: 1
+      t4imr.t4oim:
+        bit: 0
+      t4mra.t4ps:
+        bits:
+        - 2
+        - 4
+      t4mra.t4cs:
+        bits:
+        - 0
+        - 1
+        enum:
+          clk_src: 0
+          clk_t: 1
+          clk_mrc: 2
+          clk_frc: 3
+      t4mrb.t4ics:
+        bits:
+        - 5
+        - 7
+        enum:
+          clk_t2: 0
+          clk_t1: 1
+          clk_t3: 2
+          ticp: 3
+          lfes: 4
+          clk_src: 5
+          tpgap: 6
+      t4mrb.t4ce:
+        bits:
+        - 3
+        - 4
+        enum:
+          disable: 0
+          rising_edge: 1
+          falling_edge: 2
+          both_edges: 3
+      t4mrb.t4cnc:
+        bit: 2
+      t4mrb.t4sce:
+        bit: 1
+      gtccr.tsm:
+        bit: 7
+      gtccr.psr10:
+        bit: 0
+      t5ccr.t5ctc:
+        bit: 3
+      t5ccr.t5cs:
+        bits:
+        - 0
+        - 2
+        enum:
+          no_clock_source_stopped: 0
+          running_no_prescaling: 1
+          running_clk_8: 2
+          running_clk_32: 3
+          running_clk_64: 4
+          running_clk_128: 5
+          running_clk_256: 6
+          running_clk_1024: 7
+      t5ifr.t5cof:
+        bit: 1
+      t5ifr.t5off:
+        bit: 0
+      t5imr.t5cim:
+        bit: 1
+      t5imr.t5oim:
+        bit: 0
+  tmo:
+    registers:
+      tmocr:
+        offset: '0x1F0'
+    fields:
+      tmocr.to4pis:
+        bits:
+        - 6
+        - 7
+        enum:
+          port_d5_data_register: 0
+          m1_toggle_register_timer1: 1
+          m2_toggle_register_timer2: 2
+          m3_toggle_register_timer3: 3
+      tmocr.to3pis:
+        bits:
+        - 4
+        - 5
+        enum:
+          port_d4_data_register: 0
+          m1_toggle_register_timer1: 1
+          m3_toggle_register_timer3: 2
+          m4_toggle_register_timer4: 3
+      tmocr.to2pis:
+        bits:
+        - 2
+        - 3
+        enum:
+          port_d3_data_register: 0
+          m1_toggle_register_timer1: 1
+          m2_toggle_register_timer2: 2
+          m4_toggle_register_timer4: 3
+      tmocr.to1pis:
+        bits:
+        - 0
+        - 1
+        enum:
+          port_d2_data_register: 0
+          m1_toggle_register_timer1: 1
+          m2_toggle_register_timer2: 2
+          m3_toggle_register_timer3: 3
+  tplf_cal:
+    registers:
+      lfcalr1:
+        offset: 144
+      lfcalr10:
+        offset: 153
+      lfcalr11:
+        offset: 154
+      lfcalr12:
+        offset: 155
+      lfcalr13:
+        offset: 156
+      lfcalr14:
+        offset: 157
+      lfcalr15:
+        offset: 158
+      lfcalr16:
+        offset: 159
+      lfcalr17:
+        offset: 160
+      lfcalr18:
+        offset: 161
+      lfcalr19:
+        offset: 162
+      lfcalr2:
+        offset: 145
+      lfcalr20:
+        offset: 163
+      lfcalr21:
+        offset: 164
+      lfcalr22:
+        offset: 165
+      lfcalr23:
+        offset: 166
+      lfcalr24:
+        offset: 167
+      lfcalr25:
+        offset: 168
+      lfcalr26:
+        offset: 169
+      lfcalr27:
+        offset: 170
+      lfcalr28:
+        offset: 171
+      lfcalr29:
+        offset: 172
+      lfcalr3:
+        offset: 146
+      lfcalr30:
+        offset: 173
+      lfcalr31:
+        offset: 174
+      lfcalr32:
+        offset: 175
+      lfcalr33:
+        offset: 176
+      lfcalr34:
+        offset: 177
+      lfcalr35:
+        offset: 178
+      lfcalr36:
+        offset: 179
+      lfcalr37:
+        offset: 180
+      lfcalr38:
+        offset: 181
+      lfcalr39:
+        offset: 182
+      lfcalr4:
+        offset: 147
+      lfcalr40:
+        offset: 183
+      lfcalr41:
+        offset: 184
+      lfcalr42:
+        offset: 185
+      lfcalr43:
+        offset: 186
+      lfcalr44:
+        offset: 187
+      lfcalr45:
+        offset: 188
+      lfcalr46:
+        offset: 189
+      lfcalr47:
+        offset: 190
+      lfcalr48:
+        offset: 191
+      lfcalr49:
+        offset: 192
+      lfcalr5:
+        offset: 148
+      lfcalr50:
+        offset: 193
+      lfcalr51:
+        offset: 194
+      lfcalr52:
+        offset: 195
+      lfcalr53:
+        offset: 196
+      lfcalr6:
+        offset: 149
+      lfcalr7:
+        offset: 150
+      lfcalr8:
+        offset: 151
+      lfcalr9:
+        offset: 152
+      lfcpr:
+        offset: '0x18E'
+      srccal:
+        offset: '0x1F1'
+      srccall:
+        offset: '0x1FF'
+      srctcal:
+        offset: '0x1F2'
+      tpcalr1:
+        offset: '0x175'
+      tpcalr10:
+        offset: '0x17E'
+      tpcalr11:
+        offset: '0x1F9'
+      tpcalr12:
+        offset: '0x1FA'
+      tpcalr13:
+        offset: '0x1FB'
+      tpcalr2:
+        offset: '0x176'
+      tpcalr3:
+        offset: '0x177'
+      tpcalr4:
+        offset: '0x178'
+      tpcalr5:
+        offset: '0x179'
+      tpcalr6:
+        offset: '0x17A'
+      tpcalr7:
+        offset: '0x17B'
+      tpcalr8:
+        offset: '0x17C'
+      tpcalr9:
+        offset: '0x17D'
+    fields:
+      lfcalr1.sel150m:
+        bits:
+        - 5
+        - 7
+      lfcalr1.icomprt:
+        bits:
+        - 3
+        - 4
+      lfcalr1.lfstc:
+        bits:
+        - 0
+        - 2
+      lfcalr2.tikompd:
+        bit: 7
+      lfcalr2.lfsrm:
+        bit: 6
+      lfcalr2.lfstres:
+        bits:
+        - 0
+        - 5
+      lfcalr3.tcgain1:
+        bits:
+        - 0
+        - 7
+      lfcalr4.tcgain27:
+        bit: 7
+      lfcalr4.tcgain26:
+        bit: 6
+      lfcalr4.tcgain25:
+        bit: 5
+      lfcalr4.tcgain24:
+        bit: 4
+      lfcalr4.tcgain23:
+        bit: 3
+      lfcalr4.tcgain22:
+        bit: 2
+      lfcalr4.tcgain21:
+        bit: 1
+      lfcalr4.tcgain20:
+        bit: 0
+      lfcalr5.tcgain37:
+        bit: 7
+      lfcalr5.tcgain36:
+        bit: 6
+      lfcalr5.tcgain35:
+        bit: 5
+      lfcalr5.tcgain34:
+        bit: 4
+      lfcalr5.tcgain32:
+        bit: 2
+      lfcalr5.tcgain31:
+        bit: 1
+      lfcalr5.tcgain30:
+        bit: 0
+      lfcalr6.tcgain44:
+        bit: 4
+      lfcalr6.tcgain43:
+        bit: 3
+      lfcalr6.tcgain42:
+        bit: 2
+      lfcalr6.tcgain41:
+        bit: 1
+      lfcalr6.tcgain40:
+        bit: 0
+      lfcpr.lfcpce:
+        bit: 7
+      lfcpr.tpcd:
+        bit: 6
+      lfcpr.lfcalry:
+        bit: 1
+      lfcpr.lfcalp:
+        bit: 0
+      srccal.srccal8:
+        bit: 7
+      srccal.srccal7:
+        bit: 6
+      srccal.srccal6:
+        bit: 5
+      srccal.srccal5:
+        bit: 4
+      srccal.srccal4:
+        bit: 3
+      srccal.srccal3:
+        bit: 2
+      srccal.srccal2:
+        bit: 1
+      srccal.srccal1:
+        bit: 0
+      srccall.srccal0:
+        bit: 0
+      srctcal.hold_src:
+        bit: 7
+      srctcal.dis_src:
+        bit: 6
+      srctcal.srcs:
+        bits:
+        - 3
+        - 4
+      srctcal.srctc:
+        bits:
+        - 0
+        - 2
+      tpcalr1.tpbg_iref:
+        bits:
+        - 0
+        - 5
+      tpcalr11.tpcalr117:
+        bit: 7
+      tpcalr11.tpcalr116:
+        bit: 6
+      tpcalr11.tpcalr115:
+        bit: 5
+      tpcalr11.envswbd:
+        bit: 4
+      tpcalr11.enlfbd:
+        bit: 3
+      tpcalr11.endvbd:
+        bit: 2
+      tpcalr11.mtbtr1:
+        bit: 1
+      tpcalr11.mtbtr0:
+        bit: 0
+      tpcalr12.tpcalr127:
+        bit: 7
+      tpcalr12.tpcalr126:
+        bit: 6
+      tpcalr12.tpcalr125:
+        bit: 5
+      tpcalr12.tpcalr124:
+        bit: 4
+      tpcalr12.tpcalr123:
+        bit: 3
+      tpcalr12.tpcalr122:
+        bit: 2
+      tpcalr12.tpcalr121:
+        bit: 1
+      tpcalr12.tpdmod:
+        bit: 0
+      tpcalr2.tpbg_uref:
+        bits:
+        - 0
+        - 6
+      tpcalr3.tporth:
+        bits:
+        - 3
+        - 4
+      tpcalr3.lfvcc_tpcal2:
+        bit: 2
+      tpcalr3.lfvcc_tpcal1:
+        bit: 1
+      tpcalr3.lfvcc_tpcal0:
+        bit: 0
+      tpcalr4.compvc_cal:
+        bits:
+        - 3
+        - 4
+      tpcalr4.tpinit_cal:
+        bits:
+        - 0
+        - 2
+  twi:
+    registers:
+      tw1amr:
+        offset: '0x1EE'
+      tw1ar:
+        offset: '0x1ED'
+      tw1br:
+        offset: '0x1E9'
+      tw1cr:
+        offset: '0x1EA'
+      tw1dr:
+        offset: '0x1EC'
+      tw1sr:
+        offset: '0x1EB'
+      tw2amr:
+        offset: '0x1AF'
+      tw2ar:
+        offset: '0x1AE'
+      tw2br:
+        offset: '0x1AA'
+      tw2cr:
+        offset: '0x1AB'
+      tw2dr:
+        offset: '0x1AD'
+      tw2sr:
+        offset: '0x1AC'
+    fields:
+      tw1amr.tw1am:
+        bits:
+        - 1
+        - 7
+      tw1ar.tw1a:
+        bits:
+        - 1
+        - 7
+      tw1ar.tw1gce:
+        bit: 0
+      tw1cr.tw1int:
+        bit: 7
+      tw1cr.tw1ea:
+        bit: 6
+      tw1cr.tw1sta:
+        bit: 5
+      tw1cr.tw1sto:
+        bit: 4
+      tw1cr.tw1wc:
+        bit: 3
+      tw1cr.tw1en:
+        bit: 2
+      tw1cr.tw1ie:
+        bit: 0
+      tw1sr.tw1s:
+        bits:
+        - 3
+        - 7
+      tw1sr.tw1ps:
+        bits:
+        - 0
+        - 1
+        enum:
+          '1': 0
+          '4': 1
+          '16': 2
+          '64': 3
+      tw2amr.tw2am:
+        bits:
+        - 1
+        - 7
+      tw2ar.tw2a:
+        bits:
+        - 1
+        - 7
+      tw2ar.tw2gce:
+        bit: 0
+      tw2cr.tw2int:
+        bit: 7
+      tw2cr.tw2ea:
+        bit: 6
+      tw2cr.tw2sta:
+        bit: 5
+      tw2cr.tw2sto:
+        bit: 4
+      tw2cr.tw2wc:
+        bit: 3
+      tw2cr.tw2en:
+        bit: 2
+      tw2cr.tw2ie:
+        bit: 0
+      tw2sr.tw2s:
+        bits:
+        - 3
+        - 7
+      tw2sr.tw2ps:
+        bits:
+        - 0
+        - 1
+        enum:
+          '1': 0
+          '4': 1
+          '16': 2
+          '64': 3
+    max_clock: 1MHz
+  vx_mode:
+    registers:
+      vxmctrl:
+        offset: 235
+    fields:
+      vxmctrl.en_vx_in:
+        bit: 4
+      vxmctrl.en_vx_out:
+        bit: 3
+      vxmctrl.en_vx:
+        bit: 2
+      vxmctrl.vx_sel1:
+        bit: 1
+      vxmctrl.vx_sel0:
+        bit: 0
+  fuse:
+    registers:
+      low:
+        offset: 0
+    fields:
+      low.ckstart:
+        bit: 7
+      low.dwen:
+        bit: 6
+      low.spien:
+        bit: 5
+      low.wdton:
+        bit: 4
+      low.eesave:
+        bit: 3
+      low.bootrst:
+        bit: 2
+      low.eeacc:
+        bit: 1
+      low.pcee1:
+        bit: 0
+  lockbit:
+    registers:
+      lockbit:
+        offset: 0
+    fields:
+      lockbit.lb:
+        bits:
+        - 0
+        - 1
+        enum:
+          prog_ver_disabled: 0
+          prog_disabled: 2
+          no_lock: 3
+  i2c:
+    max_clock: 1MHz
+  usart:
+    max_baud: 6000000
+  adc:
+    max_clock: 16MHz
+peripherals:
+- id: aes
+  template: aes
+  base: 0
+- id: clk
+  template: clk
+  base: 0
+- id: cpu
+  template: cpu
+  base: 0
+- id: crc
+  template: crc
+  base: 0
+- id: debounce
+  template: debounce
+  base: 0
+- id: debug
+  template: debug
+  base: 0
+- id: dfifo
+  template: dfifo
+  base: 0
+- id: eeprom
+  template: eeprom
+  base: 0
+- id: gpioregs_dvcc
+  template: gpioregs_dvcc
+  base: 0
+- id: gpioregs_lfvcc
+  template: gpioregs_lfvcc
+  base: 0
+- id: int
+  template: int
+  base: 0
+- id: led
+  template: led
+  base: 0
+- id: lf_fifo
+  template: lf_fifo
+  base: 0
+- id: lf_protocol_handler
+  template: lf_protocol_handler
+  base: 0
+- id: lf_receiver
+  template: lf_receiver
+  base: 0
+- id: lf_rssi
+  template: lf_rssi
+  base: 0
+- id: lf_timer
+  template: lf_timer
+  base: 0
+- id: lf_transponder
+  template: lf_transponder
+  base: 0
+- id: mem
+  template: mem
+  base: 0
+- id: portb
+  template: portb
+  base: 0
+- id: portc
+  template: portc
+  base: 0
+- id: portd
+  template: portd
+  base: 0
+- id: sfifo
+  template: sfifo
+  base: 0
+- id: spi
+  template: spi
+  base: 0
+- id: spi2
+  template: spi
+  base: 0
+- id: ssm
+  template: ssm
+  base: 0
+- id: sup
+  template: sup
+  base: 0
+- id: timer0_wdt
+  template: timer0_wdt
+  base: 0
+- id: timer1
+  template: timer
+  base: 0
+- id: timer2
+  template: timer
+  base: 0
+- id: timer3
+  template: timer
+  base: 0
+- id: timer4
+  template: timer
+  base: 0
+- id: timer5
+  template: timer
+  base: 0
+- id: tmo
+  template: tmo
+  base: 0
+- id: tplf_cal
+  template: tplf_cal
+  base: 0
+- id: twi1
+  template: twi
+  base: 0
+- id: twi2
+  template: twi
+  base: 0
+- id: vx_mode
+  template: vx_mode
+  base: 0
+- id: fuse
+  template: fuse
+  base: 0
+- id: lockbit
+  template: lockbit
+  base: 0
+pinout:
+- signal: RESET
+interrupts:
+- num: 0
+  name: RESET_vect
+- num: 1
+  name: INT0_vect
+- num: 2
+  name: INT1_vect
+- num: 3
+  name: PCI0_vect
+- num: 4
+  name: PCI1_vect
+- num: 5
+  name: VMON_vect
+- num: 6
+  name: AVCCR_vect
+- num: 7
+  name: AVCCL_vect
+- num: 8
+  name: T0INT_vect
+- num: 9
+  name: T1COMP_vect
+- num: 10
+  name: T1OVF_vect
+- num: 11
+  name: T2COMP_vect
+- num: 12
+  name: T2OVF_vect
+- num: 13
+  name: T3CAP_vect
+- num: 14
+  name: T3COMP_vect
+- num: 15
+  name: T3OVF_vect
+- num: 16
+  name: T4CAP_vect
+- num: 17
+  name: T4COMP_vect
+- num: 18
+  name: T4OVF_vect
+- num: 19
+  name: T5COMP_vect
+- num: 20
+  name: T5OVF_vect
+- num: 21
+  name: SPI_vect
+- num: 22
+  name: SRX_FIFO_vect
+- num: 23
+  name: STX_FIFO_vect
+- num: 24
+  name: SSM_vect
+- num: 25
+  name: DFFLR_vect
+- num: 26
+  name: DFOUE_vect
+- num: 27
+  name: SFFLR_vect
+- num: 28
+  name: SFOUE_vect
+- num: 29
+  name: TMTCF_vect
+- num: 30
+  name: AES_vect
+- num: 31
+  name: TPINT_vect
+- num: 32
+  name: TPTOERR_vect
+- num: 33
+  name: LFID0INT_vect
+- num: 34
+  name: LFID1INT_vect
+- num: 35
+  name: LFFEINT_vect
+- num: 36
+  name: LFBCR_vect
+- num: 37
+  name: LFPBD_vect
+- num: 38
+  name: LFDE_vect
+- num: 39
+  name: LFEOT_vect
+- num: 40
+  name: LFTCOR_vect
+- num: 41
+  name: LFRSCO_vect
+- num: 42
+  name: LDFFLR_vect
+- num: 43
+  name: LDFOUE_vect
+- num: 44
+  name: EXCM_vect
+- num: 45
+  name: E2CINT_vect
+- num: 46
+  name: ERDY_vect
+- num: 47
+  name: SPMR_vect
+- num: 48
+  name: TWI1_vect
+- num: 49
+  name: SPI2_vect
+- num: 50
+  name: TWI2_vect

@@ -1,0 +1,4018 @@
+schema: alloy.device.v2.1
+identity:
+  vendor: microchip
+  family: cec
+  device: cec1702
+  core:
+    isa: armv7e-m
+    name: cortex-m4f
+    bits: 32
+    fpu: true
+    mpu: true
+  package: wfbga84
+provenance:
+  primary: microchip-atdf:CEC1702.atdf
+  authored: auto
+  notes: ATDF-extracted skeleton — pinout requires enrichment.
+  secondary:
+  - microchip-overlay:cec
+memory:
+- id: flash
+  base: '0x00000000'
+  size: 1B
+  access: rx
+  role: extractor-placeholder
+clock:
+  oscillators:
+    unknown:
+      freq: 0Hz
+      kind: rc-internal
+  domains:
+  - id: sysclk
+    sources:
+    - unknown
+templates:
+  pcr:
+    registers:
+      sys_slp_ctrl:
+        offset: 0
+        access: rw
+      proc_clk_ctrl:
+        offset: 4
+        access: rw
+      slow_clk_ctrl:
+        offset: 8
+        access: rw
+      osc_id:
+        offset: 12
+        access: rw
+      pwr_rst_sts:
+        offset: 16
+        access: rw
+      pwr_rst_ctrl:
+        offset: 20
+        access: rw
+      sys_rst:
+        offset: 24
+        access: rw
+      slp_en_0:
+        offset: 48
+        access: rw
+      slp_en_1:
+        offset: 52
+        access: rw
+      slp_en_2:
+        offset: 56
+        access: rw
+      slp_en_3:
+        offset: 60
+        access: rw
+      slp_en_4:
+        offset: 64
+        access: rw
+      clk_req_0:
+        offset: 80
+        access: rw
+      clk_req_1:
+        offset: 84
+        access: rw
+      clk_req_2:
+        offset: 88
+        access: rw
+      clk_req_3:
+        offset: 92
+        access: rw
+      clk_req_4:
+        offset: 96
+        access: rw
+      rst_en_0:
+        offset: 112
+        access: rw
+      rst_en_1:
+        offset: 116
+        access: rw
+      rst_en_2:
+        offset: 120
+        access: rw
+      rst_en_3:
+        offset: 124
+        access: rw
+      rst_en_4:
+        offset: 128
+        access: rw
+    fields:
+      sys_slp_ctrl.slp_mod:
+        bit: 0
+      sys_slp_ctrl.test:
+        bit: 2
+      sys_slp_ctrl.slp_all:
+        bit: 3
+      proc_clk_ctrl.div:
+        bits:
+        - 0
+        - 7
+        enum:
+          div_by_1: 1
+          div_by_3: 3
+          div_by_4: 4
+          div_by_16: 16
+          div_by_48: 48
+      slow_clk_ctrl.div:
+        bits:
+        - 0
+        - 9
+      osc_id.test:
+        bits:
+        - 0
+        - 7
+      osc_id.pll_lock:
+        bit: 8
+      pwr_rst_sts.vcc_pwrgd_sts:
+        bit: 2
+      pwr_rst_sts.rst_h_sts:
+        bit: 3
+      pwr_rst_sts.vbat_rst_sts:
+        bit: 5
+      pwr_rst_sts.rst_vtr_sts:
+        bit: 6
+      pwr_rst_sts.jtag_rst_sts:
+        bit: 7
+      pwr_rst_sts._32k_active:
+        bit: 10
+      pwr_rst_sts.pciclk_active:
+        bit: 11
+      pwr_rst_sts.espi_clk_active:
+        bit: 12
+      pwr_rst_ctrl.pwr_inv:
+        bit: 0
+      pwr_rst_ctrl.h_rst_sel:
+        bit: 8
+      sys_rst.soft_sys_rst:
+        bit: 8
+      slp_en_0.jtag_stap_slp_en:
+        bit: 0
+      slp_en_0.otp_slp_en:
+        bit: 1
+      slp_en_1.int_slp_en:
+        bit: 0
+      slp_en_1.tach0_slp_en:
+        bit: 2
+      slp_en_1.pwm0_slp_en:
+        bit: 4
+      slp_en_1.pmc_slp_en:
+        bit: 5
+      slp_en_1.dma_slp_en:
+        bit: 6
+      slp_en_1.tfdp_slp_en:
+        bit: 7
+      slp_en_1.proc_slp_en:
+        bit: 8
+      slp_en_1.wdt_slp_en:
+        bit: 9
+      slp_en_1.smb0_slp_en:
+        bit: 10
+      slp_en_1.tach1_slp_en:
+        bit: 11
+      slp_en_1.pwm1_slp_en:
+        bit: 20
+      slp_en_1.pwm2_slp_en:
+        bit: 21
+      slp_en_1.pwm3_slp_en:
+        bit: 22
+      slp_en_1.pwm4_slp_en:
+        bit: 23
+      slp_en_1.pwm5_slp_en:
+        bit: 24
+      slp_en_1.ec_reg_bank_slp_en:
+        bit: 29
+      slp_en_1.tmr16_0_slp_en:
+        bit: 30
+      slp_en_1.tmr16_1_slp_en:
+        bit: 31
+      slp_en_2.uart0_slp_en:
+        bit: 1
+      slp_en_2.uart1_slp_en:
+        bit: 2
+      slp_en_2.glbl_cfg_slp_en:
+        bit: 12
+      slp_en_2.rtc_slp_en:
+        bit: 18
+      slp_en_3.adc_slp_en:
+        bit: 3
+      slp_en_3.gp_spi0_slp_en:
+        bit: 9
+      slp_en_3.htmr_0_slp_en:
+        bit: 10
+      slp_en_3.keyscan_slp_en:
+        bit: 11
+      slp_en_3.rpmpwm_slp_en:
+        bit: 12
+      slp_en_3.smb1_slp_en:
+        bit: 13
+      slp_en_3.smb2_slp_en:
+        bit: 14
+      slp_en_3.smb3_slp_en:
+        bit: 15
+      slp_en_3.led0_slp_en:
+        bit: 16
+      slp_en_3.led1_slp_en:
+        bit: 17
+      slp_en_3.tmr16_2_slp_en:
+        bit: 21
+      slp_en_3.tmr16_3_slp_en:
+        bit: 22
+      slp_en_3.tmr32_0_slp_en:
+        bit: 23
+      slp_en_3.tmr32_1_slp_en:
+        bit: 24
+      slp_en_3.htmr_1_slp_en:
+        bit: 29
+      slp_en_3.cctmr_slp_en:
+        bit: 30
+      slp_en_4.pwm10_slp_en:
+        bit: 0
+      slp_en_4.cnt_tmer0_slp_en:
+        bit: 2
+      slp_en_4.cnt_tmer1_slp_en:
+        bit: 3
+      slp_en_4.cnt_tmer2_slp_en:
+        bit: 4
+      slp_en_4.cnt_tmer3_slp_en:
+        bit: 5
+      slp_en_4.rtos_slp_en:
+        bit: 6
+      slp_en_4.rpmpwm1_slp_en:
+        bit: 7
+      slp_en_4.qmspi_slp_en:
+        bit: 8
+      slp_en_4.rc_id1_slp_en:
+        bit: 11
+      slp_en_4.rc_id2_slp_en:
+        bit: 12
+      slp_en_4.prochot_slp_en:
+        bit: 13
+      slp_en_4.fujicl_slp_en:
+        bit: 15
+      clk_req_0.jtag_stap_clk_req:
+        bit: 0
+      clk_req_0.efuse_clk_req:
+        bit: 1
+      clk_req_1.int_clk_req:
+        bit: 0
+      clk_req_1.tach0_clk_req:
+        bit: 2
+      clk_req_1.pwm0_clk_req:
+        bit: 4
+      clk_req_1.pmc_clk_req:
+        bit: 5
+      clk_req_1.dma_clk_req:
+        bit: 6
+      clk_req_1.tfdp_clk_req:
+        bit: 7
+      clk_req_1.processor_clk_req:
+        bit: 8
+      clk_req_1.wdt_clk_req:
+        bit: 9
+      clk_req_1.smb0_clk_req:
+        bit: 10
+      clk_req_1.tach1_clk_req:
+        bit: 11
+      clk_req_1.pwm1_clk_req:
+        bit: 20
+      clk_req_1.pwm2_clk_req:
+        bit: 21
+      clk_req_1.pwm3_clk_req:
+        bit: 22
+      clk_req_1.pwm4_clk_req:
+        bit: 23
+      clk_req_1.pwm5_clk_req:
+        bit: 24
+      clk_req_1.ec_reg_bank_clk_req:
+        bit: 29
+      clk_req_1.tmr16_0_clk_req:
+        bit: 30
+      clk_req_1.tmr16_1_clk_req:
+        bit: 31
+      clk_req_2.uart_0_clk_req:
+        bit: 1
+      clk_req_2.uart_1_clk_req:
+        bit: 2
+      clk_req_2.glbl_cfg_clk_req:
+        bit: 12
+      clk_req_2.rtc_clk_req:
+        bit: 18
+      clk_req_3.adc_clk_req:
+        bit: 3
+      clk_req_3.gp_spi0_clk_req:
+        bit: 9
+      clk_req_3.htmr_0_clk_req:
+        bit: 10
+      clk_req_3.keyscan_clk_req:
+        bit: 11
+      clk_req_3.rpmpwm_clk_req:
+        bit: 12
+      clk_req_3.smb1_clk_req:
+        bit: 13
+      clk_req_3.smb2_clk_req:
+        bit: 14
+      clk_req_3.smb3_clk_req:
+        bit: 15
+      clk_req_3.led0_clk_req:
+        bit: 16
+      clk_req_3.led1_clk_req:
+        bit: 17
+      clk_req_3.tmr16_2_clk_req:
+        bit: 21
+      clk_req_3.tmr16_3_clk_req:
+        bit: 22
+      clk_req_3.tmr32_0_clk_req:
+        bit: 23
+      clk_req_3.tmr32_1_clk_req:
+        bit: 24
+      clk_req_3.htmr_1_clk_req:
+        bit: 29
+      clk_req_3.cctmr_clk_req:
+        bit: 30
+      clk_req_4.pwm10_clk_req:
+        bit: 0
+      clk_req_4.cnt_tmer0_clk_req:
+        bit: 2
+      clk_req_4.cnt_tmer1_clk_req:
+        bit: 3
+      clk_req_4.cnt_tmer2_clk_req:
+        bit: 4
+      clk_req_4.cnt_tmer3_clk_req:
+        bit: 5
+      clk_req_4.rtos_clk_req:
+        bit: 6
+      clk_req_4.rpmpwm1_clk_req:
+        bit: 7
+      clk_req_4.qspi_clk_req:
+        bit: 8
+      clk_req_4.rc_id1_clk_req:
+        bit: 11
+      clk_req_4.rc_id2_clk_req:
+        bit: 12
+      clk_req_4.prochot_clk_req:
+        bit: 13
+      clk_req_4.fujicl_clk_req:
+        bit: 15
+      rst_en_0.jtag_stap_rst_en:
+        bit: 0
+      rst_en_0.efuse_rst_en:
+        bit: 1
+      rst_en_1.int_rst_en:
+        bit: 0
+      rst_en_1.tach0_rst_en:
+        bit: 2
+      rst_en_1.pwm0_rst_en:
+        bit: 4
+      rst_en_1.pmc_rst_en:
+        bit: 5
+      rst_en_1.dma_rst_en:
+        bit: 6
+      rst_en_1.tfdp_rst_en:
+        bit: 7
+      rst_en_1.processor_rst_en:
+        bit: 8
+      rst_en_1.wdt_rst_en:
+        bit: 9
+      rst_en_1.smb0_rst_en:
+        bit: 10
+      rst_en_1.tach1_rst_en:
+        bit: 11
+      rst_en_1.pwm1_rst_en:
+        bit: 20
+      rst_en_1.pwm2_rst_en:
+        bit: 21
+      rst_en_1.pwm3_rst_en:
+        bit: 22
+      rst_en_1.pwm4_rst_en:
+        bit: 23
+      rst_en_1.pwm5_rst_en:
+        bit: 24
+      rst_en_1.ec_reg_bank_rst_en:
+        bit: 29
+      rst_en_1.tmr16_0_rst_en:
+        bit: 30
+      rst_en_1.tmr16_1_rst_en:
+        bit: 31
+      rst_en_2.uart_0_rst_en:
+        bit: 1
+      rst_en_2.uart_1_rst_en:
+        bit: 2
+      rst_en_2.glbl_cfg_rst_en:
+        bit: 12
+      rst_en_2.rtc_rst_en:
+        bit: 18
+      rst_en_3.adc_rst_en:
+        bit: 3
+      rst_en_3.gp_spi0_rst_en:
+        bit: 9
+      rst_en_3.htmr_0_rst_en:
+        bit: 10
+      rst_en_3.keyscan_rst_en:
+        bit: 11
+      rst_en_3.rpmpwm_rst_en:
+        bit: 12
+      rst_en_3.smb1_rst_en:
+        bit: 13
+      rst_en_3.smb2_rst_en:
+        bit: 14
+      rst_en_3.smb3_rst_en:
+        bit: 15
+      rst_en_3.led0_rst_en:
+        bit: 16
+      rst_en_3.led1_rst_en:
+        bit: 17
+      rst_en_3.tmr16_2_rst_en:
+        bit: 21
+      rst_en_3.tmr16_3_rst_en:
+        bit: 22
+      rst_en_3.tmr32_0_rst_en:
+        bit: 23
+      rst_en_3.tmr32_1_rst_en:
+        bit: 24
+      rst_en_3.htmr_1_rst_en:
+        bit: 29
+      rst_en_3.cctmr_rst_en:
+        bit: 30
+      rst_en_4.pwm10_rst_en:
+        bit: 0
+      rst_en_4.cnt_tmer0_rst_en:
+        bit: 2
+      rst_en_4.cnt_tmer1_rst_en:
+        bit: 3
+      rst_en_4.cnt_tmer2_rst_en:
+        bit: 4
+      rst_en_4.cnt_tmer3_rst_en:
+        bit: 5
+      rst_en_4.rtos_rst_en:
+        bit: 6
+      rst_en_4.rpmpwm1_rst_en:
+        bit: 7
+      rst_en_4.qspi_rst_en:
+        bit: 8
+      rst_en_4.rc_id1_rst_en:
+        bit: 11
+      rst_en_4.rc_id2_rst_en:
+        bit: 12
+      rst_en_4.prochot_rst_en:
+        bit: 13
+      rst_en_4.fujicl_rst_en:
+        bit: 15
+  dma_main:
+    registers:
+      actrst:
+        offset: 0
+        access: rw
+      data_pkt:
+        offset: 4
+        access: ro
+    fields:
+      actrst.act:
+        bit: 0
+      actrst.soft_rst:
+        bit: 1
+  dma_chan:
+    registers:
+      activate:
+        offset: 0
+        access: rw
+      mstart:
+        offset: 4
+        access: rw
+      mend:
+        offset: 8
+        access: rw
+      dstart:
+        offset: 12
+        access: rw
+      ctrl:
+        offset: 16
+        access: rw
+      ists:
+        offset: 20
+        access: rw
+      ien:
+        offset: 24
+        access: rw
+      crc_en:
+        offset: 32
+        access: rw
+      crc_data:
+        offset: 36
+        access: rw
+      crc_post_sts:
+        offset: 40
+        access: rw
+      fill_en:
+        offset: 32
+        access: rw
+      fill_data:
+        offset: 36
+        access: rw
+      fill_sts:
+        offset: 40
+        access: rw
+    fields:
+      activate.chn:
+        bit: 0
+      ctrl.run:
+        bit: 0
+      ctrl.req:
+        bit: 1
+      ctrl.done:
+        bit: 2
+      ctrl.sts:
+        bits:
+        - 3
+        - 4
+        enum:
+          error: 3
+          ext_done: 2
+          loc_done: 1
+          dis: 0
+      ctrl.busy:
+        bit: 5
+      ctrl.tx_dir:
+        bit: 8
+      ctrl.hw_flow_ctrl_dev:
+        bits:
+        - 9
+        - 15
+      ctrl.inc_mem_addr:
+        bit: 16
+      ctrl.inc_dev_addr:
+        bit: 17
+      ctrl.lock:
+        bit: 18
+      ctrl.dis_hw_flow_ctrl:
+        bit: 19
+      ctrl.trans_size:
+        bits:
+        - 20
+        - 22
+      ctrl.trans_go:
+        bit: 24
+      ctrl.trans_abort:
+        bit: 25
+      ists.bus_err:
+        bit: 0
+      ists.flow_ctrl:
+        bit: 1
+      ists.done:
+        bit: 2
+      ien.sts_en_bus_err:
+        bit: 0
+      ien.sts_en_flow_ctrl:
+        bit: 1
+      ien.sts_en_done:
+        bit: 2
+      crc_en.mode:
+        bit: 0
+      crc_en.post_trans:
+        bit: 1
+      crc_data.crc:
+        bits:
+        - 0
+        - 31
+      crc_post_sts.crc_done:
+        bit: 0
+      crc_post_sts.crc_running:
+        bit: 1
+      crc_post_sts.crc_data_done:
+        bit: 2
+      crc_post_sts.crc_data_ready:
+        bit: 3
+      ists.bus_error:
+        bit: 0
+      fill_en.mode:
+        bit: 0
+      fill_data.data:
+        bits:
+        - 0
+        - 31
+      fill_sts.done:
+        bit: 0
+      fill_sts.running:
+        bit: 1
+  ecia:
+    registers:
+      src:
+        offset: 0
+        access: rw
+      en_set:
+        offset: 4
+        access: rw
+      result:
+        offset: 8
+        access: ro
+      en_clr:
+        offset: 12
+        access: rw
+      blk_en_set:
+        offset: '0x200'
+        access: rw
+      blk_en_clr:
+        offset: '0x204'
+        access: rw
+      blk_irq_vtor:
+        offset: '0x208'
+        access: ro
+    fields:
+      blk_en_set.vtor_en_set:
+        bits:
+        - 0
+        - 30
+      blk_en_clr.vtor_en_clr:
+        bits:
+        - 0
+        - 30
+      blk_irq_vtor.vtor:
+        bits:
+        - 0
+        - 24
+  gcr:
+    registers:
+      ldn:
+        offset: 7
+        access: rw
+      dev_id:
+        offset: 32
+        access: ro
+      dev_rev:
+        offset: 33
+        access: ro
+  uart:
+    registers:
+      rx_dat:
+        offset: 0
+        access: ro
+      baudrt_msb:
+        offset: 1
+        access: rw
+      fifo_cr:
+        offset: 2
+        access: wo
+      lcr:
+        offset: 3
+        access: rw
+      mcr:
+        offset: 4
+        access: rw
+      lsr:
+        offset: 5
+        access: ro
+      msr:
+        offset: 6
+        access: ro
+      scr:
+        offset: 7
+        access: rw
+      activate:
+        offset: '0x330'
+        access: rw
+      cfg_sel:
+        offset: '0x3F0'
+        access: rw
+    fields:
+      fifo_cr.exrf:
+        bit: 0
+      fifo_cr.clr_recv_fifo:
+        bit: 1
+      fifo_cr.clr_xmit_fifo:
+        bit: 2
+      fifo_cr.dma_mode_sel:
+        bit: 3
+      fifo_cr.recv_fifo_trig_lvl:
+        bits:
+        - 6
+        - 7
+      lcr.word_len:
+        bits:
+        - 0
+        - 1
+      lcr.stop_bits:
+        bit: 2
+      lcr.en_par:
+        bit: 3
+      lcr.par_sel:
+        bit: 4
+      lcr.stick_par:
+        bit: 5
+      lcr.brk_ctrl:
+        bit: 6
+      lcr.dlab:
+        bit: 7
+      mcr.dtr:
+        bit: 0
+      mcr.rts:
+        bit: 1
+      mcr.out1:
+        bit: 2
+      mcr.out2:
+        bit: 3
+      mcr.loopback:
+        bit: 4
+      lsr.data_ready:
+        bit: 0
+      lsr.overrun:
+        bit: 1
+      lsr.pe:
+        bit: 2
+      lsr.frame_err:
+        bit: 3
+      lsr.brk_intr:
+        bit: 4
+      lsr.trans_empty:
+        bit: 5
+      lsr.trans_err:
+        bit: 6
+      lsr.fifo_err:
+        bit: 7
+      msr.cts:
+        bit: 0
+      msr.dsr:
+        bit: 1
+      msr.ri:
+        bit: 2
+      msr.dcd:
+        bit: 3
+      msr.ncts:
+        bit: 4
+      msr.ndsr:
+        bit: 5
+      msr.nri:
+        bit: 6
+      msr.ndcd:
+        bit: 7
+      cfg_sel.clk_src:
+        bit: 0
+      cfg_sel.pwr:
+        bit: 1
+      cfg_sel.polar:
+        bit: 2
+  gpio:
+    registers:
+      ctrl:
+        offset: 0
+        access: rw
+      parin:
+        offset: '0x300'
+        access: rw
+      parout:
+        offset: '0x380'
+        access: rw
+      ctrl2p:
+        offset: '0x500'
+        access: rw
+    fields:
+      ctrl.pu_pd:
+        bits:
+        - 0
+        - 1
+      ctrl.pwr_gating:
+        bits:
+        - 2
+        - 3
+      ctrl.intr_det:
+        bits:
+        - 4
+        - 6
+      ctrl.edge_en:
+        bit: 7
+      ctrl.out_buff_type:
+        bit: 8
+      ctrl.gpio_dir:
+        bit: 9
+      ctrl.gpio_out_sel:
+        bit: 10
+      ctrl.pol:
+        bit: 11
+      ctrl.mux_ctrl:
+        bits:
+        - 12
+        - 13
+      ctrl.alt_gpio_data:
+        bit: 16
+      ctrl.gpio_inp:
+        bit: 24
+      ctrl2p.slew_rate:
+        bit: 0
+      ctrl2p.driv_stren:
+        bits:
+        - 4
+        - 5
+  wdt:
+    registers:
+      load:
+        offset: 0
+        access: rw
+      ctrl:
+        offset: 4
+        access: rw
+      kick:
+        offset: 8
+        access: wo
+      cnt:
+        offset: 12
+        access: ro
+    fields:
+      ctrl.wdt_en:
+        bit: 0
+      ctrl.wdt_sts:
+        bit: 1
+      ctrl.hib_tmr0_stl:
+        bit: 2
+      ctrl.wk_tmr_stl:
+        bit: 3
+      ctrl.jtag_stl:
+        bit: 4
+  timer:
+    registers:
+      cnt:
+        offset: 0
+        access: rw
+      prld:
+        offset: 4
+        access: rw
+      sts:
+        offset: 8
+        access: rw
+      ien:
+        offset: 12
+        access: rw
+      ctrl:
+        offset: 16
+        access: rw
+    fields:
+      sts.evt_int:
+        bit: 0
+      ien.en:
+        bit: 0
+      ctrl.en:
+        bit: 0
+      ctrl.cnt_up:
+        bit: 2
+      ctrl.au_restrt:
+        bit: 3
+      ctrl.sft_rst:
+        bit: 4
+      ctrl.strt:
+        bit: 5
+      ctrl.rld:
+        bit: 6
+      ctrl.hlt:
+        bit: 7
+      ctrl.prescale:
+        bits:
+        - 16
+        - 31
+  cnt_tmr:
+    registers:
+      timerx_ctrl:
+        offset: 0
+        access: rw
+      prld:
+        offset: 4
+        access: rw
+      timerx_rld:
+        offset: 8
+        access: rw
+      timerx_cnt:
+        offset: 12
+        access: rw
+    fields:
+      timerx_ctrl.en:
+        bit: 0
+      timerx_ctrl.rst:
+        bit: 1
+      timerx_ctrl.mode:
+        bits:
+        - 2
+        - 3
+        enum:
+          timer_mode: 0
+          event_mode: 1
+          one_shot_mode: 2
+          measurement_mode: 3
+      timerx_ctrl.inpol:
+        bit: 4
+      timerx_ctrl.updn:
+        bit: 5
+      timerx_ctrl.tout_en:
+        bit: 6
+      timerx_ctrl.rload:
+        bit: 7
+      timerx_ctrl.fil_bypass:
+        bit: 8
+      timerx_ctrl.pd:
+        bit: 9
+      timerx_ctrl.tout_pol:
+        bit: 10
+      timerx_ctrl.slp_en:
+        bit: 11
+      timerx_ctrl.tmrx_clk_req:
+        bit: 12
+      prld.tclk:
+        bits:
+        - 0
+        - 3
+      prld.edge:
+        bits:
+        - 5
+        - 6
+      prld.event:
+        bit: 7
+      prld.fclk:
+        bits:
+        - 8
+        - 11
+      timerx_rld.tmr_rld:
+        bits:
+        - 0
+        - 15
+      timerx_cnt.tmr_cnt:
+        bits:
+        - 0
+        - 15
+  cct:
+    registers:
+      ctrl:
+        offset: 0
+        access: rw
+      cap0_ctrl:
+        offset: 4
+        access: rw
+      cap1_ctrl:
+        offset: 8
+        access: rw
+      free_run:
+        offset: 12
+        access: rw
+      cap0:
+        offset: 16
+        access: rw
+      cap1:
+        offset: 20
+        access: rw
+      cap2:
+        offset: 24
+        access: rw
+      cap3:
+        offset: 28
+        access: rw
+      cap4:
+        offset: 32
+        access: rw
+      cap5:
+        offset: 36
+        access: rw
+      comp0:
+        offset: 40
+        access: rw
+      comp1:
+        offset: 44
+        access: rw
+    fields:
+      ctrl.act:
+        bit: 0
+      ctrl.free_en:
+        bit: 1
+      ctrl.free_rst:
+        bit: 2
+      ctrl.tclk:
+        bits:
+        - 4
+        - 6
+      ctrl.cmp_en0:
+        bit: 8
+      ctrl.cmp_en1:
+        bit: 9
+      ctrl.cmp_set1:
+        bit: 16
+      ctrl.cmp_set0:
+        bit: 17
+      ctrl.cmp_clr1:
+        bit: 24
+      ctrl.cmp_clr0:
+        bit: 25
+      cap0_ctrl.cap_edge0:
+        bits:
+        - 0
+        - 1
+      cap0_ctrl.filter_byp0:
+        bit: 2
+      cap0_ctrl.fclk_sel0:
+        bits:
+        - 5
+        - 7
+      cap0_ctrl.cap_edge1:
+        bits:
+        - 8
+        - 9
+      cap0_ctrl.filter_byp1:
+        bit: 10
+      cap0_ctrl.fclk_sel1:
+        bits:
+        - 13
+        - 15
+      cap0_ctrl.cap_edge2:
+        bits:
+        - 16
+        - 17
+      cap0_ctrl.filter_byp2:
+        bit: 18
+      cap0_ctrl.fclk_sel2:
+        bits:
+        - 21
+        - 23
+      cap0_ctrl.cap_edge3:
+        bits:
+        - 24
+        - 25
+      cap0_ctrl.filter_byp3:
+        bit: 26
+      cap0_ctrl.fclk_sel3:
+        bits:
+        - 29
+        - 31
+      cap1_ctrl.cap_edge4:
+        bits:
+        - 0
+        - 1
+      cap1_ctrl.filter_byp4:
+        bit: 2
+      cap1_ctrl.fclk_sel4:
+        bits:
+        - 5
+        - 7
+      cap1_ctrl.cap_edge5:
+        bits:
+        - 8
+        - 9
+      cap1_ctrl.filter_byp5:
+        bit: 10
+      cap1_ctrl.fclk_sel5:
+        bits:
+        - 13
+        - 15
+      free_run.tmr:
+        bits:
+        - 0
+        - 31
+      cap0.cap_0:
+        bits:
+        - 0
+        - 31
+      cap1.cap_1:
+        bits:
+        - 0
+        - 31
+      cap2.cap_2:
+        bits:
+        - 0
+        - 31
+      cap3.cap_3:
+        bits:
+        - 0
+        - 31
+      cap4.cap_4:
+        bits:
+        - 0
+        - 31
+      cap5.cap_5:
+        bits:
+        - 0
+        - 31
+      comp0.comp_0:
+        bits:
+        - 0
+        - 31
+      comp1.comp_1:
+        bits:
+        - 0
+        - 31
+  htm:
+    registers:
+      prld:
+        offset: 0
+        access: rw
+      ctrl:
+        offset: 4
+        access: rw
+      cnt:
+        offset: 8
+        access: ro
+    fields:
+      ctrl.ctrl:
+        bit: 0
+  rtos:
+    registers:
+      cnt:
+        offset: 0
+        access: rw
+      prld:
+        offset: 4
+        access: rw
+      ctrl:
+        offset: 8
+        access: rw
+      softirq:
+        offset: 12
+        access: wo
+    fields:
+      cnt.cntr:
+        bits:
+        - 0
+        - 31
+      prld.preload:
+        bits:
+        - 0
+        - 31
+      ctrl.blk_en:
+        bit: 0
+      ctrl.au_reload:
+        bit: 1
+      ctrl.tmr_strt:
+        bit: 2
+      ctrl.ext_hw_halt_en:
+        bit: 3
+      ctrl.fw_tmr_halt:
+        bit: 4
+      softirq.swi0:
+        bit: 0
+      softirq.swi1:
+        bit: 1
+      softirq.swi2:
+        bit: 2
+      softirq.swi3:
+        bit: 3
+  rtc:
+    registers:
+      sec:
+        offset: 0
+        access: rw
+      sec_alarm:
+        offset: 1
+        access: rw
+      min:
+        offset: 2
+        access: rw
+      min_alarm:
+        offset: 3
+        access: rw
+      hr:
+        offset: 4
+        access: rw
+      hr_alarm:
+        offset: 5
+        access: rw
+      day_of_wk:
+        offset: 6
+        access: rw
+      day_of_mon:
+        offset: 7
+        access: rw
+      month:
+        offset: 8
+        access: rw
+      year:
+        offset: 9
+        access: rw
+      rega:
+        offset: 10
+        access: rw
+      regb:
+        offset: 11
+        access: rw
+      regc:
+        offset: 12
+        access: rw
+      regd:
+        offset: 13
+        access: rw
+      ctrl:
+        offset: 16
+        access: rw
+      wk_alarm:
+        offset: 20
+        access: rw
+      daylt_savf:
+        offset: 24
+        access: rw
+      daylt_savb:
+        offset: 28
+        access: rw
+    fields:
+      ctrl.blk_en:
+        bit: 0
+      ctrl.soft_rst:
+        bit: 1
+      ctrl.test:
+        bit: 2
+      ctrl.alm_en:
+        bit: 3
+      daylt_savf.dst_mon:
+        bits:
+        - 0
+        - 7
+      daylt_savf.dst_day_of_wk:
+        bits:
+        - 8
+        - 10
+      daylt_savf.dst_wk:
+        bits:
+        - 16
+        - 18
+      daylt_savf.dst_hr:
+        bits:
+        - 24
+        - 30
+      daylt_savf.dst_am_pm:
+        bit: 31
+      daylt_savb.dst_mon:
+        bits:
+        - 0
+        - 7
+      daylt_savb.dst_day_of_wk:
+        bits:
+        - 8
+        - 10
+      daylt_savb.dst_wk:
+        bits:
+        - 16
+        - 18
+      daylt_savb.dst_hr:
+        bits:
+        - 24
+        - 30
+      daylt_savb.dst_am_pm:
+        bit: 31
+  week:
+    registers:
+      ctrl:
+        offset: 0
+        access: rw
+      alarm_cnt:
+        offset: 4
+        access: rw
+      tmr_comp:
+        offset: 8
+        access: rw
+      clkdiv:
+        offset: 12
+        access: rw
+      ss_intr_sel:
+        offset: 16
+        access: rw
+      swk_ctrl:
+        offset: 20
+        access: ro
+      swk_alarm:
+        offset: 24
+        access: ro
+      bgpo_data:
+        offset: 28
+        access: rw
+      bgpo_pwr:
+        offset: 32
+        access: rw
+      bgpo_rst:
+        offset: 36
+        access: rw
+    fields:
+      ctrl.wt_en:
+        bit: 0
+      ctrl.pwrup_en:
+        bit: 6
+      alarm_cnt.wk_cntr:
+        bits:
+        - 0
+        - 27
+      tmr_comp.wk_comp:
+        bits:
+        - 0
+        - 27
+      clkdiv.div:
+        bits:
+        - 0
+        - 14
+      ss_intr_sel.spisr:
+        bits:
+        - 0
+        - 3
+      swk_ctrl.swktmr_pwrup_evt_sts:
+        bit: 0
+      swk_ctrl.wktmr_pwrup_evt_sts:
+        bit: 1
+      swk_ctrl.test:
+        bit: 4
+      swk_ctrl.test0:
+        bit: 5
+      swk_ctrl.au_rld:
+        bit: 6
+      swk_ctrl.swk_tick:
+        bits:
+        - 7
+        - 9
+      swk_alarm.cntr_load:
+        bits:
+        - 0
+        - 8
+      swk_alarm.cntr_sts:
+        bits:
+        - 16
+        - 24
+      bgpo_data.bgpo:
+        bits:
+        - 0
+        - 9
+      bgpo_pwr.bgpo_power:
+        bits:
+        - 1
+        - 5
+      bgpo_rst.bgpo_reset:
+        bits:
+        - 0
+        - 9
+  tach:
+    registers:
+      ctrl:
+        offset: 0
+        access: rw
+      sts:
+        offset: 4
+        access: rw
+      lim_hi:
+        offset: 8
+        access: rw
+      lim_lo:
+        offset: 12
+        access: rw
+    fields:
+      ctrl.outof_lim_en:
+        bit: 0
+      ctrl.en:
+        bit: 1
+      ctrl.filt_en:
+        bit: 8
+      ctrl.rd_mod_sel:
+        bit: 10
+      ctrl.edges:
+        bits:
+        - 11
+        - 12
+      ctrl.cnt_rdy_int_en:
+        bit: 14
+      ctrl.in_int_en:
+        bit: 15
+      ctrl.cntr:
+        bits:
+        - 16
+        - 31
+      sts.outof_lim_sts:
+        bit: 0
+      sts.pin_sts:
+        bit: 1
+      sts.tog_sts:
+        bit: 2
+      sts.cnt_rdy_sts:
+        bit: 3
+      lim_hi.t_high:
+        bits:
+        - 0
+        - 15
+      lim_lo.t_low:
+        bits:
+        - 0
+        - 15
+  pwm:
+    registers:
+      cnt_on:
+        offset: 0
+        access: rw
+      cnt_off:
+        offset: 4
+        access: rw
+      cfg:
+        offset: 8
+        access: rw
+    fields:
+      cfg.pwm_en:
+        bit: 0
+      cfg.clk_sel:
+        bit: 1
+      cfg.inv:
+        bit: 2
+      cfg.clk_pre_div:
+        bits:
+        - 3
+        - 6
+  adc:
+    registers:
+      ctrl:
+        offset: 0
+        access: rw
+      delay:
+        offset: 4
+        access: rw
+      chan_sts:
+        offset: 8
+        access: rw
+      sng_en:
+        offset: 12
+        access: rw
+      rept_en:
+        offset: 16
+        access: rw
+      chan_rd:
+        offset: 20
+        access: rw
+    fields:
+      ctrl.act:
+        bit: 0
+      ctrl.strt_sin:
+        bit: 1
+      ctrl.strt_rpt:
+        bit: 2
+      ctrl.pwr_sav_dis:
+        bit: 3
+      ctrl.sft_rst:
+        bit: 4
+      ctrl.rpt_done_sts:
+        bit: 6
+      ctrl.sin_done_sts:
+        bit: 7
+      delay.strt_dly:
+        bits:
+        - 0
+        - 15
+      delay.rpt_dly:
+        bits:
+        - 16
+        - 31
+      chan_sts.sts:
+        bits:
+        - 0
+        - 15
+      sng_en.s_en:
+        bits:
+        - 0
+        - 15
+      rept_en.r_en:
+        bits:
+        - 0
+        - 15
+    max_clock: 10MHz
+  fan:
+    registers:
+      fan_set:
+        offset: 0
+        access: rw
+      cfg:
+        offset: 2
+        access: rw
+      pwm_div:
+        offset: 4
+        access: rw
+      gain:
+        offset: 5
+        access: rw
+      spin_up_cfg:
+        offset: 6
+        access: rw
+      fan_step:
+        offset: 7
+        access: rw
+      min_drive:
+        offset: 8
+        access: rw
+      val_tach_cnt:
+        offset: 9
+        access: rw
+      fan_drive_fail_band:
+        offset: 10
+        access: rw
+      tach_tgt:
+        offset: 12
+        access: rw
+      tach_rd:
+        offset: 14
+        access: rw
+      driv_base_freq:
+        offset: 16
+        access: rw
+      sts:
+        offset: 17
+        access: rw
+    fields:
+      fan_set.fan_setting:
+        bits:
+        - 6
+        - 15
+      cfg.update:
+        bits:
+        - 0
+        - 2
+        enum:
+          base_time_1600ms: 7
+          base_time_1200ms: 6
+          'base_time_800ms ': 6
+          'base_time_500ms ': 5
+          'base_time_400ms ': 4
+          'base_time_300ms ': 3
+          'base_time_200ms ': 2
+          'base_time_100ms ': 1
+      cfg.edges:
+        bits:
+        - 3
+        - 4
+      cfg.range:
+        bits:
+        - 5
+        - 6
+        enum:
+          tach_count_multiplier_8: 3
+          tach_count_multiplier_4: 2
+          tach_count_multiplier_2: 1
+          tach_count_multiplier_1: 0
+      cfg.en_algo:
+        bit: 7
+      cfg.polarity:
+        bit: 9
+      cfg.err_rng:
+        bits:
+        - 10
+        - 11
+        enum:
+          rpm_200: 3
+          rpm_100: 2
+          'rpm_50 ': 1
+          'rpm_0  ': 0
+      cfg.der_opt:
+        bits:
+        - 12
+        - 13
+      cfg.dis_glitch:
+        bit: 14
+      cfg.en_rrc:
+        bit: 15
+      pwm_div.pwm_div:
+        bits:
+        - 0
+        - 7
+      gain.gainp:
+        bits:
+        - 0
+        - 1
+        enum:
+          gainp_8x: 3
+          gainp_4x: 2
+          gainp_2x: 1
+          gainp_1x: 0
+      gain.gaini:
+        bits:
+        - 2
+        - 3
+        enum:
+          gaini_8x: 3
+          gaini_4x: 2
+          gaini_2x: 1
+          gaini_1x: 0
+      gain.gaind:
+        bits:
+        - 4
+        - 5
+        enum:
+          gaind_8x: 3
+          gaind_4x: 2
+          gaind_2x: 1
+          gaind_1x: 0
+      spin_up_cfg.spinup_time:
+        bits:
+        - 0
+        - 1
+        enum:
+          spinup_2_sec: 3
+          spinup_1_sec: 2
+          spinup_500_msec: 1
+          spinup_250_msec: 0
+      spin_up_cfg.spin_lvl:
+        bits:
+        - 2
+        - 4
+        enum:
+          spin_lvl_65: 7
+          spin_lvl_60: 6
+          spin_lvl_55: 5
+          spin_lvl_50: 4
+          spin_lvl_45: 3
+          spin_lvl_40: 2
+          spin_lvl_35: 1
+          spin_lvl_30: 0
+      spin_up_cfg.nokick:
+        bit: 5
+      spin_up_cfg.drive_fail_cnt:
+        bits:
+        - 6
+        - 7
+        enum:
+          drive_fail_cnt_64_period: 3
+          drive_fail_cnt_32_period: 2
+          drive_fail_cnt_16_period: 1
+          drive_fail_cnt_dis: 0
+      fan_step.fan_step:
+        bits:
+        - 0
+        - 7
+      min_drive.min_drive:
+        bits:
+        - 0
+        - 7
+      val_tach_cnt.valid_tach_cnt:
+        bits:
+        - 0
+        - 7
+      fan_drive_fail_band.fan_drive_fail_band:
+        bits:
+        - 3
+        - 15
+      tach_tgt.tach_tgt:
+        bits:
+        - 3
+        - 15
+      tach_rd.tach_rd:
+        bits:
+        - 3
+        - 15
+      driv_base_freq.pwm_base:
+        bits:
+        - 0
+        - 1
+        enum:
+          pwm_fan_freq_2khz: 3
+          pwm_fan_freq_4khz: 2
+          pwm_fan_freq_23khz: 1
+          pwm_fan_freq_26khz: 0
+      sts.fan_stall:
+        bit: 0
+      sts.fan_spin:
+        bit: 1
+      sts.drive_fail:
+        bit: 5
+  led:
+    registers:
+      cfg:
+        offset: 0
+        access: rw
+      limit:
+        offset: 4
+        access: rw
+      dly:
+        offset: 8
+        access: rw
+      step:
+        offset: 12
+        access: rw
+      intrvl:
+        offset: 16
+        access: rw
+      outdly:
+        offset: 20
+        access: rw
+    fields:
+      cfg.ctrl:
+        bits:
+        - 0
+        - 1
+      cfg.clk_src:
+        bit: 2
+      cfg.synch:
+        bit: 3
+      cfg.pwm_size:
+        bits:
+        - 4
+        - 5
+      cfg.en_update:
+        bit: 6
+      cfg.rst:
+        bit: 7
+      cfg.wdt_reload:
+        bits:
+        - 8
+        - 15
+      cfg.symmetry:
+        bit: 16
+      limit.min:
+        bits:
+        - 0
+        - 7
+      limit.max:
+        bits:
+        - 8
+        - 15
+      dly.low_pulse:
+        bits:
+        - 0
+        - 11
+      dly.high_pulse:
+        bits:
+        - 12
+        - 23
+      step.s0:
+        bits:
+        - 0
+        - 3
+      step.s1:
+        bits:
+        - 4
+        - 7
+      step.s2:
+        bits:
+        - 8
+        - 11
+      step.s3:
+        bits:
+        - 12
+        - 15
+      step.s4:
+        bits:
+        - 16
+        - 19
+      step.s5:
+        bits:
+        - 20
+        - 23
+      step.s6:
+        bits:
+        - 24
+        - 27
+      step.s7:
+        bits:
+        - 28
+        - 31
+      intrvl.i0:
+        bits:
+        - 0
+        - 3
+      intrvl.i1:
+        bits:
+        - 4
+        - 7
+      intrvl.i2:
+        bits:
+        - 8
+        - 11
+      intrvl.i3:
+        bits:
+        - 12
+        - 15
+      intrvl.i4:
+        bits:
+        - 16
+        - 19
+      intrvl.i5:
+        bits:
+        - 20
+        - 23
+      intrvl.i6:
+        bits:
+        - 24
+        - 27
+      intrvl.i7:
+        bits:
+        - 28
+        - 31
+      outdly.delay:
+        bits:
+        - 0
+        - 7
+  rc_id:
+    registers:
+      rc_id_ctrl:
+        offset: 0
+        access: rw
+      rc_id_dat:
+        offset: 4
+        access: rw
+    fields:
+      rc_id_ctrl.done:
+        bit: 0
+      rc_id_ctrl.tc:
+        bit: 1
+      rc_id_ctrl.cy_er:
+        bit: 2
+      rc_id_ctrl.start:
+        bit: 6
+      rc_id_ctrl.enable:
+        bit: 7
+      rc_id_ctrl.clock_set:
+        bits:
+        - 8
+        - 9
+      rc_id_dat.rcid_data:
+        bits:
+        - 0
+        - 15
+  kms:
+    registers:
+      kso_sel:
+        offset: 4
+        access: rw
+      ksi:
+        offset: 8
+        access: ro
+      ksi_sts:
+        offset: 12
+        access: rw
+      ksi_ien:
+        offset: 16
+        access: rw
+      ext_ctrl:
+        offset: 20
+        access: rw
+    fields:
+      kso_sel.sel:
+        bits:
+        - 0
+        - 4
+      kso_sel.all:
+        bit: 5
+      kso_sel.ksen:
+        bit: 6
+      kso_sel.inv:
+        bit: 7
+  smb:
+    registers:
+      wctrl:
+        offset: 0
+        access: wo
+      own_addr:
+        offset: 4
+        access: rw
+      i2cdata:
+        offset: 8
+        access: rw
+      rsvd1:
+        offset: 9
+        access: ro
+      mcmd_u32:
+        offset: 12
+        access: rw
+      scmd_u32:
+        offset: 16
+        access: rw
+      pec:
+        offset: 20
+        access: rw
+      rshtm:
+        offset: 24
+        access: rw
+      rsvd2:
+        offset: 28
+        access: ro
+      compl_u32:
+        offset: 32
+        access: rw
+      idlsc:
+        offset: 36
+        access: rw
+      cfg_u32:
+        offset: 40
+        access: rw
+      busclk:
+        offset: 44
+        access: rw
+      blkid:
+        offset: 48
+        access: ro
+      blkrev:
+        offset: 52
+        access: ro
+      bbctrl:
+        offset: 56
+        access: rw
+      test:
+        offset: 60
+        access: ro
+      datatm:
+        offset: 64
+        access: rw
+      tmoutsc:
+        offset: 68
+        access: rw
+      slv_txb:
+        offset: 72
+        access: rw
+      slv_rxb:
+        offset: 76
+        access: rw
+      mtr_txb:
+        offset: 80
+        access: rw
+      mtr_rxb:
+        offset: 84
+        access: rw
+      wake_sts:
+        offset: 96
+        access: rw
+      wake_en:
+        offset: 100
+        access: rw
+    fields:
+      wctrl.ack:
+        bit: 0
+      wctrl.sto:
+        bit: 1
+      wctrl.sta:
+        bit: 2
+      wctrl.eni:
+        bit: 3
+      wctrl.eso:
+        bit: 6
+      wctrl.pin:
+        bit: 7
+      own_addr.addr1:
+        bits:
+        - 0
+        - 6
+      own_addr.addr2:
+        bits:
+        - 8
+        - 14
+      mcmd_u32.mrun:
+        bit: 0
+      mcmd_u32.mproceed:
+        bit: 1
+      mcmd_u32.start0:
+        bit: 8
+      mcmd_u32.startn:
+        bit: 9
+      mcmd_u32.stop:
+        bit: 10
+      mcmd_u32.pec_term:
+        bit: 11
+      mcmd_u32.readm:
+        bit: 12
+      mcmd_u32.rd_pec:
+        bit: 13
+      mcmd_u32.wr_cnt:
+        bits:
+        - 16
+        - 23
+      mcmd_u32.rd_cnt:
+        bits:
+        - 24
+        - 31
+      scmd_u32.srun:
+        bit: 0
+      scmd_u32.sproceed:
+        bit: 1
+      scmd_u32.pec:
+        bit: 2
+      scmd_u32.wr_cnt:
+        bits:
+        - 8
+        - 15
+      scmd_u32.rd_cnt:
+        bits:
+        - 16
+        - 23
+      pec.pec:
+        bits:
+        - 0
+        - 7
+      rshtm.rshtm:
+        bits:
+        - 0
+        - 7
+      compl_u32.dten:
+        bit: 2
+      compl_u32.mcen:
+        bit: 3
+      compl_u32.scen:
+        bit: 4
+      compl_u32.biden:
+        bit: 5
+      compl_u32.timerr:
+        bit: 6
+      compl_u32.dto:
+        bit: 8
+      compl_u32.mcto:
+        bit: 9
+      compl_u32.scto:
+        bit: 10
+      compl_u32.chdl:
+        bit: 11
+      compl_u32.chdh:
+        bit: 12
+      compl_u32.ber:
+        bit: 13
+      compl_u32.lab:
+        bit: 14
+      compl_u32.snakr:
+        bit: 16
+      compl_u32.str:
+        bit: 17
+      compl_u32.sprot:
+        bit: 19
+      compl_u32.rep_rd:
+        bit: 20
+      compl_u32.rep_wr:
+        bit: 21
+      compl_u32.mnakx:
+        bit: 24
+      compl_u32.mtr:
+        bit: 25
+      compl_u32.idle:
+        bit: 29
+      compl_u32.mdone:
+        bit: 30
+      compl_u32.sdone:
+        bit: 31
+      idlsc.fair_bus_idl_min:
+        bits:
+        - 0
+        - 11
+      idlsc.fair_idl_dly:
+        bits:
+        - 16
+        - 27
+      cfg_u32.port_sel:
+        bits:
+        - 0
+        - 3
+      cfg_u32.tcen:
+        bit: 4
+      cfg_u32.slow_clk:
+        bit: 5
+      cfg_u32.test:
+        bit: 6
+      cfg_u32.pecen:
+        bit: 7
+      cfg_u32.fen:
+        bit: 8
+      cfg_u32.rst:
+        bit: 9
+      cfg_u32.en:
+        bit: 10
+      cfg_u32.dsa:
+        bit: 11
+      cfg_u32.fair:
+        bit: 12
+      cfg_u32.test0:
+        bit: 13
+      cfg_u32.gc_dis:
+        bit: 14
+      cfg_u32.flush_sxbuf:
+        bit: 16
+      cfg_u32.flush_srbuf:
+        bit: 17
+      cfg_u32.flush_mxbuf:
+        bit: 18
+      cfg_u32.flush_mrbuf:
+        bit: 19
+      cfg_u32.en_aas:
+        bit: 28
+      cfg_u32.enidi:
+        bit: 29
+      cfg_u32.enmi:
+        bit: 30
+      cfg_u32.ensi:
+        bit: 31
+      busclk.low_per:
+        bits:
+        - 0
+        - 7
+      busclk.high_per:
+        bits:
+        - 8
+        - 15
+      blkid.id:
+        bits:
+        - 0
+        - 7
+      blkrev.rev:
+        bits:
+        - 0
+        - 7
+      bbctrl.bben:
+        bit: 0
+      bbctrl.cldir:
+        bit: 1
+      bbctrl.dadir:
+        bit: 2
+      bbctrl.bbclk:
+        bit: 3
+      bbctrl.bbdat:
+        bit: 4
+      bbctrl.bbclki:
+        bit: 5
+      bbctrl.bbdati:
+        bit: 6
+      test.test:
+        bits:
+        - 0
+        - 7
+      datatm.data_hold:
+        bits:
+        - 0
+        - 7
+      datatm.restart_setup:
+        bits:
+        - 8
+        - 15
+      datatm.stop_setup:
+        bits:
+        - 16
+        - 23
+      datatm.first_start_hold:
+        bits:
+        - 24
+        - 31
+      tmoutsc.clk_high_tim_out:
+        bits:
+        - 0
+        - 7
+      tmoutsc.slv_cum_tim_out:
+        bits:
+        - 8
+        - 15
+      tmoutsc.mast_cum_tim_out:
+        bits:
+        - 16
+        - 23
+      tmoutsc.bus_idle_min:
+        bits:
+        - 24
+        - 31
+      slv_txb.stxb:
+        bits:
+        - 0
+        - 7
+      slv_rxb.srxb:
+        bits:
+        - 0
+        - 7
+      mtr_txb.mtxb:
+        bits:
+        - 0
+        - 7
+      mtr_rxb.mrxb:
+        bits:
+        - 0
+        - 7
+      wake_sts.start_bit_det:
+        bit: 0
+      wake_en.start_det_int_en:
+        bit: 0
+  gp_spi:
+    registers:
+      enable:
+        offset: 0
+        access: rw
+      ctrl:
+        offset: 4
+        access: rw
+      sts:
+        offset: 8
+        access: ro
+      tx_dat:
+        offset: 12
+        access: rw
+      rx_dat:
+        offset: 16
+        access: rw
+      clk_ctrl:
+        offset: 20
+        access: rw
+      clk_gen:
+        offset: 24
+        access: rw
+    fields:
+      ctrl.lsbf:
+        bit: 0
+      ctrl.bioen:
+        bit: 1
+      ctrl.spdin_sel:
+        bits:
+        - 2
+        - 3
+      ctrl.soft_rst:
+        bit: 4
+      ctrl.auto_rd:
+        bit: 5
+      ctrl.ce:
+        bit: 6
+      sts.txbe:
+        bit: 0
+      sts.rxbf:
+        bit: 1
+      sts.active:
+        bit: 2
+      clk_ctrl.tclkph:
+        bit: 0
+      clk_ctrl.rclkph:
+        bit: 1
+      clk_ctrl.clkpol:
+        bit: 2
+      clk_ctrl.clksrc:
+        bit: 4
+      clk_gen.prld:
+        bits:
+        - 0
+        - 5
+  qmspi:
+    registers:
+      mode:
+        offset: 0
+        access: rw
+      ctrl:
+        offset: 4
+        access: rw
+      exe:
+        offset: 8
+        access: rw
+      ifctrl:
+        offset: 12
+        access: rw
+      sts:
+        offset: 16
+        access: rw
+      buf_cnt_sts:
+        offset: 20
+        access: rw
+      ien:
+        offset: 24
+        access: rw
+      buf_cnt_trig:
+        offset: 28
+        access: rw
+      tx_fifo_u32:
+        offset: 32
+        access: rw
+      rx_fifo_u32:
+        offset: 36
+        access: rw
+      descr:
+        offset: 48
+        access: rw
+    fields:
+      mode.act:
+        bit: 0
+      mode.soft_rst:
+        bit: 1
+      mode.cpol:
+        bit: 8
+      mode.chpa_mosi:
+        bit: 9
+      mode.chpa_miso:
+        bit: 10
+      mode.clk_div:
+        bits:
+        - 16
+        - 24
+      ctrl.tx_mode:
+        bits:
+        - 0
+        - 1
+      ctrl.tx_trans_en:
+        bits:
+        - 2
+        - 3
+      ctrl.tx_dma_en:
+        bits:
+        - 4
+        - 5
+      ctrl.rx_trans_en:
+        bit: 6
+      ctrl.rx_dma_en:
+        bits:
+        - 7
+        - 8
+      ctrl.close_trans_en:
+        bit: 9
+      ctrl.trans_units:
+        bits:
+        - 10
+        - 11
+      ctrl.descr_buff_ptr:
+        bits:
+        - 12
+        - 15
+      ctrl.descr_buff_en:
+        bit: 16
+      ctrl.trans_len:
+        bits:
+        - 17
+        - 31
+      exe.start:
+        bit: 0
+      exe.stop:
+        bit: 1
+      exe.clr_dat_buff:
+        bit: 2
+      ifctrl.wr_prct_out_val:
+        bit: 0
+      ifctrl.wr_prct_out_en:
+        bit: 1
+      ifctrl.hld_out_val:
+        bit: 2
+      ifctrl.hld_out_en:
+        bit: 3
+      ifctrl.pd_on_not_sel:
+        bit: 4
+      ifctrl.pu_on_notsel:
+        bit: 5
+      ifctrl.pd_on_notdriven:
+        bit: 6
+      ifctrl.pu_on_notdriven:
+        bit: 7
+      sts.trans_compl:
+        bit: 0
+      sts.dma_compl:
+        bit: 1
+      sts.tx_buff_err:
+        bit: 2
+      sts.rx_buff_err:
+        bit: 3
+      sts.prgm_err:
+        bit: 4
+      sts.tx_buff_full:
+        bit: 8
+      sts.tx_buff_emp:
+        bit: 9
+      sts.tx_buff_req:
+        bit: 10
+      sts.tx_buff_stall:
+        bit: 11
+      sts.rx_buff_full:
+        bit: 12
+      sts.rx_buff_emp:
+        bit: 13
+      sts.rx_buff_req:
+        bit: 14
+      sts.rx_buff_stall:
+        bit: 15
+      sts.trans_activ:
+        bit: 16
+      sts.cur_descr_buf:
+        bits:
+        - 24
+        - 27
+      buf_cnt_sts.tx_buff_cnt:
+        bits:
+        - 0
+        - 15
+      buf_cnt_sts.rx_buff_cnt:
+        bits:
+        - 16
+        - 31
+      ien.trans_compl_en:
+        bit: 0
+      ien.dma_compl_en:
+        bit: 1
+      ien.tx_buf_err_en:
+        bit: 2
+      ien.rx_buf_err_en:
+        bit: 3
+      ien.prgm_err_en:
+        bit: 4
+      ien.tx_buf_full_en:
+        bit: 8
+      ien.tx_buf_empty_en:
+        bit: 9
+      ien.tx_buf_req_en:
+        bit: 10
+      ien.rx_buf_ful_en:
+        bit: 12
+      ien.rx_buf_empty_en:
+        bit: 13
+      ien.rx_buf_req_en:
+        bit: 14
+      buf_cnt_trig.tx_buf_trig:
+        bits:
+        - 0
+        - 15
+      buf_cnt_trig.rx_buf_trig:
+        bits:
+        - 16
+        - 31
+      tx_fifo_u32.tx_buf:
+        bits:
+        - 0
+        - 31
+      rx_fifo_u32.rx_buf:
+        bits:
+        - 0
+        - 31
+      descr.inface_mod:
+        bits:
+        - 0
+        - 1
+      descr.tx_trans_en:
+        bits:
+        - 2
+        - 3
+      descr.tx_dma_en:
+        bits:
+        - 4
+        - 5
+      descr.rx_trans_en:
+        bit: 6
+      descr.rx_dma_en:
+        bits:
+        - 7
+        - 8
+      descr.close_trans_en:
+        bit: 9
+      descr.trans_len_bits:
+        bit: 10
+      descr.descr_buf_last:
+        bit: 11
+      descr.descr_buf_nxt_ptr:
+        bits:
+        - 12
+        - 15
+      descr.tx_len:
+        bits:
+        - 16
+        - 31
+  tfdp:
+    registers:
+      msdata:
+        offset: 0
+        access: rw
+      ctrl:
+        offset: 4
+        access: rw
+    fields:
+      ctrl.en:
+        bit: 0
+      ctrl.edge_sel:
+        bit: 1
+      ctrl.divsel:
+        bits:
+        - 2
+        - 3
+      ctrl.ip_dly:
+        bits:
+        - 4
+        - 6
+  vci:
+    registers:
+      vci_ctrl_sts:
+        offset: 0
+        access: rw
+      latch_en:
+        offset: 4
+        access: rw
+      latch_rst:
+        offset: 8
+        access: rw
+      input_en:
+        offset: 12
+        access: rw
+      hldoff_cnt:
+        offset: 16
+        access: rw
+      polarity:
+        offset: 20
+        access: rw
+      pedge_det:
+        offset: 24
+        access: rw
+      nedge_det:
+        offset: 28
+        access: rw
+      buffer_en:
+        offset: 32
+        access: rw
+    fields:
+      vci_ctrl_sts.vci_in:
+        bits:
+        - 0
+        - 6
+      vci_ctrl_sts.vci_ovrd_in:
+        bit: 8
+      vci_ctrl_sts.vci_out:
+        bit: 9
+      vci_ctrl_sts.vci_fw_ctrl:
+        bit: 10
+      vci_ctrl_sts.fw_ext:
+        bit: 11
+      vci_ctrl_sts.fltrs_bypass:
+        bit: 12
+      vci_ctrl_sts.wk_alrm:
+        bit: 16
+      vci_ctrl_sts.rtc_alrm:
+        bit: 17
+      latch_en.le:
+        bits:
+        - 0
+        - 6
+      latch_en.wk_alrm_le:
+        bit: 16
+      latch_en.rtc_alrm_le:
+        bit: 17
+      latch_rst.ls:
+        bits:
+        - 0
+        - 6
+      latch_rst.wk_alrm_ls:
+        bit: 16
+      latch_rst.rtc_alrm_ls:
+        bit: 17
+      input_en.ie:
+        bits:
+        - 0
+        - 6
+      hldoff_cnt.time:
+        bits:
+        - 0
+        - 7
+      polarity.vci_in:
+        bits:
+        - 0
+        - 6
+      pedge_det.vci_in:
+        bits:
+        - 0
+        - 6
+      nedge_det.vci_in:
+        bits:
+        - 0
+        - 6
+      buffer_en.v_buf:
+        bits:
+        - 0
+        - 6
+  vbat_ram:
+    registers:
+      mem_u32:
+        offset: 0
+        access: rw
+  vbat:
+    registers:
+      pfrs:
+        offset: 0
+        access: rw
+      clk32_en:
+        offset: 8
+        access: rw
+      mcnt_lo:
+        offset: 32
+        access: rw
+      mcnt_hi:
+        offset: 36
+        access: rw
+      vwr_bckp:
+        offset: 40
+        access: rw
+    fields:
+      pfrs.soft:
+        bit: 2
+      pfrs.test:
+        bit: 3
+      pfrs.rsti:
+        bit: 4
+      pfrs.wdt_evt:
+        bit: 5
+      pfrs.sys_rstreq:
+        bit: 6
+      pfrs.vbat_rst:
+        bit: 7
+      clk32_en.c32k_suppress:
+        bit: 0
+      clk32_en.ext_32k:
+        bit: 1
+      clk32_en.c32khz_src:
+        bit: 2
+      clk32_en.xosel:
+        bit: 3
+      mcnt_lo.mon_cnt:
+        bits:
+        - 0
+        - 31
+      mcnt_hi.cnt_hwrd:
+        bits:
+        - 0
+        - 31
+      vwr_bckp.m2s_2h_backup:
+        bits:
+        - 0
+        - 3
+      vwr_bckp.m2s_42h_backup:
+        bits:
+        - 4
+        - 7
+  ec_reg_bank:
+    registers:
+      ahb_err_addr:
+        offset: 4
+        access: rw
+      ahb_err_ctrl:
+        offset: 20
+        access: rw
+      intr_ctrl:
+        offset: 24
+        access: rw
+      etm_ctrl:
+        offset: 28
+        access: rw
+      debug_ctrl:
+        offset: 32
+        access: rw
+      otp_lock:
+        offset: 36
+        access: rw
+      wdt_cnt:
+        offset: 40
+        access: rw
+      aesh_bswap_ctrl:
+        offset: 44
+        access: rw
+      sys_shutdwn_rst:
+        offset: 56
+        access: rw
+      peci_dis:
+        offset: 64
+        access: rw
+      crypto_srst:
+        offset: 92
+        access: rw
+      gpio_bank_pwr:
+        offset: 100
+        access: rw
+      jtag_mcfg:
+        offset: 112
+        access: rw
+      jtag_msts:
+        offset: 116
+        access: ro
+      jtag_mtdo:
+        offset: 120
+        access: rw
+      jtag_mtdi:
+        offset: 124
+        access: rw
+      jtag_mtms:
+        offset: 128
+        access: rw
+      jtag_mcmd:
+        offset: 132
+        access: rw
+    fields:
+      debug_ctrl.en:
+        bit: 0
+      debug_ctrl.pin_cfg:
+        bits:
+        - 1
+        - 2
+        enum:
+          jtag_tck_tms: 2
+          jtag_tck_tms_tdo: 1
+          jtag_tck_tms_tdo_tdi: 0
+      debug_ctrl.pu_en:
+        bit: 3
+      otp_lock.test:
+        bit: 0
+      otp_lock.mchip_lock:
+        bit: 1
+      otp_lock.priv_key_lock:
+        bit: 2
+      otp_lock.user_otp_lock:
+        bit: 3
+      otp_lock.pub_key_lock:
+        bit: 4
+      aesh_bswap_ctrl.ip_byte_swap_en:
+        bit: 0
+      aesh_bswap_ctrl.op_byte_swap_en:
+        bit: 1
+      aesh_bswap_ctrl.ip_blk_swap_en:
+        bits:
+        - 2
+        - 4
+        enum:
+          swap_128_byte_block: 4
+          swap_64_byte_block: 3
+          swap_16_byte_block: 2
+          swap_8_byte_block: 1
+          dis: 0
+      aesh_bswap_ctrl.op_blk_swap_en:
+        bits:
+        - 5
+        - 7
+        enum:
+          swap_128_byte_block: 4
+          swap_64_byte_block: 3
+          swap_16_byte_block: 2
+          swap_8_byte_block: 1
+          dis: 0
+      sys_shutdwn_rst.sys_shdn_rst:
+        bit: 0
+      peci_dis.peci_disable:
+        bit: 0
+      crypto_srst.rng_sft_rst:
+        bit: 0
+      crypto_srst.pub_key_sft_rst:
+        bit: 1
+      crypto_srst.aes_hash_sft_rst:
+        bit: 2
+      gpio_bank_pwr.vtr_lvl1:
+        bit: 0
+      gpio_bank_pwr.vtr_lvl2:
+        bit: 1
+      gpio_bank_pwr.vtr_lvl3:
+        bit: 2
+      gpio_bank_pwr.gpio_bank_pwr_lock:
+        bit: 7
+      jtag_mcfg.jtm_clk:
+        bits:
+        - 0
+        - 2
+        enum:
+          jtm_clk_375khz: 7
+          jtm_clk_750khz: 6
+          jtm_clk_1mhz: 5
+          jtm_clk_3mhz: 4
+          jtm_clk_6mhz: 3
+          jtm_clk_12mhz: 2
+          jtm_clk_24mhz: 1
+      jtag_mcfg.mas_slv:
+        bit: 3
+      jtag_msts.jtm_done:
+        bit: 0
+      jtag_mtdo.jtm_tdo:
+        bits:
+        - 0
+        - 31
+      jtag_mtdi.jtm_tdi:
+        bits:
+        - 0
+        - 31
+      jtag_mtms.jtm_tms:
+        bits:
+        - 0
+        - 31
+      jtag_mcmd.jtm_count:
+        bits:
+        - 0
+        - 4
+  efuse:
+    registers:
+      ctrl:
+        offset: 0
+        access: rw
+      man_ctrl:
+        offset: 4
+        access: rw
+      man_mod_addr:
+        offset: 6
+        access: rw
+      man_mod_data:
+        offset: 12
+        access: rw
+      efuse_mem_dw:
+        offset: 16
+        access: rw
+    fields:
+      ctrl.en:
+        bit: 0
+      ctrl.rst:
+        bit: 1
+      ctrl.ext_pgm:
+        bit: 2
+      ctrl.fsource_en_prgm:
+        bit: 3
+      ctrl.fsource_en_read:
+        bit: 4
+      man_ctrl.man_enable:
+        bit: 0
+      man_ctrl.ip_cs:
+        bit: 1
+      man_ctrl.ip_prgm_en:
+        bit: 2
+      man_ctrl.ip_prchg:
+        bit: 3
+      man_ctrl.ip_sense_pulse:
+        bit: 4
+      man_ctrl.ip_oe:
+        bit: 5
+      man_mod_addr.ip_addr_lo:
+        bits:
+        - 0
+        - 9
+      man_mod_addr.ip_addr_hi:
+        bits:
+        - 10
+        - 11
+      man_mod_data.ip_data:
+        bits:
+        - 0
+        - 15
+  mpu:
+    registers:
+      type:
+        offset: 0
+        access: ro
+      ctrl:
+        offset: 4
+        access: rw
+      rnr:
+        offset: 8
+        access: rw
+      rbar:
+        offset: 12
+        access: rw
+      rasr:
+        offset: 16
+        access: rw
+    fields:
+      type.separate:
+        bit: 0
+      type.dregion:
+        bits:
+        - 8
+        - 15
+      type.iregion:
+        bits:
+        - 16
+        - 23
+      ctrl.enable:
+        bit: 0
+      ctrl.hfnmiena:
+        bit: 1
+      ctrl.privdefena:
+        bit: 2
+      rnr.region:
+        bits:
+        - 0
+        - 7
+      rbar.region:
+        bits:
+        - 0
+        - 3
+      rbar.valid:
+        bit: 4
+      rbar.addr:
+        bits:
+        - 5
+        - 31
+      rasr.enable:
+        bit: 0
+      rasr.size:
+        bits:
+        - 1
+        - 5
+      rasr.srd:
+        bits:
+        - 8
+        - 15
+      rasr.b:
+        bit: 16
+      rasr.c:
+        bit: 17
+      rasr.s:
+        bit: 18
+      rasr.tex:
+        bits:
+        - 19
+        - 21
+      rasr.ap:
+        bits:
+        - 24
+        - 26
+      rasr.xn:
+        bit: 28
+  nvic:
+    registers:
+      iser:
+        offset: 0
+        access: rw
+      icer:
+        offset: 128
+        access: rw
+      ispr:
+        offset: '0x100'
+        access: rw
+      icpr:
+        offset: '0x180'
+        access: rw
+      iabr:
+        offset: '0x200'
+        access: rw
+      ip:
+        offset: '0x300'
+        access: rw
+      stir:
+        offset: '0xE00'
+        access: wo
+    fields:
+      iser.setena:
+        bits:
+        - 0
+        - 31
+      icer.clrena:
+        bits:
+        - 0
+        - 31
+      ispr.setpend:
+        bits:
+        - 0
+        - 31
+      icpr.clrpend:
+        bits:
+        - 0
+        - 31
+      iabr.active:
+        bits:
+        - 0
+        - 31
+      ip.pri0:
+        bits:
+        - 0
+        - 2
+      stir.intid:
+        bits:
+        - 0
+        - 8
+  systick:
+    registers:
+      csr:
+        offset: 0
+        access: rw
+      rvr:
+        offset: 4
+        access: rw
+      cvr:
+        offset: 8
+        access: rw
+      calib:
+        offset: 12
+        access: ro
+    fields:
+      csr.enable:
+        bit: 0
+        enum:
+          value_0: 0
+          value_1: 1
+      csr.tickint:
+        bit: 1
+        enum:
+          value_0: 0
+          value_1: 1
+      csr.clksource:
+        bit: 2
+        enum:
+          value_0: 0
+          value_1: 1
+      csr.countflag:
+        bit: 16
+      rvr.reload:
+        bits:
+        - 0
+        - 23
+      cvr.current:
+        bits:
+        - 0
+        - 23
+      calib.tenms:
+        bits:
+        - 0
+        - 23
+      calib.skew:
+        bit: 30
+        enum:
+          value_0: 0
+          value_1: 1
+      calib.noref:
+        bit: 31
+        enum:
+          value_0: 0
+          value_1: 1
+  systemcontrol:
+    registers:
+      ictr:
+        offset: 4
+        access: ro
+      actlr:
+        offset: 8
+        access: rw
+      cpuid:
+        offset: '0xD00'
+        access: ro
+      icsr:
+        offset: '0xD04'
+        access: rw
+      aircr:
+        offset: '0xD0C'
+        access: rw
+      scr:
+        offset: '0xD10'
+        access: rw
+      ccr:
+        offset: '0xD14'
+        access: rw
+      shpr1:
+        offset: '0xD18'
+        access: rw
+      shpr2:
+        offset: '0xD1C'
+        access: rw
+      shpr3:
+        offset: '0xD20'
+        access: rw
+      shcsr:
+        offset: '0xD24'
+        access: rw
+      cfsr:
+        offset: '0xD28'
+        access: rw
+      hfsr:
+        offset: '0xD2C'
+        access: rw
+      dfsr:
+        offset: '0xD30'
+        access: rw
+      mmfar:
+        offset: '0xD34'
+        access: rw
+      bfar:
+        offset: '0xD38'
+        access: rw
+      afsr:
+        offset: '0xD3C'
+        access: rw
+      pfr:
+        offset: '0xD40'
+        access: rw
+      dfr:
+        offset: '0xD48'
+        access: ro
+      adr:
+        offset: '0xD4C'
+        access: ro
+      mmfr:
+        offset: '0xD50'
+        access: ro
+      isar:
+        offset: '0xD60'
+        access: ro
+      cpacr:
+        offset: '0xD88'
+        access: rw
+    fields:
+      ictr.intlinesnum:
+        bits:
+        - 0
+        - 3
+      actlr.dismcycint:
+        bit: 0
+      actlr.disdefwbuf:
+        bit: 1
+      actlr.disfold:
+        bit: 2
+      actlr.disfpca:
+        bit: 8
+      actlr.disoofp:
+        bit: 9
+      cpuid.revision:
+        bits:
+        - 0
+        - 3
+      cpuid.partno:
+        bits:
+        - 4
+        - 15
+      cpuid.constant:
+        bits:
+        - 16
+        - 19
+      cpuid.variant:
+        bits:
+        - 20
+        - 23
+      cpuid.implementer:
+        bits:
+        - 24
+        - 31
+      icsr.vectactive:
+        bits:
+        - 0
+        - 8
+      icsr.rettobase:
+        bit: 11
+      icsr.vectpending:
+        bits:
+        - 12
+        - 17
+      icsr.isrpending:
+        bit: 22
+      icsr.isrpreempt:
+        bit: 23
+      icsr.pendstclr:
+        bit: 25
+        enum:
+          value_0: 0
+          value_1: 1
+      icsr.pendstset:
+        bit: 26
+        enum:
+          value_0: 0
+          value_1: 1
+      icsr.pendsvclr:
+        bit: 27
+        enum:
+          value_0: 0
+          value_1: 1
+      icsr.pendsvset:
+        bit: 28
+        enum:
+          value_0: 0
+          value_1: 1
+      icsr.nmipendset:
+        bit: 31
+        enum:
+          value_0: 0
+          value_1: 1
+      aircr.vectreset:
+        bit: 0
+      aircr.vectclractive:
+        bit: 1
+      aircr.sysresetreq:
+        bit: 2
+        enum:
+          value_0: 0
+          value_1: 1
+      aircr.prigroup:
+        bits:
+        - 8
+        - 10
+      aircr.endianness:
+        bit: 15
+        enum:
+          value_0: 0
+          value_1: 1
+      aircr.vectkey:
+        bits:
+        - 16
+        - 31
+      scr.sleeponexit:
+        bit: 1
+        enum:
+          value_0: 0
+          value_1: 1
+      scr.sleepdeep:
+        bit: 2
+        enum:
+          value_0: 0
+          value_1: 1
+      scr.sevonpend:
+        bit: 4
+        enum:
+          value_0: 0
+          value_1: 1
+      ccr.nonbasethrdena:
+        bit: 0
+      ccr.usersetmpend:
+        bit: 1
+      ccr.unalign_trp:
+        bit: 3
+        enum:
+          value_0: 0
+          value_1: 1
+      ccr.div_0_trp:
+        bit: 4
+      ccr.bfhfnmign:
+        bit: 8
+      ccr.stkalign:
+        bit: 9
+        enum:
+          value_0: 0
+          value_1: 1
+      shpr1.pri_4:
+        bits:
+        - 0
+        - 7
+      shpr1.pri_5:
+        bits:
+        - 8
+        - 15
+      shpr1.pri_6:
+        bits:
+        - 16
+        - 23
+      shpr2.pri_11:
+        bits:
+        - 24
+        - 31
+      shpr3.pri_14:
+        bits:
+        - 16
+        - 23
+      shpr3.pri_15:
+        bits:
+        - 24
+        - 31
+      shcsr.memfaultact:
+        bit: 0
+      shcsr.busfaultact:
+        bit: 1
+      shcsr.usgfaultact:
+        bit: 3
+      shcsr.svcallact:
+        bit: 7
+      shcsr.monitoract:
+        bit: 8
+      shcsr.pendsvact:
+        bit: 10
+      shcsr.systickact:
+        bit: 11
+      shcsr.usgfaultpended:
+        bit: 12
+      shcsr.memfaultpended:
+        bit: 13
+      shcsr.busfaultpended:
+        bit: 14
+      shcsr.svcallpended:
+        bit: 15
+      shcsr.memfaultena:
+        bit: 16
+      shcsr.busfaultena:
+        bit: 17
+      shcsr.usgfaultena:
+        bit: 18
+      cfsr.iaccviol:
+        bit: 0
+      cfsr.daccviol:
+        bit: 1
+      cfsr.munstkerr:
+        bit: 3
+      cfsr.mstkerr:
+        bit: 4
+      cfsr.mlsperr:
+        bit: 5
+      cfsr.mmarvalid:
+        bit: 7
+      cfsr.ibuserr:
+        bit: 8
+      cfsr.preciserr:
+        bit: 9
+      cfsr.impreciserr:
+        bit: 10
+      cfsr.unstkerr:
+        bit: 11
+      cfsr.stkerr:
+        bit: 12
+      cfsr.lsperr:
+        bit: 13
+      cfsr.bfarvalid:
+        bit: 15
+      cfsr.undefinstr:
+        bit: 16
+      cfsr.invstate:
+        bit: 17
+      cfsr.invpc:
+        bit: 18
+      cfsr.nocp:
+        bit: 19
+      cfsr.unaligned:
+        bit: 24
+      cfsr.divbyzero:
+        bit: 25
+      hfsr.vecttbl:
+        bit: 1
+      hfsr.forced:
+        bit: 30
+      hfsr.debugevt:
+        bit: 31
+      dfsr.halted:
+        bit: 0
+      dfsr.bkpt:
+        bit: 1
+      dfsr.dwttrap:
+        bit: 2
+      dfsr.vcatch:
+        bit: 3
+      dfsr.external:
+        bit: 4
+      mmfar.address:
+        bits:
+        - 0
+        - 31
+      bfar.address:
+        bits:
+        - 0
+        - 31
+      afsr.impdef:
+        bits:
+        - 0
+        - 31
+      cpacr.cp10:
+        bits:
+        - 20
+        - 21
+        enum:
+          denied: 0
+          priv: 1
+          full: 3
+      cpacr.cp11:
+        bits:
+        - 22
+        - 23
+        enum:
+          denied: 0
+          priv: 1
+          full: 3
+  i2c:
+    max_clock: 1MHz
+  usart:
+    max_baud: 5000000
+  twi:
+    max_clock: 1MHz
+peripherals:
+- id: pcr
+  template: pcr
+  base: '0x40080100'
+  description: The Power, Clocks, and Resets (PCR) Section identifies all the power supplies,\n                    clock sources, and reset inputs to the chip and defines all the derived power, clock, and reset signals.
+  ip_version: pcr_1.0
+- id: dma_main
+  template: dma_main
+  base: '0x40002400'
+  description: DMA Main Registers
+  ip_version: dma_main_1.0
+- id: dma_chan00
+  template: dma_chan
+  base: '0x40002440'
+  description: DMA Channel 00 Registers
+  ip_version: dma_chan00_1.0
+  irq: &id011
+    num: 24
+    name: DMA_CHAN00_DMA_CH00_vect
+- id: dma_chan01
+  template: dma_chan
+  base: '0x40002480'
+  description: DMA Channel 01 Registers
+  ip_version: dma_chan01_1.0
+  irq: &id012
+    num: 25
+    name: DMA_CHAN01_DMA_CH01_vect
+- id: dma_chan02
+  template: dma_chan
+  base: '0x400024C0'
+  description: DMA Channel 00 Registers
+  ip_version: dma_chan02_1.0
+  irq: &id013
+    num: 26
+    name: DMA_CHAN02_DMA_CH02_vect
+- id: dma_chan03
+  template: dma_chan
+  base: '0x40002500'
+  description: DMA Channel 00 Registers
+  ip_version: dma_chan02_1.0
+  irq: &id014
+    num: 27
+    name: DMA_CHAN03_DMA_CH03_vect
+- id: dma_chan04
+  template: dma_chan
+  base: '0x40002540'
+  description: DMA Channel 00 Registers
+  ip_version: dma_chan02_1.0
+  irq: &id015
+    num: 28
+    name: DMA_CHAN04_DMA_CH04_vect
+- id: dma_chan05
+  template: dma_chan
+  base: '0x40002580'
+  description: DMA Channel 00 Registers
+  ip_version: dma_chan02_1.0
+  irq: &id016
+    num: 29
+    name: DMA_CHAN05_DMA_CH05_vect
+- id: dma_chan06
+  template: dma_chan
+  base: '0x400025C0'
+  description: DMA Channel 00 Registers
+  ip_version: dma_chan02_1.0
+  irq: &id017
+    num: 30
+    name: DMA_CHAN06_DMA_CH06_vect
+- id: dma_chan07
+  template: dma_chan
+  base: '0x40002600'
+  description: DMA Channel 00 Registers
+  ip_version: dma_chan02_1.0
+  irq: &id018
+    num: 31
+    name: DMA_CHAN07_DMA_CH07_vect
+- id: dma_chan08
+  template: dma_chan
+  base: '0x40002640'
+  description: DMA Channel 00 Registers
+  ip_version: dma_chan02_1.0
+  irq: &id019
+    num: 32
+    name: DMA_CHAN08_DMA_CH08_vect
+- id: dma_chan09
+  template: dma_chan
+  base: '0x40002680'
+  description: DMA Channel 00 Registers
+  ip_version: dma_chan02_1.0
+  irq: &id020
+    num: 33
+    name: DMA_CHAN09_DMA_CH09_vect
+- id: dma_chan10
+  template: dma_chan
+  base: '0x400026C0'
+  description: DMA Channel 00 Registers
+  ip_version: dma_chan02_1.0
+  irq: &id021
+    num: 34
+    name: DMA_CHAN10_DMA_CH10_vect
+- id: dma_chan11
+  template: dma_chan
+  base: '0x40002700'
+  description: DMA Channel 00 Registers
+  ip_version: dma_chan02_1.0
+  irq: &id022
+    num: 35
+    name: DMA_CHAN11_DMA_CH11_vect
+- id: dma_chan12
+  template: dma_chan
+  base: '0x40002740'
+  description: DMA Channel 00 Registers
+  ip_version: dma_chan02_1.0
+  irq: &id023
+    num: 36
+    name: DMA_CHAN12_DMA_CH12_vect
+- id: dma_chan13
+  template: dma_chan
+  base: '0x40002780'
+  description: DMA Channel 00 Registers
+  ip_version: dma_chan02_1.0
+  irq: &id024
+    num: 37
+    name: DMA_CHAN13_DMA_CH13_vect
+- id: ecia
+  template: ecia
+  base: '0x4000E000'
+  description: The interrupt generation logic is made of 16 groups of signals, each of which\n         consist of a Status register, a Enable register and a Result register. The Status and Enable are\n        latched registers. The Result register is a bit by bit AND function of the Source and Enable registers.\n         All the bits of the Result register are OR'ed together and AND'ed with the corresponding bit in the Block\n         Select register to form the interrupt signal that is routed to the ARM interrupt controller.
+  ip_version: ecia_1.0
+- id: gcr
+  template: gcr
+  base: '0x400FFF00'
+  description: The Logical Device Configuration registers support motherboard designs in\n        which the resources required by their components are known and assigned by the BIOS\n          at POST.
+  ip_version: gcr_1.0
+- id: uart0
+  template: uart
+  base: '0x400F2400'
+  description: The 16550 UART (Universal Asynchronous Receiver/Transmitter) is a\n          full-function Two Pin Serial Port that supports the standard RS-232 Interface.
+  ip_version: uart_1.0
+  irq: &id025
+    num: 40
+    name: UART0_UART0_vect
+- id: uart1
+  template: uart
+  base: '0x400F2800'
+  description: The 16550 UART (Universal Asynchronous Receiver/Transmitter) is a\n          full-function Two Pin Serial Port that supports the standard RS-232 Interface.
+  ip_version: uart_1.0
+  irq: &id026
+    num: 41
+    name: UART1_UART1_vect
+- id: gpio
+  template: gpio
+  base: '0x40081000'
+  description: GPIO Pin Control Registers
+  ip_version: gpio_1.0
+  irq:
+  - &id001
+    num: 0
+    name: GPIO_GIRQ08_vect
+  - &id002
+    num: 1
+    name: GPIO_GIRQ09_vect
+  - &id003
+    num: 2
+    name: GPIO_GIRQ10_vect
+  - &id004
+    num: 3
+    name: GPIO_GIRQ11_vect
+  - &id005
+    num: 4
+    name: GPIO_GIRQ12_vect
+  - &id006
+    num: 17
+    name: GPIO_GIRQ26_vect
+- id: wdt
+  template: wdt
+  base: '0x40000000'
+  description: The function of the Watchdog Timer is to provide a mechanism to detect\n                          if the internal embedded controller has failed. When enabled, the Watchdog Timer (WDT) circuit\n              will generate a WDT Event if the user program fails to reload the WDT within a specified length\n              of time known as the WDT Interval.
+  ip_version: wdt_1.0
+- id: timer16_0
+  template: timer
+  base: '0x40000C00'
+  description: This timer block offers a simple mechanism for firmware to maintain a time base. This timer may be instantiated as 16 bits.\n      The name of the timer instance indicates the size of the timer.
+  ip_version: timer16_1.0
+  irq: &id061
+    num: 136
+    name: TIMER16_0_TIMER16_0_vect
+- id: timer16_1
+  template: timer
+  base: '0x40000C20'
+  description: This timer block offers a simple mechanism for firmware to maintain a time base. This timer may be instantiated as 16 bits.\n      The name of the timer instance indicates the size of the timer.
+  ip_version: timer16_1.0
+  irq: &id062
+    num: 137
+    name: TIMER16_1_TIMER16_1_vect
+- id: timer16_2
+  template: timer
+  base: '0x40000C40'
+  description: This timer block offers a simple mechanism for firmware to maintain a time base. This timer may be instantiated as 16 bits.\n      The name of the timer instance indicates the size of the timer.
+  ip_version: timer16_1.0
+  irq: &id063
+    num: 138
+    name: TIMER16_2_TIMER16_2_vect
+- id: timer16_3
+  template: timer
+  base: '0x40000C80'
+  description: This timer block offers a simple mechanism for firmware to maintain a time base. This timer may be instantiated as 16 bits.\n      The name of the timer instance indicates the size of the timer.
+  ip_version: timer16_1.0
+  irq: &id064
+    num: 139
+    name: TIMER16_3_TIMER16_3_vect
+- id: timer32_0
+  template: timer
+  base: '0x40000C80'
+  description: This timer block offers a simple mechanism for firmware to maintain a time base. This timer may be instantiated as \n      32 bits. The name of the timer instance indicates the size of the timer.
+  ip_version: timer32_1.0
+  irq: &id065
+    num: 140
+    name: TIMER32_0_TIMER32_0_vect
+- id: timer32_1
+  template: timer
+  base: '0x40000CA0'
+  description: This timer block offers a simple mechanism for firmware to maintain a time base. This timer may be instantiated as \n      32 bits. The name of the timer instance indicates the size of the timer.
+  ip_version: timer32_1.0
+  irq: &id066
+    num: 141
+    name: TIMER32_1_TIMER32_1_vect
+- id: cnt_tmr0
+  template: cnt_tmr
+  base: '0x40000D00'
+  description: This interface is a 16-bit auto-reloading timer/counter.
+  ip_version: cnt_tmr_1.0
+  irq: &id067
+    num: 142
+    name: CNT_TMR0_CNT_TMR0_vect
+- id: cnt_tmr1
+  template: cnt_tmr
+  base: '0x40000D20'
+  description: This interface is a 16-bit auto-reloading timer/counter.
+  ip_version: cnt_tmr_1.0
+  irq: &id068
+    num: 143
+    name: CNT_TMR1_CNT_TMR1_vect
+- id: cnt_tmr2
+  template: cnt_tmr
+  base: '0x40000D40'
+  description: This interface is a 16-bit auto-reloading timer/counter.
+  ip_version: cnt_tmr_1.0
+  irq: &id069
+    num: 144
+    name: CNT_TMR2_CNT_TMR2_vect
+- id: cnt_tmr3
+  template: cnt_tmr
+  base: '0x40000D60'
+  description: This interface is a 16-bit auto-reloading timer/counter.
+  ip_version: cnt_tmr_1.0
+  irq: &id070
+    num: 145
+    name: CNT_TMR3_CNT_TMR3_vect
+- id: cct
+  template: cct
+  base: '0x40001000'
+  description: This is a 16-bit auto-reloading timer/counter.
+  ip_version: cct_1.0
+  irq:
+  - &id071
+    num: 146
+    name: CCT_CAPTURE_TIMER_vect
+  - &id072
+    num: 147
+    name: CCT_CAPTURE_0_vect
+  - &id073
+    num: 148
+    name: CCT_CAPTURE_1_vect
+  - &id074
+    num: 149
+    name: CCT_CAPTURE_2_vect
+  - &id075
+    num: 150
+    name: CCT_CAPTURE_3_vect
+  - &id076
+    num: 151
+    name: CCT_CAPTURE_4_vect
+  - &id077
+    num: 152
+    name: CCT_CAPTURE_5_vect
+  - &id078
+    num: 153
+    name: CCT_COMPARE_0_vect
+  - &id079
+    num: 154
+    name: CCT_COMPARE_1_vect
+- id: htm0
+  template: htm
+  base: '0x40009800'
+  description: The Hibernation Timer can generate a wake event to the Embedded Controller (EC) when it is in a hibernation mode.\n        This block supports wake events up to 2 hours in duration. The timer is a 16-bit binary count-down timer that can be programmed\n        in 30.5us and 0.125 second increments for period ranges of 30.5us to 2s or 0.125s to 136.5 minutes, respectively.
+  ip_version: htm_1.0
+  irq: &id043
+    num: 112
+    name: HTM0_HTM0_vect
+- id: htm1
+  template: htm
+  base: '0x40009820'
+  description: The Hibernation Timer can generate a wake event to the Embedded Controller (EC) when it is in a hibernation mode.\n        This block supports wake events up to 2 hours in duration. The timer is a 16-bit binary count-down timer that can be programmed\n        in 30.5us and 0.125 second increments for period ranges of 30.5us to 2s or 0.125s to 136.5 minutes, respectively.
+  ip_version: htm_1.0
+  irq: &id044
+    num: 113
+    name: HTM1_HTM1_vect
+- id: rtos
+  template: rtos
+  base: '0x40007400'
+  description: The RTOS Timer is a low-power, 32-bit timer designed to operate on the 32kHz oscillator which is available during all\n      chip sleep states. This allows firmware the option to sleep the processor, enter heavy or deep chip sleep states, and\n      wake after a programmed amount of time. The timer may be used as a one-shot timer or a continuous timer. When the\n      timer transitions to 0 it is capable of generating a wake-capable interrupt to the embedded controller. This timer may be\n      halted during debug by hardware or via a software control bit.
+  ip_version: rtos_1.0
+  irq: &id042
+    num: 111
+    name: RTOS_TIMER_vect
+- id: rtc
+  template: rtc
+  base: '0x400F5000'
+  description: 'This is the set of registers that are automatically counted by hardware every 1 second while the block is enabled\n      to run and to update. These registers are: Seconds, Minutes, Hours, Day of Week, Day of Month, Month, and Year.'
+  ip_version: rtc_1.0
+  irq:
+  - &id050
+    num: 119
+    name: RTC_RTC_vect
+  - &id051
+    num: 120
+    name: RTC_RTC_ALARM_vect
+- id: week
+  template: week
+  base: '0x4000AC80'
+  description: 'The Week Alarm Interface provides two timekeeping functions: a Week Timer and a Sub-Week Timer. Both the Week Timer\n        and the Sub-Week Timer assert the Power-Up Event Output which automatically powers-up the system from the G3 state.'
+  ip_version: week_1.0
+  irq:
+  - &id045
+    num: 114
+    name: WEEK_ALARM_INT_vect
+  - &id046
+    num: 115
+    name: WEEK_WKSUB_vect
+  - &id047
+    num: 116
+    name: WEEK_WKSEC_vect
+  - &id048
+    num: 117
+    name: WEEK_WKSUBSEC_vect
+  - &id049
+    num: 118
+    name: WEEK_SYSPWR_vect
+- id: tach0
+  template: tach
+  base: '0x40006000'
+  description: This block monitors TACH output signals (or locked rotor signals) from\n       various types of fans, and determines their speed.
+  ip_version: tach_1.0
+  irq: &id027
+    num: 71
+    name: TACH0_TACH0_vect
+- id: tach1
+  template: tach
+  base: '0x40006010'
+  description: This block monitors TACH output signals (or locked rotor signals) from\n       various types of fans, and determines their speed.
+  ip_version: tach_1.0
+  irq: &id028
+    num: 72
+    name: TACH1_TACH1_vect
+- id: pwm0
+  template: pwm
+  base: '0x40005800'
+  description: This block generates a PWM output that can be used to control 4-wire fans, blinking LEDs, and other\n      similar devices. Each PWM can generate an arbitrary duty cycle output at frequencies from less than 0.1 Hz to 24 MHz.\n      The PWM controller can also used to generate the PROCHOT output and Speaker output.
+  ip_version: pwm_1.0
+- id: pwm1
+  template: pwm
+  base: '0x40005810'
+  description: This block generates a PWM output that can be used to control 4-wire fans, blinking LEDs, and other\n      similar devices. Each PWM can generate an arbitrary duty cycle output at frequencies from less than 0.1 Hz to 24 MHz.\n      The PWM controller can also used to generate the PROCHOT output and Speaker output.
+  ip_version: pwm_1.0
+- id: pwm2
+  template: pwm
+  base: '0x40005820'
+  description: This block generates a PWM output that can be used to control 4-wire fans, blinking LEDs, and other\n      similar devices. Each PWM can generate an arbitrary duty cycle output at frequencies from less than 0.1 Hz to 24 MHz.\n      The PWM controller can also used to generate the PROCHOT output and Speaker output.
+  ip_version: pwm_1.0
+- id: pwm3
+  template: pwm
+  base: '0x40005830'
+  description: This block generates a PWM output that can be used to control 4-wire fans, blinking LEDs, and other\n      similar devices. Each PWM can generate an arbitrary duty cycle output at frequencies from less than 0.1 Hz to 24 MHz.\n      The PWM controller can also used to generate the PROCHOT output and Speaker output.
+  ip_version: pwm_1.0
+- id: pwm4
+  template: pwm
+  base: '0x40005840'
+  description: This block generates a PWM output that can be used to control 4-wire fans, blinking LEDs, and other\n      similar devices. Each PWM can generate an arbitrary duty cycle output at frequencies from less than 0.1 Hz to 24 MHz.\n      The PWM controller can also used to generate the PROCHOT output and Speaker output.
+  ip_version: pwm_1.0
+- id: pwm5
+  template: pwm
+  base: '0x40005850'
+  description: This block generates a PWM output that can be used to control 4-wire fans, blinking LEDs, and other\n      similar devices. Each PWM can generate an arbitrary duty cycle output at frequencies from less than 0.1 Hz to 24 MHz.\n      The PWM controller can also used to generate the PROCHOT output and Speaker output.
+  ip_version: pwm_1.0
+- id: pwm10
+  template: pwm
+  base: '0x400058A0'
+  description: This block generates a PWM output that can be used to control 4-wire fans, blinking LEDs, and other\n      similar devices. Each PWM can generate an arbitrary duty cycle output at frequencies from less than 0.1 Hz to 24 MHz.\n      The PWM controller can also used to generate the PROCHOT output and Speaker output.
+  ip_version: pwm_1.0
+- id: adc
+  template: adc
+  base: '0x40007C00'
+  description: This block is designed to convert external analog voltage readings into digital values.
+  ip_version: adc_1.0
+  irq:
+  - &id033
+    num: 78
+    name: ADC_SNGL_vect
+  - &id034
+    num: 79
+    name: ADC_RPT_vect
+- id: fan0
+  template: fan
+  base: '0x4000A000'
+  description: The RPM-PWM Interface is an RPM based Fan Control Algorithm that monitors the fan's speed and automatically adjusts\n       the drive to maintain the desired fan speed. This RPM based Fan Control Algorithm controls a PWM output based on a tachometer input.
+  ip_version: fan_1.0
+  irq:
+  - &id029
+    num: 74
+    name: FAN0_RPM2PWM_0_FAIL_vect
+  - &id030
+    num: 75
+    name: FAN0_RPM2PWM_0_STALL_vect
+- id: fan1
+  template: fan
+  base: '0x4000A080'
+  description: The RPM-PWM Interface is an RPM based Fan Control Algorithm that monitors the fan's speed and automatically adjusts\n       the drive to maintain the desired fan speed. This RPM based Fan Control Algorithm controls a PWM output based on a tachometer input.
+  ip_version: fan_1.0
+  irq:
+  - &id031
+    num: 76
+    name: FAN1_RPM2PWM_1_FAIL_vect
+  - &id032
+    num: 77
+    name: FAN1_RPM2PWM_1_STALL_vect
+- id: led0
+  template: led
+  base: '0x4000B800'
+  description: The blinking/breathing hardware is implemented using a PWM. The PWM can be driven either by the 48 MHz\n      clock or by a 32.768 KHz clock input. When driven by the 48 MHz clock, the PWM can be used as a standard 8-bit\n      PWM in order to control a fan. When used to drive blinking or breathing LEDs, the 32.768 KHz clock source is used.
+  ip_version: led_1.0
+  irq: &id037
+    num: 83
+    name: LED0_LED0_vect
+- id: led1
+  template: led
+  base: '0x4000B900'
+  description: The blinking/breathing hardware is implemented using a PWM. The PWM can be driven either by the 48 MHz\n      clock or by a 32.768 KHz clock input. When driven by the 48 MHz clock, the PWM can be used as a standard 8-bit\n      PWM in order to control a fan. When used to drive blinking or breathing LEDs, the 32.768 KHz clock source is used.
+  ip_version: led_1.0
+  irq: &id038
+    num: 84
+    name: LED1_LED1_vect
+- id: rc_id0
+  template: rc_id
+  base: '0x40001400'
+  description: This interface provides a single pin interface which can discriminate a number of quantized RC constants.
+  ip_version: rc_id_1.0
+  irq: &id035
+    num: 80
+    name: RC_ID0_RC_ID0_vect
+- id: rc_id1
+  template: rc_id
+  base: '0x40001480'
+  description: This interface provides a single pin interface which can discriminate a number of quantized RC constants.
+  ip_version: rc_id_1.0
+  irq: &id036
+    num: 81
+    name: RC_ID1_RC_ID1_vect
+- id: kms
+  template: kms
+  base: '0x40009C00'
+  description: The Keyboard Scan Interface block provides a register interface to the EC\n      to directly scan an external keyboard matrix of size up to 18x8.
+  ip_version: kms_1.0
+  irq: &id060
+    num: 135
+    name: KMS_KMS_vect
+- id: smb0
+  template: smb
+  base: '0x40004000'
+  description: The SMBus interface can handle standard SMBus 2.0 protocols as well as I2C interface.
+  ip_version: smb_1.0
+  irq: &id007
+    num: 20
+    name: SMB0_SMB0_vect
+- id: smb1
+  template: smb
+  base: '0x40004400'
+  description: The SMBus interface can handle standard SMBus 2.0 protocols as well as I2C interface.
+  ip_version: smb_1.0
+  irq: &id008
+    num: 21
+    name: SMB1_SMB1_vect
+- id: smb2
+  template: smb
+  base: '0x40004800'
+  description: The SMBus interface can handle standard SMBus 2.0 protocols as well as I2C interface.
+  ip_version: smb_1.0
+  irq: &id009
+    num: 22
+    name: SMB2_SMB2_vect
+- id: smb3
+  template: smb
+  base: '0x40004C00'
+  description: The SMBus interface can handle standard SMBus 2.0 protocols as well as I2C interface.
+  ip_version: smb_1.0
+  irq: &id010
+    num: 23
+    name: SMB3_SMB3_vect
+- id: gp_spi0
+  template: gp_spi
+  base: '0x40009400'
+  description: The General Purpose Serial Peripheral Interface (GP-SPI) may be used\n       to communicate with various peripheral devices, e.g., EEPROMS, DACs, ADCs, that use a\n         standard Serial Peripheral Interface.
+  ip_version: gp_spi_1.0
+  irq:
+  - &id040
+    num: 92
+    name: GP_SPI0_TX0_vect
+  - &id041
+    num: 93
+    name: GP_SPI0_RX0_vect
+- id: qmspi
+  template: qmspi
+  base: '0x40005400'
+  description: The Quad SPI Master Controller may be used to communicate with various \n        peripheral devices that use a Serial Peripheral Interface, such as EEPROMS, DACs and ADCs.\n        The controller can be configured to support advanced SPI Flash devices with multi-phase access protocols.
+  ip_version: qmspi_1.0
+  irq: &id039
+    num: 91
+    name: QMSPI_QMSPI_vect
+- id: tfdp
+  template: tfdp
+  base: '0x40008C00'
+  description: The TFDP serially transmits Embedded Controller (EC)-originated \n         diagnostic vectors to an external debug trace system.
+  ip_version: tfdp_1.0
+- id: vci
+  template: vci
+  base: '0x4000AE00'
+  description: The VBAT-Powered Control Interface has VBAT-powered combinational logic and input and output signal pins.\n       The block interfaces with the RTC With Date and DST Adjustment as well as the Week Alarm.
+  ip_version: vci_1.0
+  irq:
+  - &id052
+    num: 121
+    name: VCI_OVRD_IN_vect
+  - &id053
+    num: 122
+    name: VCI_IN0_vect
+  - &id054
+    num: 123
+    name: VCI_IN1_vect
+  - &id055
+    num: 124
+    name: VCI_IN2_vect
+  - &id056
+    num: 125
+    name: VCI_IN3_vect
+  - &id057
+    num: 126
+    name: VCI_IN4_vect
+  - &id058
+    num: 127
+    name: VCI_IN5_vect
+  - &id059
+    num: 128
+    name: VCI_IN6_vect
+- id: vbat_ram
+  template: vbat_ram
+  base: '0x4000A800'
+  description: The VBAT Powered RAM provides a 128 Byte Random Accessed Memory that is operational while the main \n        power rail is operational, and will retain its values powered by battery power while the main rail is unpowered.
+  ip_version: vbat_ram_1.0
+- id: vbat
+  template: vbat
+  base: '0x4000A400'
+  description: The VBAT Register Bank block is a block implemented for aggregating miscellaneous\n         battery-backed registers required the host and by the Embedded Controller (EC) Subsystem that are\n       not unique to a block implemented in the EC subsystem.
+  ip_version: vbat_1.0
+- id: ec_reg_bank
+  template: ec_reg_bank
+  base: '0x4000FC04'
+  description: This block is designed to be accessed internally by the EC via the register interface.
+  ip_version: ec_reg_bank_1.0
+- id: efuse
+  template: efuse
+  base: '0x40082000'
+  description: The eFUSE block provides a means of programming and accessing the eFUSE bits.
+  ip_version: efuse_1.0
+- id: mpu
+  template: mpu
+  base: '0xE000ED90'
+  description: Memory Protection Unit Registers
+- id: nvic
+  template: nvic
+  base: '0xE000E100'
+  description: Nested Vectored Interrupt Controller
+  ip_version: nvic_1.0.0
+- id: systick
+  template: systick
+  base: '0xE000E010'
+  description: System timer
+  ip_version: systick_1.0.0
+- id: systemcontrol
+  template: systemcontrol
+  base: '0xE000E000'
+  description: System Control Registers
+  ip_version: systemcontrol_1.0.0
+pinout:
+- signal: RESET
+interrupts:
+- *id001
+- *id002
+- *id003
+- *id004
+- *id005
+- *id006
+- *id007
+- *id008
+- *id009
+- *id010
+- *id011
+- *id012
+- *id013
+- *id014
+- *id015
+- *id016
+- *id017
+- *id018
+- *id019
+- *id020
+- *id021
+- *id022
+- *id023
+- *id024
+- *id025
+- *id026
+- *id027
+- *id028
+- *id029
+- *id030
+- *id031
+- *id032
+- *id033
+- *id034
+- *id035
+- *id036
+- *id037
+- *id038
+- *id039
+- *id040
+- *id041
+- *id042
+- *id043
+- *id044
+- *id045
+- *id046
+- *id047
+- *id048
+- *id049
+- *id050
+- *id051
+- *id052
+- *id053
+- *id054
+- *id055
+- *id056
+- *id057
+- *id058
+- *id059
+- *id060
+- *id061
+- *id062
+- *id063
+- *id064
+- *id065
+- *id066
+- *id067
+- *id068
+- *id069
+- *id070
+- *id071
+- *id072
+- *id073
+- *id074
+- *id075
+- *id076
+- *id077
+- *id078
+- *id079

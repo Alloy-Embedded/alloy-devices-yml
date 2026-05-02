@@ -1,0 +1,238 @@
+schema: alloy.device.v2.1
+identity:
+  vendor: microchip
+  family: pic16fxxx
+  device: pic16f84
+  core:
+    isa: pic16
+    name: pic16
+    bits: 8
+provenance:
+  primary: microchip-pic:PIC16F84.PIC
+  authored: auto
+  secondary:
+  - microchip-overlay:pic16fxxx
+memory:
+- id: flash
+  base: '0x00000000'
+  size: 1B
+  access: rx
+  role: extractor-placeholder
+clock:
+  oscillators:
+    unknown:
+      freq: 0Hz
+      kind: rc-internal
+  domains:
+  - id: sysclk
+    sources:
+    - unknown
+  profiles:
+  - id: factory-default
+    kind: post-reset
+    sysclk: 0Hz
+    sysclk_source: unknown
+templates:
+  misc:
+    registers:
+      indf:
+        offset: 0
+      option_reg:
+        offset: 129
+      eecon1:
+        offset: 136
+      eecon2:
+        offset: 137
+    fields:
+      indf.indf:
+        bits:
+        - 0
+        - 7
+      option_reg.ps:
+        bits:
+        - 0
+        - 2
+      option_reg.psa:
+        bit: 0
+      option_reg.t0se:
+        bit: 0
+      option_reg.t0cs:
+        bit: 0
+      option_reg.intedg:
+        bit: 0
+      option_reg.nrbpu:
+        bit: 0
+      option_reg.ps0:
+        bit: 0
+      option_reg.ps1:
+        bit: 0
+      option_reg.ps2:
+        bit: 0
+      eecon1.rd:
+        bit: 0
+      eecon1.wr:
+        bit: 0
+      eecon1.wren:
+        bit: 0
+      eecon1.wrerr:
+        bit: 0
+      eecon1.eeif:
+        bit: 0
+      eecon2.eecon2:
+        bits:
+        - 0
+        - 7
+  timer:
+    registers:
+      tmr0:
+        offset: 1
+    fields:
+      tmr0.tmr0:
+        bits:
+        - 0
+        - 7
+  port:
+    registers:
+      porta:
+        offset: 5
+      portb:
+        offset: 6
+      trisa:
+        offset: 133
+      trisb:
+        offset: 134
+    fields:
+      porta.ra0:
+        bit: 0
+      porta.ra1:
+        bit: 0
+      porta.ra2:
+        bit: 0
+      porta.ra3:
+        bit: 0
+      porta.ra4:
+        bit: 0
+      portb.rb0:
+        bit: 0
+      portb.rb1:
+        bit: 0
+      portb.rb2:
+        bit: 0
+      portb.rb3:
+        bit: 0
+      portb.rb4:
+        bit: 0
+      portb.rb5:
+        bit: 0
+      portb.rb6:
+        bit: 0
+      portb.rb7:
+        bit: 0
+      trisa.trisa0:
+        bit: 0
+      trisa.trisa1:
+        bit: 0
+      trisa.trisa2:
+        bit: 0
+      trisa.trisa3:
+        bit: 0
+      trisa.trisa4:
+        bit: 0
+      trisb.trisb0:
+        bit: 0
+      trisb.trisb1:
+        bit: 0
+      trisb.trisb2:
+        bit: 0
+      trisb.trisb3:
+        bit: 0
+      trisb.trisb4:
+        bit: 0
+      trisb.trisb5:
+        bit: 0
+      trisb.trisb6:
+        bit: 0
+      trisb.trisb7:
+        bit: 0
+  eeprom:
+    registers:
+      eedata:
+        offset: 8
+      eeadr:
+        offset: 9
+    fields:
+      eedata.eedata:
+        bits:
+        - 0
+        - 7
+      eeadr.eeadr:
+        bits:
+        - 0
+        - 7
+peripherals:
+- id: eeprom
+  template: eeprom
+  base: 8
+- id: misc
+  template: misc
+  base: 0
+- id: port_a
+  template: port
+  base: 5
+- id: port_b
+  template: port
+  base: 5
+- id: timer_0
+  template: timer
+  base: 1
+pinout:
+- signal: RA2
+  pin: 1
+- signal: RA3
+  pin: 2
+- signal: RA4
+  pin: 3
+  alt_functions:
+  - T0CKI
+- signal: MCLR
+  pin: 4
+  constraints:
+  - reset
+- signal: Vss
+  pin: 5
+  constraints:
+  - power
+- signal: RB0
+  pin: 6
+  alt_functions:
+  - INT
+- signal: RB1
+  pin: 7
+- signal: RB2
+  pin: 8
+- signal: RB3
+  pin: 9
+- signal: RB4
+  pin: 10
+- signal: RB5
+  pin: 11
+- signal: RB6
+  pin: 12
+- signal: RB7
+  pin: 13
+- signal: Vdd
+  pin: 14
+  constraints:
+  - power
+- signal: OSC2
+  pin: 15
+  alt_functions:
+  - CLKOUT
+- signal: OSC1
+  pin: 16
+  alt_functions:
+  - CLKIN
+- signal: RA0
+  pin: 17
+- signal: RA1
+  pin: 18

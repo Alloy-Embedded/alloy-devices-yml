@@ -1,0 +1,384 @@
+schema: alloy.device.v2.1
+identity:
+  vendor: microchip
+  family: pic16fxxx
+  device: pic16f630
+  core:
+    isa: pic16
+    name: pic16
+    bits: 8
+provenance:
+  primary: microchip-pic:PIC16F630.PIC
+  authored: auto
+  secondary:
+  - microchip-overlay:pic16fxxx
+memory:
+- id: flash
+  base: '0x00000000'
+  size: 1B
+  access: rx
+  role: extractor-placeholder
+clock:
+  oscillators:
+    unknown:
+      freq: 0Hz
+      kind: rc-internal
+  domains:
+  - id: sysclk
+    sources:
+    - unknown
+  profiles:
+  - id: factory-default
+    kind: post-reset
+    sysclk: 0Hz
+    sysclk_source: unknown
+templates:
+  misc:
+    registers:
+      indf:
+        offset: 0
+      option_reg:
+        offset: 129
+      osccal:
+        offset: 144
+      wpua:
+        offset: 149
+      ioca:
+        offset: 150
+      vrcon:
+        offset: 153
+      eecon1:
+        offset: 156
+      eecon2:
+        offset: 157
+    fields:
+      indf.indf:
+        bits:
+        - 0
+        - 7
+      option_reg.ps:
+        bits:
+        - 0
+        - 2
+      option_reg.psa:
+        bit: 0
+      option_reg.t0se:
+        bit: 0
+      option_reg.t0cs:
+        bit: 0
+      option_reg.intedg:
+        bit: 0
+      option_reg.nrapu:
+        bit: 0
+      option_reg.ps0:
+        bit: 0
+      option_reg.ps1:
+        bit: 0
+      option_reg.ps2:
+        bit: 0
+      option_reg.ngppu:
+        bit: 0
+      osccal.cal:
+        bits:
+        - 0
+        - 5
+      osccal.cal0:
+        bit: 0
+      osccal.cal1:
+        bit: 0
+      osccal.cal2:
+        bit: 0
+      osccal.cal3:
+        bit: 0
+      osccal.cal4:
+        bit: 0
+      osccal.cal5:
+        bit: 0
+      wpua.wpua0:
+        bit: 0
+      wpua.wpua1:
+        bit: 0
+      wpua.wpua2:
+        bit: 0
+      wpua.wpua4:
+        bit: 0
+      wpua.wpua5:
+        bit: 0
+      ioca.ioca0:
+        bit: 0
+      ioca.ioca1:
+        bit: 0
+      ioca.ioca2:
+        bit: 0
+      ioca.ioca3:
+        bit: 0
+      ioca.ioca4:
+        bit: 0
+      ioca.ioca5:
+        bit: 0
+      vrcon.vr:
+        bits:
+        - 0
+        - 3
+      vrcon.vrr:
+        bit: 0
+      vrcon.vren:
+        bit: 0
+      vrcon.vr0:
+        bit: 0
+      vrcon.vr1:
+        bit: 0
+      vrcon.vr2:
+        bit: 0
+      vrcon.vr3:
+        bit: 0
+      eecon1.rd:
+        bit: 0
+      eecon1.wr:
+        bit: 0
+      eecon1.wren:
+        bit: 0
+      eecon1.wrerr:
+        bit: 0
+      eecon2.eecon2:
+        bits:
+        - 0
+        - 7
+  timer:
+    registers:
+      tmr0:
+        offset: 1
+      tmr1l:
+        offset: 14
+      tmr1h:
+        offset: 15
+      t1con:
+        offset: 16
+    fields:
+      tmr0.tmr0:
+        bits:
+        - 0
+        - 7
+      tmr1l.tmr1l:
+        bits:
+        - 0
+        - 7
+      tmr1h.tmr1h:
+        bits:
+        - 0
+        - 7
+      t1con.tmr1on:
+        bit: 0
+      t1con.tmr1cs:
+        bit: 0
+      t1con.nt1sync:
+        bit: 0
+      t1con.t1oscen:
+        bit: 0
+      t1con.t1ckps:
+        bits:
+        - 0
+        - 1
+      t1con.tmr1ge:
+        bit: 0
+      t1con.t1ckps0:
+        bit: 0
+      t1con.t1ckps1:
+        bit: 0
+  port:
+    registers:
+      porta:
+        offset: 5
+      portc:
+        offset: 7
+      trisa:
+        offset: 133
+      trisc:
+        offset: 135
+    fields:
+      porta.ra0:
+        bit: 0
+      porta.ra1:
+        bit: 0
+      porta.ra2:
+        bit: 0
+      porta.ra3:
+        bit: 0
+      porta.ra4:
+        bit: 0
+      porta.ra5:
+        bit: 0
+      portc.rc0:
+        bit: 0
+      portc.rc1:
+        bit: 0
+      portc.rc2:
+        bit: 0
+      portc.rc3:
+        bit: 0
+      portc.rc4:
+        bit: 0
+      portc.rc5:
+        bit: 0
+      trisa.trisa0:
+        bit: 0
+      trisa.trisa1:
+        bit: 0
+      trisa.trisa2:
+        bit: 0
+      trisa.trisa3:
+        bit: 0
+      trisa.trisa4:
+        bit: 0
+      trisa.trisa5:
+        bit: 0
+      trisc.trisc0:
+        bit: 0
+      trisc.trisc1:
+        bit: 0
+      trisc.trisc2:
+        bit: 0
+      trisc.trisc3:
+        bit: 0
+      trisc.trisc4:
+        bit: 0
+      trisc.trisc5:
+        bit: 0
+  interrupt_controller:
+    registers:
+      pir1:
+        offset: 12
+      pie1:
+        offset: 140
+    fields:
+      pir1.tmr1if:
+        bit: 0
+      pir1.cmif:
+        bit: 0
+      pir1.eeif:
+        bit: 0
+      pir1.t1if:
+        bit: 0
+      pie1.tmr1ie:
+        bit: 0
+      pie1.cmie:
+        bit: 0
+      pie1.eeie:
+        bit: 0
+      pie1.t1ie:
+        bit: 0
+  comparator:
+    registers:
+      cmcon:
+        offset: 25
+    fields:
+      cmcon.cm:
+        bits:
+        - 0
+        - 2
+      cmcon.cis:
+        bit: 0
+      cmcon.cinv:
+        bit: 0
+      cmcon.cout:
+        bit: 0
+      cmcon.cm0:
+        bit: 0
+      cmcon.cm1:
+        bit: 0
+      cmcon.cm2:
+        bit: 0
+  eeprom:
+    registers:
+      eedat:
+        offset: 154
+      eeadr:
+        offset: 155
+    fields:
+      eedat.eedat:
+        bits:
+        - 0
+        - 7
+      eeadr.eeadr:
+        bits:
+        - 0
+        - 6
+peripherals:
+- id: comparator
+  template: comparator
+  base: 25
+- id: eeprom
+  template: eeprom
+  base: 154
+- id: interrupt_controller
+  template: interrupt_controller
+  base: 12
+- id: misc
+  template: misc
+  base: 0
+- id: port_a
+  template: port
+  base: 5
+- id: port_c
+  template: port
+  base: 5
+- id: timer_0
+  template: timer
+  base: 1
+- id: timer_1
+  template: timer
+  base: 1
+pinout:
+- signal: Vdd
+  pin: 1
+  constraints:
+  - power
+- signal: RA5
+  pin: 2
+  alt_functions:
+  - T1CKI
+  - OSC1
+  - CLKIN
+- signal: RA4
+  pin: 3
+  alt_functions:
+  - T1G
+  - OSC2
+  - CLKOUT
+- signal: RA3
+  pin: 4
+  alt_functions:
+  - MCLR
+  - Vpp
+- signal: RC5
+  pin: 5
+- signal: RC4
+  pin: 6
+- signal: RC3
+  pin: 7
+- signal: RC2
+  pin: 8
+- signal: RC1
+  pin: 9
+- signal: RC0
+  pin: 10
+- signal: RA2
+  pin: 11
+  alt_functions:
+  - COUT
+  - T0CKI
+  - INT
+- signal: RA1
+  pin: 12
+  alt_functions:
+  - CIN-
+  - ICSPCLK
+- signal: RA0
+  pin: 13
+  alt_functions:
+  - CIN+
+  - ICSPDAT
+- signal: Vss
+  pin: 14
+  constraints:
+  - power

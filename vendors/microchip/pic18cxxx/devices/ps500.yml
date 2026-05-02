@@ -1,0 +1,850 @@
+schema: alloy.device.v2.1
+identity:
+  vendor: microchip
+  family: pic18cxxx
+  device: ps500
+  core:
+    isa: pic18
+    name: pic18-enhanced
+    bits: 8
+provenance:
+  primary: microchip-pic:PS500.PIC
+  authored: auto
+  secondary:
+  - microchip-overlay:pic18cxxx
+memory:
+- id: flash
+  base: '0x00000000'
+  size: 1B
+  access: rx
+  role: extractor-placeholder
+clock:
+  oscillators:
+    unknown:
+      freq: 0Hz
+      kind: rc-internal
+  domains:
+  - id: sysclk
+    sources:
+    - unknown
+  profiles:
+  - id: factory-default
+    kind: post-reset
+    sysclk: 0Hz
+    sysclk_source: unknown
+templates:
+  port:
+    registers:
+      porta:
+        offset: '0xF80'
+      portb:
+        offset: '0xF81'
+      lata:
+        offset: '0xF89'
+      latb:
+        offset: '0xF8A'
+      trisa:
+        offset: '0xF92'
+      trisb:
+        offset: '0xF93'
+    fields:
+      porta.ra0:
+        bit: 0
+      porta.ra1:
+        bit: 0
+      porta.ra2:
+        bit: 0
+      porta.ra3:
+        bit: 0
+      porta.ra4:
+        bit: 0
+      porta.ra5:
+        bit: 0
+      porta.ra6:
+        bit: 0
+      porta.sck:
+        bit: 0
+      porta.sdi:
+        bit: 0
+      porta.ss:
+        bit: 0
+      porta.sdo:
+        bit: 0
+      porta.t0cki:
+        bit: 0
+      porta.mclr:
+        bit: 0
+      porta.clki:
+        bit: 0
+      porta.scl:
+        bit: 0
+      porta.sda:
+        bit: 0
+      porta.ulpwuin:
+        bit: 0
+      porta.lvdin:
+        bit: 0
+      portb.rb0:
+        bit: 0
+      portb.rb1:
+        bit: 0
+      portb.rb2:
+        bit: 0
+      portb.rb3:
+        bit: 0
+      portb.rb4:
+        bit: 0
+      portb.rb5:
+        bit: 0
+      portb.rb6:
+        bit: 0
+      portb.rb7:
+        bit: 0
+      portb.int0:
+        bit: 0
+      portb.int1:
+        bit: 0
+      portb.int2:
+        bit: 0
+      portb.pgc:
+        bit: 0
+      portb.pgd:
+        bit: 0
+      portb.p1c:
+        bit: 0
+      portb.ccp2_pa2:
+        bit: 0
+      lata.lata0:
+        bit: 0
+      lata.lata1:
+        bit: 0
+      lata.lata2:
+        bit: 0
+      lata.lata3:
+        bit: 0
+      lata.lata4:
+        bit: 0
+      lata.lata5:
+        bit: 0
+      lata.lata6:
+        bit: 0
+      lata.lata7:
+        bit: 0
+      lata.la0:
+        bit: 0
+      lata.la1:
+        bit: 0
+      lata.la2:
+        bit: 0
+      lata.la3:
+        bit: 0
+      lata.la4:
+        bit: 0
+      lata.la5:
+        bit: 0
+      lata.la6:
+        bit: 0
+      lata.la7:
+        bit: 0
+      latb.latb0:
+        bit: 0
+      latb.latb1:
+        bit: 0
+      latb.latb2:
+        bit: 0
+      latb.latb3:
+        bit: 0
+      latb.latb4:
+        bit: 0
+      latb.latb5:
+        bit: 0
+      latb.latb6:
+        bit: 0
+      latb.latb7:
+        bit: 0
+      latb.lb0:
+        bit: 0
+      latb.lb1:
+        bit: 0
+      latb.lb2:
+        bit: 0
+      latb.lb3:
+        bit: 0
+      latb.lb4:
+        bit: 0
+      latb.lb5:
+        bit: 0
+      latb.lb6:
+        bit: 0
+      latb.lb7:
+        bit: 0
+      trisa.trisa0:
+        bit: 0
+      trisa.trisa1:
+        bit: 0
+      trisa.trisa2:
+        bit: 0
+      trisa.trisa3:
+        bit: 0
+      trisa.trisa4:
+        bit: 0
+      trisa.trisa6:
+        bit: 0
+      trisb.trisb0:
+        bit: 0
+      trisb.trisb1:
+        bit: 0
+      trisb.trisb2:
+        bit: 0
+      trisb.trisb3:
+        bit: 0
+      trisb.trisb4:
+        bit: 0
+      trisb.trisb5:
+        bit: 0
+      trisb.trisb6:
+        bit: 0
+      trisb.trisb7:
+        bit: 0
+  misc:
+    registers:
+      leddc:
+        offset: '0xF90'
+      ledb:
+        offset: '0xF91'
+      refcal:
+        offset: '0xF9A'
+      osccal:
+        offset: '0xF9B'
+      bgcal:
+        offset: '0xF9C'
+      eecon1:
+        offset: '0xFA6'
+      eecon2:
+        offset: '0xFA7'
+    fields:
+      leddc.ledc:
+        bits:
+        - 0
+        - 2
+      leddc.ledc0:
+        bit: 0
+      leddc.ledc1:
+        bit: 0
+      leddc.ledc2:
+        bit: 0
+      ledb.ledb:
+        bits:
+        - 0
+        - 7
+      refcal.vrc:
+        bits:
+        - 0
+        - 5
+      osccal.osc:
+        bits:
+        - 0
+        - 6
+      osccal.rext:
+        bit: 0
+      osccal.osc0:
+        bit: 0
+      osccal.osc1:
+        bit: 0
+      osccal.osc2:
+        bit: 0
+      osccal.osc3:
+        bit: 0
+      osccal.osc4:
+        bit: 0
+      osccal.osc5:
+        bit: 0
+      osccal.osc6:
+        bit: 0
+      bgcal.bgtc:
+        bits:
+        - 0
+        - 3
+      bgcal.bgtc0:
+        bit: 0
+      bgcal.bgtc1:
+        bit: 0
+      bgcal.bgtc2:
+        bit: 0
+      bgcal.bgtc3:
+        bit: 0
+      eecon1.rd:
+        bit: 0
+      eecon1.wr:
+        bit: 0
+      eecon1.wren:
+        bit: 0
+      eecon1.wrerr:
+        bit: 0
+      eecon1.free:
+        bit: 0
+      eecon1.coma:
+        bit: 0
+      eecon1.cfgs:
+        bit: 0
+      eecon1.eepgd:
+        bit: 0
+      eecon1.eefs:
+        bit: 0
+      eecon2.eecon2:
+        bits:
+        - 0
+        - 7
+  interrupt_controller:
+    registers:
+      pie1:
+        offset: '0xF9D'
+      pir1:
+        offset: '0xF9E'
+      ipr1:
+        offset: '0xF9F'
+      pie2:
+        offset: '0xFA0'
+      pir2:
+        offset: '0xFA1'
+      ipr2:
+        offset: '0xFA2'
+    fields:
+      pie1.tmr1ie:
+        bit: 0
+      pie1.tmr2ie:
+        bit: 0
+      pie1.sspie:
+        bit: 0
+      pie1.adie:
+        bit: 0
+      pir1.tmr1if:
+        bit: 0
+      pir1.tmr2if:
+        bit: 0
+      pir1.sspif:
+        bit: 0
+      pir1.adif:
+        bit: 0
+      ipr1.tmr1ip:
+        bit: 0
+      ipr1.tmr2ip:
+        bit: 0
+      ipr1.sspip:
+        bit: 0
+      ipr1.adip:
+        bit: 0
+      pie2.tmr3ie:
+        bit: 0
+      pie2.bclie:
+        bit: 0
+      pie2.eeie:
+        bit: 0
+      pie2.cmie:
+        bit: 0
+      pir2.tmr3if:
+        bit: 0
+      pir2.bclif:
+        bit: 0
+      pir2.eeif:
+        bit: 0
+      pir2.cmif:
+        bit: 0
+      ipr2.tmr3ip:
+        bit: 0
+      ipr2.bclip:
+        bit: 0
+      ipr2.eeip:
+        bit: 0
+      ipr2.cmip:
+        bit: 0
+  eeprom:
+    registers:
+      eedata:
+        offset: '0xFA8'
+      eeadr:
+        offset: '0xFA9'
+    fields:
+      eedata.eedata:
+        bits:
+        - 0
+        - 7
+      eeadr.eeadr:
+        bits:
+        - 0
+        - 7
+  timer:
+    registers:
+      t3con:
+        offset: '0xFB1'
+      tmr3l:
+        offset: '0xFB2'
+      tmr3h:
+        offset: '0xFB3'
+      t2con:
+        offset: '0xFCA'
+      pr2:
+        offset: '0xFCB'
+      tmr2:
+        offset: '0xFCC'
+      t1con:
+        offset: '0xFCD'
+      tmr1l:
+        offset: '0xFCE'
+      tmr1h:
+        offset: '0xFCF'
+      t0con:
+        offset: '0xFD5'
+      tmr0l:
+        offset: '0xFD6'
+      tmr0h:
+        offset: '0xFD7'
+    fields:
+      t3con.tmr3on:
+        bit: 0
+      t3con.tmr3cs:
+        bit: 0
+      t3con.nt3sync:
+        bit: 0
+      t3con.t3ccp1:
+        bit: 0
+      t3con.t3ckps:
+        bits:
+        - 0
+        - 1
+      t3con.t3ccp2:
+        bit: 0
+      t3con.rd16:
+        bit: 0
+      t3con.t3sync:
+        bit: 0
+      t3con.t3ckps0:
+        bit: 0
+      t3con.t3ckps1:
+        bit: 0
+      t3con.t3insync:
+        bit: 0
+      t3con.soscen3:
+        bit: 0
+      t3con.rd163:
+        bit: 0
+      t3con.t3rd16:
+        bit: 0
+      tmr3l.tmr3l:
+        bits:
+        - 0
+        - 7
+      tmr3h.tmr3h:
+        bits:
+        - 0
+        - 7
+      t2con.t2ckps:
+        bits:
+        - 0
+        - 1
+      t2con.tmr2on:
+        bit: 0
+      t2con.toutps:
+        bits:
+        - 0
+        - 3
+      t2con.t2ckps0:
+        bit: 0
+      t2con.t2ckps1:
+        bit: 0
+      t2con.toutps0:
+        bit: 0
+      t2con.toutps1:
+        bit: 0
+      t2con.toutps2:
+        bit: 0
+      t2con.toutps3:
+        bit: 0
+      pr2.pr2:
+        bits:
+        - 0
+        - 7
+      tmr2.tmr2:
+        bits:
+        - 0
+        - 7
+      t1con.tmr1on:
+        bit: 0
+      t1con.tmr1cs:
+        bit: 0
+      t1con.nt1sync:
+        bit: 0
+      t1con.t1oscen:
+        bit: 0
+      t1con.t1ckps:
+        bits:
+        - 0
+        - 1
+      t1con.t1run:
+        bit: 0
+      t1con.rd16:
+        bit: 0
+      t1con.t1sync:
+        bit: 0
+      t1con.t1ckps0:
+        bit: 0
+      t1con.t1ckps1:
+        bit: 0
+      t1con.t1insync:
+        bit: 0
+      t1con.soscen:
+        bit: 0
+      t1con.t1rd16:
+        bit: 0
+      tmr1l.tmr1l:
+        bits:
+        - 0
+        - 7
+      tmr1h.tmr1h:
+        bits:
+        - 0
+        - 7
+      t0con.t0ps:
+        bits:
+        - 0
+        - 2
+      t0con.psa:
+        bit: 0
+      t0con.t0se:
+        bit: 0
+      t0con.t0cs:
+        bit: 0
+      t0con.t08bit:
+        bit: 0
+      t0con.tmr0on:
+        bit: 0
+      t0con.t0ps0:
+        bit: 0
+      t0con.t0ps1:
+        bit: 0
+      t0con.t0ps2:
+        bit: 0
+      tmr0l.tmr0l:
+        bits:
+        - 0
+        - 7
+      tmr0h.tmr0h:
+        bits:
+        - 0
+        - 7
+  comparator:
+    registers:
+      cmcon:
+        offset: '0xFB4'
+      cvrcon:
+        offset: '0xFB5'
+    fields:
+      cmcon.cwven:
+        bit: 0
+      cmcon.cwien:
+        bit: 0
+      cmcon.cwdi:
+        bit: 0
+      cmcon.cwci:
+        bit: 0
+      cmcon.cwvi:
+        bit: 0
+      cmcon.cwtst:
+        bit: 0
+      cmcon.cm0:
+        bit: 0
+      cmcon.cm1:
+        bit: 0
+      cmcon.cm2:
+        bit: 0
+      cmcon.cis:
+        bit: 0
+      cmcon.c1inv:
+        bit: 0
+      cmcon.c2out:
+        bit: 0
+      cmcon.cmen0:
+        bit: 0
+      cmcon.cmen1:
+        bit: 0
+      cmcon.cmen2:
+        bit: 0
+      cvrcon.cwv:
+        bits:
+        - 0
+        - 2
+      cvrcon.cwi:
+        bits:
+        - 0
+        - 4
+      cvrcon.cvr0:
+        bit: 0
+      cvrcon.cvr1:
+        bit: 0
+      cvrcon.cvr2:
+        bit: 0
+      cvrcon.cvr3:
+        bit: 0
+      cvrcon.cvrss:
+        bit: 0
+      cvrcon.cvrr:
+        bit: 0
+      cvrcon.cvroen:
+        bit: 0
+  adc:
+    registers:
+      adcon2:
+        offset: '0xFC0'
+      adcon1:
+        offset: '0xFC1'
+      adcon0:
+        offset: '0xFC2'
+      adresl:
+        offset: '0xFC3'
+      adresh:
+        offset: '0xFC4'
+    fields:
+      adcon2.adcs:
+        bits:
+        - 0
+        - 3
+      adcon2.c340:
+        bit: 0
+      adcon2.adcs0:
+        bit: 0
+      adcon2.adcs1:
+        bit: 0
+      adcon2.adcs2:
+        bit: 0
+      adcon2.adcs3:
+        bit: 0
+      adcon1.balc:
+        bits:
+        - 0
+        - 3
+      adcon1.size:
+        bits:
+        - 0
+        - 2
+      adcon1.adcov:
+        bit: 0
+      adcon1.balc1:
+        bit: 0
+      adcon1.balc2:
+        bit: 0
+      adcon1.balc3:
+        bit: 0
+      adcon1.balc4:
+        bit: 0
+      adcon1.size0:
+        bit: 0
+      adcon1.size1:
+        bit: 0
+      adcon1.size2:
+        bit: 0
+      adcon1.chsn3:
+        bit: 0
+      adcon1.vcfg01:
+        bit: 0
+      adcon1.vcfg11:
+        bit: 0
+      adcon0.adon:
+        bit: 0
+      adcon0.go_ndone:
+        bit: 0
+      adcon0.go:
+        bit: 0
+      adcon0.ndone:
+        bit: 0
+      adcon0.done:
+        bit: 0
+      adcon0.godone:
+        bit: 0
+      adcon0.go_done:
+        bit: 0
+      adresl.mag:
+        bits:
+        - 0
+        - 7
+      adresh.mag:
+        bits:
+        - 0
+        - 6
+      adresh.sign:
+        bit: 0
+  mssp:
+    registers:
+      sspcon2:
+        offset: '0xFC5'
+      sspcon1:
+        offset: '0xFC6'
+      sspstat:
+        offset: '0xFC7'
+      sspadd:
+        offset: '0xFC8'
+      sspbuf:
+        offset: '0xFC9'
+    fields:
+      sspcon2.sen:
+        bit: 0
+      sspcon2.rsen:
+        bit: 0
+      sspcon2.pen:
+        bit: 0
+      sspcon2.rcen:
+        bit: 0
+      sspcon2.acken:
+        bit: 0
+      sspcon2.ackdt:
+        bit: 0
+      sspcon2.ackstat:
+        bit: 0
+      sspcon2.gcen:
+        bit: 0
+      sspcon1.sspm:
+        bits:
+        - 0
+        - 3
+      sspcon1.ckp:
+        bit: 0
+      sspcon1.sspen:
+        bit: 0
+      sspcon1.sspov:
+        bit: 0
+      sspcon1.wcol:
+        bit: 0
+      sspcon1.sspm0:
+        bit: 0
+      sspcon1.sspm1:
+        bit: 0
+      sspcon1.sspm2:
+        bit: 0
+      sspcon1.sspm3:
+        bit: 0
+      sspstat.bf:
+        bit: 0
+      sspstat.ua:
+        bit: 0
+      sspstat.r_nw:
+        bit: 0
+      sspstat.s:
+        bit: 0
+      sspstat.p:
+        bit: 0
+      sspstat.d_na:
+        bit: 0
+      sspstat.cke:
+        bit: 0
+      sspstat.smp:
+        bit: 0
+      sspstat.r_w:
+        bit: 0
+      sspstat.d_a:
+        bit: 0
+      sspstat.r:
+        bit: 0
+      sspstat.d:
+        bit: 0
+      sspstat.nw:
+        bit: 0
+      sspstat.na:
+        bit: 0
+      sspstat.read_write:
+        bit: 0
+      sspstat.data_address:
+        bit: 0
+      sspstat.nwrite:
+        bit: 0
+      sspstat.naddress:
+        bit: 0
+      sspstat.i2c_read:
+        bit: 0
+      sspstat.i2c_start:
+        bit: 0
+      sspstat.i2c_stop:
+        bit: 0
+      sspstat.i2c_dat:
+        bit: 0
+      sspstat.rw:
+        bit: 0
+      sspstat.start:
+        bit: 0
+      sspstat.stop:
+        bit: 0
+      sspstat.da:
+        bit: 0
+      sspstat.not_w:
+        bit: 0
+      sspstat.not_a:
+        bit: 0
+      sspadd.sspadd:
+        bits:
+        - 0
+        - 7
+      sspbuf.sspbuf:
+        bits:
+        - 0
+        - 7
+  wdt:
+    registers:
+      wdtcon:
+        offset: '0xFD1'
+    fields:
+      wdtcon.swdten:
+        bit: 0
+  oscillator:
+    registers:
+      osccon:
+        offset: '0xFD3'
+    fields:
+      osccon.scs:
+        bit: 0
+      osccon.osts:
+        bit: 0
+      osccon.idlen:
+        bit: 0
+peripherals:
+- id: adc
+  template: adc
+  base: '0xFC0'
+- id: comparator
+  template: comparator
+  base: '0xFB4'
+- id: eeprom
+  template: eeprom
+  base: '0xFA8'
+- id: interrupt_controller
+  template: interrupt_controller
+  base: '0xF9D'
+- id: misc
+  template: misc
+  base: '0xF90'
+- id: mssp
+  template: mssp
+  base: '0xFC5'
+- id: oscillator
+  template: oscillator
+  base: '0xFD3'
+- id: port_a
+  template: port
+  base: '0xF80'
+- id: port_b
+  template: port
+  base: '0xF80'
+- id: timer_0
+  template: timer
+  base: '0xFB1'
+- id: timer_1
+  template: timer
+  base: '0xFB1'
+- id: timer_2
+  template: timer
+  base: '0xFB1'
+- id: timer_3
+  template: timer
+  base: '0xFB1'
+- id: wdt
+  template: wdt
+  base: '0xFD1'
+pinout:
+- signal: RESET

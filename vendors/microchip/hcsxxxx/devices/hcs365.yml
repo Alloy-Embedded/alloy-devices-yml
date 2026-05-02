@@ -1,0 +1,51 @@
+schema: alloy.device.v2.1
+identity:
+  vendor: microchip
+  family: hcsxxxx
+  device: hcs365
+  core:
+    isa: hcs
+    name: hcs365
+    bits: 8
+provenance:
+  primary: microchip-pic:HCS365.PIC
+  authored: auto
+  secondary:
+  - microchip-overlay:hcsxxxx
+memory:
+- id: flash
+  base: '0x00000000'
+  size: 1B
+  access: rx
+  role: extractor-placeholder
+clock:
+  oscillators:
+    unknown:
+      freq: 0Hz
+      kind: rc-internal
+  domains:
+  - id: sysclk
+    sources:
+    - unknown
+  profiles:
+  - id: factory-default
+    kind: post-reset
+    sysclk: 0Hz
+    sysclk_source: unknown
+templates:
+  stub:
+    registers: {}
+    fields: {}
+  i2c:
+    max_clock: 1MHz
+  usart:
+    max_baud: 5000000
+  twi:
+    max_clock: 1MHz
+  adc:
+    max_clock: 10MHz
+peripherals:
+- id: stub
+  template: stub
+pinout:
+- signal: RESET

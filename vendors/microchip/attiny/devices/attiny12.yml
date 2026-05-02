@@ -1,0 +1,365 @@
+schema: alloy.device.v2.1
+identity:
+  vendor: microchip
+  family: attiny
+  device: attiny12
+  core:
+    isa: avr
+    name: avr-tinyavr
+    bits: 8
+  package: pdip8
+provenance:
+  primary: microchip-atdf:ATtiny12.atdf
+  authored: auto
+  notes: ATDF-extracted skeleton — pinout requires enrichment.
+  secondary:
+  - microchip-overlay:attiny
+memory:
+- id: io
+  base: 0
+  size: 4352B
+  access: rw
+- id: signatures
+  base: '0x1100'
+  size: 3B
+  access: ro
+- id: prod_signatures
+  base: '0x1103'
+  size: 61B
+  access: ro
+- id: fuses
+  base: '0x1280'
+  size: 10B
+  access: rw
+- id: lockbits
+  base: '0x128A'
+  size: 1B
+  access: rw
+- id: user_signatures
+  base: '0x1300'
+  size: 32B
+  access: rw
+- id: eeprom
+  base: '0x1400'
+  size: 64B
+  access: rw
+- id: internal_sram
+  base: '0x3F80'
+  size: 128B
+  access: rw
+- id: mapped_progmem
+  base: '0x8000'
+  size: 2KB
+  access: rw
+- id: progmem
+  base: 0
+  size: 2KB
+  access: rwx
+  alias: code
+  address_space: program
+clock:
+  oscillators:
+    oschf:
+      freq: 24MHz
+      kind: rc-internal
+    osc32k:
+      freq: 32kHz
+      kind: rc-internal
+    extclk:
+      freq: 0Hz
+      kind: crystal-external
+      optional: true
+  domains:
+  - id: clk_per
+    sources:
+    - oschf
+    - osc32k
+    - extclk
+  profiles:
+  - id: factory-default
+    kind: post-reset
+    sysclk: 1MHz
+    sysclk_source: internal-rc
+    hclk_hz: 1000000
+    pclk_hz: 1000000
+  - id: avr8x-max
+    kind: recommended
+    sysclk: 48MHz
+    sysclk_source: pll
+    hclk_hz: 48000000
+    pclk_hz: 48000000
+templates:
+  fuse:
+    registers:
+      low:
+        offset: 0
+    fields:
+      low.bodlevel:
+        bit: 7
+        enum:
+          1v8: 1
+          2v7: 0
+      low.boden:
+        bit: 6
+      low.spien:
+        bit: 5
+      low.rstdisbl:
+        bit: 4
+      low.cksel:
+        bits:
+        - 0
+        - 3
+        enum:
+          extxtalcres: 10
+          extlofxtal: 8
+          extrcosc: 5
+          intrcosc: 2
+          extclk: 0
+  lockbit:
+    registers:
+      lockbit:
+        offset: 0
+    fields:
+      lockbit.lb:
+        bits:
+        - 1
+        - 2
+        enum:
+          prog_ver_disabled: 0
+          prog_disabled: 1
+          no_lock: 3
+  ac:
+    registers:
+      acsr:
+        offset: 8
+    fields:
+      acsr.acd:
+        bit: 7
+      acsr.ainbg:
+        bit: 6
+      acsr.aco:
+        bit: 5
+      acsr.aci:
+        bit: 4
+      acsr.acie:
+        bit: 3
+      acsr.acis:
+        bits:
+        - 0
+        - 1
+        enum:
+          interrupt_on_toggle: 0
+          reserved: 1
+          interrupt_on_falling_edge: 2
+          interrupt_on_rising_edge: 3
+  cpu:
+    registers:
+      sreg:
+        offset: 63
+      mcucr:
+        offset: 53
+      mcusr:
+        offset: 52
+      osccal:
+        offset: 49
+    fields:
+      sreg.i:
+        bit: 7
+      sreg.t:
+        bit: 6
+      sreg.h:
+        bit: 5
+      sreg.s:
+        bit: 4
+      sreg.v:
+        bit: 3
+      sreg.n:
+        bit: 2
+      sreg.z:
+        bit: 1
+      sreg.c:
+        bit: 0
+      mcucr.pud:
+        bit: 6
+      mcucr.se:
+        bit: 5
+      mcucr.sm:
+        bit: 4
+        enum:
+          idle: 0
+          pdown: 1
+      mcucr.isc0:
+        bits:
+        - 0
+        - 1
+        enum:
+          low_level_of_intx: 0
+          any_logical_change_in_intx: 1
+          falling_edge_of_intx: 2
+          rising_edge_of_intx: 3
+      mcusr.wdrf:
+        bit: 3
+      mcusr.borf:
+        bit: 2
+      mcusr.extrf:
+        bit: 1
+      mcusr.porf:
+        bit: 0
+      osccal.osccal:
+        bits:
+        - 0
+        - 7
+  exint:
+    registers:
+      gimsk:
+        offset: 59
+      gifr:
+        offset: 58
+    fields:
+      gimsk.int0:
+        bit: 6
+      gimsk.pcie:
+        bit: 5
+      gifr.intf0:
+        bit: 6
+      gifr.pcif:
+        bit: 5
+  eeprom:
+    registers:
+      eear:
+        offset: 30
+      eedr:
+        offset: 29
+      eecr:
+        offset: 28
+    fields:
+      eecr.eerie:
+        bit: 3
+      eecr.eemwe:
+        bit: 2
+      eecr.eewe:
+        bit: 1
+      eecr.eere:
+        bit: 0
+  port:
+    registers:
+      portb:
+        offset: 24
+      ddrb:
+        offset: 23
+      pinb:
+        offset: 22
+  tc:
+    registers:
+      timsk:
+        offset: 57
+      tifr:
+        offset: 56
+      tccr0:
+        offset: 51
+      tcnt0:
+        offset: 50
+    fields:
+      timsk.toie0:
+        bit: 1
+      tifr.tov0:
+        bit: 1
+      tccr0.cs02:
+        bit: 2
+        enum:
+          no_clock_source_stopped: 0
+          running_no_prescaling: 1
+          running_clk_8: 2
+          running_clk_64: 3
+          running_clk_256: 4
+          running_clk_1024: 5
+          running_extclk_tn_falling_edge: 6
+          running_extclk_tn_rising_edge: 7
+      tccr0.cs01:
+        bit: 1
+      tccr0.cs00:
+        bit: 0
+  wdt:
+    registers:
+      wdtcr:
+        offset: 33
+    fields:
+      wdtcr.wdtoe:
+        bit: 4
+      wdtcr.wde:
+        bit: 3
+      wdtcr.wdp:
+        bits:
+        - 0
+        - 2
+        enum:
+          oscillator_cycles_16k: 0
+          oscillator_cycles_32k: 1
+          oscillator_cycles_64k: 2
+          oscillator_cycles_128k: 3
+          oscillator_cycles_256k: 4
+          oscillator_cycles_512k: 5
+          oscillator_cycles_1024k: 6
+          oscillator_cycles_2048k: 7
+  i2c:
+    max_clock: 1MHz
+  usart:
+    max_baud: 6000000
+  spi:
+    max_clock: 24MHz
+  twi:
+    max_clock: 1MHz
+  adc:
+    max_clock: 16MHz
+peripherals:
+- id: ac
+  template: ac
+  base: 0
+  description: Analog Comparator
+- id: cpu
+  template: cpu
+  base: 0
+  description: CPU Registers
+- id: exint
+  template: exint
+  base: 0
+  description: External Interrupts
+- id: eeprom
+  template: eeprom
+  base: 0
+  description: EEPROM
+- id: portb
+  template: port
+  base: 0
+  description: I/O Port
+- id: tc0
+  template: tc
+  base: 0
+  description: Timer/Counter, 8-bit
+- id: wdt
+  template: wdt
+  base: 0
+  description: Watchdog Timer
+- id: fuse
+  template: fuse
+  base: 0
+  description: Fuses
+- id: lockbit
+  template: lockbit
+  base: 0
+  description: Lockbits
+pinout:
+- signal: RESET
+interrupts:
+- num: 0
+  name: RESET_vect
+- num: 1
+  name: INT0_vect
+- num: 2
+  name: IO_PINS_vect
+- num: 3
+  name: TIMER0_OVF_vect
+- num: 4
+  name: EE_RDY_vect
+- num: 5
+  name: ANA_COMP_vect

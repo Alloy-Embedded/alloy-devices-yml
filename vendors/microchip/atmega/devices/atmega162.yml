@@ -1,0 +1,1173 @@
+schema: alloy.device.v2.1
+identity:
+  vendor: microchip
+  family: atmega
+  device: atmega162
+  core:
+    isa: avr
+    name: avr-megaavr
+    bits: 8
+  package: tqfp44
+provenance:
+  primary: microchip-atdf:ATmega162.atdf
+  authored: auto
+  notes: ATDF-extracted skeleton — pinout requires enrichment.
+  secondary:
+  - microchip-overlay:atmega
+memory:
+- id: flash
+  base: 0
+  size: 16KB
+  access: rwx
+  alias: code
+  address_space: program
+- id: boot_section_1
+  base: '0x3E00'
+  size: 512B
+  access: rwx
+  alias: code
+  address_space: program
+- id: boot_section_2
+  base: '0x3C00'
+  size: 1KB
+  access: rwx
+  alias: code
+  address_space: program
+- id: boot_section_3
+  base: '0x3800'
+  size: 2KB
+  access: rwx
+  alias: code
+  address_space: program
+- id: boot_section_4
+  base: '0x3000'
+  size: 4KB
+  access: rwx
+  alias: code
+  address_space: program
+- id: signatures
+  base: 0
+  size: 3B
+  access: ro
+- id: fuses
+  base: 0
+  size: 3B
+  access: rw
+- id: lockbits
+  base: 0
+  size: 1B
+  access: rw
+- id: registers
+  base: 0
+  size: 32B
+  access: ro
+- id: mapped_io
+  base: 32
+  size: 224B
+  access: ro
+- id: iram
+  base: '0x100'
+  size: 1KB
+  access: ro
+- id: eeprom
+  base: 0
+  size: 512B
+  access: rw
+- id: osccal
+  base: 0
+  size: 1B
+  access: ro
+clock:
+  oscillators:
+    oschf:
+      freq: 24MHz
+      kind: rc-internal
+    osc32k:
+      freq: 32kHz
+      kind: rc-internal
+    extclk:
+      freq: 0Hz
+      kind: crystal-external
+      optional: true
+  domains:
+  - id: clk_per
+    sources:
+    - oschf
+    - osc32k
+    - extclk
+  profiles:
+  - id: factory-default
+    kind: post-reset
+    sysclk: 1MHz
+    sysclk_source: internal-rc
+    hclk_hz: 1000000
+    pclk_hz: 1000000
+  - id: avr8-max
+    kind: recommended
+    sysclk: 48MHz
+    sysclk_source: pll
+    hclk_hz: 48000000
+    pclk_hz: 48000000
+templates:
+  fuse:
+    registers:
+      extended:
+        offset: 2
+      high:
+        offset: 1
+      low:
+        offset: 0
+    fields:
+      extended.m161c:
+        bit: 4
+      extended.bodlevel:
+        bits:
+        - 1
+        - 3
+        enum:
+          disabled: 7
+          1v8: 6
+          2v3: 3
+          2v7: 5
+          4v3: 4
+      high.ocden:
+        bit: 7
+      high.jtagen:
+        bit: 6
+      high.spien:
+        bit: 5
+      high.wdton:
+        bit: 4
+      high.eesave:
+        bit: 3
+      high.bootsz:
+        bits:
+        - 1
+        - 2
+        enum:
+          128w_1f80: 3
+          256w_1f00: 2
+          512w_1e00: 1
+          1024w_1c00: 0
+      high.bootrst:
+        bit: 0
+      low.ckdiv8:
+        bit: 7
+      low.ckout:
+        bit: 6
+      low.sut_cksel:
+        bits:
+        - 0
+        - 5
+        enum:
+          extclk_6ck_0ms: 0
+          extclk_6ck_4ms1: 16
+          extclk_6ck_65ms: 32
+          intrcosc_6ck_0ms: 2
+          intrcosc_6ck_4ms1: 18
+          intrcosc_6ck_65ms: 34
+          extlofxtal_32kck_0ms_intcap: 7
+          extlofxtal_32kck_4ms1_intcap: 23
+          extlofxtal_32kck_65ms_intcap: 39
+          extlofxtal_1kck_0ms_intcap: 6
+          extlofxtal_1kck_4ms1_intcap: 22
+          extlofxtal_1kck_65ms_intcap: 38
+          extlofxtal_32kck_0ms: 5
+          extlofxtal_32kck_4ms1: 21
+          extlofxtal_32kck_65ms: 37
+          extlofxtal_1kck_0ms: 4
+          extlofxtal_1kck_4ms1: 20
+          extlofxtal_1kck_65ms: 36
+          extxosc_0mhz4_0mhz9_258ck_4ms1: 8
+          extxosc_0mhz4_0mhz9_258ck_65ms: 24
+          extxosc_0mhz4_0mhz9_1kck_0ms: 40
+          extxosc_0mhz4_0mhz9_1kck_4ms1: 56
+          extxosc_0mhz4_0mhz9_1kck_65ms: 9
+          extxosc_0mhz4_0mhz9_16kck_0ms: 25
+          extxosc_0mhz4_0mhz9_16kck_4ms1: 41
+          extxosc_0mhz4_0mhz9_16kck_65ms: 57
+          extxosc_0mhz9_3mhz_258ck_4ms1: 10
+          extxosc_0mhz9_3mhz_258ck_65ms: 26
+          extxosc_0mhz9_3mhz_1kck_0ms: 42
+          extxosc_0mhz9_3mhz_1kck_4ms1: 58
+          extxosc_0mhz9_3mhz_1kck_65ms: 11
+          extxosc_0mhz9_3mhz_16kck_0ms: 27
+          extxosc_0mhz9_3mhz_16kck_4ms1: 43
+          extxosc_0mhz9_3mhz_16kck_65ms: 59
+          extxosc_3mhz_8mhz_258ck_4ms1: 12
+          extxosc_3mhz_8mhz_258ck_65ms: 28
+          extxosc_3mhz_8mhz_1kck_0ms: 44
+          extxosc_3mhz_8mhz_1kck_4ms1: 60
+          extxosc_3mhz_8mhz_1kck_65ms: 13
+          extxosc_3mhz_8mhz_16kck_0ms: 29
+          extxosc_3mhz_8mhz_16kck_4ms1: 45
+          extxosc_3mhz_8mhz_16kck_65ms: 61
+          extxosc_8mhz_xx_258ck_4ms1: 14
+          extxosc_8mhz_xx_258ck_65ms: 30
+          extxosc_8mhz_xx_1kck_0ms: 46
+          extxosc_8mhz_xx_1kck_4ms1: 62
+          extxosc_8mhz_xx_1kck_65ms: 15
+          extxosc_8mhz_xx_16kck_0ms: 31
+          extxosc_8mhz_xx_16kck_4ms1: 47
+          extxosc_8mhz_xx_16kck_65ms: 63
+  lockbit:
+    registers:
+      lockbit:
+        offset: 0
+    fields:
+      lockbit.lb:
+        bits:
+        - 0
+        - 1
+        enum:
+          prog_ver_disabled: 0
+          prog_disabled: 2
+          no_lock: 3
+      lockbit.blb0:
+        bits:
+        - 2
+        - 3
+        enum:
+          lpm_spm_disable: 0
+          lpm_disable: 1
+          spm_disable: 2
+          no_lock: 3
+      lockbit.blb1:
+        bits:
+        - 4
+        - 5
+        enum:
+          lpm_spm_disable: 0
+          lpm_disable: 1
+          spm_disable: 2
+          no_lock: 3
+  tc:
+    registers:
+      timsk:
+        offset: 89
+      tifr:
+        offset: 88
+      tccr1a:
+        offset: 79
+      tccr1b:
+        offset: 78
+      tcnt1:
+        offset: 76
+      ocr1a:
+        offset: 74
+      ocr1b:
+        offset: 72
+      icr1:
+        offset: 68
+      etimsk:
+        offset: 125
+      etifr:
+        offset: 124
+      tccr3a:
+        offset: 139
+      tccr3b:
+        offset: 138
+      tcnt3:
+        offset: 136
+      ocr3a:
+        offset: 134
+      ocr3b:
+        offset: 132
+      icr3:
+        offset: 128
+      tccr0:
+        offset: 83
+      tcnt0:
+        offset: 82
+      ocr0:
+        offset: 81
+    fields:
+      timsk.toie1:
+        bit: 7
+      timsk.ocie1a:
+        bit: 6
+      timsk.ocie1b:
+        bit: 5
+      timsk.ticie1:
+        bit: 3
+      tifr.tov1:
+        bit: 7
+      tifr.ocf1a:
+        bit: 6
+      tifr.ocf1b:
+        bit: 5
+      tifr.icf1:
+        bit: 3
+      tccr1a.com1a:
+        bits:
+        - 6
+        - 7
+      tccr1a.com1b:
+        bits:
+        - 4
+        - 5
+      tccr1a.foc1a:
+        bit: 3
+      tccr1a.foc1b:
+        bit: 2
+      tccr1a.wgm1:
+        bits:
+        - 0
+        - 1
+      tccr1b.icnc1:
+        bit: 7
+      tccr1b.ices1:
+        bit: 6
+      tccr1b.wgm1:
+        bits:
+        - 3
+        - 4
+      tccr1b.cs1:
+        bits:
+        - 0
+        - 2
+        enum:
+          no_clock_source_stopped: 0
+          running_no_prescaling: 1
+          running_clk_8: 2
+          running_clk_64: 3
+          running_clk_256: 4
+          running_clk_1024: 5
+          running_extclk_tn_falling_edge: 6
+          running_extclk_tn_rising_edge: 7
+      etimsk.ticie3:
+        bit: 5
+      etimsk.ocie3a:
+        bit: 4
+      etimsk.ocie3b:
+        bit: 3
+      etimsk.toie3:
+        bit: 2
+      etifr.icf3:
+        bit: 5
+      etifr.ocf3a:
+        bit: 4
+      etifr.ocf3b:
+        bit: 3
+      etifr.tov3:
+        bit: 2
+      tccr3a.com3a:
+        bits:
+        - 6
+        - 7
+      tccr3a.com3b:
+        bits:
+        - 4
+        - 5
+      tccr3a.foc3a:
+        bit: 3
+      tccr3a.foc3b:
+        bit: 2
+      tccr3a.wgm3:
+        bits:
+        - 0
+        - 1
+      tccr3b.icnc3:
+        bit: 7
+      tccr3b.ices3:
+        bit: 6
+      tccr3b.wgm3:
+        bits:
+        - 3
+        - 4
+      tccr3b.cs3:
+        bits:
+        - 0
+        - 2
+        enum:
+          no_clock_source_stopped: 0
+          running_no_prescaling: 1
+          running_clk_8: 2
+          running_clk_64: 3
+          running_clk_256: 4
+          running_clk_1024: 5
+          running_clk_16: 6
+          running_clk_32: 7
+      tccr0.foc0:
+        bit: 7
+      tccr0.wgm00:
+        bit: 6
+        enum:
+          normal: 0
+          pwm_phase_correct: 2
+          ctc: 1
+          fast_pwm: 3
+      tccr0.com0:
+        bits:
+        - 4
+        - 5
+      tccr0.wgm01:
+        bit: 3
+      tccr0.cs0:
+        bits:
+        - 0
+        - 2
+        enum:
+          no_clock_source_stopped: 0
+          running_no_prescaling: 1
+          running_clk_8: 2
+          running_clk_64: 3
+          running_clk_256: 4
+          running_clk_1024: 5
+          running_extclk_tn_falling_edge: 6
+          running_extclk_tn_rising_edge: 7
+      timsk.toie0:
+        bit: 1
+      timsk.ocie0:
+        bit: 0
+      tifr.tov0:
+        bit: 1
+      tifr.ocf0:
+        bit: 0
+  tc8_async:
+    registers:
+      tccr2:
+        offset: 71
+      tcnt2:
+        offset: 67
+      ocr2:
+        offset: 66
+      timsk:
+        offset: 89
+      tifr:
+        offset: 88
+      assr:
+        offset: 70
+    fields:
+      tccr2.foc2:
+        bit: 7
+      tccr2.wgm20:
+        bit: 6
+        enum:
+          normal: 0
+          pwm_phase_correct: 2
+          ctc: 1
+          fast_pwm: 3
+      tccr2.com2:
+        bits:
+        - 4
+        - 5
+      tccr2.wgm21:
+        bit: 3
+      tccr2.cs2:
+        bits:
+        - 0
+        - 2
+        enum:
+          no_clock_source_stopped: 0
+          running_no_prescaling: 1
+          running_clk_8: 2
+          running_clk_32: 3
+          running_clk_64: 4
+          running_clk_128: 5
+          running_clk_256: 6
+          running_clk_1024: 7
+      timsk.ocie2:
+        bit: 4
+      timsk.toie2:
+        bit: 2
+      tifr.ocf2:
+        bit: 4
+      tifr.tov2:
+        bit: 2
+      assr.as2:
+        bit: 3
+      assr.tcn2ub:
+        bit: 2
+      assr.ocr2ub:
+        bit: 1
+      assr.tcr2ub:
+        bit: 0
+  ac:
+    registers:
+      acsr:
+        offset: 40
+    fields:
+      acsr.acd:
+        bit: 7
+      acsr.acbg:
+        bit: 6
+      acsr.aco:
+        bit: 5
+      acsr.aci:
+        bit: 4
+      acsr.acie:
+        bit: 3
+      acsr.acic:
+        bit: 2
+      acsr.acis:
+        bits:
+        - 0
+        - 1
+        enum:
+          interrupt_on_toggle: 0
+          reserved: 1
+          interrupt_on_falling_edge: 2
+          interrupt_on_rising_edge: 3
+  usart:
+    registers:
+      udr0:
+        offset: 44
+      ucsr0a:
+        offset: 43
+      ucsr0b:
+        offset: 42
+      ucsr0c:
+        offset: 64
+      ubrr0l:
+        offset: 41
+      udr1:
+        offset: 35
+      ucsr1a:
+        offset: 34
+      ucsr1b:
+        offset: 33
+      ucsr1c:
+        offset: 92
+      ubrr1l:
+        offset: 32
+    fields:
+      ucsr0a.rxc0:
+        bit: 7
+        access: ro
+      ucsr0a.txc0:
+        bit: 6
+      ucsr0a.udre0:
+        bit: 5
+        access: ro
+      ucsr0a.fe0:
+        bit: 4
+        access: ro
+      ucsr0a.dor0:
+        bit: 3
+        access: ro
+      ucsr0a.upe0:
+        bit: 2
+        access: ro
+      ucsr0a.u2x0:
+        bit: 1
+      ucsr0a.mpcm0:
+        bit: 0
+      ucsr0b.rxcie0:
+        bit: 7
+      ucsr0b.txcie0:
+        bit: 6
+      ucsr0b.udrie0:
+        bit: 5
+      ucsr0b.rxen0:
+        bit: 4
+      ucsr0b.txen0:
+        bit: 3
+      ucsr0b.ucsz02:
+        bit: 2
+      ucsr0b.rxb80:
+        bit: 1
+      ucsr0b.txb80:
+        bit: 0
+      ucsr0c.ursel0:
+        bit: 7
+      ucsr0c.umsel0:
+        bit: 6
+        enum:
+          asynchronous_operation: 0
+          synchronous_operation: 1
+      ucsr0c.upm0:
+        bits:
+        - 4
+        - 5
+        enum:
+          disabled: 0
+          reserved: 1
+          enabled_even_parity: 2
+          enabled_odd_parity: 3
+      ucsr0c.usbs0:
+        bit: 3
+        enum:
+          1_bit: 0
+          2_bit: 1
+      ucsr0c.ucsz0:
+        bits:
+        - 1
+        - 2
+      ucsr0c.ucpol0:
+        bit: 0
+      ubrr0l.ubrr0:
+        bits:
+        - 0
+        - 7
+      ucsr1a.rxc1:
+        bit: 7
+      ucsr1a.txc1:
+        bit: 6
+      ucsr1a.udre1:
+        bit: 5
+      ucsr1a.fe1:
+        bit: 4
+      ucsr1a.dor1:
+        bit: 3
+      ucsr1a.upe1:
+        bit: 2
+      ucsr1a.u2x1:
+        bit: 1
+      ucsr1a.mpcm1:
+        bit: 0
+      ucsr1b.rxcie1:
+        bit: 7
+      ucsr1b.txcie1:
+        bit: 6
+      ucsr1b.udrie1:
+        bit: 5
+      ucsr1b.rxen1:
+        bit: 4
+      ucsr1b.txen1:
+        bit: 3
+      ucsr1b.ucsz12:
+        bit: 2
+      ucsr1b.rxb81:
+        bit: 1
+      ucsr1b.txb81:
+        bit: 0
+      ucsr1c.ursel1:
+        bit: 7
+      ucsr1c.umsel1:
+        bit: 6
+        enum:
+          asynchronous_operation: 0
+          synchronous_operation: 1
+      ucsr1c.upm1:
+        bits:
+        - 4
+        - 5
+        enum:
+          disabled: 0
+          reserved: 1
+          enabled_even_parity: 2
+          enabled_odd_parity: 3
+      ucsr1c.usbs1:
+        bit: 3
+        enum:
+          1_bit: 0
+          2_bit: 1
+      ucsr1c.ucsz1:
+        bits:
+        - 1
+        - 2
+      ucsr1c.ucpol1:
+        bit: 0
+      ubrr1l.ubrr1:
+        bits:
+        - 0
+        - 7
+    max_baud: 6000000
+  spi:
+    registers:
+      spcr:
+        offset: 45
+      spsr:
+        offset: 46
+      spdr:
+        offset: 47
+    fields:
+      spcr.spie:
+        bit: 7
+      spcr.spe:
+        bit: 6
+      spcr.dord:
+        bit: 5
+      spcr.mstr:
+        bit: 4
+      spcr.cpol:
+        bit: 3
+      spcr.cpha:
+        bit: 2
+      spcr.spr:
+        bits:
+        - 0
+        - 1
+        enum:
+          fosc_4: 0
+          fosc_16: 1
+          fosc_64: 7
+          fosc_128: 3
+          fosc_2: 4
+          fosc_8: 5
+          fosc_32: 6
+      spsr.spif:
+        bit: 7
+      spsr.wcol:
+        bit: 6
+      spsr.spi2x:
+        bit: 0
+    max_clock: 24MHz
+  cpu:
+    registers:
+      sreg:
+        offset: 95
+      sp:
+        offset: 93
+      mcucr:
+        offset: 85
+      mcucsr:
+        offset: 84
+      emcucr:
+        offset: 86
+      osccal:
+        offset: 36
+      clkpr:
+        offset: 97
+      sfior:
+        offset: 80
+    fields:
+      sreg.i:
+        bit: 7
+      sreg.t:
+        bit: 6
+      sreg.h:
+        bit: 5
+      sreg.s:
+        bit: 4
+      sreg.v:
+        bit: 3
+      sreg.n:
+        bit: 2
+      sreg.z:
+        bit: 1
+      sreg.c:
+        bit: 0
+      mcucr.sre:
+        bit: 7
+      mcucr.srw10:
+        bit: 6
+      mcucr.se:
+        bit: 5
+      mcucr.sm1:
+        bit: 4
+      mcucr.isc1:
+        bits:
+        - 2
+        - 3
+        enum:
+          low_level_of_intx: 0
+          any_logical_change_in_intx: 1
+          falling_edge_of_intx: 2
+          rising_edge_of_intx: 3
+      mcucr.isc0:
+        bits:
+        - 0
+        - 1
+        enum:
+          low_level_of_intx: 0
+          any_logical_change_in_intx: 1
+          falling_edge_of_intx: 2
+          rising_edge_of_intx: 3
+      mcucsr.jtd:
+        bit: 7
+      mcucsr.sm2:
+        bit: 5
+      mcucsr.jtrf:
+        bit: 4
+      mcucsr.wdrf:
+        bit: 3
+      mcucsr.borf:
+        bit: 2
+      mcucsr.extrf:
+        bit: 1
+      mcucsr.porf:
+        bit: 0
+      emcucr.sm0:
+        bit: 7
+      emcucr.srl:
+        bits:
+        - 4
+        - 6
+        enum:
+          ls_n_a_us_0x1100_0xffff: 0
+          ls_0x1100_0x1fff_us_0x2000_0xffff: 1
+          ls_0x1100_0x3fff_us_0x4000_0xffff: 2
+          ls_0x1100_0x5fff_us_0x6000_0xffff: 3
+          ls_0x1100_0x7fff_us_0x8000_0xffff: 4
+          ls_0x1100_0x9fff_us_0xa000_0xffff: 5
+          ls_0x1100_0xbfff_us_0xc000_0xffff: 6
+          ls_0x1100_0xdfff_us_0xe000_0xffff: 7
+      emcucr.srw0:
+        bits:
+        - 2
+        - 3
+        enum:
+          no_wait_states: 0
+          wait_one_cycle_during_read_write_strobe: 1
+          wait_two_cycles_during_read_write_strobe: 2
+          wait_two_cycles_during_read_write_and_wait_one_cycle_before_driving_out_new_address: 3
+      emcucr.srw11:
+        bit: 1
+      emcucr.isc2:
+        bit: 0
+      osccal.osccal:
+        bits:
+        - 0
+        - 7
+      clkpr.clkpce:
+        bit: 7
+      clkpr.clkps:
+        bits:
+        - 0
+        - 3
+        enum:
+          '1': 0
+          '2': 1
+          '4': 2
+          '8': 3
+          '16': 4
+          '32': 5
+          '64': 6
+          '128': 7
+          '256': 8
+      sfior.tsm:
+        bit: 7
+      sfior.xmbk:
+        bit: 6
+      sfior.xmm:
+        bits:
+        - 3
+        - 5
+      sfior.pud:
+        bit: 2
+      sfior.psr2:
+        bit: 1
+      sfior.psr310:
+        bit: 0
+  jtag:
+    registers:
+      ocdr:
+        offset: 36
+      mcucsr:
+        offset: 84
+    fields:
+      ocdr.ocdr:
+        bits:
+        - 0
+        - 7
+      mcucsr.jtd:
+        bit: 7
+      mcucsr.jtrf:
+        bit: 4
+  boot_load:
+    registers:
+      spmcr:
+        offset: 87
+    fields:
+      spmcr.spmie:
+        bit: 7
+      spmcr.rwwsb:
+        bit: 6
+      spmcr.rwwsre:
+        bit: 4
+      spmcr.blbset:
+        bit: 3
+      spmcr.pgwrt:
+        bit: 2
+      spmcr.pgers:
+        bit: 1
+      spmcr.spmen:
+        bit: 0
+  eeprom:
+    registers:
+      eear:
+        offset: 62
+      eedr:
+        offset: 61
+      eecr:
+        offset: 60
+    fields:
+      eear.eear:
+        bits:
+        - 0
+        - 8
+      eedr.eedr:
+        bits:
+        - 0
+        - 7
+      eecr.eerie:
+        bit: 3
+      eecr.eemwe:
+        bit: 2
+      eecr.eewe:
+        bit: 1
+      eecr.eere:
+        bit: 0
+  port:
+    registers:
+      porta:
+        offset: 59
+      ddra:
+        offset: 58
+      pina:
+        offset: 57
+      portb:
+        offset: 56
+      ddrb:
+        offset: 55
+      pinb:
+        offset: 54
+      portc:
+        offset: 53
+      ddrc:
+        offset: 52
+      pinc:
+        offset: 51
+      portd:
+        offset: 50
+      ddrd:
+        offset: 49
+      pind:
+        offset: 48
+      porte:
+        offset: 39
+      ddre:
+        offset: 38
+      pine:
+        offset: 37
+  wdt:
+    registers:
+      wdtcr:
+        offset: 65
+    fields:
+      wdtcr.wdce:
+        bit: 4
+      wdtcr.wde:
+        bit: 3
+      wdtcr.wdp:
+        bits:
+        - 0
+        - 2
+        enum:
+          oscillator_cycles_16k: 0
+          oscillator_cycles_32k: 1
+          oscillator_cycles_64k: 2
+          oscillator_cycles_128k: 3
+          oscillator_cycles_256k: 4
+          oscillator_cycles_512k: 5
+          oscillator_cycles_1024k: 6
+          oscillator_cycles_2048k: 7
+  exint:
+    registers:
+      mcucr:
+        offset: 85
+      emcucr:
+        offset: 86
+      gicr:
+        offset: 91
+      gifr:
+        offset: 90
+      pcmsk1:
+        offset: 108
+      pcmsk0:
+        offset: 107
+    fields:
+      mcucr.isc1:
+        bits:
+        - 2
+        - 3
+        enum:
+          low_level_of_intx: 0
+          any_logical_change_of_intx: 1
+          falling_edge_of_intx: 2
+          rising_edge_of_intx: 3
+      mcucr.isc0:
+        bits:
+        - 0
+        - 1
+        enum:
+          low_level_of_intx: 0
+          any_logical_change_of_intx: 1
+          falling_edge_of_intx: 2
+          rising_edge_of_intx: 3
+      emcucr.isc2:
+        bit: 0
+      gicr.int0:
+        bit: 6
+      gicr.int1:
+        bit: 7
+      gicr.int2:
+        bit: 5
+      gicr.pcie:
+        bits:
+        - 3
+        - 4
+      gicr.ivsel:
+        bit: 1
+      gicr.ivce:
+        bit: 0
+      gifr.intf:
+        bits:
+        - 6
+        - 7
+      gifr.intf2:
+        bit: 5
+      gifr.pcif:
+        bits:
+        - 3
+        - 4
+      pcmsk1.pcint:
+        bits:
+        - 0
+        - 7
+      pcmsk0.pcint:
+        bits:
+        - 0
+        - 7
+  i2c:
+    max_clock: 1MHz
+  twi:
+    max_clock: 1MHz
+  adc:
+    max_clock: 16MHz
+peripherals:
+- id: tc1
+  template: tc
+  base: 0
+  description: Timer/Counter, 16-bit
+- id: tc3
+  template: tc
+  base: 0
+  description: Timer/Counter, 16-bit
+- id: tc2
+  template: tc8_async
+  base: 0
+  description: Timer/Counter, 8-bit Async
+- id: ac
+  template: ac
+  base: 0
+  description: Analog Comparator
+- id: usart0
+  template: usart
+  base: 0
+  description: USART
+- id: usart1
+  template: usart
+  base: 0
+  description: USART
+- id: spi
+  template: spi
+  base: 0
+  description: Serial Peripheral Interface
+- id: cpu
+  template: cpu
+  base: 0
+  description: CPU Registers
+- id: jtag
+  template: jtag
+  base: 0
+  description: JTAG Interface
+- id: boot_load
+  template: boot_load
+  base: 0
+  description: Bootloader
+- id: eeprom
+  template: eeprom
+  base: 0
+  description: EEPROM
+- id: porta
+  template: port
+  base: 0
+  description: I/O Port
+- id: portb
+  template: port
+  base: 0
+  description: I/O Port
+- id: portc
+  template: port
+  base: 0
+  description: I/O Port
+- id: portd
+  template: port
+  base: 0
+  description: I/O Port
+- id: porte
+  template: port
+  base: 0
+  description: I/O Port
+- id: tc0
+  template: tc
+  base: 0
+  description: Timer/Counter, 8-bit
+- id: wdt
+  template: wdt
+  base: 0
+  description: Watchdog Timer
+- id: exint
+  template: exint
+  base: 0
+  description: External Interrupts
+- id: fuse
+  template: fuse
+  base: 0
+  description: Fuses
+- id: lockbit
+  template: lockbit
+  base: 0
+  description: Lockbits
+pinout:
+- signal: RESET
+interrupts:
+- num: 0
+  name: RESET_vect
+- num: 1
+  name: INT0_vect
+- num: 2
+  name: INT1_vect
+- num: 3
+  name: INT2_vect
+- num: 4
+  name: PCINT0_vect
+- num: 5
+  name: PCINT1_vect
+- num: 6
+  name: TIMER3_CAPT_vect
+- num: 7
+  name: TIMER3_COMPA_vect
+- num: 8
+  name: TIMER3_COMPB_vect
+- num: 9
+  name: TIMER3_OVF_vect
+- num: 10
+  name: TIMER2_COMP_vect
+- num: 11
+  name: TIMER2_OVF_vect
+- num: 12
+  name: TIMER1_CAPT_vect
+- num: 13
+  name: TIMER1_COMPA_vect
+- num: 14
+  name: TIMER1_COMPB_vect
+- num: 15
+  name: TIMER1_OVF_vect
+- num: 16
+  name: TIMER0_COMP_vect
+- num: 17
+  name: TIMER0_OVF_vect
+- num: 18
+  name: SPI_STC_vect
+- num: 19
+  name: USART0_RXC_vect
+- num: 20
+  name: USART1_RXC_vect
+- num: 21
+  name: USART0_UDRE_vect
+- num: 22
+  name: USART1_UDRE_vect
+- num: 23
+  name: USART0_TXC_vect
+- num: 24
+  name: USART1_TXC_vect
+- num: 25
+  name: EE_RDY_vect
+- num: 26
+  name: ANA_COMP_vect
+- num: 27
+  name: SPM_RDY_vect

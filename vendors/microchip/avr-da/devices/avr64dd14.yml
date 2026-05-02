@@ -1,0 +1,5256 @@
+schema: alloy.device.v2.1
+identity:
+  vendor: microchip
+  family: avr-da
+  device: avr64dd14
+  core:
+    isa: avr
+    name: avr-avr
+    bits: 8
+  package: soic14
+provenance:
+  primary: microchip-atdf:AVR64DD14.atdf
+  authored: auto
+  notes: ATDF-extracted skeleton — pinout requires enrichment.
+  secondary:
+  - microchip-overlay:avr-da
+memory:
+- id: flash
+  base: 0
+  size: 128KB
+  access: rx
+  alias: code
+  address_space: program
+- id: sram
+  base: '0x4000'
+  size: 16KB
+  access: rw
+  alias: data
+  address_space: data
+clock:
+  oscillators:
+    oschf:
+      freq: 24MHz
+      kind: rc-internal
+    osc32k:
+      freq: 32kHz
+      kind: rc-internal
+    extclk:
+      freq: 0Hz
+      kind: crystal-external
+      optional: true
+  domains:
+  - id: clk_per
+    sources:
+    - oschf
+    - osc32k
+    - extclk
+  profiles:
+  - id: factory-oschf-4mhz
+    kind: post-reset
+    sysclk: 4MHz
+    sysclk_source: oschf
+    hclk_hz: 4000000
+    pclk_hz: 4000000
+  - id: oschf-24mhz-max
+    kind: recommended
+    sysclk: 24MHz
+    sysclk_source: oschf
+    hclk_hz: 24000000
+    pclk_hz: 24000000
+  - id: external-clock-24mhz
+    kind: recommended
+    sysclk: 24MHz
+    sysclk_source: extclk
+    hclk_hz: 24000000
+    pclk_hz: 24000000
+templates:
+  ac:
+    registers:
+      ctrla:
+        offset: 0
+        access: rw
+      muxctrl:
+        offset: 2
+        access: rw
+      dacref:
+        offset: 5
+        access: rw
+      intctrl:
+        offset: 6
+        access: rw
+      status:
+        offset: 7
+        access: rw
+    fields:
+      ctrla.enable:
+        bit: 0
+        access: rw
+      ctrla.hysmode:
+        bits:
+        - 1
+        - 2
+        access: rw
+        enum:
+          none: 0
+          small: 1
+          medium: 2
+          large: 3
+      ctrla.power:
+        bits:
+        - 3
+        - 4
+        access: rw
+        enum:
+          profile0: 0
+          profile1: 1
+          profile2: 2
+          profile3: 3
+      ctrla.outen:
+        bit: 6
+        access: rw
+      ctrla.runstdby:
+        bit: 7
+        access: rw
+      muxctrl.muxneg:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          ainn0: 0
+          ainn2: 2
+          ainn3: 3
+          dacref: 4
+      muxctrl.muxpos:
+        bits:
+        - 3
+        - 5
+        access: rw
+        enum:
+          ainp0: 0
+          ainp3: 3
+          ainp4: 4
+      muxctrl.initval:
+        bit: 6
+        access: rw
+        enum:
+          low: 0
+          high: 1
+      muxctrl.invert:
+        bit: 7
+        access: rw
+      dacref.dacref:
+        bits:
+        - 0
+        - 7
+        access: rw
+      intctrl.cmp:
+        bit: 0
+        access: rw
+      intctrl.intmode:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          bothedge: 0
+          negedge: 2
+          posedge: 3
+      status.cmpif:
+        bit: 0
+        access: rw
+      status.cmpstate:
+        bit: 4
+        access: ro
+  adc:
+    registers:
+      ctrla:
+        offset: 0
+        access: rw
+      ctrlb:
+        offset: 1
+        access: rw
+      ctrlc:
+        offset: 2
+        access: rw
+      ctrld:
+        offset: 3
+        access: rw
+      ctrle:
+        offset: 4
+        access: rw
+      sampctrl:
+        offset: 5
+        access: rw
+      muxpos:
+        offset: 8
+        access: rw
+      muxneg:
+        offset: 9
+        access: rw
+      command:
+        offset: 10
+        access: rw
+      evctrl:
+        offset: 11
+        access: rw
+      intctrl:
+        offset: 12
+        access: rw
+      intflags:
+        offset: 13
+        access: rw
+      dbgctrl:
+        offset: 14
+        access: rw
+      temp:
+        offset: 15
+        access: rw
+      res:
+        offset: 16
+        access: ro
+      winlt:
+        offset: 18
+        access: rw
+      winht:
+        offset: 20
+        access: rw
+    fields:
+      ctrla.enable:
+        bit: 0
+        access: rw
+      ctrla.freerun:
+        bit: 1
+        access: rw
+      ctrla.ressel:
+        bits:
+        - 2
+        - 3
+        access: rw
+        enum:
+          12bit: 0
+          10bit: 1
+      ctrla.leftadj:
+        bit: 4
+        access: rw
+      ctrla.convmode:
+        bit: 5
+        access: rw
+        enum:
+          singleended: 0
+          diff: 1
+      ctrla.runstby:
+        bit: 7
+        access: rw
+      ctrlb.sampnum:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          none: 0
+          acc2: 1
+          acc4: 2
+          acc8: 3
+          acc16: 4
+          acc32: 5
+          acc64: 6
+          acc128: 7
+      ctrlc.presc:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          div2: 0
+          div4: 1
+          div8: 2
+          div12: 3
+          div16: 4
+          div20: 5
+          div24: 6
+          div28: 7
+          div32: 8
+          div48: 9
+          div64: 10
+          div96: 11
+          div128: 12
+          div256: 13
+      ctrld.sampdly:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          dly0: 0
+          dly1: 1
+          dly2: 2
+          dly3: 3
+          dly4: 4
+          dly5: 5
+          dly6: 6
+          dly7: 7
+          dly8: 8
+          dly9: 9
+          dly10: 10
+          dly11: 11
+          dly12: 12
+          dly13: 13
+          dly14: 14
+          dly15: 15
+      ctrld.initdly:
+        bits:
+        - 5
+        - 7
+        access: rw
+        enum:
+          dly0: 0
+          dly16: 1
+          dly32: 2
+          dly64: 3
+          dly128: 4
+          dly256: 5
+      ctrle.wincm:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          none: 0
+          below: 1
+          above: 2
+          inside: 3
+          outside: 4
+      sampctrl.samplen:
+        bits:
+        - 0
+        - 7
+        access: rw
+      muxpos.muxpos:
+        bits:
+        - 0
+        - 6
+        access: rw
+        enum:
+          ain1: 1
+          ain2: 2
+          ain3: 3
+          ain4: 4
+          ain5: 5
+          ain6: 6
+          ain7: 7
+          ain16: 16
+          ain17: 17
+          ain18: 18
+          ain19: 19
+          ain20: 20
+          ain21: 21
+          ain22: 22
+          ain23: 23
+          ain24: 24
+          ain25: 25
+          ain26: 26
+          ain27: 27
+          ain28: 28
+          ain29: 29
+          ain30: 30
+          ain31: 31
+          gnd: 64
+          tempsense: 66
+          vdddiv10: 68
+          vddio2div10: 69
+          dac0: 72
+          dacref0: 73
+      muxneg.muxneg:
+        bits:
+        - 0
+        - 6
+        access: rw
+        enum:
+          ain1: 1
+          ain2: 2
+          ain3: 3
+          ain4: 4
+          ain5: 5
+          ain6: 6
+          ain7: 7
+          ain16: 16
+          ain17: 17
+          ain18: 18
+          ain19: 19
+          ain20: 20
+          ain21: 21
+          ain22: 22
+          ain23: 23
+          ain24: 24
+          ain25: 25
+          ain26: 26
+          ain27: 27
+          ain28: 28
+          ain29: 29
+          ain30: 30
+          ain31: 31
+          gnd: 64
+          dac0: 72
+      command.stconv:
+        bit: 0
+        access: rw
+      command.spconv:
+        bit: 1
+        access: rw
+      evctrl.startei:
+        bit: 0
+        access: rw
+      intctrl.resrdy:
+        bit: 0
+        access: rw
+      intctrl.wcmp:
+        bit: 1
+        access: rw
+      intflags.resrdy:
+        bit: 0
+        access: rw
+      intflags.wcmp:
+        bit: 1
+        access: rw
+      dbgctrl.dbgrun:
+        bit: 0
+        access: rw
+      temp.temp:
+        bits:
+        - 0
+        - 7
+        access: rw
+    max_clock: 1500kHz
+  bod:
+    registers:
+      ctrla:
+        offset: 0
+        access: rw
+      ctrlb:
+        offset: 1
+        access: rw
+      vlmctrla:
+        offset: 8
+        access: rw
+      intctrl:
+        offset: 9
+        access: rw
+      intflags:
+        offset: 10
+        access: rw
+      status:
+        offset: 11
+        access: rw
+    fields:
+      ctrla.sleep:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          dis: 0
+          enabled: 1
+          sampled: 2
+      ctrla.active:
+        bits:
+        - 2
+        - 3
+        access: ro
+        enum:
+          dis: 0
+          enabled: 1
+          sampled: 2
+          enwake: 3
+      ctrla.sampfreq:
+        bit: 4
+        access: ro
+        enum:
+          128hz: 0
+          32hz: 1
+      ctrlb.lvl:
+        bits:
+        - 0
+        - 2
+        access: ro
+        enum:
+          bodlevel0: 0
+          bodlevel1: 1
+          bodlevel2: 2
+          bodlevel3: 3
+      vlmctrla.vlmlvl:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          'off': 0
+          5above: 1
+          15above: 2
+          25above: 3
+      intctrl.vlmie:
+        bit: 0
+        access: rw
+      intctrl.vlmcfg:
+        bits:
+        - 1
+        - 2
+        access: rw
+        enum:
+          falling: 0
+          rising: 1
+          both: 2
+      intflags.vlmif:
+        bit: 0
+        access: rw
+      status.vlms:
+        bit: 0
+        access: ro
+        enum:
+          above: 0
+          below: 1
+  ccl:
+    registers:
+      ctrla:
+        offset: 0
+        access: rw
+      seqctrl0:
+        offset: 1
+        access: rw
+      seqctrl1:
+        offset: 2
+        access: rw
+      intctrl0:
+        offset: 5
+        access: rw
+      intflags:
+        offset: 7
+        access: rw
+      lut0ctrla:
+        offset: 8
+        access: rw
+      lut0ctrlb:
+        offset: 9
+        access: rw
+      lut0ctrlc:
+        offset: 10
+        access: rw
+      truth0:
+        offset: 11
+        access: rw
+      lut1ctrla:
+        offset: 12
+        access: rw
+      lut1ctrlb:
+        offset: 13
+        access: rw
+      lut1ctrlc:
+        offset: 14
+        access: rw
+      truth1:
+        offset: 15
+        access: rw
+      lut2ctrla:
+        offset: 16
+        access: rw
+      lut2ctrlb:
+        offset: 17
+        access: rw
+      lut2ctrlc:
+        offset: 18
+        access: rw
+      truth2:
+        offset: 19
+        access: rw
+      lut3ctrla:
+        offset: 20
+        access: rw
+      lut3ctrlb:
+        offset: 21
+        access: rw
+      lut3ctrlc:
+        offset: 22
+        access: rw
+      truth3:
+        offset: 23
+        access: rw
+    fields:
+      ctrla.enable:
+        bit: 0
+        access: rw
+      ctrla.runstdby:
+        bit: 6
+        access: rw
+      seqctrl0.seqsel:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          disable: 0
+          dff: 1
+          jk: 2
+          latch: 3
+          rs: 4
+      seqctrl1.seqsel:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          disable: 0
+          dff: 1
+          jk: 2
+          latch: 3
+          rs: 4
+      intctrl0.intmode0:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          intdisable: 0
+          rising: 1
+          falling: 2
+          both: 3
+      intctrl0.intmode1:
+        bits:
+        - 2
+        - 3
+        access: rw
+        enum:
+          intdisable: 0
+          rising: 1
+          falling: 2
+          both: 3
+      intctrl0.intmode2:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          intdisable: 0
+          rising: 1
+          falling: 2
+          both: 3
+      intctrl0.intmode3:
+        bits:
+        - 6
+        - 7
+        access: rw
+        enum:
+          intdisable: 0
+          rising: 1
+          falling: 2
+          both: 3
+      intflags.int:
+        bits:
+        - 0
+        - 3
+        access: rw
+      lut0ctrla.enable:
+        bit: 0
+        access: rw
+      lut0ctrla.clksrc:
+        bits:
+        - 1
+        - 3
+        access: rw
+        enum:
+          clkper: 0
+          in2: 1
+          oschf: 4
+          osc32k: 5
+          osc1k: 6
+      lut0ctrla.filtsel:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          disable: 0
+          synch: 1
+          filter: 2
+      lut0ctrla.outen:
+        bit: 6
+        access: rw
+      lut0ctrla.edgedet:
+        bit: 7
+        access: rw
+        enum:
+          dis: 0
+          en: 1
+      lut0ctrlb.insel0:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          mask: 0
+          feedback: 1
+          link: 2
+          eventa: 3
+          eventb: 4
+          in0: 5
+          ac0: 6
+          zcd3: 7
+          usart0: 8
+          spi0: 9
+          tca0: 10
+          tcb0: 11
+          tcd0: 12
+      lut0ctrlb.insel1:
+        bits:
+        - 4
+        - 7
+        access: rw
+        enum:
+          mask: 0
+          feedback: 1
+          link: 2
+          eventa: 3
+          eventb: 4
+          in1: 5
+          ac0: 6
+          zcd3: 7
+          usart1: 8
+          spi0: 9
+          tca0: 10
+          tcb1: 11
+          tcd0: 12
+      lut0ctrlc.insel2:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          mask: 0
+          feedback: 1
+          link: 2
+          eventa: 3
+          eventb: 4
+          in2: 5
+          ac0: 6
+          zcd3: 7
+          usart1: 8
+          spi0: 9
+          tca0: 10
+          tcb2: 11
+          tcd0: 12
+      truth0.truth:
+        bits:
+        - 0
+        - 7
+        access: rw
+      lut1ctrla.enable:
+        bit: 0
+        access: rw
+      lut1ctrla.clksrc:
+        bits:
+        - 1
+        - 3
+        access: rw
+        enum:
+          clkper: 0
+          in2: 1
+          oschf: 4
+          osc32k: 5
+          osc1k: 6
+      lut1ctrla.filtsel:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          disable: 0
+          synch: 1
+          filter: 2
+      lut1ctrla.outen:
+        bit: 6
+        access: rw
+      lut1ctrla.edgedet:
+        bit: 7
+        access: rw
+        enum:
+          dis: 0
+          en: 1
+      lut1ctrlb.insel0:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          mask: 0
+          feedback: 1
+          link: 2
+          eventa: 3
+          eventb: 4
+          in0: 5
+          ac0: 6
+          zcd3: 7
+          usart0: 8
+          spi0: 9
+          tca0: 10
+          tcb0: 11
+          tcd0: 12
+      lut1ctrlb.insel1:
+        bits:
+        - 4
+        - 7
+        access: rw
+        enum:
+          mask: 0
+          feedback: 1
+          link: 2
+          eventa: 3
+          eventb: 4
+          in1: 5
+          ac0: 6
+          zcd3: 7
+          usart1: 8
+          spi0: 9
+          tca0: 10
+          tcb1: 11
+          tcd0: 12
+      lut1ctrlc.insel2:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          mask: 0
+          feedback: 1
+          link: 2
+          eventa: 3
+          eventb: 4
+          in2: 5
+          ac0: 6
+          zcd3: 7
+          usart1: 8
+          spi0: 9
+          tca0: 10
+          tcb2: 11
+          tcd0: 12
+      truth1.truth:
+        bits:
+        - 0
+        - 7
+        access: rw
+      lut2ctrla.enable:
+        bit: 0
+        access: rw
+      lut2ctrla.clksrc:
+        bits:
+        - 1
+        - 3
+        access: rw
+        enum:
+          clkper: 0
+          in2: 1
+          oschf: 4
+          osc32k: 5
+          osc1k: 6
+      lut2ctrla.filtsel:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          disable: 0
+          synch: 1
+          filter: 2
+      lut2ctrla.outen:
+        bit: 6
+        access: rw
+      lut2ctrla.edgedet:
+        bit: 7
+        access: rw
+        enum:
+          dis: 0
+          en: 1
+      lut2ctrlb.insel0:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          mask: 0
+          feedback: 1
+          link: 2
+          eventa: 3
+          eventb: 4
+          in0: 5
+          ac0: 6
+          zcd3: 7
+          usart0: 8
+          spi0: 9
+          tca0: 10
+          tcb0: 11
+          tcd0: 12
+      lut2ctrlb.insel1:
+        bits:
+        - 4
+        - 7
+        access: rw
+        enum:
+          mask: 0
+          feedback: 1
+          link: 2
+          eventa: 3
+          eventb: 4
+          in1: 5
+          ac0: 6
+          zcd3: 7
+          usart1: 8
+          spi0: 9
+          tca0: 10
+          tcb1: 11
+          tcd0: 12
+      lut2ctrlc.insel2:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          mask: 0
+          feedback: 1
+          link: 2
+          eventa: 3
+          eventb: 4
+          in2: 5
+          ac0: 6
+          zcd3: 7
+          usart1: 8
+          spi0: 9
+          tca0: 10
+          tcb2: 11
+          tcd0: 12
+      truth2.truth:
+        bits:
+        - 0
+        - 7
+        access: rw
+      lut3ctrla.enable:
+        bit: 0
+        access: rw
+      lut3ctrla.clksrc:
+        bits:
+        - 1
+        - 3
+        access: rw
+        enum:
+          clkper: 0
+          in2: 1
+          oschf: 4
+          osc32k: 5
+          osc1k: 6
+      lut3ctrla.filtsel:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          disable: 0
+          synch: 1
+          filter: 2
+      lut3ctrla.outen:
+        bit: 6
+        access: rw
+      lut3ctrla.edgedet:
+        bit: 7
+        access: rw
+        enum:
+          dis: 0
+          en: 1
+      lut3ctrlb.insel0:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          mask: 0
+          feedback: 1
+          link: 2
+          eventa: 3
+          eventb: 4
+          in0: 5
+          ac0: 6
+          zcd3: 7
+          usart0: 8
+          spi0: 9
+          tca0: 10
+          tcb0: 11
+          tcd0: 12
+      lut3ctrlb.insel1:
+        bits:
+        - 4
+        - 7
+        access: rw
+        enum:
+          mask: 0
+          feedback: 1
+          link: 2
+          eventa: 3
+          eventb: 4
+          in1: 5
+          ac0: 6
+          zcd3: 7
+          usart1: 8
+          spi0: 9
+          tca0: 10
+          tcb1: 11
+          tcd0: 12
+      lut3ctrlc.insel2:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          mask: 0
+          feedback: 1
+          link: 2
+          eventa: 3
+          eventb: 4
+          in2: 5
+          ac0: 6
+          zcd3: 7
+          usart1: 8
+          spi0: 9
+          tca0: 10
+          tcb2: 11
+          tcd0: 12
+      truth3.truth:
+        bits:
+        - 0
+        - 7
+        access: rw
+  clkctrl:
+    registers:
+      mclkctrla:
+        offset: 0
+        access: rw
+      mclkctrlb:
+        offset: 1
+        access: rw
+      mclkctrlc:
+        offset: 2
+        access: rw
+      mclkintctrl:
+        offset: 3
+        access: rw
+      mclkintflags:
+        offset: 4
+        access: rw
+      mclkstatus:
+        offset: 5
+        access: rw
+      oschfctrla:
+        offset: 8
+        access: rw
+      oschftune:
+        offset: 9
+        access: rw
+      pllctrla:
+        offset: 16
+        access: rw
+      osc32kctrla:
+        offset: 24
+        access: rw
+      xosc32kctrla:
+        offset: 28
+        access: rw
+      xoschfctrla:
+        offset: 32
+        access: rw
+    fields:
+      mclkctrla.clksel:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          oschf: 0
+          osc32k: 1
+          xosc32k: 2
+          extclk: 3
+      mclkctrla.clkout:
+        bit: 7
+        access: rw
+      mclkctrlb.pen:
+        bit: 0
+        access: rw
+      mclkctrlb.pdiv:
+        bits:
+        - 1
+        - 4
+        access: rw
+        enum:
+          2x: 0
+          4x: 1
+          8x: 2
+          16x: 3
+          32x: 4
+          64x: 5
+          6x: 8
+          10x: 9
+          12x: 10
+          24x: 11
+          48x: 12
+      mclkctrlc.cfden:
+        bit: 0
+        access: rw
+      mclkctrlc.cfdtst:
+        bit: 1
+        access: wo
+      mclkctrlc.cfdsrc:
+        bits:
+        - 2
+        - 3
+        access: rw
+        enum:
+          clkmain: 0
+          xoschf: 1
+          xosc32k: 2
+      mclkintctrl.cfd:
+        bit: 0
+        access: rw
+      mclkintctrl.inttype:
+        bit: 7
+        access: rw
+        enum:
+          int: 0
+          nmi: 1
+      mclkintflags.cfd:
+        bit: 0
+        access: rw
+      mclkstatus.sosc:
+        bit: 0
+        access: rw
+      mclkstatus.oschfs:
+        bit: 1
+        access: rw
+      mclkstatus.osc32ks:
+        bit: 2
+        access: rw
+      mclkstatus.xosc32ks:
+        bit: 3
+        access: rw
+      mclkstatus.exts:
+        bit: 4
+        access: rw
+      mclkstatus.plls:
+        bit: 5
+        access: rw
+      oschfctrla.autotune:
+        bit: 0
+        access: rw
+      oschfctrla.frqsel:
+        bits:
+        - 2
+        - 5
+        access: rw
+        enum:
+          1m: 0
+          2m: 1
+          3m: 2
+          4m: 3
+          8m: 5
+          12m: 6
+          16m: 7
+          20m: 8
+          24m: 9
+      oschfctrla.runstdby:
+        bit: 7
+        access: rw
+      oschftune.tune:
+        bits:
+        - 0
+        - 7
+        access: rw
+      pllctrla.mulfac:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          disable: 0
+          2x: 1
+          3x: 2
+      pllctrla.source:
+        bit: 6
+        access: rw
+        enum:
+          oschf: 0
+          xoschf: 1
+      pllctrla.runstdby:
+        bit: 7
+        access: rw
+      osc32kctrla.runstdby:
+        bit: 7
+        access: rw
+      xosc32kctrla.enable:
+        bit: 0
+        access: rw
+      xosc32kctrla.lpmode:
+        bit: 1
+        access: rw
+      xosc32kctrla.sel:
+        bit: 2
+        access: rw
+      xosc32kctrla.csut:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          1k: 0
+          16k: 1
+          32k: 2
+          64k: 3
+      xosc32kctrla.runstdby:
+        bit: 7
+        access: rw
+      xoschfctrla.enable:
+        bit: 0
+        access: rw
+      xoschfctrla.selhf:
+        bit: 1
+        access: rw
+        enum:
+          xtal: 0
+          extclock: 1
+      xoschfctrla.frqrange:
+        bits:
+        - 2
+        - 3
+        access: rw
+        enum:
+          8m: 0
+          16m: 1
+          24m: 2
+          32m: 3
+      xoschfctrla.csuthf:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          '256': 0
+          1k: 1
+          4k: 2
+      xoschfctrla.runstby:
+        bit: 7
+        access: rw
+  cpu:
+    registers:
+      ccp:
+        offset: 4
+        access: rw
+      sp:
+        offset: 13
+        access: rw
+      sreg:
+        offset: 15
+        access: rw
+    fields:
+      ccp.ccp:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          spm: 157
+          ioreg: 216
+      sreg.c:
+        bit: 0
+        access: rw
+      sreg.z:
+        bit: 1
+        access: rw
+      sreg.n:
+        bit: 2
+        access: rw
+      sreg.v:
+        bit: 3
+        access: rw
+      sreg.s:
+        bit: 4
+        access: rw
+      sreg.h:
+        bit: 5
+        access: rw
+      sreg.t:
+        bit: 6
+        access: rw
+      sreg.i:
+        bit: 7
+        access: rw
+  cpuint:
+    registers:
+      ctrla:
+        offset: 0
+        access: rw
+      status:
+        offset: 1
+        access: rw
+      lvl0pri:
+        offset: 2
+        access: rw
+      lvl1vec:
+        offset: 3
+        access: rw
+    fields:
+      ctrla.lvl0rr:
+        bit: 0
+        access: rw
+      ctrla.cvt:
+        bit: 5
+        access: rw
+      ctrla.ivsel:
+        bit: 6
+        access: rw
+      status.lvl0ex:
+        bit: 0
+        access: ro
+      status.lvl1ex:
+        bit: 1
+        access: ro
+      status.nmiex:
+        bit: 7
+        access: ro
+      lvl0pri.lvl0pri:
+        bits:
+        - 0
+        - 7
+        access: rw
+      lvl1vec.lvl1vec:
+        bits:
+        - 0
+        - 7
+        access: rw
+  crcscan:
+    registers:
+      ctrla:
+        offset: 0
+        access: rw
+      ctrlb:
+        offset: 1
+        access: rw
+      status:
+        offset: 2
+        access: ro
+    fields:
+      ctrla.enable:
+        bit: 0
+        access: rw
+      ctrla.nmien:
+        bit: 1
+        access: rw
+      ctrla.reset:
+        bit: 7
+        access: rw
+      ctrlb.src:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          flash: 0
+          application: 1
+          boot: 2
+      status.busy:
+        bit: 0
+        access: ro
+      status.ok:
+        bit: 1
+        access: ro
+  dac:
+    registers:
+      ctrla:
+        offset: 0
+        access: rw
+      data:
+        offset: 2
+        access: rw
+    fields:
+      ctrla.enable:
+        bit: 0
+        access: rw
+      ctrla.outen:
+        bit: 6
+        access: rw
+      ctrla.runstdby:
+        bit: 7
+        access: rw
+      data.data:
+        bits:
+        - 6
+        - 15
+        access: rw
+  evsys:
+    registers:
+      sweventa:
+        offset: 0
+        access: rw
+      sweventb:
+        offset: 1
+        access: rw
+      channel0:
+        offset: 16
+        access: rw
+      channel1:
+        offset: 17
+        access: rw
+      channel2:
+        offset: 18
+        access: rw
+      channel3:
+        offset: 19
+        access: rw
+      channel4:
+        offset: 20
+        access: rw
+      channel5:
+        offset: 21
+        access: rw
+      userccllut0a:
+        offset: 32
+        access: rw
+      userccllut0b:
+        offset: 33
+        access: rw
+      userccllut1a:
+        offset: 34
+        access: rw
+      userccllut1b:
+        offset: 35
+        access: rw
+      userccllut2a:
+        offset: 36
+        access: rw
+      userccllut2b:
+        offset: 37
+        access: rw
+      userccllut3a:
+        offset: 38
+        access: rw
+      userccllut3b:
+        offset: 39
+        access: rw
+      useradc0start:
+        offset: 40
+        access: rw
+      userevsysevouta:
+        offset: 41
+        access: rw
+      userevsysevoutc:
+        offset: 42
+        access: rw
+      userevsysevoutd:
+        offset: 43
+        access: rw
+      userevsysevoutf:
+        offset: 44
+        access: rw
+      userusart0irda:
+        offset: 45
+        access: rw
+      userusart1irda:
+        offset: 46
+        access: rw
+      usertca0cnta:
+        offset: 47
+        access: rw
+      usertca0cntb:
+        offset: 48
+        access: rw
+      usertcb0capt:
+        offset: 49
+        access: rw
+      usertcb0count:
+        offset: 50
+        access: rw
+      usertcb1capt:
+        offset: 51
+        access: rw
+      usertcb1count:
+        offset: 52
+        access: rw
+      usertcb2capt:
+        offset: 53
+        access: rw
+      usertcb2count:
+        offset: 54
+        access: rw
+      usertcd0inputa:
+        offset: 55
+        access: rw
+      usertcd0inputb:
+        offset: 56
+        access: rw
+    fields:
+      sweventa.sweventa:
+        bits:
+        - 0
+        - 7
+        access: wo
+        enum:
+          ch0: 1
+          ch1: 2
+          ch2: 4
+          ch3: 8
+          ch4: 16
+          ch5: 32
+          ch6: 64
+          ch7: 128
+      sweventb.sweventb:
+        bits:
+        - 0
+        - 1
+        access: wo
+        enum:
+          ch8: 0
+          ch9: 1
+      channel0.channel0:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          updi_synch: 1
+          mvio: 5
+          rtc_ovf: 6
+          rtc_cmp: 7
+          rtc_pit_div8192: 8
+          rtc_pit_div4096: 9
+          rtc_pit_div2048: 10
+          rtc_pit_div1024: 11
+          ccl_lut0: 16
+          ccl_lut1: 17
+          ccl_lut2: 18
+          ccl_lut3: 19
+          ac0_out: 32
+          adc0_resrdy: 36
+          zcd3: 48
+          porta_pin0: 64
+          porta_pin1: 65
+          usart0_xck: 96
+          usart1_xck: 97
+          spi0_sck: 104
+          tca0_ovf_lunf: 128
+          tca0_hunf: 129
+          tca0_cmp0_lcmp0: 132
+          tca0_cmp1_lcmp1: 133
+          tca0_cmp2_lcmp2: 134
+          tcb0_capt: 160
+          tcb0_ovf: 161
+          tcb1_capt: 162
+          tcb1_ovf: 163
+          tcb2_capt: 164
+          tcb2_ovf: 165
+          tcd0_cmpbclr: 176
+          tcd0_cmpaset: 177
+          tcd0_cmpbset: 178
+          tcd0_progev: 179
+      channel1.channel1:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          updi_synch: 1
+          mvio: 5
+          rtc_ovf: 6
+          rtc_cmp: 7
+          rtc_pit_div512: 8
+          rtc_pit_div256: 9
+          rtc_pit_div128: 10
+          rtc_pit_div64: 11
+          ccl_lut0: 16
+          ccl_lut1: 17
+          ccl_lut2: 18
+          ccl_lut3: 19
+          ac0_out: 32
+          adc0_resrdy: 36
+          zcd3: 48
+          porta_pin0: 64
+          porta_pin1: 65
+          usart0_xck: 96
+          usart1_xck: 97
+          spi0_sck: 104
+          tca0_ovf_lunf: 128
+          tca0_hunf: 129
+          tca0_cmp0_lcmp0: 132
+          tca0_cmp1_lcmp1: 133
+          tca0_cmp2_lcmp2: 134
+          tcb0_capt: 160
+          tcb0_ovf: 161
+          tcb1_capt: 162
+          tcb1_ovf: 163
+          tcb2_capt: 164
+          tcb2_ovf: 165
+          tcd0_cmpbclr: 176
+          tcd0_cmpaset: 177
+          tcd0_cmpbset: 178
+          tcd0_progev: 179
+      channel2.channel2:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          updi_synch: 1
+          mvio: 5
+          rtc_ovf: 6
+          rtc_cmp: 7
+          rtc_pit_div8192: 8
+          rtc_pit_div4096: 9
+          rtc_pit_div2048: 10
+          rtc_pit_div1024: 11
+          ccl_lut0: 16
+          ccl_lut1: 17
+          ccl_lut2: 18
+          ccl_lut3: 19
+          ac0_out: 32
+          adc0_resrdy: 36
+          zcd3: 48
+          portc_pin1: 65
+          portc_pin2: 66
+          portc_pin3: 67
+          portd_pin4: 76
+          portd_pin5: 77
+          portd_pin6: 78
+          portd_pin7: 79
+          usart0_xck: 96
+          usart1_xck: 97
+          spi0_sck: 104
+          tca0_ovf_lunf: 128
+          tca0_hunf: 129
+          tca0_cmp0_lcmp0: 132
+          tca0_cmp1_lcmp1: 133
+          tca0_cmp2_lcmp2: 134
+          tcb0_capt: 160
+          tcb0_ovf: 161
+          tcb1_capt: 162
+          tcb1_ovf: 163
+          tcb2_capt: 164
+          tcb2_ovf: 165
+          tcd0_cmpbclr: 176
+          tcd0_cmpaset: 177
+          tcd0_cmpbset: 178
+          tcd0_progev: 179
+      channel3.channel3:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          updi_synch: 1
+          mvio: 5
+          rtc_ovf: 6
+          rtc_cmp: 7
+          rtc_pit_div512: 8
+          rtc_pit_div256: 9
+          rtc_pit_div128: 10
+          rtc_pit_div64: 11
+          ccl_lut0: 16
+          ccl_lut1: 17
+          ccl_lut2: 18
+          ccl_lut3: 19
+          ac0_out: 32
+          adc0_resrdy: 36
+          zcd3: 48
+          portc_pin1: 65
+          portc_pin2: 66
+          portc_pin3: 67
+          portd_pin4: 76
+          portd_pin5: 77
+          portd_pin6: 78
+          portd_pin7: 79
+          usart0_xck: 96
+          usart1_xck: 97
+          spi0_sck: 104
+          tca0_ovf_lunf: 128
+          tca0_hunf: 129
+          tca0_cmp0_lcmp0: 132
+          tca0_cmp1_lcmp1: 133
+          tca0_cmp2_lcmp2: 134
+          tcb0_capt: 160
+          tcb0_ovf: 161
+          tcb1_capt: 162
+          tcb1_ovf: 163
+          tcb2_capt: 164
+          tcb2_ovf: 165
+          tcd0_cmpbclr: 176
+          tcd0_cmpaset: 177
+          tcd0_cmpbset: 178
+          tcd0_progev: 179
+      channel4.channel4:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          updi_synch: 1
+          mvio: 5
+          rtc_ovf: 6
+          rtc_cmp: 7
+          rtc_pit_div8192: 8
+          rtc_pit_div4096: 9
+          rtc_pit_div2048: 10
+          rtc_pit_div1024: 11
+          ccl_lut0: 16
+          ccl_lut1: 17
+          ccl_lut2: 18
+          ccl_lut3: 19
+          ac0_out: 32
+          adc0_resrdy: 36
+          zcd3: 48
+          portf_pin6: 78
+          portf_pin7: 79
+          usart0_xck: 96
+          usart1_xck: 97
+          spi0_sck: 104
+          tca0_ovf_lunf: 128
+          tca0_hunf: 129
+          tca0_cmp0_lcmp0: 132
+          tca0_cmp1_lcmp1: 133
+          tca0_cmp2_lcmp2: 134
+          tcb0_capt: 160
+          tcb0_ovf: 161
+          tcb1_capt: 162
+          tcb1_ovf: 163
+          tcb2_capt: 164
+          tcb2_ovf: 165
+          tcd0_cmpbclr: 176
+          tcd0_cmpaset: 177
+          tcd0_cmpbset: 178
+          tcd0_progev: 179
+      channel5.channel5:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          updi_synch: 1
+          mvio: 5
+          rtc_ovf: 6
+          rtc_cmp: 7
+          rtc_pit_div512: 8
+          rtc_pit_div256: 9
+          rtc_pit_div128: 10
+          rtc_pit_div64: 11
+          ccl_lut0: 16
+          ccl_lut1: 17
+          ccl_lut2: 18
+          ccl_lut3: 19
+          ac0_out: 32
+          adc0_resrdy: 36
+          zcd3: 48
+          portf_pin6: 78
+          portf_pin7: 79
+          usart0_xck: 96
+          usart1_xck: 97
+          spi0_sck: 104
+          tca0_ovf_lunf: 128
+          tca0_hunf: 129
+          tca0_cmp0_lcmp0: 132
+          tca0_cmp1_lcmp1: 133
+          tca0_cmp2_lcmp2: 134
+          tcb0_capt: 160
+          tcb0_ovf: 161
+          tcb1_capt: 162
+          tcb1_ovf: 163
+          tcb2_capt: 164
+          tcb2_ovf: 165
+          tcd0_cmpbclr: 176
+          tcd0_cmpaset: 177
+          tcd0_cmpbset: 178
+          tcd0_progev: 179
+      userccllut0a.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      userccllut0b.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      userccllut1a.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      userccllut1b.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      userccllut2a.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      userccllut2b.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      userccllut3a.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      userccllut3b.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      useradc0start.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      userevsysevouta.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      userevsysevoutc.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      userevsysevoutd.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      userevsysevoutf.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      userusart0irda.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      userusart1irda.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      usertca0cnta.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      usertca0cntb.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      usertcb0capt.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      usertcb0count.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      usertcb1capt.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      usertcb1count.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      usertcb2capt.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      usertcb2count.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      usertcd0inputa.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+      usertcd0inputb.user:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          channel0: 1
+          channel1: 2
+          channel2: 3
+          channel3: 4
+          channel4: 5
+          channel5: 6
+  fuse:
+    registers:
+      wdtcfg:
+        offset: 0
+        access: rw
+      bodcfg:
+        offset: 1
+        access: rw
+      osccfg:
+        offset: 2
+        access: rw
+      syscfg0:
+        offset: 5
+        access: rw
+      syscfg1:
+        offset: 6
+        access: rw
+      codesize:
+        offset: 7
+        access: rw
+      bootsize:
+        offset: 8
+        access: rw
+    fields:
+      wdtcfg.period:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          'off': 0
+          8clk: 1
+          16clk: 2
+          32clk: 3
+          64clk: 4
+          128clk: 5
+          256clk: 6
+          512clk: 7
+          1kclk: 8
+          2kclk: 9
+          4kclk: 10
+          8kclk: 11
+      wdtcfg.window:
+        bits:
+        - 4
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          8clk: 1
+          16clk: 2
+          32clk: 3
+          64clk: 4
+          128clk: 5
+          256clk: 6
+          512clk: 7
+          1kclk: 8
+          2kclk: 9
+          4kclk: 10
+          8kclk: 11
+      bodcfg.sleep:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          disable: 0
+          enable: 1
+          sample: 2
+      bodcfg.active:
+        bits:
+        - 2
+        - 3
+        access: rw
+        enum:
+          disable: 0
+          enable: 1
+          sample: 2
+          enablewait: 3
+      bodcfg.sampfreq:
+        bit: 4
+        access: rw
+        enum:
+          128hz: 0
+          32hz: 1
+      bodcfg.lvl:
+        bits:
+        - 5
+        - 7
+        access: rw
+        enum:
+          bodlevel0: 0
+          bodlevel1: 1
+          bodlevel2: 2
+          bodlevel3: 3
+      osccfg.clksel:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          oschf: 0
+          osc32k: 1
+      syscfg0.eesave:
+        bit: 0
+        access: rw
+      syscfg0.rstpincfg:
+        bit: 3
+        access: rw
+        enum:
+          gpio: 0
+          rst: 1
+      syscfg0.updipincfg:
+        bit: 4
+        access: rw
+        enum:
+          gpio: 0
+          updi: 1
+      syscfg0.crcsel:
+        bit: 5
+        access: rw
+        enum:
+          crc16: 0
+          crc32: 1
+      syscfg0.crcsrc:
+        bits:
+        - 6
+        - 7
+        access: rw
+        enum:
+          flash: 0
+          boot: 1
+          bootapp: 2
+          nocrc: 3
+      syscfg1.sut:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          0ms: 0
+          1ms: 1
+          2ms: 2
+          4ms: 3
+          8ms: 4
+          16ms: 5
+          32ms: 6
+          64ms: 7
+      syscfg1.mvsyscfg:
+        bits:
+        - 3
+        - 4
+        access: rw
+        enum:
+          dual: 1
+          single: 2
+  gpr:
+    registers:
+      gpr0:
+        offset: 0
+        access: rw
+      gpr1:
+        offset: 1
+        access: rw
+      gpr2:
+        offset: 2
+        access: rw
+      gpr3:
+        offset: 3
+        access: rw
+  lock:
+    registers:
+      key:
+        offset: 0
+        access: rw
+    fields:
+      key.key:
+        bits:
+        - 0
+        - 31
+        access: rw
+        enum:
+          nolock: 1556464988
+          rwlock: 2738502307
+  mvio:
+    registers:
+      intctrl:
+        offset: 0
+        access: rw
+      intflags:
+        offset: 1
+        access: rw
+      status:
+        offset: 2
+        access: ro
+    fields:
+      intctrl.vddio2ie:
+        bit: 0
+        access: rw
+      intflags.vddio2if:
+        bit: 0
+        access: rw
+      status.vddio2s:
+        bit: 0
+        access: ro
+  nvmctrl:
+    registers:
+      ctrla:
+        offset: 0
+        access: rw
+      ctrlb:
+        offset: 1
+        access: rw
+      status:
+        offset: 2
+        access: ro
+      intctrl:
+        offset: 3
+        access: rw
+      intflags:
+        offset: 4
+        access: rw
+      data:
+        offset: 6
+        access: rw
+      addr:
+        offset: 8
+        access: rw
+    fields:
+      ctrla.cmd:
+        bits:
+        - 0
+        - 6
+        access: rw
+        enum:
+          none: 0
+          noop: 1
+          flwr: 2
+          flper: 8
+          flmper2: 9
+          flmper4: 10
+          flmper8: 11
+          flmper16: 12
+          flmper32: 13
+          eewr: 18
+          eeerwr: 19
+          eeber: 24
+          eember2: 25
+          eember4: 26
+          eember8: 27
+          eember16: 28
+          eember32: 29
+          cher: 32
+          eecher: 48
+      ctrlb.appcodewp:
+        bit: 0
+        access: rw
+      ctrlb.bootrp:
+        bit: 1
+        access: rw
+      ctrlb.appdatawp:
+        bit: 2
+        access: rw
+      ctrlb.flmap:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          section0: 0
+          section1: 1
+          section2: 2
+          section3: 3
+      ctrlb.flmaplock:
+        bit: 7
+        access: rw
+      status.fbusy:
+        bit: 0
+        access: ro
+      status.eebusy:
+        bit: 1
+        access: ro
+      status.error:
+        bits:
+        - 4
+        - 6
+        access: ro
+        enum:
+          noerror: 0
+          illegalcmd: 1
+          illegalsaddr: 2
+          doubleselect: 3
+          ongoingprog: 4
+      intctrl.eeready:
+        bit: 0
+        access: rw
+      intflags.eeready:
+        bit: 0
+        access: rw
+  port:
+    registers:
+      dir:
+        offset: 0
+        access: rw
+      dirset:
+        offset: 1
+        access: rw
+      dirclr:
+        offset: 2
+        access: rw
+      dirtgl:
+        offset: 3
+        access: rw
+      out:
+        offset: 4
+        access: rw
+      outset:
+        offset: 5
+        access: rw
+      outclr:
+        offset: 6
+        access: rw
+      outtgl:
+        offset: 7
+        access: rw
+      in:
+        offset: 8
+        access: rw
+      intflags:
+        offset: 9
+        access: rw
+      portctrl:
+        offset: 10
+        access: rw
+      pinconfig:
+        offset: 11
+        access: rw
+      pinctrlupd:
+        offset: 12
+        access: rw
+      pinctrlset:
+        offset: 13
+        access: rw
+      pinctrlclr:
+        offset: 14
+        access: rw
+      pin0ctrl:
+        offset: 16
+        access: rw
+      pin1ctrl:
+        offset: 17
+        access: rw
+      pin2ctrl:
+        offset: 18
+        access: rw
+      pin3ctrl:
+        offset: 19
+        access: rw
+      pin4ctrl:
+        offset: 20
+        access: rw
+      pin5ctrl:
+        offset: 21
+        access: rw
+      pin6ctrl:
+        offset: 22
+        access: rw
+      pin7ctrl:
+        offset: 23
+        access: rw
+    fields:
+      intflags.int:
+        bits:
+        - 0
+        - 7
+        access: rw
+      portctrl.srl:
+        bit: 0
+        access: rw
+      pinconfig.isc:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          intdisable: 0
+          bothedges: 1
+          rising: 2
+          falling: 3
+          input_disable: 4
+          level: 5
+      pinconfig.pullupen:
+        bit: 3
+        access: rw
+      pinconfig.inlvl:
+        bit: 6
+        access: rw
+      pinconfig.inven:
+        bit: 7
+        access: rw
+      pinctrlupd.pinctrlupd:
+        bits:
+        - 0
+        - 7
+        access: rw
+      pinctrlset.pinctrlset:
+        bits:
+        - 0
+        - 7
+        access: rw
+      pinctrlclr.pinctrlclr:
+        bits:
+        - 0
+        - 7
+        access: rw
+      pin0ctrl.isc:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          intdisable: 0
+          bothedges: 1
+          rising: 2
+          falling: 3
+          input_disable: 4
+          level: 5
+      pin0ctrl.pullupen:
+        bit: 3
+        access: rw
+      pin0ctrl.inlvl:
+        bit: 6
+        access: rw
+      pin0ctrl.inven:
+        bit: 7
+        access: rw
+      pin1ctrl.isc:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          intdisable: 0
+          bothedges: 1
+          rising: 2
+          falling: 3
+          input_disable: 4
+          level: 5
+      pin1ctrl.pullupen:
+        bit: 3
+        access: rw
+      pin1ctrl.inlvl:
+        bit: 6
+        access: rw
+      pin1ctrl.inven:
+        bit: 7
+        access: rw
+      pin2ctrl.isc:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          intdisable: 0
+          bothedges: 1
+          rising: 2
+          falling: 3
+          input_disable: 4
+          level: 5
+      pin2ctrl.pullupen:
+        bit: 3
+        access: rw
+      pin2ctrl.inlvl:
+        bit: 6
+        access: rw
+      pin2ctrl.inven:
+        bit: 7
+        access: rw
+      pin3ctrl.isc:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          intdisable: 0
+          bothedges: 1
+          rising: 2
+          falling: 3
+          input_disable: 4
+          level: 5
+      pin3ctrl.pullupen:
+        bit: 3
+        access: rw
+      pin3ctrl.inlvl:
+        bit: 6
+        access: rw
+      pin3ctrl.inven:
+        bit: 7
+        access: rw
+      pin4ctrl.isc:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          intdisable: 0
+          bothedges: 1
+          rising: 2
+          falling: 3
+          input_disable: 4
+          level: 5
+      pin4ctrl.pullupen:
+        bit: 3
+        access: rw
+      pin4ctrl.inlvl:
+        bit: 6
+        access: rw
+      pin4ctrl.inven:
+        bit: 7
+        access: rw
+      pin5ctrl.isc:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          intdisable: 0
+          bothedges: 1
+          rising: 2
+          falling: 3
+          input_disable: 4
+          level: 5
+      pin5ctrl.pullupen:
+        bit: 3
+        access: rw
+      pin5ctrl.inlvl:
+        bit: 6
+        access: rw
+      pin5ctrl.inven:
+        bit: 7
+        access: rw
+      pin6ctrl.isc:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          intdisable: 0
+          bothedges: 1
+          rising: 2
+          falling: 3
+          input_disable: 4
+          level: 5
+      pin6ctrl.pullupen:
+        bit: 3
+        access: rw
+      pin6ctrl.inlvl:
+        bit: 6
+        access: rw
+      pin6ctrl.inven:
+        bit: 7
+        access: rw
+      pin7ctrl.isc:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          intdisable: 0
+          bothedges: 1
+          rising: 2
+          falling: 3
+          input_disable: 4
+          level: 5
+      pin7ctrl.pullupen:
+        bit: 3
+        access: rw
+      pin7ctrl.inlvl:
+        bit: 6
+        access: rw
+      pin7ctrl.inven:
+        bit: 7
+        access: rw
+  portmux:
+    registers:
+      evsysroutea:
+        offset: 0
+        access: rw
+      cclroutea:
+        offset: 1
+        access: rw
+      usartroutea:
+        offset: 2
+        access: rw
+      spiroutea:
+        offset: 5
+        access: rw
+      twiroutea:
+        offset: 6
+        access: rw
+      tcaroutea:
+        offset: 7
+        access: rw
+      tcbroutea:
+        offset: 8
+        access: rw
+      tcdroutea:
+        offset: 9
+        access: rw
+    fields:
+      evsysroutea.evouta:
+        bit: 0
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
+      evsysroutea.evoutc:
+        bit: 2
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
+      evsysroutea.evoutd:
+        bit: 3
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
+      evsysroutea.evoutf:
+        bit: 5
+        access: rw
+        enum:
+          default: 0
+      cclroutea.lut0:
+        bit: 0
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
+      cclroutea.lut1:
+        bit: 1
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
+      cclroutea.lut2:
+        bit: 2
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
+      cclroutea.lut3:
+        bit: 3
+        access: rw
+        enum:
+          default: 0
+      usartroutea.usart0:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
+          alt2: 2
+          alt3: 3
+          alt4: 4
+          none: 5
+      usartroutea.usart1:
+        bits:
+        - 3
+        - 4
+        access: rw
+        enum:
+          default: 0
+          alt2: 2
+          none: 3
+      spiroutea.spi0:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
+          alt2: 2
+          alt3: 3
+          alt4: 4
+          alt5: 5
+          alt6: 6
+          none: 7
+      twiroutea.twi0:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
+          alt2: 2
+          alt3: 3
+      tcaroutea.tca0:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          porta: 0
+          portb: 1
+          portc: 2
+          portd: 3
+          porte: 4
+          portf: 5
+          portg: 6
+      tcbroutea.tcb0:
+        bit: 0
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
+      tcbroutea.tcb1:
+        bit: 1
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
+      tcdroutea.tcd0:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          default: 0
+          alt1: 1
+          alt2: 2
+          alt3: 3
+          alt4: 4
+  rstctrl:
+    registers:
+      rstfr:
+        offset: 0
+        access: rw
+      swrr:
+        offset: 1
+        access: rw
+    fields:
+      rstfr.porf:
+        bit: 0
+        access: rw
+      rstfr.borf:
+        bit: 1
+        access: rw
+      rstfr.extrf:
+        bit: 2
+        access: rw
+      rstfr.wdrf:
+        bit: 3
+        access: rw
+      rstfr.swrf:
+        bit: 4
+        access: rw
+      rstfr.updirf:
+        bit: 5
+        access: rw
+      swrr.swrst:
+        bit: 0
+        access: rw
+  rtc:
+    registers:
+      ctrla:
+        offset: 0
+        access: rw
+      status:
+        offset: 1
+        access: ro
+      intctrl:
+        offset: 2
+        access: rw
+      intflags:
+        offset: 3
+        access: rw
+      temp:
+        offset: 4
+        access: rw
+      dbgctrl:
+        offset: 5
+        access: rw
+      calib:
+        offset: 6
+        access: rw
+      clksel:
+        offset: 7
+        access: rw
+      cnt:
+        offset: 8
+        access: rw
+      per:
+        offset: 10
+        access: rw
+      cmp:
+        offset: 12
+        access: rw
+      pitctrla:
+        offset: 16
+        access: rw
+      pitstatus:
+        offset: 17
+        access: ro
+      pitintctrl:
+        offset: 18
+        access: rw
+      pitintflags:
+        offset: 19
+        access: rw
+      pitdbgctrl:
+        offset: 21
+        access: rw
+    fields:
+      ctrla.rtcen:
+        bit: 0
+        access: rw
+      ctrla.corren:
+        bit: 2
+        access: rw
+      ctrla.prescaler:
+        bits:
+        - 3
+        - 6
+        access: rw
+        enum:
+          div1: 0
+          div2: 1
+          div4: 2
+          div8: 3
+          div16: 4
+          div32: 5
+          div64: 6
+          div128: 7
+          div256: 8
+          div512: 9
+          div1024: 10
+          div2048: 11
+          div4096: 12
+          div8192: 13
+          div16384: 14
+          div32768: 15
+      ctrla.runstdby:
+        bit: 7
+        access: rw
+      status.ctrlabusy:
+        bit: 0
+        access: ro
+      status.cntbusy:
+        bit: 1
+        access: ro
+      status.perbusy:
+        bit: 2
+        access: ro
+      status.cmpbusy:
+        bit: 3
+        access: ro
+      intctrl.ovf:
+        bit: 0
+        access: rw
+      intctrl.cmp:
+        bit: 1
+        access: rw
+      intflags.ovf:
+        bit: 0
+        access: rw
+      intflags.cmp:
+        bit: 1
+        access: rw
+      dbgctrl.dbgrun:
+        bit: 0
+        access: rw
+      calib.error:
+        bits:
+        - 0
+        - 6
+        access: rw
+      calib.sign:
+        bit: 7
+        access: rw
+      clksel.clksel:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          osc32k: 0
+          osc1k: 1
+          xtal32k: 2
+          extclk: 3
+      pitctrla.piten:
+        bit: 0
+        access: rw
+      pitctrla.period:
+        bits:
+        - 3
+        - 6
+        access: rw
+        enum:
+          'off': 0
+          cyc4: 1
+          cyc8: 2
+          cyc16: 3
+          cyc32: 4
+          cyc64: 5
+          cyc128: 6
+          cyc256: 7
+          cyc512: 8
+          cyc1024: 9
+          cyc2048: 10
+          cyc4096: 11
+          cyc8192: 12
+          cyc16384: 13
+          cyc32768: 14
+      pitstatus.ctrlbusy:
+        bit: 0
+        access: ro
+      pitintctrl.pi:
+        bit: 0
+        access: rw
+      pitintflags.pi:
+        bit: 0
+        access: rw
+      pitdbgctrl.dbgrun:
+        bit: 0
+        access: rw
+  sigrow:
+    registers:
+      deviceid0:
+        offset: 0
+        access: ro
+      deviceid1:
+        offset: 1
+        access: ro
+      deviceid2:
+        offset: 2
+        access: ro
+      tempsense0:
+        offset: 4
+        access: ro
+      tempsense1:
+        offset: 6
+        access: ro
+      sernum0:
+        offset: 16
+        access: ro
+      sernum1:
+        offset: 17
+        access: ro
+      sernum2:
+        offset: 18
+        access: ro
+      sernum3:
+        offset: 19
+        access: ro
+      sernum4:
+        offset: 20
+        access: ro
+      sernum5:
+        offset: 21
+        access: ro
+      sernum6:
+        offset: 22
+        access: ro
+      sernum7:
+        offset: 23
+        access: ro
+      sernum8:
+        offset: 24
+        access: ro
+      sernum9:
+        offset: 25
+        access: ro
+      sernum10:
+        offset: 26
+        access: ro
+      sernum11:
+        offset: 27
+        access: ro
+      sernum12:
+        offset: 28
+        access: ro
+      sernum13:
+        offset: 29
+        access: ro
+      sernum14:
+        offset: 30
+        access: ro
+      sernum15:
+        offset: 31
+        access: ro
+    fields:
+      tempsense0.tempsense0:
+        bits:
+        - 0
+        - 15
+        access: ro
+      tempsense1.tempsense1:
+        bits:
+        - 0
+        - 15
+        access: ro
+  slpctrl:
+    registers:
+      ctrla:
+        offset: 0
+        access: rw
+      vregctrl:
+        offset: 1
+        access: rw
+    fields:
+      ctrla.sen:
+        bit: 0
+        access: rw
+      ctrla.smode:
+        bits:
+        - 1
+        - 2
+        access: rw
+        enum:
+          idle: 0
+          stdby: 1
+          pdown: 2
+      vregctrl.pmode:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          auto: 0
+          full: 1
+      vregctrl.htllen:
+        bit: 4
+        access: rw
+        enum:
+          'off': 0
+          'on': 1
+  spi:
+    registers:
+      ctrla:
+        offset: 0
+        access: rw
+      ctrlb:
+        offset: 1
+        access: rw
+      intctrl:
+        offset: 2
+        access: rw
+      intflags:
+        offset: 3
+        access: rw
+      data:
+        offset: 4
+        access: rw
+    fields:
+      ctrla.enable:
+        bit: 0
+        access: rw
+      ctrla.presc:
+        bits:
+        - 1
+        - 2
+        access: rw
+        enum:
+          div4: 0
+          div16: 1
+          div64: 2
+          div128: 3
+      ctrla.clk2x:
+        bit: 4
+        access: rw
+      ctrla.master:
+        bit: 5
+        access: rw
+      ctrla.dord:
+        bit: 6
+        access: rw
+      ctrlb.mode:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          '0': 0
+          '1': 1
+          '2': 2
+          '3': 3
+      ctrlb.ssd:
+        bit: 2
+        access: rw
+      ctrlb.bufwr:
+        bit: 6
+        access: rw
+      ctrlb.bufen:
+        bit: 7
+        access: rw
+      intctrl.ie:
+        bit: 0
+        access: rw
+      intctrl.ssie:
+        bit: 4
+        access: rw
+      intctrl.dreie:
+        bit: 5
+        access: rw
+      intctrl.txcie:
+        bit: 6
+        access: rw
+      intctrl.rxcie:
+        bit: 7
+        access: rw
+      intflags.bufovf:
+        bit: 0
+        access: rw
+      intflags.ssif:
+        bit: 4
+        access: rw
+      intflags.dreif:
+        bit: 5
+        access: rw
+      intflags.txcif:
+        bit: 6
+        access: rw
+      intflags.rxcif:
+        bit: 7
+        access: rw
+      intflags.wrcol:
+        bit: 6
+        access: rw
+      intflags.if:
+        bit: 7
+        access: rw
+    max_clock: 12MHz
+  syscfg:
+    registers:
+      revid:
+        offset: 1
+        access: rw
+      ocdmctrl:
+        offset: 4
+        access: rw
+      ocdmstatus:
+        offset: 5
+        access: rw
+    fields:
+      ocdmstatus.valid:
+        bit: 0
+        access: rw
+  tca:
+    registers:
+      ctrla:
+        offset: 0
+        access: rw
+      ctrlb:
+        offset: 1
+        access: rw
+      ctrlc:
+        offset: 2
+        access: rw
+      ctrld:
+        offset: 3
+        access: rw
+      ctrleclr:
+        offset: 4
+        access: rw
+      ctrleset:
+        offset: 5
+        access: rw
+      ctrlfclr:
+        offset: 6
+        access: rw
+      ctrlfset:
+        offset: 7
+        access: rw
+      evctrl:
+        offset: 9
+        access: rw
+      intctrl:
+        offset: 10
+        access: rw
+      intflags:
+        offset: 11
+        access: rw
+      dbgctrl:
+        offset: 14
+        access: rw
+      temp:
+        offset: 15
+        access: rw
+      cnt:
+        offset: 32
+        access: rw
+      per:
+        offset: 38
+        access: rw
+      cmp0:
+        offset: 40
+        access: rw
+      cmp1:
+        offset: 42
+        access: rw
+      cmp2:
+        offset: 44
+        access: rw
+      perbuf:
+        offset: 54
+        access: rw
+      cmp0buf:
+        offset: 56
+        access: rw
+      cmp1buf:
+        offset: 58
+        access: rw
+      cmp2buf:
+        offset: 60
+        access: rw
+      hcnt:
+        offset: 33
+        access: rw
+      hper:
+        offset: 39
+        access: rw
+      hcmp0:
+        offset: 41
+        access: rw
+      hcmp1:
+        offset: 43
+        access: rw
+      hcmp2:
+        offset: 45
+        access: rw
+    fields:
+      ctrla.enable:
+        bit: 0
+        access: rw
+      ctrla.clksel:
+        bits:
+        - 1
+        - 3
+        access: rw
+        enum:
+          div1: 0
+          div2: 1
+          div4: 2
+          div8: 3
+          div16: 4
+          div64: 5
+          div256: 6
+          div1024: 7
+      ctrla.runstdby:
+        bit: 7
+        access: rw
+      ctrlb.wgmode:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          normal: 0
+          frq: 1
+          singleslope: 3
+          dstop: 5
+          dsboth: 6
+          dsbottom: 7
+      ctrlb.alupd:
+        bit: 3
+        access: rw
+      ctrlb.cmp0en:
+        bit: 4
+        access: rw
+      ctrlb.cmp1en:
+        bit: 5
+        access: rw
+      ctrlb.cmp2en:
+        bit: 6
+        access: rw
+      ctrlc.cmp0ov:
+        bit: 0
+        access: rw
+      ctrlc.cmp1ov:
+        bit: 1
+        access: rw
+      ctrlc.cmp2ov:
+        bit: 2
+        access: rw
+      ctrld.splitm:
+        bit: 0
+        access: rw
+      ctrleclr.dir:
+        bit: 0
+        access: rw
+      ctrleclr.lupd:
+        bit: 1
+        access: rw
+      ctrleclr.cmd:
+        bits:
+        - 2
+        - 3
+        access: rw
+        enum:
+          none: 0
+          update: 1
+          restart: 2
+          reset: 3
+      ctrleset.dir:
+        bit: 0
+        access: rw
+        enum:
+          up: 0
+          down: 1
+      ctrleset.lupd:
+        bit: 1
+        access: rw
+      ctrleset.cmd:
+        bits:
+        - 2
+        - 3
+        access: rw
+        enum:
+          none: 0
+          update: 1
+          restart: 2
+          reset: 3
+      ctrlfclr.perbv:
+        bit: 0
+        access: rw
+      ctrlfclr.cmp0bv:
+        bit: 1
+        access: rw
+      ctrlfclr.cmp1bv:
+        bit: 2
+        access: rw
+      ctrlfclr.cmp2bv:
+        bit: 3
+        access: rw
+      ctrlfset.perbv:
+        bit: 0
+        access: rw
+      ctrlfset.cmp0bv:
+        bit: 1
+        access: rw
+      ctrlfset.cmp1bv:
+        bit: 2
+        access: rw
+      ctrlfset.cmp2bv:
+        bit: 3
+        access: rw
+      evctrl.cntaei:
+        bit: 0
+        access: rw
+      evctrl.evacta:
+        bits:
+        - 1
+        - 3
+        access: rw
+        enum:
+          cnt_posedge: 0
+          cnt_anyedge: 1
+          cnt_highlvl: 2
+          updown: 3
+      evctrl.cntbei:
+        bit: 4
+        access: rw
+      evctrl.evactb:
+        bits:
+        - 5
+        - 7
+        access: rw
+        enum:
+          none: 0
+          updown: 3
+          restart_posedge: 4
+          restart_anyedge: 5
+          restart_highlvl: 6
+      intctrl.ovf:
+        bit: 0
+        access: rw
+      intctrl.cmp0:
+        bit: 4
+        access: rw
+      intctrl.cmp1:
+        bit: 5
+        access: rw
+      intctrl.cmp2:
+        bit: 6
+        access: rw
+      intflags.ovf:
+        bit: 0
+        access: rw
+      intflags.cmp0:
+        bit: 4
+        access: rw
+      intflags.cmp1:
+        bit: 5
+        access: rw
+      intflags.cmp2:
+        bit: 6
+        access: rw
+      dbgctrl.dbgrun:
+        bit: 0
+        access: rw
+  tcb:
+    registers:
+      ctrla:
+        offset: 0
+        access: rw
+      ctrlb:
+        offset: 1
+        access: rw
+      evctrl:
+        offset: 4
+        access: rw
+      intctrl:
+        offset: 5
+        access: rw
+      intflags:
+        offset: 6
+        access: rw
+      status:
+        offset: 7
+        access: ro
+      dbgctrl:
+        offset: 8
+        access: rw
+      temp:
+        offset: 9
+        access: rw
+      cnt:
+        offset: 10
+        access: rw
+      ccmp:
+        offset: 12
+        access: rw
+    fields:
+      ctrla.enable:
+        bit: 0
+        access: rw
+      ctrla.clksel:
+        bits:
+        - 1
+        - 3
+        access: rw
+        enum:
+          div1: 0
+          div2: 1
+          tca0: 2
+          event: 7
+      ctrla.syncupd:
+        bit: 4
+        access: rw
+      ctrla.cascade:
+        bit: 5
+        access: rw
+      ctrla.runstdby:
+        bit: 6
+        access: rw
+      ctrlb.cntmode:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          int: 0
+          timeout: 1
+          capt: 2
+          frq: 3
+          pw: 4
+          frqpw: 5
+          single: 6
+          pwm8: 7
+      ctrlb.ccmpen:
+        bit: 4
+        access: rw
+      ctrlb.ccmpinit:
+        bit: 5
+        access: rw
+      ctrlb.async:
+        bit: 6
+        access: rw
+      evctrl.captei:
+        bit: 0
+        access: rw
+      evctrl.edge:
+        bit: 4
+        access: rw
+      evctrl.filter:
+        bit: 6
+        access: rw
+      intctrl.capt:
+        bit: 0
+        access: rw
+      intctrl.ovf:
+        bit: 1
+        access: rw
+      intflags.capt:
+        bit: 0
+        access: rw
+      intflags.ovf:
+        bit: 1
+        access: rw
+      status.run:
+        bit: 0
+        access: ro
+      dbgctrl.dbgrun:
+        bit: 0
+        access: rw
+  tcd:
+    registers:
+      ctrla:
+        offset: 0
+        access: rw
+      ctrlb:
+        offset: 1
+        access: rw
+      ctrlc:
+        offset: 2
+        access: rw
+      ctrld:
+        offset: 3
+        access: rw
+      ctrle:
+        offset: 4
+        access: rw
+      evctrla:
+        offset: 8
+        access: rw
+      evctrlb:
+        offset: 9
+        access: rw
+      intctrl:
+        offset: 12
+        access: rw
+      intflags:
+        offset: 13
+        access: rw
+      status:
+        offset: 14
+        access: rw
+      inputctrla:
+        offset: 16
+        access: rw
+      inputctrlb:
+        offset: 17
+        access: rw
+      faultctrl:
+        offset: 18
+        access: rw
+      dlyctrl:
+        offset: 20
+        access: rw
+      dlyval:
+        offset: 21
+        access: rw
+      ditctrl:
+        offset: 24
+        access: rw
+      ditval:
+        offset: 25
+        access: rw
+      dbgctrl:
+        offset: 30
+        access: rw
+      capturea:
+        offset: 34
+        access: ro
+      captureb:
+        offset: 36
+        access: ro
+      cmpaset:
+        offset: 40
+        access: rw
+      cmpaclr:
+        offset: 42
+        access: rw
+      cmpbset:
+        offset: 44
+        access: rw
+      cmpbclr:
+        offset: 46
+        access: rw
+    fields:
+      ctrla.enable:
+        bit: 0
+        access: rw
+      ctrla.syncpres:
+        bits:
+        - 1
+        - 2
+        access: rw
+        enum:
+          div1: 0
+          div2: 1
+          div4: 2
+          div8: 3
+      ctrla.cntpres:
+        bits:
+        - 3
+        - 4
+        access: rw
+        enum:
+          div1: 0
+          div4: 1
+          div32: 2
+      ctrla.clksel:
+        bits:
+        - 5
+        - 6
+        access: rw
+        enum:
+          oschf: 0
+          pll: 1
+          extclk: 2
+          clkper: 3
+      ctrlb.wgmode:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          oneramp: 0
+          tworamp: 1
+          fourramp: 2
+          ds: 3
+      ctrlc.cmpovr:
+        bit: 0
+        access: rw
+      ctrlc.aupdate:
+        bit: 1
+        access: rw
+      ctrlc.fifty:
+        bit: 3
+        access: rw
+      ctrlc.cmpcsel:
+        bit: 6
+        access: rw
+        enum:
+          pwma: 0
+          pwmb: 1
+      ctrlc.cmpdsel:
+        bit: 7
+        access: rw
+        enum:
+          pwma: 0
+          pwmb: 1
+      ctrld.cmpaval:
+        bits:
+        - 0
+        - 3
+        access: rw
+      ctrld.cmpbval:
+        bits:
+        - 4
+        - 7
+        access: rw
+      ctrle.synceoc:
+        bit: 0
+        access: rw
+      ctrle.sync:
+        bit: 1
+        access: rw
+      ctrle.restart:
+        bit: 2
+        access: rw
+      ctrle.scapturea:
+        bit: 3
+        access: rw
+      ctrle.scaptureb:
+        bit: 4
+        access: rw
+      ctrle.diseoc:
+        bit: 7
+        access: rw
+      evctrla.trigei:
+        bit: 0
+        access: rw
+      evctrla.action:
+        bit: 2
+        access: rw
+        enum:
+          fault: 0
+          capture: 1
+      evctrla.edge:
+        bit: 4
+        access: rw
+        enum:
+          fall_low: 0
+          rise_high: 1
+      evctrla.cfg:
+        bits:
+        - 6
+        - 7
+        access: rw
+        enum:
+          neither: 0
+          filter: 1
+          async: 2
+      evctrlb.trigei:
+        bit: 0
+        access: rw
+      evctrlb.action:
+        bit: 2
+        access: rw
+        enum:
+          fault: 0
+          capture: 1
+      evctrlb.edge:
+        bit: 4
+        access: rw
+        enum:
+          fall_low: 0
+          rise_high: 1
+      evctrlb.cfg:
+        bits:
+        - 6
+        - 7
+        access: rw
+        enum:
+          neither: 0
+          filter: 1
+          async: 2
+      intctrl.ovf:
+        bit: 0
+        access: rw
+      intctrl.triga:
+        bit: 2
+        access: rw
+      intctrl.trigb:
+        bit: 3
+        access: rw
+      intflags.ovf:
+        bit: 0
+        access: rw
+      intflags.triga:
+        bit: 2
+        access: rw
+      intflags.trigb:
+        bit: 3
+        access: rw
+      status.enrdy:
+        bit: 0
+        access: ro
+      status.cmdrdy:
+        bit: 1
+        access: ro
+      status.pwmacta:
+        bit: 6
+        access: rw
+      status.pwmactb:
+        bit: 7
+        access: rw
+      inputctrla.inputmode:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          none: 0
+          jmpwait: 1
+          execwait: 2
+          execfault: 3
+          freq: 4
+          execdt: 5
+          wait: 6
+          waitsw: 7
+          edgetrig: 8
+          edgetrigfreq: 9
+          lvltrigfreq: 10
+      inputctrlb.inputmode:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          none: 0
+          jmpwait: 1
+          execwait: 2
+          execfault: 3
+          freq: 4
+          execdt: 5
+          wait: 6
+          waitsw: 7
+          edgetrig: 8
+          edgetrigfreq: 9
+          lvltrigfreq: 10
+      faultctrl.cmpa:
+        bit: 0
+        access: rw
+      faultctrl.cmpb:
+        bit: 1
+        access: rw
+      faultctrl.cmpc:
+        bit: 2
+        access: rw
+      faultctrl.cmpd:
+        bit: 3
+        access: rw
+      faultctrl.cmpaen:
+        bit: 4
+        access: rw
+      faultctrl.cmpben:
+        bit: 5
+        access: rw
+      faultctrl.cmpcen:
+        bit: 6
+        access: rw
+      faultctrl.cmpden:
+        bit: 7
+        access: rw
+      dlyctrl.dlysel:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          'off': 0
+          inblank: 1
+          event: 2
+      dlyctrl.dlytrig:
+        bits:
+        - 2
+        - 3
+        access: rw
+        enum:
+          cmpaset: 0
+          cmpaclr: 1
+          cmpbset: 2
+          cmpbclr: 3
+      dlyctrl.dlypresc:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          div1: 0
+          div2: 1
+          div4: 2
+          div8: 3
+      dlyval.dlyval:
+        bits:
+        - 0
+        - 7
+        access: rw
+      ditctrl.dithersel:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          ontimeb: 0
+          ontimeab: 1
+          deadtimeb: 2
+          deadtimeab: 3
+      ditval.dither:
+        bits:
+        - 0
+        - 3
+        access: rw
+      dbgctrl.dbgrun:
+        bit: 0
+        access: rw
+      dbgctrl.faultdet:
+        bit: 2
+        access: rw
+  twi:
+    registers:
+      ctrla:
+        offset: 0
+        access: rw
+      dualctrl:
+        offset: 1
+        access: rw
+      dbgctrl:
+        offset: 2
+        access: rw
+      mctrla:
+        offset: 3
+        access: rw
+      mctrlb:
+        offset: 4
+        access: rw
+      mstatus:
+        offset: 5
+        access: rw
+      mbaud:
+        offset: 6
+        access: rw
+      maddr:
+        offset: 7
+        access: rw
+      mdata:
+        offset: 8
+        access: rw
+      sctrla:
+        offset: 9
+        access: rw
+      sctrlb:
+        offset: 10
+        access: rw
+      sstatus:
+        offset: 11
+        access: rw
+      saddr:
+        offset: 12
+        access: rw
+      sdata:
+        offset: 13
+        access: rw
+      saddrmask:
+        offset: 14
+        access: rw
+    fields:
+      ctrla.fmpen:
+        bit: 1
+        access: rw
+        enum:
+          'off': 0
+          'on': 1
+      ctrla.sdahold:
+        bits:
+        - 2
+        - 3
+        access: rw
+        enum:
+          'off': 0
+          50ns: 1
+          300ns: 2
+          500ns: 3
+      ctrla.sdasetup:
+        bit: 4
+        access: rw
+        enum:
+          4cyc: 0
+          8cyc: 1
+      ctrla.inputlvl:
+        bit: 6
+        access: rw
+        enum:
+          i2c: 0
+          smbus: 1
+      dualctrl.enable:
+        bit: 0
+        access: rw
+      dualctrl.fmpen:
+        bit: 1
+        access: rw
+        enum:
+          'off': 0
+          'on': 1
+      dualctrl.sdahold:
+        bits:
+        - 2
+        - 3
+        access: rw
+        enum:
+          'off': 0
+          50ns: 1
+          300ns: 2
+          500ns: 3
+      dualctrl.inputlvl:
+        bit: 6
+        access: rw
+        enum:
+          i2c: 0
+          smbus: 1
+      dbgctrl.dbgrun:
+        bit: 0
+        access: rw
+        enum:
+          halt: 0
+          run: 1
+      mctrla.enable:
+        bit: 0
+        access: rw
+      mctrla.smen:
+        bit: 1
+        access: rw
+      mctrla.timeout:
+        bits:
+        - 2
+        - 3
+        access: rw
+        enum:
+          disabled: 0
+          50us: 1
+          100us: 2
+          200us: 3
+      mctrla.qcen:
+        bit: 4
+        access: rw
+      mctrla.wien:
+        bit: 6
+        access: rw
+      mctrla.rien:
+        bit: 7
+        access: rw
+      mctrlb.mcmd:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          noact: 0
+          repstart: 1
+          recvtrans: 2
+          stop: 3
+      mctrlb.ackact:
+        bit: 2
+        access: rw
+        enum:
+          ack: 0
+          nack: 1
+      mctrlb.flush:
+        bit: 3
+        access: rw
+      mstatus.busstate:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          unknown: 0
+          idle: 1
+          owner: 2
+          busy: 3
+      mstatus.buserr:
+        bit: 2
+        access: rw
+      mstatus.arblost:
+        bit: 3
+        access: rw
+      mstatus.rxack:
+        bit: 4
+        access: rw
+      mstatus.clkhold:
+        bit: 5
+        access: rw
+      mstatus.wif:
+        bit: 6
+        access: rw
+      mstatus.rif:
+        bit: 7
+        access: rw
+      mbaud.baud:
+        bits:
+        - 0
+        - 7
+        access: rw
+      maddr.addr:
+        bits:
+        - 0
+        - 7
+        access: rw
+      mdata.data:
+        bits:
+        - 0
+        - 7
+        access: rw
+      sctrla.enable:
+        bit: 0
+        access: rw
+      sctrla.smen:
+        bit: 1
+        access: rw
+      sctrla.pmen:
+        bit: 2
+        access: rw
+      sctrla.pien:
+        bit: 5
+        access: rw
+      sctrla.apien:
+        bit: 6
+        access: rw
+      sctrla.dien:
+        bit: 7
+        access: rw
+      sctrlb.scmd:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          noact: 0
+          comptrans: 2
+          response: 3
+      sctrlb.ackact:
+        bit: 2
+        access: rw
+        enum:
+          ack: 0
+          nack: 1
+      sstatus.ap:
+        bit: 0
+        access: rw
+        enum:
+          stop: 0
+          adr: 1
+      sstatus.dir:
+        bit: 1
+        access: rw
+      sstatus.buserr:
+        bit: 2
+        access: rw
+      sstatus.coll:
+        bit: 3
+        access: rw
+      sstatus.rxack:
+        bit: 4
+        access: rw
+      sstatus.clkhold:
+        bit: 5
+        access: rw
+      sstatus.apif:
+        bit: 6
+        access: rw
+      sstatus.dif:
+        bit: 7
+        access: rw
+      saddr.addr:
+        bits:
+        - 0
+        - 7
+        access: rw
+      sdata.data:
+        bits:
+        - 0
+        - 7
+        access: rw
+      saddrmask.addren:
+        bit: 0
+        access: rw
+      saddrmask.addrmask:
+        bits:
+        - 1
+        - 7
+        access: rw
+    max_clock: 1MHz
+  usart:
+    registers:
+      rxdatal:
+        offset: 0
+        access: ro
+      rxdatah:
+        offset: 1
+        access: ro
+      txdatal:
+        offset: 2
+        access: rw
+      txdatah:
+        offset: 3
+        access: rw
+      status:
+        offset: 4
+        access: rw
+      ctrla:
+        offset: 5
+        access: rw
+      ctrlb:
+        offset: 6
+        access: rw
+      ctrlc:
+        offset: 7
+        access: rw
+      baud:
+        offset: 8
+        access: rw
+      ctrld:
+        offset: 10
+        access: rw
+      dbgctrl:
+        offset: 11
+        access: rw
+      evctrl:
+        offset: 12
+        access: rw
+      txplctrl:
+        offset: 13
+        access: rw
+      rxplctrl:
+        offset: 14
+        access: rw
+    fields:
+      rxdatal.data:
+        bits:
+        - 0
+        - 7
+        access: ro
+      rxdatah.data8:
+        bit: 0
+        access: ro
+      rxdatah.perr:
+        bit: 1
+        access: ro
+      rxdatah.ferr:
+        bit: 2
+        access: ro
+      rxdatah.bufovf:
+        bit: 6
+        access: ro
+      rxdatah.rxcif:
+        bit: 7
+        access: ro
+      txdatal.data:
+        bits:
+        - 0
+        - 7
+        access: rw
+      txdatah.data8:
+        bit: 0
+        access: rw
+      status.wfb:
+        bit: 0
+        access: rw
+      status.bdf:
+        bit: 1
+        access: rw
+      status.isfif:
+        bit: 3
+        access: rw
+      status.rxsif:
+        bit: 4
+        access: rw
+      status.dreif:
+        bit: 5
+        access: ro
+      status.txcif:
+        bit: 6
+        access: rw
+      status.rxcif:
+        bit: 7
+        access: ro
+      ctrla.rs485:
+        bit: 0
+        access: rw
+        enum:
+          disable: 0
+          enable: 1
+      ctrla.abeie:
+        bit: 2
+        access: rw
+      ctrla.lbme:
+        bit: 3
+        access: rw
+      ctrla.rxsie:
+        bit: 4
+        access: rw
+      ctrla.dreie:
+        bit: 5
+        access: rw
+      ctrla.txcie:
+        bit: 6
+        access: rw
+      ctrla.rxcie:
+        bit: 7
+        access: rw
+      ctrlb.mpcm:
+        bit: 0
+        access: rw
+      ctrlb.rxmode:
+        bits:
+        - 1
+        - 2
+        access: rw
+        enum:
+          normal: 0
+          clk2x: 1
+          genauto: 2
+          linauto: 3
+      ctrlb.odme:
+        bit: 3
+        access: rw
+      ctrlb.sfden:
+        bit: 4
+        access: rw
+      ctrlb.txen:
+        bit: 6
+        access: rw
+      ctrlb.rxen:
+        bit: 7
+        access: rw
+      ctrlc.cmode:
+        bits:
+        - 6
+        - 7
+        access: rw
+        enum:
+          asynchronous: 0
+          synchronous: 1
+          ircom: 2
+          mspi: 3
+      ctrlc.ucpha:
+        bit: 1
+        access: rw
+      ctrlc.udord:
+        bit: 2
+        access: rw
+      ctrlc.chsize:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          5bit: 0
+          6bit: 1
+          7bit: 2
+          8bit: 3
+          9bitl: 6
+          9bith: 7
+      ctrlc.sbmode:
+        bit: 3
+        access: rw
+        enum:
+          1bit: 0
+          2bit: 1
+      ctrlc.pmode:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          disabled: 0
+          even: 2
+          odd: 3
+      ctrld.abw:
+        bits:
+        - 6
+        - 7
+        access: rw
+        enum:
+          wdw0: 0
+          wdw1: 1
+          wdw2: 2
+          wdw3: 3
+      dbgctrl.dbgrun:
+        bit: 0
+        access: rw
+      evctrl.irei:
+        bit: 0
+        access: rw
+      txplctrl.txpl:
+        bits:
+        - 0
+        - 7
+        access: rw
+      rxplctrl.rxpl:
+        bits:
+        - 0
+        - 6
+        access: rw
+    max_baud: 1500000
+  userrow:
+    registers:
+      userrow0:
+        offset: 0
+        access: rw
+      userrow1:
+        offset: 1
+        access: rw
+      userrow2:
+        offset: 2
+        access: rw
+      userrow3:
+        offset: 3
+        access: rw
+      userrow4:
+        offset: 4
+        access: rw
+      userrow5:
+        offset: 5
+        access: rw
+      userrow6:
+        offset: 6
+        access: rw
+      userrow7:
+        offset: 7
+        access: rw
+      userrow8:
+        offset: 8
+        access: rw
+      userrow9:
+        offset: 9
+        access: rw
+      userrow10:
+        offset: 10
+        access: rw
+      userrow11:
+        offset: 11
+        access: rw
+      userrow12:
+        offset: 12
+        access: rw
+      userrow13:
+        offset: 13
+        access: rw
+      userrow14:
+        offset: 14
+        access: rw
+      userrow15:
+        offset: 15
+        access: rw
+      userrow16:
+        offset: 16
+        access: rw
+      userrow17:
+        offset: 17
+        access: rw
+      userrow18:
+        offset: 18
+        access: rw
+      userrow19:
+        offset: 19
+        access: rw
+      userrow20:
+        offset: 20
+        access: rw
+      userrow21:
+        offset: 21
+        access: rw
+      userrow22:
+        offset: 22
+        access: rw
+      userrow23:
+        offset: 23
+        access: rw
+      userrow24:
+        offset: 24
+        access: rw
+      userrow25:
+        offset: 25
+        access: rw
+      userrow26:
+        offset: 26
+        access: rw
+      userrow27:
+        offset: 27
+        access: rw
+      userrow28:
+        offset: 28
+        access: rw
+      userrow29:
+        offset: 29
+        access: rw
+      userrow30:
+        offset: 30
+        access: rw
+      userrow31:
+        offset: 31
+        access: rw
+  vport:
+    registers:
+      dir:
+        offset: 0
+        access: rw
+      out:
+        offset: 1
+        access: rw
+      in:
+        offset: 2
+        access: rw
+      intflags:
+        offset: 3
+        access: rw
+    fields:
+      intflags.int:
+        bits:
+        - 0
+        - 7
+        access: rw
+  vref:
+    registers:
+      adc0ref:
+        offset: 0
+        access: rw
+      dac0ref:
+        offset: 2
+        access: rw
+      acref:
+        offset: 4
+        access: rw
+    fields:
+      adc0ref.refsel:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          1v024: 0
+          2v048: 1
+          4v096: 2
+          2v500: 3
+          vdd: 5
+          vrefa: 6
+      adc0ref.alwayson:
+        bit: 7
+        access: rw
+      dac0ref.refsel:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          1v024: 0
+          2v048: 1
+          4v096: 2
+          2v500: 3
+          vdd: 5
+          vrefa: 6
+      dac0ref.alwayson:
+        bit: 7
+        access: rw
+      acref.refsel:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          1v024: 0
+          2v048: 1
+          4v096: 2
+          2v500: 3
+          vdd: 5
+          vrefa: 6
+      acref.alwayson:
+        bit: 7
+        access: rw
+  wdt:
+    registers:
+      ctrla:
+        offset: 0
+        access: rw
+      status:
+        offset: 1
+        access: rw
+    fields:
+      ctrla.period:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          'off': 0
+          8clk: 1
+          16clk: 2
+          32clk: 3
+          64clk: 4
+          128clk: 5
+          256clk: 6
+          512clk: 7
+          1kclk: 8
+          2kclk: 9
+          4kclk: 10
+          8kclk: 11
+      ctrla.window:
+        bits:
+        - 4
+        - 7
+        access: rw
+        enum:
+          'off': 0
+          8clk: 1
+          16clk: 2
+          32clk: 3
+          64clk: 4
+          128clk: 5
+          256clk: 6
+          512clk: 7
+          1kclk: 8
+          2kclk: 9
+          4kclk: 10
+          8kclk: 11
+      status.syncbusy:
+        bit: 0
+        access: ro
+      status.lock:
+        bit: 7
+        access: rw
+  zcd:
+    registers:
+      ctrla:
+        offset: 0
+        access: rw
+      intctrl:
+        offset: 2
+        access: rw
+      status:
+        offset: 3
+        access: rw
+    fields:
+      ctrla.enable:
+        bit: 0
+        access: rw
+      ctrla.invert:
+        bit: 3
+        access: rw
+      ctrla.outen:
+        bit: 6
+        access: rw
+      ctrla.runstdby:
+        bit: 7
+        access: rw
+      intctrl.intmode:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          none: 0
+          rising: 1
+          falling: 2
+          both: 3
+      status.crossif:
+        bit: 0
+        access: rw
+      status.state:
+        bit: 4
+        access: ro
+        enum:
+          low: 0
+          high: 1
+  i2c:
+    max_clock: 1MHz
+peripherals:
+- id: ac0
+  template: ac
+  base: '0x680'
+  description: Analog Comparator
+  pin_options:
+    n2:
+    - pin: PD7
+    n3:
+    - pin: PC2
+    p3:
+    - pin: PD6
+    p4:
+    - pin: PC3
+  irq: &id029
+    num: 25
+    name: AC0_AC_vect
+- id: adc0
+  template: adc
+  base: '0x600'
+  description: Analog to Digital Converter
+  pin_options:
+    ain4:
+    - pin: PD4
+    ain5:
+    - pin: PD5
+    ain6:
+    - pin: PD6
+    ain7:
+    - pin: PD7
+    ain29:
+    - pin: PC1
+    ain30:
+    - pin: PC2
+    ain31:
+    - pin: PC3
+  irq:
+  - &id030
+    num: 26
+    name: ADC0_RESRDY_vect
+  - &id031
+    num: 27
+    name: ADC0_WCMP_vect
+- id: bod
+  template: bod
+  base: 160
+  description: Bod interface
+  irq: &id002
+    num: 2
+    name: BOD_VLM_vect
+- id: ccl
+  template: ccl
+  base: '0x1C0'
+  description: Configurable Custom Logic
+  pin_options:
+    lut0_in0:
+    - pin: PA0
+    lut0_in1:
+    - pin: PA1
+    lut1_in1:
+    - pin: PC1
+    lut1_in2:
+    - pin: PC2
+    lut1_out:
+    - pin: PC3
+    lut2_out:
+    - pin: PD6
+  irq: &id007
+    num: 7
+    name: CCL_CCL_vect
+- id: clkctrl
+  template: clkctrl
+  base: 96
+  description: Clock controller
+  pin_options:
+    extclk:
+    - pin: PA0
+    xtalhf1:
+    - pin: PA0
+    xtalhf2:
+    - pin: PA1
+    xtal32k1:
+    - pin: PA0
+    xtal32k2:
+    - pin: PA1
+  irq: &id003
+    num: 3
+    name: CLKCTRL_CFD_vect
+- id: cpu
+  template: cpu
+  base: 48
+  description: CPU
+- id: cpuint
+  template: cpuint
+  base: '0x110'
+  description: Interrupt Controller
+- id: crcscan
+  template: crcscan
+  base: '0x120'
+  description: CRCSCAN
+  irq: &id001
+    num: 1
+    name: CRCSCAN_NMI_vect
+- id: dac0
+  template: dac
+  base: '0x6A0'
+  description: Digital to Analog Converter
+  pin_options:
+    out:
+    - pin: PD6
+- id: evsys
+  template: evsys
+  base: '0x200'
+  description: Event System
+  pin_options:
+    evout2:
+    - pin: PC2
+    evout3:
+    - pin: PD7
+    evout5:
+    - pin: PF7
+- id: fuse
+  template: fuse
+  base: '0x1050'
+  description: Fuses
+- id: gpr
+  template: gpr
+  base: 28
+  description: General Purpose Registers
+- id: lock
+  template: lock
+  base: '0x1040'
+  description: Lockbits
+- id: mvio
+  template: mvio
+  base: 192
+  description: Multi-Voltage I/O
+  irq: &id004
+    num: 4
+    name: MVIO_MVIO_vect
+- id: nvmctrl
+  template: nvmctrl
+  base: '0x1000'
+  description: Non-volatile Memory Controller
+  irq: &id039
+    num: 35
+    name: NVMCTRL_EE_vect
+- id: porta
+  template: port
+  base: '0x400'
+  description: I/O Ports
+  pin_options:
+    pin0:
+    - pin: PA0
+    pin1:
+    - pin: PA1
+  irq: &id008
+    num: 8
+    name: PORTA_PORT_vect
+- id: portc
+  template: port
+  base: '0x440'
+  description: I/O Ports
+  pin_options:
+    pin1:
+    - pin: PC1
+    pin2:
+    - pin: PC2
+    pin3:
+    - pin: PC3
+  irq: &id033
+    num: 29
+    name: PORTC_PORT_vect
+- id: portd
+  template: port
+  base: '0x460'
+  description: I/O Ports
+  pin_options:
+    pin4:
+    - pin: PD4
+    pin5:
+    - pin: PD5
+    pin6:
+    - pin: PD6
+    pin7:
+    - pin: PD7
+  irq: &id028
+    num: 24
+    name: PORTD_PORT_vect
+- id: portf
+  template: port
+  base: '0x4A0'
+  description: I/O Ports
+  pin_options:
+    pin6:
+    - pin: PF6
+    pin7:
+    - pin: PF7
+  irq: &id038
+    num: 34
+    name: PORTF_PORT_vect
+- id: portmux
+  template: portmux
+  base: '0x5E0'
+  description: Port Multiplexer
+- id: rstctrl
+  template: rstctrl
+  base: 64
+  description: Reset controller
+  pin_options:
+    reset:
+    - pin: PF6
+- id: rtc
+  template: rtc
+  base: '0x140'
+  description: Real-Time Counter
+  irq:
+  - &id005
+    num: 5
+    name: RTC_CNT_vect
+  - &id006
+    num: 6
+    name: RTC_PIT_vect
+- id: sigrow
+  template: sigrow
+  base: '0x1100'
+  description: Signature row
+- id: slpctrl
+  template: slpctrl
+  base: 80
+  description: Sleep Controller
+- id: spi0
+  template: spi
+  base: '0x940'
+  description: Serial Peripheral Interface
+  pin_options:
+    miso:
+    - pin: PA1
+    - pin: PD5
+    - pin: PC1
+    - pin: PC2
+    mosi:
+    - pin: PA0
+    - pin: PD4
+    - pin: PC1
+    ss:
+    - pin: PC1
+    - pin: PD7
+    - pin: PC3
+    - pin: PF7
+    sck:
+    - pin: PD6
+    - pin: PC2
+    - pin: PC3
+  irq: &id024
+    num: 20
+    name: SPI0_INT_vect
+- id: syscfg
+  template: syscfg
+  base: '0xF00'
+  description: System Configuration Registers
+- id: tca0
+  template: tca
+  base: '0xA00'
+  description: 16-bit Timer/Counter Type A
+  pin_options:
+    wo0:
+    - pin: PA0
+    wo1:
+    - pin: PA1
+    - pin: PC1
+    wo2:
+    - pin: PC2
+    wo3:
+    - pin: PC3
+    wo4:
+    - pin: PD4
+    wo5:
+    - pin: PD5
+  irq:
+  - &id009
+    num: 9
+    name: TCA0_LUNF_vect
+  - &id010
+    num: 9
+    name: TCA0_OVF_vect
+  - &id011
+    num: 10
+    name: TCA0_HUNF_vect
+  - &id012
+    num: 11
+    name: TCA0_CMP0_vect
+  - &id013
+    num: 11
+    name: TCA0_LCMP0_vect
+  - &id014
+    num: 12
+    name: TCA0_CMP1_vect
+  - &id015
+    num: 12
+    name: TCA0_LCMP1_vect
+  - &id016
+    num: 13
+    name: TCA0_CMP2_vect
+  - &id017
+    num: 13
+    name: TCA0_LCMP2_vect
+- id: tcb0
+  template: tcb
+  base: '0xB00'
+  description: 16-bit Timer Type B
+  irq: &id018
+    num: 14
+    name: TCB0_INT_vect
+- id: tcb1
+  template: tcb
+  base: '0xB10'
+  description: 16-bit Timer Type B
+  irq: &id019
+    num: 15
+    name: TCB1_INT_vect
+- id: tcb2
+  template: tcb
+  base: '0xB20'
+  description: 16-bit Timer Type B
+  irq: &id034
+    num: 30
+    name: TCB2_INT_vect
+- id: tcd0
+  template: tcd
+  base: '0xB80'
+  description: Timer Counter D
+  pin_options:
+    woc:
+    - pin: PD4
+    wod:
+    - pin: PD5
+  irq:
+  - &id020
+    num: 16
+    name: TCD0_OVF_vect
+  - &id021
+    num: 17
+    name: TCD0_TRIG_vect
+- id: twi0
+  template: twi
+  base: '0x900'
+  description: Two-Wire Interface
+  pin_options:
+    scl_dual:
+    - pin: PC3
+    sda_dual:
+    - pin: PC2
+    scl:
+    - pin: PC3
+    - pin: PA1
+    sda:
+    - pin: PC2
+    - pin: PA0
+  irq:
+  - &id022
+    num: 18
+    name: TWI0_TWIS_vect
+  - &id023
+    num: 19
+    name: TWI0_TWIM_vect
+- id: usart0
+  template: usart
+  base: '0x800'
+  description: Universal Synchronous and Asynchronous Receiver and Transmitter
+  pin_options:
+    rxd:
+    - pin: PA1
+    - pin: PD5
+    - pin: PC2
+    txd:
+    - pin: PA0
+    - pin: PD4
+    - pin: PC1
+    xck:
+    - pin: PD6
+    - pin: PC3
+    xdir:
+    - pin: PD7
+  irq:
+  - &id025
+    num: 21
+    name: USART0_RXC_vect
+  - &id026
+    num: 22
+    name: USART0_DRE_vect
+  - &id027
+    num: 23
+    name: USART0_TXC_vect
+- id: usart1
+  template: usart
+  base: '0x820'
+  description: Universal Synchronous and Asynchronous Receiver and Transmitter
+  pin_options:
+    rxd:
+    - pin: PC1
+    - pin: PD7
+    xck:
+    - pin: PC2
+    xdir:
+    - pin: PC3
+    txd:
+    - pin: PD6
+  irq:
+  - &id035
+    num: 31
+    name: USART1_RXC_vect
+  - &id036
+    num: 32
+    name: USART1_DRE_vect
+  - &id037
+    num: 33
+    name: USART1_TXC_vect
+- id: userrow
+  template: userrow
+  base: '0x1080'
+  description: User Row
+- id: vporta
+  template: vport
+  base: 0
+  description: Virtual Ports
+- id: vportc
+  template: vport
+  base: 8
+  description: Virtual Ports
+- id: vportd
+  template: vport
+  base: 12
+  description: Virtual Ports
+- id: vportf
+  template: vport
+  base: 20
+  description: Virtual Ports
+- id: vref
+  template: vref
+  base: 176
+  description: Voltage reference
+- id: wdt
+  template: wdt
+  base: '0x100'
+  description: Watch-Dog Timer
+- id: zcd3
+  template: zcd
+  base: '0x6D8'
+  description: Zero Cross Detect
+  pin_options:
+    in:
+    - pin: PC2
+  irq: &id032
+    num: 28
+    name: ZCD3_ZCD_vect
+pinout:
+- signal: AGND
+  pin: 1
+  constraints:
+  - power
+- signal: PF6
+  pin: 2
+- signal: PF7
+  pin: 3
+- signal: PA0
+  pin: 4
+- signal: PA1
+  pin: 5
+- signal: PC1
+  pin: 6
+- signal: PC2
+  pin: 7
+- signal: PC3
+  pin: 8
+- signal: VDDIO2
+  pin: 9
+  constraints:
+  - power
+- signal: PD4
+  pin: 10
+- signal: PD5
+  pin: 11
+- signal: PD6
+  pin: 12
+- signal: PD7
+  pin: 13
+- signal: AVDD
+  pin: 14
+  constraints:
+  - power
+interrupts:
+- *id001
+- *id002
+- *id003
+- *id004
+- *id005
+- *id006
+- *id007
+- *id008
+- *id009
+- *id010
+- *id011
+- *id012
+- *id013
+- *id014
+- *id015
+- *id016
+- *id017
+- *id018
+- *id019
+- *id020
+- *id021
+- *id022
+- *id023
+- *id024
+- *id025
+- *id026
+- *id027
+- *id028
+- *id029
+- *id030
+- *id031
+- *id032
+- *id033
+- *id034
+- *id035
+- *id036
+- *id037
+- *id038
+- *id039

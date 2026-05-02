@@ -1,0 +1,196 @@
+schema: alloy.device.v2.1
+identity:
+  vendor: microchip
+  family: mcpxxxx
+  device: mcp25025
+  core:
+    isa: pic16
+    name: pic16
+    bits: 8
+provenance:
+  primary: microchip-pic:MCP25025.PIC
+  authored: auto
+  secondary:
+  - microchip-overlay:mcpxxxx
+memory:
+- id: flash
+  base: '0x00000000'
+  size: 1B
+  access: rx
+  role: extractor-placeholder
+clock:
+  oscillators:
+    unknown:
+      freq: 0Hz
+      kind: rc-internal
+  domains:
+  - id: sysclk
+    sources:
+    - unknown
+  profiles:
+  - id: factory-default
+    kind: post-reset
+    sysclk: 0Hz
+    sysclk_source: unknown
+templates:
+  misc:
+    registers:
+      indf:
+        offset: 0
+      gpio:
+        offset: 5
+      option_reg:
+        offset: 129
+      tris:
+        offset: 133
+      osccal:
+        offset: 143
+    fields:
+      indf.indf:
+        bits:
+        - 0
+        - 7
+      gpio.gp0:
+        bit: 0
+      gpio.gp1:
+        bit: 0
+      gpio.gp2:
+        bit: 0
+      gpio.gp3:
+        bit: 0
+      gpio.gp4:
+        bit: 0
+      gpio.gp5:
+        bit: 0
+      option_reg.ps:
+        bits:
+        - 0
+        - 2
+      option_reg.psa:
+        bit: 0
+      option_reg.t0se:
+        bit: 0
+      option_reg.t0cs:
+        bit: 0
+      option_reg.intedg:
+        bit: 0
+      option_reg.ngppu:
+        bit: 0
+      option_reg.ps0:
+        bit: 0
+      option_reg.ps1:
+        bit: 0
+      option_reg.ps2:
+        bit: 0
+      tris.tris0:
+        bit: 0
+      tris.tris1:
+        bit: 0
+      tris.tris2:
+        bit: 0
+      tris.tris3:
+        bit: 0
+      tris.tris4:
+        bit: 0
+      tris.tris5:
+        bit: 0
+      osccal.calslw:
+        bit: 0
+      osccal.calfst:
+        bit: 0
+      osccal.cal:
+        bits:
+        - 0
+        - 3
+      osccal.cal0:
+        bit: 0
+      osccal.cal1:
+        bit: 0
+      osccal.cal2:
+        bit: 0
+      osccal.cal3:
+        bit: 0
+  timer:
+    registers:
+      tmr0:
+        offset: 1
+    fields:
+      tmr0.tmr0:
+        bits:
+        - 0
+        - 7
+  interrupt_controller:
+    registers:
+      pir1:
+        offset: 12
+      pie1:
+        offset: 140
+    fields:
+      pir1.adif:
+        bit: 0
+      pie1.adie:
+        bit: 0
+  adc:
+    registers:
+      adres:
+        offset: 30
+      adcon0:
+        offset: 31
+      adcon1:
+        offset: 159
+    fields:
+      adres.adres:
+        bits:
+        - 0
+        - 7
+      adcon0.adon:
+        bit: 0
+      adcon0.go_ndone:
+        bit: 0
+      adcon0.chs:
+        bits:
+        - 0
+        - 1
+      adcon0.adcs:
+        bits:
+        - 0
+        - 1
+      adcon0.go_done:
+        bit: 0
+      adcon0.chs0:
+        bit: 0
+      adcon0.chs1:
+        bit: 0
+      adcon0.adcs0:
+        bit: 0
+      adcon0.adcs1:
+        bit: 0
+      adcon0.ndone:
+        bit: 0
+      adcon0.go:
+        bit: 0
+      adcon1.pcfg:
+        bits:
+        - 0
+        - 2
+      adcon1.pcfg0:
+        bit: 0
+      adcon1.pcfg1:
+        bit: 0
+      adcon1.pcfg2:
+        bit: 0
+peripherals:
+- id: adc
+  template: adc
+  base: 30
+- id: interrupt_controller
+  template: interrupt_controller
+  base: 12
+- id: misc
+  template: misc
+  base: 0
+- id: timer_0
+  template: timer
+  base: 1
+pinout:
+- signal: RESET

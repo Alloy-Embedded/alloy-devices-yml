@@ -1,0 +1,5267 @@
+schema: alloy.device.v2.1
+identity:
+  vendor: microchip
+  family: pic16f1xxxx
+  device: pic16f13145
+  core:
+    isa: pic16
+    name: pic16
+    bits: 8
+provenance:
+  primary: microchip-pic:PIC16F13145.PIC
+  authored: auto
+  secondary:
+  - microchip-overlay:pic16f1xxxx
+memory:
+- id: flash
+  base: '0x00000000'
+  size: 1B
+  access: rx
+  role: extractor-placeholder
+clock:
+  oscillators:
+    unknown:
+      freq: 0Hz
+      kind: rc-internal
+  domains:
+  - id: sysclk
+    sources:
+    - unknown
+  profiles:
+  - id: factory-default
+    kind: post-reset
+    sysclk: 0Hz
+    sysclk_source: unknown
+templates:
+  port:
+    registers:
+      porta:
+        offset: 12
+      portb:
+        offset: 13
+      portc:
+        offset: 14
+      trisa:
+        offset: 18
+      trisb:
+        offset: 19
+      trisc:
+        offset: 20
+      lata:
+        offset: 24
+      latb:
+        offset: 25
+      latc:
+        offset: 26
+      ansela:
+        offset: '0x1E8C'
+      anselb:
+        offset: '0x1E96'
+      anselc:
+        offset: '0x1EA0'
+    fields:
+      porta.ra0:
+        bit: 0
+      porta.ra1:
+        bit: 0
+      porta.ra2:
+        bit: 0
+      porta.ra3:
+        bit: 0
+      porta.ra4:
+        bit: 0
+      porta.ra5:
+        bit: 0
+      portb.rb4:
+        bit: 0
+      portb.rb5:
+        bit: 0
+      portb.rb6:
+        bit: 0
+      portb.rb7:
+        bit: 0
+      portc.rc0:
+        bit: 0
+      portc.rc1:
+        bit: 0
+      portc.rc2:
+        bit: 0
+      portc.rc3:
+        bit: 0
+      portc.rc4:
+        bit: 0
+      portc.rc5:
+        bit: 0
+      portc.rc6:
+        bit: 0
+      portc.rc7:
+        bit: 0
+      trisa.trisa0:
+        bit: 0
+      trisa.trisa1:
+        bit: 0
+      trisa.trisa2:
+        bit: 0
+      trisa.trisa4:
+        bit: 0
+      trisa.trisa5:
+        bit: 0
+      trisb.trisb4:
+        bit: 0
+      trisb.trisb5:
+        bit: 0
+      trisb.trisb6:
+        bit: 0
+      trisb.trisb7:
+        bit: 0
+      trisc.trisc0:
+        bit: 0
+      trisc.trisc1:
+        bit: 0
+      trisc.trisc2:
+        bit: 0
+      trisc.trisc3:
+        bit: 0
+      trisc.trisc4:
+        bit: 0
+      trisc.trisc5:
+        bit: 0
+      trisc.trisc6:
+        bit: 0
+      trisc.trisc7:
+        bit: 0
+      lata.lata0:
+        bit: 0
+      lata.lata1:
+        bit: 0
+      lata.lata2:
+        bit: 0
+      lata.lata4:
+        bit: 0
+      lata.lata5:
+        bit: 0
+      latb.latb4:
+        bit: 0
+      latb.latb5:
+        bit: 0
+      latb.latb6:
+        bit: 0
+      latb.latb7:
+        bit: 0
+      latc.latc0:
+        bit: 0
+      latc.latc1:
+        bit: 0
+      latc.latc2:
+        bit: 0
+      latc.latc3:
+        bit: 0
+      latc.latc4:
+        bit: 0
+      latc.latc5:
+        bit: 0
+      latc.latc6:
+        bit: 0
+      latc.latc7:
+        bit: 0
+      ansela.ansela0:
+        bit: 0
+      ansela.ansela1:
+        bit: 0
+      ansela.ansela2:
+        bit: 0
+      ansela.ansela4:
+        bit: 0
+      ansela.ansela5:
+        bit: 0
+      ansela.ansa0:
+        bit: 0
+      ansela.ansa1:
+        bit: 0
+      ansela.ansa2:
+        bit: 0
+      ansela.ansa4:
+        bit: 0
+      ansela.ansa5:
+        bit: 0
+      anselb.anselb4:
+        bit: 0
+      anselb.anselb5:
+        bit: 0
+      anselb.anselb6:
+        bit: 0
+      anselb.anselb7:
+        bit: 0
+      anselb.ansb4:
+        bit: 0
+      anselb.ansb5:
+        bit: 0
+      anselb.ansb6:
+        bit: 0
+      anselb.ansb7:
+        bit: 0
+      anselc.anselc0:
+        bit: 0
+      anselc.anselc1:
+        bit: 0
+      anselc.anselc2:
+        bit: 0
+      anselc.anselc3:
+        bit: 0
+      anselc.anselc4:
+        bit: 0
+      anselc.anselc5:
+        bit: 0
+      anselc.anselc6:
+        bit: 0
+      anselc.anselc7:
+        bit: 0
+      anselc.ansc0:
+        bit: 0
+      anselc.ansc1:
+        bit: 0
+      anselc.ansc2:
+        bit: 0
+      anselc.ansc3:
+        bit: 0
+      anselc.ansc4:
+        bit: 0
+      anselc.ansc5:
+        bit: 0
+      anselc.ansc6:
+        bit: 0
+      anselc.ansc7:
+        bit: 0
+  interrupt_controller:
+    registers:
+      pir0:
+        offset: 140
+      pir1:
+        offset: 141
+      pir2:
+        offset: 142
+      pir3:
+        offset: 143
+      pir4:
+        offset: 144
+      pir5:
+        offset: 145
+      pir6:
+        offset: 146
+      pir7:
+        offset: 147
+      pie0:
+        offset: 150
+      pie1:
+        offset: 151
+      pie2:
+        offset: 152
+      pie3:
+        offset: 153
+      pie4:
+        offset: 154
+      pie5:
+        offset: 155
+      pie6:
+        offset: 156
+      pie7:
+        offset: 157
+    fields:
+      pir0.intf:
+        bit: 0
+      pir0.iocif:
+        bit: 0
+      pir0.tmr0if:
+        bit: 0
+      pir1.nvmif:
+        bit: 0
+      pir1.crcif:
+        bit: 0
+      pir1.scanif:
+        bit: 0
+      pir1.cswif:
+        bit: 0
+      pir1.osfif:
+        bit: 0
+      pir1.tmr1if:
+        bit: 0
+      pir1.tmr1gif:
+        bit: 0
+      pir2.tmr2if:
+        bit: 0
+      pir2.ccp1if:
+        bit: 0
+      pir2.ccp2if:
+        bit: 0
+      pir4.clc1if:
+        bit: 0
+      pir4.clc2if:
+        bit: 0
+      pir4.clc3if:
+        bit: 0
+      pir4.clc4if:
+        bit: 0
+      pir4.tx1if:
+        bit: 0
+      pir4.rc1if:
+        bit: 0
+      pir5.ssp1if:
+        bit: 0
+      pir5.bcl1if:
+        bit: 0
+      pir5.cm1if:
+        bit: 0
+      pir5.cm2if:
+        bit: 0
+      pir6.adif:
+        bit: 0
+      pir6.adtif:
+        bit: 0
+      pir7.clb1if0:
+        bit: 0
+      pir7.clb1if1:
+        bit: 0
+      pir7.clb1if2:
+        bit: 0
+      pir7.clb1if3:
+        bit: 0
+      pie0.inte:
+        bit: 0
+      pie0.iocie:
+        bit: 0
+      pie0.tmr0ie:
+        bit: 0
+      pie1.nvmie:
+        bit: 0
+      pie1.crcie:
+        bit: 0
+      pie1.scanie:
+        bit: 0
+      pie1.cswie:
+        bit: 0
+      pie1.osfie:
+        bit: 0
+      pie1.tmr1ie:
+        bit: 0
+      pie1.tmr1gie:
+        bit: 0
+      pie2.tmr2ie:
+        bit: 0
+      pie2.ccp1ie:
+        bit: 0
+      pie2.ccp2ie:
+        bit: 0
+      pie4.clc1ie:
+        bit: 0
+      pie4.clc2ie:
+        bit: 0
+      pie4.clc3ie:
+        bit: 0
+      pie4.clc4ie:
+        bit: 0
+      pie4.tx1ie:
+        bit: 0
+      pie4.rc1ie:
+        bit: 0
+      pie5.ssp1ie:
+        bit: 0
+      pie5.bcl1ie:
+        bit: 0
+      pie5.cm1ie:
+        bit: 0
+      pie5.cm2ie:
+        bit: 0
+      pie6.adie:
+        bit: 0
+      pie6.adtie:
+        bit: 0
+      pie7.clb1ie0:
+        bit: 0
+      pie7.clb1ie1:
+        bit: 0
+      pie7.clb1ie2:
+        bit: 0
+      pie7.clb1ie3:
+        bit: 0
+  misc:
+    registers:
+      pmd0:
+        offset: '0x10C'
+      pmd1:
+        offset: '0x10D'
+      pmd2:
+        offset: '0x10E'
+      pmd3:
+        offset: '0x10F'
+      pmd4:
+        offset: '0x110'
+      pmd5:
+        offset: '0x111'
+      wdtpsl:
+        offset: '0x18E'
+      wdtpsh:
+        offset: '0x18F'
+      wdttmr:
+        offset: '0x190'
+      borcon:
+        offset: '0x191'
+      pcon0:
+        offset: '0x192'
+      pcon1:
+        offset: '0x193'
+      fvrcon:
+        offset: '0x20C'
+      cpcon:
+        offset: '0x20D'
+      cpudoze:
+        offset: '0x28C'
+      oscen:
+        offset: '0x291'
+      oscfrq:
+        offset: '0x293'
+      t1gcon:
+        offset: '0x30F'
+      t1gate:
+        offset: '0x310'
+      t1clk:
+        offset: '0x311'
+      t2tmr:
+        offset: '0x38C'
+      t2pr:
+        offset: '0x38D'
+      t2hlt:
+        offset: '0x38F'
+      t2clkcon:
+        offset: '0x390'
+      t2rst:
+        offset: '0x391'
+      clbcon:
+        offset: '0x50C'
+      clbswinu:
+        offset: '0x50D'
+      clbswinh:
+        offset: '0x50E'
+      clbswinm:
+        offset: '0x50F'
+      clbswinl:
+        offset: '0x510'
+      clbclk:
+        offset: '0x515'
+      clbppscon4:
+        offset: '0x516'
+      clbppscon3:
+        offset: '0x517'
+      clbppscon2:
+        offset: '0x518'
+      clbppscon1:
+        offset: '0x519'
+      clcncon:
+        offset: '0x68C'
+      clcnpol:
+        offset: '0x68D'
+      clcnsel0:
+        offset: '0x68E'
+      clcnsel1:
+        offset: '0x68F'
+      clcnsel2:
+        offset: '0x690'
+      clcnsel3:
+        offset: '0x691'
+      clcngls0:
+        offset: '0x692'
+      clcngls1:
+        offset: '0x693'
+      clcngls2:
+        offset: '0x694'
+      clcngls3:
+        offset: '0x695'
+      clcselect:
+        offset: '0x696'
+      clcdata:
+        offset: '0x697'
+      rc1reg:
+        offset: '0x70C'
+      tx1reg:
+        offset: '0x70D'
+      sp1brgl:
+        offset: '0x70E'
+      sp1brgh:
+        offset: '0x70F'
+      baud1con:
+        offset: '0x712'
+      cm1nch:
+        offset: '0x80E'
+      cm1pch:
+        offset: '0x80F'
+      cm2nch:
+        offset: '0x812'
+      cm2pch:
+        offset: '0x813'
+      cmout:
+        offset: '0x81F'
+      pwm1dcl:
+        offset: '0x820'
+      pwm1dch:
+        offset: '0x821'
+      pwm1con:
+        offset: '0x822'
+      pwm2dcl:
+        offset: '0x823'
+      pwm2dch:
+        offset: '0x824'
+      pwm2con:
+        offset: '0x825'
+      pwmtmrs0:
+        offset: '0x82F'
+      dac1con:
+        offset: '0x88C'
+      dac1datl:
+        offset: '0x88D'
+      nvmadrl:
+        offset: '0x1C8C'
+      nvmadrh:
+        offset: '0x1C8D'
+      nvmdatl:
+        offset: '0x1C8E'
+      nvmdath:
+        offset: '0x1C8F'
+      nvmcon1:
+        offset: '0x1C90'
+      nvmcon2:
+        offset: '0x1C91'
+      scancon0:
+        offset: '0x1C92'
+      scanladrl:
+        offset: '0x1C93'
+      scanladrh:
+        offset: '0x1C94'
+      scanhadrl:
+        offset: '0x1C96'
+      scanhadrh:
+        offset: '0x1C97'
+      scandps:
+        offset: '0x1C99'
+      scantrig:
+        offset: '0x1C9A'
+      crcdatal:
+        offset: '0x1C9D'
+      crcdatah:
+        offset: '0x1C9E'
+      crcdatau:
+        offset: '0x1C9F'
+      crcdatat:
+        offset: '0x1CA0'
+      crcoutl:
+        offset: '0x1CA1'
+      crcshftl:
+        offset: '0x1CA1'
+      crcxorl:
+        offset: '0x1CA1'
+      crcouth:
+        offset: '0x1CA2'
+      crcshfth:
+        offset: '0x1CA2'
+      crcxorh:
+        offset: '0x1CA2'
+      crcoutu:
+        offset: '0x1CA3'
+      crcshftu:
+        offset: '0x1CA3'
+      crcxoru:
+        offset: '0x1CA3'
+      crcoutt:
+        offset: '0x1CA4'
+      crcshftt:
+        offset: '0x1CA4'
+      crcxort:
+        offset: '0x1CA4'
+      crccon0:
+        offset: '0x1CA5'
+      crccon1:
+        offset: '0x1CA6'
+      crccon2:
+        offset: '0x1CA7'
+      adlthl:
+        offset: '0x1D0C'
+      adlthh:
+        offset: '0x1D0D'
+      aduthl:
+        offset: '0x1D0E'
+      aduthh:
+        offset: '0x1D0F'
+      aderrl:
+        offset: '0x1D10'
+      aderrh:
+        offset: '0x1D11'
+      adstptl:
+        offset: '0x1D12'
+      adstpth:
+        offset: '0x1D13'
+      adfltrl:
+        offset: '0x1D14'
+      adfltrh:
+        offset: '0x1D15'
+      adaccl:
+        offset: '0x1D16'
+      adacch:
+        offset: '0x1D17'
+      adaccu:
+        offset: '0x1D18'
+      adcnt:
+        offset: '0x1D19'
+      adrpt:
+        offset: '0x1D1A'
+      adprevl:
+        offset: '0x1D1B'
+      adprevh:
+        offset: '0x1D1C'
+      adpch:
+        offset: '0x1D1F'
+      adacql:
+        offset: '0x1D21'
+      adacqh:
+        offset: '0x1D22'
+      adprel:
+        offset: '0x1D24'
+      adpreh:
+        offset: '0x1D25'
+      adstat:
+        offset: '0x1D2A'
+      adref:
+        offset: '0x1D2B'
+      adact:
+        offset: '0x1D2C'
+      adcg1a:
+        offset: '0x1D2E'
+      adcg1b:
+        offset: '0x1D2F'
+      adcg1c:
+        offset: '0x1D30'
+      ra0pps:
+        offset: '0x1D8C'
+      ra1pps:
+        offset: '0x1D8D'
+      ra2pps:
+        offset: '0x1D8E'
+      ra4pps:
+        offset: '0x1D90'
+      ra5pps:
+        offset: '0x1D91'
+      rb4pps:
+        offset: '0x1D98'
+      rb5pps:
+        offset: '0x1D99'
+      rb6pps:
+        offset: '0x1D9A'
+      rb7pps:
+        offset: '0x1D9B'
+      rc0pps:
+        offset: '0x1D9C'
+      rc1pps:
+        offset: '0x1D9D'
+      rc3pps:
+        offset: '0x1D9F'
+      rc4pps:
+        offset: '0x1DA0'
+      rc5pps:
+        offset: '0x1DA1'
+      rc6pps:
+        offset: '0x1DA2'
+      rc7pps:
+        offset: '0x1DA3'
+      ppslock:
+        offset: '0x1E0C'
+      intpps:
+        offset: '0x1E0D'
+      t0ckipps:
+        offset: '0x1E0E'
+      t1ckipps:
+        offset: '0x1E0F'
+      t1gpps:
+        offset: '0x1E10'
+      t2inpps:
+        offset: '0x1E19'
+      clcin0pps:
+        offset: '0x1E3D'
+      clcin1pps:
+        offset: '0x1E3E'
+      clcin2pps:
+        offset: '0x1E3F'
+      clcin3pps:
+        offset: '0x1E40'
+      ck1pps:
+        offset: '0x1E41'
+      rx1pps:
+        offset: '0x1E42'
+      adactpps:
+        offset: '0x1E50'
+      clbin0pps:
+        offset: '0x1E57'
+      clbin1pps:
+        offset: '0x1E58'
+      clbin2pps:
+        offset: '0x1E59'
+      clbin3pps:
+        offset: '0x1E5A'
+      wpua:
+        offset: '0x1E8D'
+      odcona:
+        offset: '0x1E8E'
+      slrcona:
+        offset: '0x1E8F'
+      inlvla:
+        offset: '0x1E90'
+      iocap:
+        offset: '0x1E91'
+      iocan:
+        offset: '0x1E92'
+      iocaf:
+        offset: '0x1E93'
+      wpub:
+        offset: '0x1E97'
+      odconb:
+        offset: '0x1E98'
+      slrconb:
+        offset: '0x1E99'
+      inlvlb:
+        offset: '0x1E9A'
+      iocbp:
+        offset: '0x1E9B'
+      iocbn:
+        offset: '0x1E9C'
+      iocbf:
+        offset: '0x1E9D'
+      wpuc:
+        offset: '0x1EA1'
+      odconc:
+        offset: '0x1EA2'
+      slrconc:
+        offset: '0x1EA3'
+      inlvlc:
+        offset: '0x1EA4'
+      ioccp:
+        offset: '0x1EA5'
+      ioccn:
+        offset: '0x1EA6'
+      ioccf:
+        offset: '0x1EA7'
+      rb4i2c:
+        offset: '0x1EE5'
+      rb6i2c:
+        offset: '0x1EE7'
+      umtoap:
+        offset: '0x1F0C'
+      umtoal:
+        offset: '0x1F0D'
+      umtoah:
+        offset: '0x1F0E'
+      status_shad:
+        offset: '0x1FE4'
+      wreg_shad:
+        offset: '0x1FE5'
+      bsr_shad:
+        offset: '0x1FE6'
+      pclath_shad:
+        offset: '0x1FE7'
+      fsr0l_shad:
+        offset: '0x1FE8'
+      fsr0h_shad:
+        offset: '0x1FE9'
+      fsr1l_shad:
+        offset: '0x1FEA'
+      fsr1h_shad:
+        offset: '0x1FEB'
+    fields:
+      pmd0.nvmmd:
+        bit: 0
+      pmd0.crcmd:
+        bit: 0
+      pmd0.scanmd:
+        bit: 0
+      pmd0.syscmd:
+        bit: 0
+      pmd0.iocmd:
+        bit: 0
+      pmd0.tmr0md:
+        bit: 0
+      pmd1.tmr1md:
+        bit: 0
+      pmd1.tmr2md:
+        bit: 0
+      pmd1.ccp1md:
+        bit: 0
+      pmd1.ccp2md:
+        bit: 0
+      pmd2.clc1md:
+        bit: 0
+      pmd2.clc2md:
+        bit: 0
+      pmd2.clc3md:
+        bit: 0
+      pmd3.clc4md:
+        bit: 0
+      pmd3.uart1md:
+        bit: 0
+      pmd3.mssp1md:
+        bit: 0
+      pmd3.fvrmd:
+        bit: 0
+      pmd3.cm1md:
+        bit: 0
+      pmd3.cm2md:
+        bit: 0
+      pmd4.adcmd:
+        bit: 0
+      pmd4.dac1md:
+        bit: 0
+      pmd4.clbmd:
+        bit: 0
+      pmd5.pwm1md:
+        bit: 0
+      pmd5.pwm2md:
+        bit: 0
+      wdtpsl.pscntl:
+        bits:
+        - 0
+        - 7
+      wdtpsl.wdtpscntl:
+        bits:
+        - 0
+        - 7
+      wdtpsl.pscnt0:
+        bit: 0
+      wdtpsl.pscnt1:
+        bit: 0
+      wdtpsl.pscnt2:
+        bit: 0
+      wdtpsl.pscnt3:
+        bit: 0
+      wdtpsl.pscnt4:
+        bit: 0
+      wdtpsl.pscnt5:
+        bit: 0
+      wdtpsl.pscnt6:
+        bit: 0
+      wdtpsl.pscnt7:
+        bit: 0
+      wdtpsh.pscnth:
+        bits:
+        - 0
+        - 7
+      wdtpsh.wdtpscnth:
+        bits:
+        - 0
+        - 7
+      wdtpsh.pscnt8:
+        bit: 0
+      wdtpsh.pscnt9:
+        bit: 0
+      wdtpsh.pscnt10:
+        bit: 0
+      wdtpsh.pscnt11:
+        bit: 0
+      wdtpsh.pscnt12:
+        bit: 0
+      wdtpsh.pscnt13:
+        bit: 0
+      wdtpsh.pscnt14:
+        bit: 0
+      wdtpsh.pscnt15:
+        bit: 0
+      wdttmr.pscnt16:
+        bit: 0
+      wdttmr.pscnt17:
+        bit: 0
+      wdttmr.state:
+        bit: 0
+      wdttmr.tmr:
+        bits:
+        - 0
+        - 4
+      wdttmr.wdtpscnt16:
+        bit: 0
+      wdttmr.wdtpscnt17:
+        bit: 0
+      wdttmr.wdtstate:
+        bit: 0
+      wdttmr.wdttmr0:
+        bit: 0
+      wdttmr.wdttmr1:
+        bit: 0
+      wdttmr.wdttmr2:
+        bit: 0
+      wdttmr.wdttmr3:
+        bit: 0
+      wdttmr.wdttmr4:
+        bit: 0
+      wdttmr.wdttmr:
+        bits:
+        - 0
+        - 4
+      borcon.borrdy:
+        bit: 0
+      borcon.sboren:
+        bit: 0
+      pcon0.nbor:
+        bit: 0
+      pcon0.npor:
+        bit: 0
+      pcon0.nri:
+        bit: 0
+      pcon0.nrmclr:
+        bit: 0
+      pcon0.nrwdt:
+        bit: 0
+      pcon0.nwdtwv:
+        bit: 0
+      pcon0.stkunf:
+        bit: 0
+      pcon0.stkovf:
+        bit: 0
+      pcon1.nmemv:
+        bit: 0
+      fvrcon.adfvr:
+        bits:
+        - 0
+        - 1
+      fvrcon.cdafvr:
+        bits:
+        - 0
+        - 1
+      fvrcon.tsrng:
+        bit: 0
+      fvrcon.tsen:
+        bit: 0
+      fvrcon.rdy:
+        bit: 0
+      fvrcon.en:
+        bit: 0
+      fvrcon.adfvr0:
+        bit: 0
+      fvrcon.adfvr1:
+        bit: 0
+      fvrcon.cdafvr0:
+        bit: 0
+      fvrcon.cdafvr1:
+        bit: 0
+      fvrcon.fvrrdy:
+        bit: 0
+      fvrcon.fvren:
+        bit: 0
+      cpcon.cprdy:
+        bit: 0
+      cpcon.cpt:
+        bit: 0
+      cpcon.cpreq:
+        bit: 0
+      cpcon.cpos:
+        bit: 0
+      cpcon.cpon:
+        bits:
+        - 0
+        - 1
+      cpudoze.doze:
+        bits:
+        - 0
+        - 2
+      cpudoze.doe:
+        bit: 0
+      cpudoze.roi:
+        bit: 0
+      cpudoze.dozen:
+        bit: 0
+      cpudoze.idlen:
+        bit: 0
+      oscen.pllen:
+        bit: 0
+      oscen.adoen:
+        bit: 0
+      oscen.lfoen:
+        bit: 0
+      oscen.mfoen:
+        bit: 0
+      oscen.hfoen:
+        bit: 0
+      oscen.extoen:
+        bit: 0
+      oscfrq.frq:
+        bits:
+        - 0
+        - 2
+      oscfrq.frq0:
+        bit: 0
+      oscfrq.frq1:
+        bit: 0
+      oscfrq.frq2:
+        bit: 0
+      t1gcon.gval:
+        bit: 0
+      t1gcon.ggo_ndone:
+        bit: 0
+      t1gcon.gspm:
+        bit: 0
+      t1gcon.gtm:
+        bit: 0
+      t1gcon.gpol:
+        bit: 0
+      t1gcon.ge:
+        bit: 0
+      t1gcon.t1gval:
+        bit: 0
+      t1gcon.t1ggo_ndone:
+        bit: 0
+      t1gcon.t1gspm:
+        bit: 0
+      t1gcon.t1gtm:
+        bit: 0
+      t1gcon.t1gpol:
+        bit: 0
+      t1gcon.t1ge:
+        bit: 0
+      t1gcon.t1ggo:
+        bit: 0
+      t1gate.gss:
+        bits:
+        - 0
+        - 4
+      t1gate.gss0:
+        bit: 0
+      t1gate.gss1:
+        bit: 0
+      t1gate.gss2:
+        bit: 0
+      t1gate.gss3:
+        bit: 0
+      t1gate.gss4:
+        bit: 0
+      t1gate.t1gss0:
+        bit: 0
+      t1gate.t1gss1:
+        bit: 0
+      t1gate.t1gss2:
+        bit: 0
+      t1gate.t1gss3:
+        bit: 0
+      t1gate.t1gss4:
+        bit: 0
+      t1clk.cs:
+        bits:
+        - 0
+        - 7
+      t1clk.t1cs0:
+        bit: 0
+      t1clk.t1cs1:
+        bit: 0
+      t1clk.t1cs2:
+        bit: 0
+      t1clk.t1cs3:
+        bit: 0
+      t1clk.t1cs4:
+        bit: 0
+      t1clk.cs0:
+        bit: 0
+      t1clk.cs1:
+        bit: 0
+      t1clk.cs2:
+        bit: 0
+      t1clk.cs3:
+        bit: 0
+      t1clk.cs4:
+        bit: 0
+      t2tmr.t2tmr:
+        bits:
+        - 0
+        - 7
+      t2tmr.tmr2:
+        bits:
+        - 0
+        - 7
+      t2pr.t2pr:
+        bits:
+        - 0
+        - 7
+      t2pr.pr2:
+        bits:
+        - 0
+        - 7
+      t2hlt.mode:
+        bits:
+        - 0
+        - 4
+      t2hlt.csync:
+        bit: 0
+      t2hlt.cpol:
+        bit: 0
+      t2hlt.psync:
+        bit: 0
+      t2hlt.mode0:
+        bit: 0
+      t2hlt.mode1:
+        bit: 0
+      t2hlt.mode2:
+        bit: 0
+      t2hlt.mode3:
+        bit: 0
+      t2hlt.mode4:
+        bit: 0
+      t2hlt.cksync:
+        bit: 0
+      t2hlt.ckpol:
+        bit: 0
+      t2hlt.t2mode:
+        bits:
+        - 0
+        - 4
+      t2hlt.t2csync:
+        bit: 0
+      t2hlt.t2cpol:
+        bit: 0
+      t2hlt.t2psync:
+        bit: 0
+      t2hlt.t2mode0:
+        bit: 0
+      t2hlt.t2mode1:
+        bit: 0
+      t2hlt.t2mode2:
+        bit: 0
+      t2hlt.t2mode3:
+        bit: 0
+      t2hlt.t2mode4:
+        bit: 0
+      t2clkcon.cs:
+        bits:
+        - 0
+        - 7
+      t2clkcon.cs0:
+        bit: 0
+      t2clkcon.cs1:
+        bit: 0
+      t2clkcon.cs2:
+        bit: 0
+      t2clkcon.cs3:
+        bit: 0
+      t2clkcon.cs4:
+        bit: 0
+      t2clkcon.t2cs:
+        bits:
+        - 0
+        - 7
+      t2clkcon.t2cs0:
+        bit: 0
+      t2clkcon.t2cs1:
+        bit: 0
+      t2clkcon.t2cs2:
+        bit: 0
+      t2clkcon.t2cs3:
+        bit: 0
+      t2clkcon.t2cs4:
+        bit: 0
+      t2rst.rsel:
+        bits:
+        - 0
+        - 7
+      t2rst.rsel0:
+        bit: 0
+      t2rst.rsel1:
+        bit: 0
+      t2rst.rsel2:
+        bit: 0
+      t2rst.rsel3:
+        bit: 0
+      t2rst.rsel4:
+        bit: 0
+      t2rst.t2rsel:
+        bits:
+        - 0
+        - 7
+      t2rst.t2rsel0:
+        bit: 0
+      t2rst.t2rsel1:
+        bit: 0
+      t2rst.t2rsel2:
+        bit: 0
+      t2rst.t2rsel3:
+        bit: 0
+      t2rst.t2rsel4:
+        bit: 0
+      clbcon.busy:
+        bit: 0
+      clbcon.en:
+        bit: 0
+      clbcon.clben:
+        bit: 0
+      clbswinu.clbswinu:
+        bits:
+        - 0
+        - 7
+      clbswinu.clbswin24:
+        bit: 0
+      clbswinu.clbswin25:
+        bit: 0
+      clbswinu.clbswin26:
+        bit: 0
+      clbswinu.clbswin27:
+        bit: 0
+      clbswinu.clbswin28:
+        bit: 0
+      clbswinu.clbswin29:
+        bit: 0
+      clbswinu.clbswin30:
+        bit: 0
+      clbswinu.clbswin31:
+        bit: 0
+      clbswinh.clbswinh:
+        bits:
+        - 0
+        - 7
+      clbswinh.clbswin16:
+        bit: 0
+      clbswinh.clbswin17:
+        bit: 0
+      clbswinh.clbswin18:
+        bit: 0
+      clbswinh.clbswin19:
+        bit: 0
+      clbswinh.clbswin20:
+        bit: 0
+      clbswinh.clbswin21:
+        bit: 0
+      clbswinh.clbswin22:
+        bit: 0
+      clbswinh.clbswin23:
+        bit: 0
+      clbswinm.clbswinm:
+        bits:
+        - 0
+        - 7
+      clbswinm.clbswin8:
+        bit: 0
+      clbswinm.clbswin9:
+        bit: 0
+      clbswinm.clbswin10:
+        bit: 0
+      clbswinm.clbswin11:
+        bit: 0
+      clbswinm.clbswin12:
+        bit: 0
+      clbswinm.clbswin13:
+        bit: 0
+      clbswinm.clbswin14:
+        bit: 0
+      clbswinm.clbswin15:
+        bit: 0
+      clbswinl.clbswinl:
+        bits:
+        - 0
+        - 7
+      clbswinl.clbswin0:
+        bit: 0
+      clbswinl.clbswin1:
+        bit: 0
+      clbswinl.clbswin2:
+        bit: 0
+      clbswinl.clbswin3:
+        bit: 0
+      clbswinl.clbswin4:
+        bit: 0
+      clbswinl.clbswin5:
+        bit: 0
+      clbswinl.clbswin6:
+        bit: 0
+      clbswinl.clbswin7:
+        bit: 0
+      clbclk.clk:
+        bits:
+        - 0
+        - 3
+      clbclk.clk0:
+        bit: 0
+      clbclk.clk1:
+        bit: 0
+      clbclk.clk2:
+        bit: 0
+      clbclk.clk3:
+        bit: 0
+      clbppscon4.oesel6:
+        bits:
+        - 0
+        - 3
+      clbppscon4.oesel7:
+        bits:
+        - 0
+        - 3
+      clbppscon3.oesel4:
+        bits:
+        - 0
+        - 3
+      clbppscon3.oesel5:
+        bits:
+        - 0
+        - 3
+      clbppscon2.oesel2:
+        bits:
+        - 0
+        - 3
+      clbppscon2.oesel3:
+        bits:
+        - 0
+        - 3
+      clbppscon1.oesel0:
+        bits:
+        - 0
+        - 3
+      clbppscon1.oesel1:
+        bits:
+        - 0
+        - 3
+      clcncon.mode:
+        bits:
+        - 0
+        - 2
+      clcncon.intn:
+        bit: 0
+      clcncon.intp:
+        bit: 0
+      clcncon.out:
+        bit: 0
+      clcncon.en:
+        bit: 0
+      clcncon.mode0:
+        bit: 0
+      clcncon.mode1:
+        bit: 0
+      clcncon.mode2:
+        bit: 0
+      clcnpol.g1pol:
+        bit: 0
+      clcnpol.g2pol:
+        bit: 0
+      clcnpol.g3pol:
+        bit: 0
+      clcnpol.g4pol:
+        bit: 0
+      clcnpol.pol:
+        bit: 0
+      clcnsel0.d1s:
+        bits:
+        - 0
+        - 7
+      clcnsel0.d1s0:
+        bit: 0
+      clcnsel0.d1s1:
+        bit: 0
+      clcnsel0.d1s2:
+        bit: 0
+      clcnsel0.d1s3:
+        bit: 0
+      clcnsel0.d1s4:
+        bit: 0
+      clcnsel0.d1s5:
+        bit: 0
+      clcnsel0.d1s6:
+        bit: 0
+      clcnsel1.d2s:
+        bits:
+        - 0
+        - 7
+      clcnsel1.d2s0:
+        bit: 0
+      clcnsel1.d2s1:
+        bit: 0
+      clcnsel1.d2s2:
+        bit: 0
+      clcnsel1.d2s3:
+        bit: 0
+      clcnsel1.d2s4:
+        bit: 0
+      clcnsel1.d2s5:
+        bit: 0
+      clcnsel1.d2s6:
+        bit: 0
+      clcnsel2.d3s:
+        bits:
+        - 0
+        - 7
+      clcnsel2.d3s0:
+        bit: 0
+      clcnsel2.d3s1:
+        bit: 0
+      clcnsel2.d3s2:
+        bit: 0
+      clcnsel2.d3s3:
+        bit: 0
+      clcnsel2.d3s4:
+        bit: 0
+      clcnsel2.d3s5:
+        bit: 0
+      clcnsel2.d3s6:
+        bit: 0
+      clcnsel3.d4s:
+        bits:
+        - 0
+        - 7
+      clcnsel3.d4s0:
+        bit: 0
+      clcnsel3.d4s1:
+        bit: 0
+      clcnsel3.d4s2:
+        bit: 0
+      clcnsel3.d4s3:
+        bit: 0
+      clcnsel3.d4s4:
+        bit: 0
+      clcnsel3.d4s5:
+        bit: 0
+      clcnsel3.d4s6:
+        bit: 0
+      clcngls0.g1d1n:
+        bit: 0
+      clcngls0.g1d1t:
+        bit: 0
+      clcngls0.g1d2n:
+        bit: 0
+      clcngls0.g1d2t:
+        bit: 0
+      clcngls0.g1d3n:
+        bit: 0
+      clcngls0.g1d3t:
+        bit: 0
+      clcngls0.g1d4n:
+        bit: 0
+      clcngls0.g1d4t:
+        bit: 0
+      clcngls1.g2d1n:
+        bit: 0
+      clcngls1.g2d1t:
+        bit: 0
+      clcngls1.g2d2n:
+        bit: 0
+      clcngls1.g2d2t:
+        bit: 0
+      clcngls1.g2d3n:
+        bit: 0
+      clcngls1.g2d3t:
+        bit: 0
+      clcngls1.g2d4n:
+        bit: 0
+      clcngls1.g2d4t:
+        bit: 0
+      clcngls2.g3d1n:
+        bit: 0
+      clcngls2.g3d1t:
+        bit: 0
+      clcngls2.g3d2n:
+        bit: 0
+      clcngls2.g3d2t:
+        bit: 0
+      clcngls2.g3d3n:
+        bit: 0
+      clcngls2.g3d3t:
+        bit: 0
+      clcngls2.g3d4n:
+        bit: 0
+      clcngls2.g3d4t:
+        bit: 0
+      clcngls3.g4d1n:
+        bit: 0
+      clcngls3.g4d1t:
+        bit: 0
+      clcngls3.g4d2n:
+        bit: 0
+      clcngls3.g4d2t:
+        bit: 0
+      clcngls3.g4d3n:
+        bit: 0
+      clcngls3.g4d3t:
+        bit: 0
+      clcngls3.g4d4n:
+        bit: 0
+      clcngls3.g4d4t:
+        bit: 0
+      clcselect.slct:
+        bits:
+        - 0
+        - 7
+      clcselect.slct0:
+        bit: 0
+      clcselect.slct1:
+        bit: 0
+      clcdata.clc1out:
+        bit: 0
+      clcdata.clc2out:
+        bit: 0
+      clcdata.clc3out:
+        bit: 0
+      clcdata.clc4out:
+        bit: 0
+      rc1reg.rcreg:
+        bits:
+        - 0
+        - 7
+      tx1reg.txreg:
+        bits:
+        - 0
+        - 7
+      sp1brgl.spbrgl:
+        bits:
+        - 0
+        - 7
+      sp1brgh.spbrgh:
+        bits:
+        - 0
+        - 7
+      baud1con.abden:
+        bit: 0
+      baud1con.wue:
+        bit: 0
+      baud1con.brg16:
+        bit: 0
+      baud1con.sckp:
+        bit: 0
+      baud1con.rcidl:
+        bit: 0
+      baud1con.abdovf:
+        bit: 0
+      cm1nch.nch:
+        bits:
+        - 0
+        - 2
+      cm1nch.nch0:
+        bit: 0
+      cm1nch.nch1:
+        bit: 0
+      cm1nch.nch2:
+        bit: 0
+      cm1nch.c1nch0:
+        bit: 0
+      cm1nch.c1nch1:
+        bit: 0
+      cm1nch.c1nch2:
+        bit: 0
+      cm1pch.pch:
+        bits:
+        - 0
+        - 2
+      cm1pch.pch0:
+        bit: 0
+      cm1pch.pch1:
+        bit: 0
+      cm1pch.pch2:
+        bit: 0
+      cm1pch.c1pch0:
+        bit: 0
+      cm1pch.c1pch1:
+        bit: 0
+      cm1pch.c1pch2:
+        bit: 0
+      cm2nch.nch:
+        bits:
+        - 0
+        - 2
+      cm2nch.nch0:
+        bit: 0
+      cm2nch.nch1:
+        bit: 0
+      cm2nch.nch2:
+        bit: 0
+      cm2nch.c2nch0:
+        bit: 0
+      cm2nch.c2nch1:
+        bit: 0
+      cm2nch.c2nch2:
+        bit: 0
+      cm2pch.pch:
+        bits:
+        - 0
+        - 2
+      cm2pch.pch0:
+        bit: 0
+      cm2pch.pch1:
+        bit: 0
+      cm2pch.pch2:
+        bit: 0
+      cm2pch.c2pch0:
+        bit: 0
+      cm2pch.c2pch1:
+        bit: 0
+      cm2pch.c2pch2:
+        bit: 0
+      cmout.c1out:
+        bit: 0
+      cmout.c2out:
+        bit: 0
+      pwm1dcl.dcl:
+        bits:
+        - 0
+        - 1
+      pwm1dch.dch:
+        bits:
+        - 0
+        - 7
+      pwm1con.pol:
+        bit: 0
+      pwm1con.out:
+        bit: 0
+      pwm1con.en:
+        bit: 0
+      pwm1con.pwm1pol:
+        bit: 0
+      pwm1con.pwm1out:
+        bit: 0
+      pwm1con.pwm1en:
+        bit: 0
+      pwm2dcl.dcl:
+        bits:
+        - 0
+        - 1
+      pwm2dch.dch:
+        bits:
+        - 0
+        - 7
+      pwm2con.pol:
+        bit: 0
+      pwm2con.out:
+        bit: 0
+      pwm2con.en:
+        bit: 0
+      pwm2con.pwm2pol:
+        bit: 0
+      pwm2con.pwm2out:
+        bit: 0
+      pwm2con.pwm2en:
+        bit: 0
+      pwmtmrs0.p1tsel:
+        bits:
+        - 0
+        - 1
+      pwmtmrs0.p2tsel:
+        bits:
+        - 0
+        - 1
+      dac1con.pss:
+        bits:
+        - 0
+        - 1
+      dac1con.oe:
+        bits:
+        - 0
+        - 1
+      dac1con.refrng:
+        bit: 0
+      dac1con.en:
+        bit: 0
+      dac1con.pss0:
+        bit: 0
+      dac1con.pss1:
+        bit: 0
+      dac1con.oe0:
+        bit: 0
+      dac1con.oe1:
+        bit: 0
+      dac1datl.dac1r:
+        bits:
+        - 0
+        - 7
+      dac1datl.dat:
+        bits:
+        - 0
+        - 7
+      nvmadrl.nvmadr:
+        bits:
+        - 0
+        - 7
+      nvmadrl.nvmadr0:
+        bit: 0
+      nvmadrl.nvmadr1:
+        bit: 0
+      nvmadrl.nvmadr2:
+        bit: 0
+      nvmadrl.nvmadr3:
+        bit: 0
+      nvmadrl.nvmadr4:
+        bit: 0
+      nvmadrl.nvmadr5:
+        bit: 0
+      nvmadrl.nvmadr6:
+        bit: 0
+      nvmadrl.nvmadr7:
+        bit: 0
+      nvmadrh.nvmadr:
+        bits:
+        - 0
+        - 6
+      nvmadrh.nvmadr8:
+        bit: 0
+      nvmadrh.nvmadr9:
+        bit: 0
+      nvmadrh.nvmadr10:
+        bit: 0
+      nvmadrh.nvmadr11:
+        bit: 0
+      nvmadrh.nvmadr12:
+        bit: 0
+      nvmadrh.nvmadr13:
+        bit: 0
+      nvmadrh.nvmadr14:
+        bit: 0
+      nvmdatl.nvmdat:
+        bits:
+        - 0
+        - 7
+      nvmdatl.nvmdat0:
+        bit: 0
+      nvmdatl.nvmdat1:
+        bit: 0
+      nvmdatl.nvmdat2:
+        bit: 0
+      nvmdatl.nvmdat3:
+        bit: 0
+      nvmdatl.nvmdat4:
+        bit: 0
+      nvmdatl.nvmdat5:
+        bit: 0
+      nvmdatl.nvmdat6:
+        bit: 0
+      nvmdatl.nvmdat7:
+        bit: 0
+      nvmdath.nvmdat:
+        bits:
+        - 0
+        - 5
+      nvmdath.nvmdat8:
+        bit: 0
+      nvmdath.nvmdat9:
+        bit: 0
+      nvmdath.nvmdat10:
+        bit: 0
+      nvmdath.nvmdat11:
+        bit: 0
+      nvmdath.nvmdat12:
+        bit: 0
+      nvmdath.nvmdat13:
+        bit: 0
+      nvmcon1.rd:
+        bit: 0
+      nvmcon1.wr:
+        bit: 0
+      nvmcon1.wren:
+        bit: 0
+      nvmcon1.wrerr:
+        bit: 0
+      nvmcon1.free:
+        bit: 0
+      nvmcon1.lwlo:
+        bit: 0
+      nvmcon1.nvmregs:
+        bit: 0
+      nvmcon2.nvmcon2:
+        bits:
+        - 0
+        - 7
+      scancon0.md:
+        bits:
+        - 0
+        - 1
+      scancon0.intm:
+        bit: 0
+      scancon0.dabort:
+        bit: 0
+      scancon0.busy:
+        bit: 0
+      scancon0.sgo:
+        bit: 0
+      scancon0.en:
+        bit: 0
+      scancon0.md0:
+        bit: 0
+      scancon0.md1:
+        bit: 0
+      scanladrl.scanladrl:
+        bits:
+        - 0
+        - 7
+      scanladrh.scanladrh:
+        bits:
+        - 0
+        - 7
+      scanhadrl.scanhadrl:
+        bits:
+        - 0
+        - 7
+      scanhadrh.scanhadrh:
+        bits:
+        - 0
+        - 7
+      scandps.dps:
+        bit: 0
+      scantrig.tsel:
+        bits:
+        - 0
+        - 3
+      crcdatal.data:
+        bits:
+        - 0
+        - 7
+      crcdatal.data0:
+        bit: 0
+      crcdatal.data1:
+        bit: 0
+      crcdatal.data2:
+        bit: 0
+      crcdatal.data3:
+        bit: 0
+      crcdatal.data4:
+        bit: 0
+      crcdatal.data5:
+        bit: 0
+      crcdatal.data6:
+        bit: 0
+      crcdatal.data7:
+        bit: 0
+      crcdatah.data:
+        bits:
+        - 0
+        - 7
+      crcdatah.data8:
+        bit: 0
+      crcdatah.data9:
+        bit: 0
+      crcdatah.data10:
+        bit: 0
+      crcdatah.data11:
+        bit: 0
+      crcdatah.data12:
+        bit: 0
+      crcdatah.data13:
+        bit: 0
+      crcdatah.data14:
+        bit: 0
+      crcdatah.data15:
+        bit: 0
+      crcdatau.data:
+        bits:
+        - 0
+        - 7
+      crcdatau.data16:
+        bit: 0
+      crcdatau.data17:
+        bit: 0
+      crcdatau.data18:
+        bit: 0
+      crcdatau.data19:
+        bit: 0
+      crcdatau.data20:
+        bit: 0
+      crcdatau.data21:
+        bit: 0
+      crcdatau.data22:
+        bit: 0
+      crcdatau.data23:
+        bit: 0
+      crcdatat.data:
+        bits:
+        - 0
+        - 7
+      crcdatat.data24:
+        bit: 0
+      crcdatat.data25:
+        bit: 0
+      crcdatat.data26:
+        bit: 0
+      crcdatat.data27:
+        bit: 0
+      crcdatat.data28:
+        bit: 0
+      crcdatat.data29:
+        bit: 0
+      crcdatat.data30:
+        bit: 0
+      crcdatat.data31:
+        bit: 0
+      crcoutl.out:
+        bits:
+        - 0
+        - 7
+      crcoutl.out0:
+        bit: 0
+      crcoutl.out1:
+        bit: 0
+      crcoutl.out2:
+        bit: 0
+      crcoutl.out3:
+        bit: 0
+      crcoutl.out4:
+        bit: 0
+      crcoutl.out5:
+        bit: 0
+      crcoutl.out6:
+        bit: 0
+      crcoutl.out7:
+        bit: 0
+      crcshftl.shift:
+        bits:
+        - 0
+        - 7
+      crcshftl.shift0:
+        bit: 0
+      crcshftl.shift1:
+        bit: 0
+      crcshftl.shift2:
+        bit: 0
+      crcshftl.shift3:
+        bit: 0
+      crcshftl.shift4:
+        bit: 0
+      crcshftl.shift5:
+        bit: 0
+      crcshftl.shift6:
+        bit: 0
+      crcshftl.shift7:
+        bit: 0
+      crcxorl.xor:
+        bits:
+        - 0
+        - 7
+      crcxorl.xor0:
+        bit: 0
+      crcxorl.xor1:
+        bit: 0
+      crcxorl.xor2:
+        bit: 0
+      crcxorl.xor3:
+        bit: 0
+      crcxorl.xor4:
+        bit: 0
+      crcxorl.xor5:
+        bit: 0
+      crcxorl.xor6:
+        bit: 0
+      crcxorl.xor7:
+        bit: 0
+      crcouth.out:
+        bits:
+        - 0
+        - 7
+      crcouth.out8:
+        bit: 0
+      crcouth.out9:
+        bit: 0
+      crcouth.out10:
+        bit: 0
+      crcouth.out11:
+        bit: 0
+      crcouth.out12:
+        bit: 0
+      crcouth.out13:
+        bit: 0
+      crcouth.out14:
+        bit: 0
+      crcouth.out15:
+        bit: 0
+      crcshfth.shift:
+        bits:
+        - 0
+        - 7
+      crcshfth.shift8:
+        bit: 0
+      crcshfth.shift9:
+        bit: 0
+      crcshfth.shift10:
+        bit: 0
+      crcshfth.shift11:
+        bit: 0
+      crcshfth.shift12:
+        bit: 0
+      crcshfth.shift13:
+        bit: 0
+      crcshfth.shift14:
+        bit: 0
+      crcshfth.shift15:
+        bit: 0
+      crcxorh.xor:
+        bits:
+        - 0
+        - 7
+      crcxorh.xor8:
+        bit: 0
+      crcxorh.xor9:
+        bit: 0
+      crcxorh.xor10:
+        bit: 0
+      crcxorh.xor11:
+        bit: 0
+      crcxorh.xor12:
+        bit: 0
+      crcxorh.xor13:
+        bit: 0
+      crcxorh.xor14:
+        bit: 0
+      crcxorh.xor15:
+        bit: 0
+      crcoutu.out:
+        bits:
+        - 0
+        - 7
+      crcoutu.out16:
+        bit: 0
+      crcoutu.out17:
+        bit: 0
+      crcoutu.out18:
+        bit: 0
+      crcoutu.out19:
+        bit: 0
+      crcoutu.out20:
+        bit: 0
+      crcoutu.out21:
+        bit: 0
+      crcoutu.out22:
+        bit: 0
+      crcoutu.out23:
+        bit: 0
+      crcshftu.shift:
+        bits:
+        - 0
+        - 7
+      crcshftu.shift16:
+        bit: 0
+      crcshftu.shift17:
+        bit: 0
+      crcshftu.shift18:
+        bit: 0
+      crcshftu.shift19:
+        bit: 0
+      crcshftu.shift20:
+        bit: 0
+      crcshftu.shift21:
+        bit: 0
+      crcshftu.shift22:
+        bit: 0
+      crcshftu.shift23:
+        bit: 0
+      crcxoru.xor:
+        bits:
+        - 0
+        - 7
+      crcxoru.xor16:
+        bit: 0
+      crcxoru.xor17:
+        bit: 0
+      crcxoru.xor18:
+        bit: 0
+      crcxoru.xor19:
+        bit: 0
+      crcxoru.xor20:
+        bit: 0
+      crcxoru.xor21:
+        bit: 0
+      crcxoru.xor22:
+        bit: 0
+      crcxoru.xor23:
+        bit: 0
+      crcoutt.out:
+        bits:
+        - 0
+        - 7
+      crcoutt.out24:
+        bit: 0
+      crcoutt.out25:
+        bit: 0
+      crcoutt.out26:
+        bit: 0
+      crcoutt.out27:
+        bit: 0
+      crcoutt.out28:
+        bit: 0
+      crcoutt.out29:
+        bit: 0
+      crcoutt.out30:
+        bit: 0
+      crcoutt.out31:
+        bit: 0
+      crcshftt.shift:
+        bits:
+        - 0
+        - 7
+      crcshftt.shift24:
+        bit: 0
+      crcshftt.shift25:
+        bit: 0
+      crcshftt.shift26:
+        bit: 0
+      crcshftt.shift27:
+        bit: 0
+      crcshftt.shift28:
+        bit: 0
+      crcshftt.shift29:
+        bit: 0
+      crcshftt.shift30:
+        bit: 0
+      crcshftt.shift31:
+        bit: 0
+      crcxort.xor:
+        bits:
+        - 0
+        - 7
+      crcxort.xor24:
+        bit: 0
+      crcxort.xor25:
+        bit: 0
+      crcxort.xor26:
+        bit: 0
+      crcxort.xor27:
+        bit: 0
+      crcxort.xor28:
+        bit: 0
+      crcxort.xor29:
+        bit: 0
+      crcxort.xor30:
+        bit: 0
+      crcxort.xor31:
+        bit: 0
+      crccon0.full:
+        bit: 0
+      crccon0.shiftm:
+        bit: 0
+      crccon0.setup:
+        bits:
+        - 0
+        - 1
+      crccon0.accmod:
+        bit: 0
+      crccon0.crcbusy:
+        bit: 0
+      crccon0.crcgo:
+        bit: 0
+      crccon0.crcen:
+        bit: 0
+      crccon0.lendian:
+        bit: 0
+      crccon0.setup0:
+        bit: 0
+      crccon0.setup1:
+        bit: 0
+      crccon0.accm:
+        bit: 0
+      crccon0.busy:
+        bit: 0
+      crccon0.go:
+        bit: 0
+      crccon0.en:
+        bit: 0
+      crccon1.plen:
+        bits:
+        - 0
+        - 4
+      crccon1.plen0:
+        bit: 0
+      crccon1.plen1:
+        bit: 0
+      crccon1.plen2:
+        bit: 0
+      crccon1.plen3:
+        bit: 0
+      crccon1.plen4:
+        bit: 0
+      crccon2.dlen:
+        bits:
+        - 0
+        - 4
+      crccon2.dlen0:
+        bit: 0
+      crccon2.dlen1:
+        bit: 0
+      crccon2.dlen2:
+        bit: 0
+      crccon2.dlen3:
+        bit: 0
+      crccon2.dlen4:
+        bit: 0
+      adlthl.lth:
+        bits:
+        - 0
+        - 7
+      adlthl.adlth0:
+        bit: 0
+      adlthl.adlth1:
+        bit: 0
+      adlthl.adlth2:
+        bit: 0
+      adlthl.adlth3:
+        bit: 0
+      adlthl.adlth4:
+        bit: 0
+      adlthl.adlth5:
+        bit: 0
+      adlthl.adlth6:
+        bit: 0
+      adlthl.adlth7:
+        bit: 0
+      adlthl.adlth:
+        bits:
+        - 0
+        - 7
+      adlthl.lth0:
+        bit: 0
+      adlthl.lth1:
+        bit: 0
+      adlthl.lth2:
+        bit: 0
+      adlthl.lth3:
+        bit: 0
+      adlthl.lth4:
+        bit: 0
+      adlthl.lth5:
+        bit: 0
+      adlthl.lth6:
+        bit: 0
+      adlthl.lth7:
+        bit: 0
+      adlthh.lth:
+        bits:
+        - 0
+        - 7
+      adlthh.adlth8:
+        bit: 0
+      adlthh.adlth9:
+        bit: 0
+      adlthh.adlth10:
+        bit: 0
+      adlthh.adlth11:
+        bit: 0
+      adlthh.adlth12:
+        bit: 0
+      adlthh.adlth13:
+        bit: 0
+      adlthh.adlth14:
+        bit: 0
+      adlthh.adlth15:
+        bit: 0
+      adlthh.adlth:
+        bits:
+        - 0
+        - 7
+      adlthh.lth8:
+        bit: 0
+      adlthh.lth9:
+        bit: 0
+      adlthh.lth10:
+        bit: 0
+      adlthh.lth11:
+        bit: 0
+      adlthh.lth12:
+        bit: 0
+      adlthh.lth13:
+        bit: 0
+      adlthh.lth14:
+        bit: 0
+      adlthh.lth15:
+        bit: 0
+      aduthl.uth:
+        bits:
+        - 0
+        - 7
+      aduthl.aduth0:
+        bit: 0
+      aduthl.aduth1:
+        bit: 0
+      aduthl.aduth2:
+        bit: 0
+      aduthl.aduth3:
+        bit: 0
+      aduthl.aduth4:
+        bit: 0
+      aduthl.aduth5:
+        bit: 0
+      aduthl.aduth6:
+        bit: 0
+      aduthl.aduth7:
+        bit: 0
+      aduthl.aduth:
+        bits:
+        - 0
+        - 7
+      aduthl.uth0:
+        bit: 0
+      aduthl.uth1:
+        bit: 0
+      aduthl.uth2:
+        bit: 0
+      aduthl.uth3:
+        bit: 0
+      aduthl.uth4:
+        bit: 0
+      aduthl.uth5:
+        bit: 0
+      aduthl.uth6:
+        bit: 0
+      aduthl.uth7:
+        bit: 0
+      aduthh.uth:
+        bits:
+        - 0
+        - 7
+      aduthh.aduth8:
+        bit: 0
+      aduthh.aduth9:
+        bit: 0
+      aduthh.aduth10:
+        bit: 0
+      aduthh.aduth11:
+        bit: 0
+      aduthh.aduth12:
+        bit: 0
+      aduthh.aduth13:
+        bit: 0
+      aduthh.aduth14:
+        bit: 0
+      aduthh.aduth15:
+        bit: 0
+      aduthh.aduth:
+        bits:
+        - 0
+        - 7
+      aduthh.uth8:
+        bit: 0
+      aduthh.uth9:
+        bit: 0
+      aduthh.uth10:
+        bit: 0
+      aduthh.uth11:
+        bit: 0
+      aduthh.uth12:
+        bit: 0
+      aduthh.uth13:
+        bit: 0
+      aduthh.uth14:
+        bit: 0
+      aduthh.uth15:
+        bit: 0
+      aderrl.err:
+        bits:
+        - 0
+        - 7
+      aderrl.aderr0:
+        bit: 0
+      aderrl.aderr1:
+        bit: 0
+      aderrl.aderr2:
+        bit: 0
+      aderrl.aderr3:
+        bit: 0
+      aderrl.aderr4:
+        bit: 0
+      aderrl.aderr5:
+        bit: 0
+      aderrl.aderr6:
+        bit: 0
+      aderrl.aderr7:
+        bit: 0
+      aderrl.aderr:
+        bits:
+        - 0
+        - 7
+      aderrl.err0:
+        bit: 0
+      aderrl.err1:
+        bit: 0
+      aderrl.err2:
+        bit: 0
+      aderrl.err3:
+        bit: 0
+      aderrl.err4:
+        bit: 0
+      aderrl.err5:
+        bit: 0
+      aderrl.err6:
+        bit: 0
+      aderrl.err7:
+        bit: 0
+      aderrh.err:
+        bits:
+        - 0
+        - 7
+      aderrh.aderr8:
+        bit: 0
+      aderrh.aderr9:
+        bit: 0
+      aderrh.aderr10:
+        bit: 0
+      aderrh.aderr11:
+        bit: 0
+      aderrh.aderr12:
+        bit: 0
+      aderrh.aderr13:
+        bit: 0
+      aderrh.aderr14:
+        bit: 0
+      aderrh.aderr15:
+        bit: 0
+      aderrh.aderr:
+        bits:
+        - 0
+        - 7
+      aderrh.err8:
+        bit: 0
+      aderrh.err9:
+        bit: 0
+      aderrh.err10:
+        bit: 0
+      aderrh.err11:
+        bit: 0
+      aderrh.err12:
+        bit: 0
+      aderrh.err13:
+        bit: 0
+      aderrh.err14:
+        bit: 0
+      aderrh.err15:
+        bit: 0
+      adstptl.stpt:
+        bits:
+        - 0
+        - 7
+      adstptl.adstpt0:
+        bit: 0
+      adstptl.adstpt1:
+        bit: 0
+      adstptl.adstpt2:
+        bit: 0
+      adstptl.adstpt3:
+        bit: 0
+      adstptl.adstpt4:
+        bit: 0
+      adstptl.adstpt5:
+        bit: 0
+      adstptl.adstpt6:
+        bit: 0
+      adstptl.adstpt7:
+        bit: 0
+      adstptl.adstpt:
+        bits:
+        - 0
+        - 7
+      adstptl.stpt0:
+        bit: 0
+      adstptl.stpt1:
+        bit: 0
+      adstptl.stpt2:
+        bit: 0
+      adstptl.stpt3:
+        bit: 0
+      adstptl.stpt4:
+        bit: 0
+      adstptl.stpt5:
+        bit: 0
+      adstptl.stpt6:
+        bit: 0
+      adstptl.stpt7:
+        bit: 0
+      adstpth.stpt:
+        bits:
+        - 0
+        - 7
+      adstpth.adstpt8:
+        bit: 0
+      adstpth.adstpt9:
+        bit: 0
+      adstpth.adstpt10:
+        bit: 0
+      adstpth.adstpt11:
+        bit: 0
+      adstpth.adstpt12:
+        bit: 0
+      adstpth.adstpt13:
+        bit: 0
+      adstpth.adstpt14:
+        bit: 0
+      adstpth.adstpt15:
+        bit: 0
+      adstpth.adstpt:
+        bits:
+        - 0
+        - 7
+      adstpth.stpt8:
+        bit: 0
+      adstpth.stpt9:
+        bit: 0
+      adstpth.stpt10:
+        bit: 0
+      adstpth.stpt11:
+        bit: 0
+      adstpth.stpt12:
+        bit: 0
+      adstpth.stpt13:
+        bit: 0
+      adstpth.stpt15:
+        bit: 0
+      adstpth.stpt16:
+        bit: 0
+      adfltrl.fltr:
+        bits:
+        - 0
+        - 7
+      adfltrl.adfltr0:
+        bit: 0
+      adfltrl.adfltr1:
+        bit: 0
+      adfltrl.adfltr2:
+        bit: 0
+      adfltrl.adfltr3:
+        bit: 0
+      adfltrl.adfltr4:
+        bit: 0
+      adfltrl.adfltr5:
+        bit: 0
+      adfltrl.adfltr6:
+        bit: 0
+      adfltrl.adfltr7:
+        bit: 0
+      adfltrl.adfltr:
+        bits:
+        - 0
+        - 7
+      adfltrl.fltr0:
+        bit: 0
+      adfltrl.fltr1:
+        bit: 0
+      adfltrl.fltr2:
+        bit: 0
+      adfltrl.fltr3:
+        bit: 0
+      adfltrl.fltr4:
+        bit: 0
+      adfltrl.fltr5:
+        bit: 0
+      adfltrl.fltr6:
+        bit: 0
+      adfltrl.fltr7:
+        bit: 0
+      adfltrh.fltr:
+        bits:
+        - 0
+        - 7
+      adfltrh.adfltr8:
+        bit: 0
+      adfltrh.adfltr9:
+        bit: 0
+      adfltrh.adfltr10:
+        bit: 0
+      adfltrh.adfltr11:
+        bit: 0
+      adfltrh.adfltr12:
+        bit: 0
+      adfltrh.adfltr13:
+        bit: 0
+      adfltrh.adfltr14:
+        bit: 0
+      adfltrh.adfltr15:
+        bit: 0
+      adfltrh.adfltr:
+        bits:
+        - 0
+        - 7
+      adfltrh.fltr8:
+        bit: 0
+      adfltrh.fltr9:
+        bit: 0
+      adfltrh.fltr10:
+        bit: 0
+      adfltrh.fltr11:
+        bit: 0
+      adfltrh.fltr12:
+        bit: 0
+      adfltrh.fltr13:
+        bit: 0
+      adfltrh.fltr14:
+        bit: 0
+      adfltrh.fltr15:
+        bit: 0
+      adaccl.acc:
+        bits:
+        - 0
+        - 7
+      adaccl.adacc0:
+        bit: 0
+      adaccl.adacc1:
+        bit: 0
+      adaccl.adacc2:
+        bit: 0
+      adaccl.adacc3:
+        bit: 0
+      adaccl.adacc4:
+        bit: 0
+      adaccl.adacc5:
+        bit: 0
+      adaccl.adacc6:
+        bit: 0
+      adaccl.adacc7:
+        bit: 0
+      adaccl.adacc:
+        bits:
+        - 0
+        - 7
+      adaccl.acc0:
+        bit: 0
+      adaccl.acc1:
+        bit: 0
+      adaccl.acc2:
+        bit: 0
+      adaccl.acc3:
+        bit: 0
+      adaccl.acc4:
+        bit: 0
+      adaccl.acc5:
+        bit: 0
+      adaccl.acc6:
+        bit: 0
+      adaccl.acc7:
+        bit: 0
+      adacch.acc:
+        bits:
+        - 0
+        - 7
+      adacch.adacc8:
+        bit: 0
+      adacch.adacc9:
+        bit: 0
+      adacch.adacc10:
+        bit: 0
+      adacch.adacc11:
+        bit: 0
+      adacch.adacc12:
+        bit: 0
+      adacch.adacc13:
+        bit: 0
+      adacch.adacc14:
+        bit: 0
+      adacch.adacc15:
+        bit: 0
+      adacch.adacc:
+        bits:
+        - 0
+        - 7
+      adacch.acc8:
+        bit: 0
+      adacch.acc9:
+        bit: 0
+      adacch.acc10:
+        bit: 0
+      adacch.acc11:
+        bit: 0
+      adacch.acc12:
+        bit: 0
+      adacch.acc13:
+        bit: 0
+      adacch.acc14:
+        bit: 0
+      adacch.acc15:
+        bit: 0
+      adaccu.acc:
+        bits:
+        - 0
+        - 7
+      adaccu.adacc16:
+        bit: 0
+      adaccu.adacc17:
+        bit: 0
+      adaccu.adacc:
+        bits:
+        - 0
+        - 7
+      adaccu.acc16:
+        bit: 0
+      adaccu.acc17:
+        bit: 0
+      adcnt.cnt:
+        bits:
+        - 0
+        - 7
+      adcnt.adcnt0:
+        bit: 0
+      adcnt.adcnt1:
+        bit: 0
+      adcnt.adcnt2:
+        bit: 0
+      adcnt.adcnt3:
+        bit: 0
+      adcnt.adcnt4:
+        bit: 0
+      adcnt.adcnt5:
+        bit: 0
+      adcnt.adcnt6:
+        bit: 0
+      adcnt.adcnt7:
+        bit: 0
+      adcnt.adcnt:
+        bits:
+        - 0
+        - 7
+      adcnt.cnt0:
+        bit: 0
+      adcnt.cnt1:
+        bit: 0
+      adcnt.cnt2:
+        bit: 0
+      adcnt.cnt3:
+        bit: 0
+      adcnt.cnt4:
+        bit: 0
+      adcnt.cnt5:
+        bit: 0
+      adcnt.cnt6:
+        bit: 0
+      adcnt.cnt7:
+        bit: 0
+      adrpt.rpt:
+        bits:
+        - 0
+        - 7
+      adrpt.adrpt0:
+        bit: 0
+      adrpt.adrpt1:
+        bit: 0
+      adrpt.adrpt2:
+        bit: 0
+      adrpt.adrpt3:
+        bit: 0
+      adrpt.adrpt4:
+        bit: 0
+      adrpt.adrpt5:
+        bit: 0
+      adrpt.adrpt6:
+        bit: 0
+      adrpt.adrpt7:
+        bit: 0
+      adrpt.adrpt:
+        bits:
+        - 0
+        - 7
+      adrpt.rpt0:
+        bit: 0
+      adrpt.rpt1:
+        bit: 0
+      adrpt.rpt2:
+        bit: 0
+      adrpt.rpt3:
+        bit: 0
+      adrpt.rpt4:
+        bit: 0
+      adrpt.rpt5:
+        bit: 0
+      adrpt.rpt6:
+        bit: 0
+      adrpt.rpt7:
+        bit: 0
+      adprevl.prev:
+        bits:
+        - 0
+        - 7
+      adprevl.adprev0:
+        bit: 0
+      adprevl.adprev1:
+        bit: 0
+      adprevl.adprev2:
+        bit: 0
+      adprevl.adprev3:
+        bit: 0
+      adprevl.adprev4:
+        bit: 0
+      adprevl.adprev5:
+        bit: 0
+      adprevl.adprev6:
+        bit: 0
+      adprevl.adprev7:
+        bit: 0
+      adprevl.adprev:
+        bits:
+        - 0
+        - 7
+      adprevl.prev0:
+        bit: 0
+      adprevl.prev1:
+        bit: 0
+      adprevl.prev2:
+        bit: 0
+      adprevl.prev3:
+        bit: 0
+      adprevl.prev4:
+        bit: 0
+      adprevl.prev5:
+        bit: 0
+      adprevl.prev6:
+        bit: 0
+      adprevl.prev7:
+        bit: 0
+      adprevh.prev:
+        bits:
+        - 0
+        - 7
+      adprevh.adprev8:
+        bit: 0
+      adprevh.adprev9:
+        bit: 0
+      adprevh.adprev10:
+        bit: 0
+      adprevh.adprev11:
+        bit: 0
+      adprevh.adprev12:
+        bit: 0
+      adprevh.adprev13:
+        bit: 0
+      adprevh.adprev14:
+        bit: 0
+      adprevh.adprev15:
+        bit: 0
+      adprevh.adprev:
+        bits:
+        - 0
+        - 7
+      adprevh.prev8:
+        bit: 0
+      adprevh.prev9:
+        bit: 0
+      adprevh.prev10:
+        bit: 0
+      adprevh.prev11:
+        bit: 0
+      adprevh.prev12:
+        bit: 0
+      adprevh.prev13:
+        bit: 0
+      adprevh.prev14:
+        bit: 0
+      adprevh.prev15:
+        bit: 0
+      adpch.pch:
+        bits:
+        - 0
+        - 7
+      adpch.adpch0:
+        bit: 0
+      adpch.adpch1:
+        bit: 0
+      adpch.adpch2:
+        bit: 0
+      adpch.adpch3:
+        bit: 0
+      adpch.adpch4:
+        bit: 0
+      adpch.adpch5:
+        bit: 0
+      adacql.acq:
+        bits:
+        - 0
+        - 7
+      adacql.adacq0:
+        bit: 0
+      adacql.adacq1:
+        bit: 0
+      adacql.adacq2:
+        bit: 0
+      adacql.adacq3:
+        bit: 0
+      adacql.adacq4:
+        bit: 0
+      adacql.adacq5:
+        bit: 0
+      adacql.adacq6:
+        bit: 0
+      adacql.adacq7:
+        bit: 0
+      adacql.adacq:
+        bits:
+        - 0
+        - 7
+      adacql.acq0:
+        bit: 0
+      adacql.acq1:
+        bit: 0
+      adacql.acq2:
+        bit: 0
+      adacql.acq3:
+        bit: 0
+      adacql.acq4:
+        bit: 0
+      adacql.acq5:
+        bit: 0
+      adacql.acq6:
+        bit: 0
+      adacql.acq7:
+        bit: 0
+      adacqh.acq:
+        bits:
+        - 0
+        - 4
+      adacqh.adacq8:
+        bit: 0
+      adacqh.adacq9:
+        bit: 0
+      adacqh.adacq10:
+        bit: 0
+      adacqh.adacq11:
+        bit: 0
+      adacqh.adacq12:
+        bit: 0
+      adacqh.adacq:
+        bits:
+        - 0
+        - 4
+      adacqh.acq8:
+        bit: 0
+      adacqh.acq9:
+        bit: 0
+      adacqh.acq10:
+        bit: 0
+      adacqh.acq11:
+        bit: 0
+      adacqh.acq12:
+        bit: 0
+      adprel.pre:
+        bits:
+        - 0
+        - 7
+      adprel.pre0:
+        bit: 0
+      adprel.pre1:
+        bit: 0
+      adprel.pre2:
+        bit: 0
+      adprel.pre3:
+        bit: 0
+      adprel.pre4:
+        bit: 0
+      adprel.pre5:
+        bit: 0
+      adprel.pre6:
+        bit: 0
+      adprel.pre7:
+        bit: 0
+      adprel.adpre:
+        bits:
+        - 0
+        - 7
+      adprel.adpre0:
+        bit: 0
+      adprel.adpre1:
+        bit: 0
+      adprel.adpre2:
+        bit: 0
+      adprel.adpre3:
+        bit: 0
+      adprel.adpre4:
+        bit: 0
+      adprel.adpre5:
+        bit: 0
+      adprel.adpre6:
+        bit: 0
+      adprel.adpre7:
+        bit: 0
+      adpreh.pre:
+        bits:
+        - 0
+        - 4
+      adpreh.pre8:
+        bit: 0
+      adpreh.pre9:
+        bit: 0
+      adpreh.pre10:
+        bit: 0
+      adpreh.pre11:
+        bit: 0
+      adpreh.pre12:
+        bit: 0
+      adpreh.adpre:
+        bits:
+        - 0
+        - 4
+      adpreh.adpre8:
+        bit: 0
+      adpreh.adpre9:
+        bit: 0
+      adpreh.adpre10:
+        bit: 0
+      adpreh.adpre11:
+        bit: 0
+      adpreh.adpre12:
+        bit: 0
+      adstat.stat:
+        bits:
+        - 0
+        - 2
+      adstat.math:
+        bit: 0
+      adstat.lthr:
+        bit: 0
+      adstat.uthr:
+        bit: 0
+      adstat.aov:
+        bit: 0
+      adstat.adstat0:
+        bit: 0
+      adstat.adstat1:
+        bit: 0
+      adstat.adstat2:
+        bit: 0
+      adstat.admath:
+        bit: 0
+      adstat.adlthr:
+        bit: 0
+      adstat.aduthr:
+        bit: 0
+      adstat.adaov:
+        bit: 0
+      adstat.adstat:
+        bits:
+        - 0
+        - 2
+      adstat.adov:
+        bit: 0
+      adstat.stat0:
+        bit: 0
+      adstat.stat1:
+        bit: 0
+      adstat.stat2:
+        bit: 0
+      adstat.ov:
+        bit: 0
+      adref.pref:
+        bits:
+        - 0
+        - 3
+      adref.adpref:
+        bits:
+        - 0
+        - 3
+      adref.pref0:
+        bit: 0
+      adref.pref1:
+        bit: 0
+      adref.adpref0:
+        bit: 0
+      adref.adpref1:
+        bit: 0
+      adact.act:
+        bits:
+        - 0
+        - 7
+      adact.adact0:
+        bit: 0
+      adact.adact1:
+        bit: 0
+      adact.adact2:
+        bit: 0
+      adact.adact3:
+        bit: 0
+      adact.adact4:
+        bit: 0
+      adact.adact5:
+        bit: 0
+      adact.adact:
+        bits:
+        - 0
+        - 7
+      adact.act0:
+        bit: 0
+      adact.act1:
+        bit: 0
+      adact.act2:
+        bit: 0
+      adact.act3:
+        bit: 0
+      adact.act4:
+        bit: 0
+      adact.act5:
+        bit: 0
+      adcg1a.cga0:
+        bit: 0
+      adcg1a.cga1:
+        bit: 0
+      adcg1a.cga2:
+        bit: 0
+      adcg1a.cga4:
+        bit: 0
+      adcg1a.cga5:
+        bit: 0
+      adcg1b.cgb4:
+        bit: 0
+      adcg1b.cgb5:
+        bit: 0
+      adcg1b.cgb6:
+        bit: 0
+      adcg1b.cgb7:
+        bit: 0
+      adcg1c.cgc0:
+        bit: 0
+      adcg1c.cgc1:
+        bit: 0
+      adcg1c.cgc2:
+        bit: 0
+      adcg1c.cgc3:
+        bit: 0
+      adcg1c.cgc4:
+        bit: 0
+      adcg1c.cgc5:
+        bit: 0
+      adcg1c.cgc6:
+        bit: 0
+      adcg1c.cgc7:
+        bit: 0
+      ra0pps.ra0pps:
+        bits:
+        - 0
+        - 5
+      ra1pps.ra1pps:
+        bits:
+        - 0
+        - 5
+      ra2pps.ra2pps:
+        bits:
+        - 0
+        - 5
+      ra4pps.ra4pps:
+        bits:
+        - 0
+        - 5
+      ra5pps.ra5pps:
+        bits:
+        - 0
+        - 5
+      rb4pps.rb4pps:
+        bits:
+        - 0
+        - 5
+      rb5pps.rb5pps:
+        bits:
+        - 0
+        - 5
+      rb6pps.rb6pps:
+        bits:
+        - 0
+        - 5
+      rb7pps.rb7pps:
+        bits:
+        - 0
+        - 5
+      rc0pps.rc0pps:
+        bits:
+        - 0
+        - 5
+      rc1pps.rc1pps:
+        bits:
+        - 0
+        - 5
+      rc3pps.rc3pps:
+        bits:
+        - 0
+        - 5
+      rc4pps.rc4pps:
+        bits:
+        - 0
+        - 5
+      rc5pps.rc5pps:
+        bits:
+        - 0
+        - 5
+      rc6pps.rc6pps:
+        bits:
+        - 0
+        - 5
+      rc7pps.rc7pps:
+        bits:
+        - 0
+        - 5
+      ppslock.ppslocked:
+        bit: 0
+      intpps.intpps:
+        bits:
+        - 0
+        - 4
+      intpps.intpps0:
+        bit: 0
+      intpps.intpps1:
+        bit: 0
+      intpps.intpps2:
+        bit: 0
+      intpps.intpps3:
+        bit: 0
+      intpps.intpps4:
+        bit: 0
+      t0ckipps.t0ckipps:
+        bits:
+        - 0
+        - 4
+      t0ckipps.t0ckipps0:
+        bit: 0
+      t0ckipps.t0ckipps1:
+        bit: 0
+      t0ckipps.t0ckipps2:
+        bit: 0
+      t0ckipps.t0ckipps3:
+        bit: 0
+      t0ckipps.t0ckipps4:
+        bit: 0
+      t1ckipps.t1ckipps:
+        bits:
+        - 0
+        - 4
+      t1ckipps.t1ckipps0:
+        bit: 0
+      t1ckipps.t1ckipps1:
+        bit: 0
+      t1ckipps.t1ckipps2:
+        bit: 0
+      t1ckipps.t1ckipps3:
+        bit: 0
+      t1ckipps.t1ckipps4:
+        bit: 0
+      t1gpps.t1gpps:
+        bits:
+        - 0
+        - 4
+      t1gpps.t1gpps0:
+        bit: 0
+      t1gpps.t1gpps1:
+        bit: 0
+      t1gpps.t1gpps2:
+        bit: 0
+      t1gpps.t1gpps3:
+        bit: 0
+      t1gpps.t1gpps4:
+        bit: 0
+      t2inpps.t2inpps:
+        bits:
+        - 0
+        - 4
+      t2inpps.t2inpps0:
+        bit: 0
+      t2inpps.t2inpps1:
+        bit: 0
+      t2inpps.t2inpps2:
+        bit: 0
+      t2inpps.t2inpps3:
+        bit: 0
+      t2inpps.t2inpps4:
+        bit: 0
+      clcin0pps.clcin0pps:
+        bits:
+        - 0
+        - 4
+      clcin0pps.clcin0pps0:
+        bit: 0
+      clcin0pps.clcin0pps1:
+        bit: 0
+      clcin0pps.clcin0pps2:
+        bit: 0
+      clcin0pps.clcin0pps3:
+        bit: 0
+      clcin0pps.clcin0pps4:
+        bit: 0
+      clcin1pps.clcin1pps:
+        bits:
+        - 0
+        - 4
+      clcin1pps.clcin1pps0:
+        bit: 0
+      clcin1pps.clcin1pps1:
+        bit: 0
+      clcin1pps.clcin1pps2:
+        bit: 0
+      clcin1pps.clcin1pps3:
+        bit: 0
+      clcin1pps.clcin1pps4:
+        bit: 0
+      clcin2pps.clcin2pps:
+        bits:
+        - 0
+        - 4
+      clcin2pps.clcin2pps0:
+        bit: 0
+      clcin2pps.clcin2pps1:
+        bit: 0
+      clcin2pps.clcin2pps2:
+        bit: 0
+      clcin2pps.clcin2pps3:
+        bit: 0
+      clcin2pps.clcin2pps4:
+        bit: 0
+      clcin3pps.clcin3pps:
+        bits:
+        - 0
+        - 4
+      clcin3pps.clcin3pps0:
+        bit: 0
+      clcin3pps.clcin3pps1:
+        bit: 0
+      clcin3pps.clcin3pps2:
+        bit: 0
+      clcin3pps.clcin3pps3:
+        bit: 0
+      clcin3pps.clcin3pps4:
+        bit: 0
+      ck1pps.ck1pps:
+        bits:
+        - 0
+        - 4
+      rx1pps.rx1pps:
+        bits:
+        - 0
+        - 4
+      adactpps.adactpps:
+        bits:
+        - 0
+        - 4
+      clbin0pps.clbin0pps:
+        bits:
+        - 0
+        - 4
+      clbin1pps.clbin1pps:
+        bits:
+        - 0
+        - 4
+      clbin2pps.clbin2pps:
+        bits:
+        - 0
+        - 4
+      clbin3pps.clbin3pps:
+        bits:
+        - 0
+        - 4
+      wpua.wpua0:
+        bit: 0
+      wpua.wpua1:
+        bit: 0
+      wpua.wpua2:
+        bit: 0
+      wpua.wpua3:
+        bit: 0
+      wpua.wpua4:
+        bit: 0
+      wpua.wpua5:
+        bit: 0
+      odcona.odca0:
+        bit: 0
+      odcona.odca1:
+        bit: 0
+      odcona.odca2:
+        bit: 0
+      odcona.odca4:
+        bit: 0
+      odcona.odca5:
+        bit: 0
+      slrcona.slra0:
+        bit: 0
+      slrcona.slra1:
+        bit: 0
+      slrcona.slra2:
+        bit: 0
+      slrcona.slra4:
+        bit: 0
+      slrcona.slra5:
+        bit: 0
+      inlvla.inlvla0:
+        bit: 0
+      inlvla.inlvla1:
+        bit: 0
+      inlvla.inlvla2:
+        bit: 0
+      inlvla.inlvla3:
+        bit: 0
+      inlvla.inlvla4:
+        bit: 0
+      inlvla.inlvla5:
+        bit: 0
+      iocap.iocap0:
+        bit: 0
+      iocap.iocap1:
+        bit: 0
+      iocap.iocap2:
+        bit: 0
+      iocap.iocap3:
+        bit: 0
+      iocap.iocap4:
+        bit: 0
+      iocap.iocap5:
+        bit: 0
+      iocan.iocan0:
+        bit: 0
+      iocan.iocan1:
+        bit: 0
+      iocan.iocan2:
+        bit: 0
+      iocan.iocan3:
+        bit: 0
+      iocan.iocan4:
+        bit: 0
+      iocan.iocan5:
+        bit: 0
+      iocaf.iocaf0:
+        bit: 0
+      iocaf.iocaf1:
+        bit: 0
+      iocaf.iocaf2:
+        bit: 0
+      iocaf.iocaf3:
+        bit: 0
+      iocaf.iocaf4:
+        bit: 0
+      iocaf.iocaf5:
+        bit: 0
+      wpub.wpub4:
+        bit: 0
+      wpub.wpub5:
+        bit: 0
+      wpub.wpub6:
+        bit: 0
+      wpub.wpub7:
+        bit: 0
+      odconb.odcb4:
+        bit: 0
+      odconb.odcb5:
+        bit: 0
+      odconb.odcb6:
+        bit: 0
+      odconb.odcb7:
+        bit: 0
+      slrconb.slrb4:
+        bit: 0
+      slrconb.slrb5:
+        bit: 0
+      slrconb.slrb6:
+        bit: 0
+      slrconb.slrb7:
+        bit: 0
+      inlvlb.inlvlb4:
+        bit: 0
+      inlvlb.inlvlb5:
+        bit: 0
+      inlvlb.inlvlb6:
+        bit: 0
+      inlvlb.inlvlb7:
+        bit: 0
+      iocbp.iocbp4:
+        bit: 0
+      iocbp.iocbp5:
+        bit: 0
+      iocbp.iocbp6:
+        bit: 0
+      iocbp.iocbp7:
+        bit: 0
+      iocbn.iocbn4:
+        bit: 0
+      iocbn.iocbn5:
+        bit: 0
+      iocbn.iocbn6:
+        bit: 0
+      iocbn.iocbn7:
+        bit: 0
+      iocbf.iocbf4:
+        bit: 0
+      iocbf.iocbf5:
+        bit: 0
+      iocbf.iocbf6:
+        bit: 0
+      iocbf.iocbf7:
+        bit: 0
+      wpuc.wpuc0:
+        bit: 0
+      wpuc.wpuc1:
+        bit: 0
+      wpuc.wpuc2:
+        bit: 0
+      wpuc.wpuc3:
+        bit: 0
+      wpuc.wpuc4:
+        bit: 0
+      wpuc.wpuc5:
+        bit: 0
+      wpuc.wpuc6:
+        bit: 0
+      wpuc.wpuc7:
+        bit: 0
+      odconc.odcc0:
+        bit: 0
+      odconc.odcc1:
+        bit: 0
+      odconc.odcc2:
+        bit: 0
+      odconc.odcc3:
+        bit: 0
+      odconc.odcc4:
+        bit: 0
+      odconc.odcc5:
+        bit: 0
+      odconc.odcc6:
+        bit: 0
+      odconc.odcc7:
+        bit: 0
+      slrconc.slrc0:
+        bit: 0
+      slrconc.slrc1:
+        bit: 0
+      slrconc.slrc2:
+        bit: 0
+      slrconc.slrc3:
+        bit: 0
+      slrconc.slrc4:
+        bit: 0
+      slrconc.slrc5:
+        bit: 0
+      slrconc.slrc6:
+        bit: 0
+      slrconc.slrc7:
+        bit: 0
+      inlvlc.inlvlc0:
+        bit: 0
+      inlvlc.inlvlc1:
+        bit: 0
+      inlvlc.inlvlc2:
+        bit: 0
+      inlvlc.inlvlc3:
+        bit: 0
+      inlvlc.inlvlc4:
+        bit: 0
+      inlvlc.inlvlc5:
+        bit: 0
+      inlvlc.inlvlc6:
+        bit: 0
+      inlvlc.inlvlc7:
+        bit: 0
+      ioccp.ioccp0:
+        bit: 0
+      ioccp.ioccp1:
+        bit: 0
+      ioccp.ioccp2:
+        bit: 0
+      ioccp.ioccp3:
+        bit: 0
+      ioccp.ioccp4:
+        bit: 0
+      ioccp.ioccp5:
+        bit: 0
+      ioccp.ioccp6:
+        bit: 0
+      ioccp.ioccp7:
+        bit: 0
+      ioccn.ioccn0:
+        bit: 0
+      ioccn.ioccn1:
+        bit: 0
+      ioccn.ioccn2:
+        bit: 0
+      ioccn.ioccn3:
+        bit: 0
+      ioccn.ioccn4:
+        bit: 0
+      ioccn.ioccn5:
+        bit: 0
+      ioccn.ioccn6:
+        bit: 0
+      ioccn.ioccn7:
+        bit: 0
+      ioccf.ioccf0:
+        bit: 0
+      ioccf.ioccf1:
+        bit: 0
+      ioccf.ioccf2:
+        bit: 0
+      ioccf.ioccf3:
+        bit: 0
+      ioccf.ioccf4:
+        bit: 0
+      ioccf.ioccf5:
+        bit: 0
+      ioccf.ioccf6:
+        bit: 0
+      ioccf.ioccf7:
+        bit: 0
+      rb4i2c.th:
+        bits:
+        - 0
+        - 1
+      rb4i2c.pu:
+        bits:
+        - 0
+        - 1
+      rb4i2c.slew:
+        bit: 0
+      rb6i2c.th:
+        bits:
+        - 0
+        - 1
+      rb6i2c.pu:
+        bits:
+        - 0
+        - 1
+      rb6i2c.slew:
+        bit: 0
+      umtoap.umtoap:
+        bits:
+        - 0
+        - 7
+      umtoal.umtoal:
+        bits:
+        - 0
+        - 7
+      umtoah.umtoah:
+        bits:
+        - 0
+        - 7
+      status_shad.status_shad:
+        bits:
+        - 0
+        - 2
+      status_shad.status_shad0:
+        bit: 0
+      status_shad.status_shad1:
+        bit: 0
+      status_shad.status_shad2:
+        bit: 0
+      wreg_shad.wreg_shad:
+        bits:
+        - 0
+        - 7
+      bsr_shad.bsr_shad:
+        bits:
+        - 0
+        - 7
+      pclath_shad.pclath_shad:
+        bits:
+        - 0
+        - 7
+      fsr0l_shad.fsr0l_shad:
+        bits:
+        - 0
+        - 7
+      fsr0h_shad.fsr0h_shad:
+        bits:
+        - 0
+        - 7
+      fsr1l_shad.fsr1l_shad:
+        bits:
+        - 0
+        - 7
+      fsr1h_shad.fsr1h_shad:
+        bits:
+        - 0
+        - 7
+  wdt:
+    registers:
+      wdtcon0:
+        offset: '0x18C'
+      wdtcon1:
+        offset: '0x18D'
+    fields:
+      wdtcon0.sen:
+        bit: 0
+      wdtcon0.ps:
+        bits:
+        - 0
+        - 4
+      wdtcon0.swdten:
+        bit: 0
+      wdtcon0.wdtps:
+        bits:
+        - 0
+        - 4
+      wdtcon0.wdtsen:
+        bit: 0
+      wdtcon0.ps0:
+        bit: 0
+      wdtcon0.ps1:
+        bit: 0
+      wdtcon0.ps2:
+        bit: 0
+      wdtcon0.ps3:
+        bit: 0
+      wdtcon0.ps4:
+        bit: 0
+      wdtcon0.wdtps0:
+        bit: 0
+      wdtcon0.wdtps1:
+        bit: 0
+      wdtcon0.wdtps2:
+        bit: 0
+      wdtcon0.wdtps3:
+        bit: 0
+      wdtcon0.wdtps4:
+        bit: 0
+      wdtcon1.window:
+        bits:
+        - 0
+        - 2
+      wdtcon1.cs:
+        bits:
+        - 0
+        - 2
+      wdtcon1.window0:
+        bit: 0
+      wdtcon1.window1:
+        bit: 0
+      wdtcon1.window2:
+        bit: 0
+      wdtcon1.wdtcs:
+        bits:
+        - 0
+        - 2
+      wdtcon1.wdtwindow:
+        bits:
+        - 0
+        - 2
+      wdtcon1.cs0:
+        bit: 0
+      wdtcon1.cs1:
+        bit: 0
+      wdtcon1.cs2:
+        bit: 0
+      wdtcon1.wdtwindow0:
+        bit: 0
+      wdtcon1.wdtwindow1:
+        bit: 0
+      wdtcon1.wdtwindow2:
+        bit: 0
+      wdtcon1.wdtcs0:
+        bit: 0
+      wdtcon1.wdtcs1:
+        bit: 0
+      wdtcon1.wdtcs2:
+        bit: 0
+  timer:
+    registers:
+      tmr0l:
+        offset: '0x19C'
+      tmr0h:
+        offset: '0x19D'
+      t0con0:
+        offset: '0x19E'
+      t0con1:
+        offset: '0x19F'
+      tmr1l:
+        offset: '0x30C'
+      tmr1h:
+        offset: '0x30D'
+      t1con:
+        offset: '0x30E'
+      t2con:
+        offset: '0x38E'
+    fields:
+      tmr0l.tmr0l:
+        bits:
+        - 0
+        - 7
+      tmr0l.tmr0l0:
+        bit: 0
+      tmr0l.tmr0l1:
+        bit: 0
+      tmr0l.tmr0l2:
+        bit: 0
+      tmr0l.tmr0l3:
+        bit: 0
+      tmr0l.tmr0l4:
+        bit: 0
+      tmr0l.tmr0l5:
+        bit: 0
+      tmr0l.tmr0l6:
+        bit: 0
+      tmr0l.tmr0l7:
+        bit: 0
+      tmr0h.tmr0h:
+        bits:
+        - 0
+        - 7
+      tmr0h.tmr0h0:
+        bit: 0
+      tmr0h.tmr0h1:
+        bit: 0
+      tmr0h.tmr0h2:
+        bit: 0
+      tmr0h.tmr0h3:
+        bit: 0
+      tmr0h.tmr0h4:
+        bit: 0
+      tmr0h.tmr0h5:
+        bit: 0
+      tmr0h.tmr0h6:
+        bit: 0
+      tmr0h.tmr0h7:
+        bit: 0
+      tmr0h.t0pr0:
+        bit: 0
+      tmr0h.t0pr1:
+        bit: 0
+      tmr0h.t0pr2:
+        bit: 0
+      tmr0h.t0pr3:
+        bit: 0
+      tmr0h.t0pr4:
+        bit: 0
+      tmr0h.t0pr5:
+        bit: 0
+      tmr0h.t0pr6:
+        bit: 0
+      tmr0h.t0pr7:
+        bit: 0
+      tmr0h.t0pr:
+        bits:
+        - 0
+        - 7
+      t0con0.outps:
+        bits:
+        - 0
+        - 3
+      t0con0.md16:
+        bit: 0
+      t0con0.out:
+        bit: 0
+      t0con0.en:
+        bit: 0
+      t0con0.t0outps:
+        bits:
+        - 0
+        - 3
+      t0con0.t0md16:
+        bit: 0
+      t0con0.t0out:
+        bit: 0
+      t0con0.t0en:
+        bit: 0
+      t0con0.outps0:
+        bit: 0
+      t0con0.outps1:
+        bit: 0
+      t0con0.outps2:
+        bit: 0
+      t0con0.outps3:
+        bit: 0
+      t0con0.t016bit:
+        bit: 0
+      t0con0.t0outps0:
+        bit: 0
+      t0con0.t0outps1:
+        bit: 0
+      t0con0.t0outps2:
+        bit: 0
+      t0con0.t0outps3:
+        bit: 0
+      t0con1.ckps:
+        bits:
+        - 0
+        - 3
+      t0con1.async:
+        bit: 0
+      t0con1.cs:
+        bits:
+        - 0
+        - 2
+      t0con1.ckps0:
+        bit: 0
+      t0con1.ckps1:
+        bit: 0
+      t0con1.ckps2:
+        bit: 0
+      t0con1.ckps3:
+        bit: 0
+      t0con1.t0async:
+        bit: 0
+      t0con1.cs0:
+        bit: 0
+      t0con1.cs1:
+        bit: 0
+      t0con1.cs2:
+        bit: 0
+      t0con1.t0ckps:
+        bits:
+        - 0
+        - 3
+      t0con1.t0cs:
+        bits:
+        - 0
+        - 2
+      t0con1.t0ckps0:
+        bit: 0
+      t0con1.t0ckps1:
+        bit: 0
+      t0con1.t0ckps2:
+        bit: 0
+      t0con1.t0ckps3:
+        bit: 0
+      t0con1.t0cs0:
+        bit: 0
+      t0con1.t0cs1:
+        bit: 0
+      t0con1.t0cs2:
+        bit: 0
+      tmr1l.tmr1l:
+        bits:
+        - 0
+        - 7
+      tmr1l.tmr1l0:
+        bit: 0
+      tmr1l.tmr1l1:
+        bit: 0
+      tmr1l.tmr1l2:
+        bit: 0
+      tmr1l.tmr1l3:
+        bit: 0
+      tmr1l.tmr1l4:
+        bit: 0
+      tmr1l.tmr1l5:
+        bit: 0
+      tmr1l.tmr1l6:
+        bit: 0
+      tmr1l.tmr1l7:
+        bit: 0
+      tmr1l.tmr10:
+        bit: 0
+      tmr1l.tmr11:
+        bit: 0
+      tmr1l.tmr12:
+        bit: 0
+      tmr1l.tmr13:
+        bit: 0
+      tmr1l.tmr14:
+        bit: 0
+      tmr1l.tmr15:
+        bit: 0
+      tmr1l.tmr16:
+        bit: 0
+      tmr1l.tmr17:
+        bit: 0
+      tmr1l.cal01:
+        bit: 0
+      tmr1l.cal11:
+        bit: 0
+      tmr1l.cal21:
+        bit: 0
+      tmr1l.cal31:
+        bit: 0
+      tmr1l.cal41:
+        bit: 0
+      tmr1l.cal51:
+        bit: 0
+      tmr1l.cal61:
+        bit: 0
+      tmr1l.cal71:
+        bit: 0
+      tmr1h.tmr1h:
+        bits:
+        - 0
+        - 7
+      tmr1h.tmr1h0:
+        bit: 0
+      tmr1h.tmr1h1:
+        bit: 0
+      tmr1h.tmr1h2:
+        bit: 0
+      tmr1h.tmr1h3:
+        bit: 0
+      tmr1h.tmr1h4:
+        bit: 0
+      tmr1h.tmr1h5:
+        bit: 0
+      tmr1h.tmr1h6:
+        bit: 0
+      tmr1h.tmr1h7:
+        bit: 0
+      tmr1h.tmr18:
+        bit: 0
+      tmr1h.tmr19:
+        bit: 0
+      tmr1h.tmr110:
+        bit: 0
+      tmr1h.tmr111:
+        bit: 0
+      tmr1h.tmr112:
+        bit: 0
+      tmr1h.tmr113:
+        bit: 0
+      tmr1h.tmr114:
+        bit: 0
+      tmr1h.tmr115:
+        bit: 0
+      t1con.on:
+        bit: 0
+      t1con.rd16:
+        bit: 0
+      t1con.nsync:
+        bit: 0
+      t1con.ckps:
+        bits:
+        - 0
+        - 1
+      t1con.tmr1on:
+        bit: 0
+      t1con.t1rd16:
+        bit: 0
+      t1con.nt1sync:
+        bit: 0
+      t1con.t1ckps0:
+        bit: 0
+      t1con.t1ckps1:
+        bit: 0
+      t1con.ckps0:
+        bit: 0
+      t1con.ckps1:
+        bit: 0
+      t1con.rd161:
+        bit: 0
+      t2con.outps:
+        bits:
+        - 0
+        - 3
+      t2con.ckps:
+        bits:
+        - 0
+        - 2
+      t2con.on:
+        bit: 0
+      t2con.t2outps:
+        bits:
+        - 0
+        - 3
+      t2con.t2ckps:
+        bits:
+        - 0
+        - 2
+      t2con.t2on:
+        bit: 0
+      t2con.t2outps0:
+        bit: 0
+      t2con.t2outps1:
+        bit: 0
+      t2con.t2outps2:
+        bit: 0
+      t2con.t2outps3:
+        bit: 0
+      t2con.t2ckps0:
+        bit: 0
+      t2con.t2ckps1:
+        bit: 0
+      t2con.t2ckps2:
+        bit: 0
+      t2con.outps0:
+        bit: 0
+      t2con.outps1:
+        bit: 0
+      t2con.outps2:
+        bit: 0
+      t2con.outps3:
+        bit: 0
+      t2con.ckps0:
+        bit: 0
+      t2con.ckps1:
+        bit: 0
+      t2con.ckps2:
+        bit: 0
+      t2con.tmr2on:
+        bit: 0
+  oscillator:
+    registers:
+      osccon1:
+        offset: '0x28D'
+      osccon2:
+        offset: '0x28E'
+      osccon3:
+        offset: '0x28F'
+      oscstat:
+        offset: '0x290'
+      osctune:
+        offset: '0x292'
+    fields:
+      osccon1.ndiv:
+        bits:
+        - 0
+        - 3
+      osccon1.nosc:
+        bits:
+        - 0
+        - 2
+      osccon1.ndiv0:
+        bit: 0
+      osccon1.ndiv1:
+        bit: 0
+      osccon1.ndiv2:
+        bit: 0
+      osccon1.ndiv3:
+        bit: 0
+      osccon1.nosc0:
+        bit: 0
+      osccon1.nosc1:
+        bit: 0
+      osccon1.nosc2:
+        bit: 0
+      osccon2.cdiv:
+        bits:
+        - 0
+        - 3
+      osccon2.cosc:
+        bits:
+        - 0
+        - 2
+      osccon2.cdiv0:
+        bit: 0
+      osccon2.cdiv1:
+        bit: 0
+      osccon2.cdiv2:
+        bit: 0
+      osccon2.cdiv3:
+        bit: 0
+      osccon2.cosc0:
+        bit: 0
+      osccon2.cosc1:
+        bit: 0
+      osccon2.cosc2:
+        bit: 0
+      osccon3.noscr:
+        bit: 0
+      osccon3.ordy:
+        bit: 0
+      osccon3.cswhold:
+        bit: 0
+      oscstat.pllr:
+        bit: 0
+      oscstat.sfor:
+        bit: 0
+      oscstat.ador:
+        bit: 0
+      oscstat.lfor:
+        bit: 0
+      oscstat.mfor:
+        bit: 0
+      oscstat.hfor:
+        bit: 0
+      oscstat.extor:
+        bit: 0
+      osctune.tun:
+        bits:
+        - 0
+        - 5
+      osctune.tun0:
+        bit: 0
+      osctune.tun1:
+        bit: 0
+      osctune.tun2:
+        bit: 0
+      osctune.tun3:
+        bit: 0
+      osctune.tun4:
+        bit: 0
+      osctune.tun5:
+        bit: 0
+  ccp:
+    registers:
+      ccpr1l:
+        offset: '0x40C'
+      ccpr1h:
+        offset: '0x40D'
+      ccp1con:
+        offset: '0x40E'
+      ccp1cap:
+        offset: '0x40F'
+      ccpr2l:
+        offset: '0x410'
+      ccpr2h:
+        offset: '0x411'
+      ccp2con:
+        offset: '0x412'
+      ccp2cap:
+        offset: '0x413'
+      ccptmrs0:
+        offset: '0x41F'
+      ccp1pps:
+        offset: '0x1E1E'
+      ccp2pps:
+        offset: '0x1E1F'
+    fields:
+      ccpr1l.ccprl:
+        bits:
+        - 0
+        - 7
+      ccpr1h.ccprh:
+        bits:
+        - 0
+        - 7
+      ccp1con.mode:
+        bits:
+        - 0
+        - 3
+      ccp1con.fmt:
+        bit: 0
+      ccp1con.out:
+        bit: 0
+      ccp1con.en:
+        bit: 0
+      ccp1con.mode0:
+        bit: 0
+      ccp1con.mode1:
+        bit: 0
+      ccp1con.mode2:
+        bit: 0
+      ccp1con.mode3:
+        bit: 0
+      ccp1con.ccp1mode:
+        bits:
+        - 0
+        - 3
+      ccp1con.ccp1fmt:
+        bit: 0
+      ccp1con.ccp1out:
+        bit: 0
+      ccp1con.ccp1en:
+        bit: 0
+      ccp1con.ccp1mode0:
+        bit: 0
+      ccp1con.ccp1mode1:
+        bit: 0
+      ccp1con.ccp1mode2:
+        bit: 0
+      ccp1con.ccp1mode3:
+        bit: 0
+      ccp1con.p1m1:
+        bit: 0
+      ccp1cap.cts:
+        bits:
+        - 0
+        - 5
+      ccp1cap.cts0:
+        bit: 0
+      ccp1cap.cts1:
+        bit: 0
+      ccp1cap.cts2:
+        bit: 0
+      ccp1cap.cts3:
+        bit: 0
+      ccp1cap.ccp1cts:
+        bits:
+        - 0
+        - 5
+      ccp1cap.ccp1cts0:
+        bit: 0
+      ccp1cap.ccp1cts1:
+        bit: 0
+      ccp1cap.ccp1cts2:
+        bit: 0
+      ccp1cap.ccp1cts3:
+        bit: 0
+      ccpr2l.ccprl:
+        bits:
+        - 0
+        - 7
+      ccpr2h.ccprh:
+        bits:
+        - 0
+        - 7
+      ccp2con.mode:
+        bits:
+        - 0
+        - 3
+      ccp2con.fmt:
+        bit: 0
+      ccp2con.out:
+        bit: 0
+      ccp2con.en:
+        bit: 0
+      ccp2con.mode0:
+        bit: 0
+      ccp2con.mode1:
+        bit: 0
+      ccp2con.mode2:
+        bit: 0
+      ccp2con.mode3:
+        bit: 0
+      ccp2con.ccp2mode:
+        bits:
+        - 0
+        - 3
+      ccp2con.ccp2fmt:
+        bit: 0
+      ccp2con.ccp2out:
+        bit: 0
+      ccp2con.ccp2en:
+        bit: 0
+      ccp2con.ccp2mode0:
+        bit: 0
+      ccp2con.ccp2mode1:
+        bit: 0
+      ccp2con.ccp2mode2:
+        bit: 0
+      ccp2con.ccp2mode3:
+        bit: 0
+      ccp2con.p2m1:
+        bit: 0
+      ccp2cap.cts:
+        bits:
+        - 0
+        - 5
+      ccp2cap.cts0:
+        bit: 0
+      ccp2cap.cts1:
+        bit: 0
+      ccp2cap.cts2:
+        bit: 0
+      ccp2cap.cts3:
+        bit: 0
+      ccp2cap.ccp2cts:
+        bits:
+        - 0
+        - 5
+      ccp2cap.ccp2cts0:
+        bit: 0
+      ccp2cap.ccp2cts1:
+        bit: 0
+      ccp2cap.ccp2cts2:
+        bit: 0
+      ccp2cap.ccp2cts3:
+        bit: 0
+      ccptmrs0.c1tsel:
+        bits:
+        - 0
+        - 1
+      ccptmrs0.c2tsel:
+        bits:
+        - 0
+        - 1
+      ccp1pps.ccp1pps:
+        bits:
+        - 0
+        - 4
+      ccp1pps.ccp1pps0:
+        bit: 0
+      ccp1pps.ccp1pps1:
+        bit: 0
+      ccp1pps.ccp1pps2:
+        bit: 0
+      ccp1pps.ccp1pps3:
+        bit: 0
+      ccp1pps.ccp1pps4:
+        bit: 0
+      ccp2pps.ccp2pps:
+        bits:
+        - 0
+        - 4
+      ccp2pps.ccp2pps0:
+        bit: 0
+      ccp2pps.ccp2pps1:
+        bit: 0
+      ccp2pps.ccp2pps2:
+        bit: 0
+      ccp2pps.ccp2pps3:
+        bit: 0
+      ccp2pps.ccp2pps4:
+        bit: 0
+  usart:
+    registers:
+      rc1sta:
+        offset: '0x710'
+      tx1sta:
+        offset: '0x711'
+      rc2pps:
+        offset: '0x1D9E'
+    fields:
+      rc1sta.rx9d:
+        bit: 0
+      rc1sta.oerr:
+        bit: 0
+      rc1sta.ferr:
+        bit: 0
+      rc1sta.adden:
+        bit: 0
+      rc1sta.cren:
+        bit: 0
+      rc1sta.sren:
+        bit: 0
+      rc1sta.rx9:
+        bit: 0
+      rc1sta.spen:
+        bit: 0
+      tx1sta.tx9d:
+        bit: 0
+      tx1sta.trmt:
+        bit: 0
+      tx1sta.brgh:
+        bit: 0
+      tx1sta.sendb:
+        bit: 0
+      tx1sta.sync:
+        bit: 0
+      tx1sta.txen:
+        bit: 0
+      tx1sta.tx9:
+        bit: 0
+      tx1sta.csrc:
+        bit: 0
+      rc2pps.rc2pps:
+        bits:
+        - 0
+        - 5
+  mssp:
+    registers:
+      ssp1buf:
+        offset: '0x78C'
+      ssp1add:
+        offset: '0x78D'
+      ssp1msk:
+        offset: '0x78E'
+      ssp1stat:
+        offset: '0x78F'
+      ssp1con1:
+        offset: '0x790'
+      ssp1con2:
+        offset: '0x791'
+      ssp1con3:
+        offset: '0x792'
+      ssp1clkpps:
+        offset: '0x1E47'
+      ssp1datpps:
+        offset: '0x1E48'
+      ssp1sspps:
+        offset: '0x1E49'
+    fields:
+      ssp1buf.sspbuf:
+        bits:
+        - 0
+        - 7
+      ssp1add.sspadd:
+        bits:
+        - 0
+        - 7
+      ssp1add.msk0:
+        bit: 0
+      ssp1add.msk1:
+        bit: 0
+      ssp1add.msk2:
+        bit: 0
+      ssp1add.msk3:
+        bit: 0
+      ssp1add.msk4:
+        bit: 0
+      ssp1add.msk5:
+        bit: 0
+      ssp1add.msk6:
+        bit: 0
+      ssp1add.msk7:
+        bit: 0
+      ssp1add.msk01:
+        bit: 0
+      ssp1add.msk11:
+        bit: 0
+      ssp1add.msk21:
+        bit: 0
+      ssp1add.msk31:
+        bit: 0
+      ssp1add.msk41:
+        bit: 0
+      ssp1add.msk51:
+        bit: 0
+      ssp1add.msk61:
+        bit: 0
+      ssp1add.msk71:
+        bit: 0
+      ssp1msk.sspmsk:
+        bits:
+        - 0
+        - 7
+      ssp1msk.msk0:
+        bit: 0
+      ssp1msk.msk1:
+        bit: 0
+      ssp1msk.msk2:
+        bit: 0
+      ssp1msk.msk3:
+        bit: 0
+      ssp1msk.msk4:
+        bit: 0
+      ssp1msk.msk5:
+        bit: 0
+      ssp1msk.msk6:
+        bit: 0
+      ssp1msk.msk7:
+        bit: 0
+      ssp1stat.bf:
+        bit: 0
+      ssp1stat.ua:
+        bit: 0
+      ssp1stat.r_nw:
+        bit: 0
+      ssp1stat.s:
+        bit: 0
+      ssp1stat.p:
+        bit: 0
+      ssp1stat.d_na:
+        bit: 0
+      ssp1stat.cke:
+        bit: 0
+      ssp1stat.smp:
+        bit: 0
+      ssp1stat.r_w:
+        bit: 0
+      ssp1stat.d_a:
+        bit: 0
+      ssp1stat.nw:
+        bit: 0
+      ssp1stat.na:
+        bit: 0
+      ssp1stat.nwrite:
+        bit: 0
+      ssp1stat.naddress:
+        bit: 0
+      ssp1stat.read_write:
+        bit: 0
+      ssp1stat.data_address:
+        bit: 0
+      ssp1stat.i2c_read:
+        bit: 0
+      ssp1stat.i2c_start:
+        bit: 0
+      ssp1stat.i2c_stop:
+        bit: 0
+      ssp1stat.i2c_dat:
+        bit: 0
+      ssp1stat.bf1:
+        bit: 0
+      ssp1stat.ua1:
+        bit: 0
+      ssp1stat.r:
+        bit: 0
+      ssp1stat.start:
+        bit: 0
+      ssp1stat.stop:
+        bit: 0
+      ssp1stat.d:
+        bit: 0
+      ssp1stat.cke1:
+        bit: 0
+      ssp1stat.smp1:
+        bit: 0
+      ssp1stat.rw:
+        bit: 0
+      ssp1stat.start1:
+        bit: 0
+      ssp1stat.stop1:
+        bit: 0
+      ssp1stat.da:
+        bit: 0
+      ssp1stat.rw1:
+        bit: 0
+      ssp1stat.i2c_start1:
+        bit: 0
+      ssp1stat.i2c_stop2:
+        bit: 0
+      ssp1stat.da1:
+        bit: 0
+      ssp1stat.i2c_read1:
+        bit: 0
+      ssp1stat.s2:
+        bit: 0
+      ssp1stat.p2:
+        bit: 0
+      ssp1stat.data_address1:
+        bit: 0
+      ssp1stat.read_write1:
+        bit: 0
+      ssp1stat.d_a1:
+        bit: 0
+      ssp1stat.r_w1:
+        bit: 0
+      ssp1stat.d_na1:
+        bit: 0
+      ssp1stat.r_nw1:
+        bit: 0
+      ssp1stat.i2c_dat1:
+        bit: 0
+      ssp1stat.nw2:
+        bit: 0
+      ssp1stat.na2:
+        bit: 0
+      ssp1stat.nwrite1:
+        bit: 0
+      ssp1stat.naddress1:
+        bit: 0
+      ssp1con1.sspm:
+        bits:
+        - 0
+        - 3
+      ssp1con1.ckp:
+        bit: 0
+      ssp1con1.sspen:
+        bit: 0
+      ssp1con1.sspov:
+        bit: 0
+      ssp1con1.wcol:
+        bit: 0
+      ssp1con1.sspm0:
+        bit: 0
+      ssp1con1.sspm1:
+        bit: 0
+      ssp1con1.sspm2:
+        bit: 0
+      ssp1con1.sspm3:
+        bit: 0
+      ssp1con1.sspm01:
+        bit: 0
+      ssp1con1.sspm11:
+        bit: 0
+      ssp1con1.sspm21:
+        bit: 0
+      ssp1con1.sspm31:
+        bit: 0
+      ssp1con1.ckp1:
+        bit: 0
+      ssp1con1.sspen1:
+        bit: 0
+      ssp1con1.sspov1:
+        bit: 0
+      ssp1con1.wcol1:
+        bit: 0
+      ssp1con2.sen:
+        bit: 0
+      ssp1con2.rsen:
+        bit: 0
+      ssp1con2.pen:
+        bit: 0
+      ssp1con2.rcen:
+        bit: 0
+      ssp1con2.acken:
+        bit: 0
+      ssp1con2.ackdt:
+        bit: 0
+      ssp1con2.ackstat:
+        bit: 0
+      ssp1con2.gcen:
+        bit: 0
+      ssp1con2.admsk:
+        bits:
+        - 0
+        - 4
+      ssp1con2.admsk1:
+        bit: 0
+      ssp1con2.admsk2:
+        bit: 0
+      ssp1con2.admsk3:
+        bit: 0
+      ssp1con2.admsk4:
+        bit: 0
+      ssp1con2.admsk5:
+        bit: 0
+      ssp1con2.sen1:
+        bit: 0
+      ssp1con2.admsk11:
+        bit: 0
+      ssp1con2.admsk21:
+        bit: 0
+      ssp1con2.admsk31:
+        bit: 0
+      ssp1con2.acken1:
+        bit: 0
+      ssp1con2.ackdt1:
+        bit: 0
+      ssp1con2.ackstat1:
+        bit: 0
+      ssp1con2.gcen1:
+        bit: 0
+      ssp1con2.rsen1:
+        bit: 0
+      ssp1con2.pen1:
+        bit: 0
+      ssp1con2.rcen1:
+        bit: 0
+      ssp1con2.admsk41:
+        bit: 0
+      ssp1con2.admsk51:
+        bit: 0
+      ssp1con3.dhen:
+        bit: 0
+      ssp1con3.ahen:
+        bit: 0
+      ssp1con3.sbcde:
+        bit: 0
+      ssp1con3.sdaht:
+        bit: 0
+      ssp1con3.boen:
+        bit: 0
+      ssp1con3.scie:
+        bit: 0
+      ssp1con3.pcie:
+        bit: 0
+      ssp1con3.acktim:
+        bit: 0
+      ssp1clkpps.ssp1clkpps:
+        bits:
+        - 0
+        - 4
+      ssp1clkpps.ssp1clkpps0:
+        bit: 0
+      ssp1clkpps.ssp1clkpps1:
+        bit: 0
+      ssp1clkpps.ssp1clkpps2:
+        bit: 0
+      ssp1clkpps.ssp1clkpps3:
+        bit: 0
+      ssp1clkpps.ssp1clkpps4:
+        bit: 0
+      ssp1datpps.ssp1datpps:
+        bits:
+        - 0
+        - 4
+      ssp1datpps.ssp1datpps0:
+        bit: 0
+      ssp1datpps.ssp1datpps1:
+        bit: 0
+      ssp1datpps.ssp1datpps2:
+        bit: 0
+      ssp1datpps.ssp1datpps3:
+        bit: 0
+      ssp1datpps.ssp1datpps4:
+        bit: 0
+      ssp1sspps.ssp1sspps:
+        bits:
+        - 0
+        - 4
+      ssp1sspps.ssp1sspps0:
+        bit: 0
+      ssp1sspps.ssp1sspps1:
+        bit: 0
+      ssp1sspps.ssp1sspps2:
+        bit: 0
+      ssp1sspps.ssp1sspps3:
+        bit: 0
+      ssp1sspps.ssp1sspps4:
+        bit: 0
+  comparator:
+    registers:
+      cm1con0:
+        offset: '0x80C'
+      cm1con1:
+        offset: '0x80D'
+      cm2con0:
+        offset: '0x810'
+      cm2con1:
+        offset: '0x811'
+    fields:
+      cm1con0.sync:
+        bit: 0
+      cm1con0.hys:
+        bit: 0
+      cm1con0.sp:
+        bit: 0
+      cm1con0.pol:
+        bit: 0
+      cm1con0.out:
+        bit: 0
+      cm1con0.en:
+        bit: 0
+      cm1con0.c1sync:
+        bit: 0
+      cm1con0.c1hys:
+        bit: 0
+      cm1con0.c1sp:
+        bit: 0
+      cm1con0.c1pol:
+        bit: 0
+      cm1con0.c1out:
+        bit: 0
+      cm1con0.c1en:
+        bit: 0
+      cm1con1.intn:
+        bit: 0
+      cm1con1.intp:
+        bit: 0
+      cm1con1.c1intn:
+        bit: 0
+      cm1con1.c1intp:
+        bit: 0
+      cm2con0.sync:
+        bit: 0
+      cm2con0.hys:
+        bit: 0
+      cm2con0.sp:
+        bit: 0
+      cm2con0.pol:
+        bit: 0
+      cm2con0.out:
+        bit: 0
+      cm2con0.en:
+        bit: 0
+      cm2con0.c2sync:
+        bit: 0
+      cm2con0.c2hys:
+        bit: 0
+      cm2con0.c2sp:
+        bit: 0
+      cm2con0.c2pol:
+        bit: 0
+      cm2con0.c2out:
+        bit: 0
+      cm2con0.c2en:
+        bit: 0
+      cm2con1.intn:
+        bit: 0
+      cm2con1.intp:
+        bit: 0
+      cm2con1.c2intn:
+        bit: 0
+      cm2con1.c2intp:
+        bit: 0
+  adc:
+    registers:
+      adresl:
+        offset: '0x1D1D'
+      adresh:
+        offset: '0x1D1E'
+      adcap:
+        offset: '0x1D23'
+      adcon0:
+        offset: '0x1D26'
+      adcon1:
+        offset: '0x1D27'
+      adcon2:
+        offset: '0x1D28'
+      adcon3:
+        offset: '0x1D29'
+      adclk:
+        offset: '0x1D2D'
+    fields:
+      adresl.res:
+        bits:
+        - 0
+        - 7
+      adresl.adres0:
+        bit: 0
+      adresl.adres1:
+        bit: 0
+      adresl.adres2:
+        bit: 0
+      adresl.adres3:
+        bit: 0
+      adresl.adres4:
+        bit: 0
+      adresl.adres5:
+        bit: 0
+      adresl.adres6:
+        bit: 0
+      adresl.adres7:
+        bit: 0
+      adresl.adres:
+        bits:
+        - 0
+        - 7
+      adresl.res0:
+        bit: 0
+      adresl.res1:
+        bit: 0
+      adresl.res2:
+        bit: 0
+      adresl.res3:
+        bit: 0
+      adresl.res4:
+        bit: 0
+      adresl.res5:
+        bit: 0
+      adresl.res6:
+        bit: 0
+      adresl.res7:
+        bit: 0
+      adresh.res:
+        bits:
+        - 0
+        - 7
+      adresh.adres8:
+        bit: 0
+      adresh.adres9:
+        bit: 0
+      adresh.adres10:
+        bit: 0
+      adresh.adres11:
+        bit: 0
+      adresh.adres12:
+        bit: 0
+      adresh.adres13:
+        bit: 0
+      adresh.adres14:
+        bit: 0
+      adresh.adres15:
+        bit: 0
+      adresh.adres:
+        bits:
+        - 0
+        - 7
+      adresh.res8:
+        bit: 0
+      adresh.res9:
+        bit: 0
+      adresh.res10:
+        bit: 0
+      adresh.res11:
+        bit: 0
+      adresh.res12:
+        bit: 0
+      adresh.res13:
+        bit: 0
+      adresh.res14:
+        bit: 0
+      adresh.res15:
+        bit: 0
+      adcap.cap:
+        bits:
+        - 0
+        - 7
+      adcap.adcap0:
+        bit: 0
+      adcap.adcap1:
+        bit: 0
+      adcap.adcap2:
+        bit: 0
+      adcap.adcap3:
+        bit: 0
+      adcap.adcap4:
+        bit: 0
+      adcon0.go:
+        bit: 0
+      adcon0.fm:
+        bits:
+        - 0
+        - 1
+      adcon0.cs:
+        bit: 0
+      adcon0.cont:
+        bit: 0
+      adcon0.on:
+        bit: 0
+      adcon0.adgo:
+        bit: 0
+      adcon0.adfm:
+        bits:
+        - 0
+        - 1
+      adcon0.adcs:
+        bit: 0
+      adcon0.adcont:
+        bit: 0
+      adcon0.adon:
+        bit: 0
+      adcon0.done:
+        bit: 0
+      adcon0.fm0:
+        bit: 0
+      adcon0.go_ndone:
+        bit: 0
+      adcon0.adfm0:
+        bit: 0
+      adcon1.dsen:
+        bit: 0
+      adcon1.pcsc:
+        bit: 0
+      adcon1.gpol:
+        bit: 0
+      adcon1.ipen:
+        bit: 0
+      adcon1.ppol:
+        bit: 0
+      adcon1.addsen:
+        bit: 0
+      adcon1.adgpol:
+        bit: 0
+      adcon1.adipen:
+        bit: 0
+      adcon1.adppol:
+        bit: 0
+      adcon2.md:
+        bits:
+        - 0
+        - 2
+      adcon2.aclr:
+        bit: 0
+      adcon2.crs:
+        bits:
+        - 0
+        - 2
+      adcon2.psis:
+        bit: 0
+      adcon2.admd0:
+        bit: 0
+      adcon2.admd1:
+        bit: 0
+      adcon2.admd2:
+        bit: 0
+      adcon2.adaclr:
+        bit: 0
+      adcon2.adcrs0:
+        bit: 0
+      adcon2.adcrs1:
+        bit: 0
+      adcon2.adcrs2:
+        bit: 0
+      adcon2.adpsis:
+        bit: 0
+      adcon2.admd:
+        bits:
+        - 0
+        - 2
+      adcon2.adcrs:
+        bits:
+        - 0
+        - 2
+      adcon2.md0:
+        bit: 0
+      adcon2.md1:
+        bit: 0
+      adcon2.md2:
+        bit: 0
+      adcon2.crs0:
+        bit: 0
+      adcon2.crs1:
+        bit: 0
+      adcon2.crs2:
+        bit: 0
+      adcon3.tmd:
+        bits:
+        - 0
+        - 2
+      adcon3.soi:
+        bit: 0
+      adcon3.calc:
+        bits:
+        - 0
+        - 2
+      adcon3.adtmd0:
+        bit: 0
+      adcon3.adtmd1:
+        bit: 0
+      adcon3.adtmd2:
+        bit: 0
+      adcon3.adsoi:
+        bit: 0
+      adcon3.adcalc0:
+        bit: 0
+      adcon3.adcalc1:
+        bit: 0
+      adcon3.adcalc2:
+        bit: 0
+      adcon3.adtmd:
+        bits:
+        - 0
+        - 2
+      adcon3.adcalc:
+        bits:
+        - 0
+        - 2
+      adcon3.tmd0:
+        bit: 0
+      adcon3.tmd1:
+        bit: 0
+      adcon3.tmd2:
+        bit: 0
+      adcon3.calc0:
+        bit: 0
+      adcon3.calc1:
+        bit: 0
+      adcon3.calc2:
+        bit: 0
+      adclk.cs:
+        bits:
+        - 0
+        - 7
+      adclk.adcs0:
+        bit: 0
+      adclk.adcs1:
+        bit: 0
+      adclk.adcs2:
+        bit: 0
+      adclk.adcs3:
+        bit: 0
+      adclk.adcs4:
+        bit: 0
+      adclk.adcs5:
+        bit: 0
+      adclk.adcs:
+        bits:
+        - 0
+        - 7
+      adclk.cs0:
+        bit: 0
+      adclk.cs1:
+        bit: 0
+      adclk.cs2:
+        bit: 0
+      adclk.cs3:
+        bit: 0
+      adclk.cs4:
+        bit: 0
+      adclk.cs5:
+        bit: 0
+peripherals:
+- id: adc
+  template: adc
+  base: '0x1D1D'
+- id: ccp
+  template: ccp
+  base: '0x40C'
+- id: comparator
+  template: comparator
+  base: '0x80C'
+- id: interrupt_controller
+  template: interrupt_controller
+  base: 140
+- id: misc
+  template: misc
+  base: '0x10C'
+- id: mssp
+  template: mssp
+  base: '0x78C'
+- id: oscillator
+  template: oscillator
+  base: '0x28D'
+- id: port_a
+  template: port
+  base: 12
+- id: port_b
+  template: port
+  base: 12
+- id: port_c
+  template: port
+  base: 12
+- id: timer_0
+  template: timer
+  base: '0x19C'
+- id: timer_1
+  template: timer
+  base: '0x19C'
+- id: timer_2
+  template: timer
+  base: '0x19C'
+- id: usart
+  template: usart
+  base: '0x710'
+- id: usart_2
+  template: usart
+  base: '0x710'
+- id: wdt
+  template: wdt
+  base: '0x18C'
+pinout:
+- signal: ICSPDAT
+  pin: 1
+  alt_functions:
+  - ICDDAT
+  - DAC1OUT1
+  - ANA0
+  - C1IN0+
+  - IOCA0
+  - RA0
+- signal: ICSPCLK
+  pin: 2
+  alt_functions:
+  - ICDCLK
+  - DAC1REF0+
+  - VREF+
+  - ANA1
+  - C1IN0-
+  - C2IN0-
+  - IOCA1
+  - RA1
+- signal: DAC1OUT2
+  pin: 3
+  alt_functions:
+  - ANA2
+  - IOCA2
+  - RA2
+- signal: VPP
+  pin: 4
+  constraints:
+  - reset
+  alt_functions:
+  - MCLR_n
+  - ICDMCLR_n
+  - IOCA3
+  - RA3
+- signal: CLKOUT
+  pin: 5
+  alt_functions:
+  - OSC2
+  - ANA4
+  - IOCA4
+  - RA4
+- signal: ECIN
+  pin: 6
+  alt_functions:
+  - CLKIN
+  - OSC1
+  - ANA5
+  - IOCA5
+  - RA5
+- signal: ANB4
+  pin: 7
+  alt_functions:
+  - SMB_I2C
+  - IOCB4
+  - RB4
+- signal: ANB5
+  pin: 8
+  alt_functions:
+  - IOCB5
+  - RB5
+- signal: ANB6
+  pin: 9
+  alt_functions:
+  - SMB_I2C
+  - IOCB6
+  - RB6
+- signal: ANB7
+  pin: 10
+  alt_functions:
+  - IOCB7
+  - RB7
+- signal: ANC0
+  pin: 11
+  alt_functions:
+  - C2IN0+
+  - IOCC0
+  - RC0
+- signal: ANC1
+  pin: 12
+  alt_functions:
+  - C1IN1-
+  - C2IN1-
+  - IOCC1
+  - RC1
+- signal: ANC2
+  pin: 13
+  alt_functions:
+  - C1IN2-
+  - C2IN2-
+  - IOCC2
+  - RC2
+- signal: ANC3
+  pin: 14
+  alt_functions:
+  - C1IN3-
+  - C2IN3-
+  - IOCC3
+  - RC3
+- signal: ANC4
+  pin: 15
+  alt_functions:
+  - IOCC4
+  - RC4
+- signal: ANC5
+  pin: 16
+  alt_functions:
+  - IOCC5
+  - RC5
+- signal: ANC6
+  pin: 17
+  alt_functions:
+  - IOCC6
+  - RC6
+- signal: ANC7
+  pin: 18
+  alt_functions:
+  - IOCC7
+  - RC7
+- signal: VDD
+  pin: 19
+  constraints:
+  - power
+- signal: VSS
+  pin: 20
+  constraints:
+  - power

@@ -1,0 +1,1014 @@
+schema: alloy.device.v2.1
+identity:
+  vendor: microchip
+  family: mecxxxx
+  device: mec1404
+  core:
+    isa: 32xxxx
+    name: mec1404
+    bits: 8
+provenance:
+  primary: microchip-pic:MEC1404.PIC
+  authored: auto
+  secondary:
+  - microchip-overlay:mecxxxx
+memory:
+- id: flash
+  base: '0x00000000'
+  size: 1B
+  access: rx
+  role: extractor-placeholder
+clock:
+  oscillators:
+    unknown:
+      freq: 0Hz
+      kind: rc-internal
+  domains:
+  - id: sysclk
+    sources:
+    - unknown
+  profiles:
+  - id: factory-default
+    kind: post-reset
+    sysclk: 0Hz
+    sysclk_source: unknown
+templates:
+  misc:
+    registers:
+      _icdcon:
+        offset: '0x1FBFEFF0'
+      _icdstat:
+        offset: '0x1FBFEFF4'
+      test_mode_ctl:
+        offset: '0x1FBFEFF8'
+    fields:
+      at.at:
+        bits:
+        - 0
+        - 31
+      v0.v0:
+        bits:
+        - 0
+        - 31
+      v1.v1:
+        bits:
+        - 0
+        - 31
+      a0.a0:
+        bits:
+        - 0
+        - 31
+      a1.a1:
+        bits:
+        - 0
+        - 31
+      a2.a2:
+        bits:
+        - 0
+        - 31
+      a3.a3:
+        bits:
+        - 0
+        - 31
+      t0.t0:
+        bits:
+        - 0
+        - 31
+      t1.t1:
+        bits:
+        - 0
+        - 31
+      t2.t2:
+        bits:
+        - 0
+        - 31
+      t3.t3:
+        bits:
+        - 0
+        - 31
+      t4.t4:
+        bits:
+        - 0
+        - 31
+      t5.t5:
+        bits:
+        - 0
+        - 31
+      t6.t6:
+        bits:
+        - 0
+        - 31
+      t7.t7:
+        bits:
+        - 0
+        - 31
+      s0.s0:
+        bits:
+        - 0
+        - 31
+      s1.s1:
+        bits:
+        - 0
+        - 31
+      s2.s2:
+        bits:
+        - 0
+        - 31
+      s3.s3:
+        bits:
+        - 0
+        - 31
+      s4.s4:
+        bits:
+        - 0
+        - 31
+      s5.s5:
+        bits:
+        - 0
+        - 31
+      s6.s6:
+        bits:
+        - 0
+        - 31
+      s7.s7:
+        bits:
+        - 0
+        - 31
+      t8.t8:
+        bits:
+        - 0
+        - 31
+      t9.t9:
+        bits:
+        - 0
+        - 31
+      k0.k0:
+        bits:
+        - 0
+        - 31
+      k1.k1:
+        bits:
+        - 0
+        - 31
+      gp.gp:
+        bits:
+        - 0
+        - 31
+      sp.sp:
+        bits:
+        - 0
+        - 31
+      fp.fp:
+        bits:
+        - 0
+        - 31
+      ra.ra:
+        bits:
+        - 0
+        - 31
+      index.index:
+        bits:
+        - 0
+        - 4
+      index.p:
+        bit: 0
+      random.random:
+        bits:
+        - 0
+        - 3
+      entrylo0.g:
+        bit: 0
+      entrylo0.v:
+        bit: 0
+      entrylo0.d:
+        bit: 0
+      entrylo0.c:
+        bits:
+        - 0
+        - 2
+      entrylo0.pfn:
+        bits:
+        - 0
+        - 19
+      entrylo0.xi:
+        bit: 0
+      entrylo0.ri:
+        bit: 0
+      entrylo1.g:
+        bit: 0
+      entrylo1.v:
+        bit: 0
+      entrylo1.d:
+        bit: 0
+      entrylo1.c:
+        bits:
+        - 0
+        - 2
+      entrylo1.pfn:
+        bits:
+        - 0
+        - 19
+      entrylo1.xi:
+        bit: 0
+      entrylo1.ri:
+        bit: 0
+      context.badvpn2:
+        bits:
+        - 0
+        - 19
+      context.ptebase:
+        bits:
+        - 0
+        - 8
+      userlocal.userlocal:
+        bits:
+        - 0
+        - 31
+      pagemask.mask:
+        bits:
+        - 0
+        - 15
+      pagegrain.iec:
+        bit: 0
+      pagegrain.xie:
+        bit: 0
+      pagegrain.rie:
+        bit: 0
+      wired.wired:
+        bits:
+        - 0
+        - 4
+      hwrena.mask:
+        bits:
+        - 0
+        - 3
+      hwrena.ulr:
+        bit: 0
+      badvaddr.badvaddr:
+        bits:
+        - 0
+        - 31
+      count.count:
+        bits:
+        - 0
+        - 31
+      entryhi.asid:
+        bits:
+        - 0
+        - 7
+      entryhi.vpn2:
+        bits:
+        - 0
+        - 18
+      compare.compare:
+        bits:
+        - 0
+        - 31
+      intctl.vs:
+        bits:
+        - 0
+        - 4
+      intctl.usestk:
+        bit: 0
+      intctl.ape:
+        bit: 0
+      intctl.clrexl:
+        bit: 0
+      intctl.stkdec:
+        bits:
+        - 0
+        - 4
+      intctl.ice:
+        bit: 0
+      intctl.pf:
+        bit: 0
+      srsctl.css:
+        bits:
+        - 0
+        - 3
+      srsctl.pss:
+        bits:
+        - 0
+        - 3
+      srsctl.ess:
+        bits:
+        - 0
+        - 3
+      srsctl.eicss:
+        bits:
+        - 0
+        - 3
+      srsctl.hss:
+        bits:
+        - 0
+        - 3
+      srsmap.ssv0:
+        bits:
+        - 0
+        - 3
+      srsmap.ssv1:
+        bits:
+        - 0
+        - 3
+      srsmap.ssv2:
+        bits:
+        - 0
+        - 3
+      srsmap.ssv3:
+        bits:
+        - 0
+        - 3
+      srsmap.ssv4:
+        bits:
+        - 0
+        - 3
+      srsmap.ssv5:
+        bits:
+        - 0
+        - 3
+      srsmap.ssv6:
+        bits:
+        - 0
+        - 3
+      srsmap.ssv7:
+        bits:
+        - 0
+        - 3
+      view_ipl.ipl:
+        bits:
+        - 0
+        - 7
+      srsmap2.ssv8:
+        bits:
+        - 0
+        - 3
+      srsmap2.ssv9:
+        bits:
+        - 0
+        - 3
+      cause.exccode:
+        bits:
+        - 0
+        - 4
+      cause.ip:
+        bits:
+        - 0
+        - 1
+      cause.ripl:
+        bits:
+        - 0
+        - 7
+      cause.fdci:
+        bit: 0
+      cause.wp:
+        bit: 0
+      cause.iv:
+        bit: 0
+      cause.ap:
+        bit: 0
+      cause.ic:
+        bit: 0
+      cause.pci:
+        bit: 0
+      cause.dc:
+        bit: 0
+      cause.ce:
+        bits:
+        - 0
+        - 1
+      cause.ti:
+        bit: 0
+      cause.bd:
+        bit: 0
+      view_ripl.ip:
+        bits:
+        - 0
+        - 1
+      view_ripl.ripl:
+        bits:
+        - 0
+        - 7
+      nestedexc.nexl:
+        bits:
+        - 0
+        - 1
+      nestedexc.nerl:
+        bits:
+        - 0
+        - 1
+      epc.epc:
+        bits:
+        - 0
+        - 31
+      nestedepc.epc:
+        bits:
+        - 0
+        - 31
+      prid.patch:
+        bits:
+        - 0
+        - 1
+      prid.minrev:
+        bits:
+        - 0
+        - 2
+      prid.majrev:
+        bits:
+        - 0
+        - 2
+      prid.prid:
+        bits:
+        - 0
+        - 7
+      prid.coid:
+        bits:
+        - 0
+        - 7
+      ebase.cpunum:
+        bits:
+        - 0
+        - 9
+      ebase.exbase:
+        bits:
+        - 0
+        - 17
+      cdmmbase.cdmmsize:
+        bits:
+        - 0
+        - 8
+      cdmmbase.ci:
+        bit: 0
+      cdmmbase.en:
+        bit: 0
+      cdmmbase.cdmmua:
+        bits:
+        - 0
+        - 20
+      config.k0:
+        bits:
+        - 0
+        - 2
+      config.mt:
+        bits:
+        - 0
+        - 2
+      config.ar:
+        bits:
+        - 0
+        - 2
+      config.at:
+        bits:
+        - 0
+        - 1
+      config.be:
+        bit: 0
+      config.bm:
+        bit: 0
+      config.mm:
+        bits:
+        - 0
+        - 1
+      config.mdu:
+        bit: 0
+      config.sb:
+        bit: 0
+      config.udi:
+        bit: 0
+      config.dsp:
+        bit: 0
+      config.isp:
+        bit: 0
+      config.ku:
+        bits:
+        - 0
+        - 2
+      config.k23:
+        bits:
+        - 0
+        - 2
+      config.m:
+        bit: 0
+      config1.fp:
+        bit: 0
+      config1.ep:
+        bit: 0
+      config1.ca:
+        bit: 0
+      config1.wr:
+        bit: 0
+      config1.pc:
+        bit: 0
+      config1.da:
+        bits:
+        - 0
+        - 2
+      config1.dl:
+        bits:
+        - 0
+        - 2
+      config1.ds:
+        bits:
+        - 0
+        - 2
+      config1.ia:
+        bits:
+        - 0
+        - 2
+      config1.il:
+        bits:
+        - 0
+        - 2
+      config1.is:
+        bits:
+        - 0
+        - 2
+      config1.mmusz:
+        bits:
+        - 0
+        - 5
+      config1.m:
+        bit: 0
+      config2.m:
+        bit: 0
+      config3.tl:
+        bit: 0
+      config3.cddm:
+        bit: 0
+      config3.sp:
+        bit: 0
+      config3.vint:
+        bit: 0
+      config3.veic:
+        bit: 0
+      config3.itl:
+        bit: 0
+      config3.dspp:
+        bit: 0
+      config3.dsp2p:
+        bit: 0
+      config3.rxi:
+        bit: 0
+      config3.ulri:
+        bit: 0
+      config3.isa:
+        bits:
+        - 0
+        - 1
+      config3.isaonexc:
+        bit: 0
+      config3.mcu:
+        bit: 0
+      config3.mmar:
+        bits:
+        - 0
+        - 2
+      config3.iplw:
+        bits:
+        - 0
+        - 1
+      config3.m:
+        bit: 0
+      config4.m:
+        bit: 0
+      config5.nf:
+        bit: 0
+      config5.m:
+        bit: 0
+      config7.wii:
+        bit: 0
+      lladdr.paddr:
+        bits:
+        - 0
+        - 27
+      watchlo.w:
+        bit: 0
+      watchlo.r:
+        bit: 0
+      watchlo.i:
+        bit: 0
+      watchlo.vaddr:
+        bits:
+        - 0
+        - 28
+      watchlo1.w:
+        bit: 0
+      watchlo1.r:
+        bit: 0
+      watchlo1.i:
+        bit: 0
+      watchlo1.vaddr:
+        bits:
+        - 0
+        - 28
+      watchlo2.w:
+        bit: 0
+      watchlo2.r:
+        bit: 0
+      watchlo2.i:
+        bit: 0
+      watchlo2.vaddr:
+        bits:
+        - 0
+        - 28
+      watchlo3.w:
+        bit: 0
+      watchlo3.r:
+        bit: 0
+      watchlo3.i:
+        bit: 0
+      watchlo3.vaddr:
+        bits:
+        - 0
+        - 28
+      watchhi.w:
+        bit: 0
+      watchhi.r:
+        bit: 0
+      watchhi.i:
+        bit: 0
+      watchhi.mask:
+        bits:
+        - 0
+        - 8
+      watchhi.asid:
+        bits:
+        - 0
+        - 7
+      watchhi.g:
+        bit: 0
+      watchhi.m:
+        bit: 0
+      watchhi1.w:
+        bit: 0
+      watchhi1.r:
+        bit: 0
+      watchhi1.i:
+        bit: 0
+      watchhi1.mask:
+        bits:
+        - 0
+        - 8
+      watchhi1.asid:
+        bits:
+        - 0
+        - 7
+      watchhi1.g:
+        bit: 0
+      watchhi1.m:
+        bit: 0
+      watchhi2.w:
+        bit: 0
+      watchhi2.r:
+        bit: 0
+      watchhi2.i:
+        bit: 0
+      watchhi2.mask:
+        bits:
+        - 0
+        - 8
+      watchhi2.asid:
+        bits:
+        - 0
+        - 7
+      watchhi2.g:
+        bit: 0
+      watchhi2.m:
+        bit: 0
+      watchhi3.w:
+        bit: 0
+      watchhi3.r:
+        bit: 0
+      watchhi3.i:
+        bit: 0
+      watchhi3.mask:
+        bits:
+        - 0
+        - 8
+      watchhi3.asid:
+        bits:
+        - 0
+        - 7
+      watchhi3.g:
+        bit: 0
+      watchhi3.m:
+        bit: 0
+      debug.dss:
+        bit: 0
+      debug.dbp:
+        bit: 0
+      debug.ddbl:
+        bit: 0
+      debug.ddbs:
+        bit: 0
+      debug.dib:
+        bit: 0
+      debug.dint:
+        bit: 0
+      debug.dibimpr:
+        bit: 0
+      debug.sst:
+        bit: 0
+      debug.nosst:
+        bit: 0
+      debug.dexccode:
+        bits:
+        - 0
+        - 4
+      debug.ver:
+        bits:
+        - 0
+        - 2
+      debug.ddblimpr:
+        bit: 0
+      debug.ddbsimpr:
+        bit: 0
+      debug.iexi:
+        bit: 0
+      debug.dbusep:
+        bit: 0
+      debug.ibusep:
+        bit: 0
+      debug.countdm:
+        bit: 0
+      debug.halt:
+        bit: 0
+      debug.doze:
+        bit: 0
+      debug.lsnm:
+        bit: 0
+      debug.nodcr:
+        bit: 0
+      debug.dm:
+        bit: 0
+      debug.dbd:
+        bit: 0
+      tracecontrol.on:
+        bit: 0
+      tracecontrol.mode:
+        bits:
+        - 0
+        - 2
+      tracecontrol.g:
+        bit: 0
+      tracecontrol.asid:
+        bits:
+        - 0
+        - 7
+      tracecontrol.asid_m:
+        bits:
+        - 0
+        - 7
+      tracecontrol.u:
+        bit: 0
+      tracecontrol.k:
+        bit: 0
+      tracecontrol.e:
+        bit: 0
+      tracecontrol.d:
+        bit: 0
+      tracecontrol.io:
+        bit: 0
+      tracecontrol.tb:
+        bit: 0
+      tracecontrol.ut:
+        bit: 0
+      tracecontrol.ts:
+        bit: 0
+      tracecontrol2.syp:
+        bits:
+        - 0
+        - 2
+      tracecontrol2.tbu:
+        bit: 0
+      tracecontrol2.tbi:
+        bit: 0
+      tracecontrol2.validmodes:
+        bits:
+        - 0
+        - 1
+      usertracedata.data:
+        bits:
+        - 0
+        - 31
+      tracebpc.ibpon:
+        bits:
+        - 0
+        - 7
+      tracebpc.ie:
+        bit: 0
+      tracebpc.dbpon:
+        bits:
+        - 0
+        - 7
+      tracebpc.de:
+        bit: 0
+      debug2.paco:
+        bit: 0
+      debug2.tup:
+        bit: 0
+      debug2.dq:
+        bit: 0
+      debug2.prm:
+        bit: 0
+      depc.depc:
+        bits:
+        - 0
+        - 31
+      usertracedata2.data:
+        bits:
+        - 0
+        - 31
+      perfctl0.exl:
+        bit: 0
+      perfctl0.k:
+        bit: 0
+      perfctl0.u:
+        bit: 0
+      perfctl0.ie:
+        bit: 0
+      perfctl0.event:
+        bits:
+        - 0
+        - 6
+      perfcnt0.counter:
+        bits:
+        - 0
+        - 31
+      perfctl1.exl:
+        bit: 0
+      perfctl1.k:
+        bit: 0
+      perfctl1.u:
+        bit: 0
+      perfctl1.ie:
+        bit: 0
+      perfctl1.event:
+        bits:
+        - 0
+        - 6
+      perfcnt1.counter:
+        bits:
+        - 0
+        - 31
+      errctl.wst:
+        bit: 0
+      cacheerr.index:
+        bits:
+        - 0
+        - 19
+      cacheerr.way:
+        bits:
+        - 0
+        - 1
+      cacheerr.ew:
+        bit: 0
+      cacheerr.sp:
+        bit: 0
+      cacheerr.ef:
+        bit: 0
+      cacheerr.eb:
+        bit: 0
+      cacheerr.ee:
+        bit: 0
+      cacheerr.es:
+        bit: 0
+      cacheerr.et:
+        bit: 0
+      cacheerr.ed:
+        bit: 0
+      cacheerr.ec:
+        bit: 0
+      cacheerr.er:
+        bit: 0
+      taglo.l:
+        bit: 0
+      taglo.d:
+        bit: 0
+      taglo.v:
+        bit: 0
+      taglo.pa:
+        bits:
+        - 0
+        - 21
+      taglo_ram.wslru:
+        bits:
+        - 0
+        - 5
+      taglo_ram.wsd:
+        bits:
+        - 0
+        - 3
+      datalo.data:
+        bits:
+        - 0
+        - 31
+      errorepc.errorepc:
+        bits:
+        - 0
+        - 31
+      desave.desave:
+        bits:
+        - 0
+        - 31
+      lo.mdulow:
+        bits:
+        - 0
+        - 31
+      hi.mduhigh:
+        bits:
+        - 0
+        - 31
+      lo1.mdulow:
+        bits:
+        - 0
+        - 31
+      hi1.mduhigh:
+        bits:
+        - 0
+        - 31
+      lo2.mdulow:
+        bits:
+        - 0
+        - 31
+      hi2.mduhigh:
+        bits:
+        - 0
+        - 31
+      lo3.mdulow:
+        bits:
+        - 0
+        - 31
+      hi3.mduhigh:
+        bits:
+        - 0
+        - 31
+      dspcontrol.pos:
+        bits:
+        - 0
+        - 5
+      dspcontrol.scount:
+        bits:
+        - 0
+        - 5
+      dspcontrol.c:
+        bit: 0
+      dspcontrol.efi:
+        bit: 0
+      dspcontrol.outflag:
+        bits:
+        - 0
+        - 7
+      dspcontrol.ccond:
+        bits:
+        - 0
+        - 3
+      _icdcon.user_code_valid:
+        bit: 0
+      _icdcon.slpbken:
+        bit: 0
+      _icdcon.rstbug:
+        bit: 0
+      _icdcon.wdtbken:
+        bit: 0
+      _icdcon.wdten:
+        bit: 0
+      _icdcon.frz:
+        bit: 0
+      _icdstat.wdtbf:
+        bit: 0
+      _icdstat.slpbf:
+        bit: 0
+      test_mode_ctl.test_mode_en:
+        bit: 0
+      test_mode_ctl.jtag_4w_en:
+        bit: 0
+      test_mode_ctl.icsp_num0:
+        bit: 0
+      test_mode_ctl.icsp_num1:
+        bit: 0
+      test_mode_ctl.icsp_num2:
+        bit: 0
+      test_mode_ctl.icsp_num3:
+        bit: 0
+      test_mode_ctl.test_mode0:
+        bit: 0
+      test_mode_ctl.test_mode1:
+        bit: 0
+      test_mode_ctl.test_mode2:
+        bit: 0
+      test_mode_ctl.test_mode3:
+        bit: 0
+  i2c:
+    max_clock: 1MHz
+  usart:
+    max_baud: 5000000
+  twi:
+    max_clock: 1MHz
+  adc:
+    max_clock: 10MHz
+peripherals:
+- id: misc
+  template: misc
+  base: '0x1FBFEFF0'
+pinout:
+- signal: RESET

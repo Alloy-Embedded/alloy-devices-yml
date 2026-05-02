@@ -1,0 +1,512 @@
+schema: alloy.device.v2.1
+identity:
+  vendor: microchip
+  family: pic16fxxx
+  device: ac244061_as_pic16f527
+  core:
+    isa: pic16
+    name: pic16
+    bits: 8
+provenance:
+  primary: microchip-pic:AC244061_AS_PIC16F527.PIC
+  authored: auto
+  secondary:
+  - microchip-overlay:pic16fxxx
+memory:
+- id: flash
+  base: '0x00000000'
+  size: 1B
+  access: rx
+  role: extractor-placeholder
+clock:
+  oscillators:
+    unknown:
+      freq: 0Hz
+      kind: rc-internal
+  domains:
+  - id: sysclk
+    sources:
+    - unknown
+  profiles:
+  - id: factory-default
+    kind: post-reset
+    sysclk: 0Hz
+    sysclk_source: unknown
+templates:
+  misc:
+    registers:
+      indf:
+        offset: 0
+      osccal:
+        offset: 5
+      intcon0:
+        offset: 11
+      eecon:
+        offset: 33
+      vrcon:
+        offset: 41
+      ansel:
+        offset: 42
+      iw:
+        offset: 97
+      istatus:
+        offset: 102
+      ifsr:
+        offset: 103
+      ibsr:
+        offset: 104
+      opacon:
+        offset: 105
+    fields:
+      indf.indf:
+        bits:
+        - 0
+        - 7
+      osccal.cal:
+        bits:
+        - 0
+        - 6
+      osccal.cal0:
+        bit: 0
+      osccal.cal1:
+        bit: 0
+      osccal.cal2:
+        bit: 0
+      osccal.cal3:
+        bit: 0
+      osccal.cal4:
+        bit: 0
+      osccal.cal5:
+        bit: 0
+      osccal.cal6:
+        bit: 0
+      intcon0.gie:
+        bit: 0
+      intcon0.raif:
+        bit: 0
+      intcon0.t0if:
+        bit: 0
+      intcon0.cwif:
+        bit: 0
+      intcon0.adif:
+        bit: 0
+      eecon.rd:
+        bit: 0
+      eecon.wr:
+        bit: 0
+      eecon.wren:
+        bit: 0
+      eecon.wrerr:
+        bit: 0
+      eecon.free:
+        bit: 0
+      vrcon.vr:
+        bits:
+        - 0
+        - 3
+      vrcon.vrr:
+        bit: 0
+      vrcon.vroe:
+        bit: 0
+      vrcon.vren:
+        bit: 0
+      vrcon.vr0:
+        bit: 0
+      vrcon.vr1:
+        bit: 0
+      vrcon.vr2:
+        bit: 0
+      vrcon.vr3:
+        bit: 0
+      ansel.ans0:
+        bit: 0
+      ansel.ans1:
+        bit: 0
+      ansel.ans2:
+        bit: 0
+      ansel.ans3:
+        bit: 0
+      ansel.ans4:
+        bit: 0
+      ansel.ans5:
+        bit: 0
+      ansel.ans6:
+        bit: 0
+      ansel.ans7:
+        bit: 0
+      iw.iwreg:
+        bits:
+        - 0
+        - 7
+      istatus.c:
+        bit: 0
+      istatus.dc:
+        bit: 0
+      istatus.z:
+        bit: 0
+      istatus.npd:
+        bit: 0
+      istatus.nto:
+        bit: 0
+      istatus.pa0:
+        bit: 0
+      istatus.pa1:
+        bit: 0
+      ifsr.ifsr:
+        bits:
+        - 0
+        - 6
+      ibsr.ibsr:
+        bits:
+        - 0
+        - 1
+      opacon.opa1on:
+        bit: 0
+      opacon.opa2on:
+        bit: 0
+      option_reg.ps:
+        bits:
+        - 0
+        - 2
+      option_reg.psa:
+        bit: 0
+      option_reg.t0se:
+        bit: 0
+      option_reg.t0cs:
+        bit: 0
+      option_reg.nrapu:
+        bit: 0
+      option_reg.nrawu:
+        bit: 0
+      option_reg.ps0:
+        bit: 0
+      option_reg.ps1:
+        bit: 0
+      option_reg.ps2:
+        bit: 0
+  timer:
+    registers:
+      tmr0:
+        offset: 1
+    fields:
+      tmr0.tmr0:
+        bits:
+        - 0
+        - 7
+  port:
+    registers:
+      porta:
+        offset: 6
+      portb:
+        offset: 7
+      portc:
+        offset: 8
+    fields:
+      porta.ra:
+        bits:
+        - 0
+        - 5
+      porta.ra0:
+        bit: 0
+      porta.ra1:
+        bit: 0
+      porta.ra2:
+        bit: 0
+      porta.ra3:
+        bit: 0
+      porta.ra4:
+        bit: 0
+      porta.ra5:
+        bit: 0
+      portb.rb:
+        bits:
+        - 0
+        - 3
+      portb.rb4:
+        bit: 0
+      portb.rb5:
+        bit: 0
+      portb.rb6:
+        bit: 0
+      portb.rb7:
+        bit: 0
+      portc.rc:
+        bits:
+        - 0
+        - 7
+      portc.rc0:
+        bit: 0
+      portc.rc1:
+        bit: 0
+      portc.rc2:
+        bit: 0
+      portc.rc3:
+        bit: 0
+      portc.rc4:
+        bit: 0
+      portc.rc5:
+        bit: 0
+      portc.rc6:
+        bit: 0
+      portc.rc7:
+        bit: 0
+      trisa.trisa0:
+        bit: 0
+      trisa.trisa1:
+        bit: 0
+      trisa.trisa2:
+        bit: 0
+      trisa.trisa4:
+        bit: 0
+      trisa.trisa5:
+        bit: 0
+      trisb.trisb4:
+        bit: 0
+      trisb.trisb5:
+        bit: 0
+      trisb.trisb6:
+        bit: 0
+      trisb.trisb7:
+        bit: 0
+      trisc.trisc0:
+        bit: 0
+      trisc.trisc1:
+        bit: 0
+      trisc.trisc2:
+        bit: 0
+      trisc.trisc3:
+        bit: 0
+      trisc.trisc4:
+        bit: 0
+      trisc.trisc5:
+        bit: 0
+      trisc.trisc6:
+        bit: 0
+      trisc.trisc7:
+        bit: 0
+  adc:
+    registers:
+      adcon0:
+        offset: 9
+      adres:
+        offset: 10
+    fields:
+      adcon0.adon:
+        bit: 0
+      adcon0.go_ndone:
+        bit: 0
+      adcon0.chs:
+        bits:
+        - 0
+        - 3
+      adcon0.adcs:
+        bits:
+        - 0
+        - 1
+      adcon0.go:
+        bit: 0
+      adcon0.chs0:
+        bit: 0
+      adcon0.chs1:
+        bit: 0
+      adcon0.chs2:
+        bit: 0
+      adcon0.chs3:
+        bit: 0
+      adcon0.adcs0:
+        bit: 0
+      adcon0.adcs1:
+        bit: 0
+      adcon0.not_done:
+        bit: 0
+      adres.adres:
+        bits:
+        - 0
+        - 7
+      adres.adres0:
+        bit: 0
+      adres.adres1:
+        bit: 0
+      adres.adres2:
+        bit: 0
+      adres.adres3:
+        bit: 0
+      adres.adres4:
+        bit: 0
+      adres.adres5:
+        bit: 0
+      adres.adres6:
+        bit: 0
+      adres.adres7:
+        bit: 0
+  eeprom:
+    registers:
+      eedata:
+        offset: 37
+      eeadr:
+        offset: 38
+    fields:
+      eedata.eedata:
+        bits:
+        - 0
+        - 7
+      eeadr.eeadr:
+        bits:
+        - 0
+        - 5
+  comparator:
+    registers:
+      cm1con0:
+        offset: 39
+      cm2con0:
+        offset: 40
+    fields:
+      cm1con0.nc1wu:
+        bit: 0
+      cm1con0.c1pref:
+        bit: 0
+      cm1con0.c1nref:
+        bit: 0
+      cm1con0.c1on:
+        bit: 0
+      cm1con0.nc1t0cs:
+        bit: 0
+      cm1con0.c1pol:
+        bit: 0
+      cm1con0.nc1outen:
+        bit: 0
+      cm1con0.c1out:
+        bit: 0
+      cm2con0.nc2wu:
+        bit: 0
+      cm2con0.c2pref1:
+        bit: 0
+      cm2con0.c2nref:
+        bit: 0
+      cm2con0.c2on:
+        bit: 0
+      cm2con0.c2pref2:
+        bit: 0
+      cm2con0.c2pol:
+        bit: 0
+      cm2con0.nc2outen:
+        bit: 0
+      cm2con0.c2out:
+        bit: 0
+peripherals:
+- id: adc
+  template: adc
+  base: 9
+- id: comparator
+  template: comparator
+  base: 39
+- id: eeprom
+  template: eeprom
+  base: 37
+- id: misc
+  template: misc
+  base: 0
+- id: port_a
+  template: port
+  base: 6
+- id: port_b
+  template: port
+  base: 6
+- id: port_c
+  template: port
+  base: 6
+- id: timer_0
+  template: timer
+  base: 1
+pinout:
+- signal: VDD
+  pin: 1
+  constraints:
+  - power
+- signal: RA5
+  pin: 2
+  alt_functions:
+  - OSC1
+  - CLKIN
+- signal: RA4
+  pin: 3
+  alt_functions:
+  - AN3
+  - OSC2
+  - CLKOUT
+- signal: VPP
+  pin: 4
+  constraints:
+  - reset
+  alt_functions:
+  - MCLR
+  - RA3
+- signal: RC5
+  pin: 5
+- signal: RC4
+  pin: 6
+  alt_functions:
+  - C2OUT
+- signal: RC3
+  pin: 7
+  alt_functions:
+  - AN7
+  - OP1
+- signal: RC6
+  pin: 8
+  alt_functions:
+  - OP1-
+- signal: RC7
+  pin: 9
+  alt_functions:
+  - OP1+
+- signal: RB7
+  pin: 10
+- signal: RB6
+  pin: 11
+- signal: RB5
+  pin: 12
+  alt_functions:
+  - OP2+
+- signal: RB4
+  pin: 13
+  alt_functions:
+  - OP2-
+- signal: RC2
+  pin: 14
+  alt_functions:
+  - AN6
+  - OP2
+- signal: RC1
+  pin: 15
+  alt_functions:
+  - AN5
+  - C2IN-
+- signal: RC0
+  pin: 16
+  alt_functions:
+  - AN4
+  - C2IN+
+- signal: RA2
+  pin: 17
+  alt_functions:
+  - AN2
+  - C1OUT
+  - T0CKI
+- signal: RA1
+  pin: 18
+  alt_functions:
+  - AN1
+  - C1IN-
+  - CVREF
+  - ICSPCLK
+- signal: RA0
+  pin: 19
+  alt_functions:
+  - AN0
+  - C1IN+
+  - ICSPDAT
+- signal: VSS
+  pin: 20
+  constraints:
+  - power

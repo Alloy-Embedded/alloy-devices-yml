@@ -1,0 +1,2787 @@
+schema: alloy.device.v2.1
+identity:
+  vendor: microchip
+  family: pic16fxxx
+  device: pic16f946
+  core:
+    isa: pic16
+    name: pic16
+    bits: 8
+provenance:
+  primary: microchip-pic:PIC16F946.PIC
+  authored: auto
+  secondary:
+  - microchip-overlay:pic16fxxx
+memory:
+- id: flash
+  base: '0x00000000'
+  size: 1B
+  access: rx
+  role: extractor-placeholder
+clock:
+  oscillators:
+    unknown:
+      freq: 0Hz
+      kind: rc-internal
+  domains:
+  - id: sysclk
+    sources:
+    - unknown
+  profiles:
+  - id: factory-default
+    kind: post-reset
+    sysclk: 0Hz
+    sysclk_source: unknown
+templates:
+  misc:
+    registers:
+      indf:
+        offset: 0
+      option_reg:
+        offset: 129
+      ansel:
+        offset: 145
+      wpub:
+        offset: 149
+      iocb:
+        offset: 150
+      vrcon:
+        offset: 157
+      lcdcon:
+        offset: '0x107'
+      lcdps:
+        offset: '0x108'
+      lvdcon:
+        offset: '0x109'
+      lcddata0:
+        offset: '0x110'
+      lcddata1:
+        offset: '0x111'
+      lcddata2:
+        offset: '0x112'
+      lcddata3:
+        offset: '0x113'
+      lcddata4:
+        offset: '0x114'
+      lcddata5:
+        offset: '0x115'
+      lcddata6:
+        offset: '0x116'
+      lcddata7:
+        offset: '0x117'
+      lcddata8:
+        offset: '0x118'
+      lcddata9:
+        offset: '0x119'
+      lcddata10:
+        offset: '0x11A'
+      lcddata11:
+        offset: '0x11B'
+      lcdse0:
+        offset: '0x11C'
+      lcdse1:
+        offset: '0x11D'
+      lcdse2:
+        offset: '0x11E'
+      eecon1:
+        offset: '0x18C'
+      eecon2:
+        offset: '0x18D'
+      lcddata12:
+        offset: '0x190'
+      lcddata13:
+        offset: '0x191'
+      lcddata14:
+        offset: '0x192'
+      lcddata15:
+        offset: '0x193'
+      lcddata16:
+        offset: '0x194'
+      lcddata17:
+        offset: '0x195'
+      lcddata18:
+        offset: '0x196'
+      lcddata19:
+        offset: '0x197'
+      lcddata20:
+        offset: '0x198'
+      lcddata21:
+        offset: '0x199'
+      lcddata22:
+        offset: '0x19A'
+      lcddata23:
+        offset: '0x19B'
+      lcdse3:
+        offset: '0x19C'
+      lcdse4:
+        offset: '0x19D'
+      lcdse5:
+        offset: '0x19E'
+    fields:
+      indf.indf:
+        bits:
+        - 0
+        - 7
+      option_reg.ps:
+        bits:
+        - 0
+        - 2
+      option_reg.psa:
+        bit: 0
+      option_reg.t0se:
+        bit: 0
+      option_reg.t0cs:
+        bit: 0
+      option_reg.intedg:
+        bit: 0
+      option_reg.nrbpu:
+        bit: 0
+      option_reg.ps0:
+        bit: 0
+      option_reg.ps1:
+        bit: 0
+      option_reg.ps2:
+        bit: 0
+      ansel.an:
+        bits:
+        - 0
+        - 7
+      ansel.ans0:
+        bit: 0
+      ansel.ans1:
+        bit: 0
+      ansel.ans2:
+        bit: 0
+      ansel.ans3:
+        bit: 0
+      ansel.ans4:
+        bit: 0
+      ansel.ans5:
+        bit: 0
+      ansel.ans6:
+        bit: 0
+      ansel.ans7:
+        bit: 0
+      ansel.an0:
+        bit: 0
+      ansel.an1:
+        bit: 0
+      ansel.an2:
+        bit: 0
+      ansel.an3:
+        bit: 0
+      ansel.an4:
+        bit: 0
+      ansel.an5:
+        bit: 0
+      ansel.an6:
+        bit: 0
+      ansel.an7:
+        bit: 0
+      wpub.wpub:
+        bits:
+        - 0
+        - 7
+      wpub.wpub0:
+        bit: 0
+      wpub.wpub1:
+        bit: 0
+      wpub.wpub2:
+        bit: 0
+      wpub.wpub3:
+        bit: 0
+      wpub.wpub4:
+        bit: 0
+      wpub.wpub5:
+        bit: 0
+      wpub.wpub6:
+        bit: 0
+      wpub.wpub7:
+        bit: 0
+      wpub.wpu0:
+        bit: 0
+      wpub.wpu1:
+        bit: 0
+      wpub.wpu2:
+        bit: 0
+      wpub.wpu3:
+        bit: 0
+      wpub.wpu4:
+        bit: 0
+      wpub.wpu5:
+        bit: 0
+      wpub.wpu6:
+        bit: 0
+      wpub.wpu7:
+        bit: 0
+      iocb.iocb:
+        bits:
+        - 0
+        - 3
+      iocb.iocb4:
+        bit: 0
+      iocb.iocb5:
+        bit: 0
+      iocb.iocb6:
+        bit: 0
+      iocb.iocb7:
+        bit: 0
+      iocb.ioc4:
+        bit: 0
+      iocb.ioc5:
+        bit: 0
+      iocb.ioc6:
+        bit: 0
+      iocb.ioc7:
+        bit: 0
+      vrcon.vr:
+        bits:
+        - 0
+        - 3
+      vrcon.vrr:
+        bit: 0
+      vrcon.vren:
+        bit: 0
+      vrcon.vr0:
+        bit: 0
+      vrcon.vr1:
+        bit: 0
+      vrcon.vr2:
+        bit: 0
+      vrcon.vr3:
+        bit: 0
+      lcdcon.lmux:
+        bits:
+        - 0
+        - 1
+      lcdcon.cs:
+        bits:
+        - 0
+        - 1
+      lcdcon.vlcden:
+        bit: 0
+      lcdcon.werr:
+        bit: 0
+      lcdcon.slpen:
+        bit: 0
+      lcdcon.lcden:
+        bit: 0
+      lcdcon.lmux0:
+        bit: 0
+      lcdcon.lmux1:
+        bit: 0
+      lcdcon.cs0:
+        bit: 0
+      lcdcon.cs1:
+        bit: 0
+      lcdps.lp:
+        bits:
+        - 0
+        - 3
+      lcdps.wa:
+        bit: 0
+      lcdps.lcda:
+        bit: 0
+      lcdps.biasmd:
+        bit: 0
+      lcdps.wft:
+        bit: 0
+      lcdps.lp0:
+        bit: 0
+      lcdps.lp1:
+        bit: 0
+      lcdps.lp2:
+        bit: 0
+      lcdps.lp3:
+        bit: 0
+      lvdcon.lvdl:
+        bits:
+        - 0
+        - 2
+      lvdcon.lvden:
+        bit: 0
+      lvdcon.irvst:
+        bit: 0
+      lvdcon.lvdl0:
+        bit: 0
+      lvdcon.lvdl1:
+        bit: 0
+      lvdcon.lvdl2:
+        bit: 0
+      lcddata0.seg0:
+        bit: 0
+      lcddata0.seg1:
+        bit: 0
+      lcddata0.seg2:
+        bit: 0
+      lcddata0.seg3:
+        bit: 0
+      lcddata0.seg4:
+        bit: 0
+      lcddata0.seg5:
+        bit: 0
+      lcddata0.seg6:
+        bit: 0
+      lcddata0.seg7:
+        bit: 0
+      lcddata0.seg0com0:
+        bit: 0
+      lcddata0.seg1com0:
+        bit: 0
+      lcddata0.seg2com0:
+        bit: 0
+      lcddata0.seg3com0:
+        bit: 0
+      lcddata0.seg4com0:
+        bit: 0
+      lcddata0.seg5com0:
+        bit: 0
+      lcddata0.seg6com0:
+        bit: 0
+      lcddata0.seg7com0:
+        bit: 0
+      lcddata0.s0c0:
+        bit: 0
+      lcddata0.s1c0:
+        bit: 0
+      lcddata0.s2c0:
+        bit: 0
+      lcddata0.s3c0:
+        bit: 0
+      lcddata0.s4c0:
+        bit: 0
+      lcddata0.s5c0:
+        bit: 0
+      lcddata0.s6c0:
+        bit: 0
+      lcddata0.s7c0:
+        bit: 0
+      lcddata1.seg8:
+        bit: 0
+      lcddata1.seg9:
+        bit: 0
+      lcddata1.seg10:
+        bit: 0
+      lcddata1.seg11:
+        bit: 0
+      lcddata1.seg12:
+        bit: 0
+      lcddata1.seg13:
+        bit: 0
+      lcddata1.seg14:
+        bit: 0
+      lcddata1.seg15:
+        bit: 0
+      lcddata1.seg8com0:
+        bit: 0
+      lcddata1.seg9com0:
+        bit: 0
+      lcddata1.seg10com0:
+        bit: 0
+      lcddata1.seg11com0:
+        bit: 0
+      lcddata1.seg12com0:
+        bit: 0
+      lcddata1.seg13com0:
+        bit: 0
+      lcddata1.seg14com0:
+        bit: 0
+      lcddata1.seg15com0:
+        bit: 0
+      lcddata1.s8c0:
+        bit: 0
+      lcddata1.s9c0:
+        bit: 0
+      lcddata1.s10c0:
+        bit: 0
+      lcddata1.s11c0:
+        bit: 0
+      lcddata1.s12c0:
+        bit: 0
+      lcddata1.s13c0:
+        bit: 0
+      lcddata1.s14c0:
+        bit: 0
+      lcddata1.s15c0:
+        bit: 0
+      lcddata2.seg16:
+        bit: 0
+      lcddata2.seg17:
+        bit: 0
+      lcddata2.seg18:
+        bit: 0
+      lcddata2.seg19:
+        bit: 0
+      lcddata2.seg20:
+        bit: 0
+      lcddata2.seg21:
+        bit: 0
+      lcddata2.seg22:
+        bit: 0
+      lcddata2.seg23:
+        bit: 0
+      lcddata2.seg16com0:
+        bit: 0
+      lcddata2.seg17com0:
+        bit: 0
+      lcddata2.seg18com0:
+        bit: 0
+      lcddata2.seg19com0:
+        bit: 0
+      lcddata2.seg20com0:
+        bit: 0
+      lcddata2.seg21com0:
+        bit: 0
+      lcddata2.seg22com0:
+        bit: 0
+      lcddata2.seg23com0:
+        bit: 0
+      lcddata2.s16c0:
+        bit: 0
+      lcddata2.s17c0:
+        bit: 0
+      lcddata2.s18c0:
+        bit: 0
+      lcddata2.s19c0:
+        bit: 0
+      lcddata2.s20c0:
+        bit: 0
+      lcddata2.s21c0:
+        bit: 0
+      lcddata2.s22c0:
+        bit: 0
+      lcddata2.s23c0:
+        bit: 0
+      lcddata3.seg0:
+        bit: 0
+      lcddata3.seg1:
+        bit: 0
+      lcddata3.seg2:
+        bit: 0
+      lcddata3.seg3:
+        bit: 0
+      lcddata3.seg4:
+        bit: 0
+      lcddata3.seg5:
+        bit: 0
+      lcddata3.seg6:
+        bit: 0
+      lcddata3.seg7:
+        bit: 0
+      lcddata3.seg0com1:
+        bit: 0
+      lcddata3.seg1com1:
+        bit: 0
+      lcddata3.seg2com1:
+        bit: 0
+      lcddata3.seg3com1:
+        bit: 0
+      lcddata3.seg4com1:
+        bit: 0
+      lcddata3.seg5com1:
+        bit: 0
+      lcddata3.seg6com1:
+        bit: 0
+      lcddata3.seg7com1:
+        bit: 0
+      lcddata3.s0c1:
+        bit: 0
+      lcddata3.s1c1:
+        bit: 0
+      lcddata3.s2c1:
+        bit: 0
+      lcddata3.s3c1:
+        bit: 0
+      lcddata3.s4c1:
+        bit: 0
+      lcddata3.s5c1:
+        bit: 0
+      lcddata3.s6c1:
+        bit: 0
+      lcddata3.s7c1:
+        bit: 0
+      lcddata4.seg8:
+        bit: 0
+      lcddata4.seg9:
+        bit: 0
+      lcddata4.seg10:
+        bit: 0
+      lcddata4.seg11:
+        bit: 0
+      lcddata4.seg12:
+        bit: 0
+      lcddata4.seg13:
+        bit: 0
+      lcddata4.seg14:
+        bit: 0
+      lcddata4.seg15:
+        bit: 0
+      lcddata4.seg8com1:
+        bit: 0
+      lcddata4.seg9com1:
+        bit: 0
+      lcddata4.seg10com1:
+        bit: 0
+      lcddata4.seg11com1:
+        bit: 0
+      lcddata4.seg12com1:
+        bit: 0
+      lcddata4.seg13com1:
+        bit: 0
+      lcddata4.seg14com1:
+        bit: 0
+      lcddata4.seg15com1:
+        bit: 0
+      lcddata4.s8c1:
+        bit: 0
+      lcddata4.s9c1:
+        bit: 0
+      lcddata4.s10c1:
+        bit: 0
+      lcddata4.s11c1:
+        bit: 0
+      lcddata4.s12c1:
+        bit: 0
+      lcddata4.s13c1:
+        bit: 0
+      lcddata4.s14c1:
+        bit: 0
+      lcddata4.s15c1:
+        bit: 0
+      lcddata5.seg16:
+        bit: 0
+      lcddata5.seg17:
+        bit: 0
+      lcddata5.seg18:
+        bit: 0
+      lcddata5.seg19:
+        bit: 0
+      lcddata5.seg20:
+        bit: 0
+      lcddata5.seg21:
+        bit: 0
+      lcddata5.seg22:
+        bit: 0
+      lcddata5.seg23:
+        bit: 0
+      lcddata5.seg16com1:
+        bit: 0
+      lcddata5.seg17com1:
+        bit: 0
+      lcddata5.seg18com1:
+        bit: 0
+      lcddata5.seg19com1:
+        bit: 0
+      lcddata5.seg20com1:
+        bit: 0
+      lcddata5.seg21com1:
+        bit: 0
+      lcddata5.seg22com1:
+        bit: 0
+      lcddata5.seg23com1:
+        bit: 0
+      lcddata5.s16c1:
+        bit: 0
+      lcddata5.s17c1:
+        bit: 0
+      lcddata5.s18c1:
+        bit: 0
+      lcddata5.s19c1:
+        bit: 0
+      lcddata5.s20c1:
+        bit: 0
+      lcddata5.s21c1:
+        bit: 0
+      lcddata5.s22c1:
+        bit: 0
+      lcddata5.s23c1:
+        bit: 0
+      lcddata6.seg0:
+        bit: 0
+      lcddata6.seg1:
+        bit: 0
+      lcddata6.seg2:
+        bit: 0
+      lcddata6.seg3:
+        bit: 0
+      lcddata6.seg4:
+        bit: 0
+      lcddata6.seg5:
+        bit: 0
+      lcddata6.seg6:
+        bit: 0
+      lcddata6.seg7:
+        bit: 0
+      lcddata6.seg0com2:
+        bit: 0
+      lcddata6.seg1com2:
+        bit: 0
+      lcddata6.seg2com2:
+        bit: 0
+      lcddata6.seg3com2:
+        bit: 0
+      lcddata6.seg4com2:
+        bit: 0
+      lcddata6.seg5com2:
+        bit: 0
+      lcddata6.seg6com2:
+        bit: 0
+      lcddata6.seg7com2:
+        bit: 0
+      lcddata6.s0c2:
+        bit: 0
+      lcddata6.s1c2:
+        bit: 0
+      lcddata6.s2c2:
+        bit: 0
+      lcddata6.s3c2:
+        bit: 0
+      lcddata6.s4c2:
+        bit: 0
+      lcddata6.s5c2:
+        bit: 0
+      lcddata6.s6c2:
+        bit: 0
+      lcddata6.s7c2:
+        bit: 0
+      lcddata7.seg8:
+        bit: 0
+      lcddata7.seg9:
+        bit: 0
+      lcddata7.seg10:
+        bit: 0
+      lcddata7.seg11:
+        bit: 0
+      lcddata7.seg12:
+        bit: 0
+      lcddata7.seg13:
+        bit: 0
+      lcddata7.seg14:
+        bit: 0
+      lcddata7.seg15:
+        bit: 0
+      lcddata7.seg8com2:
+        bit: 0
+      lcddata7.seg9com2:
+        bit: 0
+      lcddata7.seg10com2:
+        bit: 0
+      lcddata7.seg11com2:
+        bit: 0
+      lcddata7.seg12com2:
+        bit: 0
+      lcddata7.seg13com2:
+        bit: 0
+      lcddata7.seg14com2:
+        bit: 0
+      lcddata7.seg15com2:
+        bit: 0
+      lcddata7.s8c2:
+        bit: 0
+      lcddata7.s9c2:
+        bit: 0
+      lcddata7.s10c2:
+        bit: 0
+      lcddata7.s11c2:
+        bit: 0
+      lcddata7.s12c2:
+        bit: 0
+      lcddata7.s13c2:
+        bit: 0
+      lcddata7.s14c2:
+        bit: 0
+      lcddata7.s15c2:
+        bit: 0
+      lcddata8.seg16:
+        bit: 0
+      lcddata8.seg17:
+        bit: 0
+      lcddata8.seg18:
+        bit: 0
+      lcddata8.seg19:
+        bit: 0
+      lcddata8.seg20:
+        bit: 0
+      lcddata8.seg21:
+        bit: 0
+      lcddata8.seg22:
+        bit: 0
+      lcddata8.seg23:
+        bit: 0
+      lcddata8.seg16com2:
+        bit: 0
+      lcddata8.seg17com2:
+        bit: 0
+      lcddata8.seg18com2:
+        bit: 0
+      lcddata8.seg19com2:
+        bit: 0
+      lcddata8.seg20com2:
+        bit: 0
+      lcddata8.seg21com2:
+        bit: 0
+      lcddata8.seg22com2:
+        bit: 0
+      lcddata8.seg23com2:
+        bit: 0
+      lcddata8.s16c2:
+        bit: 0
+      lcddata8.s17c2:
+        bit: 0
+      lcddata8.s18c2:
+        bit: 0
+      lcddata8.s19c2:
+        bit: 0
+      lcddata8.s20c2:
+        bit: 0
+      lcddata8.s21c2:
+        bit: 0
+      lcddata8.s22c2:
+        bit: 0
+      lcddata8.s23c2:
+        bit: 0
+      lcddata9.seg0:
+        bit: 0
+      lcddata9.seg1:
+        bit: 0
+      lcddata9.seg2:
+        bit: 0
+      lcddata9.seg3:
+        bit: 0
+      lcddata9.seg4:
+        bit: 0
+      lcddata9.seg5:
+        bit: 0
+      lcddata9.seg6:
+        bit: 0
+      lcddata9.seg7:
+        bit: 0
+      lcddata9.seg0com3:
+        bit: 0
+      lcddata9.seg1com3:
+        bit: 0
+      lcddata9.seg2com3:
+        bit: 0
+      lcddata9.seg3com3:
+        bit: 0
+      lcddata9.seg4com3:
+        bit: 0
+      lcddata9.seg5com3:
+        bit: 0
+      lcddata9.seg6com3:
+        bit: 0
+      lcddata9.seg7com3:
+        bit: 0
+      lcddata9.s0c3:
+        bit: 0
+      lcddata9.s1c3:
+        bit: 0
+      lcddata9.s2c3:
+        bit: 0
+      lcddata9.s3c3:
+        bit: 0
+      lcddata9.s4c3:
+        bit: 0
+      lcddata9.s5c3:
+        bit: 0
+      lcddata9.s6c3:
+        bit: 0
+      lcddata9.s7c3:
+        bit: 0
+      lcddata10.seg8:
+        bit: 0
+      lcddata10.seg9:
+        bit: 0
+      lcddata10.seg10:
+        bit: 0
+      lcddata10.seg11:
+        bit: 0
+      lcddata10.seg12:
+        bit: 0
+      lcddata10.seg13:
+        bit: 0
+      lcddata10.seg14:
+        bit: 0
+      lcddata10.seg15:
+        bit: 0
+      lcddata10.seg8com3:
+        bit: 0
+      lcddata10.seg9com3:
+        bit: 0
+      lcddata10.seg10com3:
+        bit: 0
+      lcddata10.seg11com3:
+        bit: 0
+      lcddata10.seg12com3:
+        bit: 0
+      lcddata10.seg13com3:
+        bit: 0
+      lcddata10.seg14com3:
+        bit: 0
+      lcddata10.seg15com3:
+        bit: 0
+      lcddata10.s8c3:
+        bit: 0
+      lcddata10.s9c3:
+        bit: 0
+      lcddata10.s10c3:
+        bit: 0
+      lcddata10.s11c3:
+        bit: 0
+      lcddata10.s12c3:
+        bit: 0
+      lcddata10.s13c3:
+        bit: 0
+      lcddata10.s14c3:
+        bit: 0
+      lcddata10.s15c3:
+        bit: 0
+      lcddata11.seg16:
+        bit: 0
+      lcddata11.seg17:
+        bit: 0
+      lcddata11.seg18:
+        bit: 0
+      lcddata11.seg19:
+        bit: 0
+      lcddata11.seg20:
+        bit: 0
+      lcddata11.seg21:
+        bit: 0
+      lcddata11.seg22:
+        bit: 0
+      lcddata11.seg23:
+        bit: 0
+      lcddata11.seg16com3:
+        bit: 0
+      lcddata11.seg17com3:
+        bit: 0
+      lcddata11.seg18com3:
+        bit: 0
+      lcddata11.seg19com3:
+        bit: 0
+      lcddata11.seg20com3:
+        bit: 0
+      lcddata11.seg21com3:
+        bit: 0
+      lcddata11.seg22com3:
+        bit: 0
+      lcddata11.seg23com3:
+        bit: 0
+      lcddata11.s16c3:
+        bit: 0
+      lcddata11.s17c3:
+        bit: 0
+      lcddata11.s18c3:
+        bit: 0
+      lcddata11.s19c3:
+        bit: 0
+      lcddata11.s20c3:
+        bit: 0
+      lcddata11.s21c3:
+        bit: 0
+      lcddata11.s22c3:
+        bit: 0
+      lcddata11.s23c3:
+        bit: 0
+      lcdse0.seg0:
+        bit: 0
+      lcdse0.seg1:
+        bit: 0
+      lcdse0.seg2:
+        bit: 0
+      lcdse0.seg3:
+        bit: 0
+      lcdse0.seg4:
+        bit: 0
+      lcdse0.seg5:
+        bit: 0
+      lcdse0.seg6:
+        bit: 0
+      lcdse0.seg7:
+        bit: 0
+      lcdse0.se0:
+        bit: 0
+      lcdse0.se1:
+        bit: 0
+      lcdse0.se2:
+        bit: 0
+      lcdse0.se3:
+        bit: 0
+      lcdse0.se4:
+        bit: 0
+      lcdse0.se5:
+        bit: 0
+      lcdse0.se6:
+        bit: 0
+      lcdse0.se7:
+        bit: 0
+      lcdse0.segen0:
+        bit: 0
+      lcdse0.segen1:
+        bit: 0
+      lcdse0.segen2:
+        bit: 0
+      lcdse0.segen3:
+        bit: 0
+      lcdse0.segen4:
+        bit: 0
+      lcdse0.segen5:
+        bit: 0
+      lcdse0.segen6:
+        bit: 0
+      lcdse0.segen7:
+        bit: 0
+      lcdse1.seg8:
+        bit: 0
+      lcdse1.seg9:
+        bit: 0
+      lcdse1.seg10:
+        bit: 0
+      lcdse1.seg11:
+        bit: 0
+      lcdse1.seg12:
+        bit: 0
+      lcdse1.seg13:
+        bit: 0
+      lcdse1.seg14:
+        bit: 0
+      lcdse1.seg15:
+        bit: 0
+      lcdse1.se8:
+        bit: 0
+      lcdse1.se9:
+        bit: 0
+      lcdse1.se10:
+        bit: 0
+      lcdse1.se11:
+        bit: 0
+      lcdse1.se12:
+        bit: 0
+      lcdse1.se13:
+        bit: 0
+      lcdse1.se14:
+        bit: 0
+      lcdse1.se15:
+        bit: 0
+      lcdse1.segen8:
+        bit: 0
+      lcdse1.segen9:
+        bit: 0
+      lcdse1.segen10:
+        bit: 0
+      lcdse1.segen11:
+        bit: 0
+      lcdse1.segen12:
+        bit: 0
+      lcdse1.segen13:
+        bit: 0
+      lcdse1.segen14:
+        bit: 0
+      lcdse1.segen15:
+        bit: 0
+      lcdse2.seg16:
+        bit: 0
+      lcdse2.seg17:
+        bit: 0
+      lcdse2.seg18:
+        bit: 0
+      lcdse2.seg19:
+        bit: 0
+      lcdse2.seg20:
+        bit: 0
+      lcdse2.seg21:
+        bit: 0
+      lcdse2.seg22:
+        bit: 0
+      lcdse2.seg23:
+        bit: 0
+      lcdse2.se16:
+        bit: 0
+      lcdse2.se17:
+        bit: 0
+      lcdse2.se18:
+        bit: 0
+      lcdse2.se19:
+        bit: 0
+      lcdse2.se20:
+        bit: 0
+      lcdse2.se21:
+        bit: 0
+      lcdse2.se22:
+        bit: 0
+      lcdse2.se23:
+        bit: 0
+      lcdse2.segen16:
+        bit: 0
+      lcdse2.segen17:
+        bit: 0
+      lcdse2.segen18:
+        bit: 0
+      lcdse2.segen19:
+        bit: 0
+      lcdse2.segen20:
+        bit: 0
+      lcdse2.segen21:
+        bit: 0
+      lcdse2.segen22:
+        bit: 0
+      lcdse2.segen23:
+        bit: 0
+      eecon1.rd:
+        bit: 0
+      eecon1.wr:
+        bit: 0
+      eecon1.wren:
+        bit: 0
+      eecon1.wrerr:
+        bit: 0
+      eecon1.eepgd:
+        bit: 0
+      eecon1.eerd:
+        bit: 0
+      eecon1.eewr:
+        bit: 0
+      eecon2.eecon2:
+        bits:
+        - 0
+        - 7
+      lcddata12.seg24:
+        bit: 0
+      lcddata12.seg25:
+        bit: 0
+      lcddata12.seg26:
+        bit: 0
+      lcddata12.seg27:
+        bit: 0
+      lcddata12.seg28:
+        bit: 0
+      lcddata12.seg29:
+        bit: 0
+      lcddata12.seg30:
+        bit: 0
+      lcddata12.seg31:
+        bit: 0
+      lcddata12.seg24com0:
+        bit: 0
+      lcddata12.seg25com0:
+        bit: 0
+      lcddata12.seg26com0:
+        bit: 0
+      lcddata12.seg27com0:
+        bit: 0
+      lcddata12.seg28com0:
+        bit: 0
+      lcddata12.seg29com0:
+        bit: 0
+      lcddata12.seg30com0:
+        bit: 0
+      lcddata12.seg31com0:
+        bit: 0
+      lcddata12.s24c0:
+        bit: 0
+      lcddata12.s25c0:
+        bit: 0
+      lcddata12.s26c0:
+        bit: 0
+      lcddata12.s27c0:
+        bit: 0
+      lcddata12.s28c0:
+        bit: 0
+      lcddata12.s29c0:
+        bit: 0
+      lcddata12.s30c0:
+        bit: 0
+      lcddata12.s31c0:
+        bit: 0
+      lcddata13.seg32:
+        bit: 0
+      lcddata13.seg33:
+        bit: 0
+      lcddata13.seg34:
+        bit: 0
+      lcddata13.seg35:
+        bit: 0
+      lcddata13.seg36:
+        bit: 0
+      lcddata13.seg37:
+        bit: 0
+      lcddata13.seg38:
+        bit: 0
+      lcddata13.seg39:
+        bit: 0
+      lcddata13.seg32com0:
+        bit: 0
+      lcddata13.seg33com0:
+        bit: 0
+      lcddata13.seg34com0:
+        bit: 0
+      lcddata13.seg35com0:
+        bit: 0
+      lcddata13.seg36com0:
+        bit: 0
+      lcddata13.seg37com0:
+        bit: 0
+      lcddata13.seg38com0:
+        bit: 0
+      lcddata13.seg39com0:
+        bit: 0
+      lcddata13.s32c0:
+        bit: 0
+      lcddata13.s33c0:
+        bit: 0
+      lcddata13.s34c0:
+        bit: 0
+      lcddata13.s35c0:
+        bit: 0
+      lcddata13.s36c0:
+        bit: 0
+      lcddata13.s37c0:
+        bit: 0
+      lcddata13.s38c0:
+        bit: 0
+      lcddata13.s39c0:
+        bit: 0
+      lcddata14.seg40:
+        bit: 0
+      lcddata14.seg41:
+        bit: 0
+      lcddata14.seg40com0:
+        bit: 0
+      lcddata14.seg41com0:
+        bit: 0
+      lcddata14.s40c0:
+        bit: 0
+      lcddata14.s41c0:
+        bit: 0
+      lcddata15.seg24:
+        bit: 0
+      lcddata15.seg25:
+        bit: 0
+      lcddata15.seg26:
+        bit: 0
+      lcddata15.seg27:
+        bit: 0
+      lcddata15.seg28:
+        bit: 0
+      lcddata15.seg29:
+        bit: 0
+      lcddata15.seg30:
+        bit: 0
+      lcddata15.seg31:
+        bit: 0
+      lcddata15.seg24com1:
+        bit: 0
+      lcddata15.seg25com1:
+        bit: 0
+      lcddata15.seg26com1:
+        bit: 0
+      lcddata15.seg27com1:
+        bit: 0
+      lcddata15.seg28com1:
+        bit: 0
+      lcddata15.seg29com1:
+        bit: 0
+      lcddata15.seg30com1:
+        bit: 0
+      lcddata15.seg31com1:
+        bit: 0
+      lcddata15.s24c1:
+        bit: 0
+      lcddata15.s25c1:
+        bit: 0
+      lcddata15.s26c1:
+        bit: 0
+      lcddata15.s27c1:
+        bit: 0
+      lcddata15.s28c1:
+        bit: 0
+      lcddata15.s29c1:
+        bit: 0
+      lcddata15.s30c1:
+        bit: 0
+      lcddata15.s31c1:
+        bit: 0
+      lcddata16.seg32:
+        bit: 0
+      lcddata16.seg33:
+        bit: 0
+      lcddata16.seg34:
+        bit: 0
+      lcddata16.seg35:
+        bit: 0
+      lcddata16.seg36:
+        bit: 0
+      lcddata16.seg37:
+        bit: 0
+      lcddata16.seg38:
+        bit: 0
+      lcddata16.seg39:
+        bit: 0
+      lcddata16.seg32com1:
+        bit: 0
+      lcddata16.seg33com1:
+        bit: 0
+      lcddata16.seg34com1:
+        bit: 0
+      lcddata16.seg35com1:
+        bit: 0
+      lcddata16.seg36com1:
+        bit: 0
+      lcddata16.seg37com1:
+        bit: 0
+      lcddata16.seg38com1:
+        bit: 0
+      lcddata16.seg39com1:
+        bit: 0
+      lcddata16.s32c1:
+        bit: 0
+      lcddata16.s33c1:
+        bit: 0
+      lcddata16.s34c1:
+        bit: 0
+      lcddata16.s35c1:
+        bit: 0
+      lcddata16.s36c1:
+        bit: 0
+      lcddata16.s37c1:
+        bit: 0
+      lcddata16.s38c1:
+        bit: 0
+      lcddata16.s39c1:
+        bit: 0
+      lcddata17.seg40:
+        bit: 0
+      lcddata17.seg41:
+        bit: 0
+      lcddata17.seg40com1:
+        bit: 0
+      lcddata17.seg41com1:
+        bit: 0
+      lcddata17.s40c1:
+        bit: 0
+      lcddata17.s41c1:
+        bit: 0
+      lcddata18.seg24:
+        bit: 0
+      lcddata18.seg25:
+        bit: 0
+      lcddata18.seg26:
+        bit: 0
+      lcddata18.seg27:
+        bit: 0
+      lcddata18.seg28:
+        bit: 0
+      lcddata18.seg29:
+        bit: 0
+      lcddata18.seg30:
+        bit: 0
+      lcddata18.seg31:
+        bit: 0
+      lcddata18.seg24com2:
+        bit: 0
+      lcddata18.seg25com2:
+        bit: 0
+      lcddata18.seg26com2:
+        bit: 0
+      lcddata18.seg27com2:
+        bit: 0
+      lcddata18.seg28com2:
+        bit: 0
+      lcddata18.seg29com2:
+        bit: 0
+      lcddata18.seg30com2:
+        bit: 0
+      lcddata18.seg31com2:
+        bit: 0
+      lcddata18.s24c2:
+        bit: 0
+      lcddata18.s25c2:
+        bit: 0
+      lcddata18.s26c2:
+        bit: 0
+      lcddata18.s27c2:
+        bit: 0
+      lcddata18.s28c2:
+        bit: 0
+      lcddata18.s29c2:
+        bit: 0
+      lcddata18.s30c2:
+        bit: 0
+      lcddata18.s31c2:
+        bit: 0
+      lcddata19.seg32:
+        bit: 0
+      lcddata19.seg33:
+        bit: 0
+      lcddata19.seg34:
+        bit: 0
+      lcddata19.seg35:
+        bit: 0
+      lcddata19.seg36:
+        bit: 0
+      lcddata19.seg37:
+        bit: 0
+      lcddata19.seg38:
+        bit: 0
+      lcddata19.seg39:
+        bit: 0
+      lcddata19.seg32com2:
+        bit: 0
+      lcddata19.seg33com2:
+        bit: 0
+      lcddata19.seg34com2:
+        bit: 0
+      lcddata19.seg35com2:
+        bit: 0
+      lcddata19.seg36com2:
+        bit: 0
+      lcddata19.seg37com2:
+        bit: 0
+      lcddata19.seg38com2:
+        bit: 0
+      lcddata19.seg39com2:
+        bit: 0
+      lcddata19.s32c2:
+        bit: 0
+      lcddata19.s33c2:
+        bit: 0
+      lcddata19.s34c2:
+        bit: 0
+      lcddata19.s35c2:
+        bit: 0
+      lcddata19.s36c2:
+        bit: 0
+      lcddata19.s37c2:
+        bit: 0
+      lcddata19.s38c2:
+        bit: 0
+      lcddata19.s39c2:
+        bit: 0
+      lcddata20.seg40:
+        bit: 0
+      lcddata20.seg41:
+        bit: 0
+      lcddata20.seg40com2:
+        bit: 0
+      lcddata20.seg41com2:
+        bit: 0
+      lcddata20.s40c2:
+        bit: 0
+      lcddata20.s41c2:
+        bit: 0
+      lcddata21.seg24:
+        bit: 0
+      lcddata21.seg25:
+        bit: 0
+      lcddata21.seg26:
+        bit: 0
+      lcddata21.seg27:
+        bit: 0
+      lcddata21.seg28:
+        bit: 0
+      lcddata21.seg29:
+        bit: 0
+      lcddata21.seg30:
+        bit: 0
+      lcddata21.seg31:
+        bit: 0
+      lcddata21.seg24com3:
+        bit: 0
+      lcddata21.seg25com3:
+        bit: 0
+      lcddata21.seg26com3:
+        bit: 0
+      lcddata21.seg27com3:
+        bit: 0
+      lcddata21.seg28com3:
+        bit: 0
+      lcddata21.seg29com3:
+        bit: 0
+      lcddata21.seg30com3:
+        bit: 0
+      lcddata21.seg31com3:
+        bit: 0
+      lcddata21.s24c3:
+        bit: 0
+      lcddata21.s25c3:
+        bit: 0
+      lcddata21.s26c3:
+        bit: 0
+      lcddata21.s27c3:
+        bit: 0
+      lcddata21.s28c3:
+        bit: 0
+      lcddata21.s29c3:
+        bit: 0
+      lcddata21.s30c3:
+        bit: 0
+      lcddata21.s31c3:
+        bit: 0
+      lcddata22.seg32:
+        bit: 0
+      lcddata22.seg33:
+        bit: 0
+      lcddata22.seg34:
+        bit: 0
+      lcddata22.seg35:
+        bit: 0
+      lcddata22.seg36:
+        bit: 0
+      lcddata22.seg37:
+        bit: 0
+      lcddata22.seg38:
+        bit: 0
+      lcddata22.seg39:
+        bit: 0
+      lcddata22.seg32com3:
+        bit: 0
+      lcddata22.seg33com3:
+        bit: 0
+      lcddata22.seg34com3:
+        bit: 0
+      lcddata22.seg35com3:
+        bit: 0
+      lcddata22.seg36com3:
+        bit: 0
+      lcddata22.seg37com3:
+        bit: 0
+      lcddata22.seg38com3:
+        bit: 0
+      lcddata22.seg39com3:
+        bit: 0
+      lcddata22.s32c3:
+        bit: 0
+      lcddata22.s33c3:
+        bit: 0
+      lcddata22.s34c3:
+        bit: 0
+      lcddata22.s35c3:
+        bit: 0
+      lcddata22.s36c3:
+        bit: 0
+      lcddata22.s37c3:
+        bit: 0
+      lcddata22.s38c3:
+        bit: 0
+      lcddata22.s39c3:
+        bit: 0
+      lcddata23.seg40:
+        bit: 0
+      lcddata23.seg41:
+        bit: 0
+      lcddata23.seg40com3:
+        bit: 0
+      lcddata23.seg41com3:
+        bit: 0
+      lcddata23.s40c3:
+        bit: 0
+      lcddata23.s41c3:
+        bit: 0
+      lcdse3.seg24:
+        bit: 0
+      lcdse3.seg25:
+        bit: 0
+      lcdse3.seg26:
+        bit: 0
+      lcdse3.seg27:
+        bit: 0
+      lcdse3.seg28:
+        bit: 0
+      lcdse3.seg29:
+        bit: 0
+      lcdse3.seg30:
+        bit: 0
+      lcdse3.seg31:
+        bit: 0
+      lcdse3.se24:
+        bit: 0
+      lcdse3.se25:
+        bit: 0
+      lcdse3.se26:
+        bit: 0
+      lcdse3.se27:
+        bit: 0
+      lcdse3.se28:
+        bit: 0
+      lcdse3.se29:
+        bit: 0
+      lcdse3.se30:
+        bit: 0
+      lcdse3.se31:
+        bit: 0
+      lcdse3.segen24:
+        bit: 0
+      lcdse3.segen25:
+        bit: 0
+      lcdse3.segen26:
+        bit: 0
+      lcdse3.segen27:
+        bit: 0
+      lcdse3.segen28:
+        bit: 0
+      lcdse3.segen29:
+        bit: 0
+      lcdse3.segen30:
+        bit: 0
+      lcdse3.segen31:
+        bit: 0
+      lcdse4.seg32:
+        bit: 0
+      lcdse4.seg33:
+        bit: 0
+      lcdse4.seg34:
+        bit: 0
+      lcdse4.seg35:
+        bit: 0
+      lcdse4.seg36:
+        bit: 0
+      lcdse4.seg37:
+        bit: 0
+      lcdse4.seg38:
+        bit: 0
+      lcdse4.seg39:
+        bit: 0
+      lcdse4.se32:
+        bit: 0
+      lcdse4.se33:
+        bit: 0
+      lcdse4.se34:
+        bit: 0
+      lcdse4.se35:
+        bit: 0
+      lcdse4.se36:
+        bit: 0
+      lcdse4.se37:
+        bit: 0
+      lcdse4.se38:
+        bit: 0
+      lcdse4.se39:
+        bit: 0
+      lcdse4.segen32:
+        bit: 0
+      lcdse4.segen33:
+        bit: 0
+      lcdse4.segen34:
+        bit: 0
+      lcdse4.segen35:
+        bit: 0
+      lcdse4.segen36:
+        bit: 0
+      lcdse4.segen37:
+        bit: 0
+      lcdse4.segen38:
+        bit: 0
+      lcdse4.segen39:
+        bit: 0
+      lcdse5.seg40:
+        bit: 0
+      lcdse5.seg41:
+        bit: 0
+      lcdse5.se40:
+        bit: 0
+      lcdse5.se41:
+        bit: 0
+      lcdse5.segen40:
+        bit: 0
+      lcdse5.segen41:
+        bit: 0
+  timer:
+    registers:
+      tmr0:
+        offset: 1
+      tmr1l:
+        offset: 14
+      tmr1h:
+        offset: 15
+      t1con:
+        offset: 16
+      tmr2:
+        offset: 17
+      t2con:
+        offset: 18
+      pr2:
+        offset: 146
+    fields:
+      tmr0.tmr0:
+        bits:
+        - 0
+        - 7
+      tmr1l.tmr1l:
+        bits:
+        - 0
+        - 7
+      tmr1h.tmr1h:
+        bits:
+        - 0
+        - 7
+      t1con.tmr1on:
+        bit: 0
+      t1con.tmr1cs:
+        bit: 0
+      t1con.nt1sync:
+        bit: 0
+      t1con.t1oscen:
+        bit: 0
+      t1con.t1ckps:
+        bits:
+        - 0
+        - 1
+      t1con.tmr1ge:
+        bit: 0
+      t1con.t1ginv:
+        bit: 0
+      t1con.t1sync:
+        bit: 0
+      t1con.t1ckps0:
+        bit: 0
+      t1con.t1ckps1:
+        bit: 0
+      t1con.t1ge:
+        bit: 0
+      t1con.t1insync:
+        bit: 0
+      tmr2.tmr2:
+        bits:
+        - 0
+        - 7
+      t2con.t2ckps:
+        bits:
+        - 0
+        - 1
+      t2con.tmr2on:
+        bit: 0
+      t2con.toutps:
+        bits:
+        - 0
+        - 3
+      t2con.t2ckps0:
+        bit: 0
+      t2con.t2ckps1:
+        bit: 0
+      t2con.toutps0:
+        bit: 0
+      t2con.toutps1:
+        bit: 0
+      t2con.toutps2:
+        bit: 0
+      t2con.toutps3:
+        bit: 0
+      pr2.pr2:
+        bits:
+        - 0
+        - 7
+  port:
+    registers:
+      porta:
+        offset: 5
+      portb:
+        offset: 6
+      portc:
+        offset: 7
+      portd:
+        offset: 8
+      porte:
+        offset: 9
+      trisa:
+        offset: 133
+      trisb:
+        offset: 134
+      trisc:
+        offset: 135
+      trisd:
+        offset: 136
+      trise:
+        offset: 137
+      trisf:
+        offset: '0x185'
+      trisg:
+        offset: '0x187'
+      portf:
+        offset: '0x188'
+      portg:
+        offset: '0x189'
+    fields:
+      porta.ra0:
+        bit: 0
+      porta.ra1:
+        bit: 0
+      porta.ra2:
+        bit: 0
+      porta.ra3:
+        bit: 0
+      porta.ra4:
+        bit: 0
+      porta.ra5:
+        bit: 0
+      porta.ra6:
+        bit: 0
+      porta.ra7:
+        bit: 0
+      portb.rb0:
+        bit: 0
+      portb.rb1:
+        bit: 0
+      portb.rb2:
+        bit: 0
+      portb.rb3:
+        bit: 0
+      portb.rb4:
+        bit: 0
+      portb.rb5:
+        bit: 0
+      portb.rb6:
+        bit: 0
+      portb.rb7:
+        bit: 0
+      portc.rc0:
+        bit: 0
+      portc.rc1:
+        bit: 0
+      portc.rc2:
+        bit: 0
+      portc.rc3:
+        bit: 0
+      portc.rc4:
+        bit: 0
+      portc.rc5:
+        bit: 0
+      portc.rc6:
+        bit: 0
+      portc.rc7:
+        bit: 0
+      portd.rd0:
+        bit: 0
+      portd.rd1:
+        bit: 0
+      portd.rd2:
+        bit: 0
+      portd.rd3:
+        bit: 0
+      portd.rd4:
+        bit: 0
+      portd.rd5:
+        bit: 0
+      portd.rd6:
+        bit: 0
+      portd.rd7:
+        bit: 0
+      porte.re0:
+        bit: 0
+      porte.re1:
+        bit: 0
+      porte.re2:
+        bit: 0
+      porte.re3:
+        bit: 0
+      porte.re4:
+        bit: 0
+      porte.re5:
+        bit: 0
+      porte.re6:
+        bit: 0
+      porte.re7:
+        bit: 0
+      trisa.trisa0:
+        bit: 0
+      trisa.trisa1:
+        bit: 0
+      trisa.trisa2:
+        bit: 0
+      trisa.trisa3:
+        bit: 0
+      trisa.trisa4:
+        bit: 0
+      trisa.trisa5:
+        bit: 0
+      trisa.trisa6:
+        bit: 0
+      trisa.trisa7:
+        bit: 0
+      trisb.trisb0:
+        bit: 0
+      trisb.trisb1:
+        bit: 0
+      trisb.trisb2:
+        bit: 0
+      trisb.trisb3:
+        bit: 0
+      trisb.trisb4:
+        bit: 0
+      trisb.trisb5:
+        bit: 0
+      trisb.trisb6:
+        bit: 0
+      trisb.trisb7:
+        bit: 0
+      trisc.trisc0:
+        bit: 0
+      trisc.trisc1:
+        bit: 0
+      trisc.trisc2:
+        bit: 0
+      trisc.trisc3:
+        bit: 0
+      trisc.trisc4:
+        bit: 0
+      trisc.trisc5:
+        bit: 0
+      trisc.trisc6:
+        bit: 0
+      trisc.trisc7:
+        bit: 0
+      trisd.trisd0:
+        bit: 0
+      trisd.trisd1:
+        bit: 0
+      trisd.trisd2:
+        bit: 0
+      trisd.trisd3:
+        bit: 0
+      trisd.trisd4:
+        bit: 0
+      trisd.trisd5:
+        bit: 0
+      trisd.trisd6:
+        bit: 0
+      trisd.trisd7:
+        bit: 0
+      trise.trise0:
+        bit: 0
+      trise.trise1:
+        bit: 0
+      trise.trise2:
+        bit: 0
+      trise.trise3:
+        bit: 0
+      trise.trise4:
+        bit: 0
+      trise.trise5:
+        bit: 0
+      trise.trise6:
+        bit: 0
+      trise.trise7:
+        bit: 0
+      trisf.trisf0:
+        bit: 0
+      trisf.trisf1:
+        bit: 0
+      trisf.trisf2:
+        bit: 0
+      trisf.trisf3:
+        bit: 0
+      trisf.trisf4:
+        bit: 0
+      trisf.trisf5:
+        bit: 0
+      trisf.trisf6:
+        bit: 0
+      trisf.trisf7:
+        bit: 0
+      trisg.trisg0:
+        bit: 0
+      trisg.trisg1:
+        bit: 0
+      trisg.trisg2:
+        bit: 0
+      trisg.trisg3:
+        bit: 0
+      trisg.trisg4:
+        bit: 0
+      trisg.trisg5:
+        bit: 0
+      portf.rf0:
+        bit: 0
+      portf.rf1:
+        bit: 0
+      portf.rf2:
+        bit: 0
+      portf.rf3:
+        bit: 0
+      portf.rf4:
+        bit: 0
+      portf.rf5:
+        bit: 0
+      portf.rf6:
+        bit: 0
+      portf.rf7:
+        bit: 0
+      portg.rg0:
+        bit: 0
+      portg.rg1:
+        bit: 0
+      portg.rg2:
+        bit: 0
+      portg.rg3:
+        bit: 0
+      portg.rg4:
+        bit: 0
+      portg.rg5:
+        bit: 0
+  interrupt_controller:
+    registers:
+      pir1:
+        offset: 12
+      pir2:
+        offset: 13
+      pie1:
+        offset: 140
+      pie2:
+        offset: 141
+    fields:
+      pir1.tmr1if:
+        bit: 0
+      pir1.tmr2if:
+        bit: 0
+      pir1.ccp1if:
+        bit: 0
+      pir1.sspif:
+        bit: 0
+      pir1.txif:
+        bit: 0
+      pir1.rcif:
+        bit: 0
+      pir1.adif:
+        bit: 0
+      pir1.eeif:
+        bit: 0
+      pir2.ccp2if:
+        bit: 0
+      pir2.lvdif:
+        bit: 0
+      pir2.lcdif:
+        bit: 0
+      pir2.c1if:
+        bit: 0
+      pir2.c2if:
+        bit: 0
+      pir2.osfif:
+        bit: 0
+      pie1.tmr1ie:
+        bit: 0
+      pie1.tmr2ie:
+        bit: 0
+      pie1.ccp1ie:
+        bit: 0
+      pie1.sspie:
+        bit: 0
+      pie1.txie:
+        bit: 0
+      pie1.rcie:
+        bit: 0
+      pie1.adie:
+        bit: 0
+      pie1.eeie:
+        bit: 0
+      pie2.ccp2ie:
+        bit: 0
+      pie2.lvdie:
+        bit: 0
+      pie2.lcdie:
+        bit: 0
+      pie2.c1ie:
+        bit: 0
+      pie2.c2ie:
+        bit: 0
+      pie2.osfie:
+        bit: 0
+  mssp:
+    registers:
+      sspbuf:
+        offset: 19
+      sspcon:
+        offset: 20
+      sspadd:
+        offset: 147
+      sspstat:
+        offset: 148
+    fields:
+      sspbuf.sspbuf:
+        bits:
+        - 0
+        - 7
+      sspcon.sspm:
+        bits:
+        - 0
+        - 3
+      sspcon.ckp:
+        bit: 0
+      sspcon.sspen:
+        bit: 0
+      sspcon.sspov:
+        bit: 0
+      sspcon.wcol:
+        bit: 0
+      sspcon.sspm0:
+        bit: 0
+      sspcon.sspm1:
+        bit: 0
+      sspcon.sspm2:
+        bit: 0
+      sspcon.sspm3:
+        bit: 0
+      sspadd.sspadd:
+        bits:
+        - 0
+        - 7
+      sspstat.bf:
+        bit: 0
+      sspstat.ua:
+        bit: 0
+      sspstat.r_nw:
+        bit: 0
+      sspstat.s:
+        bit: 0
+      sspstat.p:
+        bit: 0
+      sspstat.d_na:
+        bit: 0
+      sspstat.cke:
+        bit: 0
+      sspstat.smp:
+        bit: 0
+      sspstat.r:
+        bit: 0
+      sspstat.d:
+        bit: 0
+      sspstat.i2c_read:
+        bit: 0
+      sspstat.i2c_start:
+        bit: 0
+      sspstat.i2c_stop:
+        bit: 0
+      sspstat.i2c_data:
+        bit: 0
+      sspstat.nw:
+        bit: 0
+      sspstat.na:
+        bit: 0
+      sspstat.nwrite:
+        bit: 0
+      sspstat.naddress:
+        bit: 0
+      sspstat.r_w:
+        bit: 0
+      sspstat.d_a:
+        bit: 0
+      sspstat.read_write:
+        bit: 0
+      sspstat.data_address:
+        bit: 0
+  ccp:
+    registers:
+      ccpr1l:
+        offset: 21
+      ccpr1h:
+        offset: 22
+      ccp1con:
+        offset: 23
+      ccpr2l:
+        offset: 27
+      ccpr2h:
+        offset: 28
+      ccp2con:
+        offset: 29
+    fields:
+      ccpr1l.ccpr1l:
+        bits:
+        - 0
+        - 7
+      ccpr1h.ccpr1h:
+        bits:
+        - 0
+        - 7
+      ccp1con.ccp1m:
+        bits:
+        - 0
+        - 3
+      ccp1con.ccp1y:
+        bit: 0
+      ccp1con.ccp1x:
+        bit: 0
+      ccp1con.ccp1m0:
+        bit: 0
+      ccp1con.ccp1m1:
+        bit: 0
+      ccp1con.ccp1m2:
+        bit: 0
+      ccp1con.ccp1m3:
+        bit: 0
+      ccpr2l.ccpr2l:
+        bits:
+        - 0
+        - 7
+      ccpr2h.ccpr2h:
+        bits:
+        - 0
+        - 7
+      ccp2con.ccp2m:
+        bits:
+        - 0
+        - 3
+      ccp2con.ccp2y:
+        bit: 0
+      ccp2con.ccp2x:
+        bit: 0
+      ccp2con.ccp2m0:
+        bit: 0
+      ccp2con.ccp2m1:
+        bit: 0
+      ccp2con.ccp2m2:
+        bit: 0
+      ccp2con.ccp2m3:
+        bit: 0
+  usart:
+    registers:
+      rcsta:
+        offset: 24
+      txreg:
+        offset: 25
+      rcreg:
+        offset: 26
+      txsta:
+        offset: 152
+      spbrg:
+        offset: 153
+    fields:
+      rcsta.rx9d:
+        bit: 0
+      rcsta.oerr:
+        bit: 0
+      rcsta.ferr:
+        bit: 0
+      rcsta.adden:
+        bit: 0
+      rcsta.cren:
+        bit: 0
+      rcsta.sren:
+        bit: 0
+      rcsta.rx9:
+        bit: 0
+      rcsta.spen:
+        bit: 0
+      rcsta.rcd8:
+        bit: 0
+      rcsta.rc9:
+        bit: 0
+      rcsta.nrc8:
+        bit: 0
+      rcsta.rc8_9:
+        bit: 0
+      txreg.txreg:
+        bits:
+        - 0
+        - 7
+      rcreg.rcreg:
+        bits:
+        - 0
+        - 7
+      txsta.tx9d:
+        bit: 0
+      txsta.trmt:
+        bit: 0
+      txsta.brgh:
+        bit: 0
+      txsta.sync:
+        bit: 0
+      txsta.txen:
+        bit: 0
+      txsta.tx9:
+        bit: 0
+      txsta.csrc:
+        bit: 0
+      txsta.txd8:
+        bit: 0
+      txsta.ntx8:
+        bit: 0
+      txsta.tx8_9:
+        bit: 0
+      spbrg.spbrg:
+        bits:
+        - 0
+        - 7
+  adc:
+    registers:
+      adresh:
+        offset: 30
+      adcon0:
+        offset: 31
+      adresl:
+        offset: 158
+      adcon1:
+        offset: 159
+    fields:
+      adresh.adresh:
+        bits:
+        - 0
+        - 7
+      adcon0.adon:
+        bit: 0
+      adcon0.go_ndone:
+        bit: 0
+      adcon0.chs:
+        bits:
+        - 0
+        - 2
+      adcon0.vcfg:
+        bits:
+        - 0
+        - 1
+      adcon0.adfm:
+        bit: 0
+      adcon0.ndone:
+        bit: 0
+      adcon0.chs0:
+        bit: 0
+      adcon0.chs1:
+        bit: 0
+      adcon0.chs2:
+        bit: 0
+      adcon0.vcfg0:
+        bit: 0
+      adcon0.vcfg1:
+        bit: 0
+      adcon0.go_done:
+        bit: 0
+      adcon0.go:
+        bit: 0
+      adresl.adresl:
+        bits:
+        - 0
+        - 7
+      adcon1.adcs:
+        bits:
+        - 0
+        - 2
+      adcon1.adcs0:
+        bit: 0
+      adcon1.adcs1:
+        bit: 0
+      adcon1.adcs2:
+        bit: 0
+  oscillator:
+    registers:
+      osccon:
+        offset: 143
+      osctune:
+        offset: 144
+    fields:
+      osccon.scs:
+        bit: 0
+      osccon.lts:
+        bit: 0
+      osccon.hts:
+        bit: 0
+      osccon.osts:
+        bit: 0
+      osccon.ircf:
+        bits:
+        - 0
+        - 2
+      osccon.ircf0:
+        bit: 0
+      osccon.ircf1:
+        bit: 0
+      osccon.ircf2:
+        bit: 0
+      osctune.tun:
+        bits:
+        - 0
+        - 4
+      osctune.tun0:
+        bit: 0
+      osctune.tun1:
+        bit: 0
+      osctune.tun2:
+        bit: 0
+      osctune.tun3:
+        bit: 0
+      osctune.tun4:
+        bit: 0
+  comparator:
+    registers:
+      cmcon1:
+        offset: 151
+      cmcon0:
+        offset: 156
+    fields:
+      cmcon1.c2sync:
+        bit: 0
+      cmcon1.t1gss:
+        bit: 0
+      cmcon0.cm:
+        bits:
+        - 0
+        - 2
+      cmcon0.cis:
+        bit: 0
+      cmcon0.c1inv:
+        bit: 0
+      cmcon0.c2inv:
+        bit: 0
+      cmcon0.c1out:
+        bit: 0
+      cmcon0.c2out:
+        bit: 0
+      cmcon0.cm0:
+        bit: 0
+      cmcon0.cm1:
+        bit: 0
+      cmcon0.cm2:
+        bit: 0
+  wdt:
+    registers:
+      wdtcon:
+        offset: '0x105'
+    fields:
+      wdtcon.swdten:
+        bit: 0
+      wdtcon.wdtps:
+        bits:
+        - 0
+        - 3
+      wdtcon.swdte:
+        bit: 0
+      wdtcon.wdtps0:
+        bit: 0
+      wdtcon.wdtps1:
+        bit: 0
+      wdtcon.wdtps2:
+        bit: 0
+      wdtcon.wdtps3:
+        bit: 0
+  eeprom:
+    registers:
+      eedatl:
+        offset: '0x10C'
+      eeadrl:
+        offset: '0x10D'
+      eedath:
+        offset: '0x10E'
+      eeadrh:
+        offset: '0x10F'
+    fields:
+      eedatl.eedatl:
+        bits:
+        - 0
+        - 7
+      eedatl.eedatl0:
+        bit: 0
+      eedatl.eedatl1:
+        bit: 0
+      eedatl.eedatl2:
+        bit: 0
+      eedatl.eedatl3:
+        bit: 0
+      eedatl.eedatl4:
+        bit: 0
+      eedatl.eedatl5:
+        bit: 0
+      eedatl.eedatl6:
+        bit: 0
+      eedatl.eedatl7:
+        bit: 0
+      eeadrl.eeadrl:
+        bits:
+        - 0
+        - 7
+      eeadrl.eeadrl0:
+        bit: 0
+      eeadrl.eeadrl1:
+        bit: 0
+      eeadrl.eeadrl2:
+        bit: 0
+      eeadrl.eeadrl3:
+        bit: 0
+      eeadrl.eeadrl4:
+        bit: 0
+      eeadrl.eeadrl5:
+        bit: 0
+      eeadrl.eeadrl6:
+        bit: 0
+      eeadrl.eeadrl7:
+        bit: 0
+      eedath.eedath:
+        bits:
+        - 0
+        - 5
+      eedath.eedath0:
+        bit: 0
+      eedath.eedath1:
+        bit: 0
+      eedath.eedath2:
+        bit: 0
+      eedath.eedath3:
+        bit: 0
+      eedath.eedath4:
+        bit: 0
+      eedath.eedath5:
+        bit: 0
+      eeadrh.eeadrh:
+        bits:
+        - 0
+        - 4
+      eeadrh.eeadrh0:
+        bit: 0
+      eeadrh.eeadrh1:
+        bit: 0
+      eeadrh.eeadrh2:
+        bit: 0
+      eeadrh.eeadrh3:
+        bit: 0
+      eeadrh.eeadrh4:
+        bit: 0
+peripherals:
+- id: adc
+  template: adc
+  base: 30
+- id: ccp
+  template: ccp
+  base: 21
+- id: comparator
+  template: comparator
+  base: 151
+- id: eeprom
+  template: eeprom
+  base: '0x10C'
+- id: interrupt_controller
+  template: interrupt_controller
+  base: 12
+- id: misc
+  template: misc
+  base: 0
+- id: mssp
+  template: mssp
+  base: 19
+- id: oscillator
+  template: oscillator
+  base: 143
+- id: port_a
+  template: port
+  base: 5
+- id: port_b
+  template: port
+  base: 5
+- id: port_c
+  template: port
+  base: 5
+- id: port_d
+  template: port
+  base: 5
+- id: port_e
+  template: port
+  base: 5
+- id: port_f
+  template: port
+  base: 5
+- id: port_g
+  template: port
+  base: 5
+- id: timer_0
+  template: timer
+  base: 1
+- id: timer_1
+  template: timer
+  base: 1
+- id: timer_2
+  template: timer
+  base: 1
+- id: usart
+  template: usart
+  base: 24
+- id: wdt
+  template: wdt
+  base: '0x105'
+pinout:
+- signal: RD6
+  pin: 1
+  alt_functions:
+  - SEG19
+- signal: RD7
+  pin: 2
+  alt_functions:
+  - SEG20
+- signal: RG0
+  pin: 3
+  alt_functions:
+  - SEG36
+- signal: RG1
+  pin: 4
+  alt_functions:
+  - SEG37
+- signal: RG2
+  pin: 5
+  alt_functions:
+  - SEG38
+- signal: RG3
+  pin: 6
+  alt_functions:
+  - SEG39
+- signal: RG4
+  pin: 7
+  alt_functions:
+  - SEG40
+- signal: RG5
+  pin: 8
+  alt_functions:
+  - SEG41
+- signal: Vss
+  pin: 9
+  constraints:
+  - power
+- signal: Vdd
+  pin: 10
+  constraints:
+  - power
+- signal: RF0
+  pin: 11
+  alt_functions:
+  - SEG32
+- signal: RF1
+  pin: 12
+  alt_functions:
+  - SEG33
+- signal: RF2
+  pin: 13
+  alt_functions:
+  - SEG34
+- signal: RF3
+  pin: 14
+  alt_functions:
+  - SEG35
+- signal: RB0
+  pin: 15
+  alt_functions:
+  - INT
+  - SEG0
+- signal: RB1
+  pin: 16
+  alt_functions:
+  - SEG1
+- signal: RB2
+  pin: 17
+  alt_functions:
+  - SEG2
+- signal: RB3
+  pin: 18
+  alt_functions:
+  - SEG3
+- signal: Vdd
+  pin: 19
+  constraints:
+  - power
+- signal: Vss
+  pin: 20
+  constraints:
+  - power
+- signal: RB4
+  pin: 21
+  alt_functions:
+  - COM0
+- signal: RB5
+  pin: 22
+  alt_functions:
+  - COM1
+- signal: RB6
+  pin: 23
+  alt_functions:
+  - ICSPCLK
+  - ICDCK
+  - SEG14
+- signal: RB7
+  pin: 24
+  alt_functions:
+  - ICSPDAT
+  - ICDDAT
+  - SEG13
+- signal: AVss
+  pin: 25
+- signal: AVdd
+  pin: 26
+  constraints:
+  - power
+- signal: RA0
+  pin: 27
+  alt_functions:
+  - AN0
+  - C1-
+  - SEG12
+- signal: RA1
+  pin: 28
+  alt_functions:
+  - AN1
+  - C2-
+  - SEG7
+- signal: RA2
+  pin: 29
+  alt_functions:
+  - AN2
+  - C2+
+  - Vref-
+  - COM2
+- signal: RA3
+  pin: 30
+  alt_functions:
+  - AN3
+  - C1+
+  - Vref+
+  - SEG15
+- signal: RA4
+  pin: 31
+  alt_functions:
+  - C1OUT
+  - T0CKI
+  - SEG4
+- signal: RA5
+  pin: 32
+  alt_functions:
+  - AN4
+  - C2OUT
+  - SS
+  - SEG5
+- signal: RE0
+  pin: 33
+  alt_functions:
+  - AN5
+  - SEG21
+- signal: RE1
+  pin: 34
+  alt_functions:
+  - AN6
+  - SEG22
+- signal: RE2
+  pin: 35
+  alt_functions:
+  - AN7
+  - SEG23
+- signal: RE3
+  pin: 36
+  alt_functions:
+  - MCLR
+  - Vpp
+- signal: RE4
+  pin: 37
+  alt_functions:
+  - SEG24
+- signal: Vdd
+  pin: 38
+  constraints:
+  - power
+- signal: RA7
+  pin: 39
+  alt_functions:
+  - OSC1
+  - CLKIN
+  - T1OSI
+- signal: RA6
+  pin: 40
+  alt_functions:
+  - OSC2
+  - CLKOUT
+  - T1OSO
+- signal: Vss
+  pin: 41
+  constraints:
+  - power
+- signal: RE5
+  pin: 42
+  alt_functions:
+  - SEG25
+- signal: RE6
+  pin: 43
+  alt_functions:
+  - SEG26
+- signal: RE7
+  pin: 44
+  alt_functions:
+  - SEG27
+- signal: RF4
+  pin: 45
+  alt_functions:
+  - SEG28
+- signal: RF5
+  pin: 46
+  alt_functions:
+  - SEG29
+- signal: RF6
+  pin: 47
+  alt_functions:
+  - SEG20
+- signal: RF7
+  pin: 48
+  alt_functions:
+  - SEG31
+- signal: RC0
+  pin: 49
+  alt_functions:
+  - VLCD1
+- signal: RC1
+  pin: 50
+  alt_functions:
+  - VLCD2
+- signal: RC2
+  pin: 51
+  alt_functions:
+  - VLCD3
+- signal: RC3
+  pin: 52
+  alt_functions:
+  - SEG6
+- signal: RD0
+  pin: 53
+  alt_functions:
+  - COM3
+- signal: RD1
+  pin: 54
+- signal: RD2
+  pin: 55
+  alt_functions:
+  - CCP2
+- signal: Vss
+  pin: 56
+  constraints:
+  - power
+- signal: Vdd
+  pin: 57
+  constraints:
+  - power
+- signal: RD3
+  pin: 58
+  alt_functions:
+  - SEG16
+- signal: RC4
+  pin: 59
+  alt_functions:
+  - T1G
+  - SDO
+  - SEG11
+- signal: RC5
+  pin: 60
+  alt_functions:
+  - T1CKI
+  - CCP1
+  - SEG10
+- signal: RC6
+  pin: 61
+  alt_functions:
+  - TX
+  - CK
+  - SCK
+  - SCL
+  - SEG9
+- signal: RC7
+  pin: 62
+  alt_functions:
+  - RX
+  - DT
+  - SDI
+  - SDA
+  - SEG8
+- signal: RD4
+  pin: 63
+  alt_functions:
+  - SEG17
+- signal: RD5
+  pin: 64
+  alt_functions:
+  - SEG18
