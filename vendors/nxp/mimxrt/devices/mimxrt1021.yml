@@ -14,6 +14,8 @@ provenance:
   primary: cmsis-svd:MIMXRT1021.svd
   authored: auto
   notes: SVD-extracted skeleton — memory + pinout require enrichment.
+  secondary:
+  - nxp-mcuxpresso:devices/MIMXRT1021/drivers/fsl_iomuxc.h
 memory:
 - id: flash
   base: '0x00000000'
@@ -61516,6 +61518,15 @@ peripherals:
   irq:
     num: 122
     name: PIT_IRQHandler
+  pin_options:
+    trigger02:
+    - pin: GPIO_EMC_00
+    trigger03:
+    - pin: GPIO_EMC_01
+    trigger00:
+    - pin: GPIO_AD_B0_06
+    trigger01:
+    - pin: GPIO_AD_B0_07
 - id: cmp1
   template: cmp
   base: '0x40094000'
@@ -61564,12 +61575,27 @@ peripherals:
   irq:
     num: 94
     name: EWM_IRQHandler
+  pin_options:
+    out_b:
+    - pin: GPIO_EMC_28
+    - pin: GPIO_AD_B0_04
+    - pin: GPIO_SD_B1_04
 - id: wdog1
   template: wdog
   base: '0x400B8000'
   irq:
     num: 92
     name: WDOG1_IRQHandler
+  pin_options:
+    b:
+    - pin: GPIO_EMC_15
+    - pin: GPIO_EMC_39
+    - pin: GPIO_AD_B0_03
+    - pin: GPIO_SD_B0_06
+    rst_b_deb:
+    - pin: GPIO_EMC_30
+    any:
+    - pin: GPIO_AD_B0_14
 - id: wdog2
   template: wdog
   base: '0x400D0000'
@@ -61577,6 +61603,11 @@ peripherals:
   irq:
     num: 45
     name: WDOG2_IRQHandler
+  pin_options:
+    rst_b_deb:
+    - pin: GPIO_EMC_29
+    b:
+    - pin: GPIO_EMC_31
 - id: rtwdog
   template: rtwdog
   base: '0x400BC000'
@@ -61612,6 +61643,13 @@ peripherals:
     name: SNVS_HP_WRAPPER_TZ_IRQHandler
   - num: 48
     name: SNVS_LP_HP_WRAPPER_IRQHandler
+  pin_options:
+    hp_vio_5_ctl:
+    - pin: GPIO_AD_B0_12
+    hp_vio_5_b:
+    - pin: GPIO_AD_B0_13
+    lp_pmic_on_req:
+    - pin: SNVS_PMIC_ON_REQ
 - id: ccm_analog
   template: ccm_analog
   base: '0x400D8000'
@@ -61703,6 +61741,31 @@ peripherals:
   irq:
     num: 98
     name: SRC_IRQHandler
+  pin_options:
+    boot_mode00:
+    - pin: GPIO_EMC_16
+    boot_mode01:
+    - pin: GPIO_EMC_17
+    bt_cfg00:
+    - pin: GPIO_EMC_18
+    bt_cfg01:
+    - pin: GPIO_EMC_19
+    bt_cfg02:
+    - pin: GPIO_EMC_20
+    bt_cfg03:
+    - pin: GPIO_EMC_21
+    bt_cfg04:
+    - pin: GPIO_EMC_22
+    bt_cfg05:
+    - pin: GPIO_EMC_23
+    bt_cfg06:
+    - pin: GPIO_EMC_24
+    bt_cfg07:
+    - pin: GPIO_EMC_25
+    bt_cfg08:
+    - pin: GPIO_EMC_26
+    bt_cfg09:
+    - pin: GPIO_EMC_27
 - id: ccm
   template: ccm
   base: '0x400FC000'
@@ -61711,12 +61774,37 @@ peripherals:
     name: CCM_1_IRQHandler
   - num: 96
     name: CCM_2_IRQHandler
+  pin_options:
+    pmic_rdy:
+    - pin: GPIO_EMC_13
+    - pin: GPIO_EMC_36
+    - pin: GPIO_AD_B0_03
+    - pin: GPIO_SD_B1_05
+    clko1:
+    - pin: GPIO_SD_B1_02
+    clko2:
+    - pin: GPIO_SD_B1_03
+    wait:
+    - pin: GPIO_SD_B1_04
+    stop:
+    - pin: GPIO_SD_B1_06
+    pmic_vstby_req:
+    - pin: SNVS_PMIC_STBY_REQ
 - id: lpuart1
   template: lpuart
   base: '0x40184000'
   irq:
     num: 20
     name: LPUART1_IRQHandler
+  pin_options:
+    tx:
+    - pin: GPIO_AD_B0_06
+    rx:
+    - pin: GPIO_AD_B0_07
+    cts_b:
+    - pin: GPIO_AD_B0_08
+    rts_b:
+    - pin: GPIO_AD_B0_09
 - id: lpuart2
   template: lpuart
   base: '0x40188000'
@@ -61724,6 +61812,19 @@ peripherals:
   irq:
     num: 21
     name: LPUART2_IRQHandler
+  pin_options:
+    cts_b:
+    - pin: GPIO_EMC_20
+    - pin: GPIO_AD_B1_06
+    rts_b:
+    - pin: GPIO_EMC_21
+    - pin: GPIO_AD_B1_07
+    tx:
+    - pin: GPIO_EMC_22
+    - pin: GPIO_AD_B1_08
+    rx:
+    - pin: GPIO_EMC_23
+    - pin: GPIO_AD_B1_09
 - id: lpuart3
   template: lpuart
   base: '0x4018C000'
@@ -61731,6 +61832,17 @@ peripherals:
   irq:
     num: 22
     name: LPUART3_IRQHandler
+  pin_options:
+    tx:
+    - pin: GPIO_EMC_06
+    - pin: GPIO_AD_B0_14
+    rx:
+    - pin: GPIO_EMC_07
+    - pin: GPIO_AD_B0_15
+    cts_b:
+    - pin: GPIO_AD_B0_12
+    rts_b:
+    - pin: GPIO_AD_B0_13
 - id: lpuart4
   template: lpuart
   base: '0x40190000'
@@ -61738,6 +61850,21 @@ peripherals:
   irq:
     num: 23
     name: LPUART4_IRQHandler
+  pin_options:
+    cts_b:
+    - pin: GPIO_EMC_00
+    - pin: GPIO_EMC_30
+    rts_b:
+    - pin: GPIO_EMC_01
+    - pin: GPIO_EMC_31
+    tx:
+    - pin: GPIO_EMC_02
+    - pin: GPIO_EMC_32
+    - pin: GPIO_AD_B1_10
+    rx:
+    - pin: GPIO_EMC_03
+    - pin: GPIO_EMC_33
+    - pin: GPIO_AD_B1_11
 - id: lpuart5
   template: lpuart
   base: '0x40194000'
@@ -61745,6 +61872,17 @@ peripherals:
   irq:
     num: 24
     name: LPUART5_IRQHandler
+  pin_options:
+    cts_b:
+    - pin: GPIO_EMC_36
+    rts_b:
+    - pin: GPIO_EMC_37
+    tx:
+    - pin: GPIO_EMC_38
+    - pin: GPIO_AD_B0_10
+    rx:
+    - pin: GPIO_EMC_39
+    - pin: GPIO_AD_B0_11
 - id: lpuart6
   template: lpuart
   base: '0x40198000'
@@ -61752,6 +61890,17 @@ peripherals:
   irq:
     num: 25
     name: LPUART6_IRQHandler
+  pin_options:
+    tx:
+    - pin: GPIO_EMC_12
+    - pin: GPIO_SD_B1_00
+    rx:
+    - pin: GPIO_EMC_13
+    - pin: GPIO_SD_B1_01
+    cts_b:
+    - pin: GPIO_EMC_14
+    rts_b:
+    - pin: GPIO_EMC_15
 - id: lpuart7
   template: lpuart
   base: '0x4019C000'
@@ -61759,6 +61908,17 @@ peripherals:
   irq:
     num: 26
     name: LPUART7_IRQHandler
+  pin_options:
+    tx:
+    - pin: GPIO_EMC_34
+    - pin: GPIO_SD_B0_04
+    rx:
+    - pin: GPIO_EMC_35
+    - pin: GPIO_SD_B0_05
+    cts_b:
+    - pin: GPIO_SD_B0_02
+    rts_b:
+    - pin: GPIO_SD_B0_03
 - id: lpuart8
   template: lpuart
   base: '0x401A0000'
@@ -61766,12 +61926,88 @@ peripherals:
   irq:
     num: 27
     name: LPUART8_IRQHandler
+  pin_options:
+    cts_b:
+    - pin: GPIO_EMC_24
+    rts_b:
+    - pin: GPIO_EMC_25
+    tx:
+    - pin: GPIO_EMC_26
+    - pin: GPIO_SD_B1_02
+    rx:
+    - pin: GPIO_EMC_27
+    - pin: GPIO_SD_B1_03
 - id: flexio1
   template: flexio
   base: '0x401AC000'
   irq:
     num: 90
     name: FLEXIO1_IRQHandler
+  pin_options:
+    flexio16:
+    - pin: GPIO_EMC_04
+    flexio17:
+    - pin: GPIO_EMC_05
+    flexio18:
+    - pin: GPIO_EMC_06
+    flexio19:
+    - pin: GPIO_EMC_07
+    flexio20:
+    - pin: GPIO_EMC_08
+    flexio21:
+    - pin: GPIO_EMC_09
+    flexio22:
+    - pin: GPIO_EMC_18
+    flexio23:
+    - pin: GPIO_EMC_19
+    flexio24:
+    - pin: GPIO_EMC_20
+    flexio25:
+    - pin: GPIO_EMC_21
+    flexio26:
+    - pin: GPIO_EMC_22
+    flexio27:
+    - pin: GPIO_EMC_23
+    flexio28:
+    - pin: GPIO_EMC_24
+    flexio29:
+    - pin: GPIO_EMC_25
+    flexio30:
+    - pin: GPIO_EMC_26
+    flexio31:
+    - pin: GPIO_EMC_27
+    flexio15:
+    - pin: GPIO_AD_B1_00
+    flexio14:
+    - pin: GPIO_AD_B1_01
+    flexio13:
+    - pin: GPIO_AD_B1_02
+    flexio12:
+    - pin: GPIO_AD_B1_03
+    flexio11:
+    - pin: GPIO_AD_B1_04
+    flexio10:
+    - pin: GPIO_AD_B1_05
+    flexio09:
+    - pin: GPIO_AD_B1_06
+    flexio08:
+    - pin: GPIO_AD_B1_07
+    flexio07:
+    - pin: GPIO_AD_B1_08
+    flexio06:
+    - pin: GPIO_AD_B1_09
+    flexio05:
+    - pin: GPIO_AD_B1_10
+    flexio04:
+    - pin: GPIO_AD_B1_11
+    flexio03:
+    - pin: GPIO_AD_B1_12
+    flexio02:
+    - pin: GPIO_AD_B1_13
+    flexio01:
+    - pin: GPIO_AD_B1_14
+    flexio00:
+    - pin: GPIO_AD_B1_15
 - id: gpio1
   template: gpio
   base: '0x401B8000'
@@ -61796,6 +62032,71 @@ peripherals:
     name: GPIO1_Combined_0_15_IRQHandler
   - num: 81
     name: GPIO1_Combined_16_31_IRQHandler
+  pin_options:
+    io00:
+    - pin: GPIO_AD_B0_00
+    io01:
+    - pin: GPIO_AD_B0_01
+    io02:
+    - pin: GPIO_AD_B0_02
+    io03:
+    - pin: GPIO_AD_B0_03
+    io04:
+    - pin: GPIO_AD_B0_04
+    io05:
+    - pin: GPIO_AD_B0_05
+    io06:
+    - pin: GPIO_AD_B0_06
+    io07:
+    - pin: GPIO_AD_B0_07
+    io08:
+    - pin: GPIO_AD_B0_08
+    io09:
+    - pin: GPIO_AD_B0_09
+    io10:
+    - pin: GPIO_AD_B0_10
+    io11:
+    - pin: GPIO_AD_B0_11
+    io12:
+    - pin: GPIO_AD_B0_12
+    io13:
+    - pin: GPIO_AD_B0_13
+    io14:
+    - pin: GPIO_AD_B0_14
+    io15:
+    - pin: GPIO_AD_B0_15
+    io16:
+    - pin: GPIO_AD_B1_00
+    io17:
+    - pin: GPIO_AD_B1_01
+    io18:
+    - pin: GPIO_AD_B1_02
+    io19:
+    - pin: GPIO_AD_B1_03
+    io20:
+    - pin: GPIO_AD_B1_04
+    io21:
+    - pin: GPIO_AD_B1_05
+    io22:
+    - pin: GPIO_AD_B1_06
+    io23:
+    - pin: GPIO_AD_B1_07
+    io24:
+    - pin: GPIO_AD_B1_08
+    io25:
+    - pin: GPIO_AD_B1_09
+    io26:
+    - pin: GPIO_AD_B1_10
+    io27:
+    - pin: GPIO_AD_B1_11
+    io28:
+    - pin: GPIO_AD_B1_12
+    io29:
+    - pin: GPIO_AD_B1_13
+    io30:
+    - pin: GPIO_AD_B1_14
+    io31:
+    - pin: GPIO_AD_B1_15
 - id: gpio5
   template: gpio
   base: '0x400C0000'
@@ -61805,6 +62106,13 @@ peripherals:
     name: GPIO5_Combined_0_15_IRQHandler
   - num: 89
     name: GPIO5_Combined_16_31_IRQHandler
+  pin_options:
+    io00:
+    - pin: SNVS_WAKEUP
+    io01:
+    - pin: SNVS_PMIC_ON_REQ
+    io02:
+    - pin: SNVS_PMIC_STBY_REQ
 - id: gpio2
   template: gpio
   base: '0x401BC000'
@@ -61814,6 +62122,71 @@ peripherals:
     name: GPIO2_Combined_0_15_IRQHandler
   - num: 83
     name: GPIO2_Combined_16_31_IRQHandler
+  pin_options:
+    io00:
+    - pin: GPIO_EMC_00
+    io01:
+    - pin: GPIO_EMC_01
+    io02:
+    - pin: GPIO_EMC_02
+    io03:
+    - pin: GPIO_EMC_03
+    io04:
+    - pin: GPIO_EMC_04
+    io05:
+    - pin: GPIO_EMC_05
+    io06:
+    - pin: GPIO_EMC_06
+    io07:
+    - pin: GPIO_EMC_07
+    io08:
+    - pin: GPIO_EMC_08
+    io09:
+    - pin: GPIO_EMC_09
+    io10:
+    - pin: GPIO_EMC_10
+    io11:
+    - pin: GPIO_EMC_11
+    io12:
+    - pin: GPIO_EMC_12
+    io13:
+    - pin: GPIO_EMC_13
+    io14:
+    - pin: GPIO_EMC_14
+    io15:
+    - pin: GPIO_EMC_15
+    io16:
+    - pin: GPIO_EMC_16
+    io17:
+    - pin: GPIO_EMC_17
+    io18:
+    - pin: GPIO_EMC_18
+    io19:
+    - pin: GPIO_EMC_19
+    io20:
+    - pin: GPIO_EMC_20
+    io21:
+    - pin: GPIO_EMC_21
+    io22:
+    - pin: GPIO_EMC_22
+    io23:
+    - pin: GPIO_EMC_23
+    io24:
+    - pin: GPIO_EMC_24
+    io25:
+    - pin: GPIO_EMC_25
+    io26:
+    - pin: GPIO_EMC_26
+    io27:
+    - pin: GPIO_EMC_27
+    io28:
+    - pin: GPIO_EMC_28
+    io29:
+    - pin: GPIO_EMC_29
+    io30:
+    - pin: GPIO_EMC_30
+    io31:
+    - pin: GPIO_EMC_31
 - id: gpio3
   template: gpio
   base: '0x401C0000'
@@ -61823,6 +62196,65 @@ peripherals:
     name: GPIO3_Combined_0_15_IRQHandler
   - num: 85
     name: GPIO3_Combined_16_31_IRQHandler
+  pin_options:
+    io00:
+    - pin: GPIO_EMC_32
+    io01:
+    - pin: GPIO_EMC_33
+    io02:
+    - pin: GPIO_EMC_34
+    io03:
+    - pin: GPIO_EMC_35
+    io04:
+    - pin: GPIO_EMC_36
+    io05:
+    - pin: GPIO_EMC_37
+    io06:
+    - pin: GPIO_EMC_38
+    io07:
+    - pin: GPIO_EMC_39
+    io08:
+    - pin: GPIO_EMC_40
+    io09:
+    - pin: GPIO_EMC_41
+    io13:
+    - pin: GPIO_SD_B0_00
+    io14:
+    - pin: GPIO_SD_B0_01
+    io15:
+    - pin: GPIO_SD_B0_02
+    io16:
+    - pin: GPIO_SD_B0_03
+    io17:
+    - pin: GPIO_SD_B0_04
+    io18:
+    - pin: GPIO_SD_B0_05
+    io19:
+    - pin: GPIO_SD_B0_06
+    io20:
+    - pin: GPIO_SD_B1_00
+    io21:
+    - pin: GPIO_SD_B1_01
+    io22:
+    - pin: GPIO_SD_B1_02
+    io23:
+    - pin: GPIO_SD_B1_03
+    io24:
+    - pin: GPIO_SD_B1_04
+    io25:
+    - pin: GPIO_SD_B1_05
+    io26:
+    - pin: GPIO_SD_B1_06
+    io27:
+    - pin: GPIO_SD_B1_07
+    io28:
+    - pin: GPIO_SD_B1_08
+    io29:
+    - pin: GPIO_SD_B1_09
+    io30:
+    - pin: GPIO_SD_B1_10
+    io31:
+    - pin: GPIO_SD_B1_11
 - id: can1
   template: can
   base: '0x401D0000'
@@ -61855,6 +62287,19 @@ peripherals:
   irq:
     num: 100
     name: GPT1_IRQHandler
+  pin_options:
+    clk:
+    - pin: GPIO_EMC_39
+    compare3:
+    - pin: GPIO_EMC_40
+    compare2:
+    - pin: GPIO_EMC_41
+    compare1:
+    - pin: GPIO_AD_B0_00
+    capture2:
+    - pin: GPIO_AD_B0_01
+    capture1:
+    - pin: GPIO_AD_B0_02
 - id: gpt2
   template: gpt
   base: '0x401F0000'
@@ -61862,6 +62307,19 @@ peripherals:
   irq:
     num: 101
     name: GPT2_IRQHandler
+  pin_options:
+    capture2:
+    - pin: GPIO_EMC_28
+    compare2:
+    - pin: GPIO_EMC_29
+    compare3:
+    - pin: GPIO_EMC_30
+    clk:
+    - pin: GPIO_EMC_31
+    capture1:
+    - pin: GPIO_AD_B1_10
+    compare1:
+    - pin: GPIO_AD_B1_11
 - id: ocotp
   template: ocotp
   base: '0x401F4000'
@@ -61874,18 +62332,122 @@ peripherals:
   irq:
     num: 39
     name: KPP_IRQHandler
+  pin_options:
+    col00:
+    - pin: GPIO_AD_B0_08
+    row00:
+    - pin: GPIO_AD_B0_09
+    col01:
+    - pin: GPIO_AD_B0_10
+    row01:
+    - pin: GPIO_AD_B0_11
+    col02:
+    - pin: GPIO_AD_B0_12
+    row02:
+    - pin: GPIO_AD_B0_13
+    col03:
+    - pin: GPIO_AD_B0_14
+    row03:
+    - pin: GPIO_AD_B0_15
+    col04:
+    - pin: GPIO_AD_B1_00
+    row04:
+    - pin: GPIO_AD_B1_01
+    col05:
+    - pin: GPIO_AD_B1_02
+    row05:
+    - pin: GPIO_AD_B1_03
+    col06:
+    - pin: GPIO_AD_B1_04
+    row06:
+    - pin: GPIO_AD_B1_05
+    col07:
+    - pin: GPIO_AD_B1_06
+    row07:
+    - pin: GPIO_AD_B1_07
 - id: flexspi
   template: flexspi
   base: '0x402A8000'
   irq:
     num: 108
     name: FLEXSPI_IRQHandler
+  pin_options:
+    a_data03:
+    - pin: GPIO_AD_B1_00
+    - pin: GPIO_SD_B1_06
+    a_sclk:
+    - pin: GPIO_AD_B1_01
+    - pin: GPIO_SD_B1_07
+    a_data00:
+    - pin: GPIO_AD_B1_02
+    - pin: GPIO_SD_B1_08
+    a_data02:
+    - pin: GPIO_AD_B1_03
+    - pin: GPIO_SD_B1_09
+    a_data01:
+    - pin: GPIO_AD_B1_04
+    - pin: GPIO_SD_B1_10
+    a_ss0_b:
+    - pin: GPIO_AD_B1_05
+    - pin: GPIO_SD_B1_11
+    a_ss1_b:
+    - pin: GPIO_SD_B0_00
+    - pin: GPIO_SD_B1_01
+    b_ss1_b:
+    - pin: GPIO_SD_B0_01
+    b_ss0_b:
+    - pin: GPIO_SD_B0_04
+    - pin: GPIO_SD_B1_05
+    b_dqs:
+    - pin: GPIO_SD_B0_05
+    b_data03:
+    - pin: GPIO_SD_B1_00
+    b_sclk:
+    - pin: GPIO_SD_B1_01
+    b_data00:
+    - pin: GPIO_SD_B1_02
+    b_data02:
+    - pin: GPIO_SD_B1_03
+    b_data01:
+    - pin: GPIO_SD_B1_04
+    a_dqs:
+    - pin: GPIO_SD_B1_05
 - id: usdhc1
   template: usdhc
   base: '0x402C0000'
   irq:
     num: 110
     name: USDHC1_IRQHandler
+  pin_options:
+    wp:
+    - pin: GPIO_EMC_36
+    - pin: GPIO_AD_B0_03
+    - pin: GPIO_AD_B0_04
+    - pin: GPIO_AD_B1_05
+    - pin: GPIO_AD_B1_11
+    vselect:
+    - pin: GPIO_EMC_37
+    - pin: GPIO_AD_B1_07
+    cd_b:
+    - pin: GPIO_EMC_38
+    - pin: GPIO_AD_B0_05
+    - pin: GPIO_AD_B1_10
+    - pin: GPIO_SD_B0_06
+    reset_b:
+    - pin: GPIO_AD_B1_06
+    - pin: GPIO_SD_B0_06
+    data2:
+    - pin: GPIO_SD_B0_00
+    data3:
+    - pin: GPIO_SD_B0_01
+    cmd:
+    - pin: GPIO_SD_B0_02
+    clk:
+    - pin: GPIO_SD_B0_03
+    data0:
+    - pin: GPIO_SD_B0_04
+    data1:
+    - pin: GPIO_SD_B0_05
 - id: usdhc2
   template: usdhc
   base: '0x402C4000'
@@ -61893,6 +62455,36 @@ peripherals:
   irq:
     num: 111
     name: USDHC2_IRQHandler
+  pin_options:
+    wp:
+    - pin: GPIO_EMC_35
+    - pin: GPIO_AD_B1_13
+    cd_b:
+    - pin: GPIO_AD_B0_03
+    - pin: GPIO_AD_B1_12
+    - pin: GPIO_SD_B1_06
+    data2:
+    - pin: GPIO_SD_B1_00
+    data3:
+    - pin: GPIO_SD_B1_01
+    cmd:
+    - pin: GPIO_SD_B1_02
+    clk:
+    - pin: GPIO_SD_B1_03
+    data0:
+    - pin: GPIO_SD_B1_04
+    data1:
+    - pin: GPIO_SD_B1_05
+    reset_b:
+    - pin: GPIO_SD_B1_07
+    data4:
+    - pin: GPIO_SD_B1_08
+    data5:
+    - pin: GPIO_SD_B1_09
+    data6:
+    - pin: GPIO_SD_B1_10
+    data7:
+    - pin: GPIO_SD_B1_11
 - id: enet
   template: enet
   base: '0x402D8000'
@@ -61901,12 +62493,93 @@ peripherals:
     name: ENET_IRQHandler
   - num: 115
     name: ENET_1588_Timer_IRQHandler
+  pin_options:
+    crs:
+    - pin: GPIO_EMC_34
+    col:
+    - pin: GPIO_EMC_35
+    rx_clk:
+    - pin: GPIO_EMC_36
+    rdata03:
+    - pin: GPIO_EMC_37
+    rdata02:
+    - pin: GPIO_EMC_38
+    tx_er:
+    - pin: GPIO_EMC_39
+    mdio:
+    - pin: GPIO_EMC_40
+    - pin: GPIO_AD_B0_04
+    - pin: GPIO_SD_B0_02
+    tdata03:
+    - pin: GPIO_EMC_40
+    mdc:
+    - pin: GPIO_EMC_41
+    - pin: GPIO_AD_B0_05
+    - pin: GPIO_SD_B0_03
+    tdata02:
+    - pin: GPIO_EMC_41
+    tx_clk:
+    - pin: GPIO_AD_B0_08
+    - pin: GPIO_SD_B1_04
+    ref_clk1:
+    - pin: GPIO_AD_B0_08
+    - pin: GPIO_SD_B1_04
+    rdata01:
+    - pin: GPIO_AD_B0_09
+    - pin: GPIO_SD_B1_05
+    rdata00:
+    - pin: GPIO_AD_B0_10
+    - pin: GPIO_SD_B1_06
+    rx_en:
+    - pin: GPIO_AD_B0_11
+    - pin: GPIO_SD_B1_07
+    rx_er:
+    - pin: GPIO_AD_B0_12
+    - pin: GPIO_SD_B1_08
+    tx_en:
+    - pin: GPIO_AD_B0_13
+    - pin: GPIO_SD_B1_09
+    tdata00:
+    - pin: GPIO_AD_B0_14
+    - pin: GPIO_SD_B1_10
+    tdata01:
+    - pin: GPIO_AD_B0_15
+    - pin: GPIO_SD_B1_11
+    1588_event2_out:
+    - pin: GPIO_AD_B1_00
+    1588_event2_in:
+    - pin: GPIO_AD_B1_01
+    1588_event3_out:
+    - pin: GPIO_AD_B1_02
+    1588_event3_in:
+    - pin: GPIO_AD_B1_03
+    1588_event0_out:
+    - pin: GPIO_AD_B1_14
+    1588_event0_in:
+    - pin: GPIO_AD_B1_15
+    1588_event1_out:
+    - pin: GPIO_SD_B1_02
+    1588_event1_in:
+    - pin: GPIO_SD_B1_03
 - id: usb
   template: usb
   base: '0x402E0000'
   irq:
     num: 113
     name: USB_OTG1_IRQHandler
+  pin_options:
+    otg1_oc:
+    - pin: GPIO_EMC_39
+    - pin: GPIO_AD_B0_03
+    - pin: GPIO_AD_B1_12
+    otg1_id:
+    - pin: GPIO_EMC_40
+    - pin: GPIO_AD_B0_05
+    - pin: GPIO_AD_B1_11
+    otg1_pwr:
+    - pin: GPIO_EMC_41
+    - pin: GPIO_AD_B0_04
+    - pin: GPIO_AD_B1_10
 - id: usbnc
   template: usbnc
   base: '0x402E0000'
@@ -61916,6 +62589,99 @@ peripherals:
   irq:
     num: 109
     name: SEMC_IRQHandler
+  pin_options:
+    data00:
+    - pin: GPIO_EMC_00
+    data01:
+    - pin: GPIO_EMC_01
+    data02:
+    - pin: GPIO_EMC_02
+    data03:
+    - pin: GPIO_EMC_03
+    data04:
+    - pin: GPIO_EMC_04
+    data05:
+    - pin: GPIO_EMC_05
+    data06:
+    - pin: GPIO_EMC_06
+    data07:
+    - pin: GPIO_EMC_07
+    dm00:
+    - pin: GPIO_EMC_08
+    we:
+    - pin: GPIO_EMC_09
+    cas:
+    - pin: GPIO_EMC_10
+    ras:
+    - pin: GPIO_EMC_11
+    cs0:
+    - pin: GPIO_EMC_12
+    ba0:
+    - pin: GPIO_EMC_13
+    ba1:
+    - pin: GPIO_EMC_14
+    addr10:
+    - pin: GPIO_EMC_15
+    addr00:
+    - pin: GPIO_EMC_16
+    addr01:
+    - pin: GPIO_EMC_17
+    addr02:
+    - pin: GPIO_EMC_18
+    addr03:
+    - pin: GPIO_EMC_19
+    addr04:
+    - pin: GPIO_EMC_20
+    addr05:
+    - pin: GPIO_EMC_21
+    addr06:
+    - pin: GPIO_EMC_22
+    addr07:
+    - pin: GPIO_EMC_23
+    addr08:
+    - pin: GPIO_EMC_24
+    addr09:
+    - pin: GPIO_EMC_25
+    addr11:
+    - pin: GPIO_EMC_26
+    addr12:
+    - pin: GPIO_EMC_27
+    dqs:
+    - pin: GPIO_EMC_28
+    cke:
+    - pin: GPIO_EMC_29
+    clk:
+    - pin: GPIO_EMC_30
+    dm01:
+    - pin: GPIO_EMC_31
+    data08:
+    - pin: GPIO_EMC_32
+    data09:
+    - pin: GPIO_EMC_33
+    data10:
+    - pin: GPIO_EMC_34
+    data11:
+    - pin: GPIO_EMC_35
+    data12:
+    - pin: GPIO_EMC_36
+    data13:
+    - pin: GPIO_EMC_37
+    data14:
+    - pin: GPIO_EMC_38
+    data15:
+    - pin: GPIO_EMC_39
+    csx00:
+    - pin: GPIO_EMC_40
+    - pin: GPIO_AD_B1_01
+    ready:
+    - pin: GPIO_EMC_41
+    - pin: GPIO_AD_B1_00
+    csx01:
+    - pin: GPIO_AD_B1_02
+    csx02:
+    - pin: GPIO_AD_B1_03
+    csx03:
+    - pin: GPIO_AD_B1_04
 - id: dcp
   template: dcp
   base: '0x402FC000'
@@ -61930,18 +62696,93 @@ peripherals:
   irq:
     num: 60
     name: SPDIF_IRQHandler
+  pin_options:
+    sr_clk:
+    - pin: GPIO_EMC_00
+    out:
+    - pin: GPIO_EMC_01
+    - pin: GPIO_EMC_04
+    - pin: GPIO_EMC_40
+    lock:
+    - pin: GPIO_EMC_02
+    ext_clk:
+    - pin: GPIO_EMC_03
+    in:
+    - pin: GPIO_EMC_05
+    - pin: GPIO_EMC_41
 - id: sai1
   template: i2s
   base: '0x40384000'
   irq:
     num: 56
     name: SAI1_IRQHandler
+  pin_options:
+    tx_sync:
+    - pin: GPIO_EMC_10
+    - pin: GPIO_EMC_27
+    - pin: GPIO_AD_B1_02
+    tx_bclk:
+    - pin: GPIO_EMC_11
+    - pin: GPIO_EMC_26
+    - pin: GPIO_AD_B1_01
+    tx_data00:
+    - pin: GPIO_EMC_12
+    - pin: GPIO_EMC_25
+    - pin: GPIO_AD_B1_03
+    rx_data00:
+    - pin: GPIO_EMC_13
+    - pin: GPIO_EMC_21
+    - pin: GPIO_AD_B1_05
+    rx_bclk:
+    - pin: GPIO_EMC_14
+    - pin: GPIO_EMC_19
+    - pin: GPIO_AD_B1_06
+    rx_sync:
+    - pin: GPIO_EMC_15
+    - pin: GPIO_EMC_18
+    - pin: GPIO_AD_B1_04
+    mclk:
+    - pin: GPIO_EMC_20
+    - pin: GPIO_AD_B0_03
+    - pin: GPIO_AD_B1_00
+    - pin: GPIO_SD_B0_00
+    tx_data03:
+    - pin: GPIO_EMC_22
+    - pin: GPIO_AD_B1_09
+    tx_data02:
+    - pin: GPIO_EMC_23
+    - pin: GPIO_AD_B1_08
+    tx_data01:
+    - pin: GPIO_EMC_24
+    - pin: GPIO_AD_B1_07
 - id: sai2
   template: i2s
   base: '0x40388000'
   irq:
     num: 57
     name: SAI2_IRQHandler
+  pin_options:
+    tx_bclk:
+    - pin: GPIO_EMC_04
+    - pin: GPIO_SD_B0_05
+    tx_sync:
+    - pin: GPIO_EMC_05
+    - pin: GPIO_SD_B0_06
+    tx_data:
+    - pin: GPIO_EMC_06
+    - pin: GPIO_SD_B0_04
+    rx_sync:
+    - pin: GPIO_EMC_07
+    - pin: GPIO_SD_B0_01
+    rx_data:
+    - pin: GPIO_EMC_08
+    - pin: GPIO_SD_B0_03
+    rx_bclk:
+    - pin: GPIO_EMC_09
+    - pin: GPIO_SD_B0_02
+    mclk:
+    - pin: GPIO_EMC_16
+    - pin: GPIO_SD_B0_00
 - id: sai3
   template: i2s
   base: '0x4038C000'
@@ -61951,12 +62792,54 @@ peripherals:
     name: SAI3_RX_IRQHandler
   - num: 59
     name: SAI3_TX_IRQHandler
+  pin_options:
+    mclk:
+    - pin: GPIO_EMC_17
+    - pin: GPIO_EMC_28
+    - pin: GPIO_SD_B1_05
+    rx_bclk:
+    - pin: GPIO_EMC_29
+    - pin: GPIO_SD_B1_09
+    rx_sync:
+    - pin: GPIO_EMC_30
+    - pin: GPIO_SD_B1_10
+    rx_data:
+    - pin: GPIO_EMC_31
+    - pin: GPIO_SD_B1_11
+    tx_data:
+    - pin: GPIO_EMC_32
+    - pin: GPIO_SD_B1_08
+    tx_bclk:
+    - pin: GPIO_EMC_33
+    - pin: GPIO_SD_B1_06
+    tx_sync:
+    - pin: GPIO_EMC_34
+    - pin: GPIO_SD_B1_07
 - id: lpspi1
   template: lpspi
   base: '0x40394000'
   irq:
     num: 32
     name: LPSPI1_IRQHandler
+  pin_options:
+    sck:
+    - pin: GPIO_AD_B0_10
+    - pin: GPIO_SD_B0_02
+    pcs0:
+    - pin: GPIO_AD_B0_11
+    - pin: GPIO_SD_B0_03
+    sdo:
+    - pin: GPIO_AD_B0_12
+    - pin: GPIO_SD_B0_04
+    sdi:
+    - pin: GPIO_AD_B0_13
+    - pin: GPIO_SD_B0_05
+    pcs1:
+    - pin: GPIO_AD_B1_04
+    pcs2:
+    - pin: GPIO_AD_B1_05
+    pcs3:
+    - pin: GPIO_AD_B1_06
 - id: lpspi2
   template: lpspi
   base: '0x40398000'
@@ -61964,6 +62847,29 @@ peripherals:
   irq:
     num: 33
     name: LPSPI2_IRQHandler
+  pin_options:
+    sck:
+    - pin: GPIO_EMC_00
+    - pin: GPIO_EMC_10
+    - pin: GPIO_SD_B1_07
+    pcs0:
+    - pin: GPIO_EMC_01
+    - pin: GPIO_EMC_11
+    - pin: GPIO_SD_B1_06
+    sdo:
+    - pin: GPIO_EMC_02
+    - pin: GPIO_EMC_12
+    - pin: GPIO_SD_B1_08
+    sdi:
+    - pin: GPIO_EMC_03
+    - pin: GPIO_EMC_13
+    - pin: GPIO_SD_B1_09
+    pcs1:
+    - pin: GPIO_EMC_14
+    pcs2:
+    - pin: GPIO_SD_B1_10
+    pcs3:
+    - pin: GPIO_SD_B1_11
 - id: lpspi3
   template: lpspi
   base: '0x4039C000'
@@ -61971,6 +62877,21 @@ peripherals:
   irq:
     num: 34
     name: LPSPI3_IRQHandler
+  pin_options:
+    pcs3:
+    - pin: GPIO_AD_B1_07
+    pcs2:
+    - pin: GPIO_AD_B1_08
+    pcs1:
+    - pin: GPIO_AD_B1_09
+    sck:
+    - pin: GPIO_AD_B1_12
+    pcs0:
+    - pin: GPIO_AD_B1_13
+    sdo:
+    - pin: GPIO_AD_B1_14
+    sdi:
+    - pin: GPIO_AD_B1_15
 - id: lpspi4
   template: lpspi
   base: '0x403A0000'
@@ -61978,6 +62899,25 @@ peripherals:
   irq:
     num: 35
     name: LPSPI4_IRQHandler
+  pin_options:
+    sck:
+    - pin: GPIO_EMC_32
+    - pin: GPIO_AD_B1_02
+    pcs0:
+    - pin: GPIO_EMC_33
+    - pin: GPIO_AD_B1_03
+    sdo:
+    - pin: GPIO_EMC_34
+    - pin: GPIO_AD_B1_04
+    sdi:
+    - pin: GPIO_EMC_35
+    - pin: GPIO_AD_B1_05
+    pcs1:
+    - pin: GPIO_EMC_36
+    pcs2:
+    - pin: GPIO_EMC_37
+    pcs3:
+    - pin: GPIO_EMC_38
 - id: adc_etc
   template: adc_etc
   base: '0x403B0000'
@@ -62053,6 +62993,15 @@ peripherals:
   irq:
     num: 28
     name: LPI2C1_IRQHandler
+  pin_options:
+    scl:
+    - pin: GPIO_EMC_02
+    - pin: GPIO_AD_B1_14
+    sda:
+    - pin: GPIO_EMC_03
+    - pin: GPIO_AD_B1_15
+    hreq:
+    - pin: GPIO_AD_B1_13
 - id: lpi2c2
   template: lpi2c
   base: '0x403F4000'
@@ -62060,6 +63009,13 @@ peripherals:
   irq:
     num: 29
     name: LPI2C2_IRQHandler
+  pin_options:
+    sda:
+    - pin: GPIO_EMC_18
+    - pin: GPIO_AD_B1_09
+    scl:
+    - pin: GPIO_EMC_19
+    - pin: GPIO_AD_B1_08
 - id: lpi2c3
   template: lpi2c
   base: '0x403F8000'
@@ -62067,6 +63023,13 @@ peripherals:
   irq:
     num: 30
     name: LPI2C3_IRQHandler
+  pin_options:
+    scl:
+    - pin: GPIO_AD_B0_08
+    - pin: GPIO_SD_B0_00
+    sda:
+    - pin: GPIO_AD_B0_09
+    - pin: GPIO_SD_B0_01
 - id: lpi2c4
   template: lpi2c
   base: '0x403FC000'
@@ -62074,6 +63037,13 @@ peripherals:
   irq:
     num: 31
     name: LPI2C4_IRQHandler
+  pin_options:
+    sda:
+    - pin: GPIO_EMC_10
+    - pin: GPIO_SD_B1_03
+    scl:
+    - pin: GPIO_EMC_11
+    - pin: GPIO_SD_B1_02
 - id: systemcontrol
   template: scb
   base: '0xE000E000'
