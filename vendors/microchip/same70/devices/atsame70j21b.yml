@@ -16995,57 +16995,151 @@ templates:
         bit: 1
       lsr.byteacc:
         bit: 2
-  adc:
-    max_clock: 16MHz
   spi:
     max_clock: 75MHz
   twi:
     max_clock: 1MHz
+  adc:
+    max_clock: 16MHz
   i2c:
     max_clock: 1MHz
 peripherals:
 - id: acc
   template: acc
   base: '0x40044000'
+  description: Analog Comparator Controller
+  ip_version: acc_J
   irq: &id028
     num: 33
     name: ACC_ACC_vect
 - id: aes
   template: aes
   base: '0x4006C000'
+  description: Advanced Encryption Standard
+  ip_version: aes_W
   irq: &id042
     num: 56
     name: AES_AES_vect
 - id: afec0
   template: afec
   base: '0x4003C000'
+  description: Analog Front-End Controller
+  ip_version: afec_S
+  pin_options:
+    adtrg:
+    - pin: PA8
+    ad0:
+    - pin: PD30
+    ad1:
+    - pin: PA21
+    ad2:
+    - pin: PB3
+    ad5:
+    - pin: PB2
+    ad6:
+    - pin: PA17
+    ad7:
+    - pin: PA18
+    ad8:
+    - pin: PA19
+    ad9:
+    - pin: PA20
+    ad10:
+    - pin: PB0
   irq: &id024
     num: 29
     name: AFEC0_AFEC0_vect
 - id: afec1
   template: afec
   base: '0x40064000'
+  description: Analog Front-End Controller
+  ip_version: afec_S
+  pin_options:
+    adtrg:
+    - pin: PD9
+    ad:
+    - pin: PB1
   irq: &id033
     num: 40
     name: AFEC1_AFEC1_vect
 - id: chipid
   template: chipid
   base: '0x400E0940'
+  description: Chip Identifier
+  ip_version: chipid_ZK
 - id: dacc
   template: dacc
   base: '0x40040000'
+  description: Digital-to-Analog Converter Controller
+  ip_version: dacc_E
+  pin_options:
+    dac0:
+    - pin: PB13
+    dac1:
+    - pin: PD0
+    datrg:
+    - pin: PA2
   irq: &id025
     num: 30
     name: DACC_DACC_vect
 - id: efc
   template: efc
   base: '0x400E0C00'
+  description: Embedded Flash Controller
+  ip_version: efc_Y
+  pin_options:
+    erase:
+    - pin: PB12
   irq: &id007
     num: 6
     name: EFC_EFC_vect
 - id: gmac
   template: gmac
   base: '0x40050000'
+  description: Gigabit Ethernet MAC
+  ip_version: gmac_S
+  pin_options:
+    gcol:
+    - pin: PD13
+    gcrs:
+    - pin: PD10
+    gmdc:
+    - pin: PD8
+    gmdio:
+    - pin: PD9
+    grxck:
+    - pin: PD14
+    grxdv:
+    - pin: PD4
+    grxer:
+    - pin: PD7
+    grx0:
+    - pin: PD5
+    grx1:
+    - pin: PD6
+    grx2:
+    - pin: PD11
+    grx3:
+    - pin: PD12
+    gtsucomp:
+    - pin: PB1
+    - pin: PB12
+    - pin: PD11
+    - pin: PD20
+    gtxck:
+    - pin: PD0
+    gtxen:
+    - pin: PD1
+    gtxer:
+    - pin: PD17
+    gtx0:
+    - pin: PD2
+    gtx1:
+    - pin: PD3
+    gtx2:
+    - pin: PD15
+    gtx3:
+    - pin: PD16
   irq:
   - &id032
     num: 39
@@ -17068,24 +17162,70 @@ peripherals:
 - id: gpbr
   template: gpbr
   base: '0x400E1890'
+  description: General Purpose Backup Registers
+  ip_version: gpbr_J
 - id: icm
   template: icm
   base: '0x40048000'
+  description: Integrity Check Monitor
+  ip_version: icm_H
   irq: &id027
     num: 32
     name: ICM_ICM_vect
 - id: isi
   template: isi
   base: '0x4004C000'
+  description: Image Sensor Interface
+  ip_version: isi_K
+  pin_options:
+    d0:
+    - pin: PD22
+    d1:
+    - pin: PD21
+    d2:
+    - pin: PB3
+    d3:
+    - pin: PA9
+    d4:
+    - pin: PA5
+    d5:
+    - pin: PD11
+    d6:
+    - pin: PD12
+    d7:
+    - pin: PA27
+    d8:
+    - pin: PD27
+    d9:
+    - pin: PD28
+    d10:
+    - pin: PD30
+    d11:
+    - pin: PD31
+    hsync:
+    - pin: PD24
+    pck:
+    - pin: PA24
+    vsync:
+    - pin: PD25
   irq: &id045
     num: 59
     name: ISI_ISI_vect
 - id: matrix
   template: matrix
   base: '0x40088000'
+  description: AHB Bus Matrix
+  ip_version: matrix_L
 - id: mcan0
   template: mcan
   base: '0x40030000'
+  description: Controller Area Network
+  ip_version: mcan_N
+  pin_options:
+    canrx:
+    - pin: PB3
+    cantx:
+    - pin: PB2
   irq:
   - &id030
     num: 35
@@ -17096,84 +17236,479 @@ peripherals:
 - id: pioa
   template: pio
   base: '0x400E0E00'
+  description: Parallel Input/Output Controller
+  ip_version: pio_V
+  pin_options:
+    p0:
+    - pin: PA0
+    p1:
+    - pin: PA1
+    p2:
+    - pin: PA2
+    p3:
+    - pin: PA3
+    p4:
+    - pin: PA4
+    p5:
+    - pin: PA5
+    p6:
+    - pin: PA6
+    p7:
+    - pin: PA7
+    p8:
+    - pin: PA8
+    p9:
+    - pin: PA9
+    p10:
+    - pin: PA10
+    p11:
+    - pin: PA11
+    p12:
+    - pin: PA12
+    p13:
+    - pin: PA13
+    p14:
+    - pin: PA14
+    p15:
+    - pin: PA15
+    p16:
+    - pin: PA16
+    p17:
+    - pin: PA17
+    p18:
+    - pin: PA18
+    p19:
+    - pin: PA19
+    p20:
+    - pin: PA20
+    p21:
+    - pin: PA21
+    p22:
+    - pin: PA22
+    p23:
+    - pin: PA23
+    p24:
+    - pin: PA24
+    p25:
+    - pin: PA25
+    p26:
+    - pin: PA26
+    p27:
+    - pin: PA27
+    p28:
+    - pin: PA28
+    p29:
+    - pin: PA29
+    p30:
+    - pin: PA30
+    p31:
+    - pin: PA31
+    piodc0:
+    - pin: PA3
+    piodc1:
+    - pin: PA4
+    piodc2:
+    - pin: PA5
+    piodc3:
+    - pin: PA9
+    piodc4:
+    - pin: PA10
+    piodc5:
+    - pin: PA11
+    piodc6:
+    - pin: PA12
+    piodc7:
+    - pin: PA13
+    piodcen1:
+    - pin: PA14
+    piodcen2:
+    - pin: PA21
+    piodcclk:
+    - pin: PA22
   irq: &id010
     num: 10
     name: PIOA_PIOA_vect
 - id: piob
   template: pio
   base: '0x400E1000'
+  description: Parallel Input/Output Controller
+  ip_version: pio_V
+  pin_options:
+    p32:
+    - pin: PB0
+    p33:
+    - pin: PB1
+    p34:
+    - pin: PB2
+    p35:
+    - pin: PB3
+    p36:
+    - pin: PB4
+    p37:
+    - pin: PB5
+    p38:
+    - pin: PB6
+    p39:
+    - pin: PB7
+    p40:
+    - pin: PB8
+    p41:
+    - pin: PB9
+    p44:
+    - pin: PB12
+    p45:
+    - pin: PB13
   irq: &id011
     num: 11
     name: PIOB_PIOB_vect
 - id: piod
   template: pio
   base: '0x400E1400'
+  description: Parallel Input/Output Controller
+  ip_version: pio_V
+  pin_options:
+    p96:
+    - pin: PD0
+    p97:
+    - pin: PD1
+    p98:
+    - pin: PD2
+    p99:
+    - pin: PD3
+    p100:
+    - pin: PD4
+    p101:
+    - pin: PD5
+    p102:
+    - pin: PD6
+    p103:
+    - pin: PD7
+    p104:
+    - pin: PD8
+    p105:
+    - pin: PD9
+    p106:
+    - pin: PD10
+    p107:
+    - pin: PD11
+    p108:
+    - pin: PD12
+    p109:
+    - pin: PD13
+    p110:
+    - pin: PD14
+    p111:
+    - pin: PD15
+    p112:
+    - pin: PD16
+    p113:
+    - pin: PD17
+    p114:
+    - pin: PD18
+    p115:
+    - pin: PD19
+    p116:
+    - pin: PD20
+    p117:
+    - pin: PD21
+    p118:
+    - pin: PD22
+    p119:
+    - pin: PD23
+    p120:
+    - pin: PD24
+    p121:
+    - pin: PD25
+    p122:
+    - pin: PD26
+    p123:
+    - pin: PD27
+    p124:
+    - pin: PD28
+    p125:
+    - pin: PD29
+    p126:
+    - pin: PD30
+    p127:
+    - pin: PD31
   irq: &id014
     num: 16
     name: PIOD_PIOD_vect
 - id: pmc
   template: pmc
   base: '0x400E0600'
+  description: Power Management Controller
+  ip_version: pmc_P
+  pin_options:
+    pck0:
+    - pin: PA6
+    - pin: PB12
+    - pin: PB13
+    pck1:
+    - pin: PA17
+    - pin: PA21
+    pck2:
+    - pin: PA3
+    - pin: PA18
+    - pin: PA31
+    - pin: PB3
+    - pin: PD31
+    xin:
+    - pin: PB9
+    xout:
+    - pin: PB8
+    xin32:
+    - pin: PA7
+    xout32:
+    - pin: PA8
   irq: &id006
     num: 5
     name: PMC_PMC_vect
 - id: pwm0
   template: pwm
   base: '0x40020000'
+  description: Pulse Width Modulation Controller
+  ip_version: pwm_Y
+  pin_options:
+    pwmextrg0:
+    - pin: PA10
+    pwmextrg1:
+    - pin: PA22
+    pwmfi0:
+    - pin: PA9
+    pwmfi1:
+    - pin: PD8
+    pwmfi2:
+    - pin: PD9
+    pwmh0:
+    - pin: PA0
+    - pin: PA11
+    - pin: PA23
+    - pin: PB0
+    - pin: PD11
+    - pin: PD20
+    pwmh1:
+    - pin: PA2
+    - pin: PA12
+    - pin: PA24
+    - pin: PB1
+    - pin: PD21
+    pwmh2:
+    - pin: PA13
+    - pin: PA25
+    - pin: PB4
+    - pin: PD22
+    pwmh3:
+    - pin: PA7
+    - pin: PA14
+    - pin: PA17
+    - pin: PD23
+    pwml0:
+    - pin: PA1
+    - pin: PA19
+    - pin: PB5
+    - pin: PD10
+    - pin: PD24
+    pwml1:
+    - pin: PA20
+    - pin: PB12
+    - pin: PD25
+    pwml2:
+    - pin: PA16
+    - pin: PA30
+    - pin: PB13
+    - pin: PD26
+    pwml3:
+    - pin: PA15
+    - pin: PD27
   irq: &id026
     num: 31
     name: PWM0_PWM0_vect
 - id: pwm1
   template: pwm
   base: '0x4005C000'
+  description: Pulse Width Modulation Controller
+  ip_version: pwm_Y
+  pin_options:
+    pwmextrg0:
+    - pin: PA30
+    pwmextrg1:
+    - pin: PA18
+    pwmfi0:
+    - pin: PA21
+    pwmfi1:
+    - pin: PA26
+    pwmfi2:
+    - pin: PA28
+    pwmh0:
+    - pin: PA12
+    - pin: PD1
+    pwmh1:
+    - pin: PA14
+    - pin: PD3
+    pwmh2:
+    - pin: PA31
+    - pin: PD5
+    pwmh3:
+    - pin: PA8
+    - pin: PD7
+    pwml0:
+    - pin: PA11
+    - pin: PD0
+    pwml1:
+    - pin: PA13
+    - pin: PD2
+    pwml2:
+    - pin: PA23
+    - pin: PD4
+    pwml3:
+    - pin: PA5
+    - pin: PD6
   irq: &id046
     num: 60
     name: PWM1_PWM1_vect
 - id: qspi
   template: qspi
   base: '0x4007C000'
+  description: Quad Serial Peripheral Interface
+  ip_version: qspi_J
+  pin_options:
+    qcs:
+    - pin: PA11
+    qio0:
+    - pin: PA13
+    qio1:
+    - pin: PA12
+    qio2:
+    - pin: PA17
+    qio3:
+    - pin: PD31
+    qsck:
+    - pin: PA14
   irq: &id034
     num: 43
     name: QSPI_QSPI_vect
 - id: rstc
   template: rstc
   base: '0x400E1800'
+  description: Reset Controller
+  ip_version: rstc_N
   irq: &id002
     num: 1
     name: RSTC_RSTC_vect
 - id: rswdt
   template: rswdt
   base: '0x400E1900'
+  description: Reinforced Safety Watchdog Timer
+  ip_version: rswdt_G
   irq: &id048
     num: 63
     name: RSWDT_RSWDT_vect
 - id: rtc
   template: rtc
   base: '0x400E1860'
+  description: Real-time Clock
+  ip_version: rtc_ZB
+  pin_options:
+    rtcout0:
+    - pin: PB0
+    rtcout1:
+    - pin: PB1
   irq: &id003
     num: 2
     name: RTC_RTC_vect
 - id: rtt
   template: rtt
   base: '0x400E1830'
+  description: Real-time Timer
+  ip_version: rtt_M
   irq: &id004
     num: 3
     name: RTT_RTT_vect
 - id: ssc
   template: ssc
   base: '0x40004000'
+  description: Synchronous Serial Controller
+  ip_version: ssc_Q
+  pin_options:
+    rd:
+    - pin: PA10
+    rf:
+    - pin: PD24
+    rk:
+    - pin: PA22
+    td:
+    - pin: PB5
+    - pin: PD10
+    - pin: PD26
+    tf:
+    - pin: PB0
+    tk:
+    - pin: PB1
   irq: &id017
     num: 22
     name: SSC_SSC_vect
 - id: supc
   template: supc
   base: '0x400E1810'
+  description: Supply Controller
+  ip_version: supc_ZE
+  pin_options:
+    wkup0:
+    - pin: PA0
+    wkup1:
+    - pin: PA1
+    wkup2:
+    - pin: PA2
+    wkup3:
+    - pin: PA4
+    wkup4:
+    - pin: PA5
+    wkup6:
+    - pin: PA9
+    wkup7:
+    - pin: PA11
+    wkup8:
+    - pin: PA14
+    wkup9:
+    - pin: PA19
+    wkup10:
+    - pin: PA20
+    wkup11:
+    - pin: PA30
+    wkup12:
+    - pin: PB3
+    wkup13:
+    - pin: PB5
+    wkup5:
+    - pin: PD28
   irq: &id001
     num: 0
     name: SUPC_SUPC_vect
 - id: tc0
   template: tc
   base: '0x4000C000'
+  description: Timer Counter
+  ip_version: tc_ZL
+  pin_options:
+    tclk0:
+    - pin: PA4
+    tclk1:
+    - pin: PA28
+    tclk2:
+    - pin: PA29
+    tioa0:
+    - pin: PA0
+    tioa1:
+    - pin: PA15
+    tioa2:
+    - pin: PA26
+    tiob0:
+    - pin: PA1
+    tiob1:
+    - pin: PA16
+    tiob2:
+    - pin: PA27
   irq:
   - &id018
     num: 23
@@ -17187,6 +17722,8 @@ peripherals:
 - id: tc1
   template: tc
   base: '0x40010000'
+  description: Timer Counter
+  ip_version: tc_ZL
   irq:
   - &id021
     num: 26
@@ -17200,6 +17737,8 @@ peripherals:
 - id: tc2
   template: tc
   base: '0x40014000'
+  description: Timer Counter
+  ip_version: tc_ZL
   irq:
   - &id036
     num: 47
@@ -17213,6 +17752,15 @@ peripherals:
 - id: tc3
   template: tc
   base: '0x40054000'
+  description: Timer Counter
+  ip_version: tc_ZL
+  pin_options:
+    tclk:
+    - pin: PD24
+    tioa:
+    - pin: PD21
+    tiob:
+    - pin: PD22
   irq:
   - &id039
     num: 50
@@ -17226,84 +17774,179 @@ peripherals:
 - id: trng
   template: trng
   base: '0x40070000'
+  description: True Random Number Generator
+  ip_version: trng_G
   irq: &id043
     num: 57
     name: TRNG_TRNG_vect
 - id: twihs0
   template: twihs
   base: '0x40018000'
+  description: Two-wire Interface High Speed
+  ip_version: twihs_Z
+  pin_options:
+    twck:
+    - pin: PA4
+    twd:
+    - pin: PA3
   irq: &id015
     num: 19
     name: TWIHS0_TWIHS0_vect
 - id: twihs1
   template: twihs
   base: '0x4001C000'
+  description: Two-wire Interface High Speed
+  ip_version: twihs_Z
+  pin_options:
+    twck:
+    - pin: PB5
+    twd:
+    - pin: PB4
   irq: &id016
     num: 20
     name: TWIHS1_TWIHS1_vect
 - id: uart0
   template: uart
   base: '0x400E0800'
+  description: Universal Asynchronous Receiver Transmitter
+  ip_version: uart_R
+  pin_options:
+    urxd:
+    - pin: PA9
+    utxd:
+    - pin: PA10
   irq: &id008
     num: 7
     name: UART0_UART0_vect
 - id: uart1
   template: uart
   base: '0x400E0A00'
+  description: Universal Asynchronous Receiver Transmitter
+  ip_version: uart_R
+  pin_options:
+    urxd:
+    - pin: PA5
+    utxd:
+    - pin: PA4
+    - pin: PA6
+    - pin: PD26
   irq: &id009
     num: 8
     name: UART1_UART1_vect
 - id: uart2
   template: uart
   base: '0x400E1A00'
+  description: Universal Asynchronous Receiver Transmitter
+  ip_version: uart_R
+  pin_options:
+    urxd:
+    - pin: PD25
+    utxd:
+    - pin: PD26
   irq: &id035
     num: 44
     name: UART2_UART2_vect
 - id: usart0
   template: usart
   base: '0x40024000'
+  description: Universal Synchronous Asynchronous Receiver Transmitter
+  ip_version: usart_ZW
+  pin_options:
+    cts:
+    - pin: PB2
+    dcd:
+    - pin: PD0
+    dsr:
+    - pin: PD2
+    dtr:
+    - pin: PD1
+    ri:
+    - pin: PD3
+    rts:
+    - pin: PB3
+    rxd:
+    - pin: PB0
+    sck:
+    - pin: PB13
+    txd:
+    - pin: PB1
   irq: &id012
     num: 13
     name: USART0_USART0_vect
 - id: usart1
   template: usart
   base: '0x40028000'
+  description: Universal Synchronous Asynchronous Receiver Transmitter
+  ip_version: usart_ZW
+  pin_options:
+    cts:
+    - pin: PA25
+    dcd:
+    - pin: PA26
+    dsr:
+    - pin: PA28
+    dtr:
+    - pin: PA27
+    loncol:
+    - pin: PA3
+    ri:
+    - pin: PA29
+    rts:
+    - pin: PA24
+    rxd:
+    - pin: PA21
+    sck:
+    - pin: PA23
+    txd:
+    - pin: PB4
   irq: &id013
     num: 14
     name: USART1_USART1_vect
 - id: usbhs
   template: usbhs
   base: '0x40038000'
+  description: USB High-Speed Interface
+  ip_version: usbhs_G
   irq: &id029
     num: 34
     name: USBHS_USBHS_vect
 - id: utmi
   template: utmi
   base: '0x400E0400'
+  description: USB Transmitter Interface Macrocell
+  ip_version: utmi_A
 - id: wdt
   template: wdt
   base: '0x400E1850'
+  description: Watchdog Timer
+  ip_version: wdt_N
   irq: &id005
     num: 4
     name: WDT_WDT_vect
 - id: xdmac
   template: xdmac
   base: '0x40078000'
+  description: Extensible DMA Controller
+  ip_version: xdmac_K
   irq: &id044
     num: 58
     name: XDMAC_XDMAC_vect
 - id: fuses
   template: fuses
   base: 0
+  ip_version: fuses_1
 - id: lockbit
   template: lockbit
   base: 0
+  ip_version: lockbit_1
 - id: scnscb
   template: scnscb
   base: '0xE000E000'
+  description: System control not in SCB
 - id: scb
   template: scb
   base: '0xE000ED00'
+  description: System Control Block
   irq:
   - &id049
     num: 64
@@ -17314,15 +17957,19 @@ peripherals:
 - id: systick
   template: systick
   base: '0xE000E010'
+  description: System timer
 - id: nvic
   template: nvic
   base: '0xE000E100'
+  description: Nested Vectored Interrupt Controller
 - id: mpu
   template: mpu
   base: '0xE000ED90'
+  description: Memory Protection Unit
 - id: fpu
   template: fpu
   base: '0xE000EF30'
+  description: Floating Point Unit
   irq:
   - &id047
     num: 61
@@ -17333,23 +17980,56 @@ peripherals:
 - id: itm
   template: itm
   base: '0xE0000000'
+  description: Instrumentation Trace Macrocell
 - id: dwt
   template: dwt
   base: '0xE0001000'
+  description: Data Watchpoint and Trace Register
 - id: fpb
   template: fpb
   base: '0xE0002000'
+  description: Flash Patch and Breakpoint
 - id: coredebug
   template: coredebug
   base: '0xE000EDF0'
+  description: Core Debug Register
 - id: etm
   template: etm
   base: '0xE0041000'
+  description: Embedded Trace Macrocell
 - id: ice
   template: ice
+  description: In-Circuit Emulator (JTAG/SWD/SWO)
+  pin_options:
+    tdi:
+    - pin: PB4
+    tdo:
+    - pin: PB5
+    traceswo:
+    - pin: PB5
+    tms:
+    - pin: PB6
+    swdio:
+    - pin: PB6
+    tck:
+    - pin: PB7
+    swdclk:
+    - pin: PB7
 - id: tpiu
   template: tpiu
   base: '0xE0040000'
+  description: Trace Port Interface Register
+  pin_options:
+    traceclk:
+    - pin: PD8
+    traced0:
+    - pin: PD4
+    traced1:
+    - pin: PD5
+    traced2:
+    - pin: PD6
+    traced3:
+    - pin: PD7
 pinout:
 - signal: PA3
   pin: 40

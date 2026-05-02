@@ -5922,24 +5922,127 @@ peripherals:
 - id: ac0
   template: ac
   base: '0x680'
+  description: Analog Comparator
+  pin_options:
+    n0:
+    - pin: PD3
+    n1:
+    - pin: PD0
+    n2:
+    - pin: PD7
+    p0:
+    - pin: PD2
+    p1:
+    - pin: PE0
+    p2:
+    - pin: PE2
+    p3:
+    - pin: PD6
+    out:
+    - pin: PA7
+    - pin: PC6
   irq: &id027
     num: 23
     name: AC0_AC_vect
 - id: ac1
   template: ac
   base: '0x688'
+  description: Analog Comparator
+  pin_options:
+    n0:
+    - pin: PD5
+    n1:
+    - pin: PD0
+    n2:
+    - pin: PD7
+    p0:
+    - pin: PD2
+    p1:
+    - pin: PD3
+    p2:
+    - pin: PD4
+    p3:
+    - pin: PD6
+    out:
+    - pin: PA7
+    - pin: PC6
   irq: &id032
     num: 28
     name: AC1_AC_vect
 - id: ac2
   template: ac
   base: '0x690'
+  description: Analog Comparator
+  pin_options:
+    n0:
+    - pin: PD7
+    n1:
+    - pin: PD0
+    n2:
+    - pin: PD7
+    p0:
+    - pin: PD2
+    p1:
+    - pin: PD4
+    p2:
+    - pin: PE1
+    p3:
+    - pin: PD6
+    out:
+    - pin: PA7
+    - pin: PC6
   irq: &id044
     num: 40
     name: AC2_AC_vect
 - id: adc0
   template: adc
   base: '0x600'
+  description: Analog to Digital Converter
+  pin_options:
+    ain0:
+    - pin: PD0
+    ain1:
+    - pin: PD1
+    ain2:
+    - pin: PD2
+    ain3:
+    - pin: PD3
+    ain4:
+    - pin: PD4
+    ain5:
+    - pin: PD5
+    ain6:
+    - pin: PD6
+    ain7:
+    - pin: PD7
+    ain8:
+    - pin: PE0
+    ain9:
+    - pin: PE1
+    ain10:
+    - pin: PE2
+    ain11:
+    - pin: PE3
+    ain12:
+    - pin: PE4
+    ain13:
+    - pin: PE5
+    ain14:
+    - pin: PE6
+    ain15:
+    - pin: PE7
+    ain16:
+    - pin: PF0
+    ain17:
+    - pin: PF1
+    ain18:
+    - pin: PF2
+    ain19:
+    - pin: PF3
+    ain20:
+    - pin: PF4
+    ain21:
+    - pin: PF5
   irq:
   - &id028
     num: 24
@@ -5950,107 +6053,430 @@ peripherals:
 - id: bod
   template: bod
   base: 128
+  description: Bod interface
   irq: &id002
     num: 2
     name: BOD_VLM_vect
 - id: ccl
   template: ccl
   base: '0x1C0'
+  description: Configurable Custom Logic
+  pin_options:
+    lut0_in0:
+    - pin: PA0
+    lut0_in1:
+    - pin: PA1
+    lut0_in2:
+    - pin: PA2
+    lut1_in0:
+    - pin: PC0
+    lut1_in1:
+    - pin: PC1
+    lut1_in2:
+    - pin: PC2
+    lut2_in0:
+    - pin: PD0
+    lut2_in1:
+    - pin: PD1
+    lut2_in2:
+    - pin: PD2
+    lut3_in0:
+    - pin: PF0
+    lut3_in1:
+    - pin: PF1
+    lut3_in2:
+    - pin: PF2
+    lut4_in0:
+    - pin: PB0
+    lut4_in1:
+    - pin: PB1
+    lut4_in2:
+    - pin: PB2
+    lut5_in0:
+    - pin: PG0
+    lut5_in1:
+    - pin: PG1
+    lut5_in2:
+    - pin: PG2
+    lut0_out:
+    - pin: PA3
+    - pin: PA6
+    lut1_out:
+    - pin: PC3
+    - pin: PC6
+    lut2_out:
+    - pin: PD3
+    - pin: PD6
+    lut3_out:
+    - pin: PF3
+    lut4_out:
+    - pin: PB3
+    - pin: PB6
+    lut5_out:
+    - pin: PG3
+    - pin: PG6
   irq: &id005
     num: 5
     name: CCL_CCL_vect
 - id: clkctrl
   template: clkctrl
   base: 96
+  description: Clock controller
+  pin_options:
+    clkout:
+    - pin: PA7
+    extclk:
+    - pin: PA0
+    xtal32k1:
+    - pin: PF0
+    xtal32k2:
+    - pin: PF1
 - id: cpu
   template: cpu
   base: 48
+  description: CPU
 - id: cpuint
   template: cpuint
   base: '0x110'
+  description: Interrupt Controller
 - id: crcscan
   template: crcscan
   base: '0x120'
+  description: CRCSCAN
   irq: &id001
     num: 1
     name: CRCSCAN_NMI_vect
 - id: dac0
   template: dac
   base: '0x6A0'
+  description: Digital to Analog Converter
+  pin_options:
+    out:
+    - pin: PD6
 - id: evsys
   template: evsys
   base: '0x200'
+  description: Event System
+  pin_options:
+    evout0:
+    - pin: PA2
+    - pin: PA7
+    evout1:
+    - pin: PB2
+    - pin: PB7
+    evout2:
+    - pin: PC2
+    - pin: PC7
+    evout3:
+    - pin: PD2
+    - pin: PD7
+    evout4:
+    - pin: PE2
+    - pin: PE7
+    evout5:
+    - pin: PF2
+    evout6:
+    - pin: PG2
+    - pin: PG7
 - id: fuse
   template: fuse
   base: '0x1050'
+  description: Fuses
 - id: gpr
   template: gpr
   base: 28
+  description: General Purpose Registers
 - id: lock
   template: lock
   base: '0x1040'
+  description: Lockbits
 - id: nvmctrl
   template: nvmctrl
   base: '0x1000'
+  description: Non-volatile Memory Controller
   irq: &id039
     num: 35
     name: NVMCTRL_EE_vect
 - id: porta
   template: port
   base: '0x400'
+  description: I/O Ports
+  pin_options:
+    pin0:
+    - pin: PA0
+    pin1:
+    - pin: PA1
+    pin2:
+    - pin: PA2
+    pin3:
+    - pin: PA3
+    pin4:
+    - pin: PA4
+    pin5:
+    - pin: PA5
+    pin6:
+    - pin: PA6
+    pin7:
+    - pin: PA7
   irq: &id006
     num: 6
     name: PORTA_PORT_vect
 - id: portb
   template: port
   base: '0x420'
+  description: I/O Ports
+  pin_options:
+    pin0:
+    - pin: PB0
+    pin1:
+    - pin: PB1
+    pin2:
+    - pin: PB2
+    pin3:
+    - pin: PB3
+    pin4:
+    - pin: PB4
+    pin5:
+    - pin: PB5
+    pin6:
+    - pin: PB6
+    pin7:
+    - pin: PB7
   irq: &id048
     num: 44
     name: PORTB_PORT_vect
 - id: portc
   template: port
   base: '0x440'
+  description: I/O Ports
+  pin_options:
+    pin0:
+    - pin: PC0
+    pin1:
+    - pin: PC1
+    pin2:
+    - pin: PC2
+    pin3:
+    - pin: PC3
+    pin4:
+    - pin: PC4
+    pin5:
+    - pin: PC5
+    pin6:
+    - pin: PC6
+    pin7:
+    - pin: PC7
   irq: &id033
     num: 29
     name: PORTC_PORT_vect
 - id: portd
   template: port
   base: '0x460'
+  description: I/O Ports
+  pin_options:
+    pin0:
+    - pin: PD0
+    pin1:
+    - pin: PD1
+    pin2:
+    - pin: PD2
+    pin3:
+    - pin: PD3
+    pin4:
+    - pin: PD4
+    pin5:
+    - pin: PD5
+    pin6:
+    - pin: PD6
+    pin7:
+    - pin: PD7
   irq: &id026
     num: 22
     name: PORTD_PORT_vect
 - id: porte
   template: port
   base: '0x480'
+  description: I/O Ports
+  pin_options:
+    pin0:
+    - pin: PE0
+    pin1:
+    - pin: PE1
+    pin2:
+    - pin: PE2
+    pin3:
+    - pin: PE3
+    pin4:
+    - pin: PE4
+    pin5:
+    - pin: PE5
+    pin6:
+    - pin: PE6
+    pin7:
+    - pin: PE7
   irq: &id049
     num: 45
     name: PORTE_PORT_vect
 - id: portf
   template: port
   base: '0x4A0'
+  description: I/O Ports
+  pin_options:
+    pin0:
+    - pin: PF0
+    pin1:
+    - pin: PF1
+    pin2:
+    - pin: PF2
+    pin3:
+    - pin: PF3
+    pin4:
+    - pin: PF4
+    pin5:
+    - pin: PF5
+    pin6:
+    - pin: PF6
   irq: &id038
     num: 34
     name: PORTF_PORT_vect
 - id: portg
   template: port
   base: '0x4C0'
+  description: I/O Ports
+  pin_options:
+    pin0:
+    - pin: PG0
+    pin1:
+    - pin: PG1
+    pin2:
+    - pin: PG2
+    pin3:
+    - pin: PG3
+    pin4:
+    - pin: PG4
+    pin5:
+    - pin: PG5
+    pin6:
+    - pin: PG6
+    pin7:
+    - pin: PG7
   irq: &id066
     num: 58
     name: PORTG_PORT_vect
 - id: portmux
   template: portmux
   base: '0x5E0'
+  description: Port Multiplexer
 - id: ptc
   template: ptc
+  description: Peripherial Touch Controller
+  pin_options:
+    xy0:
+    - pin: PA0
+    xy1:
+    - pin: PA1
+    xy2:
+    - pin: PA2
+    xy3:
+    - pin: PA3
+    xy4:
+    - pin: PA4
+    xy5:
+    - pin: PA5
+    xy6:
+    - pin: PA6
+    xy7:
+    - pin: PA7
+    xy8:
+    - pin: PB0
+    xy9:
+    - pin: PB1
+    xy10:
+    - pin: PB2
+    xy11:
+    - pin: PB3
+    xy12:
+    - pin: PB4
+    xy13:
+    - pin: PB5
+    xy14:
+    - pin: PB6
+    xy15:
+    - pin: PB7
+    xy16:
+    - pin: PD0
+    xy17:
+    - pin: PD1
+    xy18:
+    - pin: PD2
+    xy19:
+    - pin: PD3
+    xy20:
+    - pin: PD4
+    xy21:
+    - pin: PD5
+    xy22:
+    - pin: PD6
+    xy23:
+    - pin: PD7
+    xy24:
+    - pin: PE0
+    xy25:
+    - pin: PE1
+    xy26:
+    - pin: PE2
+    xy27:
+    - pin: PE3
+    xy28:
+    - pin: PE4
+    xy29:
+    - pin: PE5
+    xy30:
+    - pin: PE6
+    xy31:
+    - pin: PE7
+    xy32:
+    - pin: PF0
+    xy33:
+    - pin: PF1
+    xy34:
+    - pin: PF2
+    xy35:
+    - pin: PF3
+    xy36:
+    - pin: PF4
+    xy37:
+    - pin: PF5
+    xy40:
+    - pin: PG0
+    xy41:
+    - pin: PG1
+    xy42:
+    - pin: PG2
+    xy43:
+    - pin: PG3
+    xy44:
+    - pin: PG4
+    xy45:
+    - pin: PG5
+    xy46:
+    - pin: PG6
+    xy47:
+    - pin: PG7
   irq: &id031
     num: 27
     name: PTC_PTC_vect
 - id: rstctrl
   template: rstctrl
   base: 64
+  description: Reset controller
+  pin_options:
+    reset:
+    - pin: PF6
 - id: rtc
   template: rtc
   base: '0x140'
+  description: Real-Time Counter
   irq:
   - &id003
     num: 3
@@ -6061,27 +6487,116 @@ peripherals:
 - id: sigrow
   template: sigrow
   base: '0x1100'
+  description: Signature row
 - id: slpctrl
   template: slpctrl
   base: 80
+  description: Sleep Controller
 - id: spi0
   template: spi
   base: '0x940'
+  description: Serial Peripheral Interface
+  pin_options:
+    miso:
+    - pin: PA5
+    - pin: PE1
+    - pin: PG5
+    mosi:
+    - pin: PA4
+    - pin: PE0
+    - pin: PG4
+    sck:
+    - pin: PA6
+    - pin: PE2
+    - pin: PG6
+    ss:
+    - pin: PA7
+    - pin: PE3
+    - pin: PG7
   irq: &id022
     num: 18
     name: SPI0_INT_vect
 - id: spi1
   template: spi
   base: '0x960'
+  description: Serial Peripheral Interface
+  pin_options:
+    miso:
+    - pin: PC1
+    - pin: PC5
+    - pin: PB5
+    mosi:
+    - pin: PC0
+    - pin: PC4
+    - pin: PB4
+    sck:
+    - pin: PC2
+    - pin: PC6
+    - pin: PB6
+    ss:
+    - pin: PC3
+    - pin: PC7
+    - pin: PB7
   irq: &id040
     num: 36
     name: SPI1_INT_vect
 - id: syscfg
   template: syscfg
   base: '0xF00'
+  description: System Configuration Registers
 - id: tca0
   template: tca
   base: '0xA00'
+  description: 16-bit Timer/Counter Type A
+  pin_options:
+    wo0:
+    - pin: PA0
+    - pin: PB0
+    - pin: PC0
+    - pin: PD0
+    - pin: PE0
+    - pin: PF0
+    - pin: PG0
+    wo1:
+    - pin: PA1
+    - pin: PB1
+    - pin: PC1
+    - pin: PD1
+    - pin: PE1
+    - pin: PF1
+    - pin: PG1
+    wo2:
+    - pin: PA2
+    - pin: PB2
+    - pin: PC2
+    - pin: PD2
+    - pin: PE2
+    - pin: PF2
+    - pin: PG2
+    wo3:
+    - pin: PA3
+    - pin: PB3
+    - pin: PC3
+    - pin: PD3
+    - pin: PE3
+    - pin: PF3
+    - pin: PG3
+    wo4:
+    - pin: PA4
+    - pin: PB4
+    - pin: PC4
+    - pin: PD4
+    - pin: PE4
+    - pin: PF4
+    - pin: PG4
+    wo5:
+    - pin: PA5
+    - pin: PB5
+    - pin: PC5
+    - pin: PD5
+    - pin: PE5
+    - pin: PF5
+    - pin: PG5
   irq:
   - &id007
     num: 7
@@ -6113,6 +6628,32 @@ peripherals:
 - id: tca1
   template: tca
   base: '0xA40'
+  description: 16-bit Timer/Counter Type A
+  pin_options:
+    wo0:
+    - pin: PB0
+    - pin: PC4
+    - pin: PE4
+    - pin: PG0
+    wo1:
+    - pin: PB1
+    - pin: PC5
+    - pin: PE5
+    - pin: PG1
+    wo2:
+    - pin: PB2
+    - pin: PC6
+    - pin: PE6
+    - pin: PG2
+    wo3:
+    - pin: PB3
+    - pin: PG3
+    wo4:
+    - pin: PB4
+    - pin: PG4
+    wo5:
+    - pin: PB5
+    - pin: PG5
   irq:
   - &id050
     num: 46
@@ -6144,36 +6685,83 @@ peripherals:
 - id: tcb0
   template: tcb
   base: '0xB00'
+  description: 16-bit Timer Type B
+  pin_options:
+    wo:
+    - pin: PA2
+    - pin: PF4
   irq: &id016
     num: 12
     name: TCB0_INT_vect
 - id: tcb1
   template: tcb
   base: '0xB10'
+  description: 16-bit Timer Type B
+  pin_options:
+    wo:
+    - pin: PA3
+    - pin: PF5
   irq: &id017
     num: 13
     name: TCB1_INT_vect
 - id: tcb2
   template: tcb
   base: '0xB20'
+  description: 16-bit Timer Type B
+  pin_options:
+    wo:
+    - pin: PC0
+    - pin: PB4
   irq: &id034
     num: 30
     name: TCB2_INT_vect
 - id: tcb3
   template: tcb
   base: '0xB30'
+  description: 16-bit Timer Type B
+  pin_options:
+    wo:
+    - pin: PB5
+    - pin: PC1
   irq: &id045
     num: 41
     name: TCB3_INT_vect
 - id: tcb4
   template: tcb
   base: '0xB40'
+  description: 16-bit Timer Type B
+  pin_options:
+    wo:
+    - pin: PG3
+    - pin: PC6
   irq: &id068
     num: 60
     name: TCB4_INT_vect
 - id: tcd0
   template: tcd
   base: '0xB80'
+  description: Timer Counter D
+  pin_options:
+    woa:
+    - pin: PA4
+    - pin: PB4
+    - pin: PF0
+    - pin: PG4
+    wob:
+    - pin: PA5
+    - pin: PB5
+    - pin: PF1
+    - pin: PG5
+    woc:
+    - pin: PA6
+    - pin: PB6
+    - pin: PF2
+    - pin: PG6
+    wod:
+    - pin: PA7
+    - pin: PB7
+    - pin: PF3
+    - pin: PG7
   irq:
   - &id018
     num: 14
@@ -6184,6 +6772,20 @@ peripherals:
 - id: twi0
   template: twi
   base: '0x900'
+  description: Two-Wire Interface
+  pin_options:
+    scl:
+    - pin: PA3
+    - pin: PC3
+    scl_dual:
+    - pin: PC3
+    - pin: PC7
+    sda:
+    - pin: PA2
+    - pin: PC2
+    sda_dual:
+    - pin: PC2
+    - pin: PC6
   irq:
   - &id020
     num: 16
@@ -6194,6 +6796,20 @@ peripherals:
 - id: twi1
   template: twi
   base: '0x920'
+  description: Two-Wire Interface
+  pin_options:
+    scl:
+    - pin: PF3
+    - pin: PB3
+    scl_dual:
+    - pin: PB3
+    - pin: PB7
+    sda:
+    - pin: PF2
+    - pin: PB2
+    sda_dual:
+    - pin: PB2
+    - pin: PB6
   irq:
   - &id046
     num: 42
@@ -6204,6 +6820,20 @@ peripherals:
 - id: usart0
   template: usart
   base: '0x800'
+  description: Universal Synchronous and Asynchronous Receiver and Transmitter
+  pin_options:
+    rxd:
+    - pin: PA1
+    - pin: PA5
+    txd:
+    - pin: PA0
+    - pin: PA4
+    xck:
+    - pin: PA2
+    - pin: PA6
+    xdir:
+    - pin: PA3
+    - pin: PA7
   irq:
   - &id023
     num: 19
@@ -6217,6 +6847,20 @@ peripherals:
 - id: usart1
   template: usart
   base: '0x820'
+  description: Universal Synchronous and Asynchronous Receiver and Transmitter
+  pin_options:
+    rxd:
+    - pin: PC1
+    - pin: PC5
+    txd:
+    - pin: PC0
+    - pin: PC4
+    xck:
+    - pin: PC2
+    - pin: PC6
+    xdir:
+    - pin: PC3
+    - pin: PC7
   irq:
   - &id035
     num: 31
@@ -6230,6 +6874,18 @@ peripherals:
 - id: usart2
   template: usart
   base: '0x840'
+  description: Universal Synchronous and Asynchronous Receiver and Transmitter
+  pin_options:
+    rxd:
+    - pin: PF1
+    - pin: PF5
+    txd:
+    - pin: PF0
+    - pin: PF4
+    xck:
+    - pin: PF2
+    xdir:
+    - pin: PF3
   irq:
   - &id041
     num: 37
@@ -6243,6 +6899,20 @@ peripherals:
 - id: usart3
   template: usart
   base: '0x860'
+  description: Universal Synchronous and Asynchronous Receiver and Transmitter
+  pin_options:
+    rxd:
+    - pin: PB1
+    - pin: PB5
+    txd:
+    - pin: PB0
+    - pin: PB4
+    xck:
+    - pin: PB2
+    - pin: PB6
+    xdir:
+    - pin: PB3
+    - pin: PB7
   irq:
   - &id060
     num: 52
@@ -6256,6 +6926,20 @@ peripherals:
 - id: usart4
   template: usart
   base: '0x880'
+  description: Universal Synchronous and Asynchronous Receiver and Transmitter
+  pin_options:
+    rxd:
+    - pin: PE1
+    - pin: PE5
+    txd:
+    - pin: PE0
+    - pin: PE4
+    xck:
+    - pin: PE2
+    - pin: PE6
+    xdir:
+    - pin: PE3
+    - pin: PE7
   irq:
   - &id063
     num: 55
@@ -6269,6 +6953,20 @@ peripherals:
 - id: usart5
   template: usart
   base: '0x8A0'
+  description: Universal Synchronous and Asynchronous Receiver and Transmitter
+  pin_options:
+    rxd:
+    - pin: PG1
+    - pin: PG5
+    txd:
+    - pin: PG0
+    - pin: PG4
+    xck:
+    - pin: PG2
+    - pin: PG6
+    xdir:
+    - pin: PG3
+    - pin: PG7
   irq:
   - &id069
     num: 61
@@ -6282,48 +6980,79 @@ peripherals:
 - id: userrow
   template: userrow
   base: '0x1080'
+  description: User Row
 - id: vporta
   template: vport
   base: 0
+  description: Virtual Ports
 - id: vportb
   template: vport
   base: 4
+  description: Virtual Ports
 - id: vportc
   template: vport
   base: 8
+  description: Virtual Ports
 - id: vportd
   template: vport
   base: 12
+  description: Virtual Ports
 - id: vporte
   template: vport
   base: 16
+  description: Virtual Ports
 - id: vportf
   template: vport
   base: 20
+  description: Virtual Ports
 - id: vportg
   template: vport
   base: 24
+  description: Virtual Ports
 - id: vref
   template: vref
   base: 160
+  description: Voltage reference
 - id: wdt
   template: wdt
   base: '0x100'
+  description: Watch-Dog Timer
 - id: zcd0
   template: zcd
   base: '0x6C0'
+  description: Zero Cross Detect
+  pin_options:
+    in:
+    - pin: PD1
+    out:
+    - pin: PA7
+    - pin: PC7
   irq: &id030
     num: 26
     name: ZCD0_ZCD_vect
 - id: zcd1
   template: zcd
   base: '0x6C8'
+  description: Zero Cross Detect
+  pin_options:
+    in:
+    - pin: PE3
+    out:
+    - pin: PA7
+    - pin: PC7
   irq: &id059
     num: 51
     name: ZCD1_ZCD_vect
 - id: zcd2
   template: zcd
   base: '0x6D0'
+  description: Zero Cross Detect
+  pin_options:
+    in:
+    - pin: PE7
+    out:
+    - pin: PA7
+    - pin: PC7
   irq: &id067
     num: 59
     name: ZCD2_ZCD_vect
