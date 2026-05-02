@@ -5,160 +5,277 @@ identity:
   device: stm32g030f6
   core:
     isa: armv6-m
-    name: cortex-m0plus
+    name: cm0
     bits: 32
-    interrupt_lines: 25
-  package: tssop20
+    mpu: true
+    nvic_priority_bits: 4
   description: STM32G030
+  package: tssop20
 provenance:
-  primary: stm32:STM32G030.svd
-  authored: auto+hand
+  primary: cmsis-svd:STM32G030.svd
+  authored: auto
+  notes: SVD-extracted skeleton — memory + pinout require enrichment.
   secondary:
-  - stm32-cubemx
-  - stm32-overlay
-  - stm32-tier
-  notes: Converted from canonical-v1 by scripts/convert_v1_to_v2_1.py
+  - stm32-open-pin-data:STM32G030F6Px.xml
+  - stm32-overlay:stm32g0
+  - stm32-tier:stm32g030f6
+  - stm32-cubemx:STM32G030F6Px.xml
 memory:
 - id: flash
   base: '0x8000000'
   size: 512KB
   access: rx
+  alias: code
 - id: sram
   base: '0x20000000'
   size: 144KB
   access: rwx
-  address_space: data
+  alias: data
 clock:
   oscillators:
-    HSIRC:
-      freq: 0Hz
+    hsi:
+      freq: 16MHz
       kind: rc-internal
-    HSEOSC:
-      freq: 0Hz
-      kind: rc-internal
-    LSIRC:
-      freq: 0Hz
-      kind: rc-internal
-    LSEOSC:
-      freq: 0Hz
-      kind: rc-internal
-    I2S_CKIN:
-      freq: 0Hz
+    lsi:
+      freq: 32kHz
       kind: rc-internal
   domains:
-  - id: sysclk
+  - id: hsisys
+    source: hsi
+    prescalers:
+    - 1
+    - 2
+    - 4
+    - 8
+    - 16
+    - 32
+    - 64
+    - 128
+    prescaler_register:
+      reg: RCC.CR
+      field: HSIDIV
+      encoding:
+        '1': 0
+        '2': 1
+        '4': 2
+        '8': 3
+        '16': 4
+        '32': 5
+        '64': 6
+        '128': 7
+  - id: hsi_div8
+    source: hsi
+  - id: sysclk_source
     sources:
-    - HSIRC
-    - HSEOSC
-    - LSIRC
-    - LSEOSC
-    - I2S_CKIN
-  - id: adcmult
+    - lse
+    - sysclk_pre
+    - hse
+    - pllclk
+    - lsi
+  - id: pll_source
     sources:
-    - HSIRC
-    - SysCLKOutput
-    - PLLP
-  - id: ck48mult
+    - hsi
+    - hse
+    select_register:
+      reg: RCC.PLLCFGR
+      field: PLLSRC
+      encoding:
+        hsi: 2
+        hse: 3
+  - id: pllm
+    source: pll_main
+  - id: hsertcdevisor
+    source: hse
+  - id: rtcclk_source
     sources:
-    - HSI_DIV8
-    - PLLQ
-  - id: i2c1mult
-    sources:
-    - HSIRC
-    - SysCLKOutput
-    - APBPrescaler
-  - id: i2s1mult
-    sources:
-    - HSIRC
-    - SysCLKOutput
-    - I2S_CKIN
-    - PLLP
-  - id: lptim1mult
-    sources:
-    - HSIRC
-    - LSIRC
-    - LSEOSC
-    - APBPrescaler
-  - id: lptim2mult
-    sources:
-    - HSIRC
-    - LSIRC
-    - LSEOSC
-    - APBPrescaler
-  - id: lpuart1mult
-    sources:
-    - HSIRC
-    - LSEOSC
-    - SysCLKOutput
-    - APBPrescaler
-  - id: lscomult
-    sources:
-    - LSIRC
-    - LSEOSC
-  - id: mcomult
-    sources:
-    - HSIRC
-    - HSEOSC
-    - LSIRC
-    - LSEOSC
-    - SysCLKOutput
-    - PLLR
-  - id: pllsource
-    sources:
-    - HSIRC
-    - HSEOSC
-  - id: rtcclksource
-    sources:
-    - LSIRC
-    - LSEOSC
-    - HSERTCDevisor
-  - id: sysclksource
-    sources:
-    - HSISYS
-    - HSEOSC
-    - PLLR
+    - hse_rtc
+    - lse
+    - lsi
   - id: usart1mult
     sources:
-    - HSIRC
-    - LSEOSC
-    - SysCLKOutput
-    - APBPrescaler
+    - pclk
+    - sysclk
+    - hsi
+    - lse
+    select_register:
+      reg: RCC.CCIPR
+      field: USART1SEL
+      encoding:
+        pclk: 0
+        sysclk: 1
+        hsi: 2
+        lse: 3
+  - id: i2s1mult
+    sources:
+    - sysclk
+    - pll_p
+    - hsi
+    - i2sextclock
+  - id: lpuart1mult
+    sources:
+    - pclk
+    - sysclk
+    - hsi
+    - lse
+    select_register:
+      reg: RCC.CCIPR
+      field: LPUART1SEL
+      encoding:
+        pclk: 0
+        sysclk: 1
+        hsi: 2
+        lse: 3
+  - id: lptim1mult
+    sources:
+    - pclk
+    - lsi
+    - hsi
+    - lse
+    select_register:
+      reg: RCC.CCIPR
+      field: LPTIM1SEL
+      encoding:
+        pclk: 0
+        lsi: 1
+        hsi: 2
+        lse: 3
+  - id: lptim2mult
+    sources:
+    - pclk
+    - lsi
+    - hsi
+    - lse
+    select_register:
+      reg: RCC.CCIPR
+      field: LPTIM2SEL
+      encoding:
+        pclk: 0
+        lsi: 1
+        hsi: 2
+        lse: 3
+  - id: tim1mult
+    sources:
+    - timclk
+    - pll_q
+  - id: adcmult
+    sources:
+    - sysclk
+    - hsi
+    - pll_p
+    select_register:
+      reg: RCC.CCIPR
+      field: ADCSEL
+      encoding:
+        sysclk: 0
+        hsi: 2
+  - id: rngdiv
+    source: ck48clk
+  - id: ck48mult
+    sources:
+    - sysclk
+    - pll_q
+    - hsidiv8
+  - id: i2c1mult
+    sources:
+    - pclk
+    - sysclk
+    - hsi
+    select_register:
+      reg: RCC.CCIPR
+      field: I2C1SEL
+      encoding:
+        pclk: 0
+        sysclk: 1
+        hsi: 2
+  - id: mcomult
+    sources:
+    - lse
+    - lsi
+    - hse
+    - hsi
+    - pllclk
+    - sysclk
+    select_register:
+      reg: RCC.CFGR
+      field: MCOSEL
+      encoding:
+        lse: 7
+        lsi: 6
+        hse: 4
+        hsi: 3
+        sysclk: 1
+  - id: mcodiv
+    source: mco1divinput
+  - id: lscomult
+    sources:
+    - lsi
+    - lse
+  - id: ahbprescaler
+    source: sysclk
+    prescalers:
+    - 1
+    - 2
+    - 4
+    - 8
+    - 16
+    - 64
+    - 128
+    - 256
+    - 512
+    prescaler_register:
+      reg: RCC.CFGR
+      field: HPRE
+      encoding:
+        '1': 0
+        '2': 8
+        '4': 9
+        '8': 10
+        '16': 11
+        '64': 12
+        '128': 13
+        '256': 14
+        '512': 15
+  - id: apbprescaler
+    source: ahbclk
+    prescalers:
+    - 1
+    - 2
+    - 4
+    - 8
+    - 16
+    prescaler_register:
+      reg: RCC.CFGR
+      field: PPRE
+      encoding:
+        '1': 0
+        '2': 4
+        '4': 5
+        '8': 6
+        '16': 7
+  - id: pllp
+    source: vcooutput
+  - id: pllq
+    source: vcooutput
+  - id: pllr
+    source: vcooutput
   profiles:
   - id: default-hsi16-16mhz
     kind: post-reset
     sysclk: 16MHz
     sysclk_source: hsi16
+    hclk_hz: 16000000
+    pclk_hz: 16000000
   - id: pll-hsi16-64mhz
     kind: recommended
     sysclk: 64MHz
     sysclk_source: pll_hsi16
+    hclk_hz: 64000000
+    pclk_hz: 64000000
+    pll_m: 1
+    pll_n: 8
+    pll_r: 2
 templates:
   adc:
-    options:
-      resolution:
-      - 6
-      - 8
-      - 10
-      - 12
-      sample_time_cycles:
-      - 1.5
-      - 3.5
-      - 7.5
-      - 12.5
-      - 19.5
-      - 39.5
-      - 79.5
-      - 160.5
-      oversampling:
-      - 2
-      - 4
-      - 8
-      - 16
-      - 32
-      - 64
-      - 128
-      - 256
-    max_clock: 35MHz
     registers:
       adc_awd1tr:
         offset: 32
@@ -173,14 +290,12 @@ templates:
       adc_calfact:
         offset: 180
       adc_ccr:
-        offset: '0x308'
+        offset: '0x0308'
       adc_cfgr1:
         offset: 12
       adc_cfgr2:
         offset: 16
       adc_chselr_0:
-        offset: 40
-      adc_chselr_1:
         offset: 40
       adc_cr:
         offset: 8
@@ -188,6 +303,8 @@ templates:
         offset: 64
       adc_ier:
         offset: 4
+      adc_isr:
+        offset: 0
       adc_smpr:
         offset: 20
     fields:
@@ -195,369 +312,945 @@ templates:
         bits:
         - 16
         - 27
+        access: rw
       adc_awd1tr.lt1:
         bits:
         - 0
         - 11
+        access: rw
       adc_awd2cr.awd2ch0:
         bit: 0
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd2cr.awd2ch1:
         bit: 1
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd2cr.awd2ch10:
         bit: 10
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd2cr.awd2ch11:
         bit: 11
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd2cr.awd2ch12:
         bit: 12
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd2cr.awd2ch13:
         bit: 13
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd2cr.awd2ch14:
         bit: 14
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd2cr.awd2ch15:
         bit: 15
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd2cr.awd2ch16:
         bit: 16
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd2cr.awd2ch17:
         bit: 17
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd2cr.awd2ch18:
         bit: 18
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd2cr.awd2ch2:
         bit: 2
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd2cr.awd2ch3:
         bit: 3
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd2cr.awd2ch4:
         bit: 4
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd2cr.awd2ch5:
         bit: 5
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd2cr.awd2ch6:
         bit: 6
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd2cr.awd2ch7:
         bit: 7
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd2cr.awd2ch8:
         bit: 8
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd2cr.awd2ch9:
         bit: 9
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd2tr.ht2:
         bits:
         - 16
         - 27
+        access: rw
       adc_awd2tr.lt2:
         bits:
         - 0
         - 11
+        access: rw
       adc_awd3cr.awd3ch0:
         bit: 0
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd3cr.awd3ch1:
         bit: 1
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd3cr.awd3ch10:
         bit: 10
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd3cr.awd3ch11:
         bit: 11
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd3cr.awd3ch12:
         bit: 12
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd3cr.awd3ch13:
         bit: 13
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd3cr.awd3ch14:
         bit: 14
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd3cr.awd3ch15:
         bit: 15
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd3cr.awd3ch16:
         bit: 16
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd3cr.awd3ch17:
         bit: 17
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd3cr.awd3ch18:
         bit: 18
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd3cr.awd3ch2:
         bit: 2
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd3cr.awd3ch3:
         bit: 3
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd3cr.awd3ch4:
         bit: 4
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd3cr.awd3ch5:
         bit: 5
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd3cr.awd3ch6:
         bit: 6
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd3cr.awd3ch7:
         bit: 7
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd3cr.awd3ch8:
         bit: 8
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd3cr.awd3ch9:
         bit: 9
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_awd3tr.ht3:
         bits:
         - 16
         - 27
+        access: rw
       adc_awd3tr.lt3:
         bits:
         - 0
         - 11
+        access: rw
       adc_calfact.calfact:
         bits:
         - 0
         - 6
+        access: rw
       adc_ccr.presc:
         bits:
         - 18
         - 21
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
+          B_0x3: 3
+          B_0x4: 4
+          B_0x5: 5
+          B_0x6: 6
+          B_0x7: 7
+          B_0x8: 8
+          B_0x9: 9
+          B_0xA: 10
+          B_0xB: 11
       adc_ccr.tsen:
         bit: 23
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_ccr.vbaten:
         bit: 24
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_ccr.vrefen:
         bit: 22
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_cfgr1.align:
         bit: 5
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_cfgr1.autoff:
         bit: 15
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_cfgr1.awd1ch:
         bits:
         - 26
         - 30
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x11: 17
+          B_0x12: 18
       adc_cfgr1.awd1en:
         bit: 23
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_cfgr1.awd1sgl:
         bit: 22
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_cfgr1.chselrmod:
         bit: 21
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_cfgr1.cont:
         bit: 13
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_cfgr1.discen:
         bit: 16
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_cfgr1.dmacfg:
         bit: 1
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_cfgr1.dmaen:
         bit: 0
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_cfgr1.exten:
         bits:
         - 10
         - 11
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
+          B_0x3: 3
       adc_cfgr1.extsel:
         bits:
         - 6
         - 8
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
+          B_0x3: 3
+          B_0x4: 4
+          B_0x5: 5
+          B_0x6: 6
+          B_0x7: 7
       adc_cfgr1.ovrmod:
         bit: 12
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_cfgr1.res:
         bits:
         - 3
         - 4
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
+          B_0x3: 3
       adc_cfgr1.scandir:
         bit: 2
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_cfgr1.wait:
         bit: 14
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_cfgr2.ckmode:
         bits:
         - 30
         - 31
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
+          B_0x3: 3
       adc_cfgr2.lftrig:
         bit: 29
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_cfgr2.ovse:
         bit: 0
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_cfgr2.ovsr:
         bits:
         - 2
         - 4
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
+          B_0x3: 3
+          B_0x4: 4
+          B_0x5: 5
+          B_0x6: 6
+          B_0x7: 7
       adc_cfgr2.ovss:
         bits:
         - 5
         - 8
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
+          B_0x3: 3
+          B_0x4: 4
+          B_0x5: 5
+          B_0x6: 6
+          B_0x7: 7
+          B_0x8: 8
       adc_cfgr2.tovs:
         bit: 9
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_chselr_0.chsel0:
         bit: 0
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_chselr_0.chsel1:
         bit: 1
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_chselr_0.chsel10:
         bit: 10
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_chselr_0.chsel11:
         bit: 11
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_chselr_0.chsel12:
         bit: 12
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_chselr_0.chsel13:
         bit: 13
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_chselr_0.chsel14:
         bit: 14
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_chselr_0.chsel15:
         bit: 15
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_chselr_0.chsel16:
         bit: 16
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_chselr_0.chsel17:
         bit: 17
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_chselr_0.chsel18:
         bit: 18
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_chselr_0.chsel2:
         bit: 2
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_chselr_0.chsel3:
         bit: 3
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_chselr_0.chsel4:
         bit: 4
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_chselr_0.chsel5:
         bit: 5
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_chselr_0.chsel6:
         bit: 6
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_chselr_0.chsel7:
         bit: 7
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_chselr_0.chsel8:
         bit: 8
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_chselr_0.chsel9:
         bit: 9
-      adc_chselr_1.sq1:
-        bits:
-        - 0
-        - 3
-      adc_chselr_1.sq2:
-        bits:
-        - 4
-        - 7
-      adc_chselr_1.sq3:
-        bits:
-        - 8
-        - 11
-      adc_chselr_1.sq4:
-        bits:
-        - 12
-        - 15
-      adc_chselr_1.sq5:
-        bits:
-        - 16
-        - 19
-      adc_chselr_1.sq6:
-        bits:
-        - 20
-        - 23
-      adc_chselr_1.sq7:
-        bits:
-        - 24
-        - 27
-      adc_chselr_1.sq8:
-        bits:
-        - 28
-        - 31
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_cr.adcal:
         bit: 31
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_cr.addis:
         bit: 1
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_cr.aden:
         bit: 0
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_cr.adstart:
         bit: 2
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_cr.adstp:
         bit: 4
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_cr.advregen:
         bit: 28
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_dr.data:
         bits:
         - 0
         - 15
+        access: ro
       adc_ier.adrdyie:
         bit: 0
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_ier.awd1ie:
         bit: 7
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_ier.awd2ie:
         bit: 8
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_ier.awd3ie:
         bit: 9
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_ier.ccrdyie:
         bit: 13
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_ier.eocalie:
         bit: 11
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_ier.eocie:
         bit: 2
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_ier.eosie:
         bit: 3
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_ier.eosmpie:
         bit: 1
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_ier.ovrie:
         bit: 4
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_isr.adrdy:
         bit: 0
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_isr.awd1:
         bit: 7
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_isr.awd2:
         bit: 8
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_isr.awd3:
         bit: 9
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_isr.ccrdy:
         bit: 13
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_isr.eoc:
         bit: 2
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_isr.eocal:
         bit: 11
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_isr.eos:
         bit: 3
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_isr.eosmp:
         bit: 1
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_isr.ovr:
         bit: 4
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_smpr.smp1:
         bits:
         - 0
         - 2
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
+          B_0x3: 3
+          B_0x4: 4
+          B_0x5: 5
+          B_0x6: 6
+          B_0x7: 7
       adc_smpr.smp2:
         bits:
         - 4
         - 6
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
+          B_0x3: 3
+          B_0x4: 4
+          B_0x5: 5
+          B_0x6: 6
+          B_0x7: 7
       adc_smpr.smpsel0:
         bit: 8
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_smpr.smpsel1:
         bit: 9
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_smpr.smpsel10:
         bit: 18
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_smpr.smpsel11:
         bit: 19
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_smpr.smpsel12:
         bit: 20
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_smpr.smpsel13:
         bit: 21
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_smpr.smpsel14:
         bit: 22
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_smpr.smpsel15:
         bit: 23
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_smpr.smpsel16:
         bit: 24
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_smpr.smpsel17:
         bit: 25
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_smpr.smpsel18:
         bit: 26
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_smpr.smpsel2:
         bit: 10
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_smpr.smpsel3:
         bit: 11
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_smpr.smpsel4:
         bit: 12
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_smpr.smpsel5:
         bit: 13
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_smpr.smpsel6:
         bit: 14
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_smpr.smpsel7:
         bit: 15
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_smpr.smpsel8:
         bit: 16
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       adc_smpr.smpsel9:
         bit: 17
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+    options:
+      resolution:
+      - 12
+      - 10
+      - 8
+      - 6
+      resolution_encoding:
+        12bit: 0
+        10bit: 1
+        8bit: 2
+        6bit: 3
+      oversampling:
+      - 2
+      - 4
+      - 8
+      - 16
+      - 32
+      - 64
+      - 128
+      - 256
+    max_clock: 35MHz
   crc:
     registers:
       cr:
         offset: 8
+      dr:
+        offset: 0
+        access: rw
       idr:
         offset: 4
+        access: rw
       init:
         offset: 16
+        access: rw
       pol:
         offset: 20
+        access: rw
     fields:
       cr.polysize:
         bits:
         - 3
         - 4
+        access: rw
       cr.reset:
         bit: 0
+        access: wo
       cr.rev_in:
         bits:
         - 5
         - 6
+        access: rw
       cr.rev_out:
         bit: 7
+        access: rw
       dr.dr:
         bits:
         - 0
@@ -578,10 +1271,16 @@ templates:
     registers:
       apb_fz1:
         offset: 8
+        access: rw
       apb_fz2:
         offset: 12
+        access: rw
       cr:
         offset: 4
+        access: rw
+      idcode:
+        offset: 0
+        access: ro
     fields:
       apb_fz1.dbg_i2c1_stop:
         bit: 21
@@ -675,439 +1374,981 @@ templates:
         offset: 136
       dma_ifcr:
         offset: 4
+      dma_isr:
+        offset: 0
     fields:
       dma_ccr1.circ:
         bit: 5
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr1.dir:
         bit: 4
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr1.en:
         bit: 0
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr1.htie:
         bit: 2
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr1.mem2mem:
         bit: 14
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr1.minc:
         bit: 7
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr1.msize:
         bits:
         - 10
         - 11
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
       dma_ccr1.pinc:
         bit: 6
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr1.pl:
         bits:
         - 12
         - 13
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
+          B_0x3: 3
       dma_ccr1.psize:
         bits:
         - 8
         - 9
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
       dma_ccr1.tcie:
         bit: 1
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr1.teie:
         bit: 3
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr2.circ:
         bit: 5
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr2.dir:
         bit: 4
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr2.en:
         bit: 0
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr2.htie:
         bit: 2
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr2.mem2mem:
         bit: 14
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr2.minc:
         bit: 7
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr2.msize:
         bits:
         - 10
         - 11
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
       dma_ccr2.pinc:
         bit: 6
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr2.pl:
         bits:
         - 12
         - 13
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
+          B_0x3: 3
       dma_ccr2.psize:
         bits:
         - 8
         - 9
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
       dma_ccr2.tcie:
         bit: 1
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr2.teie:
         bit: 3
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr3.circ:
         bit: 5
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr3.dir:
         bit: 4
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr3.en:
         bit: 0
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr3.htie:
         bit: 2
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr3.mem2mem:
         bit: 14
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr3.minc:
         bit: 7
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr3.msize:
         bits:
         - 10
         - 11
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
       dma_ccr3.pinc:
         bit: 6
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr3.pl:
         bits:
         - 12
         - 13
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
+          B_0x3: 3
       dma_ccr3.psize:
         bits:
         - 8
         - 9
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
       dma_ccr3.tcie:
         bit: 1
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr3.teie:
         bit: 3
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr4.circ:
         bit: 5
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr4.dir:
         bit: 4
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr4.en:
         bit: 0
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr4.htie:
         bit: 2
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr4.mem2mem:
         bit: 14
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr4.minc:
         bit: 7
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr4.msize:
         bits:
         - 10
         - 11
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
       dma_ccr4.pinc:
         bit: 6
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr4.pl:
         bits:
         - 12
         - 13
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
+          B_0x3: 3
       dma_ccr4.psize:
         bits:
         - 8
         - 9
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
       dma_ccr4.tcie:
         bit: 1
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr4.teie:
         bit: 3
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr5.circ:
         bit: 5
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr5.dir:
         bit: 4
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr5.en:
         bit: 0
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr5.htie:
         bit: 2
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr5.mem2mem:
         bit: 14
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr5.minc:
         bit: 7
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr5.msize:
         bits:
         - 10
         - 11
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
       dma_ccr5.pinc:
         bit: 6
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr5.pl:
         bits:
         - 12
         - 13
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
+          B_0x3: 3
       dma_ccr5.psize:
         bits:
         - 8
         - 9
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
       dma_ccr5.tcie:
         bit: 1
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr5.teie:
         bit: 3
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr6.circ:
         bit: 5
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr6.dir:
         bit: 4
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr6.en:
         bit: 0
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr6.htie:
         bit: 2
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr6.mem2mem:
         bit: 14
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr6.minc:
         bit: 7
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr6.msize:
         bits:
         - 10
         - 11
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
       dma_ccr6.pinc:
         bit: 6
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr6.pl:
         bits:
         - 12
         - 13
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
+          B_0x3: 3
       dma_ccr6.psize:
         bits:
         - 8
         - 9
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
       dma_ccr6.tcie:
         bit: 1
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr6.teie:
         bit: 3
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr7.circ:
         bit: 5
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr7.dir:
         bit: 4
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr7.en:
         bit: 0
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr7.htie:
         bit: 2
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr7.mem2mem:
         bit: 14
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr7.minc:
         bit: 7
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr7.msize:
         bits:
         - 10
         - 11
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
       dma_ccr7.pinc:
         bit: 6
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr7.pl:
         bits:
         - 12
         - 13
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
+          B_0x3: 3
       dma_ccr7.psize:
         bits:
         - 8
         - 9
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
       dma_ccr7.tcie:
         bit: 1
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_ccr7.teie:
         bit: 3
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_cmar1.ma:
         bits:
         - 0
         - 31
+        access: rw
       dma_cmar2.ma:
         bits:
         - 0
         - 31
+        access: rw
       dma_cmar3.ma:
         bits:
         - 0
         - 31
+        access: rw
       dma_cmar4.ma:
         bits:
         - 0
         - 31
+        access: rw
       dma_cmar5.ma:
         bits:
         - 0
         - 31
+        access: rw
       dma_cmar6.ma:
         bits:
         - 0
         - 31
+        access: rw
       dma_cmar7.ma:
         bits:
         - 0
         - 31
+        access: rw
       dma_cndtr1.ndt:
         bits:
         - 0
         - 15
+        access: rw
       dma_cndtr2.ndt:
         bits:
         - 0
         - 15
+        access: rw
       dma_cndtr3.ndt:
         bits:
         - 0
         - 15
+        access: rw
       dma_cndtr4.ndt:
         bits:
         - 0
         - 15
+        access: rw
       dma_cndtr5.ndt:
         bits:
         - 0
         - 15
+        access: rw
       dma_cndtr6.ndt:
         bits:
         - 0
         - 15
+        access: rw
       dma_cndtr7.ndt:
         bits:
         - 0
         - 15
+        access: rw
       dma_cpar1.pa:
         bits:
         - 0
         - 31
+        access: rw
       dma_cpar2.pa:
         bits:
         - 0
         - 31
+        access: rw
       dma_cpar3.pa:
         bits:
         - 0
         - 31
+        access: rw
       dma_cpar4.pa:
         bits:
         - 0
         - 31
+        access: rw
       dma_cpar5.pa:
         bits:
         - 0
         - 31
+        access: rw
       dma_cpar6.pa:
         bits:
         - 0
         - 31
+        access: rw
       dma_cpar7.pa:
         bits:
         - 0
         - 31
+        access: rw
       dma_ifcr.cgif1:
         bit: 0
+        access: wo
       dma_ifcr.cgif2:
         bit: 4
+        access: wo
       dma_ifcr.cgif3:
         bit: 8
+        access: wo
       dma_ifcr.cgif4:
         bit: 12
+        access: wo
       dma_ifcr.cgif5:
         bit: 16
+        access: wo
       dma_ifcr.cgif6:
         bit: 20
+        access: wo
       dma_ifcr.cgif7:
         bit: 24
+        access: wo
       dma_ifcr.chtif1:
         bit: 2
+        access: wo
       dma_ifcr.chtif2:
         bit: 6
+        access: wo
       dma_ifcr.chtif3:
         bit: 10
+        access: wo
       dma_ifcr.chtif4:
         bit: 14
+        access: wo
       dma_ifcr.chtif5:
         bit: 18
+        access: wo
       dma_ifcr.chtif6:
         bit: 22
+        access: wo
       dma_ifcr.chtif7:
         bit: 26
+        access: wo
       dma_ifcr.ctcif1:
         bit: 1
+        access: wo
       dma_ifcr.ctcif2:
         bit: 5
+        access: wo
       dma_ifcr.ctcif3:
         bit: 9
+        access: wo
       dma_ifcr.ctcif4:
         bit: 13
+        access: wo
       dma_ifcr.ctcif5:
         bit: 17
+        access: wo
       dma_ifcr.ctcif6:
         bit: 21
+        access: wo
       dma_ifcr.ctcif7:
         bit: 25
+        access: wo
       dma_ifcr.cteif1:
         bit: 3
+        access: wo
       dma_ifcr.cteif2:
         bit: 7
+        access: wo
       dma_ifcr.cteif3:
         bit: 11
+        access: wo
       dma_ifcr.cteif4:
         bit: 15
+        access: wo
       dma_ifcr.cteif5:
         bit: 19
+        access: wo
       dma_ifcr.cteif6:
         bit: 23
+        access: wo
       dma_ifcr.cteif7:
         bit: 27
+        access: wo
       dma_isr.gif1:
         bit: 0
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.gif2:
         bit: 4
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.gif3:
         bit: 8
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.gif4:
         bit: 12
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.gif5:
         bit: 16
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.gif6:
         bit: 20
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.gif7:
         bit: 24
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.htif1:
         bit: 2
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.htif2:
         bit: 6
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.htif3:
         bit: 10
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.htif4:
         bit: 14
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.htif5:
         bit: 18
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.htif6:
         bit: 22
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.htif7:
         bit: 26
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.tcif1:
         bit: 1
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.tcif2:
         bit: 5
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.tcif3:
         bit: 9
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.tcif4:
         bit: 13
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.tcif5:
         bit: 17
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.tcif6:
         bit: 21
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.tcif7:
         bit: 25
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.teif1:
         bit: 3
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.teif2:
         bit: 7
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.teif3:
         bit: 11
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.teif4:
         bit: 15
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.teif5:
         bit: 19
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.teif6:
         bit: 23
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       dma_isr.teif7:
         bit: 27
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
   dmamux:
     registers:
+      c0cr:
+        offset: 0
+        access: rw
       c1cr:
         offset: 4
+        access: rw
       c2cr:
         offset: 8
+        access: rw
       c3cr:
         offset: 12
+        access: rw
       c4cr:
         offset: 16
+        access: rw
       c5cr:
         offset: 20
+        access: rw
       c6cr:
         offset: 24
+        access: rw
       rg0cr:
-        offset: '0x100'
+        offset: '0x0100'
+        access: rw
       rg1cr:
-        offset: '0x104'
+        offset: '0x0104'
+        access: rw
       rg2cr:
-        offset: '0x108'
+        offset: '0x0108'
+        access: rw
       rg3cr:
-        offset: '0x10C'
+        offset: '0x010C'
+        access: rw
       rgcfr:
-        offset: '0x144'
+        offset: '0x0144'
+        access: wo
       rgsr:
-        offset: '0x140'
+        offset: '0x0140'
+        access: ro
     fields:
       c0cr.dmareq_id:
         bits:
@@ -1339,24 +2580,37 @@ templates:
     registers:
       emr1:
         offset: 132
+        access: rw
       exticr1:
         offset: 96
+        access: rw
       exticr2:
         offset: 100
+        access: rw
       exticr3:
         offset: 104
+        access: rw
       exticr4:
         offset: 108
+        access: rw
       fpr1:
         offset: 16
+        access: rw
       ftsr1:
         offset: 4
+        access: rw
       imr1:
         offset: 128
+        access: rw
       rpr1:
         offset: 12
+        access: rw
+      rtsr1:
+        offset: 0
+        access: rw
       swier1:
         offset: 8
+        access: rw
     fields:
       emr1.em0:
         bit: 0
@@ -1676,26 +2930,38 @@ templates:
         bit: 9
   flash:
     registers:
+      acr:
+        offset: 0
+        access: rw
       cr:
         offset: 20
+        access: rw
       eccr:
         offset: 24
       keyr:
         offset: 8
+        access: wo
       optkeyr:
         offset: 12
+        access: wo
       optr:
         offset: 32
+        access: rw
       sr:
         offset: 16
+        access: rw
       wrp1ar:
         offset: 44
+        access: ro
       wrp1br:
         offset: 48
+        access: ro
       wrp2ar:
         offset: 76
+        access: rw
       wrp2br:
         offset: 80
+        access: rw
     fields:
       acr.empty:
         bit: 16
@@ -1743,14 +3009,19 @@ templates:
         bits:
         - 0
         - 13
+        access: ro
       eccr.eccc:
         bit: 30
+        access: rw
       eccr.eccd:
         bit: 31
+        access: rw
       eccr.eccie:
         bit: 24
+        access: rw
       eccr.sysf_ecc:
         bit: 20
+        access: ro
       keyr.keyr:
         bits:
         - 0
@@ -1845,28 +3116,41 @@ templates:
         bits:
         - 0
         - 6
-  gpioa:
+  gpio:
     registers:
       afrh:
         offset: 36
+        access: rw
       afrl:
         offset: 32
+        access: rw
       brr:
         offset: 40
+        access: wo
       bsrr:
         offset: 24
+        access: wo
       idr:
         offset: 16
+        access: ro
       lckr:
         offset: 28
+        access: rw
+      moder:
+        offset: 0
+        access: rw
       odr:
         offset: 20
+        access: rw
       ospeedr:
         offset: 8
+        access: rw
       otyper:
         offset: 4
+        access: rw
       pupdr:
         offset: 12
+        access: rw
     fields:
       afrh.afsel10:
         bits:
@@ -2354,1539 +3638,37 @@ templates:
     registers:
       afrh:
         offset: 36
+        access: rw
       afrl:
         offset: 32
+        access: rw
       brr:
         offset: 40
+        access: wo
       bsrr:
         offset: 24
+        access: wo
       idr:
         offset: 16
+        access: ro
       lckr:
         offset: 28
+        access: rw
+      moder:
+        offset: 0
+        access: rw
       odr:
         offset: 20
+        access: rw
       ospeedr:
         offset: 8
+        access: rw
       otyper:
         offset: 4
+        access: rw
       pupdr:
         offset: 12
-    fields:
-      afrh.afsel10:
-        bits:
-        - 8
-        - 11
-      afrh.afsel11:
-        bits:
-        - 12
-        - 15
-      afrh.afsel12:
-        bits:
-        - 16
-        - 19
-      afrh.afsel13:
-        bits:
-        - 20
-        - 23
-      afrh.afsel14:
-        bits:
-        - 24
-        - 27
-      afrh.afsel15:
-        bits:
-        - 28
-        - 31
-      afrh.afsel8:
-        bits:
-        - 0
-        - 3
-      afrh.afsel9:
-        bits:
-        - 4
-        - 7
-      afrl.afsel0:
-        bits:
-        - 0
-        - 3
-      afrl.afsel1:
-        bits:
-        - 4
-        - 7
-      afrl.afsel2:
-        bits:
-        - 8
-        - 11
-      afrl.afsel3:
-        bits:
-        - 12
-        - 15
-      afrl.afsel4:
-        bits:
-        - 16
-        - 19
-      afrl.afsel5:
-        bits:
-        - 20
-        - 23
-      afrl.afsel6:
-        bits:
-        - 24
-        - 27
-      afrl.afsel7:
-        bits:
-        - 28
-        - 31
-      brr.br0:
-        bit: 0
-      brr.br1:
-        bit: 1
-      brr.br10:
-        bit: 10
-      brr.br11:
-        bit: 11
-      brr.br12:
-        bit: 12
-      brr.br13:
-        bit: 13
-      brr.br14:
-        bit: 14
-      brr.br15:
-        bit: 15
-      brr.br2:
-        bit: 2
-      brr.br3:
-        bit: 3
-      brr.br4:
-        bit: 4
-      brr.br5:
-        bit: 5
-      brr.br6:
-        bit: 6
-      brr.br7:
-        bit: 7
-      brr.br8:
-        bit: 8
-      brr.br9:
-        bit: 9
-      bsrr.br0:
-        bit: 16
-      bsrr.br1:
-        bit: 17
-      bsrr.br10:
-        bit: 26
-      bsrr.br11:
-        bit: 27
-      bsrr.br12:
-        bit: 28
-      bsrr.br13:
-        bit: 29
-      bsrr.br14:
-        bit: 30
-      bsrr.br15:
-        bit: 31
-      bsrr.br2:
-        bit: 18
-      bsrr.br3:
-        bit: 19
-      bsrr.br4:
-        bit: 20
-      bsrr.br5:
-        bit: 21
-      bsrr.br6:
-        bit: 22
-      bsrr.br7:
-        bit: 23
-      bsrr.br8:
-        bit: 24
-      bsrr.br9:
-        bit: 25
-      bsrr.bs0:
-        bit: 0
-      bsrr.bs1:
-        bit: 1
-      bsrr.bs10:
-        bit: 10
-      bsrr.bs11:
-        bit: 11
-      bsrr.bs12:
-        bit: 12
-      bsrr.bs13:
-        bit: 13
-      bsrr.bs14:
-        bit: 14
-      bsrr.bs15:
-        bit: 15
-      bsrr.bs2:
-        bit: 2
-      bsrr.bs3:
-        bit: 3
-      bsrr.bs4:
-        bit: 4
-      bsrr.bs5:
-        bit: 5
-      bsrr.bs6:
-        bit: 6
-      bsrr.bs7:
-        bit: 7
-      bsrr.bs8:
-        bit: 8
-      bsrr.bs9:
-        bit: 9
-      idr.idr0:
-        bit: 0
-      idr.idr1:
-        bit: 1
-      idr.idr10:
-        bit: 10
-      idr.idr11:
-        bit: 11
-      idr.idr12:
-        bit: 12
-      idr.idr13:
-        bit: 13
-      idr.idr14:
-        bit: 14
-      idr.idr15:
-        bit: 15
-      idr.idr2:
-        bit: 2
-      idr.idr3:
-        bit: 3
-      idr.idr4:
-        bit: 4
-      idr.idr5:
-        bit: 5
-      idr.idr6:
-        bit: 6
-      idr.idr7:
-        bit: 7
-      idr.idr8:
-        bit: 8
-      idr.idr9:
-        bit: 9
-      lckr.lck0:
-        bit: 0
-      lckr.lck1:
-        bit: 1
-      lckr.lck10:
-        bit: 10
-      lckr.lck11:
-        bit: 11
-      lckr.lck12:
-        bit: 12
-      lckr.lck13:
-        bit: 13
-      lckr.lck14:
-        bit: 14
-      lckr.lck15:
-        bit: 15
-      lckr.lck2:
-        bit: 2
-      lckr.lck3:
-        bit: 3
-      lckr.lck4:
-        bit: 4
-      lckr.lck5:
-        bit: 5
-      lckr.lck6:
-        bit: 6
-      lckr.lck7:
-        bit: 7
-      lckr.lck8:
-        bit: 8
-      lckr.lck9:
-        bit: 9
-      lckr.lckk:
-        bit: 16
-      moder.moder0:
-        bits:
-        - 0
-        - 1
-      moder.moder1:
-        bits:
-        - 2
-        - 3
-      moder.moder10:
-        bits:
-        - 20
-        - 21
-      moder.moder11:
-        bits:
-        - 22
-        - 23
-      moder.moder12:
-        bits:
-        - 24
-        - 25
-      moder.moder13:
-        bits:
-        - 26
-        - 27
-      moder.moder14:
-        bits:
-        - 28
-        - 29
-      moder.moder15:
-        bits:
-        - 30
-        - 31
-      moder.moder2:
-        bits:
-        - 4
-        - 5
-      moder.moder3:
-        bits:
-        - 6
-        - 7
-      moder.moder4:
-        bits:
-        - 8
-        - 9
-      moder.moder5:
-        bits:
-        - 10
-        - 11
-      moder.moder6:
-        bits:
-        - 12
-        - 13
-      moder.moder7:
-        bits:
-        - 14
-        - 15
-      moder.moder8:
-        bits:
-        - 16
-        - 17
-      moder.moder9:
-        bits:
-        - 18
-        - 19
-      odr.odr0:
-        bit: 0
-      odr.odr1:
-        bit: 1
-      odr.odr10:
-        bit: 10
-      odr.odr11:
-        bit: 11
-      odr.odr12:
-        bit: 12
-      odr.odr13:
-        bit: 13
-      odr.odr14:
-        bit: 14
-      odr.odr15:
-        bit: 15
-      odr.odr2:
-        bit: 2
-      odr.odr3:
-        bit: 3
-      odr.odr4:
-        bit: 4
-      odr.odr5:
-        bit: 5
-      odr.odr6:
-        bit: 6
-      odr.odr7:
-        bit: 7
-      odr.odr8:
-        bit: 8
-      odr.odr9:
-        bit: 9
-      ospeedr.ospeedr0:
-        bits:
-        - 0
-        - 1
-      ospeedr.ospeedr1:
-        bits:
-        - 2
-        - 3
-      ospeedr.ospeedr10:
-        bits:
-        - 20
-        - 21
-      ospeedr.ospeedr11:
-        bits:
-        - 22
-        - 23
-      ospeedr.ospeedr12:
-        bits:
-        - 24
-        - 25
-      ospeedr.ospeedr13:
-        bits:
-        - 26
-        - 27
-      ospeedr.ospeedr14:
-        bits:
-        - 28
-        - 29
-      ospeedr.ospeedr15:
-        bits:
-        - 30
-        - 31
-      ospeedr.ospeedr2:
-        bits:
-        - 4
-        - 5
-      ospeedr.ospeedr3:
-        bits:
-        - 6
-        - 7
-      ospeedr.ospeedr4:
-        bits:
-        - 8
-        - 9
-      ospeedr.ospeedr5:
-        bits:
-        - 10
-        - 11
-      ospeedr.ospeedr6:
-        bits:
-        - 12
-        - 13
-      ospeedr.ospeedr7:
-        bits:
-        - 14
-        - 15
-      ospeedr.ospeedr8:
-        bits:
-        - 16
-        - 17
-      ospeedr.ospeedr9:
-        bits:
-        - 18
-        - 19
-      otyper.ot0:
-        bit: 0
-      otyper.ot1:
-        bit: 1
-      otyper.ot10:
-        bit: 10
-      otyper.ot11:
-        bit: 11
-      otyper.ot12:
-        bit: 12
-      otyper.ot13:
-        bit: 13
-      otyper.ot14:
-        bit: 14
-      otyper.ot15:
-        bit: 15
-      otyper.ot2:
-        bit: 2
-      otyper.ot3:
-        bit: 3
-      otyper.ot4:
-        bit: 4
-      otyper.ot5:
-        bit: 5
-      otyper.ot6:
-        bit: 6
-      otyper.ot7:
-        bit: 7
-      otyper.ot8:
-        bit: 8
-      otyper.ot9:
-        bit: 9
-      pupdr.pupdr0:
-        bits:
-        - 0
-        - 1
-      pupdr.pupdr1:
-        bits:
-        - 2
-        - 3
-      pupdr.pupdr10:
-        bits:
-        - 20
-        - 21
-      pupdr.pupdr11:
-        bits:
-        - 22
-        - 23
-      pupdr.pupdr12:
-        bits:
-        - 24
-        - 25
-      pupdr.pupdr13:
-        bits:
-        - 26
-        - 27
-      pupdr.pupdr14:
-        bits:
-        - 28
-        - 29
-      pupdr.pupdr15:
-        bits:
-        - 30
-        - 31
-      pupdr.pupdr2:
-        bits:
-        - 4
-        - 5
-      pupdr.pupdr3:
-        bits:
-        - 6
-        - 7
-      pupdr.pupdr4:
-        bits:
-        - 8
-        - 9
-      pupdr.pupdr5:
-        bits:
-        - 10
-        - 11
-      pupdr.pupdr6:
-        bits:
-        - 12
-        - 13
-      pupdr.pupdr7:
-        bits:
-        - 14
-        - 15
-      pupdr.pupdr8:
-        bits:
-        - 16
-        - 17
-      pupdr.pupdr9:
-        bits:
-        - 18
-        - 19
-  gpioc:
-    registers:
-      afrh:
-        offset: 36
-      afrl:
-        offset: 32
-      brr:
-        offset: 40
-      bsrr:
-        offset: 24
-      idr:
-        offset: 16
-      lckr:
-        offset: 28
-      odr:
-        offset: 20
-      ospeedr:
-        offset: 8
-      otyper:
-        offset: 4
-      pupdr:
-        offset: 12
-    fields:
-      afrh.afsel10:
-        bits:
-        - 8
-        - 11
-      afrh.afsel11:
-        bits:
-        - 12
-        - 15
-      afrh.afsel12:
-        bits:
-        - 16
-        - 19
-      afrh.afsel13:
-        bits:
-        - 20
-        - 23
-      afrh.afsel14:
-        bits:
-        - 24
-        - 27
-      afrh.afsel15:
-        bits:
-        - 28
-        - 31
-      afrh.afsel8:
-        bits:
-        - 0
-        - 3
-      afrh.afsel9:
-        bits:
-        - 4
-        - 7
-      afrl.afsel0:
-        bits:
-        - 0
-        - 3
-      afrl.afsel1:
-        bits:
-        - 4
-        - 7
-      afrl.afsel2:
-        bits:
-        - 8
-        - 11
-      afrl.afsel3:
-        bits:
-        - 12
-        - 15
-      afrl.afsel4:
-        bits:
-        - 16
-        - 19
-      afrl.afsel5:
-        bits:
-        - 20
-        - 23
-      afrl.afsel6:
-        bits:
-        - 24
-        - 27
-      afrl.afsel7:
-        bits:
-        - 28
-        - 31
-      brr.br0:
-        bit: 0
-      brr.br1:
-        bit: 1
-      brr.br10:
-        bit: 10
-      brr.br11:
-        bit: 11
-      brr.br12:
-        bit: 12
-      brr.br13:
-        bit: 13
-      brr.br14:
-        bit: 14
-      brr.br15:
-        bit: 15
-      brr.br2:
-        bit: 2
-      brr.br3:
-        bit: 3
-      brr.br4:
-        bit: 4
-      brr.br5:
-        bit: 5
-      brr.br6:
-        bit: 6
-      brr.br7:
-        bit: 7
-      brr.br8:
-        bit: 8
-      brr.br9:
-        bit: 9
-      bsrr.br0:
-        bit: 16
-      bsrr.br1:
-        bit: 17
-      bsrr.br10:
-        bit: 26
-      bsrr.br11:
-        bit: 27
-      bsrr.br12:
-        bit: 28
-      bsrr.br13:
-        bit: 29
-      bsrr.br14:
-        bit: 30
-      bsrr.br15:
-        bit: 31
-      bsrr.br2:
-        bit: 18
-      bsrr.br3:
-        bit: 19
-      bsrr.br4:
-        bit: 20
-      bsrr.br5:
-        bit: 21
-      bsrr.br6:
-        bit: 22
-      bsrr.br7:
-        bit: 23
-      bsrr.br8:
-        bit: 24
-      bsrr.br9:
-        bit: 25
-      bsrr.bs0:
-        bit: 0
-      bsrr.bs1:
-        bit: 1
-      bsrr.bs10:
-        bit: 10
-      bsrr.bs11:
-        bit: 11
-      bsrr.bs12:
-        bit: 12
-      bsrr.bs13:
-        bit: 13
-      bsrr.bs14:
-        bit: 14
-      bsrr.bs15:
-        bit: 15
-      bsrr.bs2:
-        bit: 2
-      bsrr.bs3:
-        bit: 3
-      bsrr.bs4:
-        bit: 4
-      bsrr.bs5:
-        bit: 5
-      bsrr.bs6:
-        bit: 6
-      bsrr.bs7:
-        bit: 7
-      bsrr.bs8:
-        bit: 8
-      bsrr.bs9:
-        bit: 9
-      idr.idr0:
-        bit: 0
-      idr.idr1:
-        bit: 1
-      idr.idr10:
-        bit: 10
-      idr.idr11:
-        bit: 11
-      idr.idr12:
-        bit: 12
-      idr.idr13:
-        bit: 13
-      idr.idr14:
-        bit: 14
-      idr.idr15:
-        bit: 15
-      idr.idr2:
-        bit: 2
-      idr.idr3:
-        bit: 3
-      idr.idr4:
-        bit: 4
-      idr.idr5:
-        bit: 5
-      idr.idr6:
-        bit: 6
-      idr.idr7:
-        bit: 7
-      idr.idr8:
-        bit: 8
-      idr.idr9:
-        bit: 9
-      lckr.lck0:
-        bit: 0
-      lckr.lck1:
-        bit: 1
-      lckr.lck10:
-        bit: 10
-      lckr.lck11:
-        bit: 11
-      lckr.lck12:
-        bit: 12
-      lckr.lck13:
-        bit: 13
-      lckr.lck14:
-        bit: 14
-      lckr.lck15:
-        bit: 15
-      lckr.lck2:
-        bit: 2
-      lckr.lck3:
-        bit: 3
-      lckr.lck4:
-        bit: 4
-      lckr.lck5:
-        bit: 5
-      lckr.lck6:
-        bit: 6
-      lckr.lck7:
-        bit: 7
-      lckr.lck8:
-        bit: 8
-      lckr.lck9:
-        bit: 9
-      lckr.lckk:
-        bit: 16
-      moder.moder0:
-        bits:
-        - 0
-        - 1
-      moder.moder1:
-        bits:
-        - 2
-        - 3
-      moder.moder10:
-        bits:
-        - 20
-        - 21
-      moder.moder11:
-        bits:
-        - 22
-        - 23
-      moder.moder12:
-        bits:
-        - 24
-        - 25
-      moder.moder13:
-        bits:
-        - 26
-        - 27
-      moder.moder14:
-        bits:
-        - 28
-        - 29
-      moder.moder15:
-        bits:
-        - 30
-        - 31
-      moder.moder2:
-        bits:
-        - 4
-        - 5
-      moder.moder3:
-        bits:
-        - 6
-        - 7
-      moder.moder4:
-        bits:
-        - 8
-        - 9
-      moder.moder5:
-        bits:
-        - 10
-        - 11
-      moder.moder6:
-        bits:
-        - 12
-        - 13
-      moder.moder7:
-        bits:
-        - 14
-        - 15
-      moder.moder8:
-        bits:
-        - 16
-        - 17
-      moder.moder9:
-        bits:
-        - 18
-        - 19
-      odr.odr0:
-        bit: 0
-      odr.odr1:
-        bit: 1
-      odr.odr10:
-        bit: 10
-      odr.odr11:
-        bit: 11
-      odr.odr12:
-        bit: 12
-      odr.odr13:
-        bit: 13
-      odr.odr14:
-        bit: 14
-      odr.odr15:
-        bit: 15
-      odr.odr2:
-        bit: 2
-      odr.odr3:
-        bit: 3
-      odr.odr4:
-        bit: 4
-      odr.odr5:
-        bit: 5
-      odr.odr6:
-        bit: 6
-      odr.odr7:
-        bit: 7
-      odr.odr8:
-        bit: 8
-      odr.odr9:
-        bit: 9
-      ospeedr.ospeedr0:
-        bits:
-        - 0
-        - 1
-      ospeedr.ospeedr1:
-        bits:
-        - 2
-        - 3
-      ospeedr.ospeedr10:
-        bits:
-        - 20
-        - 21
-      ospeedr.ospeedr11:
-        bits:
-        - 22
-        - 23
-      ospeedr.ospeedr12:
-        bits:
-        - 24
-        - 25
-      ospeedr.ospeedr13:
-        bits:
-        - 26
-        - 27
-      ospeedr.ospeedr14:
-        bits:
-        - 28
-        - 29
-      ospeedr.ospeedr15:
-        bits:
-        - 30
-        - 31
-      ospeedr.ospeedr2:
-        bits:
-        - 4
-        - 5
-      ospeedr.ospeedr3:
-        bits:
-        - 6
-        - 7
-      ospeedr.ospeedr4:
-        bits:
-        - 8
-        - 9
-      ospeedr.ospeedr5:
-        bits:
-        - 10
-        - 11
-      ospeedr.ospeedr6:
-        bits:
-        - 12
-        - 13
-      ospeedr.ospeedr7:
-        bits:
-        - 14
-        - 15
-      ospeedr.ospeedr8:
-        bits:
-        - 16
-        - 17
-      ospeedr.ospeedr9:
-        bits:
-        - 18
-        - 19
-      otyper.ot0:
-        bit: 0
-      otyper.ot1:
-        bit: 1
-      otyper.ot10:
-        bit: 10
-      otyper.ot11:
-        bit: 11
-      otyper.ot12:
-        bit: 12
-      otyper.ot13:
-        bit: 13
-      otyper.ot14:
-        bit: 14
-      otyper.ot15:
-        bit: 15
-      otyper.ot2:
-        bit: 2
-      otyper.ot3:
-        bit: 3
-      otyper.ot4:
-        bit: 4
-      otyper.ot5:
-        bit: 5
-      otyper.ot6:
-        bit: 6
-      otyper.ot7:
-        bit: 7
-      otyper.ot8:
-        bit: 8
-      otyper.ot9:
-        bit: 9
-      pupdr.pupdr0:
-        bits:
-        - 0
-        - 1
-      pupdr.pupdr1:
-        bits:
-        - 2
-        - 3
-      pupdr.pupdr10:
-        bits:
-        - 20
-        - 21
-      pupdr.pupdr11:
-        bits:
-        - 22
-        - 23
-      pupdr.pupdr12:
-        bits:
-        - 24
-        - 25
-      pupdr.pupdr13:
-        bits:
-        - 26
-        - 27
-      pupdr.pupdr14:
-        bits:
-        - 28
-        - 29
-      pupdr.pupdr15:
-        bits:
-        - 30
-        - 31
-      pupdr.pupdr2:
-        bits:
-        - 4
-        - 5
-      pupdr.pupdr3:
-        bits:
-        - 6
-        - 7
-      pupdr.pupdr4:
-        bits:
-        - 8
-        - 9
-      pupdr.pupdr5:
-        bits:
-        - 10
-        - 11
-      pupdr.pupdr6:
-        bits:
-        - 12
-        - 13
-      pupdr.pupdr7:
-        bits:
-        - 14
-        - 15
-      pupdr.pupdr8:
-        bits:
-        - 16
-        - 17
-      pupdr.pupdr9:
-        bits:
-        - 18
-        - 19
-  gpiod:
-    registers:
-      afrh:
-        offset: 36
-      afrl:
-        offset: 32
-      brr:
-        offset: 40
-      bsrr:
-        offset: 24
-      idr:
-        offset: 16
-      lckr:
-        offset: 28
-      odr:
-        offset: 20
-      ospeedr:
-        offset: 8
-      otyper:
-        offset: 4
-      pupdr:
-        offset: 12
-    fields:
-      afrh.afsel10:
-        bits:
-        - 8
-        - 11
-      afrh.afsel11:
-        bits:
-        - 12
-        - 15
-      afrh.afsel12:
-        bits:
-        - 16
-        - 19
-      afrh.afsel13:
-        bits:
-        - 20
-        - 23
-      afrh.afsel14:
-        bits:
-        - 24
-        - 27
-      afrh.afsel15:
-        bits:
-        - 28
-        - 31
-      afrh.afsel8:
-        bits:
-        - 0
-        - 3
-      afrh.afsel9:
-        bits:
-        - 4
-        - 7
-      afrl.afsel0:
-        bits:
-        - 0
-        - 3
-      afrl.afsel1:
-        bits:
-        - 4
-        - 7
-      afrl.afsel2:
-        bits:
-        - 8
-        - 11
-      afrl.afsel3:
-        bits:
-        - 12
-        - 15
-      afrl.afsel4:
-        bits:
-        - 16
-        - 19
-      afrl.afsel5:
-        bits:
-        - 20
-        - 23
-      afrl.afsel6:
-        bits:
-        - 24
-        - 27
-      afrl.afsel7:
-        bits:
-        - 28
-        - 31
-      brr.br0:
-        bit: 0
-      brr.br1:
-        bit: 1
-      brr.br10:
-        bit: 10
-      brr.br11:
-        bit: 11
-      brr.br12:
-        bit: 12
-      brr.br13:
-        bit: 13
-      brr.br14:
-        bit: 14
-      brr.br15:
-        bit: 15
-      brr.br2:
-        bit: 2
-      brr.br3:
-        bit: 3
-      brr.br4:
-        bit: 4
-      brr.br5:
-        bit: 5
-      brr.br6:
-        bit: 6
-      brr.br7:
-        bit: 7
-      brr.br8:
-        bit: 8
-      brr.br9:
-        bit: 9
-      bsrr.br0:
-        bit: 16
-      bsrr.br1:
-        bit: 17
-      bsrr.br10:
-        bit: 26
-      bsrr.br11:
-        bit: 27
-      bsrr.br12:
-        bit: 28
-      bsrr.br13:
-        bit: 29
-      bsrr.br14:
-        bit: 30
-      bsrr.br15:
-        bit: 31
-      bsrr.br2:
-        bit: 18
-      bsrr.br3:
-        bit: 19
-      bsrr.br4:
-        bit: 20
-      bsrr.br5:
-        bit: 21
-      bsrr.br6:
-        bit: 22
-      bsrr.br7:
-        bit: 23
-      bsrr.br8:
-        bit: 24
-      bsrr.br9:
-        bit: 25
-      bsrr.bs0:
-        bit: 0
-      bsrr.bs1:
-        bit: 1
-      bsrr.bs10:
-        bit: 10
-      bsrr.bs11:
-        bit: 11
-      bsrr.bs12:
-        bit: 12
-      bsrr.bs13:
-        bit: 13
-      bsrr.bs14:
-        bit: 14
-      bsrr.bs15:
-        bit: 15
-      bsrr.bs2:
-        bit: 2
-      bsrr.bs3:
-        bit: 3
-      bsrr.bs4:
-        bit: 4
-      bsrr.bs5:
-        bit: 5
-      bsrr.bs6:
-        bit: 6
-      bsrr.bs7:
-        bit: 7
-      bsrr.bs8:
-        bit: 8
-      bsrr.bs9:
-        bit: 9
-      idr.idr0:
-        bit: 0
-      idr.idr1:
-        bit: 1
-      idr.idr10:
-        bit: 10
-      idr.idr11:
-        bit: 11
-      idr.idr12:
-        bit: 12
-      idr.idr13:
-        bit: 13
-      idr.idr14:
-        bit: 14
-      idr.idr15:
-        bit: 15
-      idr.idr2:
-        bit: 2
-      idr.idr3:
-        bit: 3
-      idr.idr4:
-        bit: 4
-      idr.idr5:
-        bit: 5
-      idr.idr6:
-        bit: 6
-      idr.idr7:
-        bit: 7
-      idr.idr8:
-        bit: 8
-      idr.idr9:
-        bit: 9
-      lckr.lck0:
-        bit: 0
-      lckr.lck1:
-        bit: 1
-      lckr.lck10:
-        bit: 10
-      lckr.lck11:
-        bit: 11
-      lckr.lck12:
-        bit: 12
-      lckr.lck13:
-        bit: 13
-      lckr.lck14:
-        bit: 14
-      lckr.lck15:
-        bit: 15
-      lckr.lck2:
-        bit: 2
-      lckr.lck3:
-        bit: 3
-      lckr.lck4:
-        bit: 4
-      lckr.lck5:
-        bit: 5
-      lckr.lck6:
-        bit: 6
-      lckr.lck7:
-        bit: 7
-      lckr.lck8:
-        bit: 8
-      lckr.lck9:
-        bit: 9
-      lckr.lckk:
-        bit: 16
-      moder.moder0:
-        bits:
-        - 0
-        - 1
-      moder.moder1:
-        bits:
-        - 2
-        - 3
-      moder.moder10:
-        bits:
-        - 20
-        - 21
-      moder.moder11:
-        bits:
-        - 22
-        - 23
-      moder.moder12:
-        bits:
-        - 24
-        - 25
-      moder.moder13:
-        bits:
-        - 26
-        - 27
-      moder.moder14:
-        bits:
-        - 28
-        - 29
-      moder.moder15:
-        bits:
-        - 30
-        - 31
-      moder.moder2:
-        bits:
-        - 4
-        - 5
-      moder.moder3:
-        bits:
-        - 6
-        - 7
-      moder.moder4:
-        bits:
-        - 8
-        - 9
-      moder.moder5:
-        bits:
-        - 10
-        - 11
-      moder.moder6:
-        bits:
-        - 12
-        - 13
-      moder.moder7:
-        bits:
-        - 14
-        - 15
-      moder.moder8:
-        bits:
-        - 16
-        - 17
-      moder.moder9:
-        bits:
-        - 18
-        - 19
-      odr.odr0:
-        bit: 0
-      odr.odr1:
-        bit: 1
-      odr.odr10:
-        bit: 10
-      odr.odr11:
-        bit: 11
-      odr.odr12:
-        bit: 12
-      odr.odr13:
-        bit: 13
-      odr.odr14:
-        bit: 14
-      odr.odr15:
-        bit: 15
-      odr.odr2:
-        bit: 2
-      odr.odr3:
-        bit: 3
-      odr.odr4:
-        bit: 4
-      odr.odr5:
-        bit: 5
-      odr.odr6:
-        bit: 6
-      odr.odr7:
-        bit: 7
-      odr.odr8:
-        bit: 8
-      odr.odr9:
-        bit: 9
-      ospeedr.ospeedr0:
-        bits:
-        - 0
-        - 1
-      ospeedr.ospeedr1:
-        bits:
-        - 2
-        - 3
-      ospeedr.ospeedr10:
-        bits:
-        - 20
-        - 21
-      ospeedr.ospeedr11:
-        bits:
-        - 22
-        - 23
-      ospeedr.ospeedr12:
-        bits:
-        - 24
-        - 25
-      ospeedr.ospeedr13:
-        bits:
-        - 26
-        - 27
-      ospeedr.ospeedr14:
-        bits:
-        - 28
-        - 29
-      ospeedr.ospeedr15:
-        bits:
-        - 30
-        - 31
-      ospeedr.ospeedr2:
-        bits:
-        - 4
-        - 5
-      ospeedr.ospeedr3:
-        bits:
-        - 6
-        - 7
-      ospeedr.ospeedr4:
-        bits:
-        - 8
-        - 9
-      ospeedr.ospeedr5:
-        bits:
-        - 10
-        - 11
-      ospeedr.ospeedr6:
-        bits:
-        - 12
-        - 13
-      ospeedr.ospeedr7:
-        bits:
-        - 14
-        - 15
-      ospeedr.ospeedr8:
-        bits:
-        - 16
-        - 17
-      ospeedr.ospeedr9:
-        bits:
-        - 18
-        - 19
-      otyper.ot0:
-        bit: 0
-      otyper.ot1:
-        bit: 1
-      otyper.ot10:
-        bit: 10
-      otyper.ot11:
-        bit: 11
-      otyper.ot12:
-        bit: 12
-      otyper.ot13:
-        bit: 13
-      otyper.ot14:
-        bit: 14
-      otyper.ot15:
-        bit: 15
-      otyper.ot2:
-        bit: 2
-      otyper.ot3:
-        bit: 3
-      otyper.ot4:
-        bit: 4
-      otyper.ot5:
-        bit: 5
-      otyper.ot6:
-        bit: 6
-      otyper.ot7:
-        bit: 7
-      otyper.ot8:
-        bit: 8
-      otyper.ot9:
-        bit: 9
-      pupdr.pupdr0:
-        bits:
-        - 0
-        - 1
-      pupdr.pupdr1:
-        bits:
-        - 2
-        - 3
-      pupdr.pupdr10:
-        bits:
-        - 20
-        - 21
-      pupdr.pupdr11:
-        bits:
-        - 22
-        - 23
-      pupdr.pupdr12:
-        bits:
-        - 24
-        - 25
-      pupdr.pupdr13:
-        bits:
-        - 26
-        - 27
-      pupdr.pupdr14:
-        bits:
-        - 28
-        - 29
-      pupdr.pupdr15:
-        bits:
-        - 30
-        - 31
-      pupdr.pupdr2:
-        bits:
-        - 4
-        - 5
-      pupdr.pupdr3:
-        bits:
-        - 6
-        - 7
-      pupdr.pupdr4:
-        bits:
-        - 8
-        - 9
-      pupdr.pupdr5:
-        bits:
-        - 10
-        - 11
-      pupdr.pupdr6:
-        bits:
-        - 12
-        - 13
-      pupdr.pupdr7:
-        bits:
-        - 14
-        - 15
-      pupdr.pupdr8:
-        bits:
-        - 16
-        - 17
-      pupdr.pupdr9:
-        bits:
-        - 18
-        - 19
-  gpiof:
-    registers:
-      afrh:
-        offset: 36
-      afrl:
-        offset: 32
-      brr:
-        offset: 40
-      bsrr:
-        offset: 24
-      idr:
-        offset: 16
-      lckr:
-        offset: 28
-      odr:
-        offset: 20
-      ospeedr:
-        offset: 8
-      otyper:
-        offset: 4
-      pupdr:
-        offset: 12
+        access: rw
     fields:
       afrh.afsel10:
         bits:
@@ -4371,33 +4153,39 @@ templates:
         - 18
         - 19
   i2c:
-    options:
-      speeds:
-      - 100kHz
-      - 1MHz
-      - 400kHz
-    max_clock: 1MHz
     registers:
+      cr1:
+        offset: 0
+        access: rw
       cr2:
         offset: 4
+        access: rw
       icr:
         offset: 28
+        access: wo
       isr:
         offset: 24
       oar1:
         offset: 8
+        access: rw
       oar2:
         offset: 12
+        access: rw
       pecr:
         offset: 32
+        access: ro
       rxdr:
         offset: 36
+        access: ro
       timeoutr:
         offset: 20
+        access: rw
       timingr:
         offset: 16
+        access: rw
       txdr:
         offset: 40
+        access: rw
     fields:
       cr1.addrie:
         bit: 3
@@ -4489,38 +4277,55 @@ templates:
         bits:
         - 17
         - 23
+        access: ro
       isr.addr:
         bit: 3
+        access: ro
       isr.alert:
         bit: 13
+        access: ro
       isr.arlo:
         bit: 9
+        access: ro
       isr.berr:
         bit: 8
+        access: ro
       isr.busy:
         bit: 15
+        access: ro
       isr.dir:
         bit: 16
+        access: ro
       isr.nackf:
         bit: 4
+        access: ro
       isr.ovr:
         bit: 10
+        access: ro
       isr.pecerr:
         bit: 11
+        access: ro
       isr.rxne:
         bit: 2
+        access: ro
       isr.stopf:
         bit: 5
+        access: ro
       isr.tc:
         bit: 6
+        access: ro
       isr.tcr:
         bit: 7
+        access: ro
       isr.timeout:
         bit: 12
+        access: ro
       isr.txe:
         bit: 0
+        access: rw
       isr.txis:
         bit: 1
+        access: rw
       oar1.oa1_0:
         bit: 0
       oar1.oa1_7_1:
@@ -4591,16 +4396,29 @@ templates:
         bits:
         - 0
         - 7
+    options:
+      speeds:
+      - 100kHz
+      - 400kHz
+      - 1MHz
+    max_clock: 1MHz
   iwdg:
     registers:
+      kr:
+        offset: 0
+        access: wo
       pr:
         offset: 4
+        access: rw
       rlr:
         offset: 8
+        access: rw
       sr:
         offset: 12
+        access: ro
       winr:
         offset: 16
+        access: rw
     fields:
       kr.key:
         bits:
@@ -4626,42 +4444,63 @@ templates:
         - 11
   pwr:
     registers:
+      cr1:
+        offset: 0
+        access: rw
       cr2:
         offset: 4
+        access: rw
       cr3:
         offset: 8
+        access: rw
       cr4:
         offset: 12
+        access: rw
       pdcra:
         offset: 36
+        access: rw
       pdcrb:
         offset: 44
+        access: rw
       pdcrc:
         offset: 52
+        access: rw
       pdcrd:
         offset: 60
+        access: rw
       pdcre:
         offset: 68
+        access: rw
       pdcrf:
         offset: 76
+        access: rw
       pucra:
         offset: 32
+        access: rw
       pucrb:
         offset: 40
+        access: rw
       pucrc:
         offset: 48
+        access: rw
       pucrd:
         offset: 56
+        access: rw
       pucre:
         offset: 64
+        access: rw
       pucrf:
         offset: 72
+        access: rw
       scr:
         offset: 24
+        access: wo
       sr1:
         offset: 16
+        access: ro
       sr2:
         offset: 20
+        access: ro
     fields:
       cr1.dbp:
         bit: 8
@@ -5133,48 +4972,71 @@ templates:
     registers:
       ahbenr:
         offset: 56
+        access: rw
       ahbrstr:
         offset: 40
+        access: rw
       ahbsmenr:
         offset: 72
+        access: rw
       apbenr1:
         offset: 60
+        access: rw
       apbenr2:
         offset: 64
+        access: rw
       apbrstr1:
         offset: 44
+        access: rw
       apbrstr2:
         offset: 48
+        access: rw
       apbsmenr1:
         offset: 76
+        access: rw
       apbsmenr2:
         offset: 80
+        access: rw
       bdcr:
         offset: 92
+        access: rw
       ccipr:
         offset: 84
+        access: rw
       ccipr2:
         offset: 88
+        access: rw
       cfgr:
         offset: 8
       cicr:
         offset: 32
+        access: wo
       cier:
         offset: 24
+        access: rw
       cifr:
         offset: 28
+        access: ro
+      cr:
+        offset: 0
+        access: rw
       csr:
         offset: 96
+        access: rw
       icscr:
         offset: 4
       iopenr:
         offset: 52
+        access: rw
       ioprstr:
         offset: 36
+        access: rw
       iopsmenr:
         offset: 68
+        access: rw
       pllsyscfgr:
         offset: 12
+        access: rw
     fields:
       ahbenr.crcen:
         bit: 12
@@ -5376,6 +5238,7 @@ templates:
         bit: 2
       bdcr.lsecssd:
         bit: 6
+        access: ro
       bdcr.lsecsson:
         bit: 5
       bdcr.lsedrv:
@@ -5386,6 +5249,7 @@ templates:
         bit: 0
       bdcr.lserdy:
         bit: 1
+        access: ro
       bdcr.rtcen:
         bit: 15
       bdcr.rtcsel:
@@ -5436,34 +5300,42 @@ templates:
         bits:
         - 8
         - 11
+        access: rw
       cfgr.mco2pre:
         bits:
         - 20
         - 23
+        access: rw
       cfgr.mco2sel:
         bits:
         - 16
         - 19
+        access: rw
       cfgr.mcopre:
         bits:
         - 28
         - 31
+        access: ro
       cfgr.mcosel:
         bits:
         - 24
         - 27
+        access: rw
       cfgr.ppre:
         bits:
         - 12
         - 14
+        access: rw
       cfgr.sw:
         bits:
         - 0
         - 2
+        access: rw
       cfgr.sws:
         bits:
         - 3
         - 5
+        access: ro
       cicr.cssc:
         bit: 8
       cicr.hserdyc:
@@ -5526,32 +5398,42 @@ templates:
         bit: 25
       csr.iwdgrstf:
         bit: 29
+        access: ro
       csr.lpwrrstf:
         bit: 31
+        access: ro
       csr.lsion:
         bit: 0
       csr.lsirdy:
         bit: 1
+        access: ro
       csr.oblrstf:
         bit: 25
+        access: ro
       csr.pinrstf:
         bit: 26
+        access: ro
       csr.pwrrstf:
         bit: 27
+        access: ro
       csr.rmvf:
         bit: 23
       csr.sftrstf:
         bit: 28
+        access: ro
       csr.wwdgrstf:
         bit: 30
+        access: ro
       icscr.hsical:
         bits:
         - 0
         - 7
+        access: ro
       icscr.hsitrim:
         bits:
         - 8
         - 14
+        access: rw
       iopenr.gpioaen:
         bit: 0
       iopenr.gpioben:
@@ -5648,6 +5530,8 @@ templates:
         offset: 80
       rtc_ssr:
         offset: 8
+      rtc_tr:
+        offset: 0
       rtc_tsdr:
         offset: 52
       rtc_tsssr:
@@ -5663,380 +5547,667 @@ templates:
         bits:
         - 28
         - 29
+        access: rw
       rtc_alrmar.du:
         bits:
         - 24
         - 27
+        access: rw
       rtc_alrmar.ht:
         bits:
         - 20
         - 21
+        access: rw
       rtc_alrmar.hu:
         bits:
         - 16
         - 19
+        access: rw
       rtc_alrmar.mnt:
         bits:
         - 12
         - 14
+        access: rw
       rtc_alrmar.mnu:
         bits:
         - 8
         - 11
+        access: rw
       rtc_alrmar.msk1:
         bit: 7
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_alrmar.msk2:
         bit: 15
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_alrmar.msk3:
         bit: 23
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_alrmar.msk4:
         bit: 31
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_alrmar.pm:
         bit: 22
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_alrmar.st:
         bits:
         - 4
         - 6
+        access: rw
       rtc_alrmar.su:
         bits:
         - 0
         - 3
+        access: rw
       rtc_alrmar.wdsel:
         bit: 30
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_alrmassr.maskss:
         bits:
         - 24
         - 27
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_alrmassr.ss:
         bits:
         - 0
         - 14
+        access: rw
       rtc_alrmbr.dt:
         bits:
         - 28
         - 29
+        access: rw
       rtc_alrmbr.du:
         bits:
         - 24
         - 27
+        access: rw
       rtc_alrmbr.ht:
         bits:
         - 20
         - 21
+        access: rw
       rtc_alrmbr.hu:
         bits:
         - 16
         - 19
+        access: rw
       rtc_alrmbr.mnt:
         bits:
         - 12
         - 14
+        access: rw
       rtc_alrmbr.mnu:
         bits:
         - 8
         - 11
+        access: rw
       rtc_alrmbr.msk1:
         bit: 7
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_alrmbr.msk2:
         bit: 15
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_alrmbr.msk3:
         bit: 23
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_alrmbr.msk4:
         bit: 31
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_alrmbr.pm:
         bit: 22
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_alrmbr.st:
         bits:
         - 4
         - 6
+        access: rw
       rtc_alrmbr.su:
         bits:
         - 0
         - 3
+        access: rw
       rtc_alrmbr.wdsel:
         bit: 30
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_alrmbssr.maskss:
         bits:
         - 24
         - 27
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
+          B_0x3: 3
+          B_0xC: 12
+          B_0xD: 13
+          B_0xE: 14
+          B_0xF: 15
       rtc_alrmbssr.ss:
         bits:
         - 0
         - 14
+        access: rw
       rtc_calr.calm:
         bits:
         - 0
         - 8
+        access: rw
       rtc_calr.calp:
         bit: 15
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_calr.calw16:
         bit: 13
+        access: rw
       rtc_calr.calw8:
         bit: 14
+        access: rw
       rtc_cr.add1h:
         bit: 16
+        access: wo
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_cr.alrae:
         bit: 8
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_cr.alraie:
         bit: 12
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_cr.alrbe:
         bit: 9
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_cr.alrbie:
         bit: 13
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_cr.bkp:
         bit: 18
+        access: rw
       rtc_cr.bypshad:
         bit: 5
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_cr.coe:
         bit: 23
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_cr.cosel:
         bit: 19
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_cr.fmt:
         bit: 6
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_cr.itse:
         bit: 24
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_cr.osel:
         bits:
         - 21
         - 22
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
+          B_0x3: 3
       rtc_cr.out2en:
         bit: 31
+        access: rw
       rtc_cr.pol:
         bit: 20
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_cr.refckon:
         bit: 4
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_cr.sub1h:
         bit: 17
+        access: wo
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_cr.tampalrm_pu:
         bit: 29
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_cr.tampalrm_type:
         bit: 30
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_cr.tampoe:
         bit: 26
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_cr.tampts:
         bit: 25
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_cr.tse:
         bit: 11
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_cr.tsedge:
         bit: 3
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_cr.tsie:
         bit: 15
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_cr.wucksel:
         bits:
         - 0
         - 2
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
+          B_0x3: 3
       rtc_cr.wute:
         bit: 10
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_cr.wutie:
         bit: 14
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_dr.dt:
         bits:
         - 4
         - 5
+        access: rw
       rtc_dr.du:
         bits:
         - 0
         - 3
+        access: rw
       rtc_dr.mt:
         bit: 12
+        access: rw
       rtc_dr.mu:
         bits:
         - 8
         - 11
+        access: rw
       rtc_dr.wdu:
         bits:
         - 13
         - 15
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x7: 7
       rtc_dr.yt:
         bits:
         - 20
         - 23
+        access: rw
       rtc_dr.yu:
         bits:
         - 16
         - 19
+        access: rw
       rtc_icsr.alrawf:
         bit: 0
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_icsr.alrbwf:
         bit: 1
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_icsr.init:
         bit: 7
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_icsr.initf:
         bit: 6
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_icsr.inits:
         bit: 4
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_icsr.recalpf:
         bit: 16
+        access: ro
       rtc_icsr.rsf:
         bit: 5
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_icsr.shpf:
         bit: 3
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_icsr.wutwf:
         bit: 2
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_misr.alramf:
         bit: 0
+        access: ro
       rtc_misr.alrbmf:
         bit: 1
+        access: ro
       rtc_misr.itsmf:
         bit: 5
+        access: ro
       rtc_misr.tsmf:
         bit: 3
+        access: ro
       rtc_misr.tsovmf:
         bit: 4
+        access: ro
       rtc_misr.wutmf:
         bit: 2
+        access: ro
       rtc_prer.prediv_a:
         bits:
         - 16
         - 22
+        access: rw
       rtc_prer.prediv_s:
         bits:
         - 0
         - 14
+        access: rw
       rtc_scr.calraf:
         bit: 0
+        access: wo
       rtc_scr.calrbf:
         bit: 1
+        access: wo
       rtc_scr.citsf:
         bit: 5
+        access: wo
       rtc_scr.ctsf:
         bit: 3
+        access: wo
       rtc_scr.ctsovf:
         bit: 4
+        access: wo
       rtc_scr.cwutf:
         bit: 2
+        access: wo
       rtc_shiftr.add1s:
         bit: 31
+        access: wo
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_shiftr.subfs:
         bits:
         - 0
         - 14
+        access: wo
       rtc_sr.alraf:
         bit: 0
+        access: ro
       rtc_sr.alrbf:
         bit: 1
+        access: ro
       rtc_sr.itsf:
         bit: 5
+        access: ro
       rtc_sr.tsf:
         bit: 3
+        access: ro
       rtc_sr.tsovf:
         bit: 4
+        access: ro
       rtc_sr.wutf:
         bit: 2
+        access: ro
       rtc_ssr.ss:
         bits:
         - 0
         - 15
+        access: ro
       rtc_tr.ht:
         bits:
         - 20
         - 21
+        access: rw
       rtc_tr.hu:
         bits:
         - 16
         - 19
+        access: rw
       rtc_tr.mnt:
         bits:
         - 12
         - 14
+        access: rw
       rtc_tr.mnu:
         bits:
         - 8
         - 11
+        access: rw
       rtc_tr.pm:
         bit: 22
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_tr.st:
         bits:
         - 4
         - 6
+        access: rw
       rtc_tr.su:
         bits:
         - 0
         - 3
+        access: rw
       rtc_tsdr.dt:
         bits:
         - 4
         - 5
+        access: ro
       rtc_tsdr.du:
         bits:
         - 0
         - 3
+        access: ro
       rtc_tsdr.mt:
         bit: 12
+        access: ro
       rtc_tsdr.mu:
         bits:
         - 8
         - 11
+        access: ro
       rtc_tsdr.wdu:
         bits:
         - 13
         - 15
+        access: ro
       rtc_tsssr.ss:
         bits:
         - 0
         - 15
+        access: ro
       rtc_tstr.ht:
         bits:
         - 20
         - 21
+        access: ro
       rtc_tstr.hu:
         bits:
         - 16
         - 19
+        access: ro
       rtc_tstr.mnt:
         bits:
         - 12
         - 14
+        access: ro
       rtc_tstr.mnu:
         bits:
         - 8
         - 11
+        access: ro
       rtc_tstr.pm:
         bit: 22
+        access: ro
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       rtc_tstr.st:
         bits:
         - 4
         - 6
+        access: ro
       rtc_tstr.su:
         bits:
         - 0
         - 3
+        access: ro
       rtc_wpr.key:
         bits:
         - 0
         - 7
+        access: wo
       rtc_wutr.wut:
         bits:
         - 0
         - 15
+        access: rw
   spi:
-    options:
-      baud_prescaler:
-      - 2
-      - 4
-      - 8
-      - 16
-      - 32
-      - 64
-      - 128
-      - 256
     registers:
+      cr1:
+        offset: 0
+        access: rw
       cr2:
         offset: 4
+        access: rw
       crcpr:
         offset: 16
+        access: rw
       dr:
         offset: 12
+        access: rw
       i2scfgr:
         offset: 28
+        access: rw
       i2spr:
         offset: 32
+        access: rw
       rxcrcr:
         offset: 20
+        access: ro
       sr:
         offset: 8
       txcrcr:
         offset: 24
+        access: ro
     fields:
       cr1.bidimode:
         bit: 15
@@ -6138,94 +6309,156 @@ templates:
         - 15
       sr.bsy:
         bit: 7
+        access: ro
       sr.chside:
         bit: 2
+        access: ro
       sr.crcerr:
         bit: 4
+        access: rw
       sr.frlvl:
         bits:
         - 9
         - 10
+        access: ro
       sr.ftlvl:
         bits:
         - 11
         - 12
+        access: ro
       sr.modf:
         bit: 5
+        access: ro
       sr.ovr:
         bit: 6
+        access: ro
       sr.rxne:
         bit: 0
+        access: ro
       sr.tifrfe:
         bit: 8
+        access: ro
       sr.txe:
         bit: 1
+        access: ro
       sr.udr:
         bit: 3
+        access: ro
       txcrcr.txcrc:
         bits:
         - 0
         - 15
+    options:
+      baud_prescaler:
+      - div_2
+      - div_4
+      - div_8
+      - div_16
+      - div_32
+      - div_64
+      - div_128
+      - div_256
+      baud_prescaler_encoding:
+        div_2: 0
+        div_4: 1
+        div_8: 2
+        div_16: 3
+        div_32: 4
+        div_64: 5
+        div_128: 6
+        div_256: 7
   syscfg:
     registers:
+      cfgr1:
+        offset: 0
+        access: rw
       cfgr2:
         offset: 24
+        access: rw
       itline0:
         offset: 128
+        access: ro
       itline10:
         offset: 168
+        access: ro
       itline11:
         offset: 172
+        access: ro
       itline12:
         offset: 176
+        access: ro
       itline13:
         offset: 180
+        access: ro
       itline14:
         offset: 184
+        access: ro
       itline16:
         offset: 192
+        access: ro
       itline17:
         offset: 196
+        access: ro
       itline18:
         offset: 200
+        access: ro
       itline19:
         offset: 204
+        access: ro
       itline2:
         offset: 136
+        access: ro
       itline20:
         offset: 208
+        access: ro
       itline21:
         offset: 212
+        access: ro
       itline22:
         offset: 216
+        access: ro
       itline23:
         offset: 220
+        access: ro
       itline24:
         offset: 224
+        access: ro
       itline25:
         offset: 228
+        access: ro
       itline26:
         offset: 232
+        access: ro
       itline27:
         offset: 236
+        access: ro
       itline28:
         offset: 240
+        access: ro
       itline29:
         offset: 244
+        access: ro
       itline3:
         offset: 140
+        access: ro
       itline4:
         offset: 144
+        access: ro
       itline5:
         offset: 148
+        access: ro
       itline6:
         offset: 152
+        access: ro
       itline7:
         offset: 156
+        access: ro
       itline8:
         offset: 160
+        access: ro
       itline9:
         offset: 164
+        access: ro
     fields:
       cfgr1.boosten:
         bit: 8
@@ -6408,15 +6641,17 @@ templates:
   tamp:
     registers:
       tamp_bkp0r:
-        offset: '0x100'
+        offset: '0x0100'
       tamp_bkp1r:
-        offset: '0x104'
+        offset: '0x0104'
       tamp_bkp2r:
-        offset: '0x108'
+        offset: '0x0108'
       tamp_bkp3r:
-        offset: '0x10C'
+        offset: '0x010C'
       tamp_bkp4r:
-        offset: '0x110'
+        offset: '0x0110'
+      tamp_cr1:
+        offset: 0
       tamp_cr2:
         offset: 4
       tamp_fltcr:
@@ -6434,559 +6669,350 @@ templates:
         bits:
         - 0
         - 31
+        access: rw
       tamp_bkp1r.bkp:
         bits:
         - 0
         - 31
+        access: rw
       tamp_bkp2r.bkp:
         bits:
         - 0
         - 31
+        access: rw
       tamp_bkp3r.bkp:
         bits:
         - 0
         - 31
+        access: rw
       tamp_bkp4r.bkp:
         bits:
         - 0
         - 31
+        access: rw
       tamp_cr1.itamp3e:
         bit: 18
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_cr1.itamp4e:
         bit: 19
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_cr1.itamp5e:
         bit: 20
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_cr1.itamp6e:
         bit: 21
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_cr1.tamp1e:
         bit: 0
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_cr1.tamp2e:
         bit: 1
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_cr1.tamp3e:
         bit: 2
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_cr2.tamp1msk:
         bit: 16
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_cr2.tamp1noer:
         bit: 0
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_cr2.tamp1trg:
         bit: 24
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_cr2.tamp2msk:
         bit: 17
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_cr2.tamp2noer:
         bit: 1
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_cr2.tamp2trg:
         bit: 25
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_cr2.tamp3msk:
         bit: 18
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_cr2.tamp3noer:
         bit: 2
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_cr2.tamp3trg:
         bit: 26
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_fltcr.tampflt:
         bits:
         - 3
         - 4
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
+          B_0x3: 3
       tamp_fltcr.tampfreq:
         bits:
         - 0
         - 2
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
+          B_0x3: 3
+          B_0x4: 4
+          B_0x5: 5
+          B_0x6: 6
+          B_0x7: 7
       tamp_fltcr.tampprch:
         bits:
         - 5
         - 6
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
+          B_0x2: 2
+          B_0x3: 3
       tamp_fltcr.tamppudis:
         bit: 7
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_ier.itamp3ie:
         bit: 18
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_ier.itamp4ie:
         bit: 19
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_ier.itamp5ie:
         bit: 20
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_ier.itamp6ie:
         bit: 21
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_ier.tamp1ie:
         bit: 0
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_ier.tamp2ie:
         bit: 1
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_ier.tamp3ie:
         bit: 2
+        access: rw
+        enum:
+          B_0x0: 0
+          B_0x1: 1
       tamp_misr.itamp3mf:
         bit: 18
+        access: ro
       tamp_misr.itamp4mf:
         bit: 19
+        access: ro
       tamp_misr.itamp5mf:
         bit: 20
+        access: ro
       tamp_misr.itamp6mf:
         bit: 21
+        access: ro
       tamp_misr.tamp1mf:
         bit: 0
+        access: ro
       tamp_misr.tamp2mf:
         bit: 1
+        access: ro
       tamp_misr.tamp3mf:
         bit: 2
+        access: ro
       tamp_scr.citamp3f:
         bit: 18
+        access: wo
       tamp_scr.citamp4f:
         bit: 19
+        access: wo
       tamp_scr.citamp5f:
         bit: 20
+        access: wo
       tamp_scr.citamp6f:
         bit: 21
+        access: wo
       tamp_scr.ctamp1f:
         bit: 0
+        access: wo
       tamp_scr.ctamp2f:
         bit: 1
+        access: wo
       tamp_scr.ctamp3f:
         bit: 2
+        access: wo
       tamp_sr.itamp3f:
         bit: 18
+        access: ro
       tamp_sr.itamp4f:
         bit: 19
+        access: ro
       tamp_sr.itamp5f:
         bit: 20
+        access: ro
       tamp_sr.itamp6f:
         bit: 21
+        access: ro
       tamp_sr.tamp1f:
         bit: 0
+        access: ro
       tamp_sr.tamp2f:
         bit: 1
+        access: ro
       tamp_sr.tamp3f:
         bit: 2
+        access: ro
   tim:
     registers:
       af1:
         offset: 96
-      arr:
-        offset: 44
-      ccer:
-        offset: 32
-      ccmr1_input:
-        offset: 24
-      ccmr1_output:
-        offset: 24
-      ccmr2_input:
-        offset: 28
-      ccmr2_output:
-        offset: 28
-      ccr1:
-        offset: 52
-      ccr2:
-        offset: 56
-      ccr3:
-        offset: 60
-      ccr4:
-        offset: 64
-      cnt:
-        offset: 36
-      cr2:
-        offset: 4
-      dcr:
-        offset: 72
-      dier:
-        offset: 12
-      dmar:
-        offset: 76
-      egr:
-        offset: 20
-      or1:
-        offset: 80
-      psc:
-        offset: 40
-      smcr:
-        offset: 8
-      sr:
-        offset: 16
-      tisel:
-        offset: 104
-    fields:
-      af1.etrsel:
-        bits:
-        - 14
-        - 17
-      arr.arr_h:
-        bits:
-        - 16
-        - 31
-      arr.arr_l:
-        bits:
-        - 0
-        - 15
-      ccer.cc1e:
-        bit: 0
-      ccer.cc1np:
-        bit: 3
-      ccer.cc1p:
-        bit: 1
-      ccer.cc2e:
-        bit: 4
-      ccer.cc2np:
-        bit: 7
-      ccer.cc2p:
-        bit: 5
-      ccer.cc3e:
-        bit: 8
-      ccer.cc3np:
-        bit: 11
-      ccer.cc3p:
-        bit: 9
-      ccer.cc4e:
-        bit: 12
-      ccer.cc4np:
-        bit: 15
-      ccer.cc4p:
-        bit: 13
-      ccmr1_input.cc1s:
-        bits:
-        - 0
-        - 1
-      ccmr1_input.cc2s:
-        bits:
-        - 8
-        - 9
-      ccmr1_input.ic1f:
-        bits:
-        - 4
-        - 7
-      ccmr1_input.ic1psc:
-        bits:
-        - 2
-        - 3
-      ccmr1_input.ic2f:
-        bits:
-        - 12
-        - 15
-      ccmr1_input.ic2psc:
-        bits:
-        - 10
-        - 11
-      ccmr1_output.cc1s:
-        bits:
-        - 0
-        - 1
-      ccmr1_output.cc2s:
-        bits:
-        - 8
-        - 9
-      ccmr1_output.oc1ce:
-        bit: 7
-      ccmr1_output.oc1fe:
-        bit: 2
-      ccmr1_output.oc1m:
-        bits:
-        - 4
-        - 6
-      ccmr1_output.oc1m_3:
-        bit: 16
-      ccmr1_output.oc1pe:
-        bit: 3
-      ccmr1_output.oc2ce:
-        bit: 15
-      ccmr1_output.oc2fe:
-        bit: 10
-      ccmr1_output.oc2m:
-        bits:
-        - 12
-        - 14
-      ccmr1_output.oc2m_3:
-        bit: 24
-      ccmr1_output.oc2pe:
-        bit: 11
-      ccmr2_input.cc3s:
-        bits:
-        - 0
-        - 1
-      ccmr2_input.cc4s:
-        bits:
-        - 8
-        - 9
-      ccmr2_input.ic3f:
-        bits:
-        - 4
-        - 7
-      ccmr2_input.ic3psc:
-        bits:
-        - 2
-        - 3
-      ccmr2_input.ic4f:
-        bits:
-        - 12
-        - 15
-      ccmr2_input.ic4psc:
-        bits:
-        - 10
-        - 11
-      ccmr2_output.cc3s:
-        bits:
-        - 0
-        - 1
-      ccmr2_output.cc4s:
-        bits:
-        - 8
-        - 9
-      ccmr2_output.oc3ce:
-        bit: 7
-      ccmr2_output.oc3fe:
-        bit: 2
-      ccmr2_output.oc3m:
-        bits:
-        - 4
-        - 6
-      ccmr2_output.oc3m_3:
-        bit: 16
-      ccmr2_output.oc3pe:
-        bit: 3
-      ccmr2_output.oc4ce:
-        bit: 15
-      ccmr2_output.oc4fe:
-        bit: 10
-      ccmr2_output.oc4m:
-        bits:
-        - 12
-        - 14
-      ccmr2_output.oc4m_3:
-        bit: 24
-      ccmr2_output.oc4pe:
-        bit: 11
-      ccr1.ccr1_h:
-        bits:
-        - 16
-        - 31
-      ccr1.ccr1_l:
-        bits:
-        - 0
-        - 15
-      ccr2.ccr2_h:
-        bits:
-        - 16
-        - 31
-      ccr2.ccr2_l:
-        bits:
-        - 0
-        - 15
-      ccr3.ccr3_h:
-        bits:
-        - 16
-        - 31
-      ccr3.ccr3_l:
-        bits:
-        - 0
-        - 15
-      ccr4.ccr4_h:
-        bits:
-        - 16
-        - 31
-      ccr4.ccr4_l:
-        bits:
-        - 0
-        - 15
-      cnt.cnt_h:
-        bits:
-        - 16
-        - 31
-      cnt.cnt_l:
-        bits:
-        - 0
-        - 15
-      cr1.arpe:
-        bit: 7
-      cr1.cen:
-        bit: 0
-      cr1.ckd:
-        bits:
-        - 8
-        - 9
-      cr1.cms:
-        bits:
-        - 5
-        - 6
-      cr1.dir:
-        bit: 4
-      cr1.opm:
-        bit: 3
-      cr1.udis:
-        bit: 1
-      cr1.uifremap:
-        bit: 11
-      cr1.urs:
-        bit: 2
-      cr2.ccds:
-        bit: 3
-      cr2.mms:
-        bits:
-        - 4
-        - 6
-      cr2.ti1s:
-        bit: 7
-      dcr.dba:
-        bits:
-        - 0
-        - 4
-      dcr.dbl:
-        bits:
-        - 8
-        - 12
-      dier.cc1de:
-        bit: 9
-      dier.cc1ie:
-        bit: 1
-      dier.cc2de:
-        bit: 10
-      dier.cc2ie:
-        bit: 2
-      dier.cc3de:
-        bit: 11
-      dier.cc3ie:
-        bit: 3
-      dier.cc4de:
-        bit: 12
-      dier.cc4ie:
-        bit: 4
-      dier.tde:
-        bit: 14
-      dier.tie:
-        bit: 6
-      dier.ude:
-        bit: 8
-      dier.uie:
-        bit: 0
-      dmar.dmab:
-        bits:
-        - 0
-        - 15
-      egr.cc1g:
-        bit: 1
-      egr.cc2g:
-        bit: 2
-      egr.cc3g:
-        bit: 3
-      egr.cc4g:
-        bit: 4
-      egr.tg:
-        bit: 6
-      egr.ug:
-        bit: 0
-      or1.iocref_clr:
-        bit: 0
-      psc.psc:
-        bits:
-        - 0
-        - 15
-      smcr.ece:
-        bit: 14
-      smcr.etf:
-        bits:
-        - 8
-        - 11
-      smcr.etp:
-        bit: 15
-      smcr.etps:
-        bits:
-        - 12
-        - 13
-      smcr.msm:
-        bit: 7
-      smcr.occs:
-        bit: 3
-      smcr.sms:
-        bits:
-        - 0
-        - 2
-      smcr.sms_3:
-        bit: 16
-      smcr.ts:
-        bits:
-        - 4
-        - 6
-      smcr.ts_4_3:
-        bits:
-        - 20
-        - 21
-      sr.cc1if:
-        bit: 1
-      sr.cc1of:
-        bit: 9
-      sr.cc2if:
-        bit: 2
-      sr.cc2of:
-        bit: 10
-      sr.cc3if:
-        bit: 3
-      sr.cc3of:
-        bit: 11
-      sr.cc4if:
-        bit: 4
-      sr.cc4of:
-        bit: 12
-      sr.tif:
-        bit: 6
-      sr.uif:
-        bit: 0
-      tisel.ti1sel:
-        bits:
-        - 0
-        - 3
-      tisel.ti2sel:
-        bits:
-        - 8
-        - 11
-  tim1_8g0:
-    registers:
-      af1:
-        offset: 96
+        access: rw
       af2:
         offset: 100
+        access: rw
       arr:
         offset: 44
+        access: rw
       bdtr:
         offset: 68
+        access: rw
       ccer:
         offset: 32
-      ccmr1_input:
-        offset: 24
+        access: rw
       ccmr1_output:
         offset: 24
-      ccmr2_input:
-        offset: 28
+        access: rw
       ccmr2_output:
         offset: 28
+        access: rw
       ccmr3_output:
         offset: 84
+        access: rw
       ccr1:
         offset: 52
+        access: rw
       ccr2:
         offset: 56
+        access: rw
       ccr3:
         offset: 60
+        access: rw
       ccr4:
         offset: 64
+        access: rw
       ccr5:
         offset: 88
+        access: rw
       ccr6:
         offset: 92
+        access: rw
       cnt:
         offset: 36
+      cr1:
+        offset: 0
+        access: rw
       cr2:
         offset: 4
+        access: rw
       dcr:
         offset: 72
+        access: rw
       dier:
         offset: 12
+        access: rw
       dmar:
         offset: 76
+        access: rw
       egr:
         offset: 20
+        access: wo
       or1:
         offset: 80
+        access: rw
       psc:
         offset: 40
+        access: rw
       rcr:
         offset: 48
+        access: rw
       smcr:
         offset: 8
+        access: rw
       sr:
         offset: 16
+        access: rw
       tisel:
         offset: 104
+        access: rw
     fields:
       af1.bkcmp1e:
         bit: 1
@@ -7005,7 +7031,7 @@ templates:
       af1.etrsel:
         bits:
         - 14
-        - 17
+        - 16
       af2.bk2cmp1e:
         bit: 1
       af2.bk2cmp1p:
@@ -7110,54 +7136,6 @@ templates:
         bit: 20
       ccer.cc6p:
         bit: 21
-      ccmr1_input.cc1s:
-        bits:
-        - 0
-        - 1
-      ccmr1_input.cc2s:
-        bits:
-        - 8
-        - 9
-      ccmr1_input.ic1f:
-        bits:
-        - 4
-        - 7
-      ccmr1_input.ic1psc:
-        bits:
-        - 2
-        - 3
-      ccmr1_input.ic2f:
-        bits:
-        - 12
-        - 15
-      ccmr1_input.ic2psc:
-        bits:
-        - 10
-        - 11
-      ccmr1_input.icpcs:
-        bits:
-        - 2
-        - 3
-      ccmr1_input.oc1ce:
-        bit: 7
-      ccmr1_input.oc1fe:
-        bit: 2
-      ccmr1_input.oc1m:
-        bits:
-        - 4
-        - 6
-      ccmr1_input.oc1pe:
-        bit: 3
-      ccmr1_input.oc2ce:
-        bit: 15
-      ccmr1_input.oc2fe:
-        bit: 10
-      ccmr1_input.oc2m:
-        bits:
-        - 12
-        - 14
-      ccmr1_input.oc2pe:
-        bit: 11
       ccmr1_output.cc1s:
         bits:
         - 0
@@ -7191,50 +7169,6 @@ templates:
       ccmr1_output.oc2m_3:
         bit: 24
       ccmr1_output.oc2pe:
-        bit: 11
-      ccmr2_input.cc3s:
-        bits:
-        - 0
-        - 1
-      ccmr2_input.cc4s:
-        bits:
-        - 8
-        - 9
-      ccmr2_input.ic3f:
-        bits:
-        - 4
-        - 7
-      ccmr2_input.ic3psc:
-        bits:
-        - 2
-        - 3
-      ccmr2_input.ic4f:
-        bits:
-        - 12
-        - 15
-      ccmr2_input.ic4psc:
-        bits:
-        - 10
-        - 11
-      ccmr2_input.oc3ce:
-        bit: 7
-      ccmr2_input.oc3fe:
-        bit: 2
-      ccmr2_input.oc3m:
-        bits:
-        - 4
-        - 6
-      ccmr2_input.oc3pe:
-        bit: 3
-      ccmr2_input.oc4ce:
-        bit: 15
-      ccmr2_input.oc4fe:
-        bit: 10
-      ccmr2_input.oc4m:
-        bits:
-        - 12
-        - 14
-      ccmr2_input.oc4pe:
         bit: 11
       ccmr2_output.cc3s:
         bits:
@@ -7358,6 +7292,7 @@ templates:
         bits:
         - 0
         - 15
+        access: rw
       cnt.cnt_h:
         bits:
         - 16
@@ -7368,6 +7303,7 @@ templates:
         - 15
       cnt.uifcpy:
         bit: 31
+        access: ro
       cr1.arpe:
         bit: 7
       cr1.cen:
@@ -7520,8 +7456,8 @@ templates:
         bit: 16
       smcr.ts:
         bits:
-        - 4
-        - 6
+        - 20
+        - 21
       smcr.ts_4:
         bits:
         - 4
@@ -7591,35 +7527,43 @@ templates:
         - 0
         - 3
   usart:
-    options:
-      data_bits:
-      - 7
-      - 8
-      - 9
-    max_baud: 4000000
     registers:
       brr:
         offset: 12
+        access: rw
+      cr1:
+        offset: 0
+        access: rw
       cr2:
         offset: 4
+        access: rw
       cr3:
         offset: 8
+        access: rw
       gtpr:
         offset: 16
+        access: rw
       icr:
         offset: 32
+        access: wo
       isr:
         offset: 28
+        access: ro
       presc:
         offset: 44
+        access: rw
       rdr:
         offset: 36
+        access: ro
       rqr:
         offset: 24
+        access: wo
       rtor:
         offset: 20
+        access: rw
       tdr:
         offset: 40
+        access: rw
     fields:
       brr.brr_0_3:
         bits:
@@ -7911,10 +7855,27 @@ templates:
         bits:
         - 0
         - 8
+    options:
+      data_bits:
+      - 7
+      - 8
+      - 9
+      data_bits_encoding:
+        7bit: 2
+        8bit: 0
+        9bit: 1
+      parity:
+      - none
+      - even
+      - odd
+    max_baud: 4000000
   vrefbuf:
     registers:
       ccr:
         offset: 4
+        access: rw
+      csr:
+        offset: 0
     fields:
       ccr.trim:
         bits:
@@ -7922,20 +7883,29 @@ templates:
         - 5
       csr.envr:
         bit: 0
+        access: rw
       csr.hiz:
         bit: 1
+        access: rw
       csr.vrr:
         bit: 3
+        access: ro
       csr.vrs:
         bits:
         - 4
         - 6
+        access: rw
   wwdg:
     registers:
       cfr:
         offset: 4
+        access: rw
+      cr:
+        offset: 0
+        access: rw
       sr:
         offset: 8
+        access: rw
     fields:
       cfr.ewi:
         bit: 9
@@ -7955,335 +7925,604 @@ templates:
         bit: 7
       sr.ewif:
         bit: 0
-  uart:
+  timer_advanced:
     options:
-      data_bits:
-      - 7
-      - 8
-      - 9
-    max_baud: 4000000
+      alignment:
+      - edge
+      - center_down
+      - center_up
+      - center_up_down
+    trigger_sources:
+      itr0: 0
+      itr1: 1
+      itr2: 2
+      itr3: 3
+      ti1f_ed: 4
+      ti1fp1: 5
+      ti2fp2: 6
+      etrf: 7
+    master_outputs:
+      reset: 0
+      enable: 1
+      update: 2
+      compare_pulse: 3
+      oc1ref: 4
+      oc2ref: 5
+      oc3ref: 6
+      oc4ref: 7
+    break_inputs:
+    - bkin
+    - bkin2
+    deadtime_options:
+    - dtg_prescaler: 0
+      count_bits: 7
+      max_ns: 1270
+    - dtg_prescaler: 1
+      count_bits: 6
+      max_ns: 2540
+    - dtg_prescaler: 2
+      count_bits: 5
+      max_ns: 5040
+    - dtg_prescaler: 3
+      count_bits: 5
+      max_ns: 10080
 peripherals:
-- id: tim2
-  template: tim
-  base: '0x40000000'
-  irq:
-  - num: 15
-    name: TIM2
-  - num: 16
-    name: TIM3
-- id: tim3
-  template: tim1_8g0
-  ip_version: gptimer2_v3_x_Cube
-  base: '0x40000400'
-- id: tim14
-  template: tim1_8g0
-  ip_version: gptimer2_v3_x_Cube
-  base: '0x40002000'
-  irq:
-    num: 19
-    name: TIM14
-- id: rtc
-  template: rtc
-  ip_version: rtc3_v1_0_Cube
-  base: '0x40002800'
-  irq:
-    num: 2
-    name: RTC_STAMP
-- id: wwdg
-  template: wwdg
-  ip_version: wwdg1_v2_0
-  base: '0x40002C00'
-  irq:
-    num: 0
-    name: WWDG
-- id: iwdg
-  template: iwdg
-  ip_version: iwdg1_v2_0
-  base: '0x40003000'
-- id: spi2
-  template: spi
-  ip_version: spi2s1_v3_5_Cube
-  base: '0x40003800'
-  irq:
-    num: 26
-    name: SPI2
-- id: usart2
-  template: usart
-  ip_version: sci3_v2_1_Cube
-  base: '0x40004400'
-  irq:
-    num: 28
-    name: USART2
-- id: i2c1
-  template: i2c
-  ip_version: i2c2_v1_1_Cube
-  base: '0x40005400'
-  irq:
-    num: 23
-    name: I2C1
-  timing_presets:
-  - speed: 100kHz
-    source_clock: 16MHz
-    timingr: '0x10242727'
-  - speed: 100kHz
-    source_clock: 64MHz
-    timingr: '0x70242727'
-  - speed: 400kHz
-    source_clock: 16MHz
-    timingr: '0x1010070B'
-  - speed: 400kHz
-    source_clock: 64MHz
-    timingr: '0x7010070B'
-  - speed: 1MHz
-    source_clock: 16MHz
-    timingr: '0x100509'
-  - speed: 1MHz
-    source_clock: 64MHz
-    timingr: '0x30100509'
-- id: i2c2
-  template: i2c
-  ip_version: i2c2_v1_1_Cube
-  base: '0x40005800'
-  irq:
-    num: 24
-    name: I2C2
-  timing_presets:
-  - speed: 100kHz
-    source_clock: 16MHz
-    timingr: '0x10242727'
-  - speed: 100kHz
-    source_clock: 64MHz
-    timingr: '0x70242727'
-  - speed: 400kHz
-    source_clock: 16MHz
-    timingr: '0x1010070B'
-  - speed: 400kHz
-    source_clock: 64MHz
-    timingr: '0x7010070B'
-  - speed: 1MHz
-    source_clock: 16MHz
-    timingr: '0x100509'
-  - speed: 1MHz
-    source_clock: 64MHz
-    timingr: '0x30100509'
-- id: pwr
-  template: pwr
-  base: '0x40007000'
-- id: tamp
-  template: tamp
-  base: '0x4000B000'
-- id: syscfg
-  template: syscfg
-  base: '0x40010000'
-- id: vrefbuf
-  template: vrefbuf
-  base: '0x40010030'
 - id: adc
   template: adc
   base: '0x40012400'
   irq:
     num: 12
-    name: ADC
-- id: tim1
-  template: tim1_8g0
-  ip_version: gptimer2_v3_x_Cube
-  base: '0x40012C00'
+    name: ADC_IRQHandler
+  ip_version: aditf4_v3_0_G0_Cube
+  pin_options:
+    exti11:
+    - pin: PA11 [PA9]
+    in0:
+    - pin: PA0
+    in1:
+    - pin: PA1
+    in10:
+    - pin: PB2
+    in11:
+    - pin: PB7
+    in15:
+    - pin: PA11 [PA9]
+    in16:
+    - pin: PA12 [PA10]
+    in17:
+    - pin: PA13
+    in18:
+    - pin: PA14-BOOT0
+    in2:
+    - pin: PA2
+    in3:
+    - pin: PA3
+    in4:
+    - pin: PA4
+    in5:
+    - pin: PA5
+    in6:
+    - pin: PA6
+    in7:
+    - pin: PA7
+    in8:
+    - pin: PB0
+    in9:
+    - pin: PB1
+  calibration:
+    vrefint:
+      rom_addr: '0x1FFF75AA'
+      size_bits: 16
+      nominal_mv: 3000
+    ts_cal_low:
+      rom_addr: '0x1FFF75A8'
+      size_bits: 16
+      temp_celsius: 30
+      vdda_calibration: 3000
+    ts_cal_high:
+      rom_addr: '0x1FFF75CA'
+      size_bits: 16
+      temp_celsius: 130
+      vdda_calibration: 3000
+  external_triggers:
+    regular:
+    - source: tim1_trgo2
+      extsel: 0
+      polarity: rising
+    - source: tim1_cc4
+      extsel: 1
+      polarity: rising
+    - source: tim2_trgo
+      extsel: 2
+      polarity: rising
+    - source: tim3_trgo
+      extsel: 3
+      polarity: rising
+    - source: tim15_trgo
+      extsel: 4
+      polarity: rising
+    - source: tim6_trgo
+      extsel: 5
+      polarity: rising
+    - source: exti11
+      extsel: 7
+      polarity: rising
+  channels:
+    ch13: vrefint
+    ch12: temperature_sensor
+    ch14: vbat
+  max_clock_override: 35MHz
+- id: iwdg
+  template: iwdg
+  base: '0x40003000'
+  ip_version: iwdg1_v2_0
+- id: wwdg
+  template: wwdg
+  base: '0x40002C00'
   irq:
-  - num: 13
-    name: TIM1_BRK_UP_TRG_COM
-  - num: 14
-    name: TIM1_CC
-- id: spi1
-  template: spi
-  ip_version: spi2s1_v3_5_Cube
-  base: '0x40013000'
-  irq:
-    num: 25
-    name: SPI1
-- id: usart1
-  template: usart
-  ip_version: sci3_v2_1_Cube
-  base: '0x40013800'
-  irq:
-    num: 27
-    name: USART1
-- id: tim16
-  template: tim1_8g0
-  ip_version: gptimer2_v3_x_Cube
-  base: '0x40014400'
-  irq:
-    num: 21
-    name: TIM16
-- id: tim17
-  template: tim1_8g0
-  ip_version: gptimer2_v3_x_Cube
-  base: '0x40014800'
-  irq:
-    num: 22
-    name: TIM17
-- id: dbg
-  template: dbg
-  base: '0x40015800'
-- id: dma
-  template: dma
-  ip_version: STM32G041_dma1_v1_3
-  base: '0x40020000'
-  irq:
-  - num: 9
-    name: DMA_Channel1
-  - num: 10
-    name: DMA_Channel2_3
-- id: dmamux
-  template: dmamux
-  base: '0x40020800'
-  irq:
-    num: 11
-    name: DMA_Channel4_5_6_7
-- id: rcc
-  template: rcc
-  ip_version: STM32G0_64_rcc_v1_0
-  base: '0x40021000'
-  irq:
-    num: 4
-    name: RCC
-- id: exti
-  template: exti
-  base: '0x40021800'
-  irq:
-  - num: 5
-    name: EXTI0_1
-  - num: 6
-    name: EXTI2_3
-  - num: 7
-    name: EXTI4_15
+    num: 0
+    name: WWDG_IRQHandler
+  ip_version: wwdg1_v2_0
 - id: flash
   template: flash
   base: '0x40022000'
   irq:
     num: 3
-    name: FLASH
+    name: FLASH_IRQHandler
+- id: rcc
+  template: rcc
+  base: '0x40021000'
+  irq:
+    num: 4
+    name: RCC_IRQHandler
+  ip_version: STM32G0_64_rcc_v1_0
+  pin_options:
+    lsco:
+    - pin: PA2
+    mco:
+    - pin: PA8
+    - pin: PA9 [PA11]
+    osc32_en:
+    - pin: PC15-OSC32_OUT (PC15)
+    osc32_in:
+    - pin: PC14-OSC32_IN (PC14)
+    osc32_out:
+    - pin: PC15-OSC32_OUT (PC15)
+    osc_en:
+    - pin: PC15-OSC32_OUT (PC15)
+    osc_in:
+    - pin: PC14-OSC32_IN (PC14)
+- id: pwr
+  template: pwr
+  base: '0x40007000'
+- id: dma
+  template: dma
+  base: '0x40020000'
+  irq:
+  - num: 9
+    name: DMA_Channel1_IRQHandler
+  - num: 10
+    name: DMA_Channel2_3_IRQHandler
+  ip_version: STM32G041_dma1_v1_3
+- id: dmamux
+  template: dmamux
+  base: '0x40020800'
+  irq:
+    num: 11
+    name: DMA_Channel4_5_6_7_IRQHandler
+- id: gpioa
+  template: gpio
+  base: '0x50000000'
+- id: gpiob
+  template: gpio
+  base: '0x50000400'
+- id: gpioc
+  template: gpiob
+  base: '0x50000800'
+  ip_version: GPIOB
+- id: gpiod
+  template: gpiob
+  base: '0x50000C00'
+  ip_version: GPIOB
+- id: gpiof
+  template: gpiob
+  base: '0x50001400'
+  ip_version: GPIOB
 - id: crc
   template: crc
-  ip_version: integtest1_v2_0
   base: '0x40023000'
   irq:
     num: 30
-    name: CEC
-- id: gpioa
-  template: gpioa
-  base: '0x50000000'
-- id: gpiob
-  template: gpiob
-  base: '0x50000400'
-- id: gpioc
-  template: gpioc
-  base: '0x50000800'
-- id: gpiod
-  template: gpiod
-  base: '0x50000C00'
-- id: gpiof
-  template: gpiof
-  base: '0x50001400'
+    name: CEC_IRQHandler
+  ip_version: integtest1_v2_0
+- id: exti
+  template: exti
+  base: '0x40021800'
+  irq:
+  - num: 5
+    name: EXTI0_1_IRQHandler
+  - num: 6
+    name: EXTI2_3_IRQHandler
+  - num: 7
+    name: EXTI4_15_IRQHandler
+- id: tim16
+  template: tim
+  base: '0x40014400'
+  irq:
+    num: 21
+    name: TIM16_IRQHandler
+  ip_version: gptimer2_v3_x_Cube
+  pin_options:
+    bk:
+    - pin: PB5
+    ch1:
+    - pin: PB8
+    - pin: PA6
+    ch1n:
+    - pin: PB6
+- id: tim17
+  template: tim
+  base: '0x40014800'
+  ip_version: gptimer2_v3_x_Cube
+  irq:
+    num: 22
+    name: TIM17_IRQHandler
+  pin_options:
+    bk:
+    - pin: PA10 [PA12]
+    - pin: PB4
+    ch1:
+    - pin: PB9
+    - pin: PA7
+    ch1n:
+    - pin: PB7
+- id: usart1
+  template: usart
+  base: '0x40013800'
+  irq:
+    num: 27
+    name: USART1_IRQHandler
+  ip_version: sci3_v2_1_Cube
+  pin_options:
+    ck:
+    - pin: PA12 [PA10]
+    - pin: PB3
+    cts:
+    - pin: PA11 [PA9]
+    - pin: PB4
+    de:
+    - pin: PA12 [PA10]
+    - pin: PB3
+    nss:
+    - pin: PA11 [PA9]
+    - pin: PB4
+    rts:
+    - pin: PA12 [PA10]
+    - pin: PB3
+    rx:
+    - pin: PB7
+    - pin: PA10 [PA12]
+    tx:
+    - pin: PA9 [PA11]
+    - pin: PB6
+- id: usart2
+  template: usart
+  base: '0x40004400'
+  ip_version: sci3_v2_1_Cube
+  irq:
+    num: 28
+    name: USART2_IRQHandler
+  pin_options:
+    ck:
+    - pin: PA1
+    cts:
+    - pin: PA0
+    de:
+    - pin: PA1
+    nss:
+    - pin: PA0
+    rts:
+    - pin: PA1
+    rx:
+    - pin: PA3
+    - pin: PA15
+    tx:
+    - pin: PA2
+    - pin: PA14-BOOT0
+- id: spi1
+  template: spi
+  base: '0x40013000'
+  irq:
+    num: 25
+    name: SPI1_IRQHandler
+  ip_version: spi2s1_v3_5_Cube
+  pin_options:
+    miso:
+    - pin: PA6
+    - pin: PA11 [PA9]
+    - pin: PB4
+    mosi:
+    - pin: PA2
+    - pin: PA7
+    - pin: PA12 [PA10]
+    - pin: PB5
+    nss:
+    - pin: PA4
+    - pin: PB0
+    - pin: PA15
+    sck:
+    - pin: PA1
+    - pin: PA5
+    - pin: PB3
+- id: spi2
+  template: spi
+  base: '0x40003800'
+  ip_version: spi2s1_v3_5_Cube
+  irq:
+    num: 26
+    name: SPI2_IRQHandler
+  pin_options:
+    miso:
+    - pin: PA3
+    - pin: PB2
+    - pin: PA9 [PA11]
+    - pin: PB6
+    mosi:
+    - pin: PB7
+    - pin: PA4
+    - pin: PA10 [PA12]
+    nss:
+    - pin: PB9
+    - pin: PA8
+    sck:
+    - pin: PB8
+    - pin: PA0
+- id: tim1
+  template: tim
+  base: '0x40012C00'
+  irq:
+  - num: 13
+    name: TIM1_BRK_UP_TRG_COM_IRQHandler
+  - num: 14
+    name: TIM1_CC_IRQHandler
+  ip_version: gptimer2_v3_x_Cube
+  pin_options:
+    bk:
+    - pin: PA6
+    bk2:
+    - pin: PC14-OSC32_IN (PC14)
+    - pin: PA11 [PA9]
+    ch1:
+    - pin: PA8
+    ch1n:
+    - pin: PA7
+    ch2:
+    - pin: PA9 [PA11]
+    - pin: PB3
+    ch2n:
+    - pin: PB0
+    ch3:
+    - pin: PA10 [PA12]
+    - pin: PB6
+    ch3n:
+    - pin: PB1
+    ch4:
+    - pin: PA11 [PA9]
+    etr:
+    - pin: PA12 [PA10]
+- id: syscfg
+  template: syscfg
+  base: '0x40010000'
+- id: tamp
+  template: tamp
+  base: '0x4000B000'
+- id: i2c1
+  template: i2c
+  base: '0x40005400'
+  irq:
+    num: 23
+    name: I2C1_IRQHandler
+  ip_version: i2c2_v1_1_Cube
+  pin_options:
+    scl:
+    - pin: PB8
+    - pin: PA9 [PA11]
+    - pin: PB6
+    sda:
+    - pin: PB7
+    - pin: PB9
+    - pin: PA10 [PA12]
+    smba:
+    - pin: PA1
+    - pin: PB5
+- id: i2c2
+  template: i2c
+  base: '0x40005800'
+  ip_version: i2c2_v1_1_Cube
+  irq:
+    num: 24
+    name: I2C2_IRQHandler
+  pin_options:
+    scl:
+    - pin: PA11 [PA9]
+    sda:
+    - pin: PA12 [PA10]
+- id: rtc
+  template: rtc
+  base: '0x40002800'
+  irq:
+    num: 2
+    name: RTC_STAMP_IRQHandler
+  ip_version: rtc3_v1_0_Cube
+  pin_options:
+    out_alarm:
+    - pin: PA4
+    out_calib:
+    - pin: PA4
+    tamp_in1:
+    - pin: PA4
+    tamp_in2:
+    - pin: PA0
+    ts:
+    - pin: PA4
+- id: tim14
+  template: tim
+  base: '0x40002000'
+  irq:
+    num: 19
+    name: TIM14_IRQHandler
+  ip_version: gptimer2_v3_x_Cube
+  pin_options:
+    ch1:
+    - pin: PA4
+    - pin: PA7
+    - pin: PB1
+- id: tim2
+  template: tim
+  base: '0x40000000'
+  irq:
+  - num: 15
+    name: TIM2_IRQHandler
+  - num: 16
+    name: TIM3_IRQHandler
+- id: tim3
+  template: tim
+  base: '0x40000400'
+  ip_version: gptimer2_v3_x_Cube
+  pin_options:
+    ch1:
+    - pin: PA6
+    - pin: PB4
+    ch2:
+    - pin: PA7
+    - pin: PB5
+    ch3:
+    - pin: PB0
+    ch4:
+    - pin: PB1
+- id: vrefbuf
+  template: vrefbuf
+  base: '0x40010030'
+- id: dbg
+  template: dbg
+  base: '0x40015800'
 pinout:
-- signal: PA0
-- signal: PA1
-- signal: PA10
-- signal: PA10 [PA12]
-- signal: PA11
-- signal: PA11 [PA9]
-- signal: PA12
-- signal: PA12 [PA10]
-- signal: PA13
-- signal: PA14
-- signal: PA14-BOOT0
-- signal: PA15
-- signal: PA2
-- signal: PA3
-- signal: PA4
-- signal: PA5
-- signal: PA6
-- signal: PA7
-- signal: PA8
-- signal: PA9
-- signal: PA9 [PA11]
-- signal: PB0
-- signal: PB1
-- signal: PB10
-- signal: PB11
-- signal: PB12
-- signal: PB13
-- signal: PB14
-- signal: PB15
-- signal: PB2
-- signal: PB3
-- signal: PB4
-- signal: PB5
-- signal: PB6
 - signal: PB7
+  pin: 1
 - signal: PB8
-- signal: PB9
-- signal: PC13
-- signal: PC14
+  pin: 1
 - signal: PC14-OSC32_IN (PC14)
-- signal: PC15
+  pin: 2
+- signal: PB9
+  pin: 2
 - signal: PC15-OSC32_OUT (PC15)
-- signal: PC6
-- signal: PC7
-- signal: PD0
-- signal: PD1
-- signal: PD2
-- signal: PD3
-- signal: PF0-OSC_IN (PF0)
-- signal: PF1-OSC_OUT (PF1)
-- signal: PF2 - NRST
+  pin: 3
+- signal: VDD/VDDA
+  pin: 4
+  constraints:
+  - power
+- signal: VSS/VSSA
+  pin: 5
+  constraints:
+  - power
+- signal: NRST
+  pin: 6
+  constraints:
+  - reset
+- signal: PA0
+  pin: 7
+- signal: PA1
+  pin: 8
+- signal: PA2
+  pin: 9
+- signal: PA3
+  pin: 10
+- signal: PA4
+  pin: 11
+- signal: PA5
+  pin: 12
+- signal: PA6
+  pin: 13
+- signal: PA7
+  pin: 14
+- signal: PB0
+  pin: 15
+- signal: PB1
+  pin: 15
+- signal: PB2
+  pin: 15
+- signal: PA8
+  pin: 15
+- signal: PA11 [PA9]
+  pin: 16
+- signal: PA9 [PA11]
+  pin: 16
+- signal: PA12 [PA10]
+  pin: 17
+- signal: PA10 [PA12]
+  pin: 17
+- signal: PA13
+  pin: 18
+- signal: PA14-BOOT0
+  pin: 19
+- signal: PA15
+  pin: 19
+- signal: PB3
+  pin: 20
+- signal: PB4
+  pin: 20
+- signal: PB5
+  pin: 20
+- signal: PB6
+  pin: 20
 interrupts:
 - num: 0
-  name: WWDG
+  name: WWDG_IRQHandler
 - num: 2
-  name: RTC_STAMP
+  name: RTC_STAMP_IRQHandler
 - num: 3
-  name: FLASH
+  name: FLASH_IRQHandler
 - num: 4
-  name: RCC
+  name: RCC_IRQHandler
 - num: 5
-  name: EXTI0_1
+  name: EXTI0_1_IRQHandler
 - num: 6
-  name: EXTI2_3
+  name: EXTI2_3_IRQHandler
 - num: 7
-  name: EXTI4_15
+  name: EXTI4_15_IRQHandler
 - num: 9
-  name: DMA_Channel1
+  name: DMA_Channel1_IRQHandler
 - num: 10
-  name: DMA_Channel2_3
+  name: DMA_Channel2_3_IRQHandler
 - num: 11
-  name: DMA_Channel4_5_6_7
+  name: DMA_Channel4_5_6_7_IRQHandler
 - num: 12
-  name: ADC
+  name: ADC_IRQHandler
 - num: 13
-  name: TIM1_BRK_UP_TRG_COM
+  name: TIM1_BRK_UP_TRG_COM_IRQHandler
 - num: 14
-  name: TIM1_CC
+  name: TIM1_CC_IRQHandler
 - num: 15
-  name: TIM2
+  name: TIM2_IRQHandler
 - num: 16
-  name: TIM3
+  name: TIM3_IRQHandler
 - num: 19
-  name: TIM14
+  name: TIM14_IRQHandler
 - num: 21
-  name: TIM16
+  name: TIM16_IRQHandler
 - num: 22
-  name: TIM17
+  name: TIM17_IRQHandler
 - num: 23
-  name: I2C1
+  name: I2C1_IRQHandler
 - num: 24
-  name: I2C2
+  name: I2C2_IRQHandler
 - num: 25
-  name: SPI1
+  name: SPI1_IRQHandler
 - num: 26
-  name: SPI2
+  name: SPI2_IRQHandler
 - num: 27
-  name: USART1
+  name: USART1_IRQHandler
 - num: 28
-  name: USART2
+  name: USART2_IRQHandler
 - num: 30
-  name: CEC
+  name: CEC_IRQHandler
