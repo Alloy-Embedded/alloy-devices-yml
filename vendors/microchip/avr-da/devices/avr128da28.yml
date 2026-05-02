@@ -12,75 +12,58 @@ provenance:
   primary: microchip-atdf:AVR128DA28.atdf
   authored: auto
   notes: ATDF-extracted skeleton — pinout requires enrichment.
+  secondary:
+  - microchip-overlay:avr-da
 memory:
-- id: io
+- id: flash
   base: 0
-  size: 4159B
-  access: rw
-  address_space: data
-- id: lockbits
-  base: '0x1040'
-  size: 4B
-  access: rw
-  address_space: fuse
-- id: fuses
-  base: '0x1050'
-  size: 16B
-  access: rw
-  address_space: fuse
-- id: user_signatures
-  base: '0x1080'
-  size: 32B
-  access: rw
-  address_space: signature
-- id: signatures
-  base: '0x1100'
-  size: 3B
-  access: ro
-  address_space: signature
-- id: prod_signatures
-  base: '0x1103'
-  size: 125B
-  access: ro
-  address_space: signature
-- id: eeprom
-  base: '0x1400'
-  size: 512B
-  access: rw
-  address_space: eeprom
-- id: internal_sram
+  size: 128KB
+  access: rx
+  alias: code
+  address_space: program
+- id: sram
   base: '0x4000'
   size: 16KB
   access: rw
+  alias: data
   address_space: data
-- id: mapped_progmem
-  base: '0x8000'
-  size: 32KB
-  access: rw
-  address_space: data
-- id: progmem
-  base: 0
-  size: 128KB
-  access: rwx
-  address_space: program
 clock:
   oscillators:
-    osc_int_8mhz:
-      freq: 8MHz
+    oschf:
+      freq: 24MHz
       kind: rc-internal
-    osc_int_128khz:
-      freq: 128kHz
+    osc32k:
+      freq: 32kHz
       kind: rc-internal
-    osc_ext:
+    extclk:
       freq: 0Hz
       kind: crystal-external
       optional: true
   domains:
-  - id: sysclk
+  - id: clk_per
     sources:
-    - osc_int_8mhz
-    - osc_int_128khz
-    - osc_ext
+    - oschf
+    - osc32k
+    - extclk
+  profiles:
+  - id: factory-oschf-4mhz
+    kind: post-reset
+    sysclk: 4MHz
+    sysclk_source: oschf
+    hclk_hz: 4000000
+    pclk_hz: 4000000
+  - id: oschf-24mhz-max
+    kind: recommended
+    sysclk: 24MHz
+    sysclk_source: oschf
+    hclk_hz: 24000000
+    pclk_hz: 24000000
+  - id: external-clock-24mhz
+    kind: recommended
+    sysclk: 24MHz
+    sysclk_source: extclk
+    hclk_hz: 24000000
+    pclk_hz: 24000000
 templates:
   ac:
     registers:
@@ -432,6 +415,7 @@ templates:
         - 0
         - 7
         access: rw
+    max_clock: 1500kHz
   bod:
     registers:
       ctrla:
@@ -3353,6 +3337,7 @@ templates:
       intflags.if:
         bit: 7
         access: rw
+    max_clock: 12MHz
   syscfg:
     registers:
       revid:
@@ -4324,6 +4309,7 @@ templates:
         - 1
         - 7
         access: rw
+    max_clock: 1MHz
   usart:
     registers:
       rxdatal:
@@ -4536,6 +4522,7 @@ templates:
         - 0
         - 6
         access: rw
+    max_baud: 1500000
   userrow:
     registers:
       userrow0:
@@ -4805,6 +4792,8 @@ templates:
         enum:
           low: 0
           high: 1
+  i2c:
+    max_clock: 1MHz
 peripherals:
 - id: ac0
   template: ac
@@ -5084,7 +5073,72 @@ peripherals:
     num: 26
     name: ZCD0_ZCD_vect
 pinout:
-- signal: RESET
+- signal: PA7
+  pin: 1
+- signal: PC0
+  pin: 2
+- signal: PC1
+  pin: 3
+- signal: PC2
+  pin: 4
+- signal: PC3
+  pin: 5
+- signal: PD0
+  pin: 6
+- signal: PD1
+  pin: 7
+- signal: PD2
+  pin: 8
+- signal: PD3
+  pin: 9
+- signal: PD4
+  pin: 10
+- signal: PD5
+  pin: 11
+- signal: PD6
+  pin: 12
+- signal: PD7
+  pin: 13
+- signal: AVDD
+  pin: 14
+  constraints:
+  - power
+- signal: AGND
+  pin: 15
+  constraints:
+  - power
+- signal: PF0
+  pin: 16
+- signal: PF1
+  pin: 17
+- signal: PF6
+  pin: 18
+- signal: UPDI
+  pin: 19
+  constraints:
+  - debug-default
+- signal: VDD0
+  pin: 20
+  constraints:
+  - power
+- signal: GND0
+  pin: 21
+  constraints:
+  - power
+- signal: PA0
+  pin: 22
+- signal: PA1
+  pin: 23
+- signal: PA2
+  pin: 24
+- signal: PA3
+  pin: 25
+- signal: PA4
+  pin: 26
+- signal: PA5
+  pin: 27
+- signal: PA6
+  pin: 28
 interrupts:
 - *id001
 - *id002

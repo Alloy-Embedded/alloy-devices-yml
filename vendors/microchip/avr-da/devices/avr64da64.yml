@@ -12,75 +12,58 @@ provenance:
   primary: microchip-atdf:AVR64DA64.atdf
   authored: auto
   notes: ATDF-extracted skeleton — pinout requires enrichment.
+  secondary:
+  - microchip-overlay:avr-da
 memory:
-- id: io
+- id: flash
   base: 0
-  size: 4159B
-  access: rw
-  address_space: data
-- id: lockbits
-  base: '0x1040'
-  size: 4B
-  access: rw
-  address_space: fuse
-- id: fuses
-  base: '0x1050'
-  size: 16B
-  access: rw
-  address_space: fuse
-- id: user_signatures
-  base: '0x1080'
-  size: 32B
-  access: rw
-  address_space: signature
-- id: signatures
-  base: '0x1100'
-  size: 3B
-  access: ro
-  address_space: signature
-- id: prod_signatures
-  base: '0x1103'
-  size: 125B
-  access: ro
-  address_space: signature
-- id: eeprom
-  base: '0x1400'
-  size: 512B
-  access: rw
-  address_space: eeprom
-- id: internal_sram
-  base: '0x6000'
-  size: 8KB
-  access: rw
-  address_space: data
-- id: mapped_progmem
-  base: '0x8000'
-  size: 32KB
-  access: rw
-  address_space: data
-- id: progmem
-  base: 0
-  size: 64KB
-  access: rwx
+  size: 128KB
+  access: rx
+  alias: code
   address_space: program
+- id: sram
+  base: '0x4000'
+  size: 16KB
+  access: rw
+  alias: data
+  address_space: data
 clock:
   oscillators:
-    osc_int_8mhz:
-      freq: 8MHz
+    oschf:
+      freq: 24MHz
       kind: rc-internal
-    osc_int_128khz:
-      freq: 128kHz
+    osc32k:
+      freq: 32kHz
       kind: rc-internal
-    osc_ext:
+    extclk:
       freq: 0Hz
       kind: crystal-external
       optional: true
   domains:
-  - id: sysclk
+  - id: clk_per
     sources:
-    - osc_int_8mhz
-    - osc_int_128khz
-    - osc_ext
+    - oschf
+    - osc32k
+    - extclk
+  profiles:
+  - id: factory-oschf-4mhz
+    kind: post-reset
+    sysclk: 4MHz
+    sysclk_source: oschf
+    hclk_hz: 4000000
+    pclk_hz: 4000000
+  - id: oschf-24mhz-max
+    kind: recommended
+    sysclk: 24MHz
+    sysclk_source: oschf
+    hclk_hz: 24000000
+    pclk_hz: 24000000
+  - id: external-clock-24mhz
+    kind: recommended
+    sysclk: 24MHz
+    sysclk_source: extclk
+    hclk_hz: 24000000
+    pclk_hz: 24000000
 templates:
   ac:
     registers:
@@ -452,6 +435,7 @@ templates:
         - 0
         - 7
         access: rw
+    max_clock: 1500kHz
   bod:
     registers:
       ctrla:
@@ -4476,6 +4460,7 @@ templates:
       intflags.if:
         bit: 7
         access: rw
+    max_clock: 12MHz
   syscfg:
     registers:
       revid:
@@ -5448,6 +5433,7 @@ templates:
         - 1
         - 7
         access: rw
+    max_clock: 1MHz
   usart:
     registers:
       rxdatal:
@@ -5660,6 +5646,7 @@ templates:
         - 0
         - 6
         access: rw
+    max_baud: 1500000
   userrow:
     registers:
       userrow0:
@@ -5929,6 +5916,8 @@ templates:
         enum:
           low: 0
           high: 1
+  i2c:
+    max_clock: 1MHz
 peripherals:
 - id: ac0
   template: ac
@@ -6339,7 +6328,152 @@ peripherals:
     num: 59
     name: ZCD2_ZCD_vect
 pinout:
-- signal: RESET
+- signal: PA3
+  pin: 1
+- signal: PA4
+  pin: 2
+- signal: PA5
+  pin: 3
+- signal: PA6
+  pin: 4
+- signal: PA7
+  pin: 5
+- signal: VDD0
+  pin: 6
+  constraints:
+  - power
+- signal: GND0
+  pin: 7
+  constraints:
+  - power
+- signal: PB0
+  pin: 8
+- signal: PB1
+  pin: 9
+- signal: PB2
+  pin: 10
+- signal: PB3
+  pin: 11
+- signal: PB4
+  pin: 12
+- signal: PB5
+  pin: 13
+- signal: PB6
+  pin: 14
+- signal: PB7
+  pin: 15
+- signal: PC0
+  pin: 16
+- signal: PC1
+  pin: 17
+- signal: PC2
+  pin: 18
+- signal: PC3
+  pin: 19
+- signal: VDD1
+  pin: 20
+  constraints:
+  - power
+- signal: GND1
+  pin: 21
+  constraints:
+  - power
+- signal: PC4
+  pin: 22
+- signal: PC5
+  pin: 23
+- signal: PC6
+  pin: 24
+- signal: PC7
+  pin: 25
+- signal: PD0
+  pin: 26
+- signal: PD1
+  pin: 27
+- signal: PD2
+  pin: 28
+- signal: PD3
+  pin: 29
+- signal: PD4
+  pin: 30
+- signal: PD5
+  pin: 31
+- signal: PD6
+  pin: 32
+- signal: PD7
+  pin: 33
+- signal: AVDD
+  pin: 34
+  constraints:
+  - power
+- signal: AGND
+  pin: 35
+  constraints:
+  - power
+- signal: PE0
+  pin: 36
+- signal: PE1
+  pin: 37
+- signal: PE2
+  pin: 38
+- signal: PE3
+  pin: 39
+- signal: PE4
+  pin: 40
+- signal: PE5
+  pin: 41
+- signal: PE6
+  pin: 42
+- signal: PE7
+  pin: 43
+- signal: PF0
+  pin: 44
+- signal: PF1
+  pin: 45
+- signal: PF2
+  pin: 46
+- signal: PF3
+  pin: 47
+- signal: PF4
+  pin: 48
+- signal: PF5
+  pin: 49
+- signal: PF6
+  pin: 50
+- signal: UPDI
+  pin: 51
+  constraints:
+  - debug-default
+- signal: PG0
+  pin: 52
+- signal: PG1
+  pin: 53
+- signal: PG2
+  pin: 54
+- signal: PG3
+  pin: 55
+- signal: VDD2
+  pin: 56
+  constraints:
+  - power
+- signal: GND2
+  pin: 57
+  constraints:
+  - power
+- signal: PG4
+  pin: 58
+- signal: PG5
+  pin: 59
+- signal: PG6
+  pin: 60
+- signal: PG7
+  pin: 61
+- signal: PA0
+  pin: 62
+- signal: PA1
+  pin: 63
+- signal: PA2
+  pin: 64
 interrupts:
 - *id001
 - *id002
