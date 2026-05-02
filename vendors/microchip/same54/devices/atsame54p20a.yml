@@ -16,6 +16,7 @@ provenance:
   notes: ATDF-extracted skeleton — pinout requires enrichment.
   secondary:
   - microchip-overlay:same54
+  - microchip-csp:peripheral/clk_sam_d51_e51_e53_e54/config/clk.py
 memory:
 - id: flash
   base: 0
@@ -128,11 +129,16 @@ clock:
       kind: crystal-external
       optional: true
   domains:
-  - id: clk_per
+  - id: xosc32k
+    select_register:
+      reg: OSC32KCTRL.XOSC32K
+      field: CGM
+      encoding:
+        xt: 1
+        hs: 2
     sources:
-    - oschf
-    - osc32k
-    - extclk
+    - xt
+    - hs
   profiles:
   - id: factory-default
     kind: post-reset
@@ -12780,12 +12786,12 @@ templates:
         bits:
         - 4
         - 7
-  twi:
-    max_clock: 1MHz
-  i2c:
-    max_clock: 1MHz
   usart:
     max_baud: 6000000
+  i2c:
+    max_clock: 1MHz
+  twi:
+    max_clock: 1MHz
   spi:
     max_clock: 24MHz
 peripherals:

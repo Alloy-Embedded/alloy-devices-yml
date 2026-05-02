@@ -105,6 +105,32 @@ clock:
     sources:
     - no_effect
     - crystal_sel
+  - id: mainck
+    select_register:
+      reg: PMC.CKGR_MOR
+      field: MOSCRCF
+      encoding:
+        _4_mhz: 0
+        _8_mhz: 1
+        _12_mhz: 2
+    sources:
+    - _4_mhz
+    - _8_mhz
+    - _12_mhz
+  - id: plla
+    select_register:
+      reg: PMC.CKGR_PLLAR
+      field: DIVA
+      encoding: &id001
+        _0: 0
+        bypass: 1
+    sources:
+    - _0
+    - bypass
+    prescaler_register:
+      reg: PMC.CKGR_PLLAR
+      field: DIVA
+      encoding: *id001
   - id: mck
     select_register:
       reg: PMC.PMC_MCKR
@@ -18280,11 +18306,11 @@ templates:
         bit: 1
       lsr.byteacc:
         bit: 2
-  twi:
-    max_clock: 1MHz
   adc:
     max_clock: 16MHz
   i2c:
+    max_clock: 1MHz
+  twi:
     max_clock: 1MHz
 peripherals:
 - id: acc
@@ -18292,7 +18318,7 @@ peripherals:
   base: '0x40044000'
   description: Analog Comparator Controller
   ip_version: acc_J
-  irq: &id033
+  irq: &id034
     num: 33
     name: ACC_ACC_vect
 - id: aes
@@ -18300,7 +18326,7 @@ peripherals:
   base: '0x4006C000'
   description: Advanced Encryption Standard
   ip_version: aes_W
-  irq: &id054
+  irq: &id055
     num: 56
     name: AES_AES_vect
 - id: afec0
@@ -18333,7 +18359,7 @@ peripherals:
     - pin: PA20
     ad10:
     - pin: PB0
-  irq: &id029
+  irq: &id030
     num: 29
     name: AFEC0_AFEC0_vect
 - id: afec1
@@ -18368,7 +18394,7 @@ peripherals:
     - pin: PE3
     ad11:
     - pin: PE0
-  irq: &id040
+  irq: &id041
     num: 40
     name: AFEC1_AFEC1_vect
 - id: chipid
@@ -18388,7 +18414,7 @@ peripherals:
     - pin: PD0
     datrg:
     - pin: PA2
-  irq: &id030
+  irq: &id031
     num: 30
     name: DACC_DACC_vect
 - id: ebi
@@ -18515,7 +18541,7 @@ peripherals:
   pin_options:
     erase:
     - pin: PB12
-  irq: &id007
+  irq: &id008
     num: 6
     name: EFC_EFC_vect
 - id: gmac
@@ -18566,22 +18592,22 @@ peripherals:
     gtx3:
     - pin: PD16
   irq:
-  - &id039
+  - &id040
     num: 39
     name: GMAC_GMAC_vect
-  - &id063
+  - &id064
     num: 66
     name: GMAC_GMAC_Q1_vect
-  - &id064
+  - &id065
     num: 67
     name: GMAC_GMAC_Q2_vect
-  - &id068
+  - &id069
     num: 71
     name: GMAC_GMAC_Q3_vect
-  - &id069
+  - &id070
     num: 72
     name: GMAC_GMAC_Q4_vect
-  - &id070
+  - &id071
     num: 73
     name: GMAC_GMAC_Q5_vect
 - id: gpbr
@@ -18607,7 +18633,7 @@ peripherals:
     - pin: PA26
     mcda3:
     - pin: PA27
-  irq: &id018
+  irq: &id019
     num: 18
     name: HSMCI_HSMCI_vect
 - id: i2sc0
@@ -18626,7 +18652,7 @@ peripherals:
     - pin: PA0
     ws:
     - pin: PA15
-  irq: &id066
+  irq: &id067
     num: 69
     name: I2SC0_I2SC0_vect
 - id: i2sc1
@@ -18645,7 +18671,7 @@ peripherals:
     - pin: PA19
     ws:
     - pin: PE0
-  irq: &id067
+  irq: &id068
     num: 70
     name: I2SC1_I2SC1_vect
 - id: icm
@@ -18653,7 +18679,7 @@ peripherals:
   base: '0x40048000'
   description: Integrity Check Monitor
   ip_version: icm_H
-  irq: &id032
+  irq: &id033
     num: 32
     name: ICM_ICM_vect
 - id: isi
@@ -18692,7 +18718,7 @@ peripherals:
     - pin: PA24
     vsync:
     - pin: PD25
-  irq: &id057
+  irq: &id058
     num: 59
     name: ISI_ISI_vect
 - id: matrix
@@ -18711,10 +18737,10 @@ peripherals:
     cantx:
     - pin: PB2
   irq:
-  - &id035
+  - &id036
     num: 35
     name: MCAN0_MCAN0_INT0_vect
-  - &id036
+  - &id037
     num: 36
     name: MCAN0_MCAN0_INT1_vect
 - id: mcan1
@@ -18729,10 +18755,10 @@ peripherals:
     - pin: PC14
     - pin: PD12
   irq:
-  - &id037
+  - &id038
     num: 37
     name: MCAN1_MCAN1_INT0_vect
-  - &id038
+  - &id039
     num: 38
     name: MCAN1_MCAN1_INT1_vect
 - id: mlb
@@ -18747,7 +18773,7 @@ peripherals:
     - pin: PB5
     mlbsig:
     - pin: PD10
-  irq: &id053
+  irq: &id054
     num: 53
     name: MLB_MLB_vect
 - id: pioa
@@ -18842,7 +18868,7 @@ peripherals:
     - pin: PA21
     piodcclk:
     - pin: PA22
-  irq: &id010
+  irq: &id011
     num: 10
     name: PIOA_PIOA_vect
 - id: piob
@@ -18875,7 +18901,7 @@ peripherals:
     - pin: PB12
     p45:
     - pin: PB13
-  irq: &id011
+  irq: &id012
     num: 11
     name: PIOB_PIOB_vect
 - id: pioc
@@ -18948,7 +18974,7 @@ peripherals:
     - pin: PC30
     p95:
     - pin: PC31
-  irq: &id012
+  irq: &id013
     num: 12
     name: PIOC_PIOC_vect
 - id: piod
@@ -19021,7 +19047,7 @@ peripherals:
     - pin: PD30
     p127:
     - pin: PD31
-  irq: &id016
+  irq: &id017
     num: 16
     name: PIOD_PIOD_vect
 - id: pioe
@@ -19042,7 +19068,7 @@ peripherals:
     - pin: PE4
     p133:
     - pin: PE5
-  irq: &id017
+  irq: &id018
     num: 17
     name: PIOE_PIOE_vect
 - id: pmc
@@ -19072,7 +19098,7 @@ peripherals:
     - pin: PA7
     xout32:
     - pin: PA8
-  irq: &id006
+  irq: &id007
     num: 5
     name: PMC_PMC_vect
 - id: pwm0
@@ -19143,7 +19169,7 @@ peripherals:
     - pin: PC15
     - pin: PC22
     - pin: PD27
-  irq: &id031
+  irq: &id032
     num: 31
     name: PWM0_PWM0_vect
 - id: pwm1
@@ -19186,7 +19212,7 @@ peripherals:
     pwml3:
     - pin: PA5
     - pin: PD6
-  irq: &id058
+  irq: &id059
     num: 60
     name: PWM1_PWM1_vect
 - id: qspi
@@ -19207,7 +19233,7 @@ peripherals:
     - pin: PD31
     qsck:
     - pin: PA14
-  irq: &id043
+  irq: &id044
     num: 43
     name: QSPI_QSPI_vect
 - id: rstc
@@ -19215,7 +19241,7 @@ peripherals:
   base: '0x400E1800'
   description: Reset Controller
   ip_version: rstc_N
-  irq: &id002
+  irq: &id003
     num: 1
     name: RSTC_RSTC_vect
 - id: rswdt
@@ -19223,7 +19249,7 @@ peripherals:
   base: '0x400E1900'
   description: Reinforced Safety Watchdog Timer
   ip_version: rswdt_G
-  irq: &id060
+  irq: &id061
     num: 63
     name: RSWDT_RSWDT_vect
 - id: rtc
@@ -19236,7 +19262,7 @@ peripherals:
     - pin: PB0
     rtcout1:
     - pin: PB1
-  irq: &id003
+  irq: &id004
     num: 2
     name: RTC_RTC_vect
 - id: rtt
@@ -19244,7 +19270,7 @@ peripherals:
   base: '0x400E1830'
   description: Real-time Timer
   ip_version: rtt_M
-  irq: &id004
+  irq: &id005
     num: 3
     name: RTT_RTT_vect
 - id: smc
@@ -19273,7 +19299,7 @@ peripherals:
     - pin: PD27
     spck:
     - pin: PD22
-  irq: &id021
+  irq: &id022
     num: 21
     name: SPI0_SPI0_vect
 - id: spi1
@@ -19299,7 +19325,7 @@ peripherals:
     - pin: PD2
     spck:
     - pin: PC24
-  irq: &id042
+  irq: &id043
     num: 42
     name: SPI1_SPI1_vect
 - id: ssc
@@ -19322,7 +19348,7 @@ peripherals:
     - pin: PB0
     tk:
     - pin: PB1
-  irq: &id022
+  irq: &id023
     num: 22
     name: SSC_SSC_vect
 - id: supc
@@ -19359,7 +19385,7 @@ peripherals:
     - pin: PB5
     wkup5:
     - pin: PD28
-  irq: &id001
+  irq: &id002
     num: 0
     name: SUPC_SUPC_vect
 - id: tc0
@@ -19387,13 +19413,13 @@ peripherals:
     tiob2:
     - pin: PA27
   irq:
-  - &id023
+  - &id024
     num: 23
     name: TC0_TC0_vect
-  - &id024
+  - &id025
     num: 24
     name: TC0_TC1_vect
-  - &id025
+  - &id026
     num: 25
     name: TC0_TC2_vect
 - id: tc1
@@ -19421,13 +19447,13 @@ peripherals:
     tiob5:
     - pin: PC30
   irq:
-  - &id026
+  - &id027
     num: 26
     name: TC1_TC3_vect
-  - &id027
+  - &id028
     num: 27
     name: TC1_TC4_vect
-  - &id028
+  - &id029
     num: 28
     name: TC1_TC5_vect
 - id: tc2
@@ -19455,13 +19481,13 @@ peripherals:
     tiob8:
     - pin: PC12
   irq:
-  - &id047
+  - &id048
     num: 47
     name: TC2_TC6_vect
-  - &id048
+  - &id049
     num: 48
     name: TC2_TC7_vect
-  - &id049
+  - &id050
     num: 49
     name: TC2_TC8_vect
 - id: tc3
@@ -19489,13 +19515,13 @@ peripherals:
     tiob11:
     - pin: PD22
   irq:
-  - &id050
+  - &id051
     num: 50
     name: TC3_TC9_vect
-  - &id051
+  - &id052
     num: 51
     name: TC3_TC10_vect
-  - &id052
+  - &id053
     num: 52
     name: TC3_TC11_vect
 - id: trng
@@ -19503,7 +19529,7 @@ peripherals:
   base: '0x40070000'
   description: True Random Number Generator
   ip_version: trng_G
-  irq: &id055
+  irq: &id056
     num: 57
     name: TRNG_TRNG_vect
 - id: twihs0
@@ -19516,7 +19542,7 @@ peripherals:
     - pin: PA4
     twd:
     - pin: PA3
-  irq: &id019
+  irq: &id020
     num: 19
     name: TWIHS0_TWIHS0_vect
 - id: twihs1
@@ -19529,7 +19555,7 @@ peripherals:
     - pin: PB5
     twd:
     - pin: PB4
-  irq: &id020
+  irq: &id021
     num: 20
     name: TWIHS1_TWIHS1_vect
 - id: twihs2
@@ -19542,7 +19568,7 @@ peripherals:
     - pin: PD28
     twd:
     - pin: PD27
-  irq: &id041
+  irq: &id042
     num: 41
     name: TWIHS2_TWIHS2_vect
 - id: uart0
@@ -19555,7 +19581,7 @@ peripherals:
     - pin: PA9
     utxd:
     - pin: PA10
-  irq: &id008
+  irq: &id009
     num: 7
     name: UART0_UART0_vect
 - id: uart1
@@ -19570,7 +19596,7 @@ peripherals:
     - pin: PA4
     - pin: PA6
     - pin: PD26
-  irq: &id009
+  irq: &id010
     num: 8
     name: UART1_UART1_vect
 - id: uart2
@@ -19583,7 +19609,7 @@ peripherals:
     - pin: PD25
     utxd:
     - pin: PD26
-  irq: &id044
+  irq: &id045
     num: 44
     name: UART2_UART2_vect
 - id: uart3
@@ -19597,7 +19623,7 @@ peripherals:
     utxd:
     - pin: PD30
     - pin: PD31
-  irq: &id045
+  irq: &id046
     num: 45
     name: UART3_UART3_vect
 - id: uart4
@@ -19611,7 +19637,7 @@ peripherals:
     utxd:
     - pin: PD3
     - pin: PD19
-  irq: &id046
+  irq: &id047
     num: 46
     name: UART4_UART4_vect
 - id: usart0
@@ -19638,7 +19664,7 @@ peripherals:
     - pin: PB13
     txd:
     - pin: PB1
-  irq: &id013
+  irq: &id014
     num: 13
     name: USART0_USART0_vect
 - id: usart1
@@ -19667,7 +19693,7 @@ peripherals:
     - pin: PA23
     txd:
     - pin: PB4
-  irq: &id014
+  irq: &id015
     num: 14
     name: USART1_USART1_vect
 - id: usart2
@@ -19694,7 +19720,7 @@ peripherals:
     - pin: PD17
     txd:
     - pin: PD16
-  irq: &id015
+  irq: &id016
     num: 15
     name: USART2_USART2_vect
 - id: usbhs
@@ -19702,7 +19728,7 @@ peripherals:
   base: '0x40038000'
   description: USB High-Speed Interface
   ip_version: usbhs_G
-  irq: &id034
+  irq: &id035
     num: 34
     name: USBHS_USBHS_vect
 - id: utmi
@@ -19715,7 +19741,7 @@ peripherals:
   base: '0x400E1850'
   description: Watchdog Timer
   ip_version: wdt_N
-  irq: &id005
+  irq: &id006
     num: 4
     name: WDT_WDT_vect
 - id: xdmac
@@ -19723,7 +19749,7 @@ peripherals:
   base: '0x40078000'
   description: Extensible DMA Controller
   ip_version: xdmac_K
-  irq: &id056
+  irq: &id057
     num: 58
     name: XDMAC_XDMAC_vect
 - id: fuses
@@ -19743,10 +19769,10 @@ peripherals:
   base: '0xE000ED00'
   description: System Control Block
   irq:
-  - &id061
+  - &id062
     num: 64
     name: SCB_CCW_vect
-  - &id062
+  - &id063
     num: 65
     name: SCB_CCF_vect
 - id: systick
@@ -19766,10 +19792,10 @@ peripherals:
   base: '0xE000EF30'
   description: Floating Point Unit
   irq:
-  - &id059
+  - &id060
     num: 61
     name: FPU_FPU_vect
-  - &id065
+  - &id066
     num: 68
     name: FPU_IXC_vect
 - id: itm
@@ -20015,7 +20041,6 @@ pinout:
 - signal: PA5
 - signal: PA9
 interrupts:
-- *id001
 - *id002
 - *id003
 - *id004
@@ -20085,3 +20110,4 @@ interrupts:
 - *id068
 - *id069
 - *id070
+- *id071
