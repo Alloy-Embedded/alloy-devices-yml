@@ -24231,10 +24231,10 @@ templates:
       test.test_usb_oe:
         bit: 1
         access: rw
-  adc:
-    max_clock: 5MHz
   spi:
     max_clock: 60MHz
+  adc:
+    max_clock: 5MHz
 peripherals:
 - id: aes
   template: aes
@@ -24336,6 +24336,11 @@ peripherals:
   irq:
     num: 39
     name: I2C_EXT0_IRQHandler
+  gpio_matrix_signals:
+    scl_in: 45
+    scl_out: 45
+    sda_in: 46
+    sda_out: 46
 - id: i2c1
   template: i2c
   base: '0x60005000'
@@ -24343,6 +24348,11 @@ peripherals:
   irq:
     num: 40
     name: I2C_EXT1_IRQHandler
+  gpio_matrix_signals:
+    scl_in: 55
+    scl_out: 55
+    sda_in: 56
+    sda_out: 56
 - id: i2s0
   template: i2s
   base: '0x6000D000'
@@ -24444,6 +24454,22 @@ peripherals:
   irq:
     num: 49
     name: MCPWM0_IRQHandler
+  gpio_matrix_signals:
+    sync0_in: 87
+    out0a_bidi: 87
+    sync1_in: 88
+    out0b_bidi: 88
+    sync2_in: 89
+    out1a_bidi: 89
+    f0_in: 90
+    out1b_bidi: 90
+    f1_in: 91
+    out2a_bidi: 91
+    f2_in: 92
+    out2b_bidi: 92
+    cap0_in: 93
+    cap1_in: 94
+    cap2_in: 95
 - id: mem_monitor
   template: mem_monitor
   base: '0x60092000'
@@ -24537,6 +24563,18 @@ peripherals:
 - id: spi1
   template: spi1
   base: '0x60003000'
+  gpio_matrix_signals:
+    clk_out: 114
+    cs0_out: 115
+    cs1_out: 116
+    q_in: 121
+    q_out: 121
+    d_in: 122
+    d_out: 122
+    hd_in: 123
+    hd_out: 123
+    wp_in: 124
+    wp_out: 124
 - id: spi2
   template: spi2
   base: '0x60081000'
@@ -24545,6 +24583,24 @@ peripherals:
     name: MSPI_IRQHandler
   - num: 59
     name: GPSPI2_IRQHandler
+  gpio_matrix_signals:
+    clk_in: 63
+    clk_out: 63
+    q_in: 64
+    q_out: 64
+    d_in: 65
+    d_out: 65
+    hd_in: 66
+    hd_out: 66
+    wp_in: 67
+    wp_out: 67
+    cs0_in: 68
+    cs0_out: 68
+    cs1_out: 101
+    cs2_out: 102
+    cs3_out: 103
+    cs4_out: 104
+    cs5_out: 105
 - id: systimer
   template: systimer
   base: '0x6000B000'
@@ -24593,6 +24649,13 @@ peripherals:
   irq:
     num: 33
     name: UART0_IRQHandler
+  gpio_matrix_signals:
+    rxd_in: 6
+    txd_out: 6
+    cts_in: 7
+    rts_out: 7
+    dsr_in: 8
+    dtr_out: 8
 - id: uart1
   template: uart
   base: '0x60001000'
@@ -24600,6 +24663,13 @@ peripherals:
   irq:
     num: 34
     name: UART1_IRQHandler
+  gpio_matrix_signals:
+    rxd_in: 9
+    txd_out: 9
+    cts_in: 10
+    rts_out: 10
+    dsr_in: 11
+    dtr_out: 11
 - id: uhci0
   template: uhci
   base: '0x60006000'

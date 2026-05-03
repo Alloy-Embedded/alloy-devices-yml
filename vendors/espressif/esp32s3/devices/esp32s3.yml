@@ -35325,6 +35325,11 @@ peripherals:
     name: I2C_MASTER_IRQHandler
   - num: 42
     name: I2C_EXT0_IRQHandler
+  gpio_matrix_signals:
+    scl_in: 89
+    scl_out: 89
+    sda_in: 90
+    sda_out: 90
 - id: i2c1
   template: i2c
   base: '0x60027000'
@@ -35332,6 +35337,11 @@ peripherals:
   irq:
     num: 43
     name: I2C_EXT1_IRQHandler
+  gpio_matrix_signals:
+    scl_in: 91
+    scl_out: 91
+    sda_in: 92
+    sda_out: 92
 - id: i2s0
   template: i2s
   base: '0x6000F000'
@@ -35339,8 +35349,18 @@ peripherals:
     num: 25
     name: I2S0_IRQHandler
   gpio_matrix_signals:
+    o_bck_in: 22
+    o_bck_out: 22
     mclk_in: 23
     mclk_out: 23
+    o_ws_in: 24
+    o_ws_out: 24
+    i_sd_in: 25
+    o_sd_out: 25
+    i_bck_in: 26
+    i_bck_out: 26
+    i_ws_in: 27
+    i_ws_out: 27
 - id: i2s1
   template: i2s1
   base: '0x6002D000'
@@ -35350,6 +35370,16 @@ peripherals:
   gpio_matrix_signals:
     mclk_in: 21
     mclk_out: 21
+    o_bck_in: 28
+    o_bck_out: 28
+    o_ws_in: 29
+    o_ws_out: 29
+    i_sd_in: 30
+    o_sd_out: 30
+    i_bck_in: 31
+    i_bck_out: 31
+    i_ws_in: 32
+    i_ws_out: 32
 - id: interrupt_core0
   template: interrupt_core0
   base: '0x600C2000'
@@ -35489,6 +35519,22 @@ peripherals:
   irq:
     num: 31
     name: MCPWM0_IRQHandler
+  gpio_matrix_signals:
+    sync0_in: 160
+    out0a_bidi: 160
+    sync1_in: 161
+    out0b_bidi: 161
+    sync2_in: 162
+    out1a_bidi: 162
+    f0_in: 163
+    out1b_bidi: 163
+    f1_in: 164
+    out2a_bidi: 164
+    f2_in: 165
+    out2b_bidi: 165
+    cap0_in: 166
+    cap1_in: 167
+    cap2_in: 168
 - id: mcpwm1
   template: mcpwm
   base: '0x6002C000'
@@ -35496,6 +35542,22 @@ peripherals:
   irq:
     num: 32
     name: MCPWM1_IRQHandler
+  gpio_matrix_signals:
+    out0a_bidi: 166
+    out0b_bidi: 167
+    out1a_bidi: 168
+    sync0_in: 169
+    out1b_bidi: 169
+    sync1_in: 170
+    out2a_bidi: 170
+    sync2_in: 171
+    out2b_bidi: 171
+    f0_in: 172
+    f1_in: 173
+    f2_in: 174
+    cap0_in: 175
+    cap1_in: 176
+    cap2_in: 177
 - id: rmt
   template: rmt
   base: '0x60016000'
@@ -35608,6 +35670,28 @@ peripherals:
   irq:
     num: 20
     name: SPI1_IRQHandler
+  gpio_matrix_signals:
+    q_in: 0
+    q_out: 0
+    d_in: 1
+    d_out: 1
+    hd_in: 2
+    hd_out: 2
+    wp_in: 3
+    wp_out: 3
+    clk_out: 4
+    cs0_out: 5
+    cs1_out: 6
+    d4_in: 7
+    d4_out: 7
+    d5_in: 8
+    d5_out: 8
+    d6_in: 9
+    d6_out: 9
+    d7_in: 10
+    d7_out: 10
+    dqs_in: 11
+    dqs_out: 11
 - id: spi2
   template: spi2
   base: '0x60024000'
@@ -35616,6 +35700,33 @@ peripherals:
     name: SPI2_IRQHandler
   - num: 44
     name: SPI2_DMA_IRQHandler
+  gpio_matrix_signals:
+    clk_in: 101
+    clk_out: 101
+    q_in: 102
+    q_out: 102
+    d_in: 103
+    d_out: 103
+    hd_in: 104
+    hd_out: 104
+    wp_in: 105
+    wp_out: 105
+    io4_in: 106
+    io4_out: 106
+    io5_in: 107
+    io5_out: 107
+    io6_in: 108
+    io6_out: 108
+    io7_in: 109
+    io7_out: 109
+    cs0_in: 110
+    cs0_out: 110
+    cs1_out: 111
+    cs2_out: 112
+    cs3_out: 113
+    cs4_out: 114
+    cs5_out: 115
+    dqs_out: 126
 - id: spi3
   template: spi
   base: '0x60025000'
@@ -35686,6 +35797,13 @@ peripherals:
   irq:
     num: 27
     name: UART0_IRQHandler
+  gpio_matrix_signals:
+    rxd_in: 12
+    txd_out: 12
+    cts_in: 13
+    rts_out: 13
+    dsr_in: 14
+    dtr_out: 14
 - id: uart1
   template: uart
   base: '0x60010000'
@@ -35693,6 +35811,13 @@ peripherals:
   irq:
     num: 28
     name: UART1_IRQHandler
+  gpio_matrix_signals:
+    rxd_in: 15
+    txd_out: 15
+    cts_in: 16
+    rts_out: 16
+    dsr_in: 17
+    dtr_out: 17
 - id: uart2
   template: uart
   base: '0x6002E000'
@@ -35700,6 +35825,13 @@ peripherals:
   irq:
     num: 29
     name: UART2_IRQHandler
+  gpio_matrix_signals:
+    rxd_in: 18
+    txd_out: 18
+    cts_in: 19
+    rts_out: 19
+    dsr_in: 20
+    dtr_out: 20
 - id: uhci0
   template: uhci
   base: '0x60014000'

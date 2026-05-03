@@ -1,0 +1,10221 @@
+schema: alloy.device.v2.1
+identity:
+  vendor: infineon
+  family: imc300
+  device: imc300a
+  core:
+    isa: armv6-m
+    name: cm0
+    bits: 32
+    nvic_priority_bits: 2
+  description: SVD file
+provenance:
+  primary: cmsis-svd:IMC300A.svd
+  authored: auto
+  notes: SVD-extracted skeleton — memory + pinout require enrichment.
+memory:
+- id: flash
+  base: '0x00000000'
+  size: 1B
+  access: rx
+  role: extractor-placeholder
+clock:
+  oscillators:
+    unknown:
+      freq: 0Hz
+      kind: rc-internal
+  domains:
+  - id: sysclk
+    sources:
+    - unknown
+templates:
+  adc:
+    registers:
+      bound:
+        offset: 184
+      cfg:
+        offset: 128
+      clc:
+        offset: 0
+      eflag:
+        offset: 224
+      evnp:
+        offset: '0x0140'
+      iclass:
+        offset: 160
+      id:
+        offset: 8
+      ocs:
+        offset: 40
+      rcr:
+        offset: '0x0280'
+      res:
+        offset: '0x0300'
+      resd:
+        offset: '0x0380'
+      rsctrl:
+        offset: '0x0200'
+      rsmr:
+        offset: '0x0204'
+      rspnd:
+        offset: '0x01C0'
+      rssel:
+        offset: '0x0180'
+    fields:
+      bound.boundary0:
+        bits:
+        - 0
+        - 11
+        access: rw
+      bound.boundary1:
+        bits:
+        - 16
+        - 27
+        access: rw
+      cfg.dpcal:
+        bit: 16
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      cfg.sucal:
+        bit: 31
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      clc.disr:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      clc.diss:
+        bit: 1
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      clc.edis:
+        bit: 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      eflag.rev:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      eflag.revclr:
+        bit: 24
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      eflag.sev:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      eflag.sevclr:
+        bit: 16
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      evnp.rev0np:
+        bits:
+        - 16
+        - 19
+        access: rw
+        enum:
+          value1: 0
+          value2: 3
+      evnp.sev0np:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 3
+      iclass.cms:
+        bits:
+        - 8
+        - 10
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value6: 5
+      iclass.stcs:
+        bits:
+        - 0
+        - 4
+        access: rw
+      id.mod_number:
+        bits:
+        - 16
+        - 31
+        access: ro
+      id.mod_rev:
+        bits:
+        - 0
+        - 7
+        access: ro
+      id.mod_type:
+        bits:
+        - 8
+        - 15
+        access: ro
+      ocs.sus:
+        bits:
+        - 24
+        - 27
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      ocs.sus_p:
+        bit: 28
+        access: wo
+      ocs.sussta:
+        bit: 29
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      ocs.tg_p:
+        bit: 3
+        access: wo
+      ocs.tgb:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      ocs.tgs:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rcr.drctr:
+        bits:
+        - 16
+        - 19
+        access: rw
+        enum:
+          value1: 0
+      rcr.srgen:
+        bit: 31
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rcr.wfr:
+        bit: 24
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      res.chnr:
+        bits:
+        - 20
+        - 24
+        access: ro
+      res.fcr:
+        bit: 30
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      res.result:
+        bits:
+        - 0
+        - 15
+        access: rw
+      res.vf:
+        bit: 31
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      resd.chnr:
+        bits:
+        - 20
+        - 24
+        access: ro
+      resd.fcr:
+        bit: 30
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      resd.result:
+        bits:
+        - 0
+        - 15
+        access: rw
+      resd.vf:
+        bit: 31
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rsctrl.gtlvl:
+        bit: 20
+        access: ro
+      rsctrl.gtsel:
+        bits:
+        - 16
+        - 19
+        access: rw
+      rsctrl.gtwc:
+        bit: 23
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      rsctrl.srcresreg:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 15
+      rsctrl.xtlvl:
+        bit: 12
+        access: ro
+      rsctrl.xtmode:
+        bits:
+        - 13
+        - 14
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      rsctrl.xtsel:
+        bits:
+        - 8
+        - 11
+        access: rw
+      rsctrl.xtwc:
+        bit: 15
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      rsmr.clrpnd:
+        bit: 8
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      rsmr.engt:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      rsmr.ensi:
+        bit: 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rsmr.entr:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rsmr.ldev:
+        bit: 9
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      rsmr.ldm:
+        bit: 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rsmr.reqgt:
+        bit: 7
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      rsmr.scan:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rspnd.chpnd0:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rspnd.chpnd1:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rspnd.chpnd2:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rspnd.chpnd3:
+        bit: 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rspnd.chpnd4:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rspnd.chpnd5:
+        bit: 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rspnd.chpnd6:
+        bit: 6
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rspnd.chpnd7:
+        bit: 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rssel.chsel0:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rssel.chsel1:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rssel.chsel2:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rssel.chsel3:
+        bit: 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rssel.chsel4:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rssel.chsel5:
+        bit: 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rssel.chsel6:
+        bit: 6
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rssel.chsel7:
+        bit: 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+  can:
+    registers:
+      clc:
+        offset: 0
+      fdr:
+        offset: 12
+      id:
+        offset: 8
+      list[%s]:
+        offset: '0x0100'
+      mcr:
+        offset: '0x01C8'
+      mitr:
+        offset: '0x01CC'
+      moamr:
+        offset: 12
+      moar:
+        offset: 24
+      moctr:
+        offset: 28
+      modatah:
+        offset: 20
+      modatal:
+        offset: 16
+      mofcr:
+        offset: 0
+      mofgpr:
+        offset: 4
+      moipr:
+        offset: 8
+      msid[%s]:
+        offset: '0x0180'
+      msimask:
+        offset: '0x01C0'
+      mspnd[%s]:
+        offset: '0x0140'
+      nbtr:
+        offset: 16
+      ncr:
+        offset: 0
+      necnt:
+        offset: 20
+      nfcr:
+        offset: 24
+      nipr:
+        offset: 8
+      npcr:
+        offset: 12
+      nsr:
+        offset: 4
+      panctr:
+        offset: '0x01C4'
+    fields:
+      clc.disr:
+        bit: 0
+        access: rw
+      clc.diss:
+        bit: 1
+        access: ro
+      clc.edis:
+        bit: 3
+        access: rw
+      fdr.dm:
+        bits:
+        - 14
+        - 15
+        access: rw
+      fdr.step:
+        bits:
+        - 0
+        - 9
+        access: rw
+      id.mod_number:
+        bits:
+        - 16
+        - 31
+        access: ro
+      id.mod_rev:
+        bits:
+        - 0
+        - 7
+        access: ro
+      id.mod_type:
+        bits:
+        - 8
+        - 15
+        access: ro
+        enum:
+          value1: 192
+      list[%s].begin:
+        bits:
+        - 0
+        - 7
+        access: ro
+      list[%s].empty:
+        bit: 24
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      list[%s].end:
+        bits:
+        - 8
+        - 15
+        access: ro
+      list[%s].size:
+        bits:
+        - 16
+        - 23
+        access: ro
+      mcr.clksel:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 4
+      mcr.mpsel:
+        bits:
+        - 12
+        - 15
+        access: rw
+      mitr.it:
+        bits:
+        - 0
+        - 7
+        access: wo
+      moamr.am:
+        bits:
+        - 0
+        - 28
+        access: rw
+      moamr.mide:
+        bit: 29
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      moar.id:
+        bits:
+        - 0
+        - 28
+        access: rw
+      moar.ide:
+        bit: 29
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      moar.pri:
+        bits:
+        - 30
+        - 31
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      moctr.resdir:
+        bit: 11
+        access: wo
+      moctr.resmsglst:
+        bit: 4
+        access: wo
+      moctr.resmsgval:
+        bit: 5
+        access: wo
+      moctr.resnewdat:
+        bit: 3
+        access: wo
+      moctr.resrtsel:
+        bit: 6
+        access: wo
+      moctr.resrxen:
+        bit: 7
+        access: wo
+      moctr.resrxpnd:
+        bit: 0
+        access: wo
+      moctr.resrxupd:
+        bit: 2
+        access: wo
+      moctr.restxen0:
+        bit: 9
+        access: wo
+      moctr.restxen1:
+        bit: 10
+        access: wo
+      moctr.restxpnd:
+        bit: 1
+        access: wo
+      moctr.restxrq:
+        bit: 8
+        access: wo
+      moctr.setdir:
+        bit: 27
+        access: wo
+      moctr.setmsglst:
+        bit: 20
+        access: wo
+      moctr.setmsgval:
+        bit: 21
+        access: wo
+      moctr.setnewdat:
+        bit: 19
+        access: wo
+      moctr.setrtsel:
+        bit: 22
+        access: wo
+      moctr.setrxen:
+        bit: 23
+        access: wo
+      moctr.setrxpnd:
+        bit: 16
+        access: wo
+      moctr.setrxupd:
+        bit: 18
+        access: wo
+      moctr.settxen0:
+        bit: 25
+        access: wo
+      moctr.settxen1:
+        bit: 26
+        access: wo
+      moctr.settxpnd:
+        bit: 17
+        access: wo
+      moctr.settxrq:
+        bit: 24
+        access: wo
+      modatah.db4:
+        bits:
+        - 0
+        - 7
+        access: rw
+      modatah.db5:
+        bits:
+        - 8
+        - 15
+        access: rw
+      modatah.db6:
+        bits:
+        - 16
+        - 23
+        access: rw
+      modatah.db7:
+        bits:
+        - 24
+        - 31
+        access: rw
+      modatal.db0:
+        bits:
+        - 0
+        - 7
+        access: rw
+      modatal.db1:
+        bits:
+        - 8
+        - 15
+        access: rw
+      modatal.db2:
+        bits:
+        - 16
+        - 23
+        access: rw
+      modatal.db3:
+        bits:
+        - 24
+        - 31
+        access: rw
+      mofcr.datc:
+        bit: 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      mofcr.dlc:
+        bits:
+        - 24
+        - 27
+        access: rw
+      mofcr.dlcc:
+        bit: 10
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      mofcr.frren:
+        bit: 20
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      mofcr.gdfs:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      mofcr.idc:
+        bit: 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      mofcr.mmc:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+      mofcr.ovie:
+        bit: 18
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      mofcr.rmm:
+        bit: 21
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      mofcr.rxie:
+        bit: 16
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      mofcr.rxtoe:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      mofcr.sdt:
+        bit: 22
+        access: rw
+      mofcr.stt:
+        bit: 23
+        access: rw
+      mofcr.txie:
+        bit: 17
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      mofgpr.bot:
+        bits:
+        - 0
+        - 7
+        access: rw
+      mofgpr.cur:
+        bits:
+        - 16
+        - 23
+        access: rw
+      mofgpr.sel:
+        bits:
+        - 24
+        - 31
+        access: rw
+      mofgpr.top:
+        bits:
+        - 8
+        - 15
+        access: rw
+      moipr.cfcval:
+        bits:
+        - 16
+        - 31
+        access: rw
+      moipr.mpn:
+        bits:
+        - 8
+        - 15
+        access: rw
+      moipr.rxinp:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 14
+          value4: 15
+      moipr.txinp:
+        bits:
+        - 4
+        - 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 14
+          value4: 15
+      msid[%s].index:
+        bits:
+        - 0
+        - 5
+        access: ro
+      msimask.im:
+        bits:
+        - 0
+        - 31
+        access: rw
+      mspnd[%s].pnd:
+        bits:
+        - 0
+        - 31
+        access: rw
+      nbtr.brp:
+        bits:
+        - 0
+        - 5
+        access: rw
+      nbtr.div8:
+        bit: 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      nbtr.sjw:
+        bits:
+        - 6
+        - 7
+        access: rw
+      nbtr.tseg1:
+        bits:
+        - 8
+        - 11
+        access: rw
+      nbtr.tseg2:
+        bits:
+        - 12
+        - 14
+        access: rw
+      ncr.alie:
+        bit: 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      ncr.calm:
+        bit: 7
+        access: rw
+      ncr.candis:
+        bit: 4
+        access: rw
+      ncr.cce:
+        bit: 6
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      ncr.init:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      ncr.lecie:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      ncr.trie:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      ncr.txdis:
+        bit: 5
+        access: rw
+      necnt.ewrnlvl:
+        bits:
+        - 16
+        - 23
+        access: rw
+      necnt.leinc:
+        bit: 25
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      necnt.letd:
+        bit: 24
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      necnt.rec:
+        bits:
+        - 0
+        - 7
+        access: rw
+      necnt.tec:
+        bits:
+        - 8
+        - 15
+        access: rw
+      nfcr.cfc:
+        bits:
+        - 0
+        - 15
+        access: rw
+      nfcr.cfcie:
+        bit: 22
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      nfcr.cfcov:
+        bit: 23
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      nfcr.cfmod:
+        bits:
+        - 19
+        - 20
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      nfcr.cfsel:
+        bits:
+        - 16
+        - 18
+        access: rw
+      nipr.alinp:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 14
+          value4: 15
+      nipr.cfcinp:
+        bits:
+        - 12
+        - 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 14
+          value4: 15
+      nipr.lecinp:
+        bits:
+        - 4
+        - 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 14
+          value4: 15
+      nipr.trinp:
+        bits:
+        - 8
+        - 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 14
+          value4: 15
+      npcr.lbm:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      npcr.rxsel:
+        bits:
+        - 0
+        - 2
+        access: rw
+      nsr.alert:
+        bit: 5
+        access: rw
+      nsr.boff:
+        bit: 7
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      nsr.ewrn:
+        bit: 6
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      nsr.lec:
+        bits:
+        - 0
+        - 2
+        access: rw
+      nsr.lle:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      nsr.loe:
+        bit: 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      nsr.rxok:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      nsr.txok:
+        bit: 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      panctr.busy:
+        bit: 8
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      panctr.panar1:
+        bits:
+        - 16
+        - 23
+        access: rw
+      panctr.panar2:
+        bits:
+        - 24
+        - 31
+        access: rw
+      panctr.pancmd:
+        bits:
+        - 0
+        - 7
+        access: rw
+      panctr.rbusy:
+        bit: 9
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+  ccu4:
+    registers:
+      cmc:
+        offset: 4
+      cr:
+        offset: 56
+      crs:
+        offset: 60
+      cv[%s]:
+        offset: 116
+      dit:
+        offset: 28
+      dits:
+        offset: 32
+      ecrd0:
+        offset: 184
+      ecrd1:
+        offset: 188
+      fpc:
+        offset: 40
+      fpcs:
+        offset: 44
+      gcsc:
+        offset: 20
+      gcss:
+        offset: 16
+      gcst:
+        offset: 24
+      gctrl:
+        offset: 0
+      gidlc:
+        offset: 12
+      gidls:
+        offset: 8
+      gstat:
+        offset: 4
+      ins1:
+        offset: 216
+      ins2:
+        offset: 0
+      inte:
+        offset: 164
+      ints:
+        offset: 160
+      midr:
+        offset: 128
+      pr:
+        offset: 48
+      prs:
+        offset: 52
+      psc:
+        offset: 36
+      psl:
+        offset: 24
+      srs:
+        offset: 168
+      stc:
+        offset: 180
+      swr:
+        offset: 176
+      sws:
+        offset: 172
+      tc:
+        offset: 20
+      tcclr:
+        offset: 16
+      tcset:
+        offset: 12
+      tcst:
+        offset: 8
+      timer:
+        offset: 112
+    fields:
+      cmc.cap0s:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      cmc.cap1s:
+        bits:
+        - 6
+        - 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      cmc.cnts:
+        bits:
+        - 14
+        - 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      cmc.ends:
+        bits:
+        - 2
+        - 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      cmc.gates:
+        bits:
+        - 8
+        - 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      cmc.lds:
+        bits:
+        - 12
+        - 13
+        access: rw
+      cmc.mos:
+        bits:
+        - 18
+        - 19
+        access: rw
+      cmc.ofs:
+        bit: 16
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      cmc.strts:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      cmc.tce:
+        bit: 20
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      cmc.ts:
+        bit: 17
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      cmc.uds:
+        bits:
+        - 10
+        - 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      cr.cr:
+        bits:
+        - 0
+        - 15
+        access: ro
+      crs.crs:
+        bits:
+        - 0
+        - 15
+        access: rw
+      cv[%s].captv:
+        bits:
+        - 0
+        - 15
+        access: ro
+      cv[%s].ffl:
+        bit: 20
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      cv[%s].fpcv:
+        bits:
+        - 16
+        - 19
+        access: ro
+      dit.dcnt:
+        bits:
+        - 8
+        - 11
+        access: ro
+      dit.dcv:
+        bits:
+        - 0
+        - 3
+        access: ro
+      dits.dcvs:
+        bits:
+        - 0
+        - 3
+        access: rw
+      ecrd0.capv:
+        bits:
+        - 0
+        - 15
+        access: ro
+      ecrd0.ffl:
+        bit: 24
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      ecrd0.fpcv:
+        bits:
+        - 16
+        - 19
+        access: ro
+      ecrd0.lcv:
+        bit: 25
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      ecrd0.sptr:
+        bits:
+        - 20
+        - 21
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      ecrd0.vptr:
+        bits:
+        - 22
+        - 23
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      ecrd1.capv:
+        bits:
+        - 0
+        - 15
+        access: ro
+      ecrd1.ffl:
+        bit: 24
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      ecrd1.fpcv:
+        bits:
+        - 16
+        - 19
+        access: ro
+      ecrd1.lcv:
+        bit: 25
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      ecrd1.sptr:
+        bits:
+        - 20
+        - 21
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      ecrd1.vptr:
+        bits:
+        - 22
+        - 23
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      fpc.pcmp:
+        bits:
+        - 0
+        - 3
+        access: ro
+      fpc.pval:
+        bits:
+        - 8
+        - 11
+        access: rw
+      fpcs.pcmp:
+        bits:
+        - 0
+        - 3
+        access: rw
+      gcsc.s0dsc:
+        bit: 1
+        access: wo
+      gcsc.s0psc:
+        bit: 2
+        access: wo
+      gcsc.s0sc:
+        bit: 0
+        access: wo
+      gcsc.s0stc:
+        bit: 16
+        access: wo
+      gcsc.s1dsc:
+        bit: 5
+        access: wo
+      gcsc.s1psc:
+        bit: 6
+        access: wo
+      gcsc.s1sc:
+        bit: 4
+        access: wo
+      gcsc.s1stc:
+        bit: 17
+        access: wo
+      gcsc.s2dsc:
+        bit: 9
+        access: wo
+      gcsc.s2psc:
+        bit: 10
+        access: wo
+      gcsc.s2sc:
+        bit: 8
+        access: wo
+      gcsc.s2stc:
+        bit: 18
+        access: wo
+      gcsc.s3dsc:
+        bit: 13
+        access: wo
+      gcsc.s3psc:
+        bit: 14
+        access: wo
+      gcsc.s3sc:
+        bit: 12
+        access: wo
+      gcsc.s3stc:
+        bit: 19
+        access: wo
+      gcss.s0dse:
+        bit: 1
+        access: wo
+      gcss.s0pse:
+        bit: 2
+        access: wo
+      gcss.s0se:
+        bit: 0
+        access: wo
+      gcss.s0sts:
+        bit: 16
+        access: wo
+      gcss.s1dse:
+        bit: 5
+        access: wo
+      gcss.s1pse:
+        bit: 6
+        access: wo
+      gcss.s1se:
+        bit: 4
+        access: wo
+      gcss.s1sts:
+        bit: 17
+        access: wo
+      gcss.s2dse:
+        bit: 9
+        access: wo
+      gcss.s2pse:
+        bit: 10
+        access: wo
+      gcss.s2se:
+        bit: 8
+        access: wo
+      gcss.s2sts:
+        bit: 18
+        access: wo
+      gcss.s3dse:
+        bit: 13
+        access: wo
+      gcss.s3pse:
+        bit: 14
+        access: wo
+      gcss.s3se:
+        bit: 12
+        access: wo
+      gcss.s3sts:
+        bit: 19
+        access: wo
+      gcst.cc40st:
+        bit: 16
+        access: ro
+      gcst.cc41st:
+        bit: 17
+        access: ro
+      gcst.cc42st:
+        bit: 18
+        access: ro
+      gcst.cc43st:
+        bit: 19
+        access: ro
+      gcst.s0dss:
+        bit: 1
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      gcst.s0pss:
+        bit: 2
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      gcst.s0ss:
+        bit: 0
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      gcst.s1dss:
+        bit: 5
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      gcst.s1pss:
+        bit: 6
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      gcst.s1ss:
+        bit: 4
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      gcst.s2dss:
+        bit: 9
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      gcst.s2pss:
+        bit: 10
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      gcst.s2ss:
+        bit: 8
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      gcst.s3dss:
+        bit: 13
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      gcst.s3pss:
+        bit: 14
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      gcst.s3ss:
+        bit: 12
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      gctrl.msde:
+        bits:
+        - 14
+        - 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value4: 3
+      gctrl.mse0:
+        bit: 10
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      gctrl.mse1:
+        bit: 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      gctrl.mse2:
+        bit: 12
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      gctrl.mse3:
+        bit: 13
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      gctrl.pcis:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      gctrl.prbc:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+      gctrl.suscfg:
+        bits:
+        - 8
+        - 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      gidlc.cs0i:
+        bit: 0
+        access: wo
+      gidlc.cs1i:
+        bit: 1
+        access: wo
+      gidlc.cs2i:
+        bit: 2
+        access: wo
+      gidlc.cs3i:
+        bit: 3
+        access: wo
+      gidlc.sprb:
+        bit: 8
+        access: wo
+      gidls.cprb:
+        bit: 8
+        access: wo
+      gidls.psic:
+        bit: 9
+        access: wo
+      gidls.ss0i:
+        bit: 0
+        access: wo
+      gidls.ss1i:
+        bit: 1
+        access: wo
+      gidls.ss2i:
+        bit: 2
+        access: wo
+      gidls.ss3i:
+        bit: 3
+        access: wo
+      gstat.prb:
+        bit: 8
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      gstat.s0i:
+        bit: 0
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      gstat.s1i:
+        bit: 1
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      gstat.s2i:
+        bit: 2
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      gstat.s3i:
+        bit: 3
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      ins1.ev0is:
+        bits:
+        - 0
+        - 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+          value9: 8
+          value10: 9
+          value11: 10
+          value12: 11
+          value13: 12
+          value14: 13
+          value15: 14
+          value16: 15
+          value17: 16
+          value18: 17
+          value19: 18
+          value20: 19
+          value21: 20
+          value22: 21
+          value23: 22
+          value24: 23
+          value25: 24
+          value26: 25
+          value27: 26
+          value28: 27
+          value29: 28
+          value30: 29
+          value31: 30
+          value32: 31
+          value33: 32
+          value34: 33
+          value35: 34
+          value36: 35
+          value37: 36
+          value38: 37
+          value39: 38
+          value40: 39
+          value41: 40
+          value42: 41
+          value43: 42
+          value44: 43
+          value45: 44
+          value46: 45
+          value47: 46
+          value48: 47
+      ins1.ev1is:
+        bits:
+        - 8
+        - 13
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+          value9: 8
+          value10: 9
+          value11: 10
+          value12: 11
+          value13: 12
+          value14: 13
+          value15: 14
+          value16: 15
+          value17: 16
+          value18: 17
+          value19: 18
+          value20: 19
+          value21: 20
+          value22: 21
+          value23: 22
+          value24: 23
+          value25: 24
+          value26: 25
+          value27: 26
+          value28: 27
+          value29: 28
+          value30: 29
+          value31: 30
+          value32: 31
+          value33: 32
+          value34: 33
+          value35: 34
+          value36: 35
+          value37: 36
+          value38: 37
+          value39: 38
+          value40: 39
+          value41: 40
+          value42: 41
+          value43: 42
+          value44: 43
+          value45: 44
+          value46: 45
+          value47: 46
+          value48: 47
+      ins1.ev2is:
+        bits:
+        - 16
+        - 21
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+          value9: 8
+          value10: 9
+          value11: 10
+          value12: 11
+          value13: 12
+          value14: 13
+          value15: 14
+          value16: 15
+          value17: 16
+          value18: 17
+          value19: 18
+          value20: 19
+          value21: 20
+          value22: 21
+          value23: 22
+          value24: 23
+          value25: 24
+          value26: 25
+          value27: 26
+          value28: 27
+          value29: 28
+          value30: 29
+          value31: 30
+          value32: 31
+          value33: 32
+          value34: 33
+          value35: 34
+          value36: 35
+          value37: 36
+          value38: 37
+          value39: 38
+          value40: 39
+          value41: 40
+          value42: 41
+          value43: 42
+          value44: 43
+          value45: 44
+          value46: 45
+          value47: 46
+          value48: 47
+      ins2.ev0em:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      ins2.ev0lm:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      ins2.ev1em:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      ins2.ev1lm:
+        bit: 6
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      ins2.ev2em:
+        bits:
+        - 8
+        - 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      ins2.ev2lm:
+        bit: 10
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      ins2.lpf0m:
+        bits:
+        - 16
+        - 17
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      ins2.lpf1m:
+        bits:
+        - 20
+        - 21
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      ins2.lpf2m:
+        bits:
+        - 24
+        - 25
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      inte.cmde:
+        bit: 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      inte.cmue:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      inte.e0ae:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      inte.e1ae:
+        bit: 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      inte.e2ae:
+        bit: 10
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      inte.ome:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      inte.pme:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      ints.cmds:
+        bit: 3
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      ints.cmus:
+        bit: 2
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      ints.e0as:
+        bit: 8
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      ints.e1as:
+        bit: 9
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      ints.e2as:
+        bit: 10
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      ints.omds:
+        bit: 1
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      ints.pmus:
+        bit: 0
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      ints.trpf:
+        bit: 11
+        access: ro
+      midr.modn:
+        bits:
+        - 16
+        - 31
+        access: ro
+      midr.modr:
+        bits:
+        - 0
+        - 7
+        access: ro
+      midr.modt:
+        bits:
+        - 8
+        - 15
+        access: ro
+      pr.pr:
+        bits:
+        - 0
+        - 15
+        access: ro
+      prs.prs:
+        bits:
+        - 0
+        - 15
+        access: rw
+      psc.psiv:
+        bits:
+        - 0
+        - 3
+        access: rw
+      psl.psl:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      srs.cmsr:
+        bits:
+        - 2
+        - 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      srs.e0sr:
+        bits:
+        - 8
+        - 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      srs.e1sr:
+        bits:
+        - 10
+        - 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      srs.e2sr:
+        bits:
+        - 12
+        - 13
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      srs.posr:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      stc.ascc:
+        bit: 17
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      stc.asdc:
+        bit: 20
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      stc.asfc:
+        bit: 21
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      stc.aslc:
+        bit: 19
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      stc.aspc:
+        bit: 16
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      stc.cse:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      stc.ircc:
+        bit: 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      stc.irdc:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      stc.irfc:
+        bit: 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      stc.irlc:
+        bit: 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      stc.irpc:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      stc.stm:
+        bits:
+        - 1
+        - 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      swr.rcmd:
+        bit: 3
+        access: wo
+      swr.rcmu:
+        bit: 2
+        access: wo
+      swr.re0a:
+        bit: 8
+        access: wo
+      swr.re1a:
+        bit: 9
+        access: wo
+      swr.re2a:
+        bit: 10
+        access: wo
+      swr.rom:
+        bit: 1
+        access: wo
+      swr.rpm:
+        bit: 0
+        access: wo
+      swr.rtrpf:
+        bit: 11
+        access: wo
+      sws.scmd:
+        bit: 3
+        access: wo
+      sws.scmu:
+        bit: 2
+        access: wo
+      sws.se0a:
+        bit: 8
+        access: wo
+      sws.se1a:
+        bit: 9
+        access: wo
+      sws.se2a:
+        bit: 10
+        access: wo
+      sws.som:
+        bit: 1
+        access: wo
+      sws.spm:
+        bit: 0
+        access: wo
+      sws.strpf:
+        bit: 11
+        access: wo
+      tc.capc:
+        bits:
+        - 5
+        - 6
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      tc.ccs:
+        bit: 12
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tc.clst:
+        bit: 2
+        access: rw
+      tc.cmod:
+        bit: 3
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      tc.dim:
+        bit: 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tc.dithe:
+        bits:
+        - 13
+        - 14
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      tc.ecm:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tc.ems:
+        bit: 23
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tc.emt:
+        bit: 24
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tc.endm:
+        bits:
+        - 8
+        - 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      tc.fpe:
+        bit: 16
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tc.mcme:
+        bit: 25
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tc.sce:
+        bit: 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tc.strm:
+        bit: 10
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tc.tcm:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tc.trape:
+        bit: 17
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tc.trpse:
+        bit: 21
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tc.trpsw:
+        bit: 22
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tc.tssm:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tcclr.ditc:
+        bit: 2
+        access: wo
+      tcclr.tcc:
+        bit: 1
+        access: wo
+      tcclr.trbc:
+        bit: 0
+        access: wo
+      tcset.trbs:
+        bit: 0
+        access: wo
+      tcst.cdir:
+        bit: 1
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      tcst.trb:
+        bit: 0
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      timer.tval:
+        bits:
+        - 0
+        - 15
+        access: rw
+  dac:
+    registers:
+      chconfig:
+        offset: 8
+      chen:
+        offset: 12
+      chstrcon:
+        offset: 24
+      data:
+        offset: 4
+      datas:
+        offset: 0
+      globclk:
+        offset: 4
+      globcon:
+        offset: 0
+      id:
+        offset: 8
+    fields:
+      chconfig.den:
+        bit: 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      chconfig.gen:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      chconfig.ramp_ps:
+        bits:
+        - 16
+        - 25
+        access: rw
+      chconfig.wen:
+        bit: 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      chen.ech0:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      chen.ech1:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      chen.ech2:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      chen.ech3:
+        bit: 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      chen.ech4:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      chen.ech5:
+        bit: 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      chen.ech6:
+        bit: 6
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      chen.ech7:
+        bit: 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      chen.ech8:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      chstrcon.ch0a:
+        bit: 16
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      chstrcon.ch0s:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      chstrcon.ch1a:
+        bit: 17
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      chstrcon.ch1s:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      chstrcon.ch2a:
+        bit: 18
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      chstrcon.ch2s:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      chstrcon.ch3a:
+        bit: 19
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      chstrcon.ch3s:
+        bit: 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      chstrcon.ch4a:
+        bit: 20
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      chstrcon.ch4s:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      chstrcon.ch5a:
+        bit: 21
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      chstrcon.ch5s:
+        bit: 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      chstrcon.ch6a:
+        bit: 22
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      chstrcon.ch6s:
+        bit: 6
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      chstrcon.ch7a:
+        bit: 23
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      chstrcon.ch7s:
+        bit: 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      chstrcon.ch8a:
+        bit: 24
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      chstrcon.ch8s:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      data.chdata:
+        bits:
+        - 0
+        - 11
+        access: ro
+      datas.tchdata:
+        bits:
+        - 0
+        - 11
+        access: rw
+      globclk.bcs:
+        bit: 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      globclk.fclk_ps:
+        bits:
+        - 0
+        - 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 4095
+      globcon.suscfg:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      globcon.wdmbn:
+        bits:
+        - 16
+        - 27
+        access: rw
+      id.mod_number:
+        bits:
+        - 16
+        - 31
+        access: ro
+      id.mod_rev:
+        bits:
+        - 0
+        - 7
+        access: ro
+      id.mod_type0:
+        bits:
+        - 8
+        - 15
+        access: ro
+  eru:
+    registers:
+      exicon[%s]:
+        offset: 16
+      exisel:
+        offset: 0
+      exocon[%s]:
+        offset: 32
+    fields:
+      exicon[%s].fe:
+        bit: 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      exicon[%s].fl:
+        bit: 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      exicon[%s].ld:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      exicon[%s].na:
+        bit: 10
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      exicon[%s].nb:
+        bit: 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      exicon[%s].ocs:
+        bits:
+        - 4
+        - 6
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      exicon[%s].pe:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      exicon[%s].re:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      exicon[%s].ss:
+        bits:
+        - 8
+        - 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      exisel.exs0a:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      exisel.exs0b:
+        bits:
+        - 2
+        - 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      exisel.exs1a:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      exisel.exs1b:
+        bits:
+        - 6
+        - 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      exisel.exs2a:
+        bits:
+        - 8
+        - 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      exisel.exs2b:
+        bits:
+        - 10
+        - 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      exisel.exs3a:
+        bits:
+        - 12
+        - 13
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      exisel.exs3b:
+        bits:
+        - 14
+        - 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      exocon[%s].geen:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      exocon[%s].gp:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      exocon[%s].ipen0:
+        bit: 12
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      exocon[%s].ipen1:
+        bit: 13
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      exocon[%s].ipen2:
+        bit: 14
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      exocon[%s].ipen3:
+        bit: 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      exocon[%s].iss:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      exocon[%s].pdr:
+        bit: 3
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+  math:
+    registers:
+      con:
+        offset: 68
+      cordx:
+        offset: 72
+      cordy:
+        offset: 76
+      cordz:
+        offset: 80
+      corrx:
+        offset: 84
+      corry:
+        offset: 88
+      corrz:
+        offset: 92
+      divcon:
+        offset: 52
+      divst:
+        offset: 48
+      dvd:
+        offset: 32
+      dvs:
+        offset: 36
+      evfcr:
+        offset: 24
+      evfr:
+        offset: 16
+      evfsr:
+        offset: 20
+      evier:
+        offset: 12
+      glbcon:
+        offset: 4
+      id:
+        offset: 8
+      quot:
+        offset: 40
+      rmd:
+        offset: 44
+      statc:
+        offset: 64
+    fields:
+      con.mode:
+        bits:
+        - 1
+        - 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value4: 3
+      con.mps:
+        bits:
+        - 6
+        - 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      con.rotvec:
+        bit: 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      con.st:
+        bit: 0
+        access: rw
+      con.st_mode:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      con.x_usign:
+        bit: 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      cordx.data:
+        bits:
+        - 8
+        - 31
+        access: rw
+      cordy.data:
+        bits:
+        - 8
+        - 31
+        access: rw
+      cordz.data:
+        bits:
+        - 8
+        - 31
+        access: rw
+      corrx.result:
+        bits:
+        - 8
+        - 31
+        access: ro
+      corry.result:
+        bits:
+        - 8
+        - 31
+        access: ro
+      corrz.result:
+        bits:
+        - 8
+        - 31
+        access: ro
+      divcon.divmode:
+        bits:
+        - 3
+        - 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      divcon.dvdslc:
+        bits:
+        - 16
+        - 20
+        access: rw
+      divcon.dvssrc:
+        bits:
+        - 24
+        - 28
+        access: rw
+      divcon.qscnt:
+        bits:
+        - 8
+        - 12
+        access: rw
+      divcon.qsdir:
+        bit: 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      divcon.st:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      divcon.stmode:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      divcon.usign:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      divst.bsy:
+        bit: 0
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      dvd.val:
+        bits:
+        - 0
+        - 31
+        access: rw
+      dvs.val:
+        bits:
+        - 0
+        - 31
+        access: rw
+      evfcr.cdeocc:
+        bit: 2
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      evfcr.cderrc:
+        bit: 3
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      evfcr.diveocc:
+        bit: 0
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      evfcr.diverrc:
+        bit: 1
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      evfr.cdeoc:
+        bit: 2
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      evfr.cderr:
+        bit: 3
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      evfr.diveoc:
+        bit: 0
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      evfr.diverr:
+        bit: 1
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      evfsr.cdeocs:
+        bit: 2
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      evfsr.cderrs:
+        bit: 3
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      evfsr.diveocs:
+        bit: 0
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      evfsr.diverrs:
+        bit: 1
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      evier.cdeocien:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      evier.cderrien:
+        bit: 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      evier.diveocien:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      evier.diverrien:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      glbcon.cordxrc:
+        bits:
+        - 6
+        - 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      glbcon.cordyrc:
+        bits:
+        - 9
+        - 10
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      glbcon.cordzrc:
+        bits:
+        - 12
+        - 13
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      glbcon.dvdrc:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+      glbcon.dvsrc:
+        bits:
+        - 3
+        - 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+      glbcon.suscfg:
+        bits:
+        - 16
+        - 17
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      id.mod_number:
+        bits:
+        - 16
+        - 31
+        access: ro
+      id.mod_rev:
+        bits:
+        - 0
+        - 7
+        access: ro
+      id.mod_type:
+        bits:
+        - 8
+        - 15
+        access: ro
+      quot.val:
+        bits:
+        - 0
+        - 31
+        access: ro
+      rmd.val:
+        bits:
+        - 0
+        - 31
+        access: ro
+      statc.bsy:
+        bit: 0
+        access: ro
+      statc.keepx:
+        bit: 5
+        access: rw
+      statc.keepy:
+        bit: 6
+        access: rw
+      statc.keepz:
+        bit: 7
+        access: rw
+  nvm:
+    registers:
+      nvmconf:
+        offset: 8
+      nvmprog:
+        offset: 4
+      nvmstatus:
+        offset: 0
+    fields:
+      nvmconf.hrlev:
+        bits:
+        - 1
+        - 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      nvmconf.int_on:
+        bit: 14
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      nvmconf.nvm_on:
+        bit: 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      nvmconf.secprot:
+        bits:
+        - 4
+        - 11
+        access: rw
+      nvmprog.action:
+        bits:
+        - 0
+        - 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 81
+          value3: 145
+          value4: 97
+          value5: 161
+          value6: 146
+          value7: 148
+          value8: 164
+          value9: 162
+          value10: 208
+          value11: 224
+      nvmprog.rstecc:
+        bit: 13
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      nvmprog.rstverr:
+        bit: 12
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      nvmstatus.busy:
+        bit: 0
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      nvmstatus.ecc1read:
+        bit: 4
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      nvmstatus.ecc2read:
+        bit: 5
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      nvmstatus.sleep:
+        bit: 1
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      nvmstatus.verr:
+        bits:
+        - 2
+        - 3
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      nvmstatus.wrperr:
+        bit: 6
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+  pau:
+    registers:
+      avail0:
+        offset: 64
+      avail1:
+        offset: 68
+      avail2:
+        offset: 72
+      flsize:
+        offset: '0x0404'
+      privdis0:
+        offset: 128
+      privdis1:
+        offset: 132
+      privdis2:
+        offset: 136
+      ram0size:
+        offset: '0x0410'
+      romsize:
+        offset: '0x0400'
+    fields:
+      avail0.avail20:
+        bit: 20
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail0.avail21:
+        bit: 21
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail0.avail22:
+        bit: 22
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail0.avail23:
+        bit: 23
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail0.avail24:
+        bit: 24
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail0.avail25:
+        bit: 25
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail0.avail26:
+        bit: 26
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail0.avail5:
+        bit: 5
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail0.avail6:
+        bit: 6
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail0.avail7:
+        bit: 7
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail1.avail0:
+        bit: 0
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail1.avail1:
+        bit: 1
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail1.avail10:
+        bit: 10
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail1.avail11:
+        bit: 11
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail1.avail12:
+        bit: 12
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail1.avail16:
+        bit: 16
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail1.avail17:
+        bit: 17
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail1.avail25:
+        bit: 25
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail1.avail26:
+        bit: 26
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail1.avail27:
+        bit: 27
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail1.avail28:
+        bit: 28
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail1.avail4:
+        bit: 4
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail1.avail5:
+        bit: 5
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail1.avail8:
+        bit: 8
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail1.avail9:
+        bit: 9
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail2.avail0:
+        bit: 0
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail2.avail1:
+        bit: 1
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail2.avail12:
+        bit: 12
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail2.avail15:
+        bit: 15
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail2.avail16:
+        bit: 16
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail2.avail17:
+        bit: 17
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail2.avail18:
+        bit: 18
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail2.avail19:
+        bit: 19
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail2.avail2:
+        bit: 2
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail2.avail20:
+        bit: 20
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail2.avail21:
+        bit: 21
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail2.avail23:
+        bit: 23
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail2.avail28:
+        bit: 28
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      avail2.avail3:
+        bit: 3
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      flsize.addr:
+        bits:
+        - 12
+        - 17
+        access: ro
+      privdis0.pdis19:
+        bit: 19
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis0.pdis2:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis0.pdis20:
+        bit: 20
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis0.pdis21:
+        bit: 21
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis0.pdis22:
+        bit: 22
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis0.pdis23:
+        bit: 23
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis0.pdis24:
+        bit: 24
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis0.pdis25:
+        bit: 25
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis0.pdis26:
+        bit: 26
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis0.pdis5:
+        bit: 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis0.pdis6:
+        bit: 6
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis0.pdis7:
+        bit: 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis1.pdis0:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis1.pdis1:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis1.pdis10:
+        bit: 10
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis1.pdis11:
+        bit: 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis1.pdis12:
+        bit: 12
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis1.pdis16:
+        bit: 16
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis1.pdis17:
+        bit: 17
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis1.pdis25:
+        bit: 25
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis1.pdis26:
+        bit: 26
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis1.pdis27:
+        bit: 27
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis1.pdis28:
+        bit: 28
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis1.pdis5:
+        bit: 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis1.pdis8:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis1.pdis9:
+        bit: 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis2.pdis0:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis2.pdis1:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis2.pdis12:
+        bit: 12
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis2.pdis15:
+        bit: 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis2.pdis16:
+        bit: 16
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis2.pdis17:
+        bit: 17
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis2.pdis18:
+        bit: 18
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis2.pdis19:
+        bit: 19
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis2.pdis2:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis2.pdis20:
+        bit: 20
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis2.pdis21:
+        bit: 21
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis2.pdis23:
+        bit: 23
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis2.pdis28:
+        bit: 28
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      privdis2.pdis3:
+        bit: 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      ram0size.addr:
+        bits:
+        - 8
+        - 12
+        access: ro
+      romsize.addr:
+        bits:
+        - 8
+        - 13
+        access: ro
+  ports:
+    registers:
+      hwsel:
+        offset: 116
+      in:
+        offset: 36
+      iocr0:
+        offset: 16
+      iocr12:
+        offset: 28
+      iocr4:
+        offset: 20
+      iocr8:
+        offset: 24
+      omr:
+        offset: 4
+      out:
+        offset: 0
+      pdisc:
+        offset: 96
+      phcr0:
+        offset: 64
+      phcr1:
+        offset: 68
+      pps:
+        offset: 112
+    fields:
+      hwsel.hw0:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      hwsel.hw1:
+        bits:
+        - 2
+        - 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      hwsel.hw10:
+        bits:
+        - 20
+        - 21
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      hwsel.hw11:
+        bits:
+        - 22
+        - 23
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      hwsel.hw2:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      hwsel.hw3:
+        bits:
+        - 6
+        - 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      hwsel.hw4:
+        bits:
+        - 8
+        - 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      hwsel.hw5:
+        bits:
+        - 10
+        - 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      hwsel.hw6:
+        bits:
+        - 12
+        - 13
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      hwsel.hw7:
+        bits:
+        - 14
+        - 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      hwsel.hw8:
+        bits:
+        - 16
+        - 17
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      in.p0:
+        bit: 0
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      in.p1:
+        bit: 1
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      in.p10:
+        bit: 10
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      in.p11:
+        bit: 11
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      in.p12:
+        bit: 12
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      in.p13:
+        bit: 13
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      in.p14:
+        bit: 14
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      in.p15:
+        bit: 15
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      in.p2:
+        bit: 2
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      in.p3:
+        bit: 3
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      in.p4:
+        bit: 4
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      in.p5:
+        bit: 5
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      in.p6:
+        bit: 6
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      in.p7:
+        bit: 7
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      in.p8:
+        bit: 8
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      in.p9:
+        bit: 9
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      iocr0.pc0:
+        bits:
+        - 2
+        - 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+          value9: 32
+          value10: 33
+          value11: 34
+          value12: 35
+          value13: 36
+          value14: 37
+          value15: 38
+          value16: 39
+          value17: 40
+          value18: 41
+          value19: 48
+          value20: 49
+          value21: 50
+          value22: 51
+          value23: 52
+          value24: 53
+          value25: 54
+          value26: 55
+          value27: 56
+          value28: 57
+      iocr0.pc1:
+        bits:
+        - 10
+        - 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+          value9: 32
+          value10: 33
+          value11: 34
+          value12: 35
+          value13: 36
+          value14: 37
+          value15: 38
+          value16: 39
+          value17: 40
+          value18: 41
+          value19: 48
+          value20: 49
+          value21: 50
+          value22: 51
+          value23: 52
+          value24: 53
+          value25: 54
+          value26: 55
+          value27: 56
+          value28: 57
+      iocr0.pc2:
+        bits:
+        - 18
+        - 23
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+          value9: 32
+          value10: 33
+          value11: 34
+          value12: 35
+          value13: 36
+          value14: 37
+          value15: 38
+          value16: 39
+          value17: 40
+          value18: 41
+          value19: 48
+          value20: 49
+          value21: 50
+          value22: 51
+          value23: 52
+          value24: 53
+          value25: 54
+          value26: 55
+          value27: 56
+          value28: 57
+      iocr0.pc3:
+        bits:
+        - 26
+        - 31
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+          value9: 32
+          value10: 33
+          value11: 34
+          value12: 35
+          value13: 36
+          value14: 37
+          value15: 38
+          value16: 39
+          value17: 40
+          value18: 41
+          value19: 48
+          value20: 49
+          value21: 50
+          value22: 51
+          value23: 52
+          value24: 53
+          value25: 54
+          value26: 55
+          value27: 56
+          value28: 57
+      iocr12.pc12:
+        bits:
+        - 2
+        - 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+          value9: 32
+          value10: 33
+          value11: 34
+          value12: 35
+          value13: 36
+          value14: 37
+          value15: 38
+          value16: 39
+          value17: 40
+          value18: 41
+          value19: 48
+          value20: 49
+          value21: 50
+          value22: 51
+          value23: 52
+          value24: 53
+          value25: 54
+          value26: 55
+          value27: 56
+          value28: 57
+      iocr12.pc13:
+        bits:
+        - 10
+        - 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+          value9: 32
+          value10: 33
+          value11: 34
+          value12: 35
+          value13: 36
+          value14: 37
+          value15: 38
+          value16: 39
+          value17: 40
+          value18: 41
+          value19: 48
+          value20: 49
+          value21: 50
+          value22: 51
+          value23: 52
+          value24: 53
+          value25: 54
+          value26: 55
+          value27: 56
+          value28: 57
+      iocr12.pc14:
+        bits:
+        - 18
+        - 23
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+          value9: 32
+          value10: 33
+          value11: 34
+          value12: 35
+          value13: 36
+          value14: 37
+          value15: 38
+          value16: 39
+          value17: 40
+          value18: 41
+          value19: 48
+          value20: 49
+          value21: 50
+          value22: 51
+          value23: 52
+          value24: 53
+          value25: 54
+          value26: 55
+          value27: 56
+          value28: 57
+      iocr12.pc15:
+        bits:
+        - 26
+        - 31
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+          value9: 32
+          value10: 33
+          value11: 34
+          value12: 35
+          value13: 36
+          value14: 37
+          value15: 38
+          value16: 39
+          value17: 40
+          value18: 41
+          value19: 48
+          value20: 49
+          value21: 50
+          value22: 51
+          value23: 52
+          value24: 53
+          value25: 54
+          value26: 55
+          value27: 56
+          value28: 57
+      iocr4.pc4:
+        bits:
+        - 2
+        - 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+          value9: 32
+          value10: 33
+          value11: 34
+          value12: 35
+          value13: 36
+          value14: 37
+          value15: 38
+          value16: 39
+          value17: 40
+          value18: 41
+          value19: 48
+          value20: 49
+          value21: 50
+          value22: 51
+          value23: 52
+          value24: 53
+          value25: 54
+          value26: 55
+          value27: 56
+          value28: 57
+      iocr4.pc5:
+        bits:
+        - 10
+        - 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+          value9: 32
+          value10: 33
+          value11: 34
+          value12: 35
+          value13: 36
+          value14: 37
+          value15: 38
+          value16: 39
+          value17: 40
+          value18: 41
+          value19: 48
+          value20: 49
+          value21: 50
+          value22: 51
+          value23: 52
+          value24: 53
+          value25: 54
+          value26: 55
+          value27: 56
+          value28: 57
+      iocr4.pc6:
+        bits:
+        - 18
+        - 23
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+      iocr4.pc7:
+        bits:
+        - 26
+        - 31
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+          value9: 32
+          value10: 33
+          value11: 34
+          value12: 35
+          value13: 36
+          value14: 37
+          value15: 38
+          value16: 39
+          value17: 40
+          value18: 41
+          value19: 48
+          value20: 49
+          value21: 50
+          value22: 51
+          value23: 52
+          value24: 53
+          value25: 54
+          value26: 55
+          value27: 56
+          value28: 57
+      iocr8.pc10:
+        bits:
+        - 18
+        - 23
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+          value9: 32
+          value10: 33
+          value11: 34
+          value12: 35
+          value13: 36
+          value14: 37
+          value15: 38
+          value16: 39
+          value17: 40
+          value18: 41
+          value19: 48
+          value20: 49
+          value21: 50
+          value22: 51
+          value23: 52
+          value24: 53
+          value25: 54
+          value26: 55
+          value27: 56
+          value28: 57
+      iocr8.pc11:
+        bits:
+        - 26
+        - 31
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+          value9: 32
+          value10: 33
+          value11: 34
+          value12: 35
+          value13: 36
+          value14: 37
+          value15: 38
+          value16: 39
+          value17: 40
+          value18: 41
+          value19: 48
+          value20: 49
+          value21: 50
+          value22: 51
+          value23: 52
+          value24: 53
+          value25: 54
+          value26: 55
+          value27: 56
+          value28: 57
+      iocr8.pc8:
+        bits:
+        - 2
+        - 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+          value9: 32
+          value10: 33
+          value11: 34
+          value12: 35
+          value13: 36
+          value14: 37
+          value15: 38
+          value16: 39
+          value17: 40
+          value18: 41
+          value19: 48
+          value20: 49
+          value21: 50
+          value22: 51
+          value23: 52
+          value24: 53
+          value25: 54
+          value26: 55
+          value27: 56
+          value28: 57
+      iocr8.pc9:
+        bits:
+        - 10
+        - 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+          value9: 32
+          value10: 33
+          value11: 34
+          value12: 35
+          value13: 36
+          value14: 37
+          value15: 38
+          value16: 39
+          value17: 40
+          value18: 41
+          value19: 48
+          value20: 49
+          value21: 50
+          value22: 51
+          value23: 52
+          value24: 53
+          value25: 54
+          value26: 55
+          value27: 56
+          value28: 57
+      omr.pr0:
+        bit: 16
+        access: wo
+      omr.pr1:
+        bit: 17
+        access: wo
+      omr.pr10:
+        bit: 26
+        access: wo
+      omr.pr11:
+        bit: 27
+        access: wo
+      omr.pr12:
+        bit: 28
+        access: wo
+      omr.pr13:
+        bit: 29
+        access: wo
+      omr.pr14:
+        bit: 30
+        access: wo
+      omr.pr15:
+        bit: 31
+        access: wo
+      omr.pr2:
+        bit: 18
+        access: wo
+      omr.pr3:
+        bit: 19
+        access: wo
+      omr.pr4:
+        bit: 20
+        access: wo
+      omr.pr5:
+        bit: 21
+        access: wo
+      omr.pr6:
+        bit: 22
+        access: wo
+      omr.pr7:
+        bit: 23
+        access: wo
+      omr.pr8:
+        bit: 24
+        access: wo
+      omr.pr9:
+        bit: 25
+        access: wo
+      omr.ps0:
+        bit: 0
+        access: wo
+      omr.ps1:
+        bit: 1
+        access: wo
+      omr.ps10:
+        bit: 10
+        access: wo
+      omr.ps11:
+        bit: 11
+        access: wo
+      omr.ps12:
+        bit: 12
+        access: wo
+      omr.ps13:
+        bit: 13
+        access: wo
+      omr.ps14:
+        bit: 14
+        access: wo
+      omr.ps15:
+        bit: 15
+        access: wo
+      omr.ps2:
+        bit: 2
+        access: wo
+      omr.ps3:
+        bit: 3
+        access: wo
+      omr.ps4:
+        bit: 4
+        access: wo
+      omr.ps5:
+        bit: 5
+        access: wo
+      omr.ps6:
+        bit: 6
+        access: wo
+      omr.ps7:
+        bit: 7
+        access: wo
+      omr.ps8:
+        bit: 8
+        access: wo
+      omr.ps9:
+        bit: 9
+        access: wo
+      out.p0:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      out.p1:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      out.p10:
+        bit: 10
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      out.p11:
+        bit: 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      out.p12:
+        bit: 12
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      out.p13:
+        bit: 13
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      out.p14:
+        bit: 14
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      out.p15:
+        bit: 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      out.p2:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      out.p3:
+        bit: 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      out.p4:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      out.p5:
+        bit: 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      out.p6:
+        bit: 6
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      out.p7:
+        bit: 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      out.p8:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      out.p9:
+        bit: 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pdisc.pdis0:
+        bit: 0
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pdisc.pdis1:
+        bit: 1
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pdisc.pdis10:
+        bit: 10
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pdisc.pdis11:
+        bit: 11
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pdisc.pdis12:
+        bit: 12
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pdisc.pdis13:
+        bit: 13
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pdisc.pdis14:
+        bit: 14
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pdisc.pdis15:
+        bit: 15
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pdisc.pdis2:
+        bit: 2
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pdisc.pdis3:
+        bit: 3
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pdisc.pdis4:
+        bit: 4
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pdisc.pdis5:
+        bit: 5
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pdisc.pdis6:
+        bit: 6
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pdisc.pdis7:
+        bit: 7
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pdisc.pdis8:
+        bit: 8
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pdisc.pdis9:
+        bit: 9
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      phcr0.ph0:
+        bit: 2
+        access: rw
+      phcr0.ph1:
+        bit: 6
+        access: rw
+      phcr0.ph2:
+        bit: 10
+        access: rw
+      phcr0.ph3:
+        bit: 14
+        access: rw
+      phcr0.ph4:
+        bit: 18
+        access: rw
+      phcr0.ph5:
+        bit: 22
+        access: rw
+      phcr0.ph6:
+        bit: 26
+        access: rw
+      phcr0.ph7:
+        bit: 30
+        access: rw
+      phcr1.ph10:
+        bit: 10
+        access: rw
+      phcr1.ph11:
+        bit: 14
+        access: rw
+      phcr1.ph12:
+        bit: 18
+        access: rw
+      phcr1.ph13:
+        bit: 22
+        access: rw
+      phcr1.ph14:
+        bit: 26
+        access: rw
+      phcr1.ph15:
+        bit: 30
+        access: rw
+      phcr1.ph8:
+        bit: 2
+        access: rw
+      phcr1.ph9:
+        bit: 6
+        access: rw
+      pps.pps0:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pps.pps1:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pps.pps10:
+        bit: 10
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pps.pps11:
+        bit: 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pps.pps12:
+        bit: 12
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pps.pps13:
+        bit: 13
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pps.pps14:
+        bit: 14
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pps.pps15:
+        bit: 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pps.pps2:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pps.pps3:
+        bit: 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pps.pps4:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pps.pps5:
+        bit: 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pps.pps6:
+        bit: 6
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pps.pps7:
+        bit: 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pps.pps8:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pps.pps9:
+        bit: 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+  posif:
+    registers:
+      halp:
+        offset: 48
+      halps:
+        offset: 52
+      mcm:
+        offset: 64
+      mcmc:
+        offset: 76
+      mcmf:
+        offset: 80
+      mcms:
+        offset: 72
+      mcsm:
+        offset: 68
+      midr:
+        offset: 32
+      pconf:
+        offset: 0
+      pdbg:
+        offset: '0x0100'
+      pflg:
+        offset: 112
+      pflge:
+        offset: 116
+      prun:
+        offset: 16
+      prunc:
+        offset: 12
+      pruns:
+        offset: 8
+      psus:
+        offset: 4
+      qdc:
+        offset: 96
+      rpflg:
+        offset: 124
+      spflg:
+        offset: 120
+    fields:
+      halp.hcp:
+        bits:
+        - 0
+        - 2
+        access: ro
+      halp.hep:
+        bits:
+        - 3
+        - 5
+        access: ro
+      halps.hcps:
+        bits:
+        - 0
+        - 2
+        access: rw
+      halps.heps:
+        bits:
+        - 3
+        - 5
+        access: rw
+      mcm.mcmp:
+        bits:
+        - 0
+        - 15
+        access: ro
+      mcmc.mnpc:
+        bit: 0
+        access: wo
+      mcmc.mpc:
+        bit: 1
+        access: wo
+      mcmf.mss:
+        bit: 0
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      mcms.mnps:
+        bit: 0
+        access: wo
+      mcms.sthr:
+        bit: 1
+        access: wo
+      mcms.stmr:
+        bit: 2
+        access: wo
+      mcsm.mcmps:
+        bits:
+        - 0
+        - 15
+        access: rw
+      midr.modn:
+        bits:
+        - 16
+        - 31
+        access: ro
+      midr.modr:
+        bits:
+        - 0
+        - 7
+        access: ro
+      midr.modt:
+        bits:
+        - 8
+        - 15
+        access: ro
+      pconf.dsel:
+        bit: 16
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pconf.ewie:
+        bit: 26
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pconf.ewil:
+        bit: 27
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pconf.ewis:
+        bits:
+        - 24
+        - 25
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      pconf.fsel:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      pconf.hidg:
+        bit: 4
+        access: rw
+      pconf.insel0:
+        bits:
+        - 8
+        - 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      pconf.insel1:
+        bits:
+        - 10
+        - 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      pconf.insel2:
+        bits:
+        - 12
+        - 13
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      pconf.lpc:
+        bits:
+        - 28
+        - 30
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+      pconf.mcue:
+        bit: 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pconf.mses:
+        bit: 21
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pconf.msets:
+        bits:
+        - 18
+        - 20
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+      pconf.msyns:
+        bits:
+        - 22
+        - 23
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      pconf.qdcm:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pconf.spes:
+        bit: 17
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pdbg.hsp:
+        bits:
+        - 5
+        - 7
+        access: ro
+      pdbg.ival:
+        bit: 4
+        access: ro
+      pdbg.lpp0:
+        bits:
+        - 8
+        - 13
+        access: ro
+      pdbg.lpp1:
+        bits:
+        - 16
+        - 21
+        access: ro
+      pdbg.lpp2:
+        bits:
+        - 22
+        - 27
+        access: ro
+      pdbg.qcsv:
+        bits:
+        - 0
+        - 1
+        access: ro
+      pdbg.qpsv:
+        bits:
+        - 2
+        - 3
+        access: ro
+      pflg.ches:
+        bit: 0
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pflg.cnts:
+        bit: 10
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pflg.dirs:
+        bit: 11
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pflg.errs:
+        bit: 9
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pflg.hies:
+        bit: 2
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pflg.indxs:
+        bit: 8
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pflg.msts:
+        bit: 4
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pflg.pclks:
+        bit: 12
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pflg.whes:
+        bit: 1
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pflge.chesel:
+        bit: 16
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pflge.cntsel:
+        bit: 26
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pflge.dirsel:
+        bit: 27
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pflge.eche:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pflge.ecnt:
+        bit: 10
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pflge.edir:
+        bit: 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pflge.eerr:
+        bit: 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pflge.ehie:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pflge.eindx:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pflge.emst:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pflge.epclk:
+        bit: 12
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pflge.errsel:
+        bit: 25
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pflge.ewhe:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pflge.hiesel:
+        bit: 18
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pflge.indsel:
+        bit: 24
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pflge.mstsel:
+        bit: 20
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pflge.pclsel:
+        bit: 28
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pflge.whesel:
+        bit: 17
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      prun.rb:
+        bit: 0
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      prunc.crb:
+        bit: 0
+        access: wo
+      prunc.csm:
+        bit: 1
+        access: wo
+      pruns.srb:
+        bit: 0
+        access: wo
+      psus.msus:
+        bits:
+        - 2
+        - 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      psus.qsus:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      qdc.dval:
+        bit: 8
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      qdc.icm:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      qdc.pals:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      qdc.pbls:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      qdc.phs:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rpflg.rche:
+        bit: 0
+        access: wo
+      rpflg.rcnt:
+        bit: 10
+        access: wo
+      rpflg.rdir:
+        bit: 11
+        access: wo
+      rpflg.rerr:
+        bit: 9
+        access: wo
+      rpflg.rhie:
+        bit: 2
+        access: wo
+      rpflg.rindx:
+        bit: 8
+        access: wo
+      rpflg.rmst:
+        bit: 4
+        access: wo
+      rpflg.rpclk:
+        bit: 12
+        access: wo
+      rpflg.rwhe:
+        bit: 1
+        access: wo
+      spflg.sche:
+        bit: 0
+        access: wo
+      spflg.scnt:
+        bit: 10
+        access: wo
+      spflg.sdir:
+        bit: 11
+        access: wo
+      spflg.serr:
+        bit: 9
+        access: wo
+      spflg.shie:
+        bit: 2
+        access: wo
+      spflg.sindx:
+        bit: 8
+        access: wo
+      spflg.smst:
+        bit: 4
+        access: wo
+      spflg.spclk:
+        bit: 12
+        access: wo
+      spflg.swhe:
+        bit: 1
+        access: wo
+  ppb:
+    registers:
+      aircr:
+        offset: '0x0D0C'
+      ccr:
+        offset: '0x0D14'
+      cpuid:
+        offset: '0x0D00'
+      icsr:
+        offset: '0x0D04'
+      nvic_icer:
+        offset: '0x0180'
+      nvic_icpr:
+        offset: '0x0280'
+      nvic_ipr0:
+        offset: '0x0400'
+      nvic_ipr1:
+        offset: '0x0404'
+      nvic_ipr2:
+        offset: '0x0408'
+      nvic_ipr3:
+        offset: '0x040C'
+      nvic_ipr4:
+        offset: '0x0410'
+      nvic_ipr5:
+        offset: '0x0414'
+      nvic_ipr6:
+        offset: '0x0418'
+      nvic_ipr7:
+        offset: '0x041C'
+      nvic_iser:
+        offset: '0x0100'
+      nvic_ispr:
+        offset: '0x0200'
+      scr:
+        offset: '0x0D10'
+      shcsr:
+        offset: '0x0D24'
+      shpr2:
+        offset: '0x0D1C'
+      shpr3:
+        offset: '0x0D20'
+      syst_calib:
+        offset: 28
+      syst_csr:
+        offset: 16
+      syst_cvr:
+        offset: 24
+      syst_rvr:
+        offset: 20
+    fields:
+      aircr.endianness:
+        bit: 15
+        access: ro
+        enum:
+          value1: 0
+      aircr.sysresetreq:
+        bit: 2
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      aircr.vectkey:
+        bits:
+        - 16
+        - 31
+        access: rw
+      ccr.stkalign:
+        bit: 9
+        access: ro
+      ccr.unalign_trp:
+        bit: 3
+        access: ro
+      cpuid.architecture:
+        bits:
+        - 16
+        - 19
+        access: ro
+        enum:
+          value1: 12
+      cpuid.implementer:
+        bits:
+        - 24
+        - 31
+        access: ro
+        enum:
+          value1: 65
+      cpuid.partno:
+        bits:
+        - 4
+        - 15
+        access: ro
+        enum:
+          value1: 3104
+      cpuid.revision:
+        bits:
+        - 0
+        - 3
+        access: ro
+        enum:
+          value1: 0
+      cpuid.variant:
+        bits:
+        - 20
+        - 23
+        access: ro
+        enum:
+          value1: 0
+      icsr.isrpending:
+        bit: 22
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      icsr.pendstclr:
+        bit: 25
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      icsr.pendstset:
+        bit: 26
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      icsr.pendsvclr:
+        bit: 27
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      icsr.pendsvset:
+        bit: 28
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      icsr.vectactive:
+        bits:
+        - 0
+        - 5
+        access: ro
+        enum:
+          value1: 0
+      icsr.vectpending:
+        bits:
+        - 12
+        - 17
+        access: ro
+        enum:
+          value1: 0
+      nvic_icer.clrena:
+        bits:
+        - 0
+        - 31
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      nvic_icpr.clrpend:
+        bits:
+        - 0
+        - 31
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      nvic_ipr0.pri_0:
+        bits:
+        - 0
+        - 7
+        access: rw
+      nvic_ipr0.pri_1:
+        bits:
+        - 8
+        - 15
+        access: rw
+      nvic_ipr0.pri_2:
+        bits:
+        - 16
+        - 23
+        access: rw
+      nvic_ipr0.pri_3:
+        bits:
+        - 24
+        - 31
+        access: rw
+      nvic_ipr1.pri_0:
+        bits:
+        - 0
+        - 7
+        access: rw
+      nvic_ipr1.pri_1:
+        bits:
+        - 8
+        - 15
+        access: rw
+      nvic_ipr1.pri_2:
+        bits:
+        - 16
+        - 23
+        access: rw
+      nvic_ipr1.pri_3:
+        bits:
+        - 24
+        - 31
+        access: rw
+      nvic_ipr2.pri_0:
+        bits:
+        - 0
+        - 7
+        access: rw
+      nvic_ipr2.pri_1:
+        bits:
+        - 8
+        - 15
+        access: rw
+      nvic_ipr2.pri_2:
+        bits:
+        - 16
+        - 23
+        access: rw
+      nvic_ipr2.pri_3:
+        bits:
+        - 24
+        - 31
+        access: rw
+      nvic_ipr3.pri_0:
+        bits:
+        - 0
+        - 7
+        access: rw
+      nvic_ipr3.pri_1:
+        bits:
+        - 8
+        - 15
+        access: rw
+      nvic_ipr3.pri_2:
+        bits:
+        - 16
+        - 23
+        access: rw
+      nvic_ipr3.pri_3:
+        bits:
+        - 24
+        - 31
+        access: rw
+      nvic_ipr4.pri_0:
+        bits:
+        - 0
+        - 7
+        access: rw
+      nvic_ipr4.pri_1:
+        bits:
+        - 8
+        - 15
+        access: rw
+      nvic_ipr4.pri_2:
+        bits:
+        - 16
+        - 23
+        access: rw
+      nvic_ipr4.pri_3:
+        bits:
+        - 24
+        - 31
+        access: rw
+      nvic_ipr5.pri_0:
+        bits:
+        - 0
+        - 7
+        access: rw
+      nvic_ipr5.pri_1:
+        bits:
+        - 8
+        - 15
+        access: rw
+      nvic_ipr5.pri_2:
+        bits:
+        - 16
+        - 23
+        access: rw
+      nvic_ipr5.pri_3:
+        bits:
+        - 24
+        - 31
+        access: rw
+      nvic_ipr6.pri_0:
+        bits:
+        - 0
+        - 7
+        access: rw
+      nvic_ipr6.pri_1:
+        bits:
+        - 8
+        - 15
+        access: rw
+      nvic_ipr6.pri_2:
+        bits:
+        - 16
+        - 23
+        access: rw
+      nvic_ipr6.pri_3:
+        bits:
+        - 24
+        - 31
+        access: rw
+      nvic_ipr7.pri_0:
+        bits:
+        - 0
+        - 7
+        access: rw
+      nvic_ipr7.pri_1:
+        bits:
+        - 8
+        - 15
+        access: rw
+      nvic_ipr7.pri_2:
+        bits:
+        - 16
+        - 23
+        access: rw
+      nvic_ipr7.pri_3:
+        bits:
+        - 24
+        - 31
+        access: rw
+      nvic_iser.setena:
+        bits:
+        - 0
+        - 31
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      nvic_ispr.setpend:
+        bits:
+        - 0
+        - 31
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      scr.sevonpend:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      scr.sleepdeep:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      scr.sleeponexit:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      shcsr.svcallpended:
+        bit: 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      shpr2.pri_11:
+        bits:
+        - 24
+        - 31
+        access: rw
+      shpr3.pri_14:
+        bits:
+        - 16
+        - 23
+        access: rw
+      shpr3.pri_15:
+        bits:
+        - 24
+        - 31
+        access: rw
+      syst_calib.noref:
+        bit: 31
+        access: ro
+      syst_calib.skew:
+        bit: 30
+        access: ro
+      syst_calib.tenms:
+        bits:
+        - 0
+        - 23
+        access: ro
+      syst_csr.clksource:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      syst_csr.countflag:
+        bit: 16
+        access: rw
+      syst_csr.enable:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      syst_csr.tickint:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      syst_cvr.current:
+        bits:
+        - 0
+        - 23
+        access: rw
+      syst_rvr.reload:
+        bits:
+        - 0
+        - 23
+        access: rw
+  prng:
+    registers:
+      chk:
+        offset: 4
+      ctrl:
+        offset: 12
+      word:
+        offset: 0
+    fields:
+      chk.rdv:
+        bit: 0
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      ctrl.kld:
+        bit: 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      ctrl.rdbs:
+        bits:
+        - 1
+        - 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      word.rdata:
+        bits:
+        - 0
+        - 15
+        access: rw
+  rtc:
+    registers:
+      atim0:
+        offset: 24
+      atim1:
+        offset: 28
+      clrsr:
+        offset: 20
+      ctr:
+        offset: 4
+      id:
+        offset: 0
+      msksr:
+        offset: 16
+      rawstat:
+        offset: 8
+      stssr:
+        offset: 12
+      tim0:
+        offset: 32
+      tim1:
+        offset: 36
+    fields:
+      atim0.ada:
+        bits:
+        - 24
+        - 28
+        access: rw
+      atim0.aho:
+        bits:
+        - 16
+        - 20
+        access: rw
+      atim0.ami:
+        bits:
+        - 8
+        - 13
+        access: rw
+      atim0.ase:
+        bits:
+        - 0
+        - 5
+        access: rw
+      atim1.amo:
+        bits:
+        - 8
+        - 11
+        access: rw
+      atim1.aye:
+        bits:
+        - 16
+        - 31
+        access: rw
+      clrsr.rai:
+        bit: 8
+        access: wo
+      clrsr.rpda:
+        bit: 3
+        access: wo
+      clrsr.rpho:
+        bit: 2
+        access: wo
+      clrsr.rpmi:
+        bit: 1
+        access: wo
+      clrsr.rpmo:
+        bit: 5
+        access: wo
+      clrsr.rpse:
+        bit: 0
+        access: wo
+      clrsr.rpye:
+        bit: 6
+        access: wo
+      ctr.div:
+        bits:
+        - 16
+        - 31
+        access: rw
+      ctr.enb:
+        bit: 0
+        access: rw
+      ctr.sus:
+        bit: 1
+        access: rw
+      id.mod_number:
+        bits:
+        - 16
+        - 31
+        access: ro
+      id.mod_rev:
+        bits:
+        - 0
+        - 7
+        access: ro
+      id.mod_type:
+        bits:
+        - 8
+        - 15
+        access: ro
+      msksr.mai:
+        bit: 8
+        access: rw
+      msksr.mpda:
+        bit: 3
+        access: rw
+      msksr.mpho:
+        bit: 2
+        access: rw
+      msksr.mpmi:
+        bit: 1
+        access: rw
+      msksr.mpmo:
+        bit: 5
+        access: rw
+      msksr.mpse:
+        bit: 0
+        access: rw
+      msksr.mpye:
+        bit: 6
+        access: rw
+      rawstat.rai:
+        bit: 8
+        access: ro
+      rawstat.rpda:
+        bit: 3
+        access: ro
+      rawstat.rpho:
+        bit: 2
+        access: ro
+      rawstat.rpmi:
+        bit: 1
+        access: ro
+      rawstat.rpmo:
+        bit: 5
+        access: ro
+      rawstat.rpse:
+        bit: 0
+        access: ro
+      rawstat.rpye:
+        bit: 6
+        access: ro
+      stssr.sai:
+        bit: 8
+        access: ro
+      stssr.spda:
+        bit: 3
+        access: ro
+      stssr.spho:
+        bit: 2
+        access: ro
+      stssr.spmi:
+        bit: 1
+        access: ro
+      stssr.spmo:
+        bit: 5
+        access: ro
+      stssr.spse:
+        bit: 0
+        access: ro
+      stssr.spye:
+        bit: 6
+        access: ro
+      tim0.da:
+        bits:
+        - 24
+        - 28
+        access: rw
+      tim0.ho:
+        bits:
+        - 16
+        - 20
+        access: rw
+      tim0.mi:
+        bits:
+        - 8
+        - 13
+        access: rw
+      tim0.se:
+        bits:
+        - 0
+        - 5
+        access: rw
+      tim1.dawe:
+        bits:
+        - 0
+        - 2
+        access: rw
+      tim1.mo:
+        bits:
+        - 8
+        - 11
+        access: rw
+      tim1.ye:
+        bits:
+        - 16
+        - 31
+        access: rw
+  scu:
+    registers:
+      anaoffset:
+        offset: 108
+      anaoschpctrl:
+        offset: 144
+      anaosclpctrl:
+        offset: 140
+      anasync1:
+        offset: 120
+      anasync2:
+        offset: 124
+      anatsectrl:
+        offset: 36
+      anatseih:
+        offset: 48
+      anatseil:
+        offset: 52
+      anatsemon:
+        offset: 64
+      anavdel:
+        offset: 80
+      orcctrl:
+        offset: 0
+    fields:
+      anaoffset.adjl_offset:
+        bits:
+        - 0
+        - 6
+        access: rw
+        enum:
+          value1: 0
+          value2: 63
+          value3: 64
+          value4: 65
+          value5: 127
+      anaoschpctrl.gainsel:
+        bits:
+        - 2
+        - 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      anaoschpctrl.hysctrl:
+        bit: 6
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      anaoschpctrl.mode:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      anaoschpctrl.shby:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      anaosclpctrl.mode:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      anasync1.sync_dco_en:
+        bit: 14
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      anasync1.sync_preload:
+        bits:
+        - 0
+        - 13
+        access: rw
+        enum:
+          value1: 8191
+      anasync1.xtal_sel:
+        bit: 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      anasync2.prescaler:
+        bits:
+        - 0
+        - 10
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 2047
+      anasync2.sync_ready:
+        bit: 12
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      anatsectrl.tse_en:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      anatseih.tse_ih:
+        bits:
+        - 0
+        - 15
+        access: rw
+      anatseil.tse_il:
+        bits:
+        - 0
+        - 15
+        access: rw
+      anatsemon.tse_mon:
+        bits:
+        - 0
+        - 15
+        access: ro
+      anavdel.vdel_en:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      anavdel.vdel_select:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      anavdel.vdel_tim_adj:
+        bits:
+        - 2
+        - 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      orcctrl.cnf0:
+        bit: 16
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      orcctrl.cnf1:
+        bit: 17
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      orcctrl.cnf2:
+        bit: 18
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      orcctrl.cnf3:
+        bit: 19
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      orcctrl.cnf4:
+        bit: 20
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      orcctrl.cnf5:
+        bit: 21
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      orcctrl.cnf6:
+        bit: 22
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      orcctrl.cnf7:
+        bit: 23
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      orcctrl.enorc0:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      orcctrl.enorc1:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      orcctrl.enorc2:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      orcctrl.enorc3:
+        bit: 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      orcctrl.enorc4:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      orcctrl.enorc5:
+        bit: 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      orcctrl.enorc6:
+        bit: 6
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      orcctrl.enorc7:
+        bit: 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+  scu_clk:
+    registers:
+      cgatclr0:
+        offset: 16
+      cgatset0:
+        offset: 12
+      cgatstat0:
+        offset: 8
+      clkcr:
+        offset: 0
+      clkcr1:
+        offset: 28
+      osccsr:
+        offset: 20
+      pwrsvcr:
+        offset: 4
+    fields:
+      cgatclr0.adc:
+        bit: 0
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatclr0.ccu40:
+        bit: 2
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatclr0.ccu41:
+        bit: 17
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatclr0.ccu80:
+        bit: 1
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatclr0.ccu81:
+        bit: 16
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatclr0.dac0:
+        bit: 4
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatclr0.math:
+        bit: 8
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatclr0.mcan0:
+        bit: 21
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatclr0.posif0:
+        bit: 7
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatclr0.posif1:
+        bit: 20
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatclr0.rtc:
+        bit: 10
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatclr0.usic0:
+        bit: 3
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatclr0.usic1:
+        bit: 18
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatclr0.wdt:
+        bit: 9
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatset0.adc:
+        bit: 0
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatset0.ccu40:
+        bit: 2
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatset0.ccu41:
+        bit: 17
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatset0.ccu80:
+        bit: 1
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatset0.ccu81:
+        bit: 16
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatset0.dac0:
+        bit: 4
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatset0.math:
+        bit: 8
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatset0.mcan0:
+        bit: 21
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatset0.posif0:
+        bit: 7
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatset0.posif1:
+        bit: 20
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatset0.rtc:
+        bit: 10
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatset0.usic0:
+        bit: 3
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatset0.usic1:
+        bit: 18
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatset0.wdt:
+        bit: 9
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cgatstat0.adc:
+        bit: 0
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      cgatstat0.ccu40:
+        bit: 2
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      cgatstat0.ccu41:
+        bit: 17
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      cgatstat0.ccu80:
+        bit: 1
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      cgatstat0.ccu81:
+        bit: 16
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      cgatstat0.dac0:
+        bit: 4
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      cgatstat0.math:
+        bit: 8
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      cgatstat0.mcan0:
+        bit: 21
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      cgatstat0.posif0:
+        bit: 7
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      cgatstat0.posif1:
+        bit: 20
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      cgatstat0.rtc:
+        bit: 10
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      cgatstat0.usic0:
+        bit: 3
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      cgatstat0.usic1:
+        bit: 18
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      cgatstat0.wdt:
+        bit: 9
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      clkcr.cntadj:
+        bits:
+        - 20
+        - 29
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 768
+          value7: 1022
+          value8: 1023
+      clkcr.fdiv:
+        bits:
+        - 0
+        - 7
+        access: rw
+      clkcr.idiv:
+        bits:
+        - 8
+        - 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 254
+          value7: 255
+      clkcr.pclksel:
+        bit: 16
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      clkcr.rtcclksel:
+        bits:
+        - 17
+        - 19
+        access: rw
+      clkcr.vddc2high:
+        bit: 31
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      clkcr.vddc2low:
+        bit: 30
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      clkcr1.adcclksel:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      clkcr1.dclksel:
+        bit: 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      clkcr1.fdiv:
+        bits:
+        - 0
+        - 1
+        access: rw
+      osccsr.dco1pd:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      osccsr.osc2h:
+        bit: 1
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      osccsr.osc2l:
+        bit: 0
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      osccsr.owden:
+        bit: 17
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      osccsr.owdres:
+        bit: 16
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      osccsr.xowden:
+        bit: 25
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      osccsr.xowdres:
+        bit: 24
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pwrsvcr.fpd:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+  scu_general:
+    registers:
+      ccucon:
+        offset: 48
+      dbgromid:
+        offset: 0
+      id:
+        offset: 8
+      idchip:
+        offset: 4
+      intcr0:
+        offset: 108
+      intcr1:
+        offset: 112
+      mirrsts:
+        offset: 72
+      passwd:
+        offset: 36
+      pfucr:
+        offset: 104
+      pmtsr:
+        offset: 84
+      ssw0:
+        offset: 20
+      ststat:
+        offset: 116
+    fields:
+      ccucon.gsc40:
+        bit: 0
+        access: rw
+      ccucon.gsc41:
+        bit: 1
+        access: rw
+      dbgromid.manufid:
+        bits:
+        - 1
+        - 11
+        access: ro
+      dbgromid.partno:
+        bits:
+        - 12
+        - 27
+        access: ro
+      dbgromid.version:
+        bits:
+        - 28
+        - 31
+        access: ro
+      id.mod_number:
+        bits:
+        - 16
+        - 31
+        access: ro
+      id.mod_rev:
+        bits:
+        - 0
+        - 7
+        access: ro
+      id.mod_type:
+        bits:
+        - 8
+        - 15
+        access: ro
+      idchip.idchip:
+        bits:
+        - 0
+        - 31
+        access: ro
+      intcr0.intsel0:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr0.intsel1:
+        bits:
+        - 2
+        - 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr0.intsel10:
+        bits:
+        - 20
+        - 21
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr0.intsel11:
+        bits:
+        - 22
+        - 23
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr0.intsel12:
+        bits:
+        - 24
+        - 25
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr0.intsel13:
+        bits:
+        - 26
+        - 27
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr0.intsel14:
+        bits:
+        - 28
+        - 29
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr0.intsel15:
+        bits:
+        - 30
+        - 31
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr0.intsel2:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr0.intsel3:
+        bits:
+        - 6
+        - 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr0.intsel4:
+        bits:
+        - 8
+        - 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr0.intsel5:
+        bits:
+        - 10
+        - 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr0.intsel6:
+        bits:
+        - 12
+        - 13
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr0.intsel7:
+        bits:
+        - 14
+        - 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr0.intsel8:
+        bits:
+        - 16
+        - 17
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr0.intsel9:
+        bits:
+        - 18
+        - 19
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr1.intsel16:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr1.intsel17:
+        bits:
+        - 2
+        - 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr1.intsel18:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr1.intsel19:
+        bits:
+        - 6
+        - 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr1.intsel20:
+        bits:
+        - 8
+        - 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr1.intsel21:
+        bits:
+        - 10
+        - 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr1.intsel22:
+        bits:
+        - 12
+        - 13
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr1.intsel23:
+        bits:
+        - 14
+        - 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr1.intsel24:
+        bits:
+        - 16
+        - 17
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr1.intsel25:
+        bits:
+        - 18
+        - 19
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr1.intsel26:
+        bits:
+        - 20
+        - 21
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr1.intsel27:
+        bits:
+        - 22
+        - 23
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr1.intsel28:
+        bits:
+        - 24
+        - 25
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr1.intsel29:
+        bits:
+        - 26
+        - 27
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr1.intsel30:
+        bits:
+        - 28
+        - 29
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      intcr1.intsel31:
+        bits:
+        - 30
+        - 31
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      mirrsts.rtc_atim0:
+        bit: 1
+        access: ro
+      mirrsts.rtc_atim1:
+        bit: 2
+        access: ro
+      mirrsts.rtc_ctr:
+        bit: 0
+        access: ro
+      mirrsts.rtc_tim0:
+        bit: 3
+        access: ro
+      mirrsts.rtc_tim1:
+        bit: 4
+        access: ro
+      passwd.mode:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 3
+      passwd.pass:
+        bits:
+        - 3
+        - 7
+        access: wo
+        enum:
+          value1: 24
+          value2: 19
+          value3: 21
+      passwd.prots:
+        bit: 2
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      pfucr.pfubyp:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      pmtsr.mtens:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      ssw0.dat:
+        bits:
+        - 0
+        - 31
+        access: rw
+      ststat.hwcon:
+        bits:
+        - 0
+        - 1
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+  scu_interrupt:
+    registers:
+      srclr:
+        offset: 8
+      srclr1:
+        offset: 40
+      srmsk:
+        offset: 4
+      srmsk1:
+        offset: 36
+      srraw:
+        offset: 0
+      srraw1:
+        offset: 32
+      srset:
+        offset: 12
+      srset1:
+        offset: 44
+    fields:
+      srclr.acmp0i:
+        bit: 4
+        access: wo
+      srclr.acmp1i:
+        bit: 5
+        access: wo
+      srclr.acmp2i:
+        bit: 6
+        access: wo
+      srclr.ai:
+        bit: 2
+        access: wo
+      srclr.flcmplti:
+        bit: 20
+        access: wo
+      srclr.flecc2i:
+        bit: 19
+        access: wo
+      srclr.loci:
+        bit: 16
+        access: wo
+      srclr.orc0i:
+        bit: 8
+        access: wo
+      srclr.orc1i:
+        bit: 9
+        access: wo
+      srclr.orc2i:
+        bit: 10
+        access: wo
+      srclr.orc3i:
+        bit: 11
+        access: wo
+      srclr.orc4i:
+        bit: 12
+        access: wo
+      srclr.orc5i:
+        bit: 13
+        access: wo
+      srclr.orc6i:
+        bit: 14
+        access: wo
+      srclr.orc7i:
+        bit: 15
+        access: wo
+      srclr.pesrami:
+        bit: 17
+        access: wo
+      srclr.peu0i:
+        bit: 18
+        access: wo
+      srclr.pi:
+        bit: 1
+        access: wo
+      srclr.prwarn:
+        bit: 0
+        access: wo
+      srclr.rtc_atim0:
+        bit: 25
+        access: wo
+      srclr.rtc_atim1:
+        bit: 26
+        access: wo
+      srclr.rtc_ctr:
+        bit: 24
+        access: wo
+      srclr.rtc_tim0:
+        bit: 27
+        access: wo
+      srclr.rtc_tim1:
+        bit: 28
+        access: wo
+      srclr.sbyclkfi:
+        bit: 22
+        access: wo
+      srclr.tse_done:
+        bit: 29
+        access: wo
+      srclr.tse_high:
+        bit: 30
+        access: wo
+      srclr.tse_low:
+        bit: 31
+        access: wo
+      srclr.vclipi:
+        bit: 21
+        access: wo
+      srclr.vddpi:
+        bit: 3
+        access: wo
+      srclr.vdropi:
+        bit: 7
+        access: wo
+      srclr1.acmp3i:
+        bit: 0
+        access: wo
+      srclr1.dco1ofsi:
+        bit: 4
+        access: wo
+      srclr1.loeci:
+        bit: 1
+        access: wo
+      srclr1.pemci:
+        bit: 3
+        access: wo
+      srclr1.peu1i:
+        bit: 2
+        access: wo
+      srmsk.acmp0i:
+        bit: 4
+        access: rw
+      srmsk.acmp1i:
+        bit: 5
+        access: rw
+      srmsk.acmp2i:
+        bit: 6
+        access: rw
+      srmsk.flecc2i:
+        bit: 19
+        access: rw
+      srmsk.loci:
+        bit: 16
+        access: rw
+      srmsk.orc0i:
+        bit: 8
+        access: rw
+      srmsk.orc1i:
+        bit: 9
+        access: rw
+      srmsk.orc2i:
+        bit: 10
+        access: rw
+      srmsk.orc3i:
+        bit: 11
+        access: rw
+      srmsk.orc4i:
+        bit: 12
+        access: rw
+      srmsk.orc5i:
+        bit: 13
+        access: rw
+      srmsk.orc6i:
+        bit: 14
+        access: rw
+      srmsk.orc7i:
+        bit: 15
+        access: rw
+      srmsk.pesrami:
+        bit: 17
+        access: rw
+      srmsk.peu0i:
+        bit: 18
+        access: rw
+      srmsk.prwarn:
+        bit: 0
+        access: rw
+      srmsk.rtc_atim0:
+        bit: 25
+        access: rw
+      srmsk.rtc_atim1:
+        bit: 26
+        access: rw
+      srmsk.rtc_ctr:
+        bit: 24
+        access: rw
+      srmsk.rtc_tim0:
+        bit: 27
+        access: rw
+      srmsk.rtc_tim1:
+        bit: 28
+        access: rw
+      srmsk.sbyclkfi:
+        bit: 22
+        access: rw
+      srmsk.tse_done:
+        bit: 29
+        access: rw
+      srmsk.tse_high:
+        bit: 30
+        access: rw
+      srmsk.tse_low:
+        bit: 31
+        access: rw
+      srmsk.vclipi:
+        bit: 21
+        access: rw
+      srmsk.vddpi:
+        bit: 3
+        access: rw
+      srmsk.vdropi:
+        bit: 7
+        access: rw
+      srmsk1.acmp3i:
+        bit: 0
+        access: rw
+      srmsk1.dco1ofsi:
+        bit: 4
+        access: rw
+      srmsk1.loeci:
+        bit: 1
+        access: rw
+      srmsk1.pemci:
+        bit: 3
+        access: rw
+      srmsk1.peu1i:
+        bit: 2
+        access: rw
+      srraw.acmp0i:
+        bit: 4
+        access: ro
+      srraw.acmp1i:
+        bit: 5
+        access: ro
+      srraw.acmp2i:
+        bit: 6
+        access: ro
+      srraw.ai:
+        bit: 2
+        access: ro
+      srraw.flcmplti:
+        bit: 20
+        access: ro
+      srraw.flecc2i:
+        bit: 19
+        access: ro
+      srraw.loci:
+        bit: 16
+        access: ro
+      srraw.orc0i:
+        bit: 8
+        access: ro
+      srraw.orc1i:
+        bit: 9
+        access: ro
+      srraw.orc2i:
+        bit: 10
+        access: ro
+      srraw.orc3i:
+        bit: 11
+        access: ro
+      srraw.orc4i:
+        bit: 12
+        access: ro
+      srraw.orc5i:
+        bit: 13
+        access: ro
+      srraw.orc6i:
+        bit: 14
+        access: ro
+      srraw.orc7i:
+        bit: 15
+        access: ro
+      srraw.pesrami:
+        bit: 17
+        access: ro
+      srraw.peu0i:
+        bit: 18
+        access: ro
+      srraw.pi:
+        bit: 1
+        access: ro
+      srraw.prwarn:
+        bit: 0
+        access: ro
+      srraw.rtc_atim0:
+        bit: 25
+        access: ro
+      srraw.rtc_atim1:
+        bit: 26
+        access: ro
+      srraw.rtc_ctr:
+        bit: 24
+        access: ro
+      srraw.rtc_tim0:
+        bit: 27
+        access: ro
+      srraw.rtc_tim1:
+        bit: 28
+        access: ro
+      srraw.sbyclkfi:
+        bit: 22
+        access: ro
+      srraw.tse_done:
+        bit: 29
+        access: ro
+      srraw.tse_high:
+        bit: 30
+        access: ro
+      srraw.tse_low:
+        bit: 31
+        access: ro
+      srraw.vclipi:
+        bit: 21
+        access: ro
+      srraw.vddpi:
+        bit: 3
+        access: ro
+      srraw.vdropi:
+        bit: 7
+        access: ro
+      srraw1.acmp3i:
+        bit: 0
+        access: ro
+      srraw1.dco1ofsi:
+        bit: 4
+        access: ro
+      srraw1.loeci:
+        bit: 1
+        access: ro
+      srraw1.pemci:
+        bit: 3
+        access: ro
+      srraw1.peu1i:
+        bit: 2
+        access: ro
+      srset.acmp0i:
+        bit: 4
+        access: wo
+      srset.acmp1i:
+        bit: 5
+        access: wo
+      srset.acmp2i:
+        bit: 6
+        access: wo
+      srset.ai:
+        bit: 2
+        access: wo
+      srset.flcmplti:
+        bit: 20
+        access: wo
+      srset.flecc2i:
+        bit: 19
+        access: wo
+      srset.loci:
+        bit: 16
+        access: wo
+      srset.orc0i:
+        bit: 8
+        access: wo
+      srset.orc1i:
+        bit: 9
+        access: wo
+      srset.orc2i:
+        bit: 10
+        access: wo
+      srset.orc3i:
+        bit: 11
+        access: wo
+      srset.orc4i:
+        bit: 12
+        access: wo
+      srset.orc5i:
+        bit: 13
+        access: wo
+      srset.orc6i:
+        bit: 14
+        access: wo
+      srset.orc7i:
+        bit: 15
+        access: wo
+      srset.pesrami:
+        bit: 17
+        access: wo
+      srset.peu0i:
+        bit: 18
+        access: wo
+      srset.pi:
+        bit: 1
+        access: wo
+      srset.prwarn:
+        bit: 0
+        access: wo
+      srset.rtc_atim0:
+        bit: 25
+        access: wo
+      srset.rtc_atim1:
+        bit: 26
+        access: wo
+      srset.rtc_ctr:
+        bit: 24
+        access: wo
+      srset.rtc_tim0:
+        bit: 27
+        access: wo
+      srset.rtc_tim1:
+        bit: 28
+        access: wo
+      srset.sbyclkfi:
+        bit: 22
+        access: wo
+      srset.tse_done:
+        bit: 29
+        access: wo
+      srset.tse_high:
+        bit: 30
+        access: wo
+      srset.tse_low:
+        bit: 31
+        access: wo
+      srset.vclipi:
+        bit: 21
+        access: wo
+      srset.vddpi:
+        bit: 3
+        access: wo
+      srset.vdropi:
+        bit: 7
+        access: wo
+      srset1.acmp3i:
+        bit: 0
+        access: wo
+      srset1.dco1ofsi:
+        bit: 4
+        access: wo
+      srset1.loeci:
+        bit: 1
+        access: wo
+      srset1.pemci:
+        bit: 3
+        access: wo
+      srset1.peu1i:
+        bit: 2
+        access: wo
+  scu_power:
+    registers:
+      vdesr:
+        offset: 0
+    fields:
+      vdesr.vclip:
+        bit: 0
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      vdesr.vddppw:
+        bit: 1
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+  scu_reset:
+    registers:
+      rstclr:
+        offset: 8
+      rstcon:
+        offset: 12
+      rstset:
+        offset: 4
+      rststat:
+        offset: 0
+    fields:
+      rstclr.lcken:
+        bit: 10
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      rstclr.rsclr:
+        bit: 0
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      rstcon.eccrsten:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rstcon.locrsten:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rstcon.loecrsten:
+        bit: 6
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rstcon.mpersten:
+        bit: 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rstcon.mrsten:
+        bit: 16
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      rstcon.spersten:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rstcon.u0persten:
+        bit: 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rstcon.u1persten:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rstset.lcken:
+        bit: 10
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      rststat.lcken:
+        bit: 10
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      rststat.rststat:
+        bits:
+        - 0
+        - 9
+        access: ro
+  shs:
+    registers:
+      cfg:
+        offset: 64
+      gnctr:
+        offset: '0x0180'
+      id:
+        offset: 8
+      loop:
+        offset: 80
+    fields:
+      cfg.anoff:
+        bit: 12
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      cfg.anrdy:
+        bit: 14
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      cfg.aref:
+        bits:
+        - 10
+        - 11
+        access: rw
+        enum:
+          value1: 0
+          value3: 2
+          value4: 3
+      cfg.divs:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 7
+      cfg.scwc:
+        bit: 15
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      cfg.sp:
+        bit: 16
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      cfg.state:
+        bits:
+        - 28
+        - 31
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 8
+      gnctr.gain0:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      gnctr.gain1:
+        bits:
+        - 4
+        - 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      gnctr.gain2:
+        bits:
+        - 8
+        - 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      gnctr.gain3:
+        bits:
+        - 12
+        - 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      gnctr.gain4:
+        bits:
+        - 16
+        - 19
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      gnctr.gain5:
+        bits:
+        - 20
+        - 23
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      gnctr.gain6:
+        bits:
+        - 24
+        - 27
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      gnctr.gain7:
+        bits:
+        - 28
+        - 31
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      id.mod_number:
+        bits:
+        - 16
+        - 31
+        access: ro
+      id.mod_rev:
+        bits:
+        - 0
+        - 7
+        access: ro
+      id.mod_type:
+        bits:
+        - 8
+        - 15
+        access: ro
+      loop.lpch0:
+        bits:
+        - 0
+        - 4
+        access: rw
+      loop.lpch1:
+        bits:
+        - 16
+        - 20
+        access: rw
+      loop.lpen0:
+        bit: 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      loop.lpen1:
+        bit: 31
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+  usic:
+    registers:
+      brg:
+        offset: 20
+      byp:
+        offset: '0x0100'
+      bypcr:
+        offset: '0x0104'
+      ccfg:
+        offset: 4
+      ccr:
+        offset: 64
+      cmtr:
+        offset: 68
+      dx0cr:
+        offset: 28
+      dx1cr:
+        offset: 32
+      dx2cr:
+        offset: 36
+      dx3cr:
+        offset: 40
+      dx4cr:
+        offset: 44
+      dx5cr:
+        offset: 48
+      fdr:
+        offset: 16
+      fmr:
+        offset: 104
+      id:
+        offset: 0
+      in[%s]:
+        offset: '0x0180'
+      inpr:
+        offset: 24
+      kscfg:
+        offset: 12
+      outdr:
+        offset: '0x0120'
+      outr:
+        offset: '0x011C'
+      pcr:
+        offset: 60
+      pscr:
+        offset: 76
+      psr:
+        offset: 72
+      rbctr:
+        offset: '0x010C'
+      rbuf:
+        offset: 84
+      rbuf0:
+        offset: 92
+      rbuf01sr:
+        offset: 100
+      rbuf1:
+        offset: 96
+      rbufd:
+        offset: 88
+      rbufsr:
+        offset: 80
+      sctr:
+        offset: 52
+      tbctr:
+        offset: '0x0108'
+      tbuf[%s]:
+        offset: 128
+      tcsr:
+        offset: 56
+      trbptr:
+        offset: '0x0110'
+      trbscr:
+        offset: '0x0118'
+      trbsr:
+        offset: '0x0114'
+    fields:
+      brg.clksel:
+        bits:
+        - 0
+        - 1
+        access: rw
+        enum:
+          value1: 0
+          value3: 2
+          value4: 3
+      brg.ctqsel:
+        bits:
+        - 6
+        - 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      brg.dctq:
+        bits:
+        - 10
+        - 14
+        access: rw
+      brg.mclkcfg:
+        bit: 29
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      brg.pctq:
+        bits:
+        - 8
+        - 9
+        access: rw
+      brg.pdiv:
+        bits:
+        - 16
+        - 25
+        access: rw
+      brg.pppen:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      brg.sclkcfg:
+        bits:
+        - 30
+        - 31
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      brg.sclkosel:
+        bit: 28
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      brg.tmen:
+        bit: 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      byp.bdata:
+        bits:
+        - 0
+        - 15
+        access: rw
+      bypcr.bden:
+        bits:
+        - 10
+        - 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      bypcr.bdssm:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      bypcr.bdv:
+        bit: 15
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      bypcr.bdvtr:
+        bit: 12
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      bypcr.bhpc:
+        bits:
+        - 21
+        - 23
+        access: rw
+      bypcr.bprio:
+        bit: 13
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      bypcr.bselo:
+        bits:
+        - 16
+        - 20
+        access: rw
+      bypcr.bwle:
+        bits:
+        - 0
+        - 3
+        access: rw
+      ccfg.asc:
+        bit: 1
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      ccfg.iic:
+        bit: 2
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      ccfg.iis:
+        bit: 3
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      ccfg.rb:
+        bit: 6
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      ccfg.ssc:
+        bit: 0
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      ccfg.tb:
+        bit: 7
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      ccr.aien:
+        bit: 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      ccr.brgien:
+        bit: 16
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      ccr.dlien:
+        bit: 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      ccr.hpcen:
+        bits:
+        - 6
+        - 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      ccr.mode:
+        bits:
+        - 0
+        - 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+      ccr.pm:
+        bits:
+        - 8
+        - 9
+        access: rw
+        enum:
+          value1: 0
+          value3: 2
+          value4: 3
+      ccr.rien:
+        bit: 14
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      ccr.rsien:
+        bit: 10
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      ccr.tbien:
+        bit: 13
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      ccr.tsien:
+        bit: 12
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      cmtr.ctv:
+        bits:
+        - 0
+        - 9
+        access: rw
+      dx0cr.cm:
+        bits:
+        - 10
+        - 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      dx0cr.dfen:
+        bit: 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx0cr.dpol:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx0cr.dsel:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+      dx0cr.dsen:
+        bit: 6
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx0cr.dxs:
+        bit: 15
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      dx0cr.insw:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx0cr.sfsel:
+        bit: 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx1cr.cm:
+        bits:
+        - 10
+        - 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      dx1cr.dcen:
+        bit: 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx1cr.dfen:
+        bit: 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx1cr.dpol:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx1cr.dsel:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+      dx1cr.dsen:
+        bit: 6
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx1cr.dxs:
+        bit: 15
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      dx1cr.insw:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx1cr.sfsel:
+        bit: 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx2cr.cm:
+        bits:
+        - 10
+        - 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      dx2cr.dfen:
+        bit: 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx2cr.dpol:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx2cr.dsel:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+      dx2cr.dsen:
+        bit: 6
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx2cr.dxs:
+        bit: 15
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      dx2cr.insw:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx2cr.sfsel:
+        bit: 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx3cr.cm:
+        bits:
+        - 10
+        - 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      dx3cr.dfen:
+        bit: 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx3cr.dpol:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx3cr.dsel:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+      dx3cr.dsen:
+        bit: 6
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx3cr.dxs:
+        bit: 15
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      dx3cr.insw:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx3cr.sfsel:
+        bit: 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx4cr.cm:
+        bits:
+        - 10
+        - 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      dx4cr.dfen:
+        bit: 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx4cr.dpol:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx4cr.dsel:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+      dx4cr.dsen:
+        bit: 6
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx4cr.dxs:
+        bit: 15
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      dx4cr.insw:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx4cr.sfsel:
+        bit: 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx5cr.cm:
+        bits:
+        - 10
+        - 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      dx5cr.dfen:
+        bit: 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx5cr.dpol:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx5cr.dsel:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+          value8: 7
+      dx5cr.dsen:
+        bit: 6
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx5cr.dxs:
+        bit: 15
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      dx5cr.insw:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      dx5cr.sfsel:
+        bit: 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      fdr.dm:
+        bits:
+        - 14
+        - 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      fdr.result:
+        bits:
+        - 16
+        - 25
+        access: ro
+      fdr.step:
+        bits:
+        - 0
+        - 9
+        access: rw
+      fmr.atvc:
+        bit: 4
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      fmr.crdv0:
+        bit: 14
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      fmr.crdv1:
+        bit: 15
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      fmr.mtdv:
+        bits:
+        - 0
+        - 1
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+      fmr.sio0:
+        bit: 16
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      fmr.sio1:
+        bit: 17
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      fmr.sio2:
+        bit: 18
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      fmr.sio3:
+        bit: 19
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      fmr.sio4:
+        bit: 20
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      fmr.sio5:
+        bit: 21
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      id.mod_number:
+        bits:
+        - 16
+        - 31
+        access: ro
+      id.mod_rev:
+        bits:
+        - 0
+        - 7
+        access: ro
+      id.mod_type:
+        bits:
+        - 8
+        - 15
+        access: ro
+      in[%s].tdata:
+        bits:
+        - 0
+        - 15
+        access: wo
+      inpr.ainp:
+        bits:
+        - 12
+        - 14
+        access: rw
+      inpr.pinp:
+        bits:
+        - 16
+        - 18
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+      inpr.rinp:
+        bits:
+        - 8
+        - 10
+        access: rw
+      inpr.tbinp:
+        bits:
+        - 4
+        - 6
+        access: rw
+      inpr.tsinp:
+        bits:
+        - 0
+        - 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+      kscfg.bpmoden:
+        bit: 1
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      kscfg.bpnom:
+        bit: 7
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      kscfg.bpsum:
+        bit: 11
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      kscfg.moden:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      kscfg.nomcfg:
+        bits:
+        - 4
+        - 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      kscfg.sumcfg:
+        bits:
+        - 8
+        - 9
+        access: rw
+      outdr.dsr:
+        bits:
+        - 0
+        - 15
+        access: ro
+      outdr.rci:
+        bits:
+        - 16
+        - 20
+        access: ro
+      outr.dsr:
+        bits:
+        - 0
+        - 15
+        access: ro
+      outr.rci:
+        bits:
+        - 16
+        - 20
+        access: ro
+      pcr.ctr0:
+        bit: 0
+        access: rw
+      pcr.ctr1:
+        bit: 1
+        access: rw
+      pcr.ctr10:
+        bit: 10
+        access: rw
+      pcr.ctr11:
+        bit: 11
+        access: rw
+      pcr.ctr12:
+        bit: 12
+        access: rw
+      pcr.ctr13:
+        bit: 13
+        access: rw
+      pcr.ctr14:
+        bit: 14
+        access: rw
+      pcr.ctr15:
+        bit: 15
+        access: rw
+      pcr.ctr16:
+        bit: 16
+        access: rw
+      pcr.ctr17:
+        bit: 17
+        access: rw
+      pcr.ctr18:
+        bit: 18
+        access: rw
+      pcr.ctr19:
+        bit: 19
+        access: rw
+      pcr.ctr2:
+        bit: 2
+        access: rw
+      pcr.ctr20:
+        bit: 20
+        access: rw
+      pcr.ctr21:
+        bit: 21
+        access: rw
+      pcr.ctr22:
+        bit: 22
+        access: rw
+      pcr.ctr23:
+        bit: 23
+        access: rw
+      pcr.ctr24:
+        bit: 24
+        access: rw
+      pcr.ctr25:
+        bit: 25
+        access: rw
+      pcr.ctr26:
+        bit: 26
+        access: rw
+      pcr.ctr27:
+        bit: 27
+        access: rw
+      pcr.ctr28:
+        bit: 28
+        access: rw
+      pcr.ctr29:
+        bit: 29
+        access: rw
+      pcr.ctr3:
+        bit: 3
+        access: rw
+      pcr.ctr30:
+        bit: 30
+        access: rw
+      pcr.ctr31:
+        bit: 31
+        access: rw
+      pcr.ctr4:
+        bit: 4
+        access: rw
+      pcr.ctr5:
+        bit: 5
+        access: rw
+      pcr.ctr6:
+        bit: 6
+        access: rw
+      pcr.ctr7:
+        bit: 7
+        access: rw
+      pcr.ctr8:
+        bit: 8
+        access: rw
+      pcr.ctr9:
+        bit: 9
+        access: rw
+      pscr.caif:
+        bit: 15
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      pscr.cbrgif:
+        bit: 16
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      pscr.cdlif:
+        bit: 11
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      pscr.crif:
+        bit: 14
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      pscr.crsif:
+        bit: 10
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      pscr.cst0:
+        bit: 0
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      pscr.cst1:
+        bit: 1
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      pscr.cst2:
+        bit: 2
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      pscr.cst3:
+        bit: 3
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      pscr.cst4:
+        bit: 4
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      pscr.cst5:
+        bit: 5
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      pscr.cst6:
+        bit: 6
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      pscr.cst7:
+        bit: 7
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      pscr.cst8:
+        bit: 8
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      pscr.cst9:
+        bit: 9
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      pscr.ctbif:
+        bit: 13
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      pscr.ctsif:
+        bit: 12
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      psr.aif:
+        bit: 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      psr.brgif:
+        bit: 16
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      psr.dlif:
+        bit: 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      psr.rif:
+        bit: 14
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      psr.rsif:
+        bit: 10
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      psr.st0:
+        bit: 0
+        access: rw
+      psr.st1:
+        bit: 1
+        access: rw
+      psr.st2:
+        bit: 2
+        access: rw
+      psr.st3:
+        bit: 3
+        access: rw
+      psr.st4:
+        bit: 4
+        access: rw
+      psr.st5:
+        bit: 5
+        access: rw
+      psr.st6:
+        bit: 6
+        access: rw
+      psr.st7:
+        bit: 7
+        access: rw
+      psr.st8:
+        bit: 8
+        access: rw
+      psr.st9:
+        bit: 9
+        access: rw
+      psr.tbif:
+        bit: 13
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      psr.tsif:
+        bit: 12
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rbctr.arbien:
+        bit: 29
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rbctr.arbinp:
+        bits:
+        - 19
+        - 21
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+      rbctr.dptr:
+        bits:
+        - 0
+        - 5
+        access: wo
+      rbctr.limit:
+        bits:
+        - 8
+        - 13
+        access: rw
+      rbctr.lof:
+        bit: 28
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rbctr.rberien:
+        bit: 31
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rbctr.rcim:
+        bits:
+        - 22
+        - 23
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      rbctr.rnm:
+        bit: 27
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rbctr.size:
+        bits:
+        - 24
+        - 26
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+      rbctr.srbien:
+        bit: 30
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rbctr.srbinp:
+        bits:
+        - 16
+        - 18
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+      rbctr.srbten:
+        bit: 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rbctr.srbtm:
+        bit: 14
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      rbuf.dsr:
+        bits:
+        - 0
+        - 15
+        access: ro
+      rbuf0.dsr0:
+        bits:
+        - 0
+        - 15
+        access: ro
+      rbuf01sr.ds0:
+        bit: 15
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      rbuf01sr.ds1:
+        bit: 31
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      rbuf01sr.par0:
+        bit: 8
+        access: ro
+      rbuf01sr.par1:
+        bit: 24
+        access: ro
+      rbuf01sr.perr0:
+        bit: 9
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      rbuf01sr.perr1:
+        bit: 25
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      rbuf01sr.rdv00:
+        bit: 13
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      rbuf01sr.rdv01:
+        bit: 14
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      rbuf01sr.rdv10:
+        bit: 29
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      rbuf01sr.rdv11:
+        bit: 30
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      rbuf01sr.sof0:
+        bit: 6
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      rbuf01sr.sof1:
+        bit: 22
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      rbuf01sr.wlen0:
+        bits:
+        - 0
+        - 3
+        access: ro
+      rbuf01sr.wlen1:
+        bits:
+        - 16
+        - 19
+        access: ro
+      rbuf1.dsr1:
+        bits:
+        - 0
+        - 15
+        access: ro
+      rbufd.dsr:
+        bits:
+        - 0
+        - 15
+        access: ro
+      rbufsr.ds:
+        bit: 15
+        access: ro
+      rbufsr.par:
+        bit: 8
+        access: ro
+      rbufsr.perr:
+        bit: 9
+        access: ro
+      rbufsr.rdv0:
+        bit: 13
+        access: ro
+      rbufsr.rdv1:
+        bit: 14
+        access: ro
+      rbufsr.sof:
+        bit: 6
+        access: ro
+      rbufsr.wlen:
+        bits:
+        - 0
+        - 3
+        access: ro
+      sctr.docfg:
+        bits:
+        - 6
+        - 7
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      sctr.dsm:
+        bits:
+        - 2
+        - 3
+        access: rw
+        enum:
+          value1: 0
+          value3: 2
+          value4: 3
+      sctr.fle:
+        bits:
+        - 16
+        - 21
+        access: rw
+      sctr.hpcdir:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      sctr.pdl:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      sctr.sdir:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      sctr.trm:
+        bits:
+        - 8
+        - 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      sctr.wle:
+        bits:
+        - 24
+        - 27
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 14
+          value4: 15
+      tbctr.atbinp:
+        bits:
+        - 19
+        - 21
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+      tbctr.dptr:
+        bits:
+        - 0
+        - 5
+        access: wo
+      tbctr.limit:
+        bits:
+        - 8
+        - 13
+        access: rw
+      tbctr.lof:
+        bit: 28
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tbctr.size:
+        bits:
+        - 24
+        - 26
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+          value7: 6
+      tbctr.stbien:
+        bit: 30
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tbctr.stbinp:
+        bits:
+        - 16
+        - 18
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+          value5: 4
+          value6: 5
+      tbctr.stbten:
+        bit: 15
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tbctr.stbtm:
+        bit: 14
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tbctr.tberien:
+        bit: 31
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tbuf[%s].tdata:
+        bits:
+        - 0
+        - 15
+        access: rw
+      tcsr.eof:
+        bit: 6
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tcsr.flemd:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tcsr.hpcmd:
+        bit: 4
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tcsr.selmd:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tcsr.sof:
+        bit: 5
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tcsr.tden:
+        bits:
+        - 10
+        - 11
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+          value3: 2
+          value4: 3
+      tcsr.tdssm:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tcsr.tdv:
+        bit: 7
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      tcsr.tdvtr:
+        bit: 12
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tcsr.te:
+        bit: 28
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      tcsr.tsof:
+        bit: 24
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      tcsr.tv:
+        bit: 26
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      tcsr.tvc:
+        bit: 27
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      tcsr.wa:
+        bit: 13
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tcsr.wamd:
+        bit: 3
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      tcsr.wlemd:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      trbptr.rdiptr:
+        bits:
+        - 16
+        - 21
+        access: ro
+      trbptr.rdoptr:
+        bits:
+        - 24
+        - 29
+        access: ro
+      trbptr.tdiptr:
+        bits:
+        - 0
+        - 5
+        access: ro
+      trbptr.tdoptr:
+        bits:
+        - 8
+        - 13
+        access: ro
+      trbscr.carbi:
+        bit: 2
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      trbscr.cbdv:
+        bit: 10
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      trbscr.crberi:
+        bit: 1
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      trbscr.csrbi:
+        bit: 0
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      trbscr.cstbi:
+        bit: 8
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      trbscr.ctberi:
+        bit: 9
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      trbscr.flushrb:
+        bit: 14
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      trbscr.flushtb:
+        bit: 15
+        access: wo
+        enum:
+          value1: 0
+          value2: 1
+      trbsr.arbi:
+        bit: 2
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      trbsr.rberi:
+        bit: 1
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      trbsr.rbflvl:
+        bits:
+        - 16
+        - 22
+        access: ro
+      trbsr.rbus:
+        bit: 5
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      trbsr.rempty:
+        bit: 3
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      trbsr.rfull:
+        bit: 4
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      trbsr.srbi:
+        bit: 0
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      trbsr.srbt:
+        bit: 6
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      trbsr.stbi:
+        bit: 8
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      trbsr.stbt:
+        bit: 14
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      trbsr.tberi:
+        bit: 9
+        access: rw
+        enum:
+          value1: 0
+          value2: 1
+      trbsr.tbflvl:
+        bits:
+        - 24
+        - 30
+        access: ro
+      trbsr.tbus:
+        bit: 13
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      trbsr.tempty:
+        bit: 11
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+      trbsr.tfull:
+        bit: 12
+        access: ro
+        enum:
+          value1: 0
+          value2: 1
+  wdt:
+    registers:
+      ctr:
+        offset: 4
+      id:
+        offset: 0
+      srv:
+        offset: 8
+      tim:
+        offset: 12
+      wdtclr:
+        offset: 28
+      wdtsts:
+        offset: 24
+      wlb:
+        offset: 16
+      wub:
+        offset: 20
+    fields:
+      ctr.dsp:
+        bit: 4
+        access: rw
+      ctr.enb:
+        bit: 0
+        access: rw
+      ctr.pre:
+        bit: 1
+        access: rw
+      ctr.spw:
+        bits:
+        - 8
+        - 15
+        access: rw
+      id.mod_number:
+        bits:
+        - 16
+        - 31
+        access: ro
+      id.mod_rev:
+        bits:
+        - 0
+        - 7
+        access: ro
+      id.mod_type:
+        bits:
+        - 8
+        - 15
+        access: ro
+      srv.srv:
+        bits:
+        - 0
+        - 31
+        access: wo
+      tim.tim:
+        bits:
+        - 0
+        - 31
+        access: ro
+      wdtclr.almc:
+        bit: 0
+        access: wo
+      wdtsts.alms:
+        bit: 0
+        access: ro
+      wlb.wlb:
+        bits:
+        - 0
+        - 31
+        access: rw
+      wub.wub:
+        bits:
+        - 0
+        - 31
+        access: rw
+peripherals:
+- id: ppb
+  template: ppb
+  base: '0xE000E000'
+- id: eru0
+  template: eru
+  base: '0x40010600'
+  irq:
+  - num: 3
+    name: IRQ3_IRQHandler
+  - num: 4
+    name: IRQ4_IRQHandler
+  - num: 5
+    name: IRQ5_IRQHandler
+  - num: 6
+    name: IRQ6_IRQHandler
+- id: eru1
+  template: eru
+  base: '0x40010630'
+  ip_version: ERU0
+- id: math
+  template: math
+  base: '0x40030000'
+  irq:
+    num: 7
+    name: IRQ7_IRQHandler
+- id: pau
+  template: pau
+  base: '0x40000000'
+- id: nvm
+  template: nvm
+  base: '0x40050000'
+- id: wdt
+  template: wdt
+  base: '0x40020000'
+- id: rtc
+  template: rtc
+  base: '0x40010A00'
+- id: prng
+  template: prng
+  base: '0x48020000'
+- id: usic0
+  template: usic
+  base: '0x48000008'
+  irq:
+  - num: 9
+    name: IRQ9_IRQHandler
+  - num: 10
+    name: IRQ10_IRQHandler
+  - num: 11
+    name: IRQ11_IRQHandler
+  - num: 12
+    name: IRQ12_IRQHandler
+  - num: 13
+    name: IRQ13_IRQHandler
+  - num: 14
+    name: IRQ14_IRQHandler
+- id: usic0_ch0
+  template: usic
+  base: '0x48000000'
+- id: usic1
+  template: usic
+  base: '0x48004008'
+  ip_version: USIC0
+- id: usic0_ch1
+  template: usic
+  base: '0x48000200'
+  ip_version: USIC0_CH0
+- id: usic1_ch0
+  template: usic
+  base: '0x48004000'
+  ip_version: USIC0_CH0
+- id: can
+  template: can
+  base: '0x50040000'
+- id: can_node0
+  template: can
+  base: '0x50040200'
+- id: can_node1
+  template: can
+  base: '0x50040300'
+  ip_version: CAN_NODE0
+- id: can_mo
+  template: can
+  base: '0x50041000'
+- id: scu_general
+  template: scu_general
+  base: '0x40010000'
+- id: scu_interrupt
+  template: scu_interrupt
+  base: '0x40010038'
+  irq:
+  - num: 0
+    name: IRQ0_IRQHandler
+  - num: 1
+    name: IRQ1_IRQHandler
+  - num: 2
+    name: IRQ2_IRQHandler
+- id: scu_power
+  template: scu_power
+  base: '0x40010200'
+- id: scu_clk
+  template: scu_clk
+  base: '0x40010300'
+- id: scu_reset
+  template: scu_reset
+  base: '0x40010400'
+- id: comparator
+  template: scu
+  base: '0x40010500'
+- id: scu_analog
+  template: scu
+  base: '0x40011000'
+- id: ccu40
+  template: ccu4
+  base: '0x48040000'
+  irq:
+  - num: 21
+    name: IRQ21_IRQHandler
+  - num: 22
+    name: IRQ22_IRQHandler
+  - num: 23
+    name: IRQ23_IRQHandler
+  - num: 24
+    name: IRQ24_IRQHandler
+- id: ccu41
+  template: ccu4
+  base: '0x48044000'
+  ip_version: CCU40
+- id: ccu40_cc40
+  template: ccu4
+  base: '0x48040100'
+- id: ccu40_cc41
+  template: ccu4
+  base: '0x48040200'
+  ip_version: CCU40_CC40
+- id: ccu40_cc42
+  template: ccu4
+  base: '0x48040300'
+  ip_version: CCU40_CC40
+- id: ccu40_cc43
+  template: ccu4
+  base: '0x48040400'
+  ip_version: CCU40_CC40
+- id: ccu41_cc40
+  template: ccu4
+  base: '0x48044100'
+  ip_version: CCU40_CC40
+- id: ccu41_cc41
+  template: ccu4
+  base: '0x48044200'
+  ip_version: CCU40_CC40
+- id: ccu41_cc42
+  template: ccu4
+  base: '0x48044300'
+  ip_version: CCU40_CC40
+- id: ccu41_cc43
+  template: ccu4
+  base: '0x48044400'
+  ip_version: CCU40_CC40
+- id: posif1
+  template: posif
+  base: '0x50014000'
+  irq:
+  - num: 27
+    name: IRQ27_IRQHandler
+  - num: 28
+    name: IRQ28_IRQHandler
+- id: adc
+  template: adc
+  base: '0x48030000'
+  irq:
+  - num: 15
+    name: IRQ15_IRQHandler
+  - num: 16
+    name: IRQ16_IRQHandler
+- id: shs
+  template: shs
+  base: '0x48034000'
+- id: dac
+  template: dac
+  base: '0x50030000'
+- id: dac_ch0
+  template: dac
+  base: '0x5003003C'
+- id: dac_ch1
+  template: dac
+  base: '0x50030050'
+  ip_version: DAC_CH0
+- id: dac_ch2
+  template: dac
+  base: '0x50030064'
+  ip_version: DAC_CH0
+- id: dac_ch3
+  template: dac
+  base: '0x50030078'
+  ip_version: DAC_CH0
+- id: dac_ch4
+  template: dac
+  base: '0x5003008C'
+  ip_version: DAC_CH0
+- id: dac_ch5
+  template: dac
+  base: '0x500300A0'
+  ip_version: DAC_CH0
+- id: dac_ch6
+  template: dac
+  base: '0x500300B4'
+  ip_version: DAC_CH0
+- id: dac_ch7
+  template: dac
+  base: '0x500300C8'
+  ip_version: DAC_CH0
+- id: dac_ch8
+  template: dac
+  base: '0x500300DC'
+  ip_version: DAC_CH0
+- id: port0
+  template: ports
+  base: '0x40040000'
+- id: port1
+  template: ports
+  base: '0x40040100'
+- id: port2
+  template: ports
+  base: '0x40040200'
+- id: port4
+  template: ports
+  base: '0x40040400'
+pinout:
+- signal: RESET
+interrupts:
+- num: 0
+  name: IRQ0_IRQHandler
+- num: 1
+  name: IRQ1_IRQHandler
+- num: 2
+  name: IRQ2_IRQHandler
+- num: 3
+  name: IRQ3_IRQHandler
+- num: 4
+  name: IRQ4_IRQHandler
+- num: 5
+  name: IRQ5_IRQHandler
+- num: 6
+  name: IRQ6_IRQHandler
+- num: 7
+  name: IRQ7_IRQHandler
+- num: 9
+  name: IRQ9_IRQHandler
+- num: 10
+  name: IRQ10_IRQHandler
+- num: 11
+  name: IRQ11_IRQHandler
+- num: 12
+  name: IRQ12_IRQHandler
+- num: 13
+  name: IRQ13_IRQHandler
+- num: 14
+  name: IRQ14_IRQHandler
+- num: 15
+  name: IRQ15_IRQHandler
+- num: 16
+  name: IRQ16_IRQHandler
+- num: 21
+  name: IRQ21_IRQHandler
+- num: 22
+  name: IRQ22_IRQHandler
+- num: 23
+  name: IRQ23_IRQHandler
+- num: 24
+  name: IRQ24_IRQHandler
+- num: 27
+  name: IRQ27_IRQHandler
+- num: 28
+  name: IRQ28_IRQHandler
