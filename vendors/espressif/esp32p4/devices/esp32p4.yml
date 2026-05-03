@@ -4,30 +4,110 @@ identity:
   family: esp32p4
   device: esp32p4
   core:
-    isa: unknown
+    isa: riscv
     name: rv32imafc
     bits: 32
-    nvic_priority_bits: 0
+    fpu: true
   description: 32-bit RISC-V MCU
+  package: qfn80
 provenance:
   primary: cmsis-svd:esp32p4.svd
   authored: auto
   notes: SVD-extracted skeleton — memory + pinout require enrichment.
+  secondary:
+  - espressif-overlay:esp32p4
+  - espressif-idf:components/soc/esp32p4
 memory:
-- id: flash
-  base: '0x00000000'
-  size: 1B
+- id: rom
+  base: '0x4FC00000'
+  size: 128KB
   access: rx
-  role: extractor-placeholder
+  role: boot-rom
+- id: l2mem
+  base: '0x4FF00000'
+  size: 768KB
+  access: rwx
+- id: hp_sram
+  base: '0x4FF80000'
+  size: 32KB
+  access: rwx
+- id: lp_sram
+  base: '0x50108000'
+  size: 8KB
+  access: rwx
+  role: rtc-slow
+- id: drom
+  base: '0x40000000'
+  size: 32MB
+  access: ro
+  role: xip-flash-data
+- id: irom
+  base: '0x40000000'
+  size: 32MB
+  access: rx
+  role: xip-flash-exec
+- id: extram
+  base: '0x48000000'
+  size: 32MB
+  access: rwx
+  role: external-psram
 clock:
   oscillators:
-    unknown:
-      freq: 0Hz
+    xtal:
+      freq: 40MHz
+      kind: crystal-external
+    rc_fast:
+      freq: 17500kHz
       kind: rc-internal
+    rc_slow:
+      freq: 150kHz
+      kind: rc-internal
+    xtal32k:
+      freq: 32768Hz
+      kind: crystal-external
+      optional: true
+    pll_cpu:
+      freq: 400MHz
+      kind: synthesised
+    pll_periph:
+      freq: 480MHz
+      kind: synthesised
   domains:
   - id: sysclk
     sources:
-    - unknown
+    - xtal
+    - rc_fast
+    - pll_cpu
+    - pll_periph
+  - id: rtc_slow_clk
+    sources:
+    - rc_slow
+    - xtal32k
+  profiles:
+  - id: post-reset-rc-fast-17mhz
+    kind: post-reset
+    sysclk: 17500kHz
+    sysclk_source: rc_fast
+    hclk_hz: 17500000
+    pclk_hz: 17500000
+  - id: xtal-40mhz
+    kind: recommended
+    sysclk: 40MHz
+    sysclk_source: xtal
+    hclk_hz: 40000000
+    pclk_hz: 40000000
+  - id: pll-cpu-200mhz
+    kind: recommended
+    sysclk: 200MHz
+    sysclk_source: pll_cpu
+    hclk_hz: 200000000
+    pclk_hz: 100000000
+  - id: pll-cpu-400mhz-max
+    kind: recommended
+    sysclk: 400MHz
+    sysclk_source: pll_cpu
+    hclk_hz: 400000000
+    pclk_hz: 100000000
 templates:
   adc:
     registers:
@@ -463,6 +543,7 @@ templates:
       thres_ctrl.thres_all_en:
         bit: 27
         access: rw
+    max_clock: 10MHz
   aes:
     registers:
       aad_block_num:
@@ -26941,6 +27022,7 @@ templates:
         - 0
         - 31
         access: ro
+    max_clock: 1MHz
   i2s:
     registers:
       bck_cnt:
@@ -58807,6 +58889,7 @@ templates:
         - 0
         - 7
         access: rw
+    max_baud: 10000000
   uhci:
     registers:
       ack_num:
@@ -59995,6 +60078,8 @@ templates:
       test_conf.test_usb_oe:
         bit: 1
         access: rw
+  spi:
+    max_clock: 80MHz
 peripherals:
 - id: adc
   template: adc
@@ -60119,6 +60204,15 @@ peripherals:
     name: GPIO_INT3_IRQHandler
   - num: 78
     name: GPIO_PAD_COMP_IRQHandler
+  gpio_matrix_signals:
+    sd0_out: 72
+    sd1_out: 73
+    sd2_out: 74
+    sd3_out: 75
+    sd4_out: 76
+    sd5_out: 77
+    sd6_out: 78
+    sd7_out: 79
 - id: gpio_sd
   template: gpiosd
   base: '0x500E0F00'
@@ -60178,6 +60272,11 @@ peripherals:
   irq:
     num: 44
     name: I2C0_IRQHandler
+  gpio_matrix_signals:
+    scl_pad_in: 68
+    scl_pad_out: 68
+    sda_pad_in: 69
+    sda_pad_out: 69
 - id: i2c1
   template: i2c
   base: '0x500C5000'
@@ -60185,12 +60284,34 @@ peripherals:
   irq:
     num: 45
     name: I2C1_IRQHandler
+  gpio_matrix_signals:
+    scl_pad_in: 70
+    scl_pad_out: 70
+    sda_pad_in: 71
+    sda_pad_out: 71
 - id: i2s0
   template: i2s
   base: '0x500C6000'
   irq:
     num: 27
     name: I2S0_IRQHandler
+  gpio_matrix_signals:
+    o_bck_pad_in: 25
+    o_bck_pad_out: 25
+    mclk_pad_in: 26
+    mclk_pad_out: 26
+    o_ws_pad_in: 27
+    o_ws_pad_out: 27
+    i_sd_pad_in: 28
+    o_sd_pad_out: 28
+    i_bck_pad_in: 29
+    i_bck_pad_out: 29
+    i_ws_pad_in: 30
+    i_ws_pad_out: 30
+    i_sd1_pad_in: 43
+    o_sd1_pad_out: 43
+    i_sd2_pad_in: 44
+    i_sd3_pad_in: 45
 - id: i2s1
   template: i2s
   base: '0x500C7000'
@@ -60198,6 +60319,19 @@ peripherals:
   irq:
     num: 28
     name: I2S1_IRQHandler
+  gpio_matrix_signals:
+    o_bck_pad_in: 31
+    o_bck_pad_out: 31
+    mclk_pad_in: 32
+    mclk_pad_out: 32
+    o_ws_pad_in: 33
+    o_ws_pad_out: 33
+    i_sd_pad_in: 34
+    o_sd_pad_out: 34
+    i_bck_pad_in: 35
+    i_bck_pad_out: 35
+    i_ws_pad_in: 36
+    i_ws_pad_out: 36
 - id: i2s2
   template: i2s
   base: '0x500C8000'
@@ -60205,12 +60339,32 @@ peripherals:
   irq:
     num: 29
     name: I2S2_IRQHandler
+  gpio_matrix_signals:
+    o_bck_pad_in: 37
+    o_bck_pad_out: 37
+    mclk_pad_in: 38
+    mclk_pad_out: 38
+    o_ws_pad_in: 39
+    o_ws_pad_out: 39
+    i_sd_pad_in: 40
+    o_sd_pad_out: 40
+    i_bck_pad_in: 41
+    i_bck_pad_out: 41
+    i_ws_pad_in: 42
+    i_ws_pad_out: 42
 - id: i3c_mst
   template: i3c_mst
   base: '0x500DA000'
   irq:
     num: 101
     name: I3C_IRQHandler
+  gpio_matrix_signals:
+    scl_pad_in: 134
+    scl_pad_out: 134
+    sda_pad_in: 135
+    sda_pad_out: 135
+    scl_pullup_en_pad_out: 138
+    sda_pullup_en_pad_out: 139
 - id: i3c_mst_mem
   template: i3c_mst_mem
   base: '0x500DA000'
@@ -60220,6 +60374,11 @@ peripherals:
   irq:
     num: 102
     name: I3C_SLV_IRQHandler
+  gpio_matrix_signals:
+    scl_pad_in: 136
+    scl_pad_out: 136
+    sda_pad_in: 137
+    sda_pad_out: 137
 - id: axi_icm
   template: icm_axi
   base: '0x500A4000'
@@ -60247,6 +60406,15 @@ peripherals:
   irq:
     num: 52
     name: LEDC_IRQHandler
+  gpio_matrix_signals:
+    ls_sig_out_pad_out0_bidi: 126
+    ls_sig_out_pad_out1_bidi: 127
+    ls_sig_out_pad_out2_bidi: 128
+    ls_sig_out_pad_out3_bidi: 129
+    ls_sig_out_pad_out4_bidi: 130
+    ls_sig_out_pad_out5_bidi: 131
+    ls_sig_out_pad_out6_bidi: 132
+    ls_sig_out_pad_out7_bidi: 133
 - id: lp_intr
   template: lpintr
   base: '0x5012C000'
@@ -60328,6 +60496,27 @@ peripherals:
   irq:
     num: 111
     name: PCNT_IRQHandler
+  gpio_matrix_signals:
+    rst_pad_in0_bidi: 63
+    rst_pad_in1_bidi: 64
+    rst_pad_in2_bidi: 65
+    rst_pad_in3_bidi: 66
+    sig_ch0_pad_in0_bidi: 141
+    sig_ch0_pad_in1_bidi: 142
+    sig_ch0_pad_in2_bidi: 143
+    sig_ch0_pad_in3_bidi: 144
+    sig_ch1_pad_in0_bidi: 145
+    sig_ch1_pad_in1_bidi: 146
+    sig_ch1_pad_in2_bidi: 147
+    sig_ch1_pad_in3_bidi: 148
+    ctrl_ch0_pad_in0_bidi: 149
+    ctrl_ch0_pad_in1_bidi: 150
+    ctrl_ch0_pad_in2_bidi: 151
+    ctrl_ch0_pad_in3_bidi: 152
+    ctrl_ch1_pad_in0_bidi: 153
+    ctrl_ch1_pad_in1_bidi: 154
+    ctrl_ch1_pad_in2_bidi: 155
+    ctrl_ch1_pad_in3_bidi: 156
 - id: pmu
   template: pmu
   base: '0x50115000'
@@ -60351,6 +60540,15 @@ peripherals:
   irq:
     num: 43
     name: RMT_IRQHandler
+  gpio_matrix_signals:
+    sig_pad_in0_bidi: 246
+    sig_pad_out0_bidi: 246
+    sig_pad_in1_bidi: 247
+    sig_pad_out1_bidi: 247
+    sig_pad_in2_bidi: 248
+    sig_pad_out2_bidi: 248
+    sig_pad_in3_bidi: 249
+    sig_pad_out3_bidi: 249
 - id: rsa
   template: rsa
   base: '0x50092000'
@@ -60407,12 +60605,54 @@ peripherals:
   irq:
     num: 25
     name: SPI2_IRQHandler
+  gpio_matrix_signals:
+    dqs_pad_out: 44
+    ck_pad_in: 53
+    ck_pad_out: 53
+    q_pad_in: 54
+    q_pad_out: 54
+    d_pad_in: 55
+    d_pad_out: 55
+    hold_pad_in: 56
+    hold_pad_out: 56
+    wp_pad_in: 57
+    wp_pad_out: 57
+    io4_pad_in: 58
+    io4_pad_out: 58
+    io5_pad_in: 59
+    io5_pad_out: 59
+    io6_pad_in: 60
+    io6_pad_out: 60
+    io7_pad_in: 61
+    io7_pad_out: 61
+    cs_pad_in: 62
+    cs_pad_out: 62
+    cs1_pad_out: 63
+    cs2_pad_out: 64
+    cs3_pad_out: 65
+    cs4_pad_out: 66
+    cs5_pad_out: 67
 - id: spi3
   template: spi3
   base: '0x500D1000'
   irq:
     num: 26
     name: SPI3_IRQHandler
+  gpio_matrix_signals:
+    cs2_pad_out: 45
+    cs1_pad_out: 46
+    ck_pad_in: 47
+    ck_pad_out: 47
+    q_pad_in: 48
+    qo_pad_out: 48
+    d_pad_in: 49
+    d_pad_out: 49
+    hold_pad_in: 50
+    hold_pad_out: 50
+    wp_pad_in: 51
+    wp_pad_out: 51
+    cs_pad_in: 52
+    cs_pad_out: 52
 - id: systimer
   template: systimer
   base: '0x500E2000'
@@ -60463,6 +60703,12 @@ peripherals:
   irq:
     num: 40
     name: TWAI0_IRQHandler
+  gpio_matrix_signals:
+    rx_pad_in: 80
+    tx_pad_out: 80
+    bus_off_on_pad_out: 81
+    clkout_pad_out: 82
+    standby_pad_out: 105
 - id: twai1
   template: twai
   base: '0x500D8000'
@@ -60470,6 +60716,12 @@ peripherals:
   irq:
     num: 41
     name: TWAI1_IRQHandler
+  gpio_matrix_signals:
+    rx_pad_in: 83
+    tx_pad_out: 83
+    bus_off_on_pad_out: 84
+    clkout_pad_out: 85
+    standby_pad_out: 106
 - id: twai2
   template: twai
   base: '0x500D9000'
@@ -60477,12 +60729,26 @@ peripherals:
   irq:
     num: 42
     name: TWAI2_IRQHandler
+  gpio_matrix_signals:
+    rx_pad_in: 86
+    tx_pad_out: 86
+    bus_off_on_pad_out: 87
+    clkout_pad_out: 88
+    standby_pad_out: 107
 - id: uart0
   template: uart
   base: '0x500CA000'
   irq:
     num: 31
     name: UART0_IRQHandler
+  gpio_matrix_signals:
+    rxd_pad_in: 10
+    txd_pad_out: 10
+    cts_pad_in: 11
+    rts_pad_out: 11
+    dsr_pad_in: 12
+    dtr_pad_out: 12
+    slp_clk_pad_in: 74
 - id: uart1
   template: uart
   base: '0x500CB000'
@@ -60490,6 +60756,14 @@ peripherals:
   irq:
     num: 32
     name: UART1_IRQHandler
+  gpio_matrix_signals:
+    rxd_pad_in: 13
+    txd_pad_out: 13
+    cts_pad_in: 14
+    rts_pad_out: 14
+    dsr_pad_in: 15
+    dtr_pad_out: 15
+    slp_clk_pad_in: 75
 - id: uart2
   template: uart
   base: '0x500CC000'
@@ -60497,6 +60771,14 @@ peripherals:
   irq:
     num: 33
     name: UART2_IRQHandler
+  gpio_matrix_signals:
+    rxd_pad_in: 16
+    txd_pad_out: 16
+    cts_pad_in: 17
+    rts_pad_out: 17
+    dsr_pad_in: 18
+    dtr_pad_out: 18
+    slp_clk_pad_in: 76
 - id: uart3
   template: uart
   base: '0x500CD000'
@@ -60504,6 +60786,14 @@ peripherals:
   irq:
     num: 34
     name: UART3_IRQHandler
+  gpio_matrix_signals:
+    rxd_pad_in: 19
+    txd_pad_out: 19
+    cts_pad_in: 20
+    rts_pad_out: 20
+    dsr_pad_in: 21
+    dtr_pad_out: 21
+    slp_clk_pad_in: 77
 - id: uart4
   template: uart
   base: '0x500CE000'
@@ -60511,6 +60801,14 @@ peripherals:
   irq:
     num: 35
     name: UART4_IRQHandler
+  gpio_matrix_signals:
+    rxd_pad_in: 22
+    txd_pad_out: 22
+    cts_pad_in: 23
+    rts_pad_out: 23
+    dsr_pad_in: 24
+    dtr_pad_out: 24
+    slp_clk_pad_in: 78
 - id: uhci0
   template: uhci
   base: '0x500DF000'
@@ -60719,3 +61017,416 @@ interrupts:
   name: H264_REG_IRQHandler
 - num: 127
   name: ASSIST_DEBUG_IRQHandler
+power_domains:
+- id: active
+- id: light-sleep
+- id: deep-sleep
+  peripherals:
+  - lp_core
+  - lp_gpio
+  - lp_io
+hardware_caps:
+  SOC_ADC_SUPPORTED: 1
+  SOC_ANA_CMPR_SUPPORTED: 1
+  SOC_DEDICATED_GPIO_SUPPORTED: 1
+  SOC_UART_SUPPORTED: 1
+  SOC_GDMA_SUPPORTED: 1
+  SOC_UHCI_SUPPORTED: 1
+  SOC_AHB_GDMA_SUPPORTED: 1
+  SOC_AXI_GDMA_SUPPORTED: 1
+  SOC_DW_GDMA_SUPPORTED: 1
+  SOC_DMA2D_SUPPORTED: 1
+  SOC_GPTIMER_SUPPORTED: 1
+  SOC_PCNT_SUPPORTED: 1
+  SOC_LCDCAM_CAM_SUPPORTED: 1
+  SOC_LCDCAM_I80_LCD_SUPPORTED: 1
+  SOC_LCDCAM_RGB_LCD_SUPPORTED: 1
+  SOC_LCD_I80_SUPPORTED: 1
+  SOC_LCD_RGB_SUPPORTED: 1
+  SOC_MIPI_CSI_SUPPORTED: 1
+  SOC_MIPI_DSI_SUPPORTED: 1
+  SOC_MCPWM_SUPPORTED: 1
+  SOC_TWAI_SUPPORTED: 1
+  SOC_ETM_SUPPORTED: 1
+  SOC_PARLIO_SUPPORTED: 1
+  SOC_PARLIO_LCD_SUPPORTED: 1
+  SOC_ASYNC_MEMCPY_SUPPORTED: 1
+  SOC_EMAC_SUPPORTED: 1
+  SOC_USB_OTG_SUPPORTED: 1
+  SOC_WIRELESS_HOST_SUPPORTED: 1
+  SOC_USB_SERIAL_JTAG_SUPPORTED: 1
+  SOC_TEMP_SENSOR_SUPPORTED: 1
+  SOC_SUPPORTS_SECURE_DL_MODE: 1
+  SOC_ULP_SUPPORTED: 1
+  SOC_LP_CORE_SUPPORTED: 1
+  SOC_EFUSE_KEY_PURPOSE_FIELD: 1
+  SOC_EFUSE_SUPPORTED: 1
+  SOC_RTC_FAST_MEM_SUPPORTED: 1
+  SOC_RTC_MEM_SUPPORTED: 1
+  SOC_RMT_SUPPORTED: 1
+  SOC_I2S_SUPPORTED: 1
+  SOC_SDM_SUPPORTED: 1
+  SOC_GPSPI_SUPPORTED: 1
+  SOC_LEDC_SUPPORTED: 1
+  SOC_ISP_SUPPORTED: 1
+  SOC_I2C_SUPPORTED: 1
+  SOC_SYSTIMER_SUPPORTED: 1
+  SOC_AES_SUPPORTED: 1
+  SOC_MPI_SUPPORTED: 1
+  SOC_SHA_SUPPORTED: 1
+  SOC_HMAC_SUPPORTED: 1
+  SOC_DIG_SIGN_SUPPORTED: 1
+  SOC_ECC_SUPPORTED: 1
+  SOC_ECC_EXTENDED_MODES_SUPPORTED: 1
+  SOC_ECDSA_SUPPORTED: 1
+  SOC_KEY_MANAGER_SUPPORTED: 1
+  SOC_HUK_SUPPORTED: 1
+  SOC_FLASH_ENC_SUPPORTED: 1
+  SOC_SECURE_BOOT_SUPPORTED: 1
+  SOC_BOD_SUPPORTED: 1
+  SOC_VBAT_SUPPORTED: 1
+  SOC_APM_SUPPORTED: 1
+  SOC_PMU_SUPPORTED: 1
+  SOC_PMU_PVT_SUPPORTED: 1
+  SOC_PVT_EN_WITH_SLEEP: 1
+  SOC_PVT_RETENTION_BY_REGDMA: 1
+  SOC_DCDC_SUPPORTED: 1
+  SOC_PAU_SUPPORTED: 1
+  SOC_RTC_TIMER_SUPPORTED: 1
+  SOC_ULP_LP_UART_SUPPORTED: 1
+  SOC_LP_GPIO_MATRIX_SUPPORTED: 1
+  SOC_LP_PERIPHERALS_SUPPORTED: 1
+  SOC_LP_I2C_SUPPORTED: 1
+  SOC_LP_I2S_SUPPORTED: 1
+  SOC_LP_SPI_SUPPORTED: 1
+  SOC_LP_ADC_SUPPORTED: 1
+  SOC_LP_VAD_SUPPORTED: 1
+  SOC_LP_MAILBOX_SUPPORTED: 1
+  SOC_SPIRAM_SUPPORTED: 1
+  SOC_PSRAM_DMA_CAPABLE: 1
+  SOC_SDMMC_HOST_SUPPORTED: 1
+  SOC_CLK_TREE_SUPPORTED: 1
+  SOC_REGI2C_SUPPORTED: 1
+  SOC_ASSIST_DEBUG_SUPPORTED: 1
+  SOC_DEBUG_PROBE_SUPPORTED: 1
+  SOC_WDT_SUPPORTED: 1
+  SOC_RTC_WDT_SUPPORTED: 1
+  SOC_SPI_FLASH_SUPPORTED: 1
+  SOC_TOUCH_SENSOR_SUPPORTED: 1
+  SOC_RNG_SUPPORTED: 1
+  SOC_GP_LDO_SUPPORTED: 1
+  SOC_PPA_SUPPORTED: 1
+  SOC_LIGHT_SLEEP_SUPPORTED: 1
+  SOC_DEEP_SLEEP_SUPPORTED: 1
+  SOC_PM_SUPPORTED: 1
+  SOC_BITSCRAMBLER_SUPPORTED: 1
+  SOC_SIMD_INSTRUCTION_SUPPORTED: 1
+  SOC_I3C_MASTER_SUPPORTED: 1
+  SOC_SPI_EXTERNAL_NOR_FLASH_SUPPORTED: 1
+  SOC_XTAL_SUPPORT_40M: 1
+  SOC_AES_SUPPORT_DMA: 1
+  SOC_AES_SUPPORT_GCM: 1
+  SOC_AES_GDMA: 1
+  SOC_AES_SUPPORT_AES_128: 1
+  SOC_AES_SUPPORT_AES_256: 1
+  SOC_AES_SUPPORT_PSEUDO_ROUND_FUNCTION: 1
+  SOC_ADC_RTC_CTRL_SUPPORTED: 1
+  SOC_ADC_DIG_CTRL_SUPPORTED: 1
+  SOC_ADC_DMA_SUPPORTED: 1
+  SOC_ADC_PERIPH_NUM: 2
+  SOC_ADC_MAX_CHANNEL_NUM: 8
+  SOC_ADC_ATTEN_NUM: 4
+  SOC_ADC_DIGI_CONTROLLER_NUM: 2
+  SOC_ADC_DIGI_MAX_BITWIDTH: 12
+  SOC_ADC_DIGI_MIN_BITWIDTH: 12
+  SOC_ADC_DIGI_IIR_FILTER_NUM: 2
+  SOC_ADC_DIGI_MONITOR_NUM: 2
+  SOC_ADC_DIGI_RESULT_BYTES: 4
+  SOC_ADC_DIGI_DATA_BYTES_PER_CONV: 4
+  SOC_ADC_SAMPLE_FREQ_THRES_HIGH: 83333
+  SOC_ADC_SAMPLE_FREQ_THRES_LOW: 611
+  SOC_ADC_RTC_MIN_BITWIDTH: 12
+  SOC_ADC_RTC_MAX_BITWIDTH: 12
+  SOC_ADC_SHARED_POWER: 1
+  SOC_APB_BACKUP_DMA: 0
+  SOC_BROWNOUT_RESET_SUPPORTED: 1
+  SOC_SHARED_IDCACHE_SUPPORTED: 1
+  SOC_CACHE_WRITEBACK_SUPPORTED: 1
+  SOC_CACHE_FREEZE_SUPPORTED: 1
+  SOC_CACHE_INTERNAL_MEM_VIA_L1CACHE: 1
+  SOC_CPU_CORES_NUM: (2U)
+  SOC_CPU_INTR_NUM: 32
+  SOC_CPU_HAS_FLEXIBLE_INTC: 1
+  SOC_INT_CLIC_SUPPORTED: 1
+  SOC_INT_HW_NESTED_SUPPORTED: 1
+  SOC_BRANCH_PREDICTOR_SUPPORTED: 1
+  SOC_CPU_COPROC_NUM: 3
+  SOC_CPU_HAS_FPU: 1
+  SOC_CPU_HAS_FPU_EXT_ILL_BUG: 1
+  SOC_CPU_HAS_HWLOOP: 1
+  SOC_CPU_HAS_HWLOOP_STATE_BUG: 1
+  SOC_CPU_HAS_PIE: 1
+  SOC_HP_CPU_HAS_MULTIPLE_CORES: 1
+  SOC_CPU_BREAKPOINTS_NUM: 3
+  SOC_CPU_WATCHPOINTS_NUM: 3
+  SOC_CPU_WATCHPOINT_MAX_REGION_SIZE: 256
+  SOC_CPU_HAS_PMA: 1
+  SOC_CPU_IDRAM_SPLIT_USING_PMP: 1
+  SOC_CPU_PMP_REGION_GRANULARITY: 128
+  SOC_CPU_HAS_LOCKUP_RESET: 1
+  SOC_CPU_HAS_ZC_EXTENSIONS: 1
+  SOC_CPU_ZCMP_WORKAROUND: 1
+  SOC_CPU_ZCMP_PUSH_REVERSED: 1
+  SOC_CPU_ZCMP_POPRET_ISSUE: 1
+  SOC_SIMD_PREFERRED_DATA_ALIGNMENT: 16
+  SOC_DS_SIGNATURE_MAX_BIT_LEN: 4096
+  SOC_DS_KEY_PARAM_MD_IV_LENGTH: 16
+  SOC_DS_KEY_CHECK_MAX_WAIT_US: 1100
+  SOC_AHB_GDMA_VERSION: 2
+  SOC_GDMA_SUPPORT_CRC: 1
+  SOC_GDMA_SUPPORT_ETM: 1
+  SOC_GDMA_SUPPORT_SLEEP_RETENTION: 1
+  SOC_GDMA_EXT_MEM_ENC_ALIGNMENT: 16
+  SOC_GPIO_PORT: 1U
+  SOC_GPIO_PIN_COUNT: 55
+  SOC_GPIO_SUPPORT_PIN_GLITCH_FILTER: 1
+  SOC_GPIO_FLEX_GLITCH_FILTER_NUM: 8
+  SOC_GPIO_SUPPORT_PIN_HYS_FILTER: 1
+  SOC_GPIO_SUPPORT_ETM: 1
+  SOC_GPIO_SUPPORT_HP_PERIPH_PD_SLEEP_WAKEUP: 1
+  SOC_GPIO_SUPPORT_DEEPSLEEP_WAKEUP: SOC_GPIO_SUPPORT_HP_PERIPH_PD_SLEEP_WAKEUP
+  SOC_LP_IO_HAS_INDEPENDENT_WAKEUP_SOURCE: 1
+  SOC_LP_IO_CLOCK_IS_INDEPENDENT: 1
+  SOC_GPIO_VALID_GPIO_MASK: 36028797018963967
+  SOC_GPIO_VALID_OUTPUT_GPIO_MASK: SOC_GPIO_VALID_GPIO_MASK
+  SOC_GPIO_IN_RANGE_MAX: 54
+  SOC_GPIO_OUT_RANGE_MAX: 54
+  SOC_GPIO_HP_PERIPH_PD_SLEEP_WAKEABLE_MASK: (0ULL | 0xFFFF)
+  SOC_GPIO_VALID_DIGITAL_IO_PAD_MASK: 0x007FFFFFFFFF0000ULL
+  SOC_GPIO_SUPPORT_FORCE_HOLD: 1
+  SOC_GPIO_SUPPORT_HOLD_SINGLE_IO_IN_DSLP: 1
+  SOC_GPIO_CLOCKOUT_BY_GPIO_MATRIX: 1
+  SOC_GPIO_CLOCKOUT_CHANNEL_NUM: 2
+  SOC_CLOCKOUT_SUPPORT_CHANNEL_DIVIDER: 1
+  SOC_DEBUG_PROBE_NUM_UNIT: (1U)
+  SOC_DEBUG_PROBE_MAX_OUTPUT_WIDTH: 16
+  SOC_RTCIO_PIN_COUNT: 16
+  SOC_RTCIO_HOLD_SUPPORTED: 1
+  SOC_RTCIO_WAKE_SUPPORTED: 1
+  SOC_SDM_SUPPORT_SLEEP_RETENTION: 1
+  SOC_ETM_SUPPORT_SLEEP_RETENTION: 1
+  SOC_ANA_CMPR_SUPPORT_ETM: 1
+  SOC_I2C_NUM: (3U)
+  SOC_HP_I2C_NUM: (2U)
+  SOC_LP_I2C_NUM: (1U)
+  SOC_I2C_SUPPORT_XTAL: 1
+  SOC_I2C_SUPPORT_RTC: 1
+  SOC_I2C_SUPPORT_10BIT_ADDR: 1
+  SOC_I2C_SUPPORT_SLAVE: 1
+  SOC_I2C_SLAVE_SUPPORT_BROADCAST: 1
+  SOC_I2C_SLAVE_CAN_GET_STRETCH_CAUSE: 1
+  SOC_I2C_SUPPORT_SLEEP_RETENTION: 1
+  SOC_I2S_HW_VERSION_2: 1
+  SOC_I2S_SUPPORTS_ETM: 1
+  SOC_I2S_SUPPORTS_APLL: 1
+  SOC_I2S_SUPPORTS_PCM: 1
+  SOC_I2S_SUPPORTS_PDM: 1
+  SOC_I2S_SUPPORTS_PDM_TX: 1
+  SOC_I2S_SUPPORTS_PCM2PDM: 1
+  SOC_I2S_SUPPORTS_PDM_RX: 1
+  SOC_I2S_SUPPORTS_PDM2PCM: 1
+  SOC_I2S_SUPPORTS_PDM_RX_HP_FILTER: 1
+  SOC_I2S_SUPPORTS_TX_SYNC_CNT: 1
+  SOC_I2S_SUPPORTS_TDM: 1
+  SOC_I2S_PDM_MAX_TX_LINES: 2
+  SOC_I2S_PDM_MAX_RX_LINES: 4
+  SOC_LP_I2S_NUM: (1U)
+  SOC_ISP_BF_SUPPORTED: 1
+  SOC_ISP_BLC_SUPPORTED: 1
+  SOC_ISP_CCM_SUPPORTED: 1
+  SOC_ISP_COLOR_SUPPORTED: 1
+  SOC_ISP_CROP_SUPPORTED: 1
+  SOC_ISP_DEMOSAIC_SUPPORTED: 1
+  SOC_ISP_DVP_SUPPORTED: 1
+  SOC_ISP_LSC_SUPPORTED: 1
+  SOC_ISP_SHARPEN_SUPPORTED: 1
+  SOC_ISP_WBG_SUPPORTED: 1
+  SOC_ISP_SHARE_CSI_BRG: 1
+  SOC_ISP_AE_BLOCK_X_NUMS: 5
+  SOC_ISP_AE_BLOCK_Y_NUMS: 5
+  SOC_ISP_AF_WINDOW_NUMS: 3
+  SOC_ISP_AWB_WINDOW_X_NUMS: 5
+  SOC_ISP_AWB_WINDOW_Y_NUMS: 5
+  SOC_ISP_BF_TEMPLATE_X_NUMS: 3
+  SOC_ISP_BF_TEMPLATE_Y_NUMS: 3
+  SOC_ISP_CCM_DIMENSION: 3
+  SOC_ISP_DEMOSAIC_GRAD_RATIO_INT_BITS: 2
+  SOC_ISP_DEMOSAIC_GRAD_RATIO_DEC_BITS: 4
+  SOC_ISP_DEMOSAIC_GRAD_RATIO_RES_BITS: 26
+  SOC_ISP_SHARPEN_TEMPLATE_X_NUMS: 3
+  SOC_ISP_SHARPEN_TEMPLATE_Y_NUMS: 3
+  SOC_ISP_SHARPEN_H_FREQ_COEF_INT_BITS: 3
+  SOC_ISP_SHARPEN_H_FREQ_COEF_DEC_BITS: 5
+  SOC_ISP_SHARPEN_H_FREQ_COEF_RES_BITS: 24
+  SOC_ISP_SHARPEN_M_FREQ_COEF_INT_BITS: 3
+  SOC_ISP_SHARPEN_M_FREQ_COEF_DEC_BITS: 5
+  SOC_ISP_SHARPEN_M_FREQ_COEF_RES_BITS: 24
+  SOC_ISP_HIST_BLOCK_X_NUMS: 5
+  SOC_ISP_HIST_BLOCK_Y_NUMS: 5
+  SOC_ISP_HIST_SEGMENT_NUMS: 16
+  SOC_ISP_HIST_INTERVAL_NUMS: 15
+  SOC_ISP_LSC_GRAD_RATIO_INT_BITS: 2
+  SOC_ISP_LSC_GRAD_RATIO_DEC_BITS: 8
+  SOC_ISP_LSC_GRAD_RATIO_RES_BITS: 22
+  SOC_LEDC_SUPPORT_PLL_DIV_CLOCK: 1
+  SOC_LEDC_SUPPORT_XTAL_CLOCK: 1
+  SOC_LEDC_TIMER_NUM: 4
+  SOC_LEDC_CHANNEL_NUM: 8
+  SOC_LEDC_TIMER_BIT_WIDTH: 20
+  SOC_LEDC_GAMMA_CURVE_FADE_SUPPORTED: 1
+  SOC_LEDC_GAMMA_CURVE_FADE_RANGE_MAX: 16
+  SOC_LEDC_SUPPORT_FADE_STOP: 1
+  SOC_LEDC_FADE_PARAMS_BIT_WIDTH: 10
+  SOC_LEDC_SUPPORT_SLEEP_RETENTION: 1
+  SOC_LEDC_SUPPORT_ETM: 1
+  SOC_MMU_PERIPH_NUM: (2U)
+  SOC_MMU_LINEAR_ADDRESS_REGION_NUM: (2U)
+  SOC_MPU_CONFIGURABLE_REGIONS_SUPPORTED: 0
+  SOC_MPU_MIN_REGION_SIZE: 0x20000000U
+  SOC_MPU_REGIONS_MAX_NUM: 8
+  SOC_MPU_REGION_RO_SUPPORTED: 0
+  SOC_MPU_REGION_WO_SUPPORTED: 0
+  SOC_PCNT_SUPPORT_RUNTIME_THRES_UPDATE: 1
+  SOC_MCPWM_SWSYNC_CAN_PROPAGATE: 1
+  SOC_MCPWM_SUPPORT_ETM: 1
+  SOC_MCPWM_SUPPORT_EVENT_COMPARATOR: 1
+  SOC_MCPWM_CAPTURE_CLK_FROM_GROUP: 1
+  SOC_MCPWM_SUPPORT_SLEEP_RETENTION: 1
+  SOC_USB_OTG_PERIPH_NUM: (2U)
+  SOC_USB_FSLS_PHY_NUM: (1U)
+  SOC_USB_UTMI_PHY_NUM: (1U)
+  SOC_MPI_MEM_BLOCKS_NUM: 4
+  SOC_MPI_OPERATIONS_NUM: 3
+  SOC_RSA_MAX_BIT_LEN: 4096
+  SOC_SDMMC_USE_IOMUX: 1
+  SOC_SDMMC_USE_GPIO_MATRIX: 1
+  SOC_SDMMC_NUM_SLOTS: 2
+  SOC_SDMMC_DATA_WIDTH_MAX: 8
+  SOC_SDMMC_DELAY_PHASE_NUM: 8
+  SOC_SDMMC_IO_POWER_EXTERNAL: 1
+  SOC_SDMMC_PSRAM_DMA_CAPABLE: 1
+  SOC_SDMMC_UHS_I_SUPPORTED: 1
+  SOC_SHA_DMA_MAX_BUFFER_SIZE: 3968
+  SOC_SHA_SUPPORT_DMA: 1
+  SOC_SHA_SUPPORT_RESUME: 1
+  SOC_SHA_GDMA: 1
+  SOC_SHA_SUPPORT_SHA1: 1
+  SOC_SHA_SUPPORT_SHA224: 1
+  SOC_SHA_SUPPORT_SHA256: 1
+  SOC_SHA_SUPPORT_SHA384: 1
+  SOC_SHA_SUPPORT_SHA512: 1
+  SOC_SHA_SUPPORT_SHA512_224: 1
+  SOC_SHA_SUPPORT_SHA512_256: 1
+  SOC_SHA_SUPPORT_SHA512_T: 1
+  SOC_ECC_CONSTANT_TIME_POINT_MUL: 1
+  SOC_ECC_SUPPORT_CURVE_P384: 1
+  SOC_ECDSA_SUPPORT_EXPORT_PUBKEY: 1
+  SOC_ECDSA_SUPPORT_DETERMINISTIC_MODE: 1
+  SOC_ECDSA_SUPPORT_HW_DETERMINISTIC_LOOP: 1
+  SOC_ECDSA_USES_MPI: 1
+  SOC_ECDSA_SUPPORT_CURVE_P384: 1
+  SOC_SPI_PERIPH_NUM: 3
+  SOC_SPI_MAXIMUM_BUFFER_SIZE: 64
+  SOC_SPI_SUPPORT_SLEEP_RETENTION: 1
+  SOC_SPI_SUPPORT_SLAVE_HD_VER2: 1
+  SOC_SPI_SUPPORT_OCT: 1
+  SOC_SPIRAM_XIP_SUPPORTED: 1
+  SOC_SPI_MEM_SUPPORT_AUTO_WAIT_IDLE: 1
+  SOC_SPI_MEM_SUPPORT_AUTO_SUSPEND: 1
+  SOC_SPI_MEM_SUPPORT_AUTO_RESUME: 1
+  SOC_SPI_MEM_SUPPORT_IDLE_INTR: 1
+  SOC_SPI_MEM_SUPPORT_SW_SUSPEND: 1
+  SOC_SPI_MEM_SUPPORT_CHECK_SUS: 1
+  SOC_SPI_MEM_SUPPORT_TIMING_TUNING: 1
+  SOC_MEMSPI_TIMING_TUNING_BY_DQS: 1
+  SOC_MEMSPI_TIMING_TUNING_BY_FLASH_DELAY: 1
+  SOC_SPI_MEM_SUPPORT_CACHE_32BIT_ADDR_MAP: 1
+  SOC_SPI_MEM_SUPPORT_TSUS_TRES_SEPERATE_CTR: 1
+  SOC_MSPI_HAS_INDEPENT_IOMUX: 1
+  SOC_MEMSPI_IS_INDEPENDENT: 1
+  SOC_MEMSPI_SUPPORT_CONTROL_DUMMY_OUT: 1
+  SOC_SYSTIMER_SUPPORT_ETM: 1
+  SOC_LP_TIMER_BIT_WIDTH_LO: 32
+  SOC_LP_TIMER_BIT_WIDTH_HI: 16
+  SOC_RTC_TIMER_V2: 1
+  SOC_TIMER_SUPPORT_ETM: 1
+  SOC_TIMER_SUPPORT_SLEEP_RETENTION: 1
+  SOC_MWDT_SUPPORT_XTAL: 1
+  SOC_MWDT_SUPPORT_SLEEP_RETENTION: 1
+  SOC_TWAI_CONTROLLER_NUM: 3
+  SOC_TWAI_MASK_FILTER_NUM: 1U
+  SOC_TWAI_SUPPORT_SLEEP_RETENTION: 1
+  SOC_EFUSE_DIS_PAD_JTAG: 1
+  SOC_EFUSE_DIS_USB_JTAG: 1
+  SOC_EFUSE_DIS_DIRECT_BOOT: 1
+  SOC_EFUSE_SOFT_DIS_JTAG: 1
+  SOC_EFUSE_DIS_DOWNLOAD_MSPI: 1
+  SOC_EFUSE_ECDSA_KEY: 1
+  SOC_EFUSE_XTS_AES_KEY_128: 1
+  SOC_EFUSE_XTS_AES_KEY_256: 1
+  SOC_EFUSE_ECDSA_KEY_P192: 1
+  SOC_EFUSE_ECDSA_KEY_P384: 1
+  SOC_SECURE_BOOT_V2_RSA: 1
+  SOC_SECURE_BOOT_V2_ECC: 1
+  SOC_EFUSE_SECURE_BOOT_KEY_DIGESTS: 3
+  SOC_EFUSE_REVOKE_BOOT_KEY_DIGESTS: 1
+  SOC_SUPPORT_SECURE_BOOT_REVOKE_KEY: 1
+  SOC_FLASH_ENCRYPTED_XTS_AES_BLOCK_MAX: 64
+  SOC_FLASH_ENCRYPTION_XTS_AES: 1
+  SOC_FLASH_ENCRYPTION_XTS_AES_OPTIONS: 1
+  SOC_UART_NUM: 6
+  SOC_UART_HP_NUM: 5
+  SOC_UART_LP_NUM: (1U)
+  SOC_UART_WAKEUP_CHARS_SEQ_MAX_LEN: 5
+  SOC_UART_WAKEUP_SUPPORT_ACTIVE_THRESH_MODE: 1
+  SOC_UART_WAKEUP_SUPPORT_FIFO_THRESH_MODE: 1
+  SOC_UART_WAKEUP_SUPPORT_START_BIT_MODE: 1
+  SOC_UART_WAKEUP_SUPPORT_CHAR_SEQ_MODE: 1
+  SOC_LP_I2S_SUPPORT_VAD: 1
+  SOC_COEX_HW_PTI: 1
+  SOC_PHY_DIG_REGS_MEM_SIZE: (21*4)
+  SOC_WIFI_LIGHT_SLEEP_CLK_WIDTH: 12
+  SOC_PM_SUPPORT_EXT1_WAKEUP: 1
+  SOC_PM_EXT1_WAKEUP_BY_PMU: 1
+  SOC_PM_SUPPORT_LP_UART_WAKEUP: 1
+  SOC_PM_SUPPORT_CPU_PD: 1
+  SOC_PM_SUPPORT_XTAL32K_PD: 1
+  SOC_PM_SUPPORT_RC32K_PD: 1
+  SOC_PM_SUPPORT_RC_FAST_PD: 1
+  SOC_PM_SUPPORT_VDDSDIO_PD: 1
+  SOC_PM_SUPPORT_TOP_PD: 1
+  SOC_PM_SUPPORT_CNNT_PD: 1
+  SOC_PM_SUPPORT_RTC_PERIPH_PD: 1
+  SOC_PM_SUPPORT_PMU_CLK_ICG: 1
+  SOC_PM_CPU_RETENTION_BY_SW: 1
+  SOC_PM_FPU_RETENTION_BY_SW: 1
+  SOC_PM_CACHE_RETENTION_BY_PAU: 1
+  SOC_PM_SLEEP_CLK_ICG_USE_REGDMA: 1
+  SOC_PM_PAU_LINK_NUM: 4
+  SOC_PM_PAU_REGDMA_LINK_MULTI_ADDR: 1
+  SOC_PAU_IN_TOP_DOMAIN: 1
+  SOC_PM_PAU_REGDMA_UPDATE_CACHE_BEFORE_WAIT_COMPARE: 1
+  SOC_SLEEP_SYSTIMER_STALL_WORKAROUND: 1
+  SOC_SLEEP_TGWDT_STOP_WORKAROUND: 1
+  SOC_PM_RETENTION_MODULE_NUM: 64
+  SOC_CLK_RC_FAST_SUPPORT_CALIBRATION: 1
+  SOC_TEMPERATURE_SENSOR_INTR_SUPPORT: 1
+  SOC_TEMPERATURE_SENSOR_SUPPORT_ETM: 1
+  SOC_TEMPERATURE_SENSOR_SUPPORT_SLEEP_RETENTION: 1
+  SOC_MEM_SPM_SUPPORTED: 1
+  SOC_ASYNCHRONOUS_BUS_ERROR_MODE: 1
+  SOC_JPEG_CODEC_SUPPORTED: 1
+  SOC_JPEG_DECODE_SUPPORTED: 1
+  SOC_JPEG_ENCODE_SUPPORTED: 1
+  SOC_H264_ENCODER_SUPPORTED: 1
+  SOC_LCDCAM_CAM_SUPPORT_RGB_YUV_CONV: 1

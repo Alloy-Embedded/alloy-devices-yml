@@ -4,30 +4,96 @@ identity:
   family: esp32c6
   device: esp32c6
   core:
-    isa: unknown
+    isa: riscv
     name: rv32imac
     bits: 32
-    nvic_priority_bits: 0
   description: 32-bit RISC-V MCU & 2.4 GHz Wi-Fi 6 & Bluetooth 5 (LE) & IEEE 802.15.4
+  package: qfn40
 provenance:
   primary: cmsis-svd:esp32c6.svd
   authored: auto
   notes: SVD-extracted skeleton — memory + pinout require enrichment.
+  secondary:
+  - espressif-overlay:esp32c6
+  - espressif-idf:components/soc/esp32c6
 memory:
-- id: flash
-  base: '0x00000000'
-  size: 1B
+- id: rom
+  base: '0x40000000'
+  size: 320KB
   access: rx
-  role: extractor-placeholder
+  role: boot-rom
+- id: hp_sram
+  base: '0x40800000'
+  size: 512KB
+  access: rwx
+- id: lp_sram
+  base: '0x50000000'
+  size: 16KB
+  access: rwx
+  role: rtc-slow
+- id: drom
+  base: '0x42000000'
+  size: 16MB
+  access: ro
+  role: xip-flash-data
+- id: irom
+  base: '0x42000000'
+  size: 16MB
+  access: rx
+  role: xip-flash-exec
 clock:
   oscillators:
-    unknown:
-      freq: 0Hz
+    xtal:
+      freq: 40MHz
+      kind: crystal-external
+    rc_fast:
+      freq: 17500kHz
       kind: rc-internal
+    rc_slow:
+      freq: 150kHz
+      kind: rc-internal
+    xtal32k:
+      freq: 32768Hz
+      kind: crystal-external
+      optional: true
+    pll_cpu:
+      freq: 480MHz
+      kind: synthesised
   domains:
   - id: sysclk
     sources:
-    - unknown
+    - xtal
+    - rc_fast
+    - pll_cpu
+  - id: rtc_slow_clk
+    sources:
+    - rc_slow
+    - xtal32k
+  profiles:
+  - id: post-reset-rc-fast-17mhz
+    kind: post-reset
+    sysclk: 17500kHz
+    sysclk_source: rc_fast
+    hclk_hz: 17500000
+    pclk_hz: 17500000
+  - id: xtal-40mhz
+    kind: recommended
+    sysclk: 40MHz
+    sysclk_source: xtal
+    hclk_hz: 40000000
+    pclk_hz: 40000000
+  - id: pll-cpu-80mhz
+    kind: recommended
+    sysclk: 80MHz
+    sysclk_source: pll_cpu
+    hclk_hz: 80000000
+    pclk_hz: 80000000
+  - id: pll-cpu-160mhz-max
+    kind: recommended
+    sysclk: 160MHz
+    sysclk_source: pll_cpu
+    hclk_hz: 160000000
+    pclk_hz: 80000000
 templates:
   aes:
     registers:
@@ -8730,6 +8796,7 @@ templates:
         - 0
         - 31
         access: ro
+    max_clock: 800kHz
   i2s:
     registers:
       conf_sigle_data:
@@ -30641,6 +30708,7 @@ templates:
         - 0
         - 7
         access: rw
+    max_baud: 5000000
   uhci:
     registers:
       ack_num:
@@ -31674,6 +31742,10 @@ templates:
       test.test_usb_oe:
         bit: 1
         access: rw
+  adc:
+    max_clock: 5MHz
+  spi:
+    max_clock: 80MHz
 peripherals:
 - id: aes
   template: aes
@@ -31738,6 +31810,19 @@ peripherals:
     name: GPIO_IRQHandler
   - num: 31
     name: GPIO_NMI_IRQHandler
+  gpio_matrix_signals:
+    sd0_out: 83
+    sd1_out: 84
+    sd2_out: 85
+    sd3_out: 86
+    event_matrix_in0_bidi: 117
+    task_matrix_out0_bidi: 117
+    event_matrix_in1_bidi: 118
+    task_matrix_out1_bidi: 118
+    event_matrix_in2_bidi: 119
+    task_matrix_out2_bidi: 119
+    event_matrix_in3_bidi: 120
+    task_matrix_out3_bidi: 120
 - id: gpio_sd
   template: gpiosd
   base: '0x60091F00'
@@ -31836,6 +31921,13 @@ peripherals:
   irq:
     num: 45
     name: LEDC_IRQHandler
+  gpio_matrix_signals:
+    ls_sig_out0_bidi: 0
+    ls_sig_out1_bidi: 1
+    ls_sig_out2_bidi: 2
+    ls_sig_out3_bidi: 3
+    ls_sig_out4_bidi: 4
+    ls_sig_out5_bidi: 5
 - id: lp_peri
   template: lpperi
   base: '0x600B2800'
@@ -31933,6 +32025,23 @@ peripherals:
   irq:
     num: 62
     name: PCNT_IRQHandler
+  gpio_matrix_signals:
+    sig_ch0_in0_bidi: 101
+    sig_ch1_in0_bidi: 102
+    ctrl_ch0_in0_bidi: 103
+    ctrl_ch1_in0_bidi: 104
+    sig_ch0_in1_bidi: 105
+    sig_ch1_in1_bidi: 106
+    ctrl_ch0_in1_bidi: 107
+    ctrl_ch1_in1_bidi: 108
+    sig_ch0_in2_bidi: 109
+    sig_ch1_in2_bidi: 110
+    ctrl_ch0_in2_bidi: 111
+    ctrl_ch1_in2_bidi: 112
+    sig_ch0_in3_bidi: 113
+    sig_ch1_in3_bidi: 114
+    ctrl_ch0_in3_bidi: 115
+    ctrl_ch1_in3_bidi: 116
 - id: pcr
   template: pcr
   base: '0x60096000'
@@ -31948,6 +32057,11 @@ peripherals:
   irq:
     num: 49
     name: RMT_IRQHandler
+  gpio_matrix_signals:
+    sig_in0_bidi: 71
+    sig_out0_bidi: 71
+    sig_in1_bidi: 72
+    sig_out1_bidi: 72
 - id: rng
   template: rng
   base: '0x600B2800'
@@ -32034,6 +32148,12 @@ peripherals:
   irq:
     num: 46
     name: TWAI0_IRQHandler
+  gpio_matrix_signals:
+    rx_bidi: 73
+    tx_bidi: 73
+    bus_off_on_bidi: 74
+    clkout_bidi: 75
+    standby_bidi: 76
 - id: twai1
   template: twai
   base: '0x6000D000'
@@ -32041,6 +32161,12 @@ peripherals:
   irq:
     num: 47
     name: TWAI1_IRQHandler
+  gpio_matrix_signals:
+    rx_bidi: 77
+    tx_bidi: 77
+    bus_off_on_bidi: 78
+    clkout_bidi: 79
+    standby_bidi: 80
 - id: uart0
   template: uart
   base: '0x60000000'
@@ -32223,3 +32349,313 @@ interrupts:
   name: RSA_IRQHandler
 - num: 76
   name: ECC_IRQHandler
+wireless:
+  wifi:
+    standards:
+    - b
+    - g
+    - n
+    - ax
+    band_ghz:
+    - 2.4
+  bluetooth:
+    version: '5.3'
+    profiles:
+    - le
+  ieee_802_15_4: true
+  thread:
+    version: '1.3'
+  zigbee:
+    version: '3.0'
+power_domains:
+- id: active
+- id: modem-sleep
+- id: light-sleep
+- id: deep-sleep
+  peripherals:
+  - rtc_gpio
+  - rtc_cntl
+  - lp_core
+hardware_caps:
+  SOC_ADC_SUPPORTED: 1
+  SOC_DEDICATED_GPIO_SUPPORTED: 1
+  SOC_UART_SUPPORTED: 1
+  SOC_UHCI_SUPPORTED: 1
+  SOC_GDMA_SUPPORTED: 1
+  SOC_AHB_GDMA_SUPPORTED: 1
+  SOC_GPTIMER_SUPPORTED: 1
+  SOC_PCNT_SUPPORTED: 1
+  SOC_MCPWM_SUPPORTED: 1
+  SOC_TWAI_SUPPORTED: 1
+  SOC_ETM_SUPPORTED: 1
+  SOC_PARLIO_SUPPORTED: 1
+  SOC_BT_SUPPORTED: 1
+  SOC_IEEE802154_SUPPORTED: 1
+  SOC_ASYNC_MEMCPY_SUPPORTED: 1
+  SOC_USB_SERIAL_JTAG_SUPPORTED: 1
+  SOC_TEMP_SENSOR_SUPPORTED: 1
+  SOC_PHY_SUPPORTED: 1
+  SOC_WIFI_SUPPORTED: 1
+  SOC_SUPPORTS_SECURE_DL_MODE: 1
+  SOC_ULP_SUPPORTED: 1
+  SOC_LP_CORE_SUPPORTED: 1
+  SOC_EFUSE_KEY_PURPOSE_FIELD: 1
+  SOC_EFUSE_SUPPORTED: 1
+  SOC_RTC_FAST_MEM_SUPPORTED: 1
+  SOC_RTC_MEM_SUPPORTED: 1
+  SOC_I2S_SUPPORTED: 1
+  SOC_RMT_SUPPORTED: 1
+  SOC_SDM_SUPPORTED: 1
+  SOC_GPSPI_SUPPORTED: 1
+  SOC_LEDC_SUPPORTED: 1
+  SOC_I2C_SUPPORTED: 1
+  SOC_SYSTIMER_SUPPORTED: 1
+  SOC_SUPPORT_COEXISTENCE: 1
+  SOC_AES_SUPPORTED: 1
+  SOC_MPI_SUPPORTED: 1
+  SOC_SHA_SUPPORTED: 1
+  SOC_HMAC_SUPPORTED: 1
+  SOC_DIG_SIGN_SUPPORTED: 1
+  SOC_ECC_SUPPORTED: 1
+  SOC_FLASH_ENC_SUPPORTED: 1
+  SOC_SECURE_BOOT_SUPPORTED: 1
+  SOC_SDIO_SLAVE_SUPPORTED: 1
+  SOC_BOD_SUPPORTED: 1
+  SOC_PMU_SUPPORTED: 1
+  SOC_PMU_PVT_SUPPORTED: 1
+  SOC_PAU_SUPPORTED: 1
+  SOC_RTC_TIMER_SUPPORTED: 1
+  SOC_LP_AON_SUPPORTED: 1
+  SOC_LP_PERIPHERALS_SUPPORTED: 1
+  SOC_LP_I2C_SUPPORTED: 1
+  SOC_ULP_LP_UART_SUPPORTED: 1
+  SOC_CLK_TREE_SUPPORTED: 1
+  SOC_ASSIST_DEBUG_SUPPORTED: 1
+  SOC_WDT_SUPPORTED: 1
+  SOC_RTC_WDT_SUPPORTED: 1
+  SOC_SPI_FLASH_SUPPORTED: 1
+  SOC_RNG_SUPPORTED: 1
+  SOC_LIGHT_SLEEP_SUPPORTED: 1
+  SOC_DEEP_SLEEP_SUPPORTED: 1
+  SOC_MODEM_CLOCK_SUPPORTED: 1
+  SOC_REGI2C_SUPPORTED: 1
+  SOC_PM_SUPPORTED: 1
+  SOC_SPI_EXTERNAL_NOR_FLASH_SUPPORTED: 1
+  SOC_XTAL_SUPPORT_40M: 1
+  SOC_XTAL_CLOCK_PATH_DEPENDS_ON_TOP_DOMAIN: 1
+  SOC_AES_SUPPORT_DMA: 1
+  SOC_AES_GDMA: 1
+  SOC_AES_SUPPORT_AES_128: 1
+  SOC_AES_SUPPORT_AES_256: 1
+  SOC_ADC_DIG_CTRL_SUPPORTED: 1
+  SOC_ADC_DIG_IIR_FILTER_SUPPORTED: 1
+  SOC_ADC_MONITOR_SUPPORTED: 1
+  SOC_ADC_DMA_SUPPORTED: 1
+  SOC_ADC_PERIPH_NUM: (1U)
+  SOC_ADC_MAX_CHANNEL_NUM: 7
+  SOC_ADC_ATTEN_NUM: 4
+  SOC_ADC_DIGI_CONTROLLER_NUM: (1U)
+  SOC_ADC_DIGI_MAX_BITWIDTH: 12
+  SOC_ADC_DIGI_MIN_BITWIDTH: 12
+  SOC_ADC_DIGI_IIR_FILTER_NUM: 2
+  SOC_ADC_DIGI_MONITOR_NUM: 2
+  SOC_ADC_DIGI_RESULT_BYTES: 4
+  SOC_ADC_DIGI_DATA_BYTES_PER_CONV: 4
+  SOC_ADC_SAMPLE_FREQ_THRES_HIGH: 83333
+  SOC_ADC_SAMPLE_FREQ_THRES_LOW: 611
+  SOC_ADC_RTC_MIN_BITWIDTH: 12
+  SOC_ADC_RTC_MAX_BITWIDTH: 12
+  SOC_ADC_TEMPERATURE_SHARE_INTR: 1
+  SOC_ADC_SHARED_POWER: 1
+  SOC_APB_BACKUP_DMA: 0
+  SOC_BROWNOUT_RESET_SUPPORTED: 1
+  SOC_SHARED_IDCACHE_SUPPORTED: 1
+  SOC_CACHE_FREEZE_SUPPORTED: 1
+  SOC_CPU_CORES_NUM: (1U)
+  SOC_CPU_INTR_NUM: 32
+  SOC_CPU_HAS_FLEXIBLE_INTC: 1
+  SOC_INT_PLIC_SUPPORTED: 1
+  SOC_CPU_HAS_CSR_PC: 1
+  SOC_CPU_BREAKPOINTS_NUM: 4
+  SOC_CPU_WATCHPOINTS_NUM: 4
+  SOC_CPU_WATCHPOINT_MAX_REGION_SIZE: 2147483648
+  SOC_CPU_HAS_PMA: 1
+  SOC_CPU_IDRAM_SPLIT_USING_PMP: 1
+  SOC_CPU_PMP_REGION_GRANULARITY: 4
+  SOC_CPU_MISALIGNED_ACCESS_ON_PMP_MISMATCH_ISSUE: 1
+  SOC_DS_SIGNATURE_MAX_BIT_LEN: 3072
+  SOC_DS_KEY_PARAM_MD_IV_LENGTH: 16
+  SOC_DS_KEY_CHECK_MAX_WAIT_US: 1100
+  SOC_AHB_GDMA_VERSION: 1U
+  SOC_GDMA_SUPPORT_ETM: 1
+  SOC_GDMA_SUPPORT_SLEEP_RETENTION: 1
+  SOC_GPIO_PORT: 1U
+  SOC_GPIO_PIN_COUNT: 31
+  SOC_GPIO_SUPPORT_PIN_GLITCH_FILTER: 1
+  SOC_GPIO_FLEX_GLITCH_FILTER_NUM: 8
+  SOC_GPIO_SUPPORT_ETM: 1
+  SOC_GPIO_SUPPORT_HP_PERIPH_PD_SLEEP_WAKEUP: 1
+  SOC_GPIO_SUPPORT_DEEPSLEEP_WAKEUP: SOC_GPIO_SUPPORT_HP_PERIPH_PD_SLEEP_WAKEUP
+  SOC_LP_IO_CLOCK_IS_INDEPENDENT: 1
+  SOC_GPIO_VALID_GPIO_MASK: ((1U<<SOC_GPIO_PIN_COUNT) - 1)
+  SOC_GPIO_VALID_OUTPUT_GPIO_MASK: SOC_GPIO_VALID_GPIO_MASK
+  SOC_GPIO_IN_RANGE_MAX: 30
+  SOC_GPIO_OUT_RANGE_MAX: 30
+  SOC_GPIO_HP_PERIPH_PD_SLEEP_WAKEABLE_MASK: (0ULL | BIT0 | BIT1 | BIT2 | BIT3 | BIT4 | BIT5 | BIT6 | BIT7)
+  SOC_GPIO_VALID_DIGITAL_IO_PAD_MASK: 0x000000007FFFFF00ULL
+  SOC_GPIO_SUPPORT_FORCE_HOLD: 1
+  SOC_GPIO_SUPPORT_HOLD_SINGLE_IO_IN_DSLP: 1
+  SOC_GPIO_CLOCKOUT_BY_GPIO_MATRIX: 1
+  SOC_CLOCKOUT_HAS_SOURCE_GATE: 1
+  SOC_GPIO_CLOCKOUT_CHANNEL_NUM: 3
+  SOC_RTCIO_PIN_COUNT: 8
+  SOC_RTCIO_HOLD_SUPPORTED: 1
+  SOC_RTCIO_WAKE_SUPPORTED: 1
+  SOC_SDM_SUPPORT_SLEEP_RETENTION: 1
+  SOC_ETM_SUPPORT_SLEEP_RETENTION: 1
+  SOC_I2C_NUM: (2U)
+  SOC_HP_I2C_NUM: (1U)
+  SOC_LP_I2C_NUM: (1U)
+  SOC_I2C_SUPPORT_XTAL: 1
+  SOC_I2C_SUPPORT_RTC: 1
+  SOC_I2C_SUPPORT_10BIT_ADDR: 1
+  SOC_I2C_SUPPORT_SLAVE: 1
+  SOC_I2C_SLAVE_SUPPORT_BROADCAST: 1
+  SOC_I2C_SLAVE_CAN_GET_STRETCH_CAUSE: 1
+  SOC_I2C_SUPPORT_SLEEP_RETENTION: 1
+  SOC_I2S_HW_VERSION_2: 1
+  SOC_I2S_SUPPORTS_ETM: 1
+  SOC_I2S_SUPPORTS_PCM: 1
+  SOC_I2S_SUPPORTS_PDM: 1
+  SOC_I2S_SUPPORTS_PDM_TX: 1
+  SOC_I2S_SUPPORTS_PCM2PDM: 1
+  SOC_I2S_SUPPORTS_PDM_RX: 1
+  SOC_I2S_PDM_MAX_TX_LINES: 2
+  SOC_I2S_PDM_MAX_RX_LINES: (1U)
+  SOC_I2S_SUPPORTS_TDM: 1
+  SOC_LEDC_SUPPORT_PLL_DIV_CLOCK: 1
+  SOC_LEDC_SUPPORT_XTAL_CLOCK: 1
+  SOC_LEDC_TIMER_NUM: 4
+  SOC_LEDC_CHANNEL_NUM: 6
+  SOC_LEDC_TIMER_BIT_WIDTH: 20
+  SOC_LEDC_SUPPORT_FADE_STOP: 1
+  SOC_LEDC_GAMMA_CURVE_FADE_SUPPORTED: 1
+  SOC_LEDC_GAMMA_CURVE_FADE_RANGE_MAX: 16
+  SOC_LEDC_FADE_PARAMS_BIT_WIDTH: 10
+  SOC_LEDC_SUPPORT_SLEEP_RETENTION: 1
+  SOC_LEDC_SUPPORT_ETM: 1
+  SOC_MMU_PAGE_SIZE_CONFIGURABLE: 1
+  SOC_MMU_PERIPH_NUM: (1U)
+  SOC_MMU_LINEAR_ADDRESS_REGION_NUM: (1U)
+  SOC_MPU_CONFIGURABLE_REGIONS_SUPPORTED: 0
+  SOC_MPU_MIN_REGION_SIZE: 0x20000000U
+  SOC_MPU_REGIONS_MAX_NUM: 8
+  SOC_MPU_REGION_RO_SUPPORTED: 0
+  SOC_MPU_REGION_WO_SUPPORTED: 0
+  SOC_PCNT_SUPPORT_RUNTIME_THRES_UPDATE: 1
+  SOC_MCPWM_SWSYNC_CAN_PROPAGATE: 1
+  SOC_MCPWM_SUPPORT_ETM: 1
+  SOC_MCPWM_CAPTURE_CLK_FROM_GROUP: 1
+  SOC_MCPWM_SUPPORT_SLEEP_RETENTION: 1
+  SOC_MPI_MEM_BLOCKS_NUM: 4
+  SOC_MPI_OPERATIONS_NUM: 3
+  SOC_RSA_MAX_BIT_LEN: 3072
+  SOC_SHA_DMA_MAX_BUFFER_SIZE: 3968
+  SOC_SHA_SUPPORT_DMA: 1
+  SOC_SHA_SUPPORT_RESUME: 1
+  SOC_SHA_GDMA: 1
+  SOC_SHA_SUPPORT_SHA1: 1
+  SOC_SHA_SUPPORT_SHA224: 1
+  SOC_SHA_SUPPORT_SHA256: 1
+  SOC_SPI_PERIPH_NUM: 2
+  SOC_SPI_MAXIMUM_BUFFER_SIZE: 64
+  SOC_SPI_SUPPORT_SLAVE_HD_VER2: 1
+  SOC_SPI_SUPPORT_SLEEP_RETENTION: 1
+  SOC_SPI_MEM_SUPPORT_AUTO_WAIT_IDLE: 1
+  SOC_SPI_MEM_SUPPORT_AUTO_SUSPEND: 1
+  SOC_SPI_MEM_SUPPORT_AUTO_RESUME: 1
+  SOC_SPI_MEM_SUPPORT_IDLE_INTR: 1
+  SOC_SPI_MEM_SUPPORT_SW_SUSPEND: 1
+  SOC_SPI_MEM_SUPPORT_CHECK_SUS: 1
+  SOC_SPI_MEM_SUPPORT_WRAP: 1
+  SOC_MEMSPI_IS_INDEPENDENT: 1
+  SOC_SYSTIMER_SUPPORT_ETM: 1
+  SOC_LP_TIMER_BIT_WIDTH_LO: 32
+  SOC_LP_TIMER_BIT_WIDTH_HI: 16
+  SOC_RTC_TIMER_V2: 1
+  SOC_TIMER_SUPPORT_ETM: 1
+  SOC_TIMER_SUPPORT_SLEEP_RETENTION: 1
+  SOC_MWDT_SUPPORT_XTAL: 1
+  SOC_MWDT_SUPPORT_SLEEP_RETENTION: 1
+  SOC_TWAI_CONTROLLER_NUM: 2
+  SOC_TWAI_MASK_FILTER_NUM: 1U
+  SOC_TWAI_SUPPORT_SLEEP_RETENTION: 1
+  SOC_EFUSE_DIS_DOWNLOAD_ICACHE: 1
+  SOC_EFUSE_DIS_PAD_JTAG: 1
+  SOC_EFUSE_DIS_USB_JTAG: 1
+  SOC_EFUSE_DIS_DIRECT_BOOT: 1
+  SOC_EFUSE_SOFT_DIS_JTAG: 1
+  SOC_EFUSE_DIS_ICACHE: 1
+  SOC_EFUSE_BLOCK9_KEY_PURPOSE_QUIRK: 1
+  SOC_EFUSE_XTS_AES_KEY_128: 1
+  SOC_SECURE_BOOT_V2_RSA: 1
+  SOC_SECURE_BOOT_V2_ECC: 1
+  SOC_EFUSE_SECURE_BOOT_KEY_DIGESTS: 3
+  SOC_EFUSE_REVOKE_BOOT_KEY_DIGESTS: 1
+  SOC_SUPPORT_SECURE_BOOT_REVOKE_KEY: 1
+  SOC_FLASH_ENCRYPTED_XTS_AES_BLOCK_MAX: 64
+  SOC_FLASH_ENCRYPTION_XTS_AES: 1
+  SOC_FLASH_ENCRYPTION_XTS_AES_128: 1
+  SOC_CRYPTO_DPA_PROTECTION_SUPPORTED: 1
+  SOC_UART_NUM: 3
+  SOC_UART_HP_NUM: 2
+  SOC_UART_LP_NUM: (1U)
+  SOC_UART_WAKEUP_CHARS_SEQ_MAX_LEN: 5
+  SOC_UART_WAKEUP_SUPPORT_ACTIVE_THRESH_MODE: 1
+  SOC_UART_WAKEUP_SUPPORT_FIFO_THRESH_MODE: 1
+  SOC_UART_WAKEUP_SUPPORT_START_BIT_MODE: 1
+  SOC_UART_WAKEUP_SUPPORT_CHAR_SEQ_MODE: 1
+  SOC_COEX_HW_PTI: 1
+  SOC_PHY_DIG_REGS_MEM_SIZE: (21*4)
+  SOC_WIFI_LIGHT_SLEEP_CLK_WIDTH: 12
+  SOC_RTC_MEM_SUPPORT_SPEED_MODE_SWITCH: 1
+  SOC_PM_SUPPORT_WIFI_WAKEUP: 1
+  SOC_PM_SUPPORT_BEACON_WAKEUP: 1
+  SOC_PM_SUPPORT_BT_WAKEUP: 1
+  SOC_PM_SUPPORT_EXT1_WAKEUP: 1
+  SOC_PM_SUPPORT_CPU_PD: 1
+  SOC_PM_SUPPORT_MODEM_PD: 1
+  SOC_PM_SUPPORT_XTAL32K_PD: 1
+  SOC_PM_SUPPORT_RC32K_PD: 1
+  SOC_PM_SUPPORT_RC_FAST_PD: 1
+  SOC_PM_SUPPORT_VDDSDIO_PD: 1
+  SOC_PM_SUPPORT_TOP_PD: 1
+  SOC_PM_SUPPORT_HP_AON_PD: 1
+  SOC_PM_SUPPORT_MAC_BB_PD: 1
+  SOC_PM_SUPPORT_RTC_PERIPH_PD: 1
+  SOC_PM_SUPPORT_PMU_MODEM_STATE: 1
+  SOC_PM_SUPPORT_PMU_CLK_ICG: 1
+  SOC_PM_SUPPORT_MODEM_CLOCK_DOMAIN_ICG: 1
+  SOC_PM_CPU_RETENTION_BY_SW: 1
+  SOC_PM_MODEM_RETENTION_BY_REGDMA: 1
+  SOC_PM_RETENTION_HAS_CLOCK_BUG: 1
+  SOC_PM_MODEM_RF_FLAG_UPDATE_WORKAROUND: 1
+  SOC_PM_PAU_LINK_NUM: 4
+  SOC_PM_PAU_REGDMA_LINK_MULTI_ADDR: 1
+  SOC_PM_PAU_REGDMA_LINK_WIFIMAC: 1
+  SOC_PM_PAU_REGDMA_UPDATE_CACHE_BEFORE_WAIT_COMPARE: 1
+  SOC_PM_PMU_MIN_SLP_SLOW_CLK_CYCLE_FIXED: 1
+  SOC_PM_RETENTION_MODULE_NUM: 32
+  SOC_PM_TOP_DEPENDS_ON_RTC_PERIPH: 1
+  SOC_CLK_RC_FAST_SUPPORT_CALIBRATION: 1
+  SOC_MODEM_CLOCK_IS_INDEPENDENT: 1
+  SOC_TEMPERATURE_SENSOR_SUPPORT_FAST_RC: 1
+  SOC_TEMPERATURE_SENSOR_SUPPORT_XTAL: 1
+  SOC_TEMPERATURE_SENSOR_INTR_SUPPORT: 1
+  SOC_TEMPERATURE_SENSOR_SUPPORT_ETM: 1
+  SOC_TEMPERATURE_SENSOR_SUPPORT_SLEEP_RETENTION: 1
+  SOC_TEMPERATURE_SENSOR_UNDER_PD_TOP_DOMAIN: 1
+  SOC_RNG_CLOCK_IS_INDEPENDENT: 1
+  SOC_BLE_USE_WIFI_PWR_CLK_WORKAROUND: 1
+  SOC_CAPS_NO_RESET_BY_ANA_BOD: 1
+  SOC_DEBUG_HAVE_OCD_STUB_BINS: 1
